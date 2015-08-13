@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  
+  root 'static_pages#index'
+
+  post 'products/upload_products' => 'products#upload_products'
+  post 'static_pages/upload_file' => 'static_pages#upload_products'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
