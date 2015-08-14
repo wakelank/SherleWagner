@@ -19,26 +19,66 @@
 Color.delete_all
 Material.delete_all
 
-materials = %w(Marble Semi-Precious\ Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
+materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
 colors = { marble:  
-%w(SATIN\ BRASS
-POLISHED\ BRASS
-BRUSHED\ CHROME
-POLISHED\ CHROME
-BRUSHED\ NICKEL
-POLISHED\ NICKEL
-FLEMISH\ PATINA
-ENGLISH\ PATINA
-VERDI\ ANTIQUE
-OIL\ RUBED\ BRASS
-ANTIQUE\ PEWTER
-GOLD\ PLATE
-ANTIQUE\ GOLD
-BURNISHED\ GOLD
-ENGLISH\ SILVER
-BURNISHED\ PLATINUM
-BUTLER\ SILVER) }
-
+            %w(SATIN\ BRASS
+            POLISHED\ BRASS
+            BRUSHED\ CHROME
+            POLISHED\ CHROME
+            BRUSHED\ NICKEL
+            POLISHED\ NICKEL
+            FLEMISH\ PATINA
+            ENGLISH\ PATINA
+            VERDI\ ANTIQUE
+            OIL\ RUBED\ BRASS
+            ANTIQUE\ PEWTER
+            GOLD\ PLATE
+            ANTIQUE\ GOLD
+            BURNISHED\ GOLD
+            ENGLISH\ SILVER
+            BURNISHED\ PLATINUM
+            BUTLER\ SILVER),
+          metal:
+            %w(satin\ brass
+            polished\ brass
+            brushed\ chrome
+            polished\ chrome
+            brushed\ nickel
+            polished\ nickel
+            flemish\ patina
+            english\ patina
+            verdi\ antique
+            oil\ rubed brass
+            antique\ pewter
+            gold\ plate
+            antique\ gold
+            burnished\ gold
+            english\ silver
+            burnished\ platinum
+            butler\ silver),
+          china:
+            %w(SOLID\ PLAIN\ COLORS
+            HAND\ DECORATE
+            HAND\ PAINTED
+            GOLD\ PLATINUM),
+           semiprecious_stone:
+            %w(ROCK\ CRYSTAL\ \(RKCR\)
+            ROSE\ QUARTZ\ \(RSQU\)
+            AMETHYST\ \(AMET\)
+            LAPIS\ LAZULI\ \(LAPI\)
+            MALACHITE\ \(MALA\)
+            JASPER\ \(JASP\)
+            BROWN\ TIGER\ EYE\ \(BRTI\)\ 
+            BLUE\ TIGER\ EYE\ \(BLTI\)
+            RHODOCHROSITE\ \(RHOD\)),
+          onyx:
+            %w(BLACK\ ONYX\ \(BKOX\)
+            WHITE\ ONYX\ \(WHOX\)
+            HONEY\ ONYX\ \(HNOX\)
+            GREEN\ ONYX\ \(GROX\)
+            PINK\ ONYX\ \(PKOX\)
+            BROWN\ ONYX\ \(BROX\))
+}
 materials.each do |material|
   Material.create(name: material)
 end

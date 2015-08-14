@@ -1,10 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :product do
+  factory :product_type do
     name "MyString"
-    number "MyString"
-    Category nil
-    Sub_category nil
   end
 end
