@@ -18,6 +18,8 @@
 
 Color.delete_all
 Material.delete_all
+ProductSubType.delete_all
+ProductType.delete_all
 
 materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
 colors = { marble:  
@@ -88,5 +90,92 @@ colors.each do |material, colors|
   colors.each do |color|
     Color.create( name: color, material: material)
   end
+end
+
+types = %w(Fittings Accessories Fixtures Hardware Lights Wallcoverings)
+sub_types = { 
+  fittings:
+    %w(BASIN\ AND\ BAR\ SETS
+    TUB\ AND\ SHOWER\ COMPONENTS
+    WATER\ CLOSET\ AND\ BIDET\ FITTINGS),
+  accessories:
+    %w(BATHROOM
+    COUNTER\ TOPS
+    MEDICISNE\ CABINETS),
+  fixtures:
+    %w(SINKS
+    PEDESTAL
+    CONSOLES,\ COUNTERS\ AND\ VANITIES
+    TUBS
+    WAER\ CLOSET\ AND\ BIDET\ FIXTURES),
+  lights:
+    %w(CEILING\ LIGHTS
+    CABINET\ AND\ DRAWER\ PULLS),
+  wallcoverings:
+    %w(WALLPAPERS
+    CERAMIC
+    MARBLE)
+}
+
+types.each do |type|
+  ProductType.create(name: type)
+end
+
+sub_types.each do |type, sub_types|
+  type = ProductType.where("lower(name) = ?",  type.to_s.downcase).first
+  sub_types.each do |sub_type|
+    ProductSubType.create( name: sub_type, product_type: type)
+  end
+end
+
+genres = %w(Ornate Traditional Classic MidCentury Contemporary)
+styles = {
+            ornate: 
+              %w(LOUIS\ SEIZE
+              CHERUB
+              SWAN
+              DOLPHIN
+              FILIGREE
+              1040\ LEAVES\ RSQU),
+            traditional:
+              %w(ACANTHUS
+              RIBBON\ &\ REED
+              CUT\ CRYSTAL
+              CLASSIC
+              MING\ BLOSSOM
+              ONYX
+              1029\ ROCK\ CRYSTAL),
+            classic:
+              %w(HARRISON
+              GREY
+              CLASSIC
+              MELON),
+            MidCentury:
+              %w(APOLLO
+              NOUVEAU
+              COSMOS
+              MOLECULES
+              PYRAMID),
+            Contemporary:
+              %w(ARCO
+              NAIAD
+              AQUEDUCT
+              ARBOR)
+}
+genres.each do |type|
+  Genre.create(name: type)
+end
+
+styles.each do |genre, styles|
+  genre = Genre.where("lower(name) = ?",  genre.to_s.downcase).first
+  styles.each do |style|
+    Style.create( name: style, genre: genre)
+  end
+end
+
+overall_colors = %w(Neutral Blues Pinks Yellows Blacks Reds Greens Metallics)
+
+overall_colors.each do |color|
+  OverallColor.create(name: color)
 end
 
