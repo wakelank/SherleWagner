@@ -5,6 +5,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'jquery-turbolinks'
 gem 'awesome_print'
+gem 'faker'
 
 #these may require more configuration
 #gem 'postmark-rails'

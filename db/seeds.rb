@@ -16,10 +16,20 @@
 #categories.each { |category| Category.create(name: category) }
 #sub_categories.each { |sub_cat| SubCategory.create(name: sub_cat) }
 
+Sku.delete_all
 Color.delete_all
 Material.delete_all
 ProductSubType.delete_all
 ProductType.delete_all
+LeverDesign.delete_all
+BasinDesign.delete_all
+ConsoleCounterVanityDesign.delete_all
+WaterClosetHandleDesign.delete_all
+DoorTrimDesign.delete_all
+WallTrimDesign.delete_all
+CeilingLightsDesign.delete_all
+WallLightsDesign.delete_all
+WallPaperDesign.delete_all
 
 materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
 colors = { marble:  
@@ -178,4 +188,24 @@ overall_colors = %w(Neutral Blues Pinks Yellows Blacks Reds Greens Metallics)
 overall_colors.each do |color|
   OverallColor.create(name: color)
 end
+
+lever_designs = %w(Handle Knob)
+basin_designs = %w(Under\ edges Over\Edge)
+ccv_designs = %w(Console Counter Vanity)
+wc_handle_designs = %w(Drop\ pull Bar\ pull)
+door_trim_designs = %w(Push\ plates	Back\ Plates	Hinges	Latches	Thumb\ turns	Flush\ pulls	Key\ hole\ cover)
+wall_trim_designs = %w(Door\ stops	Bell\ Covers	Electrical\ plates)
+ceiling_lights_designs = %w(Chandeliers	Flush\ Mounted)
+wall_lights_designs = %w(Sconces Panel\ lights)
+wallpaper_designs = %w(Toiles Floral Geometric)
+
+lever_designs.each { |design| LeverDesign.create(name: design) }
+basin_designs.each { |design| BasinDesign.create(name: design) }
+ccv_designs.each { |design| ConsoleCounterVanityDesign.create(name: design) }
+wc_handle_designs.each { |design| WaterClosetHandleDesign.create(name: design) }
+door_trim_designs.each { |design| DoorTrimDesign.create(name: design) }
+wall_trim_designs.each { |design| WallTrimDesign.create(name: design) }
+ceiling_lights_designs.each { |design| CeilingLightsDesign.create(name: design) }
+wall_lights_designs.each { |design| WallLightsDesign.create(name: design) }
+wallpaper_designs.each { |design| WallPaperDesign.create(name: design) }
 
