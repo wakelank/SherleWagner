@@ -34,23 +34,28 @@ WallPaperDesign.delete_all
 
 materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
 colors = { marble:  
-            %w(SATIN\ BRASS
-            POLISHED\ BRASS
-            BRUSHED\ CHROME
-            POLISHED\ CHROME
-            BRUSHED\ NICKEL
-            POLISHED\ NICKEL
-            FLEMISH\ PATINA
-            ENGLISH\ PATINA
-            VERDI\ ANTIQUE
-            OIL\ RUBED\ BRASS
-            ANTIQUE\ PEWTER
-            GOLD\ PLATE
-            ANTIQUE\ GOLD
-            BURNISHED\ GOLD
-            ENGLISH\ SILVER
-            BURNISHED\ PLATINUM
-            BUTLER\ SILVER),
+            %w(ROSE\ AURORA\ \(RSAU\)
+            ROSE\ DU\ MONTE\ \(RSDM\)
+            CARARRA\ \(CARR\)
+            MARIANELLA\ \(MARI\)
+            ANTIQUE\ WHITE\ \(ANWH\)
+            ANTIQUE\ BROWN\ \(ANBR\)
+            ESTREMOZ\ \(ESTR\)
+            VERDI\ VIANA\ \(VERD\)
+            CREMA\ MARFIL\ \(CREMA\)\ 
+            BELGIAN\ BLACK\ \(BLGB\)
+            ROJO\ ALICANTE\ \(ROJO\)
+            BLACK\ MARBLE\ \(BLMA\)
+            ROSA\ LEVANTO\ \(RSLV\)
+            IMPERADOR\ BROWN\ \(IMBR\)
+            CARNICO\ GREY\ \(CRGR\)
+            ARABESCATO\ \(ARAB\)
+            NEGRO\ MARQUINA\ \(NEMA\)
+            PORTORO\ \(PORT\)
+            VALVERDE\ \(VLVD\)
+            CALACATTA\ \(CALA\)
+            PORT\ LAURENT\ \(PTLA\)),
+
           metal:
             %w(satin\ brass
             polished\ brass
@@ -125,7 +130,9 @@ sub_types = {
   wallcoverings:
     %w(WALLPAPERS
     CERAMIC
-    MARBLE)
+    MARBLE),
+  hardware:
+    %w(LEVERS\ AND\ KNOBS CABINET\ &\ DRAWER\ PULLS DOOR\ TRIM WALL\ TRIM)
 }
 
 types.each do |type|
@@ -204,11 +211,13 @@ lever_designs.each { |design| LeverDesign.create(name: design) }
 basin_designs.each { |design| BasinDesign.create(name: design) }
 ccv_designs.each { |design| ConsoleCounterVanityDesign.create(name: design) }
 wc_handle_designs.each { |design| WaterClosetHandleDesign.create(name: design) }
+#Not for water closets. should be for drawer pulls
 door_trim_designs.each { |design| DoorTrimDesign.create(name: design) }
 wall_trim_designs.each { |design| WallTrimDesign.create(name: design) }
 ceiling_lights_designs.each { |design| CeilingLightsDesign.create(name: design) }
 wall_lights_designs.each { |design| WallLightsDesign.create(name: design) }
 wallpaper_designs.each { |design| WallPaperDesign.create(name: design) }
+#add accessories bathrooms, countertops filters
 
 num_products = 200
 
@@ -237,6 +246,29 @@ num_products.times do
                genre: genre,
                style: style,
                number: sku_number)
+
+    case product.product_sub_type.name.downcase
+    when 'basin and bar sets'
+      sku.lever_design = LeverDesign.all.sample
+    when 'sinks'
+      sku.basin_design = BasinDesign.all.sample
+    when 'counter, console, vanity'
+      sku.counter_console_vanity_design = CounterConsoleVanity.all.sample
+    when 'door trim'
+      sku.door_trim_design = DoorTrimDesign.all.sample
+    when 'wall trim'
+      sku.wall_trim_design = WallTrimDesign.all.sample
+    when 'ceiling lights'
+      sku.ceiling_lights_design = CeilingLightsDesign.all.sample
+    when 'wall lights'
+      sku.wall_lights.design = WallLightsDesign.all.sample
+    when 'wallpaper'
+      sku.wallpaper_design = WallPaperDesign.all.sample
+    end
+    sku.save
+
+
+
     product.skus << sku = sku
   end
 end

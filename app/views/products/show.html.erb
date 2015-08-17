@@ -1,2 +1,38 @@
 <h1>Product page</h1>
-<h2><%= @product.name %>
+<h2><%= @product.name %></h2>
+<p>Number: <%= @product.number %></p>
+<p>Long Description: <%= @product.long_description %></p>
+<p>materials:</p>
+<ul>
+  <% @product.materials.uniq.each do |material| %>
+    <li><%= material.name %> </li>
+  <% end %>
+</ul>
+<p>Colors:</p>
+<ul>
+  <% @product.colors.uniq.each do |color| %>
+    <li><%= color.name %> </li>
+  <% end %>
+</ul>
+<p>Genres</p>
+<ul>
+  <% @product.genres.uniq.each do |genre| %>
+    <li><%= genre.name %> </li>
+  <% end %>
+</ul>
+<p>Styles</p>
+<ul>
+  <% @product.styles.uniq.each do |style| %>
+    <li><%= style.name %> </li>
+  <% end %>
+</ul>
+<p>SKUs:</p>
+<ul>
+  <% @product.skus.each do |sku| %>
+    <li>
+      <%= sku.number %> | <%= sku.material_name %> | <%= sku.color_name %> | <%= sku.lever_design_name %> | 
+      <%= sku.console_counter_vanity_design_name %> | <%= sku.door_trim_design_name %> | <%= sku.wall_trim_design_name %> |
+      <%= sku.ceiling_lights_design_name %> | <%=sku.wall_lights_design_name %> | <%= sku.wallpaper_design_name %>
+    </li>
+  <% end %>
+</ul>

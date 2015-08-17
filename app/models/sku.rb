@@ -16,4 +16,44 @@ class Sku < ActiveRecord::Base
   belongs_to :wall_paper_design
   belongs_to :wall_trim_design
   belongs_to :water_closet_handle_design
+
+  def lever_design_name
+   lever_design ? lever_design.name : nil
+  end 
+
+  def color_name
+   color ? color.name : nil
+  end 
+
+  def material_name
+   material ? material.name : nil
+  end 
+
+  def basin_design_name
+   basin_design ? basin_design.name : nil
+  end 
+
+  def console_counter_vanity_design_name
+   console_counter_vanity_design ? console_counter_vanity_design.name : nil
+  end 
+
+  def door_trim_design_name
+   door_trim_design ? door_trim_design.name : nil
+  end 
+
+  def wall_trim_design_name
+   wall_trim_design ? wall_trim_design.name : nil
+  end 
+
+  def ceiling_lights_design_name
+   ceiling_lights_design ? ceiling_lights_design.name : nil
+  end 
+
+  def wall_lights_design_name
+   wall_lights_design ? wall_lights_design.name : nil
+  end 
+
+  def wallpaper_design_name
+   wall_paper_design ? wall_paper_design.name : nil
+  end 
 end
