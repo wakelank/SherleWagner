@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817141034) do
+ActiveRecord::Schema.define(version: 20150817154733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,9 +88,14 @@ ActiveRecord::Schema.define(version: 20150817141034) do
     t.string   "name"
     t.string   "number"
     t.text     "long_description"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "product_type_id"
+    t.integer  "product_sub_type_id"
   end
+
+  add_index "products", ["product_sub_type_id"], name: "index_products_on_product_sub_type_id", using: :btree
+  add_index "products", ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
 
   create_table "skus", force: :cascade do |t|
     t.string  "name"
@@ -111,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150817141034) do
     t.integer "wall_paper_design_id"
     t.integer "wall_trim_design_id"
     t.integer "water_closet_handle_design_id"
+    t.string  "number"
   end
 
   add_index "skus", ["basin_design_id"], name: "index_skus_on_basin_design_id", using: :btree
@@ -167,6 +173,8 @@ ActiveRecord::Schema.define(version: 20150817141034) do
 
   add_foreign_key "colors", "materials"
   add_foreign_key "product_sub_types", "product_types"
+  add_foreign_key "products", "product_sub_types"
+  add_foreign_key "products", "product_types"
   add_foreign_key "skus", "basin_designs"
   add_foreign_key "skus", "ceiling_lights_designs"
   add_foreign_key "skus", "colors"

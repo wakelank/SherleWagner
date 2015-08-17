@@ -1,0 +1,8 @@
+<h1>All the Sherle Wagner products:</h1>
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= link_to product.name, product %>
+    </li>
+  <% end %>
+</ul>  

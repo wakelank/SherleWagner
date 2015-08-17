@@ -17,5 +17,7 @@ class Product < ActiveRecord::Base
   has_many :wall_trim_designs, through: :skus
   has_many :water_closet_handle_designs, through: :skus
 
-  
+  belongs_to :product_type
+  belongs_to :product_sub_type  
 end
+

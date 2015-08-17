@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  root 'static_pages#index'
+  #root 'static_pages#index'
+  root 'products#index'
+  resources :products
 
   post 'products/upload_products' => 'products#upload_products'
   post 'static_pages/upload_file' => 'static_pages#upload_products'

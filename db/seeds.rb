@@ -17,6 +17,7 @@
 #sub_categories.each { |sub_cat| SubCategory.create(name: sub_cat) }
 
 Sku.delete_all
+Product.delete_all
 Color.delete_all
 Material.delete_all
 ProductSubType.delete_all
@@ -208,4 +209,36 @@ wall_trim_designs.each { |design| WallTrimDesign.create(name: design) }
 ceiling_lights_designs.each { |design| CeilingLightsDesign.create(name: design) }
 wall_lights_designs.each { |design| WallLightsDesign.create(name: design) }
 wallpaper_designs.each { |design| WallPaperDesign.create(name: design) }
+
+num_products = 200
+
+num_products.times do
+  product_name = Faker::Commerce.product_name
+  long_description = Faker::Lorem.paragraph(5, false, 4)
+  product_number = Faker::Company.duns_number
+  product_type = ProductType.all.sample
+  product_sub_type = product_type.product_sub_types.sample
+  product = Product.create(name: product_name,
+                           long_description: long_description,
+                           number: product_number,
+                           product_type: product_type,
+                           product_sub_type: product_sub_type)
+  num_skus = rand(10)
+  num_skus.times do
+    sku_number = Faker::Company.duns_number
+    material = Material.all.sample
+    color = material.colors.sample
+    genre = Genre.all.sample
+    style = genre.styles.sample
+    product_type = ProductType.all.sample
+    product_sub_type = product_type.product_sub_types.sample
+    sku = Sku.create(material: material,
+               color: color,
+               genre: genre,
+               style: style,
+               number: sku_number)
+    product.skus << sku = sku
+  end
+end
+
 
