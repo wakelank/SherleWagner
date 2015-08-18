@@ -26,9 +26,22 @@ class Product < ActiveRecord::Base
   def self.upload_product_file(file)
     CSV.foreach(file.path, col_sep: ",", encoding: "MacRoman", headers: true) do |row|
       if $INPUT_LINE_NUMBER >= 5
-        name = row["PRODUCT NAME-Revised"]
         $INPUT_LINE_NUMBER ? line_num = $INPUT_LINE_NUMBER : line_num = 0
-        Product.create(name: name)
+        name = row["PRODUCT NAME-Revised"]
+        long_description = row["PRODUCT DESCRIPTION"]
+        number = row["CODE under Product Name"]
+        product = Product.create(name: name, long_description: long_description, number: number)
+        row.each do |header, value|
+          if value && value.downcase.strip == 'x'
+            headerArr = header.split('-')
+            if headerArr[0] == "Materials"
+              material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
+              color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
+              sku = Sku.create(material: material, color:color)
+              product.skus << sku
+            end
+          end
+        end
       end
     end
   end
