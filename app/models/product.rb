@@ -1,3 +1,4 @@
+require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
@@ -24,8 +25,11 @@ class Product < ActiveRecord::Base
 
   def self.upload_product_file(file)
     CSV.foreach(file.path, col_sep: ",", encoding: "MacRoman", headers: true) do |row|
-      logger.debug row
-      logger.debug "\n"
+      if $INPUT_LINE_NUMBER >= 5
+        name = row["PRODUCT NAME-Revised"]
+        $INPUT_LINE_NUMBER ? line_num = $INPUT_LINE_NUMBER : line_num = 0
+        Product.create(name: name)
+      end
     end
   end
 
