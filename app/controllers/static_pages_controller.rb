@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def index
   end
-  def upload_products
+  def upload_page
   end
 end

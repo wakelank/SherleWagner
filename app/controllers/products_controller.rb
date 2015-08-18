@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  def upload_products
-    Product.load_file(params[:filename])
+  def upload_product_file
+    Product.upload_product_file(params[:filename])
 
-    redirect_to root
+    redirect_to :back
   end
 
   def show

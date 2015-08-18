@@ -1,5 +1,5 @@
 <h1>Sherle Wagner 2.0</h1>
-<%= form_tag({action: 'upload_products', controller: 'products'},  multipart: true) do %>
+<%= form_tag(products_upload_products_path,  multipart: true) do %>
     <%= file_field_tag 'filename' %>
     <%= submit_tag %>
 <%end%>

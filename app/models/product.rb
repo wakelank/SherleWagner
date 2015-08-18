@@ -1,3 +1,5 @@
+require 'csv'
+
 class Product < ActiveRecord::Base
   has_many :skus 
   has_many :materials, through: :skus
@@ -19,5 +21,16 @@ class Product < ActiveRecord::Base
 
   belongs_to :product_type
   belongs_to :product_sub_type  
+
+  def self.upload_product_file(file)
+    CSV.foreach(file.path, col_sep: ",", encoding: "MacRoman", headers: true) do |row|
+      logger.debug row
+      logger.debug "\n"
+    end
+  end
+
+
+
+
 end
 
