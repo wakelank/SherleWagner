@@ -5,8 +5,8 @@ class Product < ActiveRecord::Base
   has_many :skus 
   has_many :materials, through: :skus
   has_many :colors, through: :skus
-  has_many :genres, through: :skus
-  has_many :styles, through: :skus
+  has_and_belongs_to_many :genres
+  has_and_belongs_to_many :styles
   has_many :product_types, through: :skus
   has_many :product_sub_types, through: :skus
   has_many :basin_designs, through: :skus
@@ -33,12 +33,25 @@ class Product < ActiveRecord::Base
         product = Product.create(name: name, long_description: long_description, number: number)
         row.each do |header, value|
           if value && value.downcase.strip == 'x'
-            headerArr = header.split('-')
-            if headerArr[0] == "Materials"
-              material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
-              color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
-              sku = Sku.create(material: material, color:color)
-              product.skus << sku
+            if header
+              headerArr = header.split('-')
+              if headerArr[0] == "Materials"
+                material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
+                color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
+                sku = Sku.create(material: material, color:color)
+                product.skus << sku
+              elsif headerArr[0] == "COLLECTIONS"
+                genre = Genre.where('lower(name) = ?', headerArr[1].downcase.strip).first
+                style = Style.where('lower(name) = ?', headerArr[2].downcase.strip).first
+                begin
+                  product.genres << genre
+                  product.styles << style
+                rescue
+                  binding.pry
+                end
+                  
+                product.save
+              end
             end
           end
         end

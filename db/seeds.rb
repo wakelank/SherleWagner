@@ -146,7 +146,7 @@ sub_types.each do |type, sub_types|
   end
 end
 
-genres = %w(Ornate Traditional Classic MidCentury Contemporary)
+genres = %w(Ornate Traditional Classic Mid_Century Contemporary)
 styles = {
             ornate: 
               %w(LOUIS\ SEIZE
@@ -168,7 +168,7 @@ styles = {
               GREY
               CLASSIC
               MELON),
-            MidCentury:
+            Mid_Century:
               %w(APOLLO
               NOUVEAU
               COSMOS
@@ -181,11 +181,11 @@ styles = {
               ARBOR)
 }
 genres.each do |type|
-  Genre.create(name: type)
+  Genre.create(name: type.humanize)
 end
 
 styles.each do |genre, styles|
-  genre = Genre.where("lower(name) = ?",  genre.to_s.downcase).first
+  genre = Genre.where("lower(name) = ?",  genre.to_s.humanize.downcase).first
   styles.each do |style|
     Style.create( name: style, genre: genre)
   end
@@ -221,56 +221,56 @@ wallpaper_designs.each { |design| WallPaperDesign.create(name: design) }
 
 num_products = 200
 
-num_products.times do
-  product_name = Faker::Commerce.product_name
-  long_description = Faker::Lorem.paragraph(5, false, 4)
-  product_number = Faker::Company.duns_number
-  product_type = ProductType.all.sample
-  product_sub_type = product_type.product_sub_types.sample
-  product = Product.create(name: product_name,
-                           long_description: long_description,
-                           number: product_number,
-                           product_type: product_type,
-                           product_sub_type: product_sub_type)
-  num_skus = rand(10)
-  num_skus.times do
-    sku_number = Faker::Company.duns_number
-    material = Material.all.sample
-    color = material.colors.sample
-    genre = Genre.all.sample
-    style = genre.styles.sample
-    product_type = ProductType.all.sample
-    product_sub_type = product_type.product_sub_types.sample
-    sku = Sku.create(material: material,
-               color: color,
-               genre: genre,
-               style: style,
-               number: sku_number)
-
-    case product.product_sub_type.name.downcase
-    when 'basin and bar sets'
-      sku.lever_design = LeverDesign.all.sample
-    when 'sinks'
-      sku.basin_design = BasinDesign.all.sample
-    when 'counter, console, vanity'
-      sku.counter_console_vanity_design = CounterConsoleVanity.all.sample
-    when 'door trim'
-      sku.door_trim_design = DoorTrimDesign.all.sample
-    when 'wall trim'
-      sku.wall_trim_design = WallTrimDesign.all.sample
-    when 'ceiling lights'
-      sku.ceiling_lights_design = CeilingLightsDesign.all.sample
-    when 'wall lights'
-      sku.wall_lights.design = WallLightsDesign.all.sample
-    when 'wallpaper'
-      sku.wallpaper_design = WallPaperDesign.all.sample
-    end
-    sku.save
-
-
-
-    product.skus << sku = sku
-  end
-end
+#num_products.times do
+#  product_name = Faker::Commerce.product_name
+#  long_description = Faker::Lorem.paragraph(5, false, 4)
+#  product_number = Faker::Company.duns_number
+#  product_type = ProductType.all.sample
+#  product_sub_type = product_type.product_sub_types.sample
+#  product = Product.create(name: product_name,
+#                           long_description: long_description,
+#                           number: product_number,
+#                           product_type: product_type,
+#                           product_sub_type: product_sub_type)
+#  num_skus = rand(10)
+#  num_skus.times do
+#    sku_number = Faker::Company.duns_number
+#    material = Material.all.sample
+#    color = material.colors.sample
+#    genre = Genre.all.sample
+#    style = genre.styles.sample
+#    product_type = ProductType.all.sample
+#    product_sub_type = product_type.product_sub_types.sample
+#    sku = Sku.create(material: material,
+#               color: color,
+#               genre: genre,
+#               style: style,
+#               number: sku_number)
+#
+#    case product.product_sub_type.name.downcase
+#    when 'basin and bar sets'
+#      sku.lever_design = LeverDesign.all.sample
+#    when 'sinks'
+#      sku.basin_design = BasinDesign.all.sample
+#    when 'counter, console, vanity'
+#      sku.counter_console_vanity_design = CounterConsoleVanity.all.sample
+#    when 'door trim'
+#      sku.door_trim_design = DoorTrimDesign.all.sample
+#    when 'wall trim'
+#      sku.wall_trim_design = WallTrimDesign.all.sample
+#    when 'ceiling lights'
+#      sku.ceiling_lights_design = CeilingLightsDesign.all.sample
+#    when 'wall lights'
+#      sku.wall_lights.design = WallLightsDesign.all.sample
+#    when 'wallpaper'
+#      sku.wallpaper_design = WallPaperDesign.all.sample
+#    end
+#    sku.save
+#
+#
+#
+#    product.skus << sku = sku
+#  end
+#end
 
 

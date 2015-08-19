@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817154733) do
+ActiveRecord::Schema.define(version: 20150819204901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20150817154733) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "genres_products", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "product_id"
+  end
+
+  add_index "genres_products", ["genre_id"], name: "index_genres_products_on_genre_id", using: :btree
+  add_index "genres_products", ["product_id"], name: "index_genres_products_on_product_id", using: :btree
+
   create_table "lever_designs", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -92,10 +100,22 @@ ActiveRecord::Schema.define(version: 20150817154733) do
     t.datetime "updated_at",          null: false
     t.integer  "product_type_id"
     t.integer  "product_sub_type_id"
+    t.integer  "genre_id"
+    t.integer  "style_id"
   end
 
+  add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree
   add_index "products", ["product_sub_type_id"], name: "index_products_on_product_sub_type_id", using: :btree
   add_index "products", ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
+  add_index "products", ["style_id"], name: "index_products_on_style_id", using: :btree
+
+  create_table "products_styles", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "style_id"
+  end
+
+  add_index "products_styles", ["product_id"], name: "index_products_styles_on_product_id", using: :btree
+  add_index "products_styles", ["style_id"], name: "index_products_styles_on_style_id", using: :btree
 
   create_table "skus", force: :cascade do |t|
     t.string  "name"
@@ -172,9 +192,15 @@ ActiveRecord::Schema.define(version: 20150817154733) do
   end
 
   add_foreign_key "colors", "materials"
+  add_foreign_key "genres_products", "genres"
+  add_foreign_key "genres_products", "products"
   add_foreign_key "product_sub_types", "product_types"
+  add_foreign_key "products", "genres"
   add_foreign_key "products", "product_sub_types"
   add_foreign_key "products", "product_types"
+  add_foreign_key "products", "styles"
+  add_foreign_key "products_styles", "products"
+  add_foreign_key "products_styles", "styles"
   add_foreign_key "skus", "basin_designs"
   add_foreign_key "skus", "ceiling_lights_designs"
   add_foreign_key "skus", "colors"
