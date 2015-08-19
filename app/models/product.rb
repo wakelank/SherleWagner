@@ -49,8 +49,17 @@ class Product < ActiveRecord::Base
                 rescue
                   binding.pry
                 end
-                  
                 product.save
+              elsif headerArr[0] == "PRODUCTS"
+                product_type = ProductType.where('lower(name) = ?', headerArr[1].downcase.strip).first
+                product_sub_type = ProductSubType.where('lower(name) = ?', headerArr[2].downcase.strip).first
+                begin
+                  product.product_type = product_type
+                  product.product_sub_type = product_sub_type
+                  product.save
+                rescue
+                  binding.pry
+                end
               end
             end
           end
