@@ -2,7 +2,8 @@
 <ul>
   <% @products.each do |product| %>
     <li>
-      <%= link_to product.name, product %> | <%= product.product_sub_type.name %>
+      <% sub_type = product.product_sub_type ? product.product_sub_type.name : "" %>
+      <%= link_to product.name, product %> | <%= sub_type %>
     </li>
   <% end %>
 </ul>  
