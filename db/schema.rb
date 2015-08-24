@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819204901) do
+ActiveRecord::Schema.define(version: 20150824161532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20150819204901) do
   end
 
   add_index "colors", ["material_id"], name: "index_colors_on_material_id", using: :btree
+
+  create_table "colors_products", force: :cascade do |t|
+    t.integer "color_id"
+    t.integer "product_id"
+  end
+
+  add_index "colors_products", ["color_id"], name: "index_colors_products_on_color_id", using: :btree
+  add_index "colors_products", ["product_id"], name: "index_colors_products_on_product_id", using: :btree
 
   create_table "console_counter_vanity_designs", force: :cascade do |t|
     t.string   "name"
@@ -71,10 +79,24 @@ ActiveRecord::Schema.define(version: 20150819204901) do
     t.string "name"
   end
 
+  create_table "materials_products", force: :cascade do |t|
+    t.integer "material_id"
+    t.integer "product_id"
+  end
+
+  add_index "materials_products", ["material_id"], name: "index_materials_products_on_material_id", using: :btree
+  add_index "materials_products", ["product_id"], name: "index_materials_products_on_product_id", using: :btree
+
   create_table "overall_colors", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "product_groups", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "product_sub_types", force: :cascade do |t|
@@ -102,9 +124,11 @@ ActiveRecord::Schema.define(version: 20150819204901) do
     t.integer  "product_sub_type_id"
     t.integer  "genre_id"
     t.integer  "style_id"
+    t.integer  "product_group_id"
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree
+  add_index "products", ["product_group_id"], name: "index_products_on_product_group_id", using: :btree
   add_index "products", ["product_sub_type_id"], name: "index_products_on_product_sub_type_id", using: :btree
   add_index "products", ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   add_index "products", ["style_id"], name: "index_products_on_style_id", using: :btree
@@ -192,10 +216,15 @@ ActiveRecord::Schema.define(version: 20150819204901) do
   end
 
   add_foreign_key "colors", "materials"
+  add_foreign_key "colors_products", "colors"
+  add_foreign_key "colors_products", "products"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
+  add_foreign_key "materials_products", "materials"
+  add_foreign_key "materials_products", "products"
   add_foreign_key "product_sub_types", "product_types"
   add_foreign_key "products", "genres"
+  add_foreign_key "products", "product_groups"
   add_foreign_key "products", "product_sub_types"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "styles"

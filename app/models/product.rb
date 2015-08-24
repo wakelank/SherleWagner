@@ -2,26 +2,27 @@ require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
-  has_many :skus 
-  has_many :materials, through: :skus
-  has_many :colors, through: :skus
+  has_and_belongs_to_many :materials
+  has_and_belongs_to_many :colors
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
-  has_many :product_types, through: :skus
-  has_many :product_sub_types, through: :skus
-  has_many :basin_designs, through: :skus
-  has_many :ceiling_lights_designs, through: :skus
-  has_many :console_counter_vanity_designs, through: :skus
-  has_many :door_trim_designs, through: :skus
-  has_many :lever_designs, through: :skus
-  has_many :overall_colors, through: :skus
-  has_many :wall_lights_designs, through: :skus
-  has_many :wall_paper_designs, through: :skus
-  has_many :wall_trim_designs, through: :skus
-  has_many :water_closet_handle_designs, through: :skus
+  has_and_belongs_to_many :product_types
+  has_and_belongs_to_many :product_sub_types
+  has_one :basin_design
+  has_one :ceiling_lights_design
+  has_one :console_counter_vanity_design
+  has_one :door_trim_design
+  has_one :lever_design
+  has_one :overall_color
+  has_one :wall_lights_design
+  has_one :wall_paper_design
+  has_one :wall_trim_design
+  has_one :water_closet_handle_design
 
   belongs_to :product_type
   belongs_to :product_sub_type  
+
+  belongs_to :product_group
 
   def self.upload_product_file(file)
     CSV.foreach(file.path, col_sep: ",", encoding: "MacRoman", headers: true) do |row|
@@ -31,6 +32,12 @@ class Product < ActiveRecord::Base
         long_description = row["PRODUCT DESCRIPTION"]
         number = row["CODE under Product Name"]
         product = Product.create(name: name, long_description: long_description, number: number)
+        if ProductGroup.where(name: name).first
+          product_group = ProductGroup.where(name: name).first
+        else
+          product_group = ProductGroup.create(name: name)
+        end
+        product.product_group = product_group
         row.each do |header, value|
           if value && value.downcase.strip == 'x'
             if header
@@ -38,8 +45,12 @@ class Product < ActiveRecord::Base
               if headerArr[0] == "Materials"
                 material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
                 color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
-                sku = Sku.create(material: material, color:color)
-                product.skus << sku
+                begin
+                product.colors << color
+                product.materials << material
+                rescue
+                end
+
               elsif headerArr[0] == "COLLECTIONS"
                 genre = Genre.where('lower(name) = ?', headerArr[1].downcase.strip).first
                 style = Style.where('lower(name) = ?', headerArr[2].downcase.strip).first
