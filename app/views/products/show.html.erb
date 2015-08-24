@@ -26,13 +26,10 @@
     <li><%= style.name %> </li>
   <% end %>
 </ul>
-<p>SKUs:</p>
+<p>Associated Products:</p>
 <ul>
-  <% @product.skus.each do |sku| %>
-    <li>
-      <%= sku.number %> | <%= sku.material_name %> | <%= sku.color_name %> | <%= sku.lever_design_name %> | 
-      <%= sku.console_counter_vanity_design_name %> | <%= sku.door_trim_design_name %> | <%= sku.wall_trim_design_name %> |
-      <%= sku.ceiling_lights_design_name %> | <%=sku.wall_lights_design_name %> | <%= sku.wallpaper_design_name %>
+  <% @associated_products.each do |associated_product| %>
+    <li><%= associated_product.number %>
     </li>
   <% end %>
 </ul>

@@ -7,6 +7,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @associcated_products = []
+    @associated_products = @product.product_group.products
   end
 
   def index
