@@ -24,6 +24,9 @@ class Product < ActiveRecord::Base
 
   belongs_to :product_group
 
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment :image, content_type: { content_type: 'image/jpeg' }
+
   def self.upload_product_file(file)
     CSV.foreach(file.path, col_sep: ",", encoding: "MacRoman", headers: true) do |row|
       if $INPUT_LINE_NUMBER >= 5
@@ -38,6 +41,11 @@ class Product < ActiveRecord::Base
           product_group = ProductGroup.create(name: name)
         end
         product.product_group = product_group
+        begin
+          image_url = "http://s3.amazonaws.com/sherle-wagner/temp/#{row['IMAGE FILE']}.jpg"
+          product.image = URI.parse(image_url)
+        rescue
+        end
         row.each do |header, value|
           if value && value.downcase.strip == 'x'
             if header

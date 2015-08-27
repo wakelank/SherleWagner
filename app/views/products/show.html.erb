@@ -2,6 +2,8 @@
 <h2><%= @product.name %></h2>
 <p>Number: <%= @product.number %></p>
 <p>Long Description: <%= @product.long_description %></p>
+<p>image:</p>
+<%= image_tag @product.image.url %>
 <p>materials:</p>
 <ul>
   <% @product.materials.uniq.each do |material| %>

@@ -9,8 +9,8 @@ gem 'faker'
 
 #these may require more configuration
 #gem 'postmark-rails'
-#gem 'aws-sdk-v1'
-#gem 'paperclip'
+gem 'aws-sdk-v1'
+gem 'paperclip', '~> 4.3'
 
 
 

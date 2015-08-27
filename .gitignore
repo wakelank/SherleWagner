@@ -15,4 +15,5 @@
 *.swp
 *.swo
 .env
+/aws.yml
 
