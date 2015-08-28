@@ -54,8 +54,8 @@ class Product < ActiveRecord::Base
                 material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
                 color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
                 begin
-                product.colors << color
-                product.materials << material
+                  product.colors << color
+                  product.materials << material
                 rescue
                 end
 

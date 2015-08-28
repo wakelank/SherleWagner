@@ -4,6 +4,8 @@
 <p>Long Description: <%= @product.long_description %></p>
 <p>image:</p>
 <%= image_tag @product.image.url %>
+<%= image_tag @product.image.url(:medium) %>
+<%= image_tag @product.image.url(:thumb) %>
 <p>materials:</p>
 <ul>
   <% @product.materials.uniq.each do |material| %>
