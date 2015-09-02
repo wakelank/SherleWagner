@@ -16,9 +16,13 @@
 #categories.each { |category| Category.create(name: category) }
 #sub_categories.each { |sub_cat| SubCategory.create(name: sub_cat) }
 
+
 Sku.delete_all
 Product.delete_all
+Genre.delete_all
+Style.delete_all
 Material.delete_all
+Finish.delete_all
 ProductSubType.delete_all
 ProductType.delete_all
 LeverDesign.delete_all
@@ -30,6 +34,123 @@ WallTrimDesign.delete_all
 CeilingLightsDesign.delete_all
 WallLightsDesign.delete_all
 WallPaperDesign.delete_all
+
+finishes =  %w(satin\ brass
+            polished\ brass
+            brushed\ chrome
+            polished\ chrome
+            brushed\ nickel
+            polished\ nickel
+            flemish\ patina
+            english\ patina
+            verdi\ antique
+            oil\ rubed brass
+            antique\ pewter
+            gold\ plate
+            antique\ gold
+            burnished\ gold
+            english\ silver
+            burnished\ platinum
+            butler\ silver)
+
+
+materials = [["China-Hand Painted",["Delft — (66DL)",
+                                     "Waterlilies — (109W)",
+                                     "Lotus — (20GR)",
+                                     "Lotus — (20BL)",
+                                     "Oriental Flowers — (54)",
+                                     "Artichoke — (107A)",
+                                     "Poppies — (69PP)",
+                                     "Peaches — (111P)",
+                                     "Summer Garden — (51SG)",
+                                     "Ming Blossom - (18YL)",
+                                     "Ming Blossom — (18PK)",
+                                     "Ming Blossom — (18BR)",
+                                     "Ming Blossom — (18BL)",
+                                     "Garlands And Leaves — (74GL)",
+                                     "Mums Bouquet — (56GR)",
+                                     "Mums Bouquet — (56BL)",
+                                     "Chinoiserie - (60PK)",
+                                     "Chinoiserie - (60GR)",
+                                     "Chinoiserie - (60BL)",
+                                     "Floral Chinoiserie - (61PK)",
+                                     "Floral Chinoiserie - (61GR)",
+                                     "Floral Chinoiserie - (61BL)"]],
+              ["China-Hand Decorated",["Le Jardin - Garnet-89GA",
+                                        "Le Jardin - Greige/Taupe-89GG",
+                                        "Le Jardin - Sepia-89SP",
+                                        "Le Jardin - Light Blue-89LB",
+                                        "Le Jardin - Charcoal-89CH",
+                                        "Le Jardin - Blue-89BL",
+                                        "Le Jardin -Sage-89SG",
+                                        "Acorn & Oakleaf - Garnet-99GA",
+                                        "Acorn & Oakleaf - Greige/Taupe-99GG",
+                                        "Acorn & Oakleaf - Sepia-99SP",
+                                        "Acorn & Oakleaf - Light Blue-99LB",
+                                        "Acorn & Oakleaf - Charcoal-99CH",
+                                        "Acorn & Oakleaf - Blue-99BL",
+                                        "Acorn & Oakleaf -Sage-99SG"]],
+                ["China-Gold Plated",["Burnished Gold-14GP",
+                                      "Burnished Platinum-15PL",
+                                      "Highly Polished Platinum-17HP",
+                                      "Gold Accents-24GP",
+                                      "Platinum Accents-24PL"]],
+                ["China-Solid Colors",["Sand",
+                                       "White",
+                                       "Black"]],
+                  ["Marble",["ROSE AURORA (RSAU)",
+                              "ROSE DU MONTE (RSDM)",
+                             "CARARRA (CARR)",
+                             "MARIANELLA (MARI)",
+                             "ANTIQUE WHITE (ANWH)",
+                             "ANTIQUE BROWN (ANBR)",
+                             "ESTREMOZ (ESTR)",
+                             "VERDI VIANA (VERD)",
+                             "CREMA MARFIL (CREMA)", 
+                             "BELGIAN BLACK (BLGB)",
+                             "ROJO ALICANTE (ROJO)",
+                             "BLACK MARBLE (BLMA)",
+                             "ROSA LEVANTO (RSLV)",
+                             "IMPERADOR BROWN (IMBR)",
+                             "CARNICO GREY (CRGR)",
+                             "ARABESCATO (ARAB)",
+                             "NEGRO MARQUINA (NEMA)",
+                             "PORTORO (PORT)",
+                             "VALVERDE (VLVD)",
+                             "CALACATTA (CALA)",
+                             "PORT LAURENT (PTLA))"]],
+                  ["Semi-precious Stone",["ROCK\ CRYSTAL\ \(RKCR\)",
+                            "ROSE\ QUARTZ\ \(RSQU\)",
+                            "AMETHYST\ \(AMET\)",
+                            "LAPIS\ LAZULI\ \(LAPI\)",
+                            "MALACHITE\ \(MALA\)",
+                            "JASPER\ \(JASP\)",
+                            "BROWN\ TIGER\ EYE\ \(BRTI\)", 
+                            "BLUE\ TIGER\ EYE\ \(BLTI\)",
+                            "RHODOCHROSITE\ \(RHOD\))"]],
+          ["Onyx",["BLACK\ ONYX\ \(BKOX\)",
+                            "WHITE\ ONYX\ \(WHOX\)",
+                            "HONEY\ ONYX\ \(HNOX\)",
+                            "GREEN\ ONYX\ \(GROX\)",
+                            "PINK\ ONYX\ \(PKOX\)",
+                            "BROWN\ ONYX\ \(BROX\))"]
+                                            ]]
+materials.each do |material|
+  type= material[0]
+  names=material[1]
+  names.each do |name|
+    Material.create(material_type:type, name:name)
+  end
+end
+
+
+
+
+
+
+
+
+
 
 materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
 colors = { marble:  
@@ -96,9 +217,9 @@ colors = { marble:
             PINK\ ONYX\ \(PKOX\)
             BROWN\ ONYX\ \(BROX\))
 }
-materials.each do |material|
-  Material.create(name: material)
-end
+#materials.each do |material|
+#  Material.create(name: material)
+#end
 
 #colors.each do |material, colors|
 #  material = Material.where("lower(name) = ?",  material.to_s.downcase).first
