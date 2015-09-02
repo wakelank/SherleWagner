@@ -2,9 +2,10 @@ require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
-  has_and_belongs_to_many :materials
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
   has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
+  has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
+  has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :product_types

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902145829) do
+ActiveRecord::Schema.define(version: 20150902190134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20150902145829) do
 
   add_index "genres_products", ["genre_id"], name: "index_genres_products_on_genre_id", using: :btree
   add_index "genres_products", ["product_id"], name: "index_genres_products_on_product_id", using: :btree
+
+  create_table "inserts_products", force: :cascade do |t|
+    t.integer "material_id"
+    t.integer "product_id"
+  end
+
+  add_index "inserts_products", ["material_id"], name: "index_inserts_products_on_material_id", using: :btree
+  add_index "inserts_products", ["product_id"], name: "index_inserts_products_on_product_id", using: :btree
 
   create_table "lever_designs", force: :cascade do |t|
     t.string   "name"
@@ -230,6 +238,8 @@ ActiveRecord::Schema.define(version: 20150902145829) do
   add_foreign_key "finishes_products", "products"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
+  add_foreign_key "inserts_products", "materials"
+  add_foreign_key "inserts_products", "products"
   add_foreign_key "materials_products", "materials"
   add_foreign_key "materials_products", "products"
   add_foreign_key "product_sub_types", "product_types"
