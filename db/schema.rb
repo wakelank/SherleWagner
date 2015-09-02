@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827195633) do
+ActiveRecord::Schema.define(version: 20150902145829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accents_products", force: :cascade do |t|
+    t.integer "finish_id"
+    t.integer "product_id"
+  end
+
+  add_index "accents_products", ["finish_id"], name: "index_accents_products_on_finish_id", using: :btree
+  add_index "accents_products", ["product_id"], name: "index_accents_products_on_product_id", using: :btree
 
   create_table "basin_designs", force: :cascade do |t|
     t.string   "name"
@@ -28,21 +36,6 @@ ActiveRecord::Schema.define(version: 20150827195633) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "colors", force: :cascade do |t|
-    t.string  "name"
-    t.integer "material_id"
-  end
-
-  add_index "colors", ["material_id"], name: "index_colors_on_material_id", using: :btree
-
-  create_table "colors_products", force: :cascade do |t|
-    t.integer "color_id"
-    t.integer "product_id"
-  end
-
-  add_index "colors_products", ["color_id"], name: "index_colors_products_on_color_id", using: :btree
-  add_index "colors_products", ["product_id"], name: "index_colors_products_on_product_id", using: :btree
-
   create_table "console_counter_vanity_designs", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -54,6 +47,20 @@ ActiveRecord::Schema.define(version: 20150827195633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "finishes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "finishes_products", force: :cascade do |t|
+    t.integer "finish_id"
+    t.integer "product_id"
+  end
+
+  add_index "finishes_products", ["finish_id"], name: "index_finishes_products_on_finish_id", using: :btree
+  add_index "finishes_products", ["product_id"], name: "index_finishes_products_on_product_id", using: :btree
 
   create_table "genres", force: :cascade do |t|
     t.string   "name"
@@ -149,7 +156,6 @@ ActiveRecord::Schema.define(version: 20150827195633) do
     t.string  "name"
     t.integer "product_id"
     t.integer "material_id"
-    t.integer "color_id"
     t.integer "genre_id"
     t.integer "style_id"
     t.integer "product_type_id"
@@ -169,7 +175,6 @@ ActiveRecord::Schema.define(version: 20150827195633) do
 
   add_index "skus", ["basin_design_id"], name: "index_skus_on_basin_design_id", using: :btree
   add_index "skus", ["ceiling_lights_design_id"], name: "index_skus_on_ceiling_lights_design_id", using: :btree
-  add_index "skus", ["color_id"], name: "index_skus_on_color_id", using: :btree
   add_index "skus", ["console_counter_vanity_design_id"], name: "index_skus_on_console_counter_vanity_design_id", using: :btree
   add_index "skus", ["door_trim_design_id"], name: "index_skus_on_door_trim_design_id", using: :btree
   add_index "skus", ["genre_id"], name: "index_skus_on_genre_id", using: :btree
@@ -219,9 +224,10 @@ ActiveRecord::Schema.define(version: 20150827195633) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "colors", "materials"
-  add_foreign_key "colors_products", "colors"
-  add_foreign_key "colors_products", "products"
+  add_foreign_key "accents_products", "finishes"
+  add_foreign_key "accents_products", "products"
+  add_foreign_key "finishes_products", "finishes"
+  add_foreign_key "finishes_products", "products"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
   add_foreign_key "materials_products", "materials"
@@ -236,7 +242,6 @@ ActiveRecord::Schema.define(version: 20150827195633) do
   add_foreign_key "products_styles", "styles"
   add_foreign_key "skus", "basin_designs"
   add_foreign_key "skus", "ceiling_lights_designs"
-  add_foreign_key "skus", "colors"
   add_foreign_key "skus", "console_counter_vanity_designs"
   add_foreign_key "skus", "door_trim_designs"
   add_foreign_key "skus", "genres"

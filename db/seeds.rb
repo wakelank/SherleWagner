@@ -18,7 +18,6 @@
 
 Sku.delete_all
 Product.delete_all
-Color.delete_all
 Material.delete_all
 ProductSubType.delete_all
 ProductType.delete_all
@@ -101,12 +100,12 @@ materials.each do |material|
   Material.create(name: material)
 end
 
-colors.each do |material, colors|
-  material = Material.where("lower(name) = ?",  material.to_s.downcase).first
-  colors.each do |color|
-    Color.create( name: color, material: material)
-  end
-end
+#colors.each do |material, colors|
+#  material = Material.where("lower(name) = ?",  material.to_s.downcase).first
+#  colors.each do |color|
+#    Color.create( name: color, material: material)
+#  end
+#end
 
 types = %w(Fittings Accessories Fixtures Hardware Lights Wallcoverings)
 sub_types = { 

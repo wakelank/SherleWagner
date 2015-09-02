@@ -3,7 +3,8 @@ require 'csv'
 
 class Product < ActiveRecord::Base
   has_and_belongs_to_many :materials
-  has_and_belongs_to_many :colors
+  has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
+  has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :product_types
@@ -51,11 +52,11 @@ class Product < ActiveRecord::Base
             if header
               headerArr = header.split('-')
               if headerArr[0] == "Materials"
-                material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
-                color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
+               # material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
+               # color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
                 begin
-                  product.colors << color
-                  product.materials << material
+                #  product.colors << color
+                #  product.materials << material
                 rescue
                 end
 
