@@ -8,16 +8,16 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :product_types
   has_and_belongs_to_many :product_sub_types
-  has_one :basin_design
-  has_one :ceiling_lights_design
-  has_one :console_counter_vanity_design
-  has_one :door_trim_design
-  has_one :lever_design
-  has_one :overall_color
-  has_one :wall_lights_design
-  has_one :wall_paper_design
-  has_one :wall_trim_design
-  has_one :water_closet_handle_design
+  belongs_to :basin_design
+  belongs_to :ceiling_lights_design
+  belongs_to :console_counter_vanity_design
+  belongs_to :door_trim_design
+  belongs_to :lever_design
+  belongs_to :overall_color
+  belongs_to :wall_lights_design
+  belongs_to :wall_paper_design
+  belongs_to :wall_trim_design
+  belongs_to :water_closet_handle_design
 
   belongs_to :product_type
   belongs_to :product_sub_type  

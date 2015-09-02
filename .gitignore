@@ -16,4 +16,4 @@
 *.swo
 .env
 /aws.yml
-
+/config/aws.yml
