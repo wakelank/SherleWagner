@@ -135,7 +135,7 @@ materials = [["China-Hand Painted",["Delft — (66DL)",
                             "HONEY\ ONYX\ \(HNOX\)",
                             "GREEN\ ONYX\ \(GROX\)",
                             "PINK\ ONYX\ \(PKOX\)",
-                            "BROWN\ ONYX\ \(BROX\))"]
+                            "BROWN\ ONYX\ \(BROX\)"]
                                             ]]
 materials.each do |material|
   type= material[0]

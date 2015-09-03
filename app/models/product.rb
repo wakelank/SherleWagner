@@ -53,7 +53,6 @@ class Product < ActiveRecord::Base
             if header
               headerArr = header.split('-')
               if headerArr[0] == "Materials"
-                has_finish = false
                 material_type = headerArr[1].downcase.strip
                 material_name = headerArr[2].downcase.strip
                 case material_type
@@ -61,13 +60,42 @@ class Product < ActiveRecord::Base
                     begin
                       finish = Finish.where('lower(name) = ?', material_name).first
                       product.finishes << finish
-                      has_finish = true
                     rescue
                       binding.pry
                     end
                   when 'china'
+                    begin
+                      china_type = "China-" + headerArr[2].titleize.strip
+                      materials = Material.where(material_type: china_type)
+                      materials.each do |material|
+                        if product.has_finish? 
+                          product.inserts << material
+                        else
+                          product.materials << material
+                        end
+                      end
+                    rescue
+                      binding.pry
+                    end
+
                   when 'marble'
-                  when' onyx'
+                    begin
+                      material = Material.where('lower(name) = ?', material_name).first
+                      product.materials << material
+                    rescue
+                      binding.pry
+                    end
+                  when 'onyx'
+                    begin
+                      material = Material.where('lower(name) = ?', material_name).first
+                      if product.has_finish?
+                        product.inserts << material
+                      else
+                        product.materials << material
+                      end
+                    rescue
+                      binding.pry
+                    end
                 end
 
 
@@ -107,7 +135,10 @@ class Product < ActiveRecord::Base
     end
   end
 
-
+def has_finish?
+  return true if self.finishes.length > 0
+  return false
+end
 
 
 end

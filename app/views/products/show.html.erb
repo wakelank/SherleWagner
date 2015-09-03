@@ -6,6 +6,18 @@
 <%= image_tag @product.image.url %>
 <%= image_tag @product.image.url(:medium) %>
 <%= image_tag @product.image.url(:thumb) %>
+<p>Inserts:</p>
+<ul>
+  <% @product.inserts.uniq.each do |insert| %>
+    <li><%= insert.name %> </li>
+  <% end %>
+</ul>
+<p>Finishes:</p>
+<ul>
+  <% @product.finishes.uniq.each do |finish| %>
+    <li><%= finish.name %> </li>
+  <% end %>
+</ul>
 <p>materials:</p>
 <ul>
   <% @product.materials.uniq.each do |material| %>
