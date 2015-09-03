@@ -85,7 +85,7 @@ class Product < ActiveRecord::Base
                     rescue
                       binding.pry
                     end
-                  when 'onyx'
+                  when 'onyx' || 'semi precious stones'
                     begin
                       material = Material.where('lower(name) = ?', material_name).first
                       if product.has_finish?
@@ -96,6 +96,19 @@ class Product < ActiveRecord::Base
                     rescue
                       binding.pry
                     end
+                  when 'semi precious stones'
+                     begin
+                      material = Material.where('lower(name) = ?', material_name).first
+                      if product.has_finish?
+                        product.inserts << material
+                      else
+                        product.materials << material
+                      end
+                    rescue
+                      binding.pry
+                    end
+
+
                 end
 
 
