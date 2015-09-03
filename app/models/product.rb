@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
   def self.upload_product_file(file)
-    CSV.foreach(file.path, col_sep: ",", encoding: "MacRoman", headers: true) do |row|
+    CSV.foreach(file.path, col_sep: ";", encoding: "MacRoman", headers: true) do |row|
       if $INPUT_LINE_NUMBER >= 5
         $INPUT_LINE_NUMBER ? line_num = $INPUT_LINE_NUMBER : line_num = 0
         name = row["PRODUCT NAME-Revised"]
@@ -53,6 +53,24 @@ class Product < ActiveRecord::Base
             if header
               headerArr = header.split('-')
               if headerArr[0] == "Materials"
+                has_finish = false
+                material_type = headerArr[1].downcase.strip
+                material_name = headerArr[2].downcase.strip
+                case material_type
+                  when 'metal'
+                    begin
+                      finish = Finish.where('lower(name) = ?', material_name).first
+                      product.finishes << finish
+                      has_finish = true
+                    rescue
+                      binding.pry
+                    end
+                  when 'china'
+                  when 'marble'
+                  when' onyx'
+                end
+
+
                # material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
                # color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
                 begin

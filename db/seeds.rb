@@ -19,8 +19,8 @@
 
 Sku.delete_all
 Product.delete_all
-Genre.delete_all
 Style.delete_all
+Genre.delete_all
 Material.delete_all
 Finish.delete_all
 ProductSubType.delete_all
@@ -44,7 +44,7 @@ finishes =  %w(satin\ brass
             flemish\ patina
             english\ patina
             verdi\ antique
-            oil\ rubed brass
+            oil\ rubbed\ brass
             antique\ pewter
             gold\ plate
             antique\ gold
@@ -52,7 +52,9 @@ finishes =  %w(satin\ brass
             english\ silver
             burnished\ platinum
             butler\ silver)
-
+finishes.each do |finish|
+  Finish.create(name: finish)
+end
 
 materials = [["China-Hand Painted",["Delft — (66DL)",
                                      "Waterlilies — (109W)",
