@@ -7,6 +7,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @material_types = @product.material_types
+    @insert_types = @product.insert_types
     @associcated_products = []
     @associated_products = @product.product_group.products
   end

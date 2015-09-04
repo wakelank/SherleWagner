@@ -163,6 +163,22 @@ def has_finish?
   return false
 end
 
+def insert_types
+  return self.inserts.pluck(:material_type).uniq
+end
+
+def inserts_of_type(insert_type)
+  return self.inserts.where(material_type: insert_type)
+end
+
+def material_types
+  return self.materials.pluck(:material_type).uniq
+end
+
+def materials_of_type(material_type)
+  return self.materials.where(material_type: material_type)
+end
+
 
 end
 
