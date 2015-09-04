@@ -10,6 +10,8 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :product_types
   has_and_belongs_to_many :product_sub_types
+  has_many :filter_values
+  has_many :filters, through: :filter_values
   belongs_to :basin_design
   belongs_to :ceiling_lights_design
   belongs_to :console_counter_vanity_design
@@ -137,6 +139,14 @@ class Product < ActiveRecord::Base
                   product.product_type = product_type
                   product.product_sub_type = product_sub_type
                   product.save
+                rescue
+                  binding.pry
+                end
+              elsif headerArr[0] == "FILTERS"
+                begin
+                  filter = Filter.where('lower(name) = ?', headerArr[1].downcase.strip).first
+                  val = headerArr[2]
+                  FilterValue.create(name: val, product: product, filter: filter)
                 rescue
                   binding.pry
                 end

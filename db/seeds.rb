@@ -34,6 +34,7 @@ WallTrimDesign.delete_all
 CeilingLightsDesign.delete_all
 WallLightsDesign.delete_all
 WallPaperDesign.delete_all
+Filter.delete_all
 
 finishes =  %w(satin\ brass
             polished\ brass
@@ -145,6 +146,11 @@ materials.each do |material|
   end
 end
 
+filters = %w(handle\ design)
+
+filters.each do |filter|
+  Filter.create(name: filter)
+end
 
 
 
@@ -153,72 +159,71 @@ end
 
 
 
-
-materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
-colors = { marble:  
-            %w(ROSE\ AURORA\ \(RSAU\)
-            ROSE\ DU\ MONTE\ \(RSDM\)
-            CARARRA\ \(CARR\)
-            MARIANELLA\ \(MARI\)
-            ANTIQUE\ WHITE\ \(ANWH\)
-            ANTIQUE\ BROWN\ \(ANBR\)
-            ESTREMOZ\ \(ESTR\)
-            VERDI\ VIANA\ \(VERD\)
-            CREMA\ MARFIL\ \(CREMA\)\ 
-            BELGIAN\ BLACK\ \(BLGB\)
-            ROJO\ ALICANTE\ \(ROJO\)
-            BLACK\ MARBLE\ \(BLMA\)
-            ROSA\ LEVANTO\ \(RSLV\)
-            IMPERADOR\ BROWN\ \(IMBR\)
-            CARNICO\ GREY\ \(CRGR\)
-            ARABESCATO\ \(ARAB\)
-            NEGRO\ MARQUINA\ \(NEMA\)
-            PORTORO\ \(PORT\)
-            VALVERDE\ \(VLVD\)
-            CALACATTA\ \(CALA\)
-            PORT\ LAURENT\ \(PTLA\)),
-
-          metal:
-            %w(satin\ brass
-            polished\ brass
-            brushed\ chrome
-            polished\ chrome
-            brushed\ nickel
-            polished\ nickel
-            flemish\ patina
-            english\ patina
-            verdi\ antique
-            oil\ rubed brass
-            antique\ pewter
-            gold\ plate
-            antique\ gold
-            burnished\ gold
-            english\ silver
-            burnished\ platinum
-            butler\ silver),
-          china:
-            %w(SOLID\ PLAIN\ COLORS
-            HAND\ DECORATE
-            HAND\ PAINTED
-            GOLD\ PLATINUM),
-           semiprecious_stone:
-            %w(ROCK\ CRYSTAL\ \(RKCR\)
-            ROSE\ QUARTZ\ \(RSQU\)
-            AMETHYST\ \(AMET\)
-            LAPIS\ LAZULI\ \(LAPI\)
-            MALACHITE\ \(MALA\)
-            JASPER\ \(JASP\)
-            BROWN\ TIGER\ EYE\ \(BRTI\)\ 
-            BLUE\ TIGER\ EYE\ \(BLTI\)
-            RHODOCHROSITE\ \(RHOD\)),
-          onyx:
-            %w(BLACK\ ONYX\ \(BKOX\)
-            WHITE\ ONYX\ \(WHOX\)
-            HONEY\ ONYX\ \(HNOX\)
-            GREEN\ ONYX\ \(GROX\)
-            PINK\ ONYX\ \(PKOX\)
-            BROWN\ ONYX\ \(BROX\))
-}
+#materials = %w(China Metal Marble SemiPrecious_Stone Onyx Florentine\ Finish Beaded Cut\ Crystal Gesso\ Wood)
+#colors = { marble:  
+#            %w(ROSE\ AURORA\ \(RSAU\)
+#            ROSE\ DU\ MONTE\ \(RSDM\)
+#            CARARRA\ \(CARR\)
+#            MARIANELLA\ \(MARI\)
+#            ANTIQUE\ WHITE\ \(ANWH\)
+#            ANTIQUE\ BROWN\ \(ANBR\)
+#            ESTREMOZ\ \(ESTR\)
+#            VERDI\ VIANA\ \(VERD\)
+#            CREMA\ MARFIL\ \(CREMA\)\ 
+#            BELGIAN\ BLACK\ \(BLGB\)
+#            ROJO\ ALICANTE\ \(ROJO\)
+#            BLACK\ MARBLE\ \(BLMA\)
+#            ROSA\ LEVANTO\ \(RSLV\)
+#            IMPERADOR\ BROWN\ \(IMBR\)
+#            CARNICO\ GREY\ \(CRGR\)
+#            ARABESCATO\ \(ARAB\)
+#            NEGRO\ MARQUINA\ \(NEMA\)
+#            PORTORO\ \(PORT\)
+#            VALVERDE\ \(VLVD\)
+#            CALACATTA\ \(CALA\)
+#            PORT\ LAURENT\ \(PTLA\)),
+#
+#          metal:
+#            %w(satin\ brass
+#            polished\ brass
+#            brushed\ chrome
+#            polished\ chrome
+#            brushed\ nickel
+#            polished\ nickel
+#            flemish\ patina
+#            english\ patina
+#            verdi\ antique
+#            oil\ rubed brass
+#            antique\ pewter
+#            gold\ plate
+#            antique\ gold
+#            burnished\ gold
+#            english\ silver
+#            burnished\ platinum
+#            butler\ silver),
+#          china:
+#            %w(SOLID\ PLAIN\ COLORS
+#            HAND\ DECORATE
+#            HAND\ PAINTED
+#            GOLD\ PLATINUM),
+#           semiprecious_stone:
+#            %w(ROCK\ CRYSTAL\ \(RKCR\)
+#            ROSE\ QUARTZ\ \(RSQU\)
+#            AMETHYST\ \(AMET\)
+#            LAPIS\ LAZULI\ \(LAPI\)
+#            MALACHITE\ \(MALA\)
+#            JASPER\ \(JASP\)
+#            BROWN\ TIGER\ EYE\ \(BRTI\)\ 
+#            BLUE\ TIGER\ EYE\ \(BLTI\)
+#            RHODOCHROSITE\ \(RHOD\)),
+#          onyx:
+#            %w(BLACK\ ONYX\ \(BKOX\)
+#            WHITE\ ONYX\ \(WHOX\)
+#            HONEY\ ONYX\ \(HNOX\)
+#            GREEN\ ONYX\ \(GROX\)
+#            PINK\ ONYX\ \(PKOX\)
+#            BROWN\ ONYX\ \(BROX\))
+#}
 #materials.each do |material|
 #  Material.create(name: material)
 #end

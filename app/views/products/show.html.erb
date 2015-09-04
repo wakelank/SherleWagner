@@ -36,6 +36,12 @@
     <li><%= style.name %> </li>
   <% end %>
 </ul>
+<p>Filters:</p>
+<ul>
+  <% @product.filter_values.each do |filter_value| %>
+    <li><%= filter_value.filter.name %>: <%= filter_value.name %></li>
+  <% end %>
+</ul>
 <p>Associated Products:</p>
 <ul>
   <% @associated_products.each do |associated_product| %>

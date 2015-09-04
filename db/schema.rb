@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902203723) do
+ActiveRecord::Schema.define(version: 20150903195212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 20150902203723) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "filter_values", force: :cascade do |t|
+    t.integer "product_id"
+    t.string  "name"
+    t.integer "filter_id"
+  end
+
+  add_index "filter_values", ["filter_id"], name: "index_filter_values_on_filter_id", using: :btree
+  add_index "filter_values", ["product_id"], name: "index_filter_values_on_product_id", using: :btree
+
+  create_table "filters", force: :cascade do |t|
+    t.string  "name"
+    t.integer "product_id"
+  end
+
+  add_index "filters", ["product_id"], name: "index_filters_on_product_id", using: :btree
 
   create_table "finishes", force: :cascade do |t|
     t.string   "name"
@@ -236,6 +252,8 @@ ActiveRecord::Schema.define(version: 20150902203723) do
 
   add_foreign_key "accents_products", "finishes"
   add_foreign_key "accents_products", "products"
+  add_foreign_key "filter_values", "filters"
+  add_foreign_key "filters", "products"
   add_foreign_key "finishes_products", "finishes"
   add_foreign_key "finishes_products", "products"
   add_foreign_key "genres_products", "genres"
