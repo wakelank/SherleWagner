@@ -15,6 +15,14 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @categories = ProductSubType.all
+  end
+
+   def j_index
+     @products = Product.all
+      all_products = @products
+      render json: all_products.to_json
+
   end
 
 end

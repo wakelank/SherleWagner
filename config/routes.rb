@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   
   get 'products/upload_page' => 'static_pages#upload_page'
   post 'products/upload_products' => 'products#upload_product_file'
+
   root 'products#index'
   resources :products
+  
+  get 'j_products'=>'products#j_index'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   
