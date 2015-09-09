@@ -179,6 +179,18 @@ def materials_of_type(material_type)
   return self.materials.where(material_type: material_type)
 end
 
+def filters
+  fs = []
+  fvs = self.filter_values
+  fvs.each do |fv|
+    filter = {}
+    filter[:name] = fv.filter.name
+    filter[:value] = fv.name
+    fs << filter
+  end
+  fs
+end
+
 
 end
 

@@ -9,12 +9,17 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @material_types = @product.material_types
     @insert_types = @product.insert_types
-    @associcated_products = []
+    @associated_products = []
     @associated_products = @product.product_group.products
   end
 
   def index
-    @products = Product.all
+    @products = []
+    products = Product.all
+    products.each do |product|
+      product.filteroonies = product.filters
+      @products << product
+    end
   end
 
 end
