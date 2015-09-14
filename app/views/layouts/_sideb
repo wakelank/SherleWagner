@@ -1,0 +1,154 @@
+
+
+
+
+<div id="side_nav2">
+ <div id="prod_header">
+    <h4>Products</h4>
+</div>
+
+<div class="bs-example">
+<ul >
+  <% @categories.each do |cat| %>
+    <li>
+      
+      <div class="checkbox">
+  <label><input type="checkbox" value="" id="<%= cat.id %>">   </label>
+</div>
+    </li>
+  <% end %>
+</ul>  
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+         $.ajax({
+                url: '/j_products',   
+                success: function(data) {
+                    jsonproducts = data
+                console.log(data);
+               var currentData = $.parseJSON(data);
+
+ 
+    }
+    });
+
+
+
+    checked = []
+        $('input[type="checkbox"]').click(function(){
+            if($(this).prop("checked") == true){
+                checked.push(this.id);
+                //console.log(this.id+ " is checked");
+                var that = this;
+                $.ajax({
+                url: '/fetch_products?cat_id='+this.id,   
+                success: function(data) {
+                console.log(that.id + " is checked");
+
+ 
+    }
+  });
+
+            }
+            else if($(this).prop("checked") == false){
+                checked.splice((checked.indexOf(this.id)),1);
+                console.log(this.id+" is unchecked.");
+// *** to do this in a way that works in ie 8 use the below ****
+  //                function remove(arr, item) {
+  //     for(var i = arr.length; i--;) {
+  //         if(arr[i] === item) {
+  //             arr.splice(i, 1);
+  //         }
+  //     }
+  // }
+            }
+        });
+    });
+</script>
+
+    <div class="panel-group" id="accordion1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Fittings</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                 <div class="panel-group" id="accordion2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2">Basin Sets</a>
+                            </div>
+                        </div>
+                        <div id="collapseOne2" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo2">Bidet Sets</a>
+                            </div>
+                        </div>
+                        <div id="collapseTwo2" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree3">Shower Systems</a>
+
+                            </div>
+                        </div>
+                        <div id="collapseThree3" class="panel-collapse collapse">
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">Fixtures</a>
+        </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">Accessories</a>
+
+        </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+        <div class="panel-body">
+
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+</div>
