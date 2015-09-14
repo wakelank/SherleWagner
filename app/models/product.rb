@@ -10,8 +10,9 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :product_types
   has_and_belongs_to_many :product_sub_types
-  has_many :filter_values
-  has_many :filters, through: :filter_values
+  has_many :filter_product_values
+  has_many :filters, through: :filter_product_values
+  has_many :filter_values, through: :filter_product_values
   belongs_to :basin_design
   belongs_to :ceiling_lights_design
   belongs_to :console_counter_vanity_design
@@ -144,9 +145,15 @@ class Product < ActiveRecord::Base
                 end
               elsif headerArr[0] == "FILTERS"
                 begin
-                  filter = Filter.where('lower(name) = ?', headerArr[1].downcase.strip).first
-                  val = headerArr[2]
-                  FilterValue.create(name: val, product: product, filter: filter)
+                  filter_name =  headerArr[1].downcase.strip
+                  filter = Filter.where('lower(name) = ?', filter_name).first
+                  filter = Filter.create(name: filter_name) if !filter 
+                  value_name = headerArr[2].downcase.strip
+                  value = FilterValue.where('lower(name) = ?', value_name).first
+                  value = FilterValue.create(name: value_name) if !value
+                    
+                  fpv = FilterProductValue.new(product: product, filter: filter, filter_value: value)
+                  fpv.save if !FilterProductValue.exists?(fpv.attributes.except("id"))  
                 rescue
                   binding.pry
                 end
@@ -179,16 +186,25 @@ def materials_of_type(material_type)
   return self.materials.where(material_type: material_type)
 end
 
+#def filters
+#  fs = []
+#  fvs = self.filter_values
+#  fvs.each do |fv|
+#    filter = {}
+#    filter[:name] = fv.filter.name
+#    filter[:value] = fv.name
+#    fs << filter
+#  end
+#  fs
+#end
+
 def filters
-  fs = []
-  fvs = self.filter_values
-  fvs.each do |fv|
-    filter = {}
-    filter[:name] = fv.filter.name
-    filter[:value] = fv.name
-    fs << filter
+  fpvs = FilterProductValue.where(product:self)
+  filter_hash = {}
+  fpvs.each do |fpv|
+    filter_hash[fpv.filter.name] = fpv.filter_value.name
   end
-  fs
+  filter_hash
 end
 
 

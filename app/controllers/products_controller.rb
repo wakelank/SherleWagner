@@ -11,15 +11,14 @@ class ProductsController < ApplicationController
     @insert_types = @product.insert_types
     @associated_products = []
     @associated_products = @product.product_group.products
+    respond_to do |format|
+      format.html
+      format.json { render json: @product.to_json(:methods => [:filters]) }
+    end
   end
 
   def index
-    @products = []
-    products = Product.all
-    products.each do |product|
-      product.filteroonies = product.filters
-      @products << product
-    end
+    @products = Product.all 
   end
 
 end

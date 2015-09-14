@@ -53,8 +53,8 @@
 </ul>
 <p>Filters:</p>
 <ul>
-  <% @product.filter_values.each do |filter_value| %>
-    <li><%= filter_value.filter.name %>: <%= filter_value.name %></li>
+  <% @product.filters.each do |filter, value| %>
+    <li><%= filter %>: <%= value %></li>
   <% end %>
 </ul>
 <p>Associated Products:</p>
