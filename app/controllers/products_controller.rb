@@ -21,8 +21,12 @@ class ProductsController < ApplicationController
     @products = Product.all 
     @products = Product.all
     @categories = ProductSubType.all
-    @filters = FilterProductValue.all.uniq
-  binding.pry
+    @filters = FilterProductValue.unique_filters
+
+    respond_to do |format|
+      format.html
+      format.json { render json: {products: @products, filters: @filters} }
+    end
   end
 
    def j_index

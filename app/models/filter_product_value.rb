@@ -8,10 +8,19 @@ class FilterProductValue < ActiveRecord::Base
 
   def self.unique_filters
     filters = []
+    filter_names = []
     fpvs = FilterProductValue.select(:filter_id, :filter_value_id).uniq
     fpvs.each do |fpv|
-      hash = { :name => fpv.filter.name, :value => fpv.filter_value.name }
-      filters.push(hash)
+      filter_name = fpv.filter.name
+      filter_value = fpv.filter_value.name
+      if filter_names.include? filter_name
+        this_filter = filters.select { |filter| filter[:name] = filter_name }.first
+        this_filter[:values].push(filter_value)
+      else
+        hash = { :name => filter_name, :values => [filter_value] }
+        filter_names.push filter_name
+        filters.push(hash)
+      end
     end
     filters
   end
