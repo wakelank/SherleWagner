@@ -21,6 +21,8 @@ class ProductsController < ApplicationController
     @products = Product.all 
     @products = Product.all
     @categories = ProductSubType.all
+    @filters = FilterProductValue.all.uniq
+  binding.pry
   end
 
    def j_index
