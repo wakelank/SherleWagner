@@ -54,7 +54,7 @@
 <p>Filters:</p>
 <ul>
   <% @product.filters.each do |filter| %>
-    <li><%= filter.name %>: <%= filter.value %></li>
+    <li><%= filter[:name] %>: <%= filter[:value] %></li>
   <% end %>
 </ul>
 <p>Associated Products:</p>

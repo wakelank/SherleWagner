@@ -14,7 +14,7 @@ class FilterProductValue < ActiveRecord::Base
       filter_name = fpv.filter.name
       filter_value = fpv.filter_value.name
       if filter_names.include? filter_name
-        this_filter = filters.select { |filter| filter[:name] = filter_name }.first
+        this_filter = filters.select { |filter| filter[:name] == filter_name }.first
         this_filter[:values].push(filter_value)
       else
         hash = { :name => filter_name, :values => [filter_value] }
