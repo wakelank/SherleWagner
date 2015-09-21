@@ -9,12 +9,14 @@
 
 <div class="bs-example">
 <ul >
-  <% @categories.each do |cat| %>
-    <li>
-      
+  <% @filters.each do |filter| %>
+    <li id="<%= filter[:name] %>">
+      <%= filter[:name] %>
+      <% filter[:values].each do |val| %>
       <div class="checkbox">
-  <label><input type="checkbox" value="" id="<%= cat.id %>">   </label>
+  <label><input type="checkbox" value="" id="<%= val %>"> <%= val %> </label>
 </div>
+    <% end %>
     </li>
   <% end %>
 </ul>  
@@ -22,16 +24,16 @@
 <script type="text/javascript">
     $(document).ready(function(){
         
-         $.ajax({
-                url: '/j_products',   
-                success: function(data) {
-                    jsonproducts = data
-                console.log(data);
-                currentData = $.parseJSON(data);
+    //      $.ajax({
+    //             url: '/j_products',   
+    //             success: function(data) {
+    //                 jsonproducts = data
+    //             console.log(data);
+    //             currentData = $.parseJSON(data);
 
  
-    }
-    });
+    // }
+    // });
 
 
 
@@ -39,21 +41,15 @@
         $('input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){
                 checked.push(this.id);
-                //console.log(this.id+ " is checked");
-                var that = this;
-                $.ajax({
-                url: '/fetch_products?cat_id='+this.id,   
-                success: function(data) {
-                console.log(that.id + " is checked");
-
- 
-    }
-  });
+                console.log(this.id+ " is checked");
+                
 
             }
             else if($(this).prop("checked") == false){
                 checked.splice((checked.indexOf(this.id)),1);
                 console.log(this.id+" is unchecked.");
+
+
 // *** to do this in a way that works in ie 8 use the below ****
   //                function remove(arr, item) {
   //     for(var i = arr.length; i--;) {
@@ -63,6 +59,11 @@
   //     }
   // }
             }
+            console.log(jsonproducts.products.length)
+            //console.log(checked);
+            $(checked).each(function(ind){
+                console.log(checked[ind]);
+            })
         });
     });
 </script>
