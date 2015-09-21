@@ -200,11 +200,12 @@ end
 
 def filters
   fpvs = FilterProductValue.where(product:self)
-  filter_hash = {}
+  filter_arr = []
   fpvs.each do |fpv|
-    filter_hash[fpv.filter.name] = fpv.filter_value.name
+    hash = { :name => fpv.filter.name, :value => fpv.filter_value.name }
+    filter_arr.push(hash) 
   end
-  filter_hash
+  filter_arr
 end
 
 

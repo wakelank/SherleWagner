@@ -21,12 +21,28 @@ class ProductsController < ApplicationController
     @products = Product.all 
     @products = Product.all
     @categories = ProductSubType.all
+    @filters = FilterProductValue.unique_filters
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { products: @products.to_json(:methods => [:filters]), 
+                                   filters: @filters }
+                   }
+    end
   end
 
    def j_index
-     @products = Product.all
-      all_products = @products
-      render json: all_products.to_json
+    @products = Product.all 
+    @products = Product.all
+    @categories = ProductSubType.all
+    @filters = FilterProductValue.unique_filters
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { products: @products.to_json(:methods => [:filters]), 
+                                   filters: @filters }
+                   }
+    end
 
   end
 
