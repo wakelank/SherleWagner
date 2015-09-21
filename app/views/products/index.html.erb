@@ -5,7 +5,7 @@
 
 <ul>
   <% @products.each do |product| %>
-    <li id="<%= product.id %>">
+    <li class ="prod_tile" id="<%= product.id %>">
       <% sub_type = product.product_sub_type ? product.product_sub_type.name : "" %>
       <%= link_to product.name, product %> | <%= sub_type %>
     </li>
