@@ -17,6 +17,5 @@ RSpec.describe ProductsController, :type => :controller do
 
   it "uploading product file adds products to database" do
     expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Product, :count).by(3)
-    binding.pry
   end
 end

@@ -1,11 +1,11 @@
 <h1>All the Sherle Wagner products:</h1>
 
+<%= render "/layouts/ajax1" %>
 <%= render "/layouts/sideb" %>
-
 
 <ul>
   <% @products.each do |product| %>
-    <li>
+    <li class ="prod_tile" id="<%= product.id %>">
       <% sub_type = product.product_sub_type ? product.product_sub_type.name : "" %>
       <%= link_to product.name, product %> | <%= sub_type %>
     </li>

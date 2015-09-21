@@ -1,0 +1,49 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+         $.ajax({
+                url: '/j_products', 
+                error: function(req, err){ console.log("my message" + err); },  
+                success: function(data) {
+                    jsonproducts = data
+                console.log(data);
+                //currentData = $.parseJSON(data);
+
+
+ 
+    }
+    });
+
+
+
+//     checked = []
+//         $('input[type="checkbox"]').click(function(){
+//             if($(this).prop("checked") == true){
+//                 checked.push(this.id);
+//                 //console.log(this.id+ " is checked");
+//                 var that = this;
+//                 $.ajax({
+//                 url: '/fetch_products?cat_id='+this.id,   
+//                 success: function(data) {
+//                 console.log(that.id + " is checked");
+
+ 
+//     }
+//   });
+
+//             }
+//             else if($(this).prop("checked") == false){
+//                 checked.splice((checked.indexOf(this.id)),1);
+//                 console.log(this.id+" is unchecked.");
+// // *** to do this in a way that works in ie 8 use the below ****
+//   //                function remove(arr, item) {
+//   //     for(var i = arr.length; i--;) {
+//   //         if(arr[i] === item) {
+//   //             arr.splice(i, 1);
+//   //         }
+//   //     }
+//   // }
+//             }
+//         });
+    });
+</script>
