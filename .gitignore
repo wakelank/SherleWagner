@@ -17,3 +17,4 @@
 .env
 /aws.yml
 /config/aws.yml
+/public/system/products/images
