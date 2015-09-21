@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   
-  get 'j_products'=>'products#j_index'
+  get 'j_products.json'=>'products#j_index'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

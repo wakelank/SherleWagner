@@ -18,16 +18,15 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all 
+    @products = Product.all
     @products = Product.all
     @categories = ProductSubType.all
     @filters = FilterProductValue.unique_filters
 
     respond_to do |format|
       format.html
-      format.json { render json: { products: @products.to_json(:methods => [:filters]), 
-                                   filters: @filters }
-                   }
+      format.json { render :json =>  { :products => @products.as_json(:methods => [:filters]), filters: @filters  } }
+                            
     end
   end
 
