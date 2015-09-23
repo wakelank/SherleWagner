@@ -166,7 +166,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.new_upload_product_file(file)
-    CSV.foreach(file.path, col_sep: ";", encoding: "MacRoman", headers: true) do |row|
+    CSV.foreach(file.path, encoding: "MacRoman", headers: true) do |row|
       name = row["GENERIC PRODUCT NAME-Revised"]
       generic_product_number = row["Generic Product Number"]
       product_number = row["IMAGE FILE"]
@@ -177,15 +177,16 @@ class Product < ActiveRecord::Base
       end
       begin
         if ProductGroup.where(name: generic_product_number).first
-          product_group = ProductGroup.where(name: name).first
+          product_group = ProductGroup.where(name: generic_product_number).first
         else
-          product_group = ProductGroup.create(name: name)
+          product_group = ProductGroup.create(name: generic_product_number)
         end
       rescue
         binding.pry
       end
       begin
-        product_group << product
+        product.product_group = product_group
+        product.save
       rescue
         binding.pry
       end

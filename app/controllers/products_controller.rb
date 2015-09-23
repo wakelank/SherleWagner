@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def upload_product_file
-    Product.upload_product_file(params[:filename])
+    Product.new_upload_product_file(params[:filename])
 
     redirect_to :back
   end
