@@ -165,6 +165,36 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.new_upload_product_file(file)
+    CSV.foreach(file.path, col_sep: ";", encoding: "MacRoman", headers: true) do |row|
+      name = row["GENERIC PRODUCT NAME-Revised"]
+      generic_product_number = row["Generic Product Number"]
+      product_number = row["IMAGE FILE"]
+      begin
+        product = Product.create(name: name, number: product_number)
+      rescue
+        binding.pry
+      end
+      begin
+        if ProductGroup.where(name: generic_product_number).first
+          product_group = ProductGroup.where(name: name).first
+        else
+          product_group = ProductGroup.create(name: name)
+        end
+      rescue
+        binding.pry
+      end
+      begin
+        product_group << product
+      rescue
+        binding.pry
+      end
+
+    end
+
+  end
+
+
 def has_finish?
   return true if self.finishes.length > 0
   return false
