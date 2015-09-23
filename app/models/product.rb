@@ -172,23 +172,25 @@ class Product < ActiveRecord::Base
       product_number = row["IMAGE FILE"]
       product_type = row['MAIN']
       product_sub_type = row['SUB FOLDER']
-      if !Product.exists?(number: product_number)
+      if !Product.exists?(number: product_number) && product_number != nil
         begin
-          product_type = ProductType.exists?(name: product_type) ? ProductType.where(name: product_type).first : ProductType.create(name: product_type)
+          product_type = ProductType.exists?(name: product_type) ?
+            ProductType.where(name: product_type).first :
+            ProductType.create(name: product_type)
         rescue
           binding.pry
         end
         begin
-          product_sub_type = ProductSubType.exists?(name: product_sub_type) ? ProductSubType.where(name: product_sub_type).first : ProductSubType.create(name: product_sub_type)
+          product_sub_type = ProductSubType.exists?(name: product_sub_type) ?
+            ProductSubType.where(name: product_sub_type).first :
+            ProductSubType.create(name: product_sub_type)
         rescue
           binding.pry
         end
         begin
-          if ProductGroup.where(name: generic_product_number).first
-            product_group = ProductGroup.where(name: generic_product_number).first
-          else
-            product_group = ProductGroup.create(name: generic_product_number)
-          end
+          product_group = ProductGroup.exists?(name: generic_product_number) ?
+            ProductGroup.where(name: generic_product_number).first :
+            ProductGroup.create(name: generic_product_number)
         rescue
           binding.pry
         end
@@ -201,9 +203,43 @@ class Product < ActiveRecord::Base
         rescue
           binding.pry
         end
+        if !!product_group.name
+          begin
+            if product.product_group.name.include?('-XX')
+              product.finishes = Finish.all
+            end
+            if product.product_group.name.include?('-SEMI')
+              product.materials = product.materials.concat Material.where(material_type: 'Semi-precious Stone')
+            end
+            if product.product_group.name.include?('-SLSL')
+              product.materials = product.materials.concat Material.where(material_type: 'Semi-precious Laminate')
+            end
+            if product.product_group.name.include?('-ONYX')
+              product.materials = product.materials.concat Material.where(material_type: 'Onyx')
+            end
+            if product.product_group.name.include?('-CC')
+              product.materials = product.materials.concat Material.where(material_type: 'China-Solid Colors')
+            end
+            if product.product_group.name.include?('-GLAZE')
+              product.materials = product.materials.concat Material.where(material_type: 'China-Metal Plated')
+            end
+            if product.product_group.name.include?('-CHINADECO')
+              product.materials = product.materials.concat Material.where(material_type: 'China-Hand Decorated')
+            end
+          if product.product_group.name.include?('-HANDPAINTED')
+              product.materials = product.materials.concat Material.where(material_type: 'China-Hand Painted')
+            end
+          if product.product_group.name.include?('-CHINAMETAL')
+             # product.materials = Material.where(material_type: 'China-Hand Painted')
+            end
+          rescue
+            binding.pry
+          end
+        end
       end
-
     end
+
+    
 
   end
 
