@@ -167,28 +167,40 @@ class Product < ActiveRecord::Base
 
   def self.new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", headers: true) do |row|
-      name = row["GENERIC PRODUCT NAME-Revised"]
+      name = row["GENERIC PRODUCT NAME _ Revised"]
       generic_product_number = row["Generic Product Number"]
       product_number = row["IMAGE FILE"]
-      begin
-        product = Product.create(name: name, number: product_number)
-      rescue
-        binding.pry
-      end
-      begin
-        if ProductGroup.where(name: generic_product_number).first
-          product_group = ProductGroup.where(name: generic_product_number).first
-        else
-          product_group = ProductGroup.create(name: generic_product_number)
+      product_type = row['MAIN']
+      product_sub_type = row['SUB FOLDER']
+      if !Product.exists?(number: product_number)
+        begin
+          product_type = ProductType.exists?(name: product_type) ? ProductType.where(name: product_type).first : ProductType.create(name: product_type)
+        rescue
+          binding.pry
         end
-      rescue
-        binding.pry
-      end
-      begin
-        product.product_group = product_group
-        product.save
-      rescue
-        binding.pry
+        begin
+          product_sub_type = ProductSubType.exists?(name: product_sub_type) ? ProductSubType.where(name: product_sub_type).first : ProductSubType.create(name: product_sub_type)
+        rescue
+          binding.pry
+        end
+        begin
+          if ProductGroup.where(name: generic_product_number).first
+            product_group = ProductGroup.where(name: generic_product_number).first
+          else
+            product_group = ProductGroup.create(name: generic_product_number)
+          end
+        rescue
+          binding.pry
+        end
+        begin
+          product = Product.create(name: name, 
+                                   number: product_number, 
+                                   product_type: product_type, 
+                                   product_sub_type: product_sub_type,
+                                   product_group: product_group)
+        rescue
+          binding.pry
+        end
       end
 
     end
