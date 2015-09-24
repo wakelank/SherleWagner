@@ -208,30 +208,33 @@ class Product < ActiveRecord::Base
             if product.product_group.name.include?('-XX')
               product.finishes = Finish.all
             end
-            if product.product_group.name.include?('-SEMI')
-              product.materials = product.materials.concat Material.where(material_type: 'Semi-precious Stone')
+            Material.codes.each do |code|
+              product.add_materials(code) if product.product_group.name.include? "-#{code}"
             end
-            if product.product_group.name.include?('-SLSL')
-              product.materials = product.materials.concat Material.where(material_type: 'Semi-precious Laminate')
-            end
-            if product.product_group.name.include?('-ONYX')
-              product.materials = product.materials.concat Material.where(material_type: 'Onyx')
-            end
-            if product.product_group.name.include?('-CC')
-              product.materials = product.materials.concat Material.where(material_type: 'China-Solid Colors')
-            end
-            if product.product_group.name.include?('-GLAZE')
-              product.materials = product.materials.concat Material.where(material_type: 'China-Metal Plated')
-            end
-            if product.product_group.name.include?('-CHINADECO')
-              product.materials = product.materials.concat Material.where(material_type: 'China-Hand Decorated')
-            end
-          if product.product_group.name.include?('-HANDPAINTED')
-              product.materials = product.materials.concat Material.where(material_type: 'China-Hand Painted')
-            end
-          if product.product_group.name.include?('-CHINAMETAL')
-             # product.materials = Material.where(material_type: 'China-Hand Painted')
-            end
+            #if product.product_group.name.include?('-SEMI')
+            #  product.add_materials 'Semi-precious Stone'
+            #end
+            #if product.product_group.name.include?('-SLSL')
+            #  product.add_materials 'Semi-precious Laminate', product
+            #end
+            #if product.product_group.name.include?('-ONYX')
+            #  product.add_materials 'Onyx', product
+            #end
+            #if product.product_group.name.include?('-CC')
+            #  product.add_materials 'China-Solid Colors', product
+            #end
+            #if product.product_group.name.include?('-GLAZE')
+            #  product.add_materials 'China-Metal Plated', product
+            #end
+            #if product.product_group.name.include?('-CHINADECO')
+            #  product.add_materials 'China-Hand Decorated'
+            #end
+            #if product.product_group.name.include?('-HANDPAINTED')
+            #  product.add_materials 'China-Hand Painted', product
+            #end
+#           if product.product_group.name.include?('-CHINAMETAL')
+#             # product.materials = Material.where(material_type: 'China-Hand Painted')
+#           end
           rescue
             binding.pry
           end
@@ -243,6 +246,15 @@ class Product < ActiveRecord::Base
 
   end
 
+
+def add_materials(material_code)
+  begin
+    self.materials.concat Material.where(code: material_code)
+    self.save
+  rescue
+    binding.pry
+  end
+end
 
 def has_finish?
   return true if self.finishes.length > 0

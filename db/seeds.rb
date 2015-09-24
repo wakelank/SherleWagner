@@ -57,7 +57,9 @@ finishes.each do |finish|
   Finish.create(name: finish)
 end
 
-materials = [["China-Hand Painted",["Delft — (66DL)",
+materials = [{ type: "China-Hand Painted",
+               code: "HANDPAINTED",
+               names: ["Delft — (66DL)",
                                      "Waterlilies — (109W)",
                                      "Lotus — (20GR)",
                                      "Lotus — (20BL)",
@@ -78,8 +80,11 @@ materials = [["China-Hand Painted",["Delft — (66DL)",
                                      "Chinoiserie - (60BL)",
                                      "Floral Chinoiserie - (61PK)",
                                      "Floral Chinoiserie - (61GR)",
-                                     "Floral Chinoiserie - (61BL)"]],
-              ["China-Hand Decorated",["Le Jardin - Garnet-89GA",
+                                     "Floral Chinoiserie - (61BL)"]
+              },
+              {type: "China-Hand Decorated",
+               code: "CHINADECO",
+               names: ["Le Jardin - Garnet-89GA",
                                         "Le Jardin - Greige/Taupe-89GG",
                                         "Le Jardin - Sepia-89SP",
                                         "Le Jardin - Light Blue-89LB",
@@ -92,16 +97,25 @@ materials = [["China-Hand Painted",["Delft — (66DL)",
                                         "Acorn & Oakleaf - Light Blue-99LB",
                                         "Acorn & Oakleaf - Charcoal-99CH",
                                         "Acorn & Oakleaf - Blue-99BL",
-                                        "Acorn & Oakleaf -Sage-99SG"]],
-                ["China-Gold Plated",["Burnished Gold-14GP",
+                                        "Acorn & Oakleaf -Sage-99SG"]
+              },
+              {type: "China-Metal Plated",
+               code: "GLAZE",
+               names: ["Burnished Gold-14GP",
                                       "Burnished Platinum-15PL",
                                       "Highly Polished Platinum-17HP",
                                       "Gold Accents-24GP",
-                                      "Platinum Accents-24PL"]],
-                ["China-Solid Colors",["Sand",
+                                      "Platinum Accents-24PL"]
+              },
+              {type: "China-Solid Colors",
+               code: "CC",
+               names: ["Sand",
                                        "White",
-                                       "Black"]],
-                  ["Marble",["ROSE AURORA (RSAU)",
+                                       "Black"]
+              },
+              {type: "Marble",
+               
+               names: ["ROSE AURORA (RSAU)",
                               "ROSE DU MONTE (RSDM)",
                              "CARARRA (CARR)",
                              "MARIANELLA (MARI)",
@@ -121,28 +135,39 @@ materials = [["China-Hand Painted",["Delft — (66DL)",
                              "PORTORO (PORT)",
                              "VALVERDE (VLVD)",
                              "CALACATTA (CALA)",
-                             "PORT LAURENT (PTLA))"]],
-                  ["Semi-precious Stone",["ROCK\ CRYSTAL\ \(RKCR\)",
+                             "PORT LAURENT (PTLA))"]
+              },
+              {type: "Semi-precious Stone",
+              code: "SEMI",
+              names: ["ROCK\ CRYSTAL\ \(RKCR\)",
                             "ROSE\ QUARTZ\ \(RSQU\)",
-                            "AMETHYST\ \(AMET\)"]],
-                  ["Semi-precious Laminate",["LAPIS\ LAZULI\ \(LAPI\)",
+                            "AMETHYST\ \(AMET\)"]
+                    },
+              { type: "Semi-precious Laminate",
+               code: "SLSL",
+               names: ["LAPIS\ LAZULI\ \(LAPI\)",
                             "MALACHITE\ \(MALA\)",
                             "JASPER\ \(JASP\)",
                             "BROWN\ TIGER\ EYE\ \(BRTI\)", 
                             "BLUE\ TIGER\ EYE\ \(BLTI\)",
-                            "RHODOCHROSITE\ \(RHOD\)"]],
-          ["Onyx",["BLACK\ ONYX\ \(BKOX\)",
+                            "RHODOCHROSITE\ \(RHOD\)"]
+                    },
+              {type: "Onyx", 
+               code: "ONYX",
+               names: ["BLACK\ ONYX\ \(BKOX\)",
                             "WHITE\ ONYX\ \(WHOX\)",
                             "HONEY\ ONYX\ \(HNOX\)",
                             "GREEN\ ONYX\ \(GROX\)",
                             "PINK\ ONYX\ \(PKOX\)",
                             "BROWN\ ONYX\ \(BROX\)"]
-                                            ]]
+                    }
+              ]
 materials.each do |material|
-  type= material[0]
-  names=material[1]
+  type = material[:type]
+  code = material[:code]
+  names = material[:names]
   names.each do |name|
-    Material.create(material_type:type, name:name)
+    Material.create(material_type:type, name:name, code:code)
   end
 end
 
