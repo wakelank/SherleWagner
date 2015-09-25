@@ -2,6 +2,8 @@ class ProductGroup < ActiveRecord::Base
   has_many :products
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_product_groups
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_product_groups
+  has_and_belongs_to_many :product_types
+  has_and_belongs_to_many :product_sub_types
 
   def add_materials(material_code)
     begin
@@ -12,10 +14,10 @@ class ProductGroup < ActiveRecord::Base
     end
   end
 
-  def self.custom_create(name)
+  def self.custom_create(name, product_type, product_sub_type)
     if !!name
       begin
-        new_product_group = self.new(name: name)
+        new_product_group = self.new(name: name, product_type: product_type, product_sub_type: product_sub_type)
         if new_product_group.name.include?('-XX')
           new_product_group.finishes = Finish.all
         end

@@ -6,8 +6,6 @@ class Product < ActiveRecord::Base
   #has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
-  has_and_belongs_to_many :product_types
-  has_and_belongs_to_many :product_sub_types
   has_many :filter_product_values
   has_many :filters, through: :filter_product_values
   has_many :filter_values, through: :filter_product_values
@@ -188,31 +186,19 @@ class Product < ActiveRecord::Base
         begin
           product_group = ProductGroup.exists?(name: generic_product_number) ?
             ProductGroup.where(name: generic_product_number).first :
-            ProductGroup.custom_create(generic_product_number)
+            ProductGroup.custom_create(generic_product_number, product_type, product_sub_type)
         rescue
           binding.pry
         end
         begin
           product = Product.create(name: name, 
                                    number: product_number, 
-                                   product_type: product_type, 
-                                   product_sub_type: product_sub_type,
+                                   #product_type: product_type, 
+                                   #product_sub_type: product_sub_type,
                                    product_group: product_group)
         rescue
           binding.pry
         end
-        #if !!product_group.name
-        #  begin
-        #    if product.product_group.name.include?('-XX')
-        #      product.product_group.finishes = Finish.all
-        #    end
-        #    Material.codes.each do |code|
-        #      product.product_group.add_materials(code) if product.product_group.name.include? "-#{code}"
-        #    end
-        #  rescue
-        #    binding.pry
-        #  end
-        #end
       end
     end
 
