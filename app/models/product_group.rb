@@ -2,8 +2,8 @@ class ProductGroup < ActiveRecord::Base
   has_many :products
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_product_groups
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_product_groups
-  has_and_belongs_to_many :product_types
-  has_and_belongs_to_many :product_sub_types
+  belongs_to :product_type
+  belongs_to :product_sub_type
 
   def add_materials(material_code)
     begin
