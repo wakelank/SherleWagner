@@ -2,9 +2,8 @@ require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
-  has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
-  has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
-  has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
+  #has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
+  #has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :product_types
@@ -208,7 +207,7 @@ class Product < ActiveRecord::Base
               product.product_group.finishes = Finish.all
             end
             Material.codes.each do |code|
-              product.add_materials(code) if product.product_group.name.include? "-#{code}"
+              product.product_group.add_materials(code) if product.product_group.name.include? "-#{code}"
             end
             #if product.product_group.name.include?('-SEMI')
             #  product.add_materials 'Semi-precious Stone'
@@ -246,14 +245,6 @@ class Product < ActiveRecord::Base
   end
 
 
-def add_materials(material_code)
-  begin
-    self.materials.concat Material.where(code: material_code)
-    self.save
-  rescue
-    binding.pry
-  end
-end
 
 def has_finish?
   return true if self.finishes.length > 0

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150925132105) do
+ActiveRecord::Schema.define(version: 20150925142457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,13 +74,11 @@ ActiveRecord::Schema.define(version: 20150925132105) do
 
   create_table "finishes_product_groups", force: :cascade do |t|
     t.integer "finish_id"
-    t.integer "product_id"
     t.integer "product_group_id"
   end
 
   add_index "finishes_product_groups", ["finish_id"], name: "index_finishes_product_groups_on_finish_id", using: :btree
   add_index "finishes_product_groups", ["product_group_id"], name: "index_finishes_product_groups_on_product_group_id", using: :btree
-  add_index "finishes_product_groups", ["product_id"], name: "index_finishes_product_groups_on_product_id", using: :btree
 
   create_table "genres", force: :cascade do |t|
     t.string   "name"
@@ -117,13 +115,13 @@ ActiveRecord::Schema.define(version: 20150925132105) do
     t.string  "code"
   end
 
-  create_table "materials_products", force: :cascade do |t|
+  create_table "materials_product_groups", force: :cascade do |t|
     t.integer "material_id"
-    t.integer "product_id"
+    t.integer "product_group_id"
   end
 
-  add_index "materials_products", ["material_id"], name: "index_materials_products_on_material_id", using: :btree
-  add_index "materials_products", ["product_id"], name: "index_materials_products_on_product_id", using: :btree
+  add_index "materials_product_groups", ["material_id"], name: "index_materials_product_groups_on_material_id", using: :btree
+  add_index "materials_product_groups", ["product_group_id"], name: "index_materials_product_groups_on_product_group_id", using: :btree
 
   create_table "overall_colors", force: :cascade do |t|
     t.string   "name"
@@ -262,13 +260,12 @@ ActiveRecord::Schema.define(version: 20150925132105) do
   add_foreign_key "filter_product_values", "products"
   add_foreign_key "finishes_product_groups", "finishes"
   add_foreign_key "finishes_product_groups", "product_groups"
-  add_foreign_key "finishes_product_groups", "products"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
   add_foreign_key "inserts_products", "materials"
   add_foreign_key "inserts_products", "products"
-  add_foreign_key "materials_products", "materials"
-  add_foreign_key "materials_products", "products"
+  add_foreign_key "materials_product_groups", "materials"
+  add_foreign_key "materials_product_groups", "product_groups"
   add_foreign_key "product_sub_types", "product_types"
   add_foreign_key "products", "genres"
   add_foreign_key "products", "product_groups"
