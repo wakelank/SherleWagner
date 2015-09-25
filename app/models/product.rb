@@ -188,7 +188,7 @@ class Product < ActiveRecord::Base
         begin
           product_group = ProductGroup.exists?(name: generic_product_number) ?
             ProductGroup.where(name: generic_product_number).first :
-            ProductGroup.create(name: generic_product_number)
+            ProductGroup.custom_create(generic_product_number)
         rescue
           binding.pry
         end
@@ -201,42 +201,18 @@ class Product < ActiveRecord::Base
         rescue
           binding.pry
         end
-        if !!product_group.name
-          begin
-            if product.product_group.name.include?('-XX')
-              product.product_group.finishes = Finish.all
-            end
-            Material.codes.each do |code|
-              product.product_group.add_materials(code) if product.product_group.name.include? "-#{code}"
-            end
-            #if product.product_group.name.include?('-SEMI')
-            #  product.add_materials 'Semi-precious Stone'
-            #end
-            #if product.product_group.name.include?('-SLSL')
-            #  product.add_materials 'Semi-precious Laminate', product
-            #end
-            #if product.product_group.name.include?('-ONYX')
-            #  product.add_materials 'Onyx', product
-            #end
-            #if product.product_group.name.include?('-CC')
-            #  product.add_materials 'China-Solid Colors', product
-            #end
-            #if product.product_group.name.include?('-GLAZE')
-            #  product.add_materials 'China-Metal Plated', product
-            #end
-            #if product.product_group.name.include?('-CHINADECO')
-            #  product.add_materials 'China-Hand Decorated'
-            #end
-            #if product.product_group.name.include?('-HANDPAINTED')
-            #  product.add_materials 'China-Hand Painted', product
-            #end
-#           if product.product_group.name.include?('-CHINAMETAL')
-#             # product.materials = Material.where(material_type: 'China-Hand Painted')
-#           end
-          rescue
-            binding.pry
-          end
-        end
+        #if !!product_group.name
+        #  begin
+        #    if product.product_group.name.include?('-XX')
+        #      product.product_group.finishes = Finish.all
+        #    end
+        #    Material.codes.each do |code|
+        #      product.product_group.add_materials(code) if product.product_group.name.include? "-#{code}"
+        #    end
+        #  rescue
+        #    binding.pry
+        #  end
+        #end
       end
     end
 
