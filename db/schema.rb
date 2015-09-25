@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924202027) do
+ActiveRecord::Schema.define(version: 20150925132105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,13 +72,15 @@ ActiveRecord::Schema.define(version: 20150924202027) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "finishes_products", force: :cascade do |t|
+  create_table "finishes_product_groups", force: :cascade do |t|
     t.integer "finish_id"
     t.integer "product_id"
+    t.integer "product_group_id"
   end
 
-  add_index "finishes_products", ["finish_id"], name: "index_finishes_products_on_finish_id", using: :btree
-  add_index "finishes_products", ["product_id"], name: "index_finishes_products_on_product_id", using: :btree
+  add_index "finishes_product_groups", ["finish_id"], name: "index_finishes_product_groups_on_finish_id", using: :btree
+  add_index "finishes_product_groups", ["product_group_id"], name: "index_finishes_product_groups_on_product_group_id", using: :btree
+  add_index "finishes_product_groups", ["product_id"], name: "index_finishes_product_groups_on_product_id", using: :btree
 
   create_table "genres", force: :cascade do |t|
     t.string   "name"
@@ -258,8 +260,9 @@ ActiveRecord::Schema.define(version: 20150924202027) do
   add_foreign_key "filter_product_values", "filter_values"
   add_foreign_key "filter_product_values", "filters"
   add_foreign_key "filter_product_values", "products"
-  add_foreign_key "finishes_products", "finishes"
-  add_foreign_key "finishes_products", "products"
+  add_foreign_key "finishes_product_groups", "finishes"
+  add_foreign_key "finishes_product_groups", "product_groups"
+  add_foreign_key "finishes_product_groups", "products"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
   add_foreign_key "inserts_products", "materials"
