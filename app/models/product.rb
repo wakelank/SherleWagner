@@ -4,8 +4,6 @@ require 'csv'
 class Product < ActiveRecord::Base
   #has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
   #has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
-  has_and_belongs_to_many :genres
-  has_and_belongs_to_many :styles
   has_many :filter_product_values
   has_many :filters, through: :filter_product_values
   has_many :filter_values, through: :filter_product_values
@@ -170,6 +168,7 @@ class Product < ActiveRecord::Base
       product_sub_type = row['SUB FOLDER']
       if !Product.exists?(number: product_number) && product_number != nil
         begin
+          #TODO use first_or_create for these
           product_type = ProductType.exists?(name: product_type) ?
             ProductType.where(name: product_type).first :
             ProductType.create(name: product_type)
@@ -190,6 +189,7 @@ class Product < ActiveRecord::Base
         rescue
           binding.pry
         end
+
         begin
           product = Product.create(name: name, 
                                    number: product_number, 
@@ -199,6 +199,29 @@ class Product < ActiveRecord::Base
         rescue
           binding.pry
         end
+
+        begin
+
+          genre_name = row["PRODUCT FOLDER"]
+          genre = Genre.where(name: genre_name).first_or_create
+          row.each do |header, value|
+            if !value.nil? && value.downcase.strip == 'x'
+              headerArr=[]
+              headerArr = header.split('-') if !header.nil?
+              if headerArr[0] == "COLLECTION"
+                style_name = headerArr[1]
+                style = Style.where(name:style_name).first_or_create
+                genre.styles << style
+                genre.save
+                product_group.styles << style
+                product_group.save
+              end
+            end
+          end
+
+          rescue
+            binding.pry
+         end
       end
     end
 

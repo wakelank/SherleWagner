@@ -298,50 +298,51 @@ sub_types.each do |type, sub_types|
   end
 end
 
-genres = %w(Ornate Traditional Classic Mid_Century Contemporary)
-styles = {
-            ornate: 
-              %w(LOUIS\ SEIZE
-              CHERUB
-              SWAN
-              DOLPHIN
-              FILIGREE
-              1040\ LEAVES\ RSQU),
-            traditional:
-              %w(ACANTHUS
-              RIBBON\ &\ REED
-              CUT\ CRYSTAL
-              CLASSIC
-              MING\ BLOSSOM
-              ONYX
-              1029\ ROCK\ CRYSTAL),
-            classic:
-              %w(HARRISON
-              GREY
-              CLASSIC
-              MELON),
-            Mid_Century:
-              %w(APOLLO
-              NOUVEAU
-              COSMOS
-              MOLECULES
-              PYRAMID),
-            Contemporary:
-              %w(ARCO
-              NAIAD
-              AQUEDUCT
-              ARBOR)
-}
-genres.each do |type|
-  Genre.create(name: type.humanize)
-end
+#genres = %w(Ornate Traditional Classic Mid_Century Contemporary)
+#styles = {
+#            ornate: 
+#              %w(LOUIS\ SEIZE
+#              CHERUB
+#              SWAN
+#              DOLPHIN
+#              FILIGREE
+#              1040\ LEAVES\ RSQU),
+#            traditional:
+#              %w(ACANTHUS
+#              RIBBON\ &\ REED
+#              CUT\ CRYSTAL
+#              CLASSIC
+#              MING\ BLOSSOM
+#              ONYX
+#              1029\ ROCK\ CRYSTAL),
+#            classic:
+#              %w(HARRISON
+#              GREY
+#              CLASSIC
+#              MELON),
+#            Mid_Century:
+#              %w(APOLLO
+#              NOUVEAU
+#              COSMOS
+#              MOLECULES
+#              PYRAMID),
+#            Contemporary:
+#              %w(ARCO
+#              NAIAD
+#              AQUEDUCT
+#              ARBOR)
+#}
+#genres.each do |type|
+#  Genre.create(name: type.humanize)
+#end
+#
+#styles.each do |genre, styles|
+#  genre = Genre.where("lower(name) = ?",  genre.to_s.humanize.downcase).first
+#  styles.each do |style|
+#    Style.create( name: style, genre: genre)
+#  end
+#end
 
-styles.each do |genre, styles|
-  genre = Genre.where("lower(name) = ?",  genre.to_s.humanize.downcase).first
-  styles.each do |style|
-    Style.create( name: style, genre: genre)
-  end
-end
 
 overall_colors = %w(Neutral Blues Pinks Yellows Blacks Reds Greens Metallics)
 
