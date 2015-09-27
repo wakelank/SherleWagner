@@ -43,6 +43,7 @@ class Product < ActiveRecord::Base
         begin
           image_url = "http://s3.amazonaws.com/sherle-wagner/temp/#{row['IMAGE FILE']}.jpg"
           product.image = URI.parse(image_url)
+                binding.pry
         rescue
         end
         row.each do |header, value|
@@ -201,22 +202,35 @@ class Product < ActiveRecord::Base
         end
 
         begin
-
-          genre_name = row["PRODUCT FOLDER"]
-          genre = Genre.where(name: genre_name).first_or_create
-          row.each do |header, value|
-            if !value.nil? && value.downcase.strip == 'x'
-              headerArr=[]
-              headerArr = header.split('-') if !header.nil?
-              if headerArr[0] == "COLLECTION"
-                style_name = headerArr[1]
-                style = Style.where(name:style_name).first_or_create
-                genre.styles << style
-                genre.save
-                product_group.styles << style
-                product_group.save
-              end
+          if !product_group.nil? && product_group.name != "TITLE-XX"
+            genre_name = row["PRODUCT FOLDER"]
+            if !genre_name.nil? && genre_name != ""
+              genre = Genre.where(name: genre_name).first_or_create
             end
+            style_name = row["STYLE"]
+            if !style_name.nil? && style_name != ""
+              style = Style.where(name:style_name).first_or_create
+              product_group.styles << style
+              product_group.save
+            end
+            if !style.nil? && !genre.nil?
+              genre.styles << style
+              genre.save
+            end
+            #row.each do |header, value|
+            #  if !value.nil? && value.downcase.strip == 'x'
+            #    headerArr=[]
+            #    headerArr = header.split('-') if !header.nil?
+            #    if headerArr[0] == "COLLECTION"
+            #      style_name = headerArr[1]
+            #      style = Style.where(name:style_name).first_or_create
+            #      genre.styles << style
+            #      genre.save
+            #      product_group.styles << style
+            #      product_group.save
+            #    end
+            #  end
+            #end
           end
 
           rescue
