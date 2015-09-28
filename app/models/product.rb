@@ -203,19 +203,11 @@ class Product < ActiveRecord::Base
 
         begin
           if !product_group.nil? && product_group.name != "TITLE-XX"
-            genre_name = row["PRODUCT FOLDER"]
-            if !genre_name.nil? && genre_name != ""
-              genre = Genre.where(name: genre_name).first_or_create
-            end
             style_name = row["STYLE"]
             if !style_name.nil? && style_name != ""
-              style = Style.where(name:style_name).first_or_create
+              style = Style.where('lower(name) = ?', style_name.downcase.strip).first
               product_group.styles << style
               product_group.save
-            end
-            if !style.nil? && !genre.nil?
-              genre.styles << style
-              genre.save
             end
             #row.each do |header, value|
             #  if !value.nil? && value.downcase.strip == 'x'
@@ -233,9 +225,9 @@ class Product < ActiveRecord::Base
             #end
           end
 
-          rescue
-            binding.pry
-         end
+        rescue
+          binding.pry
+       end
       end
     end
 

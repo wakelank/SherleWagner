@@ -343,34 +343,57 @@ end
 #  end
 #end
 
+genres_styles = [
+  { genre_name: "Contemporary",
+    styles: [ "Arco", "Molecule", "Apollo", "Nouveau" ]
+  },
+  { genre_name: "Classic",
+    styles: [ "Harrison", "Grey" ]
+  },
+  { genre_name: "Traditional",
+    styles: [ "Ribbon & Reed", "Onyx", "Scalloped China" ]
+  },
+  { genre_name: "Ornate",
+    styles: [ "Dolphin", "Swan", "Semiprecious Leaves" ]
+  }
+]
 
-overall_colors = %w(Neutral Blues Pinks Yellows Blacks Reds Greens Metallics)
-
-overall_colors.each do |color|
-  OverallColor.create(name: color)
+genres_styles.each do |genre_style|
+  genre = Genre.create(name: genre_style[:genre_name])
+  genre_style[:styles].each do |style|
+    genre.styles << Style.create(name: style)
+  end
 end
 
-lever_designs = %w(Handle Knob)
-basin_designs = %w(Under\ edges Over\Edge)
-ccv_designs = %w(Console Counter Vanity)
-wc_handle_designs = %w(Drop\ pull Bar\ pull)
-door_trim_designs = %w(Push\ plates	Back\ Plates	Hinges	Latches	Thumb\ turns	Flush\ pulls	Key\ hole\ cover)
-wall_trim_designs = %w(Door\ stops	Bell\ Covers	Electrical\ plates)
-ceiling_lights_designs = %w(Chandeliers	Flush\ Mounted)
-wall_lights_designs = %w(Sconces Panel\ lights)
-wallpaper_designs = %w(Toiles Floral Geometric)
 
-lever_designs.each { |design| LeverDesign.create(name: design) }
-basin_designs.each { |design| BasinDesign.create(name: design) }
-ccv_designs.each { |design| ConsoleCounterVanityDesign.create(name: design) }
-wc_handle_designs.each { |design| WaterClosetHandleDesign.create(name: design) }
-#Not for water closets. should be for drawer pulls
-door_trim_designs.each { |design| DoorTrimDesign.create(name: design) }
-wall_trim_designs.each { |design| WallTrimDesign.create(name: design) }
-ceiling_lights_designs.each { |design| CeilingLightsDesign.create(name: design) }
-wall_lights_designs.each { |design| WallLightsDesign.create(name: design) }
-wallpaper_designs.each { |design| WallPaperDesign.create(name: design) }
-#add accessories bathrooms, countertops filters
+
+#overall_colors = %w(Neutral Blues Pinks Yellows Blacks Reds Greens Metallics)
+#
+#overall_colors.each do |color|
+#  OverallColor.create(name: color)
+#end
+
+#lever_designs = %w(Handle Knob)
+#basin_designs = %w(Under\ edges Over\Edge)
+#ccv_designs = %w(Console Counter Vanity)
+#wc_handle_designs = %w(Drop\ pull Bar\ pull)
+#door_trim_designs = %w(Push\ plates	Back\ Plates	Hinges	Latches	Thumb\ turns	Flush\ pulls	Key\ hole\ cover)
+#wall_trim_designs = %w(Door\ stops	Bell\ Covers	Electrical\ plates)
+#ceiling_lights_designs = %w(Chandeliers	Flush\ Mounted)
+#wall_lights_designs = %w(Sconces Panel\ lights)
+#wallpaper_designs = %w(Toiles Floral Geometric)
+#
+#lever_designs.each { |design| LeverDesign.create(name: design) }
+#basin_designs.each { |design| BasinDesign.create(name: design) }
+#ccv_designs.each { |design| ConsoleCounterVanityDesign.create(name: design) }
+#wc_handle_designs.each { |design| WaterClosetHandleDesign.create(name: design) }
+##Not for water closets. should be for drawer pulls
+#door_trim_designs.each { |design| DoorTrimDesign.create(name: design) }
+#wall_trim_designs.each { |design| WallTrimDesign.create(name: design) }
+#ceiling_lights_designs.each { |design| CeilingLightsDesign.create(name: design) }
+#wall_lights_designs.each { |design| WallLightsDesign.create(name: design) }
+#wallpaper_designs.each { |design| WallPaperDesign.create(name: design) }
+##add accessories bathrooms, countertops filters
 
 num_products = 200
 
