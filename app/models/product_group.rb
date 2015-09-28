@@ -6,6 +6,10 @@ class ProductGroup < ActiveRecord::Base
   has_and_belongs_to_many :styles
   belongs_to :product_type
   belongs_to :product_sub_type
+  #has_many :filter_product_group_values
+  #has_many :filters, through: :filter_product_group_values
+  #has_many :filter_values, through: :filter_product_group_values
+  has_and_belongs_to_many :filter_values
 
   def add_materials(material_code)
     begin

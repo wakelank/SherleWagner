@@ -365,6 +365,41 @@ genres_styles.each do |genre_style|
   end
 end
 
+filters = [
+  { name: "Handle Design",
+    filter_values: [ "Levers", "Knobs" ]
+  },
+  { name: "Sink Design",
+    filter_values: [ "Underedge", "Overedge" ]
+  },
+  { name: "Console or Counter",
+    filter_values: ["Console", "Counter" ]
+  },
+  { name: "Bidet or Water Closet",
+    filter_values: [ "Bidet", "Water Closet" ]
+  },
+  { name: "Ceiling Light Design",
+    filter_values: [ "Pendant", "Chandelier", "Flush Mount" ]
+  },
+  { name: "Wall Light Design",
+    filter_values: [ "Sconce", "Panel Light" ]
+  },
+  { name: "Wallpaper Design",
+    filter_values: [ "Toiles", "Floral", "Geometric" ]
+  },
+  { name: "Wallpaper Color",
+    filter_values: [ "Neutral", "Blue", "Pink", "Yellow", "Black", "Red", "Green", "Metallic" ]
+  }
+]
+
+filters.each do |filter|
+  this_filter = Filter.create( name: filter[:name] )
+  filter[:filter_values].each do |filter_value|
+    this_filter.filter_values << FilterValue.create(name: filter_value)
+  end
+end
+
+
 
 
 #overall_colors = %w(Neutral Blues Pinks Yellows Blacks Reds Greens Metallics)

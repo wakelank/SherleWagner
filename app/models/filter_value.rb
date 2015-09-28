@@ -1,4 +1,4 @@
 class FilterValue < ActiveRecord::Base
   belongs_to :filter
-  belongs_to :product
+  has_and_belongs_to_many :product_group
 end

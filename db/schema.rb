@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150927162621) do
+ActiveRecord::Schema.define(version: 20150928195854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,19 +48,44 @@ ActiveRecord::Schema.define(version: 20150927162621) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "filter_product_group_values", force: :cascade do |t|
+    t.integer  "product_group_id"
+    t.integer  "filter_id"
+    t.integer  "filter_value_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "filter_product_group_values", ["filter_id"], name: "index_filter_product_group_values_on_filter_id", using: :btree
+  add_index "filter_product_group_values", ["filter_value_id"], name: "index_filter_product_group_values_on_filter_value_id", using: :btree
+  add_index "filter_product_group_values", ["product_group_id"], name: "index_filter_product_group_values_on_product_group_id", using: :btree
+
   create_table "filter_product_values", force: :cascade do |t|
     t.integer "product_id"
     t.integer "filter_id"
     t.integer "filter_value_id"
+    t.integer "product_group_id"
   end
 
   add_index "filter_product_values", ["filter_id"], name: "index_filter_product_values_on_filter_id", using: :btree
   add_index "filter_product_values", ["filter_value_id"], name: "index_filter_product_values_on_filter_value_id", using: :btree
+  add_index "filter_product_values", ["product_group_id"], name: "index_filter_product_values_on_product_group_id", using: :btree
   add_index "filter_product_values", ["product_id"], name: "index_filter_product_values_on_product_id", using: :btree
 
   create_table "filter_values", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "filter_id"
   end
+
+  add_index "filter_values", ["filter_id"], name: "index_filter_values_on_filter_id", using: :btree
+
+  create_table "filter_values_product_groups", force: :cascade do |t|
+    t.integer "filter_value_id"
+    t.integer "product_group_id"
+  end
+
+  add_index "filter_values_product_groups", ["filter_value_id"], name: "index_filter_values_product_groups_on_filter_value_id", using: :btree
+  add_index "filter_values_product_groups", ["product_group_id"], name: "index_filter_values_product_groups_on_product_group_id", using: :btree
 
   create_table "filters", force: :cascade do |t|
     t.string "name"
@@ -128,6 +153,14 @@ ActiveRecord::Schema.define(version: 20150927162621) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "product_group_filters", force: :cascade do |t|
+    t.integer "product_group_id"
+    t.integer "filter_id"
+  end
+
+  add_index "product_group_filters", ["filter_id"], name: "index_product_group_filters_on_filter_id", using: :btree
+  add_index "product_group_filters", ["product_group_id"], name: "index_product_group_filters_on_product_group_id", using: :btree
 
   create_table "product_groups", force: :cascade do |t|
     t.datetime "created_at",          null: false
@@ -270,9 +303,16 @@ ActiveRecord::Schema.define(version: 20150927162621) do
 
   add_foreign_key "accents_products", "finishes"
   add_foreign_key "accents_products", "products"
+  add_foreign_key "filter_product_group_values", "filter_values"
+  add_foreign_key "filter_product_group_values", "filters"
+  add_foreign_key "filter_product_group_values", "product_groups"
   add_foreign_key "filter_product_values", "filter_values"
   add_foreign_key "filter_product_values", "filters"
+  add_foreign_key "filter_product_values", "product_groups"
   add_foreign_key "filter_product_values", "products"
+  add_foreign_key "filter_values", "filters"
+  add_foreign_key "filter_values_product_groups", "filter_values"
+  add_foreign_key "filter_values_product_groups", "product_groups"
   add_foreign_key "finishes_product_groups", "finishes"
   add_foreign_key "finishes_product_groups", "product_groups"
   add_foreign_key "genres_products", "genres"
@@ -281,6 +321,8 @@ ActiveRecord::Schema.define(version: 20150927162621) do
   add_foreign_key "inserts_products", "products"
   add_foreign_key "materials_product_groups", "materials"
   add_foreign_key "materials_product_groups", "product_groups"
+  add_foreign_key "product_group_filters", "filters"
+  add_foreign_key "product_group_filters", "product_groups"
   add_foreign_key "product_groups", "product_sub_types"
   add_foreign_key "product_groups", "product_types"
   add_foreign_key "product_groups", "styles"

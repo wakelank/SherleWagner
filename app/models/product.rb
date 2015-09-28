@@ -4,9 +4,6 @@ require 'csv'
 class Product < ActiveRecord::Base
   #has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
   #has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
-  has_many :filter_product_values
-  has_many :filters, through: :filter_product_values
-  has_many :filter_values, through: :filter_product_values
   belongs_to :basin_design
   belongs_to :ceiling_lights_design
   belongs_to :console_counter_vanity_design
