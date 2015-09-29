@@ -20,10 +20,10 @@ class ProductGroup < ActiveRecord::Base
     end
   end
 
-  def self.custom_create(name, product_type, product_sub_type)
+  def self.custom_create(number, name, product_type, product_sub_type)
     if !!name
       begin
-        new_product_group = self.new(name: name, product_type: product_type, product_sub_type: product_sub_type)
+        new_product_group = self.new(number: number, name: name, product_type: product_type, product_sub_type: product_sub_type)
         if new_product_group.name.include?('-XX')
           new_product_group.finishes = Finish.all
         end

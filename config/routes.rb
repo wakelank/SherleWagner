@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root 'products#index'
   resources :products
+  resources :product_groups
   
   get 'j_products.json'=>'products#j_index'
 

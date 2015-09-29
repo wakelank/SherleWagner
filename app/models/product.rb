@@ -181,9 +181,11 @@ class Product < ActiveRecord::Base
           binding.pry
         end
         begin
-          product_group = ProductGroup.exists?(name: generic_product_number) ?
-            ProductGroup.where(name: generic_product_number).first :
-            ProductGroup.custom_create(generic_product_number, product_type, product_sub_type)
+          if !generic_product_number.nil? && generic_product_number != ""
+            product_group = ProductGroup.exists?(number: generic_product_number) ?
+              ProductGroup.where(number: generic_product_number).first :
+              ProductGroup.custom_create(generic_product_number, name, product_type, product_sub_type)
+          end
         rescue
           binding.pry
         end

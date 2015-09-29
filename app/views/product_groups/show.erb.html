@@ -1,0 +1,8 @@
+<h1><%= @product_group.name %></h1>
+<p>
+<%= @product_group.number %>
+</p>
+<ul>
+  <% @product_group.products.each do |product| %>
+  <li><%= product.name %> : <%= product.number %></li>
+</ul>
