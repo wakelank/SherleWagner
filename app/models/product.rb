@@ -200,31 +200,25 @@ class Product < ActiveRecord::Base
 
         begin
           if !product_group.nil? && product_group.name != "TITLE-XX"
-            style_name = row["STYLE"]
+            style_name = row["STYLES"]
             if !style_name.nil? && style_name != ""
               style = Style.where('lower(name) = ?', style_name.downcase.strip).first
               product_group.styles << style
               product_group.save
             end
-            #row.each do |header, value|
-            #  if !value.nil? && value.downcase.strip == 'x'
-            #    headerArr=[]
-            #    headerArr = header.split('-') if !header.nil?
-            #    if headerArr[0] == "COLLECTION"
-            #      style_name = headerArr[1]
-            #      style = Style.where(name:style_name).first_or_create
-            #      genre.styles << style
-            #      genre.save
-            #      product_group.styles << style
-            #      product_group.save
-            #    end
-            #  end
-            #end
+            filter_name = row["FILTERS"]
+            if !filter_name.nil? && filter_name !=""
+              filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
+              product_group.filter_values << filter_value if !filter_value.nil?
+            end
+            product_group.save
+
+
           end
 
         rescue
           binding.pry
-       end
+        end
       end
     end
 
