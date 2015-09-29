@@ -204,9 +204,14 @@ class Product < ActiveRecord::Base
             if !style_name.nil? && style_name != ""
               style = Style.where('lower(name) = ?', style_name.downcase.strip).first
               product_group.styles << style
-              product_group.save
+             # product_group.save
             end
             filter_name = row["FILTERS"]
+            if !filter_name.nil? && filter_name !=""
+              filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
+              product_group.filter_values << filter_value if !filter_value.nil?
+            end
+            filter_name = row["FILTERS2"]
             if !filter_name.nil? && filter_name !=""
               filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
               product_group.filter_values << filter_value if !filter_value.nil?
