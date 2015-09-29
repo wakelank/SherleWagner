@@ -37,6 +37,10 @@ class ProductGroup < ActiveRecord::Base
       new_product_group
     end
   end
+
+  def filters
+    self.filter_values
+  end
   
 
 end
