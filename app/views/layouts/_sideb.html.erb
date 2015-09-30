@@ -10,11 +10,11 @@
 <div class="bs-example">
     <ul >
       <% @filters.each do |filter| %>
-      <li id="<%= filter[0] %>">
-          <%= filter[0] %>
-          <% filter[1].each do |val| %>
+      <li id="<%= filter[:filter_name] %>">
+          <%= filter[:filter_name] %>
+          <% filter[:filter_values].each do |val| %>
           <div class="checkbox">
-              <label><input type="checkbox" value="" id="<%= val %>"> <%= val %> </label>
+              <label><input type="checkbox" value="" id="<%= val[:name] %>"> <%= val[:name] %> </label>
           </div>
           <% end %>
       </li>

@@ -3,7 +3,7 @@ class ProductGroupsController < ApplicationController
 
     @product_groups = ProductGroup.all
     @filters = unique_filter_hashes @product_groups
-
+    
     respond_to do |format|
       format.html
       format.json { render json: { products_groups: @product_groups.as_json(:methods => [:get_filter_values]),
