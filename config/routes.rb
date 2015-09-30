@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :products
   resources :product_groups
   
-  get 'j_products.json'=>'products#j_index'
+  
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

@@ -2,7 +2,9 @@
     $(document).ready(function(){
         
          $.ajax({
-                url: '/j_products', 
+                url: '/product_groups',
+                contentType: "application/json",
+                dataType: "json",
                 error: function(req, err){ console.log("my message" + err); },  
                 success: function(data) {
                     jsonproducts = data

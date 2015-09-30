@@ -3,27 +3,27 @@
 
 
 <div id="side_nav2">
- <div id="prod_header">
+   <div id="prod_header">
     <h4>Products</h4>
 </div>
 
 <div class="bs-example">
-<ul >
-  <% @filters.each do |filter| %>
-    <li id="<%= filter[:name] %>">
-      <%= filter[:name] %>
-      <% filter[:values].each do |val| %>
-      <div class="checkbox">
-  <label><input type="checkbox" value="" id="<%= val %>"> <%= val %> </label>
-</div>
-    <% end %>
-    </li>
-  <% end %>
-</ul>  
+    <ul >
+      <% @filters.each do |filter| %>
+      <li id="<%= filter[0] %>">
+          <%= filter[0] %>
+          <% filter[1].each do |val| %>
+          <div class="checkbox">
+              <label><input type="checkbox" value="" id="<%= val %>"> <%= val %> </label>
+          </div>
+          <% end %>
+      </li>
+      <% end %>
+  </ul>  
 
-<script type="text/javascript">
-    $(document).ready(function(){
-        
+  <script type="text/javascript">
+  $(document).ready(function(){
+
     //      $.ajax({
     //             url: '/j_products',   
     //             success: function(data) {
@@ -31,16 +31,16 @@
     //             console.log(data);
     //             currentData = $.parseJSON(data);
 
- 
+
     // }
     // });
 
 
 
-    checked = []
-        $('input[type="checkbox"]').click(function(){
-            if($(this).prop("checked") == true){
-                checked.push(this.id);
+checked = []
+$('input[type="checkbox"]').click(function(){
+    if($(this).prop("checked") == true){
+        checked.push(this.id);
                 //console.log(this.id+ " is checked");
                 
             }
@@ -57,121 +57,42 @@
   //         }
   //     }
   // }
-            }
-           
-            if (checked.length > 0){
-                $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
-            });
-                $(checked).each(function(ind){
-                    console.log(checked[ind]);
+}
 
-                    var checkfilt = checked[ind];
+if (checked.length > 0){
+    $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
+});
+    $(checked).each(function(ind){
+        console.log(checked[ind] + "LOOKLOOKATME");
 
-                    $(jsonproducts.products).each(function(index){
-                        var domProd = document.getElementById(this.id);
+        var checkfilt = checked[ind];
+
+        $(jsonproducts.product_groups).each(function(index){
+            var domProd = document.getElementById(this.id);
                         //domProd.style.display = 'none';
                         for (var i = 0; i < this.filters.length; i++) {
-                            if (this.filters[i].value == checkfilt){
+                            
+                            if (this.filters[i].name == checkfilt){
                                 domProd.style.display = 'block';
-                            console.log(this.filters[i].name + " " + this.filters[i].value + " ID =" + this.id);
+                                console.log(this.filters[i].name + " " + this.filters[i].name + " ID =" + this.id);
 
                             }
                         };
 
                     })
-                })
-            } else {
-                $(jsonproducts.products).each(function(index){
-                    var domProd = document.getElementById(this.id);
-                    domProd.style.display = 'block';
+    })
+} else {
+    $(jsonproducts.product_groups).each(function(index){
+        var domProd = document.getElementById(this.id);
+        domProd.style.display = 'block';
 
-                });
-            }
-             console.log("checked arr:"+ checked);  
-        });
     });
+}
+console.log("checked arr:"+ checked);  
+});
+});
 </script>
 
-    <div class="panel-group" id="accordion1">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Fittings</a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse">
-                <div class="panel-body">
-
-                 <div class="panel-group" id="accordion2">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2">Basin Sets</a>
-                            </div>
-                        </div>
-                        <div id="collapseOne2" class="panel-collapse collapse">
-                            <div class="panel-body">
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo2">Bidet Sets</a>
-                            </div>
-                        </div>
-                        <div id="collapseTwo2" class="panel-collapse collapse">
-                            <div class="panel-body">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion2" href="#collapseThree3">Shower Systems</a>
-
-                            </div>
-                        </div>
-                        <div id="collapseThree3" class="panel-collapse collapse">
-                            <div class="panel-body">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">Fixtures</a>
-        </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-        <div class="panel-body">
-
-        </div>
-    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">Accessories</a>
-
-        </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-        <div class="panel-body">
-
-        </div>
-    </div>
-</div>
 
 
 
