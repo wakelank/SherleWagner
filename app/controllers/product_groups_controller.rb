@@ -1,11 +1,11 @@
 class ProductGroupsController < ApplicationController
   def index
-    @product_groups = ProductGroup.all.limit 100
-    @filters = filter_hashes @product_groups
+    @product_groups = ProductGroup.all
+    @filters = unique_filter_hashes @product_groups
 
     respond_to do |format|
       format.html
-      format.json { render json: { products_groups: @product_groups.as_json(:methods => [:filters]), 
+      format.json { render json: { products_groups: @product_groups.as_json(:methods => [:get_filter_values]),
                                    filters: @filters }
                    }
     end
@@ -24,24 +24,42 @@ class ProductGroupsController < ApplicationController
  #   filter_values.uniq
  # end
 
-  def get_filters_names_for product_groups
-    filters = []
-    product_groups.each do |product_group|
-     filter_names.concat product_group.filter_names 
-    end
-    filter_names.uniq
-  end
+#  def get_filters product_groups
+#    filters = []
+#    product_groups.each do |product_group|
+#     filter_names.concat product_group.filter_names 
+#    end
+#    filter_names.uniq
+#  end
 
-  def filter_hashes product_groups
-    f_hashes = []
-    filter_names = []
-    product_groups.each do |product_group|
-      filter_name = product_group.filter_names
-      f_hashes << product_group.filter_hashes
+private
+    def get_unique_filters product_groups
+      filters = []
+      product_groups.each do |product_group|
+        filters << product_group.get_filters
+      end
+      filters = filters.uniq.flatten
     end
-    
-    f_hashes.uniq
-  end
+
+    def unique_filter_hashes product_groups
+      f_hashes = []
+      get_unique_filters(@product_groups).each do |filter|
+        f_hashes << filter.filter_hash
+      end
+      f_hashes
+    end
+       
+
+#  def filter_hashes product_groups
+#    f_hashes = []
+#    filter_names = []
+#    product_groups.each do |product_group|
+#      filter_name = product_group.filter_names
+#      f_hashes << product_group.filter_hashes
+#    end
+#    
+#    f_hashes.uniq
+#  end
 
 
 end

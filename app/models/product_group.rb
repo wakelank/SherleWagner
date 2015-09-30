@@ -10,6 +10,7 @@ class ProductGroup < ActiveRecord::Base
   #has_many :filters, through: :filter_product_group_values
   #has_many :filter_values, through: :filter_product_group_values
   has_and_belongs_to_many :filter_values
+  
 
   def add_materials(material_code)
     begin
@@ -38,15 +39,26 @@ class ProductGroup < ActiveRecord::Base
     end
   end
 
-  def filters
-    self.filter_values
+ # def filters
+ #   self.filter_values
+ # end
+
+#  def filter_names
+#    f_names = []
+#    self.filter_values.each do |filter_value|
+#      f_names << filter_value.filter.name
+#    end
+#    f_names.uniq
+#  end
+  def get_filter_values
+    self.filter_values.uniq
   end
 
-  def filter_names
+  def get_filters
     filter_arr = []
     filter_vals = self.filter_values
     filter_vals.each do |filter_val|
-      filter_arr << filter_val.filter.name
+      filter_arr << filter_val.filter
     end
     filter_arr.uniq
   end
