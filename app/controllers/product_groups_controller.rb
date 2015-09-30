@@ -1,11 +1,12 @@
 class ProductGroupsController < ApplicationController
   def index
-    @product_groups = ProductGroup.all.limit 1000
-    @filters = get_filters_for @product_groups
+
+    @product_groups = ProductGroup.all
+    @filters = unique_filter_hashes @product_groups
 
     respond_to do |format|
       format.html
-      format.json { render json: { product_groups: @product_groups.as_json(:methods => [:filters]), 
+      format.json { render json: { products_groups: @product_groups.as_json(:methods => [:get_filter_values]),
                                    filters: @filters }
                    }             
     end
@@ -14,6 +15,7 @@ class ProductGroupsController < ApplicationController
   def show
     @product_group = ProductGroup.find(params[:id])
   end
+
 
   def get_filters_for product_groups
     filter_name_values = {}
@@ -34,4 +36,21 @@ class ProductGroupsController < ApplicationController
   end
   
 
+private
+    def get_unique_filters product_groups
+      filters = []
+      product_groups.each do |product_group|
+        filters << product_group.get_filters
+      end
+      filters = filters.uniq.flatten
+    end
+
+    def unique_filter_hashes product_groups
+      f_hashes = []
+      get_unique_filters(@product_groups).each do |filter|
+        f_hashes << filter.filter_hash
+      end
+      f_hashes
+    end
+       
 end
