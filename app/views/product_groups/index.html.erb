@@ -3,9 +3,12 @@
 <%= render "/layouts/sideb" %>
 
 <%=link_to "Upload product file", products_upload_page_path %>
-<ul>
-  <%= @product_groups.each do |product_group| %>
+<div class="prod_wrapper">
+<ul class="prod_list">
+  <% @product_groups.each do |product_group| %>
     <li class ="prod_tile" id="<%= product_group.id %>"><%=link_to product_group.name, product_group_path(product_group.id) %></li>
+  
   <% end %>
 </ul>
 
+</div>

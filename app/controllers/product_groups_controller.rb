@@ -7,9 +7,7 @@ class ProductGroupsController < ApplicationController
       format.html
       format.json { render json: { product_groups: @product_groups.as_json(:methods => [:filters]), 
                                    filters: @filters }
-                   }
-
-                   
+                   }             
     end
   end
 
