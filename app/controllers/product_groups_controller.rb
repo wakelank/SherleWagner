@@ -1,7 +1,7 @@
 class ProductGroupsController < ApplicationController
   def index
     @product_groups = ProductGroup.all.limit 100
-    @filters = get_filters_for @product_groups
+    @filters = filter_hashes @product_groups
 
     respond_to do |format|
       format.html
@@ -15,12 +15,33 @@ class ProductGroupsController < ApplicationController
     @product_group = ProductGroup.find(params[:id])
   end
 
-  def get_filters_for product_groups
-    filter_values = []
+ # def get_filters_for product_groups
+ #   filter_values = []
+ #   filtersArr = []
+ #   product_groups.each do |product_group|
+ #     filter_values.concat product_group.filter_values
+ #   end
+ #   filter_values.uniq
+ # end
+
+  def get_filters_names_for product_groups
+    filters = []
     product_groups.each do |product_group|
-      filter_values.concat product_group.filter_values
+     filter_names.concat product_group.filter_names 
     end
-    filter_values.uniq
+    filter_names.uniq
   end
+
+  def filter_hashes product_groups
+    f_hashes = []
+    filter_names = []
+    product_groups.each do |product_group|
+      filter_name = product_group.filter_names
+      f_hashes << product_group.filter_hashes
+    end
+    
+    f_hashes.uniq
+  end
+
 
 end

@@ -41,6 +41,24 @@ class ProductGroup < ActiveRecord::Base
   def filters
     self.filter_values
   end
+
+  def filter_names
+    filter_arr = []
+    filter_vals = self.filter_values
+    filter_vals.each do |filter_val|
+      filter_arr << filter_val.filter.name
+    end
+    filter_arr.uniq
+  end
+
+  def filter_hashes
+    f_hashes = []
+    self.get_filters.each do |filter|
+      f_hashes << filter.filter_hash
+    end
+    f_hashes
+  end
+
   
 
 end

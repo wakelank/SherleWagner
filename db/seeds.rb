@@ -18,7 +18,7 @@
 
 
 Sku.delete_all
-Product.delete_all
+#Product.delete_all
 Style.delete_all
 Genre.delete_all
 Material.delete_all
@@ -34,6 +34,7 @@ WallTrimDesign.delete_all
 CeilingLightsDesign.delete_all
 WallLightsDesign.delete_all
 WallPaperDesign.delete_all
+FilterValue.delete_all
 Filter.delete_all
 
 finishes =  %w(satin\ brass
