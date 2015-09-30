@@ -1,6 +1,6 @@
 class ProductGroupsController < ApplicationController
   def index
-    @product_groups = ProductGroup.all
+    @product_groups = ProductGroup.where(product_type_id: 13)
     @filters = unique_filter_hashes @product_groups
 
     respond_to do |format|
@@ -38,7 +38,7 @@ private
       product_groups.each do |product_group|
         filters << product_group.get_filters
       end
-      filters = filters.uniq.flatten
+      filters = filters.flatten.uniq
     end
 
     def unique_filter_hashes product_groups
