@@ -1,6 +1,6 @@
 class ProductGroupsController < ApplicationController
   def index
-    @product_groups = ProductGroup.all.limit 100
+    @product_groups = ProductGroup.all.limit 1000
     @filters = get_filters_for @product_groups
 
     respond_to do |format|

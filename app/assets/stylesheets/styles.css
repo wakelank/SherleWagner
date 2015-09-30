@@ -1,7 +1,4 @@
-body {
-
-}
-
+/*====The product browse page===*/
 .prod_wrapper {
  width:80%;
  float: right;
@@ -18,8 +15,8 @@ body {
   margin:0;
   float:left;
   color: red;
-  height:10em;
-  width: 10em;
+  height:14em;
+  width: 14em;
   border: 1px solid grey;
   border-radius: 3px;
   margin:3px;
