@@ -2,6 +2,7 @@ class ProductGroupsController < ApplicationController
   def index
 
     @product_groups = ProductGroup.all
+
     @filters = unique_filter_hashes @product_groups
 
     respond_to do |format|
