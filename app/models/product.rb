@@ -235,49 +235,5 @@ class Product < ActiveRecord::Base
 
 
 
-def has_finish?
-  return true if self.finishes.length > 0
-  return false
-end
-
-def insert_types
-  return self.inserts.pluck(:material_type).uniq
-end
-
-def inserts_of_type(insert_type)
-  return self.inserts.where(material_type: insert_type)
-end
-
-def material_types
-  return self.materials.pluck(:material_type).uniq
-end
-
-def materials_of_type(material_type)
-  return self.materials.where(material_type: material_type)
-end
-
-#def filters
-#  fs = []
-#  fvs = self.filter_values
-#  fvs.each do |fv|
-#    filter = {}
-#    filter[:name] = fv.filter.name
-#    filter[:value] = fv.name
-#    fs << filter
-#  end
-#  fs
-#end
-
-def filters
-  fpvs = FilterProductValue.where(product:self)
-  filter_arr = []
-  fpvs.each do |fpv|
-    hash = { :name => fpv.filter.name, :value => fpv.filter_value.name }
-    filter_arr.push(hash) 
-  end
-  filter_arr
-end
-
-
 end
 

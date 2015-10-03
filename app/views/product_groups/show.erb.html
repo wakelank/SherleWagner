@@ -2,7 +2,22 @@
 <p>
 <%= @product_group.number %>
 </p>
+<h3>Other Images</h3>
 <ul>
   <% @product_group.products.each do |product| %>
   <li><%= product.name %> : <%= product.number %></li>
+  <% end %>
 </ul>
+<h3>Finishes</h3>
+<ul>
+  <% @product_group.finishes.each do |finish| %>
+    <li><%= finish.name %></li>
+  <% end %>
+</ul>
+<h3>Materials</h3>
+<ul>
+  <% @product_group.materials.each do |material| %>
+    <li><%= material.name %></li>
+  <% end %>
+</ul>
+

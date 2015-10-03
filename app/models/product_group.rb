@@ -25,11 +25,11 @@ class ProductGroup < ActiveRecord::Base
     if !!name
       begin
         new_product_group = self.new(number: number, name: name, product_type: product_type, product_sub_type: product_sub_type)
-        if new_product_group.name.include?('-XX')
+        if new_product_group.number.include?('-XX')
           new_product_group.finishes = Finish.all
         end
         Material.codes.each do |code|
-          new_product_group.add_materials(code) if new_product_group.name.include? "-#{code}"
+          new_product_group.add_materials(code) if new_product_group.number.include? "-#{code}"
         end
         new_product_group.save
       rescue
