@@ -11,6 +11,7 @@ class ProductGroupsController < ApplicationController
                                    filters: @filters }
                    }             
     end
+    
   end
 
   def show
