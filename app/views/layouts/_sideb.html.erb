@@ -63,13 +63,13 @@ if (checked.length > 0){
     $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
 });
     $(checked).each(function(ind){
-        console.log(checked[ind] + " LOOKLOOKATME");
+        console.log(checked[ind] + " LOOKLOOKATME ");
 
         var checkfilt = checked[ind];
 
         $(jsonproducts.product_groups).each(function(index){
             var domProd = document.getElementById(this.id);
-                        domProd.style.display = 'none';
+                        
                         for (var i = 0; i < this.get_filter_values.length; i++) {
                             //console.log("here"+this)
                            
