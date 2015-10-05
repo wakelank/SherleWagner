@@ -371,7 +371,7 @@ filters = [
     filter_values: [ "Levers", "Knobs" ]
   },
   { name: "Sink Design",
-    filter_values: [ "Underedge", "Overedge" ]
+    filter_values: [ "Under Edge", "Over Edge" ]
   },
   { name: "Console or Counter",
     filter_values: ["Console", "Counter" ]
