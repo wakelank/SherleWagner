@@ -12,7 +12,7 @@ gem "twitter-bootstrap-rails"
 gem 'aws-sdk-v1'
 gem 'paperclip', '~> 4.3'
 
-
+gem "rails-bootstrap-helpers"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
