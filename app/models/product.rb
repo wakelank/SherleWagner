@@ -23,142 +23,142 @@ class Product < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
-  def self.upload_product_file(file)
-    CSV.foreach(file.path, col_sep: ";", encoding: "MacRoman", headers: true) do |row|
-      if $INPUT_LINE_NUMBER >= 5
-        $INPUT_LINE_NUMBER ? line_num = $INPUT_LINE_NUMBER : line_num = 0
-        name = row["PRODUCT NAME-Revised"]
-        long_description = row["PRODUCT DESCRIPTION"]
-        number = row["CODE under Product Name"]
-        product = Product.create(name: name, long_description: long_description, number: number)
-        if ProductGroup.where(name: name).first
-          product_group = ProductGroup.where(name: name).first
-        else
-          product_group = ProductGroup.create(name: name)
-        end
-        product.product_group = product_group
-        begin
-          image_url = "http://s3.amazonaws.com/sherle-wagner/temp/#{row['IMAGE FILE']}.jpg"
-          product.image = URI.parse(image_url)
-                binding.pry
-        rescue
-        end
-        row.each do |header, value|
-          if value && value.downcase.strip == 'x'
-            if header
-              headerArr = header.split('-')
-              if headerArr[0] == "Materials"
-                material_type = headerArr[1].downcase.strip
-                material_name = headerArr[2].downcase.strip
-                case material_type
-                  when 'metal'
-                    begin
-                      finish = Finish.where('lower(name) = ?', material_name).first
-                      product.finishes << finish
-                    rescue
-                      binding.pry
-                    end
-                  when 'china'
-                    begin
-                      china_type = "China-" + headerArr[2].titleize.strip
-                      materials = Material.where(material_type: china_type)
-                      materials.each do |material|
-                        if product.has_finish? 
-                          product.inserts << material
-                        else
-                          product.materials << material
-                        end
-                      end
-                    rescue
-                      binding.pry
-                    end
+  #def self.upload_product_file(file)
+  #  CSV.foreach(file.path, col_sep: ";", encoding: "MacRoman", headers: true) do |row|
+  #    if $INPUT_LINE_NUMBER >= 5
+  #      $INPUT_LINE_NUMBER ? line_num = $INPUT_LINE_NUMBER : line_num = 0
+  #      name = row["PRODUCT NAME-Revised"]
+  #      long_description = row["PRODUCT DESCRIPTION"]
+  #      number = row["CODE under Product Name"]
+  #      product = Product.create(name: name, long_description: long_description, number: number)
+  #      if ProductGroup.where(name: name).first
+  #        product_group = ProductGroup.where(name: name).first
+  #      else
+  #        product_group = ProductGroup.create(name: name)
+  #      end
+  #      product.product_group = product_group
+  #      begin
+  #        image_url = "http://s3.amazonaws.com/sherle-wagner/temp/#{row['IMAGE FILE']}.jpg"
+  #        product.image = URI.parse(image_url)
+  #              binding.pry
+  #      rescue
+  #      end
+  #      row.each do |header, value|
+  #        if value && value.downcase.strip == 'x'
+  #          if header
+  #            headerArr = header.split('-')
+  #            if headerArr[0] == "Materials"
+  #              material_type = headerArr[1].downcase.strip
+  #              material_name = headerArr[2].downcase.strip
+  #              case material_type
+  #                when 'metal'
+  #                  begin
+  #                    finish = Finish.where('lower(name) = ?', material_name).first
+  #                    product.finishes << finish
+  #                  rescue
+  #                    binding.pry
+  #                  end
+  #                when 'china'
+  #                  begin
+  #                    china_type = "China-" + headerArr[2].titleize.strip
+  #                    materials = Material.where(material_type: china_type)
+  #                    materials.each do |material|
+  #                      if product.has_finish? 
+  #                        product.inserts << material
+  #                      else
+  #                        product.materials << material
+  #                      end
+  #                    end
+  #                  rescue
+  #                    binding.pry
+  #                  end
 
-                  when 'marble'
-                    begin
-                      material = Material.where('lower(name) = ?', material_name).first
-                      product.materials << material
-                    rescue
-                      binding.pry
-                    end
-                  when 'onyx' || 'semi precious stones'
-                    begin
-                      material = Material.where('lower(name) = ?', material_name).first
-                      if product.has_finish?
-                        product.inserts << material
-                      else
-                        product.materials << material
-                      end
-                    rescue
-                      binding.pry
-                    end
-                  when 'semi precious stones'
-                     begin
-                      material = Material.where('lower(name) = ?', material_name).first
-                      if product.has_finish?
-                        product.inserts << material
-                      else
-                        product.materials << material
-                      end
-                    rescue
-                      binding.pry
-                    end
-
-
-                end
+  #                when 'marble'
+  #                  begin
+  #                    material = Material.where('lower(name) = ?', material_name).first
+  #                    product.materials << material
+  #                  rescue
+  #                    binding.pry
+  #                  end
+  #                when 'onyx' || 'semi precious stones'
+  #                  begin
+  #                    material = Material.where('lower(name) = ?', material_name).first
+  #                    if product.has_finish?
+  #                      product.inserts << material
+  #                    else
+  #                      product.materials << material
+  #                    end
+  #                  rescue
+  #                    binding.pry
+  #                  end
+  #                when 'semi precious stones'
+  #                   begin
+  #                    material = Material.where('lower(name) = ?', material_name).first
+  #                    if product.has_finish?
+  #                      product.inserts << material
+  #                    else
+  #                      product.materials << material
+  #                    end
+  #                  rescue
+  #                    binding.pry
+  #                  end
 
 
-               # material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
-               # color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
-                begin
-                #  product.colors << color
-                #  product.materials << material
-                rescue
-                end
+  #              end
 
-              elsif headerArr[0] == "COLLECTIONS"
-                genre = Genre.where('lower(name) = ?', headerArr[1].downcase.strip).first
-                style = Style.where('lower(name) = ?', headerArr[2].downcase.strip).first
-                begin
-                  product.genres << genre
-                  product.styles << style
-                rescue
-                  binding.pry
-                end
-                product.save
-              elsif headerArr[0] == "PRODUCTS"
-                product_type = ProductType.where('lower(name) = ?', headerArr[1].downcase.strip).first
-                product_sub_type = ProductSubType.where('lower(name) = ?', headerArr[2].downcase.strip).first
-                begin
-                  product.product_type = product_type
-                  product.product_sub_type = product_sub_type
-                  product.save
-                rescue
-                  binding.pry
-                end
-              elsif headerArr[0] == "FILTERS"
-                begin
-                  filter_name =  headerArr[1].downcase.strip
-                  filter = Filter.where('lower(name) = ?', filter_name).first
-                  filter = Filter.create(name: filter_name) if !filter 
-                  value_name = headerArr[2].downcase.strip
-                  value = FilterValue.where('lower(name) = ?', value_name).first
-                  value = FilterValue.create(name: value_name) if !value
-                    
-                  fpv = FilterProductValue.new(product: product, filter: filter, filter_value: value)
-                  fpv.save if !FilterProductValue.exists?(fpv.attributes.except("id"))  
-                rescue
-                  binding.pry
-                end
-              end
-            end
-          end
-        end
-      end
-    end
-  end
+
+  #             # material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
+  #             # color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
+  #              begin
+  #              #  product.colors << color
+  #              #  product.materials << material
+  #              rescue
+  #              end
+
+  #            elsif headerArr[0] == "COLLECTIONS"
+  #              genre = Genre.where('lower(name) = ?', headerArr[1].downcase.strip).first
+  #              style = Style.where('lower(name) = ?', headerArr[2].downcase.strip).first
+  #              begin
+  #                product.genres << genre
+  #                product.styles << style
+  #              rescue
+  #                binding.pry
+  #              end
+  #              product.save
+  #            elsif headerArr[0] == "PRODUCTS"
+  #              product_type = ProductType.where('lower(name) = ?', headerArr[1].downcase.strip).first
+  #              product_sub_type = ProductSubType.where('lower(name) = ?', headerArr[2].downcase.strip).first
+  #              begin
+  #                product.product_type = product_type
+  #                product.product_sub_type = product_sub_type
+  #                product.save
+  #              rescue
+  #                binding.pry
+  #              end
+  #            elsif headerArr[0] == "FILTERS"
+  #              begin
+  #                filter_name =  headerArr[1].downcase.strip
+  #                filter = Filter.where('lower(name) = ?', filter_name).first
+  #                filter = Filter.create(name: filter_name) if !filter 
+  #                value_name = headerArr[2].downcase.strip
+  #                value = FilterValue.where('lower(name) = ?', value_name).first
+  #                value = FilterValue.create(name: value_name) if !value
+  #                  
+  #                fpv = FilterProductValue.new(product: product, filter: filter, filter_value: value)
+  #                fpv.save if !FilterProductValue.exists?(fpv.attributes.except("id"))  
+  #              rescue
+  #                binding.pry
+  #              end
+  #            end
+  #          end
+  #        end
+  #      end
+  #    end
+  #  end
+  #end
 
   def self.new_upload_product_file(file)
-    CSV.foreach(file.path, encoding: "MacRoman", headers: true) do |row|
+    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ';', headers: true) do |row|
       name = row["GENERIC PRODUCT NAME _ Revised"]
       generic_product_number = row["Generic Product Number"]
       product_number = row["IMAGE FILE"]
