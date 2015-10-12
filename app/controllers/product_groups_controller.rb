@@ -11,6 +11,8 @@ class ProductGroupsController < ApplicationController
                                    filters: @filters }
                    }             
     end
+
+    
     
   end
 
