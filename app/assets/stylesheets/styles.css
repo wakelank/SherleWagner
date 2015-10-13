@@ -26,11 +26,11 @@
 .bs-example {
   float: left;
   margin: 2%;
-  width:10%;
+  width:15%;
   
 }
 .nav-wrap {
   float:left;
-  width: 15%;
+  width: 100%;
   margin-left: 2em;
 }

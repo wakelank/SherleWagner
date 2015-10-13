@@ -73,6 +73,7 @@ class ProductGroup < ActiveRecord::Base
 
 searchable do
     text :name
+    
 end
   
 
