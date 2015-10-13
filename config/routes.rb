@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'products#index'
   resources :products
   resources :product_groups
+
+  get 'product_types/:product_type' => 'product_groups#index'
   
   
 

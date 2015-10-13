@@ -20,15 +20,54 @@ RSpec.describe ProductsController, :type => :controller do
       expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Product, :count).by(3)
     end
 
-    it 'uploads the product name from data file' do
+    it 'product name' do
       post :upload_product_file, :controller => :products, :filename => @file 
       expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
     end
-    it "uploads the product type"
-    it "uploads the product sub-type"
-    it "uploads the product_group"
-    it "attaches the filters to the product group"
-    it "attaches the materials to the product group"
-    it "attaches the filters to the product group"
   end
+  describe "Upload process creates ProductGroups" do
+    before :each do
+      @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
+      @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
+      request.env["HTTP_REFERER"] = products_upload_page_path
+      post :upload_product_file, :controller => :products, :filename => @file 
+      @pg = ProductGroup.where(number: '008BSN108-XX').first
+    end
+
+      it "2 product groups" do
+        expect(ProductGroup.all.length).to eq 2
+      end
+
+      it "with product_type" do
+        expect(@pg.product_type.name).to eq "FITTINGS"
+      end
+
+      it "with product_sub_type" do
+        expect(@pg.product_sub_type.name).to eq "Basin Sets"
+      end
+
+      it "with an attached product" do
+        expect(@pg.products.length).to eq 1
+      end
+
+      it "with the correct attached product" do
+        expect(@pg.products.first.name).to eq "Arco With Arco Lever"
+      end
+
+      it "attaches the filter_values to the product group" do
+        expect(@pg.filter_values.first.name).to eq "Levers"
+      end
+      it "attaches the finishes to the product group" do
+        expect(@pg.finishes.count).to be 17
+      end
+      it "attaches the materials to the product group with material code SLSL" do
+        @pg_materials = ProductGroup.where(number: '008BSN108-SLSL-XX').first
+        expect(@pg_materials.materials.count).to be 6
+      end
+      it "attaches the filters to the product group"
+      it "attaches style to product group" do
+        expect(@pg.styles.first.name).to eq "Arco"
+      end
+  end
+  
 end

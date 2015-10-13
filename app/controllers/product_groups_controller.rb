@@ -1,7 +1,8 @@
 class ProductGroupsController < ApplicationController
   def index
 
-    @product_groups = ProductGroup.all
+    product_type = ProductType.where(name: params[:product_type]).first
+    @product_groups = ProductGroup.where(product_type: product_type)
 
     @filters = unique_filter_hashes @product_groups
 
