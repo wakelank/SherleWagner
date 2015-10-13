@@ -31,6 +31,7 @@ class ProductGroupsController < ApplicationController
 
   def edit
     @product_group = ProductGroup.find(params[:id])
+    @material_types = Material.pluck(:material_type).uniq
   end
 
   def update
