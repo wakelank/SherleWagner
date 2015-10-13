@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
   root 'products#index'
   resources :products
-  resources :product_groups
+  resources :product_groups, :defaults => { :format => 'html' }
   
-  
+  get 'search'=>'search#index'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

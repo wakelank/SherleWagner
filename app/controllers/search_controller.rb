@@ -2,7 +2,7 @@ class SearchController < ApplicationController
 
 def index
   @query = ProductGroup.search do
-        fulltext params[:search]
+        params[:search]
     end
     @searched = @query.results
 
