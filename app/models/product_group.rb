@@ -6,11 +6,7 @@ class ProductGroup < ActiveRecord::Base
   has_and_belongs_to_many :styles
   belongs_to :product_type
   belongs_to :product_sub_type
-  #has_many :filter_product_group_values
-  #has_many :filters, through: :filter_product_group_values
-  #has_many :filter_values, through: :filter_product_group_values
   has_and_belongs_to_many :filter_values
-  
 
   def add_materials(material_code)
     begin
@@ -21,10 +17,13 @@ class ProductGroup < ActiveRecord::Base
     end
   end
 
-  def self.custom_create(number, name, product_type, product_sub_type)
+  def self.custom_create(args)
     if !!name
       begin
-        new_product_group = self.new(number: number, name: name, product_type: product_type, product_sub_type: product_sub_type)
+        new_product_group = self.new(number: args[:number],
+                                     name: args[:name],
+                                     product_type: args[:product_type],
+                                     product_sub_type: args[:product_sub_type])
         if new_product_group.number.include?('-XX')
           new_product_group.finishes = Finish.all
         end
@@ -39,17 +38,14 @@ class ProductGroup < ActiveRecord::Base
     end
   end
 
- # def filters
- #   self.filter_values
- # end
+  def self.first_or_custom_create(args)
+    if self.where(number: args[:number]).length > 1
+      self.where(number: args[:number]).first
+    else
+      self.custom_create(args)
+    end
+  end
 
-#  def filter_names
-#    f_names = []
-#    self.filter_values.each do |filter_value|
-#      f_names << filter_value.filter.name
-#    end
-#    f_names.uniq
-#  end
   def get_filter_values
     self.filter_values.uniq
   end

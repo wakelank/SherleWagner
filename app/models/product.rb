@@ -2,8 +2,6 @@ require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
-  #has_and_belongs_to_many :accents, class_name: 'Finish', join_table: :accents_products
-  #has_and_belongs_to_many :inserts, class_name: 'Material', join_table: :inserts_products
   belongs_to :basin_design
   belongs_to :ceiling_lights_design
   belongs_to :console_counter_vanity_design
@@ -14,148 +12,12 @@ class Product < ActiveRecord::Base
   belongs_to :wall_paper_design
   belongs_to :wall_trim_design
   belongs_to :water_closet_handle_design
-
   belongs_to :product_type
   belongs_to :product_sub_type  
-
   belongs_to :product_group
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
-
-  #def self.upload_product_file(file)
-  #  CSV.foreach(file.path, col_sep: ";", encoding: "MacRoman", headers: true) do |row|
-  #    if $INPUT_LINE_NUMBER >= 5
-  #      $INPUT_LINE_NUMBER ? line_num = $INPUT_LINE_NUMBER : line_num = 0
-  #      name = row["PRODUCT NAME-Revised"]
-  #      long_description = row["PRODUCT DESCRIPTION"]
-  #      number = row["CODE under Product Name"]
-  #      product = Product.create(name: name, long_description: long_description, number: number)
-  #      if ProductGroup.where(name: name).first
-  #        product_group = ProductGroup.where(name: name).first
-  #      else
-  #        product_group = ProductGroup.create(name: name)
-  #      end
-  #      product.product_group = product_group
-  #      begin
-  #        image_url = "http://s3.amazonaws.com/sherle-wagner/temp/#{row['IMAGE FILE']}.jpg"
-  #        product.image = URI.parse(image_url)
-  #              binding.pry
-  #      rescue
-  #      end
-  #      row.each do |header, value|
-  #        if value && value.downcase.strip == 'x'
-  #          if header
-  #            headerArr = header.split('-')
-  #            if headerArr[0] == "Materials"
-  #              material_type = headerArr[1].downcase.strip
-  #              material_name = headerArr[2].downcase.strip
-  #              case material_type
-  #                when 'metal'
-  #                  begin
-  #                    finish = Finish.where('lower(name) = ?', material_name).first
-  #                    product.finishes << finish
-  #                  rescue
-  #                    binding.pry
-  #                  end
-  #                when 'china'
-  #                  begin
-  #                    china_type = "China-" + headerArr[2].titleize.strip
-  #                    materials = Material.where(material_type: china_type)
-  #                    materials.each do |material|
-  #                      if product.has_finish? 
-  #                        product.inserts << material
-  #                      else
-  #                        product.materials << material
-  #                      end
-  #                    end
-  #                  rescue
-  #                    binding.pry
-  #                  end
-
-  #                when 'marble'
-  #                  begin
-  #                    material = Material.where('lower(name) = ?', material_name).first
-  #                    product.materials << material
-  #                  rescue
-  #                    binding.pry
-  #                  end
-  #                when 'onyx' || 'semi precious stones'
-  #                  begin
-  #                    material = Material.where('lower(name) = ?', material_name).first
-  #                    if product.has_finish?
-  #                      product.inserts << material
-  #                    else
-  #                      product.materials << material
-  #                    end
-  #                  rescue
-  #                    binding.pry
-  #                  end
-  #                when 'semi precious stones'
-  #                   begin
-  #                    material = Material.where('lower(name) = ?', material_name).first
-  #                    if product.has_finish?
-  #                      product.inserts << material
-  #                    else
-  #                      product.materials << material
-  #                    end
-  #                  rescue
-  #                    binding.pry
-  #                  end
-
-
-  #              end
-
-
-  #             # material = Material.where('lower(name) = ?',headerArr[1].downcase.strip).first
-  #             # color = Color.where('lower(name) = ?', headerArr[2].downcase.strip).first
-  #              begin
-  #              #  product.colors << color
-  #              #  product.materials << material
-  #              rescue
-  #              end
-
-  #            elsif headerArr[0] == "COLLECTIONS"
-  #              genre = Genre.where('lower(name) = ?', headerArr[1].downcase.strip).first
-  #              style = Style.where('lower(name) = ?', headerArr[2].downcase.strip).first
-  #              begin
-  #                product.genres << genre
-  #                product.styles << style
-  #              rescue
-  #                binding.pry
-  #              end
-  #              product.save
-  #            elsif headerArr[0] == "PRODUCTS"
-  #              product_type = ProductType.where('lower(name) = ?', headerArr[1].downcase.strip).first
-  #              product_sub_type = ProductSubType.where('lower(name) = ?', headerArr[2].downcase.strip).first
-  #              begin
-  #                product.product_type = product_type
-  #                product.product_sub_type = product_sub_type
-  #                product.save
-  #              rescue
-  #                binding.pry
-  #              end
-  #            elsif headerArr[0] == "FILTERS"
-  #              begin
-  #                filter_name =  headerArr[1].downcase.strip
-  #                filter = Filter.where('lower(name) = ?', filter_name).first
-  #                filter = Filter.create(name: filter_name) if !filter 
-  #                value_name = headerArr[2].downcase.strip
-  #                value = FilterValue.where('lower(name) = ?', value_name).first
-  #                value = FilterValue.create(name: value_name) if !value
-  #                  
-  #                fpv = FilterProductValue.new(product: product, filter: filter, filter_value: value)
-  #                fpv.save if !FilterProductValue.exists?(fpv.attributes.except("id"))  
-  #              rescue
-  #                binding.pry
-  #              end
-  #            end
-  #          end
-  #        end
-  #      end
-  #    end
-  #  end
-  #end
 
   def self.new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ';', headers: true) do |row|
@@ -166,35 +28,17 @@ class Product < ActiveRecord::Base
       product_sub_type = row['SUB FOLDER']
       if !Product.exists?(number: product_number) && product_number != nil
         begin
-          #TODO use first_or_create for these
-          product_type = ProductType.exists?(name: product_type) ?
-            ProductType.where(name: product_type).first :
-            ProductType.create(name: product_type)
-        rescue
-          binding.pry
-        end
-        begin
-          product_sub_type = ProductSubType.exists?(name: product_sub_type) ?
-            ProductSubType.where(name: product_sub_type).first :
-            ProductSubType.create(name: product_sub_type)
-        rescue
-          binding.pry
-        end
-        begin
+          product_type =ProductType.where(name: product_type).first_or_create
+          product_sub_type = ProductSubType.where(name: product_sub_type).first_or_create
           if !generic_product_number.nil? && generic_product_number != ""
-            product_group = ProductGroup.exists?(number: generic_product_number) ?
-              ProductGroup.where(number: generic_product_number).first :
-              ProductGroup.custom_create(generic_product_number, name, product_type, product_sub_type)
+            product_group_args = { number: generic_product_number, 
+                                   name: name, 
+                                   product_type: product_type, 
+                                   product_sub_type: product_sub_type }
+            product_group = ProductGroup.first_or_custom_create(product_group_args)
           end
-        rescue
-          binding.pry
-        end
-
-        begin
           product = Product.create(name: name, 
                                    number: product_number, 
-                                   #product_type: product_type, 
-                                   #product_sub_type: product_sub_type,
                                    product_group: product_group)
         rescue
           binding.pry
@@ -203,13 +47,14 @@ class Product < ActiveRecord::Base
         begin
           if !product_group.nil? && product_group.name != "TITLE-XX"
             style_name = row["STYLES"]
-            if !style_name.nil? && style_name != ""
+#            if !style_name.nil? && style_name != ""
+            if !style_name.blank?
               style = Style.where('lower(name) = ?', style_name.downcase.strip).first
               product_group.styles << style
-             # product_group.save
             end
             filter_name = row["FILTERS"]
-            if !filter_name.nil? && filter_name !=""
+           # if !filter_name.nil? && filter_name !=""
+            if !filter_name.blank?
               filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
               product_group.filter_values << filter_value if !filter_value.nil?
             end
@@ -219,8 +64,6 @@ class Product < ActiveRecord::Base
               product_group.filter_values << filter_value if !filter_value.nil?
             end
             product_group.save
-
-
           end
 
         rescue
@@ -228,12 +71,6 @@ class Product < ActiveRecord::Base
         end
       end
     end
-
-    
-
   end
-
-
-
 end
 
