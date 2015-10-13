@@ -63,7 +63,7 @@ class ProductGroupsController < ApplicationController
 
 private
   def product_group_params
-    params.require(:product_group).permit(:name, :number, :finish_ids => [])
+    params.require(:product_group).permit(:name, :number, :finish_ids => [], :material_ids => [])
   end
 
   def get_unique_filters product_groups
