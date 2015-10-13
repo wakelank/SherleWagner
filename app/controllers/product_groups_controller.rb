@@ -10,10 +10,10 @@ class ProductGroupsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: { product_groups: @product_groups.as_json(:methods => [:get_filter_values],
-                                                                           include: [
-#                                                                             {:finishes => { only: :name }}, 
-                                                                             {:product_type => {except: [:created_at, :updated_at]}},
-                                                                             {:product_sub_type => {except: [:created_at, :updated_at]}}
+                                  include: [
+#                                                                     {:finishes => { only: :name }}, 
+                                  {:product_type => {except: [:created_at, :updated_at]}},
+                                  {:product_sub_type => {except: [:created_at, :updated_at]}}
                                                                             ]),
                                    filters: @filters }
                    }             

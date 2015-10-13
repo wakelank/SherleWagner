@@ -3,22 +3,22 @@
 
 
 <div id="side_nav2">
-   <div id="prod_header">
-    <h4>Products</h4>
+ <div id="prod_header">
+  <h4>Products</h4>
 </div>
 
 <div >
-    <ul >
-      <% @filters.each do |filter| %>
-      <li id="<%= filter[:filter_name] %>">
-          <%= filter[:filter_name] %>
-          <% filter[:filter_values].each do |val| %>
-          <div class="checkbox">
-              <label><input type="checkbox" value="" id="<%= val[:name] %>"> <%= val[:name] %> </label>
-          </div>
-          <% end %>
-      </li>
+  <ul >
+    <% @filters.each do |filter| %>
+    <li id="<%= filter[:filter_name] %>">
+      <%= filter[:filter_name] %>
+      <% filter[:filter_values].each do |val| %>
+      <div class="checkbox">
+        <label><input type="checkbox" value="" id="<%= val[:name] %>"> <%= val[:name] %> </label>
+      </div>
       <% end %>
+    </li>
+    <% end %>
   </ul>  
 
   <script type="text/javascript">
@@ -39,12 +39,12 @@
 
 checked = []
 $('input[type="checkbox"]').click(function(){
-    if($(this).prop("checked") == true){
-        checked.push(this.id);
+  if($(this).prop("checked") == true){
+    checked.push(this.id);
                 //console.log(this.id+ " is checked");
                 
-            }
-            else if($(this).prop("checked") == false){
+              }
+              else if($(this).prop("checked") == false){
                 checked.splice((checked.indexOf(this.id)),1);
                 //console.log(this.id+" is unchecked.");
 
@@ -60,34 +60,34 @@ $('input[type="checkbox"]').click(function(){
 }
 
 if (checked.length > 0){
-    $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
+  $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
 });
-    $(checked).each(function(ind){
-        console.log(checked[ind] + " LOOKLOOKATME ");
+  $(checked).each(function(ind){
+    console.log(checked[ind] + " LOOKLOOKATME ");
 
-        var checkfilt = checked[ind];
+    var checkfilt = checked[ind];
 
-        $(jsonproducts.product_groups).each(function(index){
-            var domProd = document.getElementById(this.id);
-                        
-                        for (var i = 0; i < this.get_filter_values.length; i++) {
+    $(jsonproducts.product_groups).each(function(index){
+      var domProd = document.getElementById(this.id);
+
+      for (var i = 0; i < this.get_filter_values.length; i++) {
                             //console.log("here"+this)
-                           
+
                             if (this.get_filter_values[i].name == checkfilt){
-                                domProd.style.display = 'block';
-                                
+                              domProd.style.display = 'block';
+
 
                             }
-                        };
+                          };
 
-                    })
-    })
+                        })
+  })
 } else {
-    $(jsonproducts.product_groups).each(function(index){
-        var domProd = document.getElementById(this.id);
-        domProd.style.display = 'block';
+  $(jsonproducts.product_groups).each(function(index){
+    var domProd = document.getElementById(this.id);
+    domProd.style.display = 'block';
 
-    });
+  });
 }
 console.log("checked arr:"+ checked);  
 });
@@ -99,3 +99,4 @@ console.log("checked arr:"+ checked);
 
 </div>
 </div>
+

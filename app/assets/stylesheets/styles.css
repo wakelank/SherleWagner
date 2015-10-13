@@ -15,8 +15,8 @@
   margin:0;
   float:left;
   color: red;
-  height:14em;
-  width: 14em;
+  height:19em;
+  width: 19em;
   border: 1px solid grey;
   border-radius: 3px;
   margin:3px;
@@ -33,4 +33,7 @@
   float:left;
   width: 100%;
   margin-left: 2em;
+}
+.nav-wrap .panel-body {
+    padding: 5px;
 }
