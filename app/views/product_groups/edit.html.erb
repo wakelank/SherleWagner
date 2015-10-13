@@ -1,2 +1,14 @@
 <h1>Edit a product group</h1>
 <%= @product_group.number %>
+<%= form_for(@product_group, multipart: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.label :number %>
+  <%= f.text_field :number, class: 'form-control' %>
+    <%= f.collection_check_boxes(:finish_ids, Finish.all, :id, :name) do |fin| %>
+      <% fin.label(class: "checkbox inline") {fin.check_box + fin.text} %>
+    <% end %>
+  <%= f.submit 'save changes' %>
+<% end %>
+
+

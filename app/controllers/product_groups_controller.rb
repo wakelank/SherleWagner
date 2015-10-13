@@ -9,13 +9,15 @@ class ProductGroupsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { product_groups: @product_groups.as_json(:methods => [:get_filter_values],
-                                                                           include: [
-#                                                                             {:finishes => { only: :name }}, 
-                                                                             {:product_type => {except: [:created_at, :updated_at]}},
-                                                                             {:product_sub_type => {except: [:created_at, :updated_at]}}
-                                                                            ]),
-                                   filters: @filters }
+      format.json { render json:
+                    { product_groups: 
+                      @product_groups.as_json(:methods => [:get_filter_values],
+                    include: [
+#                   {:finishes => { only: :name }}, 
+                    {:product_type => {except: [:created_at, :updated_at]}},
+                    {:product_sub_type => {except: [:created_at, :updated_at]}}
+                    ]),
+                    filters: @filters }
                    }             
     end
 
@@ -32,6 +34,10 @@ class ProductGroupsController < ApplicationController
   end
 
   def update
+    @product_group = ProductGroup.find(params[:id])
+    @product_group.update(product_group_params)
+
+    redirect_to product_group_path params[:id]
   end
     
 
@@ -56,20 +62,24 @@ class ProductGroupsController < ApplicationController
   
 
 private
-    def get_unique_filters product_groups
-      filters = []
-      product_groups.each do |product_group|
-        filters << product_group.get_filters
-      end
-      filters = filters.flatten.uniq
-    end
+  def product_group_params
+    params.require(:product_group).permit(:name, :number, :finish_ids => [])
+  end
 
-    def unique_filter_hashes product_groups
-      f_hashes = []
-      get_unique_filters(@product_groups).each do |filter|
-        f_hashes << filter.filter_hash
-      end
-      f_hashes
+  def get_unique_filters product_groups
+    filters = []
+    product_groups.each do |product_group|
+      filters << product_group.get_filters
     end
+    filters = filters.flatten.uniq
+  end
+
+  def unique_filter_hashes product_groups
+    f_hashes = []
+    get_unique_filters(@product_groups).each do |filter|
+      f_hashes << filter.filter_hash
+    end
+    f_hashes
+  end
        
 end
