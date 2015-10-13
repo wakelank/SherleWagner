@@ -71,6 +71,9 @@ class ProductGroup < ActiveRecord::Base
     f_hashes
   end
 
+searchable do
+    text :name
+end
   
 
 end

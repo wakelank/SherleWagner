@@ -11,7 +11,7 @@ gem "twitter-bootstrap-rails"
 #gem 'postmark-rails'
 gem 'aws-sdk-v1'
 gem 'paperclip', '~> 4.3'
-
+gem 'sunspot_rails'
 gem "rails-bootstrap-helpers"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -51,7 +51,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-
+  gem 'sunspot_solr'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # Call 'byebug' anywhere in the code to stop execution
   # and get a debugger console
