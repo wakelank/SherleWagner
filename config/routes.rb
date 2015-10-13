@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get 'product_types/:product_type' => 'product_groups#index'
   
+  resources :product_groups, :defaults => { :format => 'html' }
   
+  get 'search'=>'search#index'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

@@ -1,0 +1,19 @@
+
+<div class="search_list"> 
+
+
+
+<ul>
+  
+    <% @searched.each do |prod| %>
+    
+      <li>
+          
+        <%= link_to prod.name, prod %> |Searched|<%= prod.product_sub_type.name %> 
+        
+      </li>
+
+    <% end %>
+ 
+</ul>  
+ </div>
