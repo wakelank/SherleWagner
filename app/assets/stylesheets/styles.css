@@ -23,10 +23,16 @@
 
 
 }
+.searcher{
+  float: right;
+  margin-right: 10%
+}
+
 .bs-example {
   float: left;
   margin: 2%;
   width:15%;
+  margin-top: 5em;
   
 }
 .nav-wrap {
