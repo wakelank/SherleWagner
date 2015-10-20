@@ -29,7 +29,14 @@ class ProductGroupsController < ApplicationController
     @product_group = ProductGroup.find(params[:id])
     respond_to do |format|
       format.html
-      format.json { render json: @product_group.as_json }
+      format.json { render json: @product_group.as_json(include: [
+          {:finishes => {except: [:created_at, :updated_at]} },
+          {:materials => {except: [:created_at, :updated_at]} },
+          {:products => {except: [:created_at, :updated_at]} }
+      
+        ] 
+      )}
+      
     end
   end
 
