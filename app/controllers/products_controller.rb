@@ -31,6 +31,24 @@ class ProductsController < ApplicationController
     end
   end
 
+  def build_tearsheet
+    product_base_number = params[:product_base_number]
+    material_code = Material.find(params[:material_id]).name
+    finish_code = Finish.find(params[:finish_id]).name
+
+    product_number = product_base_number + '-' + material_code + '-' + finish_code;
+    respond_to do |format|
+      format.html
+      format.json { render json: { product_number: product_number } }
+    end
+  end
+
+  def show_tearsheet
+    @product_number = params[:product_number]
+
+  end
+
+
    
 
 end

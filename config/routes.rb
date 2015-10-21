@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   get 'products/upload_page' => 'static_pages#upload_page'
   post 'products/upload_products' => 'products#upload_product_file'
+  post 'products/tearsheet' => 'products#build_tearsheet'
+  get 'products/tearsheet' => 'products#show_tearsheet'
 
   root 'products#index'
   resources :products
