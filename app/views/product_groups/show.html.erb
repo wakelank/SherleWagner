@@ -25,7 +25,7 @@
 </ul>
 <div class='tearsheet-form-box'>
   <form action="#">
-
+    <%= hidden_field_tag('product_base_number', @product_group.base_number) %>
     <%= collection_select(:product, :material_id, @product_group.materials, :id, :name) %>
     <%= collection_select(:product, :finish_id, @product_group.finishes, :id, :name) %>
     <%= submit_tag("generate tear sheet", class:'tear-sheet-submit') %>

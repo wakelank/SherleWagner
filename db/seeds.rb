@@ -141,27 +141,27 @@ materials = [{ type: "China-Hand Painted",
               },
               {type: "Semi-precious Stone",
               code: "SEMI",
-              entries: [{ name: "AMETHYST", indentifier: "AMET" },
-                        { name: "ROSE\ QUARTZ\ \(RSQU\)", indentifier: "RSQU" },
-                        { name: "AMETHYST\ \(AMET\)", indetifier: "AMET" }]
+              entries: [{ name: "ROCK CRYSTAL", identifier: "RKCR" },
+                        { name: "ROSE\ QUARTZ\ \(RSQU\)", identifier: "RSQU" },
+                        { name: "AMETHYST\ \(AMET\)", identifier: "AMET" }]
                     },
               { type: "Semi-precious Laminate",
                code: "SLSL",
-               entries: [{ name: "LAPIS\ LAZULI\ \(LAPI\)", indentifier: "LAPI" },
-                         { name: "MALACHITE\ \(MALA\)", indentier: "MALA" },
-                         { name: "JASPER\ \(JASP\)", indentifier: "JASP" },
-                         { name: "BROWN\ TIGER\ EYE\ \(BRTI\)", indentifier: "BRTI" },
-                         { name: "BLUE\ TIGER\ EYE\ \(BLTI\)", indentifier: "BLTI" },
-                         { name: "RHODOCHROSITE\ \(RHOD\)", indentifier: "RHOD" } ]
+               entries: [{ name: "LAPIS\ LAZULI\ \(LAPI\)", identifier: "LAPI" },
+                         { name: "MALACHITE\ \(MALA\)", identifier: "MALA" },
+                         { name: "JASPER\ \(JASP\)", identifier: "JASP" },
+                         { name: "BROWN\ TIGER\ EYE\ \(BRTI\)", identifier: "BRTI" },
+                         { name: "BLUE\ TIGER\ EYE\ \(BLTI\)", identifier: "BLTI" },
+                         { name: "RHODOCHROSITE\ \(RHOD\)", identifier: "RHOD" } ]
                     },
               {type: "Onyx", 
                code: "ONYX",
-               entries: [ { name: "BLACK\ ONYX\ \(BKOX\)", indentifier: "BKOX" },
-                        { name: "WHITE\ ONYX\ \(WHOX\)", indentifier: "WHOX" },
-                        { name: "HONEY\ ONYX\ \(HNOX\)", indentifier: "HNOX" },
-                        { name: "GREEN\ ONYX\ \(GROX\)", indentifier: "GROX" },
-                        { name: "PINK\ ONYX\ \(PKOX\)", indentifier: "PKOX" },
-                        { name: "BROWN\ ONYX\ \(BROX\)",  indentifier: "BROX" }]
+               entries: [ { name: "BLACK\ ONYX\ \(BKOX\)", identifier: "BKOX" },
+                        { name: "WHITE\ ONYX\ \(WHOX\)", identifier: "WHOX" },
+                        { name: "HONEY\ ONYX\ \(HNOX\)", identifier: "HNOX" },
+                        { name: "GREEN\ ONYX\ \(GROX\)", identifier: "GROX" },
+                        { name: "PINK\ ONYX\ \(PKOX\)", identifier: "PKOX" },
+                        { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
                     }
               ]
 materials.each do |material|

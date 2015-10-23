@@ -67,6 +67,10 @@ class ProductGroup < ActiveRecord::Base
     f_hashes
   end
 
+  def base_number
+    self.number.split('-')[0]
+  end
+
 searchable do
     text :name
     

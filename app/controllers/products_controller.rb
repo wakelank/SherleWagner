@@ -32,9 +32,15 @@ class ProductsController < ApplicationController
   end
 
   def build_tearsheet
-    product_base_number = params[:product_base_number]
-    material_code = Material.find(params[:material_id]).identifier
-    finish_code = Finish.find(params[:finish_id]).identifier
+
+    product_base_number = ""
+    material_code = ""
+    finish_code = ""
+
+    product_base_number = params[:product_base_number] if !params[:product_base_number].blank?
+    material_code = Material.find(params[:material_id]).identifier if !params[:material_id].blank?
+    finish_code = Finish.find(params[:finish_id]).identifier if !params[:finish_id].blank?
+
 
     product_number = product_base_number + '-' + material_code + '-' + finish_code;
     respond_to do |format|

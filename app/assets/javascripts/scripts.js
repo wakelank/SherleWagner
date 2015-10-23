@@ -2,7 +2,7 @@ $(document).ready(function(){
   function submitTearSheet(){
 //    e.preventDefault();
     var tearSheetForm = document.forms[0];
-    var product_base_number = "prodbase";
+    var product_base_number = tearSheetForm.elements["product_base_number"].value;
     var material_id = tearSheetForm.elements["product[material_id]"].value;
     var finish_id = tearSheetForm.elements["product[finish_id]"].value;
     var product_data = { "product_base_number" : product_base_number,
