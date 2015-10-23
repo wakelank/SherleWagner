@@ -4,8 +4,9 @@
 
 
 
-  <script type="text/javascript">
-  $(document).ready(function(){
+<script type="text/javascript">
+$(document).ready(function()
+{
 
     //      $.ajax({
     //             url: '/j_products',   
@@ -20,61 +21,129 @@
 
 
 
-checked = []
-$('input[type="checkbox"]').click(function(){
-  if($(this).prop("checked") == true){
-    checked.push(this.id);
+    checked = []
+  $('input[type="checkbox"]').click(function()
+  {
+    if($(this).prop("checked") == true)
+    {
+      checked.push(this.id);
                 //console.log(this.id+ " is checked");
                 
-              }
-              else if($(this).prop("checked") == false){
-                checked.splice((checked.indexOf(this.id)),1);
-                //console.log(this.id+" is unchecked.");
+    }
+    else if($(this).prop("checked") == false)
+    {
+      checked.splice((checked.indexOf(this.id)),1);
+      //console.log(this.id+" is unchecked.");
 
 
-// *** to do this in a way that works in ie 8 use the below ****
-  //                function remove(arr, item) {
-  //     for(var i = arr.length; i--;) {
-  //         if(arr[i] === item) {
-  //             arr.splice(i, 1);
-  //         }
-  //     }
-  // }
-}
+      // *** to do this in a way that works in ie 8 use the below ****
+      //                function remove(arr, item) {
+      //     for(var i = arr.length; i--;) {
+      //         if(arr[i] === item) {
+      //             arr.splice(i, 1);
+      //         }
+      //     }
+      // }
+    }
 
-if (checked.length > 0){
-  $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
-});
-  $(checked).each(function(ind){
-    console.log(checked[ind] + " LOOKLOOKATME ");
+    if (checked.length > 0)
+    {
+      $(document.getElementsByClassName("prod_tile")).each(function(i)
+      {
+        this.style.display='none';
+      });
 
-    var checkfilt = checked[ind];
+      $(checked).each(function(ind)
+      {
+        console.log(checked[ind] + " LOOKLOOKATME ");
 
+        var checkfilt = checked[ind];
+
+        $(jsonproducts.product_groups).each(function(index)
+        {
+          var domProd = document.getElementById(this.id);
+
+          for (var i = 0; i < this.get_filter_values.length; i++) 
+          {
+            //console.log("here"+this)
+
+            if (this.get_filter_values[i].name == checkfilt)
+            {
+              domProd.style.display = 'block';
+            }
+          };
+
+        });
+      });
+    } else {
     $(jsonproducts.product_groups).each(function(index){
       var domProd = document.getElementById(this.id);
+      domProd.style.display = 'block';
 
-      for (var i = 0; i < this.get_filter_values.length; i++) {
-                            //console.log("here"+this)
+      });
+    }
+  console.log("checked arr:"+ checked);  
+  });
 
-                            if (this.get_filter_values[i].name == checkfilt){
-                              domProd.style.display = 'block';
+  $( "#Fittings" ).click(function()
+  {
+    console.log("clicked Fittings");
+    if ( $("#collapseOne").hasClass(".in") ) //THIS needs to be fixed.
+    {
+      console.log("closing");
+
+      $(".prod_tile").each(function(i)
+      {
+        this.style.display='none';
+      });
+
+    } else{
 
 
-                            }
-                          };
+      $(".prod_tile").each(function(i)
+      {
+        this.style.display='none';
+      });
 
-                        })
-  })
-} else {
-  $(jsonproducts.product_groups).each(function(index){
-    var domProd = document.getElementById(this.id);
-    domProd.style.display = 'block';
+
+      $(jsonproducts.product_groups).each(function(index)
+      {
+        if (this.product_type.name == "FITTINGS")
+        {
+          var domPro = document.getElementById(this.id);
+          console.log(domPro);
+          domPro.style.display = 'block';
+        }
+
+      });
+    }
 
   });
-}
-console.log("checked arr:"+ checked);  
-});
-});
+
+
+  // $( "#Fixtures" ).click(function()
+  // {
+  //   console.log("clicked Fixtures");
+  //   $(".prod_tile").each(function(i)
+  //   {
+  //   this.style.display='none';
+  //   });
+
+  //     $(jsonproducts.product_groups).each(function(index){
+  //       if (this.product_type.name == "FIXTURES"){
+  //         var domPro = document.getElementById(this.id);
+  //         console.log(domPro);
+  //         domPro.style.display = 'block';
+  //       }
+
+  //     });
+
+  // });
+
+
+
+});//end onload
+
 </script>
 
 
