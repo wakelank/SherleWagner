@@ -15,18 +15,24 @@
   margin:0;
   float:left;
   color: red;
-  height:14em;
-  width: 14em;
+  height:19em;
+  width: 19em;
   border: 1px solid grey;
   border-radius: 3px;
   margin:3px;
 
 
 }
+.searcher{
+  float: right;
+  margin-right: 10%
+}
+
 .bs-example {
   float: left;
   margin: 2%;
   width:15%;
+  margin-top: 5em;
   
 }
 .nav-wrap {
@@ -34,3 +40,10 @@
   width: 100%;
   margin-left: 2em;
 }
+.nav-wrap .panel-body {
+    padding: 5px;
+}
+/*media="all"
+.panel-group { 
+    margin-bottom: 2px;
+}*/
