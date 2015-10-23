@@ -2,19 +2,19 @@ require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
-  belongs_to :basin_design
-  belongs_to :ceiling_lights_design
-  belongs_to :console_counter_vanity_design
-  belongs_to :door_trim_design
-  belongs_to :lever_design
-  belongs_to :overall_color
-  belongs_to :wall_lights_design
-  belongs_to :wall_paper_design
-  belongs_to :wall_trim_design
-  belongs_to :water_closet_handle_design
-  belongs_to :product_type
-  belongs_to :product_sub_type  
-  belongs_to :product_group
+ # belongs_to :basin_design
+ # belongs_to :ceiling_lights_design
+ # belongs_to :console_counter_vanity_design
+ # belongs_to :door_trim_design
+ # belongs_to :lever_design
+ # belongs_to :overall_color
+ # belongs_to :wall_lights_design
+ # belongs_to :wall_paper_design
+ # belongs_to :wall_trim_design
+ # belongs_to :water_closet_handle_design
+ # belongs_to :product_type
+ # belongs_to :product_sub_type  
+ # belongs_to :product_group
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }

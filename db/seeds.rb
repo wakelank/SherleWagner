@@ -37,24 +37,29 @@ WallPaperDesign.delete_all
 FilterValue.delete_all
 Filter.delete_all
 
-finishes =  [ { name: 'satin brass', identifier: 'SB'},
-            { name: 'polished brass', identifier: 'PB'},
-            { name: 'brushed chrome', identifier: 'BC'},
-            { name: 'polished chrome', identifier: 'CP'},
-            { name: 'brushed nickel', identifier: 'BN'},
-            { name: 'polished nickel', identifier: 'NP'},
-            { name: 'flemish patina', identifier: 'FP'},
-            { name: 'english patina', identifier: 'EP'},
-            { name: 'verdi antique', identifier: 'VA'},
-            { name: 'oil rubbed brass', identifier: 'OB'},
-            { name: 'antique pewter', identifier: 'AP'},
-            { name: 'gold plate', identifier: 'GB'},
-            { name: 'antique gold', identifier: 'AG'},
-            { name: 'burnished gold', identifier: 'BG'},
-            { name: 'english silver', identifier: 'ES'},
-            { name: 'burnished platinum', identifier: 'BP'},
-            { name: 'butler silver)', identifier: 'BS'}
+finishes = [ 
+  { name: 'Polished Nickel', identifier: 'PN' },
+  { name: 'Polished Chrome', identifier: 'CP' },
+  { name: 'English Silver', identifier: 'ES' },
+  { name: 'Antique Pewter', identifier: 'AP' },
+  { name: 'Black Pearl', identifier: 'PE' },
+  { name: 'Brushed Nickel', identifier: 'BN' },
+  { name: 'Brushed Chrome', identifier: 'BC' },
+  { name: 'Butler Silver', identifier: 'BS' },
+  { name: 'High Polished Platinum', identifier: 'HP' },
+  { name: 'Gold Plate', identifier: 'GP' },
+  { name: 'Burnished Gold', identifier: 'BG' },
+  { name: 'Satin Brass', identifier: 'SB' },
+  { name: 'Oil Rubbed Brass', identifier: 'OB' },
+  { name: 'English Patina', identifier: 'EP' },
+  { name: 'Almond Gold', identifier: 'AL' },
+  { name: 'Antique Gold', identifier: 'AG' },
+  { name: 'Polished Brass', identifier: 'PB' },
+  { name: 'Flemish Patina', identifier: 'FB' },
+  { name: 'Rose Gold', identifier: 'RG' }
 ]
+
+
 finishes.each do |finish|
   Finish.create(name: finish[:name], identifier: finish[:identifier])
 end

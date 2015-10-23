@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on("page:change", (function(){
   function submitTearSheet(){
 //    e.preventDefault();
     var tearSheetForm = document.forms[0];
@@ -22,7 +22,9 @@ $(document).ready(function(){
   }
 
      $('.tear-sheet-submit').click(function(e){
+       console.log("clicked");
        e.preventDefault();
        submitTearSheet();
      });
-})
+     console.log('thinggy');
+}))
