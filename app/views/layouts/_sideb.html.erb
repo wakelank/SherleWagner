@@ -55,7 +55,7 @@ $(document).ready(function()
 
       $(checked).each(function(ind)
       {
-        console.log(checked[ind] + " LOOKLOOKATME ");
+        //console.log(checked[ind] + " LOOKLOOKATME ");
 
         var checkfilt = checked[ind];
 
@@ -87,8 +87,9 @@ $(document).ready(function()
 
   $( ".prod-cat" ).click(function()
   {
-     var anchor = this;
+    var anchor = this;
     var link = $(anchor).attr('href');
+    var text = $(anchor).text().toUpperCase();
     console.log(link);
     console.log("clicked product-type");
     if ( $(link).hasClass("in") ) //THIS needs to be fixed.
@@ -99,7 +100,7 @@ $(document).ready(function()
       {
         this.style.display='none';
       });
-      console.log('UNdid Fittings')
+      console.log('UNdid ' + text)
 
     } else
     {
@@ -113,7 +114,7 @@ $(document).ready(function()
 
       $(jsonproducts.product_groups).each(function(index)
       {
-        if (this.product_type.name == "FITTINGS")
+        if (this.product_type.name == text)
         {
           var domPro = document.getElementById(this.id);
           console.log(domPro);
@@ -121,30 +122,13 @@ $(document).ready(function()
         }
 
       });
-      console.log('did Fittings')
+      console.log('did ' + text)
     }
 
   });
 
 
-  // $( "#Fixtures" ).click(function()
-  // {
-  //   console.log("clicked Fixtures");
-  //   $(".prod_tile").each(function(i)
-  //   {
-  //   this.style.display='none';
-  //   });
-
-  //     $(jsonproducts.product_groups).each(function(index){
-  //       if (this.product_type.name == "FIXTURES"){
-  //         var domPro = document.getElementById(this.id);
-  //         console.log(domPro);
-  //         domPro.style.display = 'block';
-  //       }
-
-  //     });
-
-  // });
+  
 
 
 
