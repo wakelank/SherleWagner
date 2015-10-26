@@ -21,7 +21,7 @@ $(document).ready(function()
 
 
 
-    checked = []
+  checked = []
   $('input[type="checkbox"]').click(function()
   {
     if($(this).prop("checked") == true)
@@ -85,10 +85,13 @@ $(document).ready(function()
   console.log("checked arr:"+ checked);  
   });
 
-  $( "#Fittings" ).click(function()
+  $( ".prod-cat" ).click(function()
   {
-    console.log("clicked Fittings");
-    if ( $("#collapseOne").hasClass(".in") ) //THIS needs to be fixed.
+     var anchor = this;
+    var link = $(anchor).attr('href');
+    console.log(link);
+    console.log("clicked product-type");
+    if ( $(link).hasClass("in") ) //THIS needs to be fixed.
     {
       console.log("closing");
 
@@ -96,8 +99,10 @@ $(document).ready(function()
       {
         this.style.display='none';
       });
+      console.log('UNdid Fittings')
 
-    } else{
+    } else
+    {
 
 
       $(".prod_tile").each(function(i)
@@ -116,6 +121,7 @@ $(document).ready(function()
         }
 
       });
+      console.log('did Fittings')
     }
 
   });
