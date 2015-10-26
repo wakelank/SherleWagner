@@ -21,16 +21,94 @@ $(document).ready(function()
 
 
 
-checked = []
+checked = [];
+subtype_arr = [];
 $('input[type="checkbox"]').click(function()
 { 
   var boxx = $(this);
-  console.log(boxx);
-  if (boxx.hasClass("sub-type-parent"))
+  //console.log(boxx);
+  if (boxx.hasClass("sub-type"))
   {
-    console.log("sub-type-parent YO");
     
-    
+    //  if($(this).prop("checked") == true)
+    // {
+    //   console.log("sub-type / parent YO");
+    //      $(".prod_tile").each(function(i)
+    // {
+    //   this.style.display='none';
+    // });
+                
+    // }
+    // else if($(this).prop("checked") == false)
+    // {
+    //   console.log("UNCLICK sub-type / parent YO");
+    //      $(".prod_tile").each(function(i)
+    // {
+    //   this.style.display='none';
+    // });
+    // }
+   //ADDDEDDD THE NOT DRY
+   if($(this).prop("checked") == true)
+    {
+      subtype_arr.push(this.id);
+                //console.log(this.id+ " is checked");
+                
+    }
+    else if($(this).prop("checked") == false)
+    {
+      subtype_arr.splice((subtype_arr.indexOf(this.id)),1);
+      //console.log(this.id+" is unchecked.");
+
+
+      // *** to do this in a way that works in ie 8 use the below ****
+      //                function remove(arr, item) {
+      //     for(var i = arr.length; i--;) {
+      //         if(arr[i] === item) {
+      //             arr.splice(i, 1);
+      //         }
+      //     }
+      // }
+    }
+
+    if (subtype_arr.length > 0)
+    {
+      $(document.getElementsByClassName("prod_tile")).each(function(i)
+      {
+        this.style.display='none';
+      });
+
+      $(subtype_arr).each(function(ind)
+      {
+        console.log(subtype_arr);
+
+        var subT = subtype_arr[ind];
+
+        $(jsonproducts.product_groups).each(function(index)
+        {
+          var domProd = document.getElementById(this.id);
+
+
+          // for (var i = 0; i < this.get_filter_values.length; i++) 
+          // {
+          //   //console.log("here"+this)
+
+            if (this.product_sub_type.name == subT)
+            {
+              domProd.style.display = 'block';
+            }
+          // };
+
+        });
+      });
+    } else {
+    $(jsonproducts.product_groups).each(function(index){
+      var domProd = document.getElementById(this.id);
+      domProd.style.display = 'block';
+
+      });
+    }
+  // ENDDDEEDD THE NOT DRY 
+
   }
   else
   {
