@@ -1,7 +1,9 @@
 <h1><%= @product_group.name %></h1>
-<p>
-<%= link_to 'edit me', edit_product_group_path(@product_group.id) %>
-</p>
+<% if admin? %>
+  <p>
+  <%= link_to 'edit me', edit_product_group_path(@product_group.id) %>
+  </p>
+<% end %>
 <p>
 <%= @product_group.number %>
 </p>

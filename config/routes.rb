@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'products/tearsheet' => 'products#build_tearsheet'
   get 'products/tearsheet' => 'products#show_tearsheet'
 
-  root 'products#index'
+  root 'product_groups#index'
   resources :products
   resources :product_groups
 
@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   resources :product_groups, :defaults => { :format => 'html' }
   
   get 'search'=>'search#index'
+
+  get 'login' => 'sessions#new'
+  post 'sessions' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   
