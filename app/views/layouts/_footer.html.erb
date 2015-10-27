@@ -1,0 +1,7 @@
+<div class='footer'>
+  <% if admin? %>
+    <%= link_to 'logout', logout_path %>
+  <% else %>
+    <%= link_to 'login', login_path %>
+  <% end %>
+</div> 
