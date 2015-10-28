@@ -14,7 +14,7 @@
   <li><%= product.name %> : <%= product.number %></li>
   <% end %>
 </ul>
-<%= render '/product_group/product_group_info' %>
+<%= render 'product_group_info' %>
 <div class='tearsheet-form-box'>
   <form action="#">
     <%= hidden_field_tag('product_group_id', @product_group.id) %>

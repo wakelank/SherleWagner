@@ -2,12 +2,14 @@
 <h3>Finishes</h3>
 <ul>
   <% @product_group.finishes.each do |finish| %>
-    <li><%= finish.name %></li>
+    <% finish.id == @finish_id.to_i ? finish_class = 'highlighted' : finish_class = '' %>
+    <li class='<%= finish_class %>'><%= finish.name %></li>
   <% end %>
 </ul>
 <h3>Materials</h3>
 <ul>
   <% @product_group.materials.each do |material| %>
-    <li><%= material.name %></li>
+    <% material.id == @material_id.to_i ? material_class = 'highlighted' : material_class = '' %>
+    <li class="<%=material_class%>"><%= material.name %></li>
   <% end %>
 </ul>
