@@ -5,9 +5,11 @@ $(document).on("page:change", (function(){
     var product_base_number = tearSheetForm.elements["product_base_number"].value;
     var material_id = tearSheetForm.elements["product[material_id]"].value;
     var finish_id = tearSheetForm.elements["product[finish_id]"].value;
+    var product_group_id = tearSheetForm.elements["product_group_id"].value;
     var product_data = { "product_base_number" : product_base_number,
                 "material_id" : material_id,
-                "finish_id" : finish_id
+                "finish_id" : finish_id,
+                "product_group_id" : product_group_id
       }
      $.ajax({
             url: '/products/tearsheet.json',
