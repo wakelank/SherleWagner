@@ -1,0 +1,10 @@
+<h1>enter a new product</h1>
+<%= form_tag product_groups_path, method: 'post' do %>
+  <%= label_tag "Product name:" %>
+  <%= text_field_tag 'product_group[name]' %>
+  <%= label_tag "Product number:" %>
+  <%= text_field_tag 'product_group[number]' %>
+  <%= collection_select( :product_group, :product_type_id, ProductType.all, :id, :name) %>
+  <%= collection_select( :product_group, :product_sub_type_id, ProductSubType.all, :id, :name) %>
+  <%= submit_tag "Create Product" %>
+<% end %>

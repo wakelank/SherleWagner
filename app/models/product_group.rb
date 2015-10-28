@@ -7,6 +7,8 @@ class ProductGroup < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_sub_type
   has_and_belongs_to_many :filter_values
+  
+  before_destroy { |record| Product.destroy_all "product_group_id= #{record.id}" }
 
   def add_materials(material_code)
     begin

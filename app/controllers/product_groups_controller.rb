@@ -25,6 +25,20 @@ class ProductGroupsController < ApplicationController
     
   end
 
+  def new
+  end
+
+  def create
+    product_type = ProductType.find(params[:product_group][:product_type_id].to_i)
+    product_sub_type = ProductSubType.find(params[:product_group][:product_sub_type_id].to_i)
+    name = params[:product_group][:name]
+    number = params[:product_group][:number]
+    args = { name: name, number: number, product_type: product_type, product_sub_type: product_sub_type }
+
+    new_product_group = ProductGroup.custom_create(args)
+    redirect_to product_group_path new_product_group
+  end
+
   def show
     @product_group = ProductGroup.find(params[:id])
     respond_to do |format|
@@ -52,6 +66,11 @@ class ProductGroupsController < ApplicationController
     redirect_to product_group_path params[:id]
   end
     
+  def destroy
+    product_group = ProductGroup.find(params[:id])
+    product_group.destroy
+    redirect_to product_group_path
+  end
 
 
 #  def get_filters_for product_groups
