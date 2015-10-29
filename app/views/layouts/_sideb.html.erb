@@ -4,8 +4,9 @@
 
 
 
-  <script type="text/javascript">
-  $(document).ready(function(){
+<script type="text/javascript">
+$(document).ready(function()
+{
 
     //      $.ajax({
     //             url: '/j_products',   
@@ -20,61 +21,241 @@
 
 
 
-checked = []
-$('input[type="checkbox"]').click(function(){
-  if($(this).prop("checked") == true){
-    checked.push(this.id);
+checked = [];
+subtype_arr = [];
+$('input[type="checkbox"]').click(function()
+{ 
+  var boxx = $(this);
+  //console.log(boxx);
+  if (boxx.hasClass("sub-type"))
+  {
+    
+    //  if($(this).prop("checked") == true)
+    // {
+    //   console.log("sub-type / parent YO");
+    //      $(".prod_tile").each(function(i)
+    // {
+    //   this.style.display='none';
+    // });
+                
+    // }
+    // else if($(this).prop("checked") == false)
+    // {
+    //   console.log("UNCLICK sub-type / parent YO");
+    //      $(".prod_tile").each(function(i)
+    // {
+    //   this.style.display='none';
+    // });
+    // }
+   //ADDDEDDD THE NOT DRY
+   if($(this).prop("checked") == true)
+    {
+      subtype_arr.push(this.id);
                 //console.log(this.id+ " is checked");
                 
-              }
-              else if($(this).prop("checked") == false){
-                checked.splice((checked.indexOf(this.id)),1);
-                //console.log(this.id+" is unchecked.");
+    }
+    else if($(this).prop("checked") == false)
+    {
+      subtype_arr.splice((subtype_arr.indexOf(this.id)),1);
+      console.log(this);
+
+      //** uncheck the boxes in the prod sub type dropdown (if exists) 
+      var targ = $(this).parent().attr("data-target");
+      $targ = $(targ);
+      console.log($targ);
+      $targ.find('input[type=checkbox]:checked').removeAttr('checked');
+      
+
+      //console.log(this.id+" is unchecked.");
 
 
-// *** to do this in a way that works in ie 8 use the below ****
-  //                function remove(arr, item) {
-  //     for(var i = arr.length; i--;) {
-  //         if(arr[i] === item) {
-  //             arr.splice(i, 1);
-  //         }
-  //     }
-  // }
-}
+      // *** to do this in a way that works in ie 8 use the below ****
+      //                function remove(arr, item) {
+      //     for(var i = arr.length; i--;) {
+      //         if(arr[i] === item) {
+      //             arr.splice(i, 1);
+      //         }
+      //     }
+      // }
+    }
 
-if (checked.length > 0){
-  $(document.getElementsByClassName("prod_tile")).each(function(i){this.style.display='none';
-});
-  $(checked).each(function(ind){
-    console.log(checked[ind] + " LOOKLOOKATME ");
+    if (subtype_arr.length > 0)
+    {
+      $(document.getElementsByClassName("prod_tile")).each(function(i)
+      {
+        this.style.display='none';
+      });
 
-    var checkfilt = checked[ind];
+      $(subtype_arr).each(function(ind)
+      {
+        console.log(subtype_arr);
 
+        var subT = subtype_arr[ind];
+
+        $(jsonproducts.product_groups).each(function(index)
+        {
+          var domProd = document.getElementById(this.id);
+
+
+          // for (var i = 0; i < this.get_filter_values.length; i++) 
+          // {
+          //   //console.log("here"+this)
+
+            if (this.product_sub_type.name == subT)
+            {
+              domProd.style.display = 'block';
+            }
+          // };
+
+        });
+      });
+    } else {
     $(jsonproducts.product_groups).each(function(index){
       var domProd = document.getElementById(this.id);
+      domProd.style.display = 'block';
 
-      for (var i = 0; i < this.get_filter_values.length; i++) {
-                            //console.log("here"+this)
+      });
+    }
+  // ENDDDEEDD THE NOT DRY 
 
-                            if (this.get_filter_values[i].name == checkfilt){
-                              domProd.style.display = 'block';
+  }
+  else
+  {
+
+    if($(this).prop("checked") == true)
+    {
+      checked.push(this.id);
+                //console.log(this.id+ " is checked");
+                
+    }
+    else if($(this).prop("checked") == false)
+    {
+      checked.splice((checked.indexOf(this.id)),1);
+      //console.log(this.id+" is unchecked.");
 
 
-                            }
-                          };
+      // *** to do this in a way that works in ie 8 use the below ****
+      //                function remove(arr, item) {
+      //     for(var i = arr.length; i--;) {
+      //         if(arr[i] === item) {
+      //             arr.splice(i, 1);
+      //         }
+      //     }
+      // }
+    }
 
-                        })
-  })
-} else {
-  $(jsonproducts.product_groups).each(function(index){
-    var domProd = document.getElementById(this.id);
-    domProd.style.display = 'block';
+    if (checked.length > 0)
+    {
+      $(document.getElementsByClassName("prod_tile")).each(function(i)
+      {
+        this.style.display='none';
+      });
 
+      $(checked).each(function(ind)
+      {
+        //console.log(checked[ind] + " LOOKLOOKATME ");
+
+        var checkfilt = checked[ind];
+
+        $(jsonproducts.product_groups).each(function(index)
+        {
+          var domProd = document.getElementById(this.id);
+
+          for (var i = 0; i < this.get_filter_values.length; i++) 
+          {
+            //console.log("here"+this)
+
+            if (this.get_filter_values[i].name == checkfilt)
+            {
+              domProd.style.display = 'block';
+            }
+          };
+
+        });
+      });
+    } else {
+    $(jsonproducts.product_groups).each(function(index){
+      var domProd = document.getElementById(this.id);
+      domProd.style.display = 'block';
+
+      });
+    }
+    console.log("checked arr:"+ checked);  
+    
+  }
+});
+
+// Roundamout way to uncheck on neighbor collapse of category pane
+function uncheckOnCollapse(prodCat)
+{
+  $($(prodCat).find('a').attr('href')).on('hidden.bs.collapse', function (e) {
+    var trgt = ("#" + $(e.currentTarget.id).selector);//
+    console.log(trgt);
+    $(trgt).find('input[type=checkbox]:checked').removeAttr('checked');
   });
 }
-console.log("checked arr:"+ checked);  
+uncheckOnCollapse("#Fittings");
+uncheckOnCollapse("#Fixtures");
+uncheckOnCollapse("#Accessories");
+uncheckOnCollapse("#Hardware");
+uncheckOnCollapse("#Lighting");
+uncheckOnCollapse("#Wallpaper");
+
+
+$( ".prod-cat" ).click(function()
+{
+  var anchor = this;
+  var link = $(anchor).attr('href');
+  var text = $(anchor).text().toUpperCase();
+  console.log(link);
+  console.log("clicked product-type");
+  if ( $(link).hasClass("in") ) //THIS needs to be fixed.
+  {
+    console.log("closing");
+
+    $(".prod_tile").each(function(i)
+    {
+      this.style.display='none';
+    });
+    console.log('UNdid ' + text)
+    //console.log(link);
+
+    //uncheck the check boxes in that prod cat dropdown panel
+    // need to do this when a neighbor category is clicked i.e. on 'collapse'
+    $(link).find('input[type=checkbox]:checked').removeAttr('checked');
+
+  } else
+  {
+
+
+    $(".prod_tile").each(function(i)
+    {
+      this.style.display='none';
+    });
+
+
+    $(jsonproducts.product_groups).each(function(index)
+    {
+      if (this.product_type.name == text)
+      {
+        var domPro = document.getElementById(this.id);
+        console.log(domPro);
+        domPro.style.display = 'block';
+      }
+
+    });
+    console.log('did ' + text)
+  }
+
 });
-});
+
+
+  
+
+
+
+});//end onload
+
 </script>
 
 

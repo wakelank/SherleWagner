@@ -114,12 +114,6 @@ materials = [{ type: "China-Hand Painted",
                         { name: "Gold Accents-24GP", identifier: "24GP" },
                         { name: "Platinum Accents-24PL", identifier: "24PL" }]
               },
-              {type: "China-Solid Colors",
-               code: "CC",
-               entries: [ { name: "Sand", identifier: "Sand" },
-                        { name: "White", identifier: "White" },
-                        { name: "Black", identifier: "Black" }]
-              },
               {type: "Marble",
                
                entries: [{ name: "ROSE AURORA (RSAU)", identifier: "RSAU" },
@@ -177,6 +171,18 @@ materials.each do |material|
     Material.create(material_type:type, name: entry[:name], code:code, identifier: entry[:identifier] )
   end
 end
+
+china_colors =  [ { name: "Sand", identifier: "SD" },
+        { name: "White", identifier: "WH" },
+        { name: "Black", identifier: "BL" }]
+
+china_colors.each do |china_color|
+  name = china_color[:name]
+  identifier = china_color[:identifier]
+  ChinaColor.create(name: name, identifier: identifier)
+end
+
+
 
 filters = %w(handle\ design)
 

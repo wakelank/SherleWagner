@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021193430) do
+ActiveRecord::Schema.define(version: 20151028182302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(version: 20151021193430) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "china_colors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "china_colors_product_groups", force: :cascade do |t|
+    t.integer "china_color_id"
+    t.integer "product_group_id"
+  end
+
+  add_index "china_colors_product_groups", ["china_color_id"], name: "index_china_colors_product_groups_on_china_color_id", using: :btree
+  add_index "china_colors_product_groups", ["product_group_id"], name: "index_china_colors_product_groups_on_product_group_id", using: :btree
 
   create_table "console_counter_vanity_designs", force: :cascade do |t|
     t.string   "name"
@@ -306,6 +321,8 @@ ActiveRecord::Schema.define(version: 20151021193430) do
 
   add_foreign_key "accents_products", "finishes"
   add_foreign_key "accents_products", "products"
+  add_foreign_key "china_colors_product_groups", "china_colors"
+  add_foreign_key "china_colors_product_groups", "product_groups"
   add_foreign_key "filter_product_group_values", "filter_values"
   add_foreign_key "filter_product_group_values", "filters"
   add_foreign_key "filter_product_group_values", "product_groups"
