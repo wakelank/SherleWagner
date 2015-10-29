@@ -185,6 +185,23 @@ $('input[type="checkbox"]').click(function()
   }
 });
 
+// Roundamout way to uncheck on neighbor collapse of category pane
+function uncheckOnCollapse(prodCat)
+{
+  $($(prodCat).find('a').attr('href')).on('hidden.bs.collapse', function (e) {
+    var trgt = ("#" + $(e.currentTarget.id).selector);//
+    console.log(trgt);
+    $(trgt).find('input[type=checkbox]:checked').removeAttr('checked');
+  });
+}
+uncheckOnCollapse("#Fittings");
+uncheckOnCollapse("#Fixtures");
+uncheckOnCollapse("#Accessories");
+uncheckOnCollapse("#Hardware");
+uncheckOnCollapse("#Lighting");
+uncheckOnCollapse("#Wallpaper");
+
+
 $( ".prod-cat" ).click(function()
 {
   var anchor = this;
@@ -201,9 +218,10 @@ $( ".prod-cat" ).click(function()
       this.style.display='none';
     });
     console.log('UNdid ' + text)
-    console.log(link);
+    //console.log(link);
 
     //uncheck the check boxes in that prod cat dropdown panel
+    // need to do this when a neighbor category is clicked i.e. on 'collapse'
     $(link).find('input[type=checkbox]:checked').removeAttr('checked');
 
   } else
