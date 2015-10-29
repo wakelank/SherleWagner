@@ -57,6 +57,15 @@ $('input[type="checkbox"]').click(function()
     else if($(this).prop("checked") == false)
     {
       subtype_arr.splice((subtype_arr.indexOf(this.id)),1);
+      console.log(this);
+
+      //** uncheck the boxes in the prod sub type dropdown (if exists) 
+      var targ = $(this).parent().attr("data-target");
+      $targ = $(targ);
+      console.log($targ);
+      $targ.find('input[type=checkbox]:checked').removeAttr('checked');
+      
+
       //console.log(this.id+" is unchecked.");
 
 
@@ -192,6 +201,10 @@ $( ".prod-cat" ).click(function()
       this.style.display='none';
     });
     console.log('UNdid ' + text)
+    console.log(link);
+
+    //uncheck the check boxes in that prod cat dropdown panel
+    $(link).find('input[type=checkbox]:checked').removeAttr('checked');
 
   } else
   {
