@@ -73,6 +73,15 @@ class ProductGroupsController < ApplicationController
     redirect_to product_group_path
   end
 
+  def add_favorite
+    favorites= []
+    favorites = favorites | cookies[:favorites] if !cookies[:favorites].nil?
+    favorites << { product_group_id: params[:product_group_id] }
+    cookies[:favorites] = favorites
+     
+    redirect_to product_group_path params[:product_group_id]
+  end
+
 
 #  def get_filters_for product_groups
 #    filter_name_values = {}
@@ -112,6 +121,13 @@ private
       f_hashes << filter.filter_hash
     end
     f_hashes
+  end
+  
+  def add_to_favorites(product_group_id)
+    favorites= []
+    favorites = cookies[:favorites]
+    favorties << { product_group_id: product_group_id }
+    cookies[:favorites] = favorites
   end
        
 end

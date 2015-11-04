@@ -78,6 +78,7 @@ class ProductGroup < ActiveRecord::Base
     self.number.split('-')[0]
   end
 
+
 searchable do
     text :name
     text :product_sub_type do

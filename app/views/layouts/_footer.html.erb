@@ -4,5 +4,6 @@
     <%= link_to 'add product', new_product_group_path %>
   <% else %>
     <%= link_to 'login', login_path %>
+    <%= link_to 'cookies', login_path if cookies[:favorites].length > 0 %>
   <% end %>
 </div> 

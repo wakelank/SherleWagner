@@ -5,6 +5,8 @@
   <%= link_to 'delete me', product_group_path(@product_group.id), method: 'delete', data: { confirm: "Are you sure?" } %> 
   </p>
 <% end %>
+
+<%= link_to 'add to favorites', product_groups_add_favorite_path(:product_group_id => @product_group.id) %>
 <p>
 <%= @product_group.number %>
 </p>
