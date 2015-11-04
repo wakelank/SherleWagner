@@ -19,9 +19,9 @@
   <form action="#">
     <%= hidden_field_tag('product_group_id', @product_group.id) %>
     <%= hidden_field_tag('product_base_number', @product_group.base_number) %>
-    <%= collection_select(:product, :material_id, @product_group.materials, :id, :name) %>
-    <%= collection_select(:product, :finish_id, @product_group.finishes, :id, :name) %>
-    <%= collection_select(:product, :china_color_id, @product_group.china_colors, :id, :name) %>
+    <%= collection_select(:product, :material_id, @product_group.materials, :id, :name, include_blank: '') %>
+    <%= collection_select(:product, :finish_id, @product_group.finishes, :id, :name, include_blank: '') %>
+    <%= collection_select(:product, :china_color_id, @product_group.china_colors, :id, :name, include_blank: '') %>
     <%= submit_tag("generate tear sheet", class:'tear-sheet-submit') %>
   </form>
 </div>
