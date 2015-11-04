@@ -21,6 +21,7 @@
     <%= hidden_field_tag('product_base_number', @product_group.base_number) %>
     <%= collection_select(:product, :material_id, @product_group.materials, :id, :name) %>
     <%= collection_select(:product, :finish_id, @product_group.finishes, :id, :name) %>
+    <%= collection_select(:product, :china_color_id, @product_group.china_colors, :id, :name) %>
     <%= submit_tag("generate tear sheet", class:'tear-sheet-submit') %>
   </form>
 </div>

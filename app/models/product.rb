@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
   def self.new_upload_product_file(file)
-    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ';', headers: true) do |row|
+    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       name = row["GENERIC PRODUCT NAME _ Revised"]
       generic_product_number = row["Generic Product Number"]
       product_number = row["IMAGE FILE"]
@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
             style_name = row["STYLES"]
 #            if !style_name.nil? && style_name != ""
             if !style_name.blank?
-              style = Style.where('lower(name) = ?', style_name.downcase.strip).first
+              style = Style.where(name: style_name.downcase.strip).first_or_create
               product_group.styles << style
             end
             filter_name = row["FILTERS"]
@@ -62,6 +62,13 @@ class Product < ActiveRecord::Base
             if !filter_name.nil? && filter_name !=""
               filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
               product_group.filter_values << filter_value if !filter_value.nil?
+            end
+            genre_names = row["GENRES"]
+            if !genre_names.blank?
+              genre_names.split(',').each do |genre_name|
+                genre = Genre.where(name: genre_name.downcase.strip).first_or_create
+                product_group.genres = product_group.genres | [genre] if (!genre.nil?)
+              end
             end
             product_group.save
           end

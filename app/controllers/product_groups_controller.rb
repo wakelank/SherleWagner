@@ -15,7 +15,8 @@ class ProductGroupsController < ApplicationController
                     include: [
 #                   {:finishes => { only: :name }}, 
                     {:product_type => {except: [:created_at, :updated_at]}},
-                    {:product_sub_type => {except: [:created_at, :updated_at]}}
+                    {:product_sub_type => {except: [:created_at, :updated_at]}},
+                    {:genres => {except: [:created_at, :updated_at]}}
                     ]),
                     filters: @filters }
                    }             
@@ -94,7 +95,7 @@ class ProductGroupsController < ApplicationController
 
 private
   def product_group_params
-    params.require(:product_group).permit(:name, :number, :finish_ids => [], :material_ids => [])
+    params.require(:product_group).permit(:name, :number, :finish_ids => [], :material_ids => [], :china_color_ids => [])
   end
 
   def get_unique_filters product_groups

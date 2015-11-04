@@ -371,12 +371,12 @@ genres_styles = [
   }
 ]
 
-genres_styles.each do |genre_style|
-  genre = Genre.create(name: genre_style[:genre_name])
-  genre_style[:styles].each do |style|
-    genre.styles << Style.create(name: style)
-  end
-end
+#genres_styles.each do |genre_style|
+#  genre = Genre.create(name: genre_style[:genre_name])
+#  genre_style[:styles].each do |style|
+#    genre.styles << Style.create(name: style)
+#  end
+#end
 
 filters = [
   { name: "Handle Design",

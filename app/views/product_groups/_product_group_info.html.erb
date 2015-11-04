@@ -13,3 +13,10 @@
     <li class="<%=material_class%>"><%= material.name %></li>
   <% end %>
 </ul>
+<h3>China Color</h3>
+<ul>
+  <% @product_group.china_colors.each do |china_color| %>
+    <% china_color.id == @china_color_id.to_i ? china_color_class = 'highlighted' : china_color_class = '' %>
+    <li class="<%= china_color_class %>"><%= china_color.name %></li>
+  <% end %>
+</ul>

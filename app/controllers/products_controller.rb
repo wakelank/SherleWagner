@@ -36,6 +36,7 @@ class ProductsController < ApplicationController
     @product_group = ProductGroup.find(params[:product_group_id])
     @finish_id = params[:finish_id]
     @material_id = params[:material_id]
+    @china_color_id = params[:china_color_id]
   end
 
   def build_tearsheet
@@ -50,6 +51,7 @@ class ProductsController < ApplicationController
     product_group_id = params[:product_group_id] if !params[:product_group_id].blank?
     finish_id = params[:finish_id] if !params[:finish_id].blank?
     material_id = params[:material_id] if !params[:material_id].blank?
+    china_color_id = params[:china_color_id] if !params[:china_color_id].blank?
 
     product_number = product_base_number + '-' + material_code + '-' + finish_code;
     respond_to do |format|
@@ -57,6 +59,7 @@ class ProductsController < ApplicationController
       format.json { render json: { product_number: product_number,
                                    product_group_id: product_group_id,
                                    material_id: material_id,
+                                   china_color_id: china_color_id,
                                    finish_id: finish_id } }
     end
   end

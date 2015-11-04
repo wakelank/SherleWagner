@@ -3,7 +3,7 @@ class ProductGroup < ActiveRecord::Base
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_product_groups
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_product_groups
   has_and_belongs_to_many :china_colors, class_name: 'ChinaColor', join_table: :china_colors_product_groups
-  #has_and_belongs_to_many :genres
+  has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
   belongs_to :product_type
   belongs_to :product_sub_type
