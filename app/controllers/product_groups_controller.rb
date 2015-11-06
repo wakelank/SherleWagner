@@ -21,8 +21,14 @@ class ProductGroupsController < ApplicationController
                     filters: @filters }
                    }             
     end
+    @Fittings = ProductType
+    @Fixtures
+    @Accessories
+    @Hardware
+    @Lighting
+    @Wallpaper
 
-    
+
     
   end
 

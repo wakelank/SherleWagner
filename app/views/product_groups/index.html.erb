@@ -1,7 +1,10 @@
 <h1>Sherle Wagner </h1>
 <%= render "/layouts/ajax1" %>
 
-<%= render "/layouts/sideb" %>
+<%= render "/layouts/sideb" %> 
+<!-- Make sideb and ajax1 into a real JS file -->
+
+<!-- MAKE THIS A HEADER LAYOUT -->
 
 <div class="searcher">
 <%=link_to "Upload product file", products_upload_page_path %>
@@ -21,13 +24,14 @@
 <% end %>
 </div>
 <div class="bs-example">
-
-<%= render "/layouts/sideb2" %>
+<!-- MAKE THIS A HEADER LAYOUT -->
+<%= render "/layouts/sidebar" %>
 </div>
 
 <div class="prod_wrapper">
 <ul class="prod_list">
   <% @product_groups.each do |product_group| %>
+  <!-- product_groups.categories -->
     <li class ="prod_tile" id="<%= product_group.id %>"><%=link_to product_group.name, product_group_path(product_group.id) %></li>
   
   <% end %>
