@@ -1,4 +1,12 @@
 <h1><%= @product_group.name %></h1>
+<% if admin? %>
+  <p>
+  <%= link_to 'edit me', edit_product_group_path(@product_group.id) %>
+  <%= link_to 'delete me', product_group_path(@product_group.id), method: 'delete', data: { confirm: "Are you sure?" } %> 
+  </p>
+<% end %>
+
+<%= link_to 'add to favorites', product_groups_add_favorite_path(:product_group_id => @product_group.id) %>
 <p>
 <%= @product_group.number %>
 </p>
@@ -8,15 +16,14 @@
   <li><%= product.name %> : <%= product.number %></li>
   <% end %>
 </ul>
-<h3>Finishes</h3>
-<ul>
-  <% @product_group.finishes.each do |finish| %>
-    <li><%= finish.name %></li>
-  <% end %>
-</ul>
-<h3>Materials</h3>
-<ul>
-  <% @product_group.materials.each do |material| %>
-    <li><%= material.name %></li>
-  <% end %>
-</ul>
+<%= render 'product_group_info' %>
+<div class='tearsheet-form-box'>
+  <form action="#">
+    <%= hidden_field_tag('product_group_id', @product_group.id) %>
+    <%= hidden_field_tag('product_base_number', @product_group.base_number) %>
+    <%= collection_select(:product, :material_id, @product_group.materials, :id, :name, include_blank: '') %>
+    <%= collection_select(:product, :finish_id, @product_group.finishes, :id, :name, include_blank: '') %>
+    <%= collection_select(:product, :china_color_id, @product_group.china_colors, :id, :name, include_blank: '') %>
+    <%= submit_tag("generate tear sheet", class:'tear-sheet-submit') %>
+  </form>
+</div>

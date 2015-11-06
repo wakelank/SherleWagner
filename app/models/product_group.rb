@@ -2,11 +2,14 @@ class ProductGroup < ActiveRecord::Base
   has_many :products
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_product_groups
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_product_groups
-  #has_and_belongs_to_many :genres
+  has_and_belongs_to_many :china_colors, class_name: 'ChinaColor', join_table: :china_colors_product_groups
+  has_and_belongs_to_many :genres
   has_and_belongs_to_many :styles
   belongs_to :product_type
   belongs_to :product_sub_type
   has_and_belongs_to_many :filter_values
+  
+  before_destroy { |record| Product.destroy_all "product_group_id= #{record.id}" }
 
   def add_materials(material_code)
     begin
@@ -27,6 +30,10 @@ class ProductGroup < ActiveRecord::Base
         if new_product_group.number.include?('-XX')
           new_product_group.finishes = Finish.all
         end
+        if new_product_group.number.include?('-CC')
+          new_product_group.china_colors = ChinaColor.all
+        end
+        
         Material.codes.each do |code|
           new_product_group.add_materials(code) if new_product_group.number.include? "-#{code}"
         end
@@ -66,6 +73,11 @@ class ProductGroup < ActiveRecord::Base
     end
     f_hashes
   end
+
+  def base_number
+    self.number.split('-')[0]
+  end
+
 
 searchable do
     text :name

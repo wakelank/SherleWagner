@@ -9,13 +9,16 @@ class ProductGroupsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { product_groups: @product_groups.as_json(:methods => [:get_filter_values],
-                                  include: [
-#                                                                     {:finishes => { only: :name }}, 
-                                  {:product_type => {except: [:created_at, :updated_at]}},
-                                  {:product_sub_type => {except: [:created_at, :updated_at]}}
-                                                                            ]),
-                                   filters: @filters }
+      format.json { render json:
+                    { product_groups: 
+                      @product_groups.as_json(:methods => [:get_filter_values],
+                    include: [
+#                   {:finishes => { only: :name }}, 
+                    {:product_type => {except: [:created_at, :updated_at]}},
+                    {:product_sub_type => {except: [:created_at, :updated_at]}},
+                    {:genres => {except: [:created_at, :updated_at]}}
+                    ]),
+                    filters: @filters }
                    }             
     end
 
@@ -23,17 +26,61 @@ class ProductGroupsController < ApplicationController
     
   end
 
+  def new
+  end
+
+  def create
+    product_type = ProductType.find(params[:product_group][:product_type_id].to_i)
+    product_sub_type = ProductSubType.find(params[:product_group][:product_sub_type_id].to_i)
+    name = params[:product_group][:name]
+    number = params[:product_group][:number]
+    args = { name: name, number: number, product_type: product_type, product_sub_type: product_sub_type }
+
+    new_product_group = ProductGroup.custom_create(args)
+    redirect_to product_group_path new_product_group
+  end
+
   def show
     @product_group = ProductGroup.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @product_group.as_json(include: [
+          {:finishes => {except: [:created_at, :updated_at]} },
+          {:materials => {except: [:created_at, :updated_at]} },
+          {:products => {except: [:created_at, :updated_at]} }
+      
+        ] 
+      )}
+      
+    end
   end
 
   def edit
     @product_group = ProductGroup.find(params[:id])
+    @material_types = Material.pluck(:material_type).uniq
   end
 
   def update
+    @product_group = ProductGroup.find(params[:id])
+    @product_group.update(product_group_params)
+
+    redirect_to product_group_path params[:id]
   end
     
+  def destroy
+    product_group = ProductGroup.find(params[:id])
+    product_group.destroy
+    redirect_to product_group_path
+  end
+
+  def add_favorite
+    favorites= []
+    favorites = favorites | cookies[:favorites] if !cookies[:favorites].nil?
+    favorites << { product_group_id: params[:product_group_id] }
+    cookies[:favorites] = favorites
+     
+    redirect_to product_group_path params[:product_group_id]
+  end
 
 
 #  def get_filters_for product_groups
@@ -56,20 +103,31 @@ class ProductGroupsController < ApplicationController
   
 
 private
-    def get_unique_filters product_groups
-      filters = []
-      product_groups.each do |product_group|
-        filters << product_group.get_filters
-      end
-      filters = filters.flatten.uniq
-    end
+  def product_group_params
+    params.require(:product_group).permit(:name, :number, :finish_ids => [], :material_ids => [], :china_color_ids => [])
+  end
 
-    def unique_filter_hashes product_groups
-      f_hashes = []
-      get_unique_filters(@product_groups).each do |filter|
-        f_hashes << filter.filter_hash
-      end
-      f_hashes
+  def get_unique_filters product_groups
+    filters = []
+    product_groups.each do |product_group|
+      filters << product_group.get_filters
     end
+    filters = filters.flatten.uniq
+  end
+
+  def unique_filter_hashes product_groups
+    f_hashes = []
+    get_unique_filters(@product_groups).each do |filter|
+      f_hashes << filter.filter_hash
+    end
+    f_hashes
+  end
+  
+  def add_to_favorites(product_group_id)
+    favorites= []
+    favorites = cookies[:favorites]
+    favorties << { product_group_id: product_group_id }
+    cookies[:favorites] = favorites
+  end
        
 end

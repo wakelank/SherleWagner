@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929161934) do
+ActiveRecord::Schema.define(version: 20151103181437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(version: 20150929161934) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "china_colors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "china_colors_product_groups", force: :cascade do |t|
+    t.integer "china_color_id"
+    t.integer "product_group_id"
+  end
+
+  add_index "china_colors_product_groups", ["china_color_id"], name: "index_china_colors_product_groups_on_china_color_id", using: :btree
+  add_index "china_colors_product_groups", ["product_group_id"], name: "index_china_colors_product_groups_on_product_group_id", using: :btree
 
   create_table "console_counter_vanity_designs", force: :cascade do |t|
     t.string   "name"
@@ -95,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150929161934) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "identifier"
   end
 
   create_table "finishes_product_groups", force: :cascade do |t|
@@ -110,6 +126,14 @@ ActiveRecord::Schema.define(version: 20150929161934) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "genres_product_groups", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "product_group_id"
+  end
+
+  add_index "genres_product_groups", ["genre_id"], name: "index_genres_product_groups_on_genre_id", using: :btree
+  add_index "genres_product_groups", ["product_group_id"], name: "index_genres_product_groups_on_product_group_id", using: :btree
 
   create_table "genres_products", force: :cascade do |t|
     t.integer "genre_id"
@@ -138,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150929161934) do
     t.boolean "is_insert"
     t.string  "material_type"
     t.string  "code"
+    t.string  "identifier"
   end
 
   create_table "materials_product_groups", force: :cascade do |t|
@@ -304,6 +329,8 @@ ActiveRecord::Schema.define(version: 20150929161934) do
 
   add_foreign_key "accents_products", "finishes"
   add_foreign_key "accents_products", "products"
+  add_foreign_key "china_colors_product_groups", "china_colors"
+  add_foreign_key "china_colors_product_groups", "product_groups"
   add_foreign_key "filter_product_group_values", "filter_values"
   add_foreign_key "filter_product_group_values", "filters"
   add_foreign_key "filter_product_group_values", "product_groups"
@@ -316,6 +343,8 @@ ActiveRecord::Schema.define(version: 20150929161934) do
   add_foreign_key "filter_values_product_groups", "product_groups"
   add_foreign_key "finishes_product_groups", "finishes"
   add_foreign_key "finishes_product_groups", "product_groups"
+  add_foreign_key "genres_product_groups", "genres"
+  add_foreign_key "genres_product_groups", "product_groups"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
   add_foreign_key "inserts_products", "materials"

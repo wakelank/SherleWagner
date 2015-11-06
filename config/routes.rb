@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   
   get 'products/upload_page' => 'static_pages#upload_page'
   post 'products/upload_products' => 'products#upload_product_file'
+  post 'products/tearsheet' => 'products#build_tearsheet'
+  get 'products/tearsheet' => 'products#show'
+  get 'product_groups/add_favorite' => 'product_groups#add_favorite'
 
-  root 'products#index'
+  root 'product_groups#index'
   resources :products
   resources :product_groups
 
@@ -12,6 +15,10 @@ Rails.application.routes.draw do
   resources :product_groups, :defaults => { :format => 'html' }
   
   get 'search'=>'search#index'
+
+  get 'login' => 'sessions#new'
+  post 'sessions' => 'sessions#create'
+  get 'logout' => 'sessions#destroy'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

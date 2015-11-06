@@ -47,3 +47,7 @@
 .panel-group { 
     margin-bottom: 2px;
 }*/
+/*===Product page ===*/
+li.highlighted{
+  border: thin solid black;
+}

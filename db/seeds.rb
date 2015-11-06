@@ -37,140 +37,152 @@ WallPaperDesign.delete_all
 FilterValue.delete_all
 Filter.delete_all
 
-finishes =  %w(satin\ brass
-            polished\ brass
-            brushed\ chrome
-            polished\ chrome
-            brushed\ nickel
-            polished\ nickel
-            flemish\ patina
-            english\ patina
-            verdi\ antique
-            oil\ rubbed\ brass
-            antique\ pewter
-            gold\ plate
-            antique\ gold
-            burnished\ gold
-            english\ silver
-            burnished\ platinum
-            butler\ silver)
+finishes = [ 
+  { name: 'Polished Nickel', identifier: 'PN' },
+  { name: 'Polished Chrome', identifier: 'CP' },
+  { name: 'English Silver', identifier: 'ES' },
+  { name: 'Antique Pewter', identifier: 'AP' },
+  { name: 'Black Pearl', identifier: 'PE' },
+  { name: 'Brushed Nickel', identifier: 'BN' },
+  { name: 'Brushed Chrome', identifier: 'BC' },
+  { name: 'Butler Silver', identifier: 'BS' },
+  { name: 'High Polished Platinum', identifier: 'HP' },
+  { name: 'Gold Plate', identifier: 'GP' },
+  { name: 'Burnished Gold', identifier: 'BG' },
+  { name: 'Satin Brass', identifier: 'SB' },
+  { name: 'Oil Rubbed Brass', identifier: 'OB' },
+  { name: 'English Patina', identifier: 'EP' },
+  { name: 'Almond Gold', identifier: 'AL' },
+  { name: 'Antique Gold', identifier: 'AG' },
+  { name: 'Polished Brass', identifier: 'PB' },
+  { name: 'Flemish Patina', identifier: 'FB' },
+  { name: 'Rose Gold', identifier: 'RG' }
+]
+
+
 finishes.each do |finish|
-  Finish.create(name: finish)
+  Finish.create(name: finish[:name], identifier: finish[:identifier])
 end
 
 materials = [{ type: "China-Hand Painted",
                code: "HANDPAINTED",
-               names: ["Delft — (66DL)",
-                                     "Waterlilies — (109W)",
-                                     "Lotus — (20GR)",
-                                     "Lotus — (20BL)",
-                                     "Oriental Flowers — (54)",
-                                     "Artichoke — (107A)",
-                                     "Poppies — (69PP)",
-                                     "Peaches — (111P)",
-                                     "Summer Garden — (51SG)",
-                                     "Ming Blossom - (18YL)",
-                                     "Ming Blossom — (18PK)",
-                                     "Ming Blossom — (18BR)",
-                                     "Ming Blossom — (18BL)",
-                                     "Garlands And Leaves — (74GL)",
-                                     "Mums Bouquet — (56GR)",
-                                     "Mums Bouquet — (56BL)",
-                                     "Chinoiserie - (60PK)",
-                                     "Chinoiserie - (60GR)",
-                                     "Chinoiserie - (60BL)",
-                                     "Floral Chinoiserie - (61PK)",
-                                     "Floral Chinoiserie - (61GR)",
-                                     "Floral Chinoiserie - (61BL)"]
+               entries: [{name: "Delft — (66DL)", identifier: "66DL" },
+                       { name: "Waterlilies — (109W)", identifier: "109W" },
+                       { name: "Lotus — (20GR)", identifier: "20GR" },
+                       { name: "Lotus — (20BL)", identifier: "20BL" },
+                       { name: "Oriental Flowers — (54)", identifier: "54" },
+                       { name: "Artichoke — (107A)", identifier: "107A" },
+                       { name: "Poppies — (69PP)", identifier: "69PP" },
+                       { name: "Peaches — (111P)", identifier: "111P" },
+                       { name: "Summer Garden — (51SG)", identifier: "51SG" },
+                       { name: "Ming Blossom - (18YL)", identifier: "18YL" },
+                       { name: "Ming Blossom — (18PK)", identifier: "18PK" },
+                       { name: "Ming Blossom — (18BR)", identifier: "18BR" },
+                       { name: "Ming Blossom — (18BL)", identifier: "18BL" },
+                       { name: "Garlands And Leaves — (74GL)", identifier: "74GL" },
+                       { name: "Mums Bouquet — (56GR)", identifier: "56GR" },
+                       { name: "Mums Bouquet — (56BL)", identifier: "56BL" },
+                       { name: "Chinoiserie - (60PK)", identifier: "60PK" },
+                       { name: "Chinoiserie - (60GR)", identifier: "60GR" },
+                       { name: "Chinoiserie - (60BL)", identifier: "60BL" },
+                       { name: "Floral Chinoiserie - (61PK)", identifier: "61PK" },
+                       { name: "Floral Chinoiserie - (61GR)", identifier: "61GR" },
+                       { name: "Floral Chinoiserie - (61BL)", identifier: "61BL" }]
               },
               {type: "China-Hand Decorated",
                code: "CHINADECO",
-               names: ["Le Jardin - Garnet-89GA",
-                                        "Le Jardin - Greige/Taupe-89GG",
-                                        "Le Jardin - Sepia-89SP",
-                                        "Le Jardin - Light Blue-89LB",
-                                        "Le Jardin - Charcoal-89CH",
-                                        "Le Jardin - Blue-89BL",
-                                        "Le Jardin -Sage-89SG",
-                                        "Acorn & Oakleaf - Garnet-99GA",
-                                        "Acorn & Oakleaf - Greige/Taupe-99GG",
-                                        "Acorn & Oakleaf - Sepia-99SP",
-                                        "Acorn & Oakleaf - Light Blue-99LB",
-                                        "Acorn & Oakleaf - Charcoal-99CH",
-                                        "Acorn & Oakleaf - Blue-99BL",
-                                        "Acorn & Oakleaf -Sage-99SG"]
+               entries: [ { name: "Le Jardin - Garnet-89GA", identifier: "89GA" },
+                        { name: "Le Jardin - Greige/Taupe-89GG", identifier: "89GG" },
+                        { name: "Le Jardin - Sepia-89SP", identifier: "89SP" },
+                        { name: "Le Jardin - Light Blue-89LB", identifier: "89LB" },
+                        { name: "Le Jardin - Charcoal-89CH", identifier: "89CH" },
+                        { name: "Le Jardin - Blue-89BL", identifier: "89BL" },
+                        { name: "Le Jardin -Sage-89SG", identifier: "89SG" },
+                        { name: "Acorn & Oakleaf - Garnet-99GA", identifier: "99GA" },
+                        { name: "Acorn & Oakleaf - Greige/Taupe-99GG", identifier: "99GG" },
+                        { name: "Acorn & Oakleaf - Sepia-99SP", identifier: "99SP" },
+                        { name: "Acorn & Oakleaf - Light Blue-99LB", identifier: "99LB" },
+                        { name: "Acorn & Oakleaf - Charcoal-99CH", identifier: "99CH" },
+                        { name: "Acorn & Oakleaf - Blue-99BL", identifier: "99BL" },
+                        { name: "Acorn & Oakleaf -Sage-99SG", identifier: "99SG" }]
               },
               {type: "China-Metal Plated",
                code: "GLAZE",
-               names: ["Burnished Gold-14GP",
-                                      "Burnished Platinum-15PL",
-                                      "Highly Polished Platinum-17HP",
-                                      "Gold Accents-24GP",
-                                      "Platinum Accents-24PL"]
-              },
-              {type: "China-Solid Colors",
-               code: "CC",
-               names: ["Sand",
-                                       "White",
-                                       "Black"]
+               entries: [ { name: "Burnished Gold-14GP", identifier: "14GP" },
+                        { name: "Burnished Platinum-15PL", identifier: "15PL" },
+                        { name: "Highly Polished Platinum-17HP", identifier: "17HP" },
+                        { name: "Gold Accents-24GP", identifier: "24GP" },
+                        { name: "Platinum Accents-24PL", identifier: "24PL" }]
               },
               {type: "Marble",
                
-               names: ["ROSE AURORA (RSAU)",
-                              "ROSE DU MONTE (RSDM)",
-                             "CARARRA (CARR)",
-                             "MARIANELLA (MARI)",
-                             "ANTIQUE WHITE (ANWH)",
-                             "ANTIQUE BROWN (ANBR)",
-                             "ESTREMOZ (ESTR)",
-                             "VERDI VIANA (VERD)",
-                             "CREMA MARFIL (CREMA)", 
-                             "BELGIAN BLACK (BLGB)",
-                             "ROJO ALICANTE (ROJO)",
-                             "BLACK MARBLE (BLMA)",
-                             "ROSA LEVANTO (RSLV)",
-                             "IMPERADOR BROWN (IMBR)",
-                             "CARNICO GREY (CRGR)",
-                             "ARABESCATO (ARAB)",
-                             "NEGRO MARQUINA (NEMA)",
-                             "PORTORO (PORT)",
-                             "VALVERDE (VLVD)",
-                             "CALACATTA (CALA)",
-                             "PORT LAURENT (PTLA))"]
+               entries: [{ name: "ROSE AURORA (RSAU)", identifier: "RSAU" },
+                       { name: "ROSE DU MONTE (RSDM)", identifier: "RSDM" },
+                       { name: "CARARRA (CARR)", identifier: "CARR" },
+                       { name: "MARIANELLA (MARI)", identifier: "MARI" },
+                       { name: "ANTIQUE WHITE (ANWH)", identifier: "ANWH" },
+                       { name: "ANTIQUE BROWN (ANBR)", identifier: "ANBR" },
+                       { name: "ESTREMOZ (ESTR)", identifier: "ESTR" },
+                       { name: "VERDI VIANA (VERD)", identifier: "VERD" },
+                       { name: "CREMA MARFIL (CREMA)", identifier: "CREMA" },
+                       { name: "BELGIAN BLACK (BLGB)", identifier: "BLGB" },
+                       { name: "ROJO ALICANTE (ROJO)", identifier: "ROJO" },
+                       { name: "BLACK MARBLE (BLMA)", identifier: "BLMA" },
+                       { name: "ROSA LEVANTO (RSLV)", identifier: "RSLV" },
+                       { name: "IMPERADOR BROWN (IMBR)", identifier: "IMBR" },
+                       { name: "CARNICO GREY (CRGR)", identifier: "CRGR" },
+                       { name: "ARABESCATO (ARAB)", identifier: "ARAB" },
+                       { name: "NEGRO MARQUINA (NEMA)", identifier: "NEMA" },
+                       { name: "PORTORO (PORT)", identifier: "PORT" },
+                       { name: "VALVERDE (VLVD)", identifier: "VLVD" },
+                       { name: "CALACATTA (CALA)", identifier: "CALA" },
+                       { name: "PORT LAURENT (PTLA))", identifier: "PTLA" }]
               },
               {type: "Semi-precious Stone",
               code: "SEMI",
-              names: ["ROCK\ CRYSTAL\ \(RKCR\)",
-                            "ROSE\ QUARTZ\ \(RSQU\)",
-                            "AMETHYST\ \(AMET\)"]
+              entries: [{ name: "ROCK CRYSTAL", identifier: "RKCR" },
+                        { name: "ROSE\ QUARTZ\ \(RSQU\)", identifier: "RSQU" },
+                        { name: "AMETHYST\ \(AMET\)", identifier: "AMET" }]
                     },
               { type: "Semi-precious Laminate",
                code: "SLSL",
-               names: ["LAPIS\ LAZULI\ \(LAPI\)",
-                            "MALACHITE\ \(MALA\)",
-                            "JASPER\ \(JASP\)",
-                            "BROWN\ TIGER\ EYE\ \(BRTI\)", 
-                            "BLUE\ TIGER\ EYE\ \(BLTI\)",
-                            "RHODOCHROSITE\ \(RHOD\)"]
+               entries: [{ name: "LAPIS\ LAZULI\ \(LAPI\)", identifier: "LAPI" },
+                         { name: "MALACHITE\ \(MALA\)", identifier: "MALA" },
+                         { name: "JASPER\ \(JASP\)", identifier: "JASP" },
+                         { name: "BROWN\ TIGER\ EYE\ \(BRTI\)", identifier: "BRTI" },
+                         { name: "BLUE\ TIGER\ EYE\ \(BLTI\)", identifier: "BLTI" },
+                         { name: "RHODOCHROSITE\ \(RHOD\)", identifier: "RHOD" } ]
                     },
               {type: "Onyx", 
                code: "ONYX",
-               names: ["BLACK\ ONYX\ \(BKOX\)",
-                            "WHITE\ ONYX\ \(WHOX\)",
-                            "HONEY\ ONYX\ \(HNOX\)",
-                            "GREEN\ ONYX\ \(GROX\)",
-                            "PINK\ ONYX\ \(PKOX\)",
-                            "BROWN\ ONYX\ \(BROX\)"]
+               entries: [ { name: "BLACK\ ONYX\ \(BKOX\)", identifier: "BKOX" },
+                        { name: "WHITE\ ONYX\ \(WHOX\)", identifier: "WHOX" },
+                        { name: "HONEY\ ONYX\ \(HNOX\)", identifier: "HNOX" },
+                        { name: "GREEN\ ONYX\ \(GROX\)", identifier: "GROX" },
+                        { name: "PINK\ ONYX\ \(PKOX\)", identifier: "PKOX" },
+                        { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
                     }
               ]
 materials.each do |material|
   type = material[:type]
   code = material[:code]
   names = material[:names]
-  names.each do |name|
-    Material.create(material_type:type, name:name, code:code)
+  material[:entries].each do |entry|
+    Material.create(material_type:type, name: entry[:name], code:code, identifier: entry[:identifier] )
   end
 end
+
+china_colors =  [ { name: "Sand", identifier: "SD" },
+        { name: "White", identifier: "WH" },
+        { name: "Black", identifier: "BL" }]
+
+china_colors.each do |china_color|
+  name = china_color[:name]
+  identifier = china_color[:identifier]
+  ChinaColor.create(name: name, identifier: identifier)
+end
+
+
 
 filters = %w(handle\ design)
 
@@ -359,12 +371,12 @@ genres_styles = [
   }
 ]
 
-genres_styles.each do |genre_style|
-  genre = Genre.create(name: genre_style[:genre_name])
-  genre_style[:styles].each do |style|
-    genre.styles << Style.create(name: style)
-  end
-end
+#genres_styles.each do |genre_style|
+#  genre = Genre.create(name: genre_style[:genre_name])
+#  genre_style[:styles].each do |style|
+#    genre.styles << Style.create(name: style)
+#  end
+#end
 
 filters = [
   { name: "Handle Design",
