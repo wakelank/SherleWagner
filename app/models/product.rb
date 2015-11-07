@@ -18,6 +18,8 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
+  validates :name, presence: true
+  validates :number, presence: true
 
 
   def self.new_upload_product_file(file)
@@ -48,8 +50,8 @@ class Product < ActiveRecord::Base
 
         if !Product.exists?(number: product_number) || product_number != "no product number"
           begin
-            product_type =ProductType.where('lower(name) = ?', product_type.downcase.strip).first || NonProductType.new
-            product_sub_type = ProductSubType.where('lower(name) =?', product_sub_type.downcase.strip).first || NonProductSubType.new
+            product_type =ProductType.where('lower(name) = ?', product_type.downcase.strip).first 
+            product_sub_type = ProductSubType.where('lower(name) =?', product_sub_type.downcase.strip).first 
             if !generic_product_number.nil? && generic_product_number != ""
               product_group_args = { number: generic_product_number,
                                      name: name, 
@@ -57,9 +59,10 @@ class Product < ActiveRecord::Base
                                      product_sub_type: product_sub_type }
               product_group = ProductGroup.first_or_custom_create(product_group_args)
             end
-            product = Product.create(name: name, 
+            product = Product.new(name: name, 
                                      number: product_number, 
                                      product_group: product_group)
+            product.save if product.valid?
           rescue
             binding.pry
           end
@@ -98,19 +101,22 @@ class Product < ActiveRecord::Base
           end
         end
       end
-    end
   end
+  
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   def vaild_row?(row)
     true
   end
 =======
 end
+=======
+>>>>>>> adds non product types
 
-def productDataIsValid? row
-  true
 end
+
+
 
 class NonClass
   attr_accessor :name
@@ -120,9 +126,11 @@ class NonClass
 end
 
 class NonProductType < NonClass
+  ProductType.first
 end
 
 class NonProductSubType < NonClass
+  ProductSubType.first
 end
 
 
