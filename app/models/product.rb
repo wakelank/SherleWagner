@@ -20,6 +20,7 @@ class Product < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
   def self.new_upload_product_file(file)
+
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       name = row["GENERIC PRODUCT NAME _ Revised"]
       generic_product_number = row["Generic Product Number"]
@@ -78,6 +79,10 @@ class Product < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def vaild_row?(row)
+    true
   end
 end
 
