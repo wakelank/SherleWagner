@@ -30,23 +30,6 @@ class Product < ActiveRecord::Base
         product_number = row["IMAGE FILE"] || "no image"
         product_type = row['MAIN'] || "no product type"
         product_sub_type = row['SUB FOLDER'] || "no product sub type"
-      if !Product.exists?(number: product_number) && product_number != nil
-        begin
-          product_type =ProductType.where(name: product_type).first_or_create
-          product_sub_type = ProductSubType.where(name: product_sub_type).first_or_create
-          if !generic_product_number.nil? && generic_product_number != ""
-            product_group_args = { number: generic_product_number, 
-                                   name: name, 
-                                   product_type: product_type, 
-                                   product_sub_type: product_sub_type }
-            product_group = ProductGroup.first_or_custom_create(product_group_args)
-          end
-          product = Product.create(name: name, 
-                                   number: product_number, 
-                                   product_group: product_group)
-        rescue
-          binding.pry
-        end
 
         if !Product.exists?(number: product_number) || product_number != "no product number"
           begin
@@ -104,16 +87,6 @@ class Product < ActiveRecord::Base
   end
   
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  def vaild_row?(row)
-    true
-  end
-=======
-end
-=======
->>>>>>> adds non product types
-
 end
 
 
@@ -146,7 +119,6 @@ class NonFilter < NonClass
 end
 
 class NonGenre < NonClass
->>>>>>> refactoring the product upload
 end
 
 
