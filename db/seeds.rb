@@ -397,15 +397,21 @@ ProductSubType.create(name: 'no sub type', product_type: pt)
 
 
 types.each do |type|
-  ProductType.create(name: type)
-end
-
-sub_types.each do |type, sub_types|
-  type = ProductType.where("lower(name) = ?",  type.to_s.downcase).first
-  sub_types.each do |sub_type|
-    ProductSubType.create( name: sub_type, product_type: type)
+  new_type = ProductType.create(name: type[:name])
+  type[:sub_types].each do |sub_type|
+    ProductSubType.create(name: sub_type[:name], product_type: new_type)
   end
 end
+
+
+#end
+#
+#sub_types.each do |type, sub_types|
+#  type = ProductType.where("lower(name) = ?",  type.to_s.downcase).first
+#  sub_types.each do |sub_type|
+#    ProductSubType.create( name: sub_type, product_type: type)
+#  end
+#end
 
 #genres = %w(Ornate Traditional Classic Mid_Century Contemporary)
 #styles = {
