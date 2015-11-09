@@ -8,6 +8,14 @@ class ProductGroup < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_sub_type
   has_and_belongs_to_many :filter_values
+
+  validates :name, presence: true, uniqueness: true
+  validates :number, presence: true, uniqueness: true
+  validates :product_type, presence: true
+  validates_associated :product_type
+  validates :product_sub_type, presence: true
+  validates_associated :product_sub_type
+
   
   before_destroy { |record| Product.destroy_all "product_group_id= #{record.id}" }
 
@@ -25,8 +33,8 @@ class ProductGroup < ActiveRecord::Base
       begin
         new_product_group = self.new(number: args[:number],
                                      name: args[:name],
-                                     product_type: args[:product_type],
-                                     product_sub_type: args[:product_sub_type])
+                                     product_type: args[:product_type] || ProductType.first,
+                                     product_sub_type: args[:product_sub_type] || ProductSubType.first)
         if new_product_group.number.include?('-XX')
           new_product_group.finishes = Finish.all
         end
@@ -37,7 +45,7 @@ class ProductGroup < ActiveRecord::Base
         Material.codes.each do |code|
           new_product_group.add_materials(code) if new_product_group.number.include? "-#{code}"
         end
-        new_product_group.save
+        new_product_group.save if new_product_group.valid?
       rescue
         binding.pry
       end

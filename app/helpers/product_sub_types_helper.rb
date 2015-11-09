@@ -1,0 +1,2 @@
+module ProductSubTypesHelper
+end

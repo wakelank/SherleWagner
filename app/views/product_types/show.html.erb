@@ -1,0 +1,14 @@
+<h1>Product Type: <%= @product_type.name %></h1>
+<ul>
+  <%= @product_type.product_sub_types.each do |product_sub_type| %>
+    <li><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li>
+    <ul>
+      <%= product_sub_type.four_products.each do |product_group| %>
+        <li><%=  link_to product_group.name, product_group_path(product_group) %></li>
+
+      <% end %>
+      <li><%= link_to '+', product_sub_type_path(product_sub_type) %></li>
+    </ul>
+
+  <% end %>
+</ul>

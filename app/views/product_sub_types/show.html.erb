@@ -1,0 +1,7 @@
+<h1><%= @product_sub_type.name %></h1>
+<ul>
+  <%= @product_sub_type.product_groups.each do |product_group| %>
+    <li><%= link_to product_group.name, product_group_path(product_group) %></li>
+  <% end %>
+</ul>
+

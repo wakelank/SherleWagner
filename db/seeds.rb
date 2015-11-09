@@ -59,6 +59,7 @@ finishes = [
   { name: 'Rose Gold', identifier: 'RG' }
 ]
 
+Finish.create(name: 'non finish', identifier: '00')
 
 finishes.each do |finish|
   Finish.create(name: finish[:name], identifier: finish[:identifier])
@@ -163,6 +164,8 @@ materials = [{ type: "China-Hand Painted",
                         { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
                     }
               ]
+Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
+
 materials.each do |material|
   type = material[:type]
   code = material[:code]
@@ -172,9 +175,13 @@ materials.each do |material|
   end
 end
 
+
+
 china_colors =  [ { name: "Sand", identifier: "SD" },
         { name: "White", identifier: "WH" },
         { name: "Black", identifier: "BL" }]
+
+ChinaColor.create(name: 'no name', identifier: '00')
 
 china_colors.each do |china_color|
   name = china_color[:name]
@@ -185,6 +192,8 @@ end
 
 
 filters = %w(handle\ design)
+
+Filter.create(name: 'no filter')
 
 filters.each do |filter|
   Filter.create(name: filter)
@@ -273,32 +282,119 @@ end
 #  end
 #end
 
-types = %w(Fittings Accessories Fixtures Hardware Lights Wallcoverings)
-sub_types = { 
-  fittings:
-    %w(BASIN\ AND\ BAR\ SETS
-    TUB\ AND\ SHOWER\ COMPONENTS
-    WATER\ CLOSET\ AND\ BIDET\ FITTINGS),
-  accessories:
-    %w(BATHROOM
-    COUNTER\ TOPS
-    MEDICISNE\ CABINETS),
-  fixtures:
-    %w(SINKS
-    PEDESTAL
-    CONSOLES,\ COUNTERS\ AND\ VANITIES
-    TUBS
-    WAER\ CLOSET\ AND\ BIDET\ FIXTURES),
-  lights:
-    %w(CEILING\ LIGHTS
-    CABINET\ AND\ DRAWER\ PULLS),
-  wallcoverings:
-    %w(WALLPAPERS
-    CERAMIC
-    MARBLE),
-  hardware:
-    %w(LEVERS\ AND\ KNOBS CABINET\ &\ DRAWER\ PULLS DOOR\ TRIM WALL\ TRIM)
-}
+#types = %w(Fittings Accessories Fixtures Hardware Lights Wallcoverings)
+#sub_types = { 
+#  fittings:
+#    %w(BASIN\ AND\ BAR\ SETS
+#    TUB\ AND\ SHOWER\ COMPONENTS
+#    WATER\ CLOSET\ AND\ BIDET\ FITTINGS),
+#  accessories:
+#    %w(BATHROOM
+#    COUNTER\ TOPS
+#    MEDICISNE\ CABINETS),
+#  fixtures:
+#    %w(SINKS
+#    PEDESTAL
+#    CONSOLES,\ COUNTERS\ AND\ VANITIES
+#    TUBS
+#    WAER\ CLOSET\ AND\ BIDET\ FIXTURES),
+#  lights:
+#    %w(CEILING\ LIGHTS
+#    CABINET\ AND\ DRAWER\ PULLS),
+#  wallcoverings:
+#    %w(WALLPAPERS
+#    CERAMIC
+#    MARBLE),
+#  hardware:
+#    %w(LEVERS\ AND\ KNOBS CABINET\ &\ DRAWER\ PULLS DOOR\ TRIM WALL\ TRIM)
+#}
+
+types = [
+  { name: "Fittings",
+           sub_types: [
+            { name: "Basin Sets"},
+            { name: "Bar Spout Basin Sets"},
+            { name: "Single Handle Basin Sets"},
+            { name: "Wall Mounted Basin Sets"},
+            { name: "Bidet Sets"},
+            { name: "One Hole"},
+            { name: "Four  Hole"},
+            { name: "Trip Levers"},
+            { name: "Shower Systems"},
+            { name: "Tub Sets"},
+            { name: "Deck Mount Tub Sets"},
+            { name: "Wall Mount Tub Sets"},
+            { name: "Exposed Tub Sets"},
+            { name: "Exposed Shower Sets"},
+            { name: "Components"}
+           ]
+          
+  },
+  { name: "Fixtures", 
+             sub_types: [
+                { name: "Basins" },
+                { name: "Basin Type:" },
+                { name: "Pedestals" },
+                { name: "Counters" },
+                { name: "Consoles" },
+                { name: "Legs" },
+                { name: "Tubs" },
+                { name: "Water Closets" },
+                { name: "Bidets" }
+              ]
+            
+  },
+  { name: "Accessories",
+             sub_types: [
+                { name: "Towel Bars" },
+                { name: "Shelves" },
+                { name: "Towel Rings " },
+                { name: "Paper Holders " },
+                { name: "Hooks" },
+                { name: "Holders" },
+                { name: "Baskets" },
+                { name: "Bars" },
+                { name: "Mirrors" },
+                { name: "Medicine Cabinets" },
+                { name: "Counter-Top Accessories" },
+                { name: "Bench" }
+              ]
+            
+  },
+  { name: "Hardware",
+               sub_types: [
+                  { name: "Door Levers" },
+                  { name: "Door Knobs" },
+                  { name: "Back Plates" },
+                  { name: "Push Plates" },
+                  { name: "Flush Pulls" },
+                  { name: "Door Trim Bar Pulls" },
+                  { name: "Cabinet" },
+                  { name: "Drawer Knobs" },
+                ]
+              
+  },
+  { name: "Lighting",
+             sub_types: [
+                { name: "Ceiling Lights" },
+                { name: "Chandeliers" },
+                { name: "Wall Scones" },
+                { name: "Electrical Covers" }
+              ]
+            
+  },
+  { name: "Wall Coverings",
+             sub_types: [
+                { name: "Wallpaper" },
+                { name: "Vintage Wallpaper"}
+              ]
+            
+  }
+]
+
+pt = ProductType.create(name: 'no type')
+ProductSubType.create(name: 'no sub type', product_type: pt)
+
 
 types.each do |type|
   ProductType.create(name: type)
@@ -404,6 +500,8 @@ filters = [
     filter_values: [ "Neutral", "Blue", "Pink", "Yellow", "Black", "Red", "Green", "Metallic" ]
   }
 ]
+
+Filter.create(name: "no filter").filter_values << FilterValue.create(name: "no filter value")
 
 filters.each do |filter|
   this_filter = Filter.create( name: filter[:name] )

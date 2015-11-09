@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'product_sub_types/show'
+
   get 'products/upload_page' => 'static_pages#upload_page'
   post 'products/upload_products' => 'products#upload_product_file'
   post 'products/tearsheet' => 'products#build_tearsheet'
@@ -10,9 +12,11 @@ Rails.application.routes.draw do
   resources :products
   resources :product_groups
 
-  get 'product_types/:product_type' => 'product_groups#index'
+ # get 'product_types/:product_type' => 'product_groups#index'
   
   resources :product_groups, :defaults => { :format => 'html' }
+  resources :product_types
+  resources :product_sub_types
   
   get 'search'=>'search#index'
 
