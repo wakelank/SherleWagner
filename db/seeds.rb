@@ -315,17 +315,16 @@ types = [
             { name: "Basin Sets"},
             { name: "Bar Spout Basin Sets"},
             { name: "Single Handle Basin Sets"},
-            { name: "Wall Mounted Basin Sets"},
-            { name: "Bidet Sets"},
-            { name: "One Hole"},
-            { name: "Four  Hole"},
-            { name: "Trip Levers"},
-            { name: "Shower Systems"},
-            { name: "Tub Sets"},
+            { name: "Wall Mount Basin Sets"},
+            { name: "Concentric Thermostatic Shower Systems"},
+            { name: "High Flow Thermostatic Shower Systems"},
             { name: "Deck Mount Tub Sets"},
             { name: "Wall Mount Tub Sets"},
             { name: "Exposed Tub Sets"},
             { name: "Exposed Shower Sets"},
+            { name: "Bidet Sets - Four Hole"},
+            { name: "Bidet Sets - Single Hole"},
+            { name: "WC Trip Levers"},
             { name: "Components"}
            ]
           
@@ -333,7 +332,6 @@ types = [
   { name: "Fixtures", 
              sub_types: [
                 { name: "Basins" },
-                { name: "Basin Type:" },
                 { name: "Pedestals" },
                 { name: "Counters" },
                 { name: "Consoles" },
@@ -348,15 +346,23 @@ types = [
              sub_types: [
                 { name: "Towel Bars" },
                 { name: "Shelves" },
-                { name: "Towel Rings " },
-                { name: "Paper Holders " },
+                { name: "Towel Rings" },
+                { name: "Paper Holders" },
                 { name: "Hooks" },
-                { name: "Holders" },
-                { name: "Baskets" },
-                { name: "Bars" },
+                { name: "Tumblers" },
+                { name: "Soap Dishes" },
+                { name: "Tumbler Holders" },
+                { name: "Soap Dish Holders" },
+                { name: "Soap Pump" },
+                { name: "Boutique Tissue Box Covers" },
+                { name: "Elongated Tissue Box Covers" },
+                { name: "Covered Jars" },
+                { name: "Waste Baskets" },
                 { name: "Mirrors" },
                 { name: "Medicine Cabinets" },
-                { name: "Counter-Top Accessories" },
+                { name: "Countertop Accessories" },
+                { name: "Tub and Shower" },
+                { name: "Grab Bars" },
                 { name: "Bench" }
               ]
             
@@ -368,25 +374,33 @@ types = [
                   { name: "Back Plates" },
                   { name: "Push Plates" },
                   { name: "Flush Pulls" },
-                  { name: "Door Trim Bar Pulls" },
-                  { name: "Cabinet" },
-                  { name: "Drawer Knobs" },
+                  { name: "Hinges" },
+                  { name: "Cremone Bolts" },
+                  { name: "Slide Bolts" },
+                  { name: "Bar Pulls" },
+                  { name: "Cabinet Knobs" },
+                  { name: "Door Bells" },
+                  { name: "Door Stops" },
+                  { name: "Cylinder Covers" },
+                  { name: "Key Hole Covers" },
                 ]
               
   },
   { name: "Lighting",
              sub_types: [
-                { name: "Ceiling Lights" },
                 { name: "Chandeliers" },
-                { name: "Wall Scones" },
-                { name: "Electrical Covers" }
+                { name: "Pendant Ceiling Lights" },
+                { name: "Flush Mount Lights" },
+                { name: "Sconces" },
+                { name: "Wall Lights" },
+                { name: "Electrical Covers" },
+                { name: "Table Lights" }
               ]
             
   },
   { name: "Wall Coverings",
              sub_types: [
-                { name: "Wallpaper" },
-                { name: "Vintage Wallpaper"}
+                { name: "Wallpaper" }
               ]
             
   }

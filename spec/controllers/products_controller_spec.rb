@@ -34,12 +34,12 @@ RSpec.describe ProductsController, :type => :controller do
       @pg = ProductGroup.where(number: '008BSN108-XX').first
     end
 
-      it "2 product groups" do
-        expect(ProductGroup.all.length).to eq 2
+      it "3 product groups" do
+        expect(ProductGroup.all.length).to eq 3
       end
 
       it "with product_type" do
-        expect(@pg.product_type.name).to eq "FITTINGS"
+        expect(@pg.product_type.name).to eq "Fittings"
       end
 
       it "with product_sub_type" do
@@ -58,7 +58,7 @@ RSpec.describe ProductsController, :type => :controller do
         expect(@pg.filter_values.first.name).to eq "Levers"
       end
       it "attaches the finishes to the product group" do
-        expect(@pg.finishes.count).to be 17
+        expect(@pg.finishes.count).to be 20
       end
       it "attaches the materials to the product group with material code SLSL" do
         @pg_materials = ProductGroup.where(number: '008BSN108-SLSL-XX').first
@@ -66,7 +66,7 @@ RSpec.describe ProductsController, :type => :controller do
       end
       it "attaches the filters to the product group"
       it "attaches style to product group" do
-        expect(@pg.styles.first.name).to eq "Arco"
+        expect(@pg.styles.first.name).to eq "arco"
       end
   end
   
