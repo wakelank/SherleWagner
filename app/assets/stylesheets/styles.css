@@ -41,7 +41,7 @@ body .container {
 }
 .searcher{
   float: right;
-  margin-right: 10%
+  margin-right: 0;
 }
 
 /*===Side Nav ===*/
