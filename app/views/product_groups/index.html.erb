@@ -1,40 +1,21 @@
-<h1>Sherle Wagner </h1>
+
 <%= render "/layouts/ajax1" %>
 
-<%= render "/layouts/sideb" %> 
-<!-- Make sideb and ajax1 into a real JS file -->
+<%= render "/layouts/sideb" %> <!-- this is the sidenavJS -->
+                        <!-- ** to do: Make sideb and ajax1 into a real JS file -->
 
-<!-- MAKE THIS A HEADER LAYOUT -->
+<div class="side-nav-contain" id="pg-nav">
 
-<div class="searcher">
-<%=link_to "Upload product file", products_upload_page_path %>
-
-
-<%= form_tag search_path, :method => :get do %>
-    <div class="l6">
-        <div class="rcol">
-            <div class="s10">
-                <%= text_field_tag :search, params[:search] %>
-            </div>
-            <div class="s2">
-                <%= submit_tag "Search", :name => nil, :class => "button" %>
-            </div>
-        </div>
-    </div>
-<% end %>
-</div>
-<div class="bs-example">
-<!-- MAKE THIS A HEADER LAYOUT -->
-<%= render "/layouts/sidebar" %>
+    <%= render "/layouts/sidebar" %>
 </div>
 
 <div class="prod_wrapper">
-<ul class="prod_list">
-  <% @product_groups.each do |product_group| %>
-  <!-- product_groups.categories -->
-    <li class ="prod_tile" id="<%= product_group.id %>"><%=link_to product_group.name, product_group_path(product_group.id) %></li>
-  
-  <% end %>
-</ul>
+    <ul class="prod_list">
+      <% @product_groups.each do |product_group| %>
+      <!-- product_groups.categories -->
+        <li class ="prod_tile" id="<%= product_group.id %>"><%=link_to product_group.name, product_group_path(product_group.id) %></li>
+      
+      <% end %>
+    </ul>
 
 </div>

@@ -1,8 +1,24 @@
+body .container {
+  
+
+}
+
+/*=====header nav====*/
+#top-navigation{
+  background-color: black;
+  color: grey;
+}
+#title {
+  float: left;
+}
+
 /*====The product browse page===*/
 .prod_wrapper {
  width:80%;
  float: right;
  clear: right;
+ display: block;
+ margin-top: 5.5em;
 }
 .prod_list{
   list-style: none;
@@ -12,7 +28,7 @@
   padding: 0.5em;
   text-align: center;
   display:block;
-  margin:0;
+  
   float:left;
   color: red;
   height:19em;
@@ -28,20 +44,37 @@
   margin-right: 10%
 }
 
-.bs-example {
+/*===Side Nav ===*/
+
+.side-nav-contain {
   float: left;
   margin: 2%;
   width:15%;
   margin-top: 5em;
+  position:fixed; top:20;
+  overflow-y: scroll;
+  background-color: white;
+  height: 100%;
   
 }
 .nav-wrap {
   float:left;
   width: 100%;
   margin-left: 2em;
+  padding: 5px;
 }
-.nav-wrap  {
-    padding: 5px;
+.navvy .panel-default>.panel-heading{
+  background-color: white;
+  border: none;
+}
+.navvy .panel{
+  margin-bottom: 0;/*20px;*/
+  background-color: white: ; 
+  border: none; 
+  border-radius: none;
+  -webkit-box-shadow: none;/*0 1px 1px rgba(0,0,0,0.05)*/
+  box-shadow: none; /*0 1px 1px rgba(0,0,0,0.05) */
+}
 }
 /*media="all"
 .panel-group { 
