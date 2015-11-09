@@ -1,17 +1,69 @@
-body .container {
-  
-
+body{
+  font-family: 'PT Sans', sans-serif;
+  background-color: #e5e6df;
 }
 
 /*=====header nav====*/
-#top-navigation{
-  background-color: black;
-  color: grey;
+.navbar-inner{
+  height:12em;
 }
-#title {
-  float: left;
+.navbar-inner .container{
+  padding-top:2em;
+  height:100%;
 }
 
+#top-navigation{
+  background-color: #353535;
+  color: #e2e7e2;
+
+}
+#title_contain h1{
+  float: left;
+  font-size: x-large;
+  font-weight: bold;
+  margin-left: -2em;
+  color: #e2e7e2;
+
+}
+input.button{
+  background-color:#353535;
+  border: none;
+  margin-top:0.2em;
+}
+input#search{
+  background-color:#353535;
+  border-radius: 3px;
+  box-shadow: none;
+}
+.searcher{
+  float: right;
+  margin-right: 0;
+  margin-top: 0.6em;
+}
+
+/*NAV BUTTONS*/
+ul.nav{
+  margin-left:;
+}
+.nav li{
+  padding-right: 3em;
+
+}
+.nav{
+  display: inline-flex;
+  position: absolute;
+  top:75%;
+  left:15%;
+  
+}
+.nav ul{
+  font-family: 'PT Sans', sans-serif;
+  
+
+}
+.nav li h4{
+  color: #e2e7e2;
+}
 /*====The product browse page===*/
 .prod_wrapper {
  width:80%;
@@ -39,10 +91,7 @@ body .container {
 
 
 }
-.searcher{
-  float: right;
-  margin-right: 0;
-}
+
 
 /*===Side Nav ===*/
 
@@ -75,7 +124,7 @@ body .container {
   -webkit-box-shadow: none;/*0 1px 1px rgba(0,0,0,0.05)*/
   box-shadow: none; /*0 1px 1px rgba(0,0,0,0.05) */
 }
-}
+
 /*media="all"
 .panel-group { 
     margin-bottom: 2px;
@@ -84,3 +133,45 @@ body .container {
 li.highlighted{
   border: thin solid black;
 }
+
+/*======Sub-type Show Dev ========*/
+.type-contain{
+  margin-top: 17em;
+}
+.type-contain ul{
+  margin:0, auto;
+}
+.sub_type_pane{
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  
+  float:left;
+  
+  /*height:19em;*/
+  
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin:3px;
+  width:70%;
+
+}
+.sub_type_tile {
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  
+  float:left;
+  color: red;
+  height: 17.5em;
+  width: 14.5em;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin: 10px;
+
+}
+.sub_type_list {
+  list-style: none;
+  height: 100%;
+}
+

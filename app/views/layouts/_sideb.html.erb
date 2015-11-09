@@ -206,8 +206,8 @@ $( ".prod-cat" ).click(function()
 {
   var anchor = this;
   var link = $(anchor).attr('href');
-  var text = $(anchor).text().toUpperCase();
-  console.log(link);
+  var text = $(anchor).text().toLowerCase();
+  console.log(text);
   console.log("clicked product-type");
   if ( $(link).hasClass("in") ) //THIS needs to be fixed.
   {
@@ -236,7 +236,7 @@ $( ".prod-cat" ).click(function()
 
     $(jsonproducts.product_groups).each(function(index)
     {
-      if (this.product_type.name == text)
+      if (this.product_type.name.toLowerCase() == text)
       {
         var domPro = document.getElementById(this.id);
         console.log(domPro);

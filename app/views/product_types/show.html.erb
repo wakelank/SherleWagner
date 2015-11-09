@@ -1,14 +1,24 @@
+<div class="test_auto">
+<div class="type-contain">
 <h1>Product Type: <%= @product_type.name %></h1>
-<ul>
-  <%= @product_type.product_sub_types.each do |product_sub_type| %>
-    <li><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li>
-    <ul>
-      <%= product_sub_type.four_products.each do |product_group| %>
-        <li><%=  link_to product_group.name, product_group_path(product_group) %></li>
+<ul >
+  <% @product_type.product_sub_types.each do |product_sub_type| %>
+    <li class='sub_type_pane'>
+    <ul class="sub_type_list">
+      <li class="sub_type_tile">
+        <h3><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li></h3>
+      
+        <% product_sub_type.four_products.each do |product_group| %>
+          <li class="sub_type_tile"><%=  link_to product_group.name, product_group_path(product_group) %></li>
 
-      <% end %>
-      <li><%= link_to '+', product_sub_type_path(product_sub_type) %></li>
+        <% end %>
+        <li class="sub_type_tile"><%= link_to '+', product_sub_type_path(product_sub_type) %></li>
+      
     </ul>
+    </li>
+
 
   <% end %>
 </ul>
+</div>
+</div>

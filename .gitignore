@@ -20,5 +20,5 @@
 /public/system/products/images
 
 /solr/pids/*
-solr/
+solr/*
 
