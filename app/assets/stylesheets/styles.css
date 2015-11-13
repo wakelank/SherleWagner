@@ -74,7 +74,7 @@ ul.nav{
 /*====The product browse page===*/
 .prod_wrapper {
   background-color: white;
-  width: 70%;
+  width: 60%;
   float: left;
   min-width: 1000px;
   clear: right;
@@ -158,6 +158,7 @@ li.highlighted{
 /*======Sub-type Show Dev ========*/
 .type-contain{
   margin-top: 1em;
+  min-width: 850px;
 }
 .type-contain ul{
   margin:0, auto;
