@@ -38,7 +38,7 @@ input#search{
 .searcher{
   float: right;
   margin-right: 0;
-  margin-top: 0.6em;
+  margin-top: 1em;
 }
 
 /*NAV BUTTONS*/
@@ -216,5 +216,13 @@ li.highlighted{
  padding-top: 17em;  
 }
 
-
+/*footer*/
+.footer {
+  position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#353535;
+}
 
