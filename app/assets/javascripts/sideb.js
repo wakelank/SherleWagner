@@ -40,11 +40,11 @@ function checkboxer (box)
   }
 
   filterDom();
-  
+
 };
 function filterDom(){
 
-
+//looked at the array of checked filter 
   if (checked.length > 0)
   {
     $(document.getElementsByClassName("prod_tile")).each(function(i)
