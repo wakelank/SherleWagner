@@ -1,8 +1,19 @@
-<div class="type-contain">
-<h1>Product Types</h1>
-<ul class ="prod_list">
-  <% @product_types.each do |product_type| %>
+<%= render "/layouts/ajax1" %>
+
+<%= render "/layouts/sideb" %> <!-- this is the sidenavJS -->
+   
+
+
+<div class="prod_wrapper ">
+  
+    <ul class="prod_list">
+     <% @product_types.each do |product_type| %>
     <li class ="prod_tile"><%= link_to product_type.name, product_type_path(product_type) %></li>
   <% end %>
-</ul>
+    </ul>
 </div>
+
+
+
+
+

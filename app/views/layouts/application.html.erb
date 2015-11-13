@@ -9,7 +9,13 @@
 </head>
 
 <%= render "/layouts/navbar" %>
+<%= render "/layouts/sideb" %> <!-- this is the sidenavJS -->
+                        <!-- ** to do: Make sideb and ajax1 into a real JS file -->
 
+<div class="side-nav-contain span4" id="pg-nav">
+
+    <%= render "/layouts/sidebar" %>
+</div>
 <body class="<%=controller_name%> <%=action_name%>">
   <div class="container">
     <%= yield %>

@@ -43,17 +43,17 @@ input#search{
 
 /*NAV BUTTONS*/
 ul.nav{
-  margin-left:;
+  
 }
 .nav li{
-  padding-right: 3em;
+  padding-right: 8em;
 
 }
 .nav{
   display: inline-flex;
   position: absolute;
   top:75%;
-  left:15%;
+  left:20%;
   
 }
 .nav ul{
@@ -63,17 +63,32 @@ ul.nav{
 }
 .nav li h4{
   color: #e2e7e2;
+
+}
+.nav li a:hover{
+  background-color: rgba(0,0,0,0);
+  text-decoration: underline;
+   -moz-text-decoration-color: white; /* Code for Firefox */
+    text-decoration-color: white;
 }
 /*====The product browse page===*/
 .prod_wrapper {
- width:80%;
- float: right;
- clear: right;
- display: block;
- margin-top: 5.5em;
+  background-color: white;
+  width: 70%;
+  float: left;
+  min-width: 1000px;
+  clear: right;
+  display: block;
+  padding-top: 17em;
+  margin: 0 auto;
+  position: absolute;
+  left: 275px;
+ 
 }
 .prod_list{
   list-style: none;
+  width:90%;
+  margin:auto;
 
 }
 .prod_tile{
@@ -98,33 +113,39 @@ ul.nav{
 .side-nav-contain {
   float: left;
   margin: 2%;
-  width:15%;
+  min-width: 275px;
   margin-top: 5em;
   position:fixed; top:20;
   overflow-y: scroll;
-  background-color: white;
+  
   height: 100%;
   
 }
 .nav-wrap {
   float:left;
-  width: 100%;
-  margin-left: 2em;
+  width: 80%;
+  
   padding: 5px;
 }
+.navvy{
+  padding-top: 12em;
+}
 .navvy .panel-default>.panel-heading{
-  background-color: white;
+  background-color: ;
   border: none;
 }
 .navvy .panel{
   margin-bottom: 0;/*20px;*/
-  background-color: white: ; 
+  
   border: none; 
   border-radius: none;
   -webkit-box-shadow: none;/*0 1px 1px rgba(0,0,0,0.05)*/
   box-shadow: none; /*0 1px 1px rgba(0,0,0,0.05) */
 }
-
+#accordion1 *{
+  background-color: #e5e6df;
+  width: ;
+}
 /*media="all"
 .panel-group { 
     margin-bottom: 2px;
@@ -147,7 +168,7 @@ li.highlighted{
   display:block;
   
   float:left;
-  
+  background-color: white;
   /*height:19em;*/
   
   border: 1px solid grey;
@@ -174,4 +195,24 @@ li.highlighted{
   list-style: none;
   height: 100%;
 }
+.right_side{
+ 
+  height: 100%;
+  
+  float: left;
+ /*clear: left;*/
+ display: block;
+ padding-top: 17em;  
+}
+.left_side{
+  width:15%;
+  height: 100%;
+  
+  float: left;
+ /*clear: left;*/
+ display: block;
+ padding-top: 17em;  
+}
+
+
 

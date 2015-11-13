@@ -4,18 +4,25 @@
 <%= render "/layouts/sideb" %> <!-- this is the sidenavJS -->
                         <!-- ** to do: Make sideb and ajax1 into a real JS file -->
 
-<div class="side-nav-contain span4" id="pg-nav">
+<!-- <div class="side-nav-contain span4" id="pg-nav">
 
-    <%= render "/layouts/sidebar" %>
-</div>
+   
+</div> -->
+<div class="prod_page">
+    <div class="left_side bumper">
+        
+    </div>
+    <div class="prod_wrapper ">
+        <ul class="prod_list">
+          <% @product_groups.each do |product_group| %>
+          <!-- product_groups.categories -->
+            <li class ="prod_tile" id="<%= product_group.id %>"><%=link_to product_group.name, product_group_path(product_group.id) %></li>
+          
+          <% end %>
+        </ul>
 
-<div class="prod_wrapper ">
-    <ul class="prod_list">
-      <% @product_groups.each do |product_group| %>
-      <!-- product_groups.categories -->
-        <li class ="prod_tile" id="<%= product_group.id %>"><%=link_to product_group.name, product_group_path(product_group.id) %></li>
-      
-      <% end %>
-    </ul>
-
+    </div>
+    <div class="right_side bumper">
+        
+    </div>
 </div>
