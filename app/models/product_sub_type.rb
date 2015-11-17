@@ -5,7 +5,7 @@ class ProductSubType < ActiveRecord::Base
   
 
   def four_products
-    self.product_groups.all.limit 4
+    self.products.all.limit 4
   end
 
 

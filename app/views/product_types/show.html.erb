@@ -11,8 +11,8 @@
           <li class="sub_type_tile">
             <h3><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li></h3>
           
-            <% product_sub_type.four_products.each do |product_group| %>
-              <li class="sub_type_tile"><%=  link_to product_group.name, product_group_path(product_group) %></li>
+            <% product_sub_type.four_products.each do |product| %>
+              <li class="sub_type_tile"><%=  link_to product.name, product_path(product) %></li>
 
             <% end %>
             <li class="sub_type_tile"><%= link_to '+', product_sub_type_path(product_sub_type) %></li>

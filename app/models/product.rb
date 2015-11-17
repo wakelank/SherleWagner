@@ -116,6 +116,26 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def get_filter_values
+    self.filter_values.uniq
+  end
+
+  def get_filters
+    filter_arr = []
+    filter_vals = self.filter_values
+    filter_vals.each do |filter_val|
+      filter_arr << filter_val.filter
+    end
+    filter_arr.uniq
+  end
+
+  def filter_hashes
+    f_hashes = []
+    self.get_filters.each do |filter|
+      f_hashes << filter.filter_hash
+    end
+    f_hashes
+  end
 end
 
 
