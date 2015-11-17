@@ -2,18 +2,6 @@ require 'english'
 require 'csv'
 
 class Product < ActiveRecord::Base
- # belongs_to :basin_design
- # belongs_to :ceiling_lights_design
- # belongs_to :console_counter_vanity_design
- # belongs_to :door_trim_design
- # belongs_to :lever_design
- # belongs_to :overall_color
- # belongs_to :wall_lights_design
- # belongs_to :wall_paper_design
- # belongs_to :wall_trim_design
- # belongs_to :water_closet_handle_design
- # belongs_to :product_type
- # belongs_to :product_sub_type  
   belongs_to :product_group
   belongs_to :product_type
   belongs_to :product_sub_type
@@ -29,8 +17,6 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :number, presence: true, uniqueness: true
 
-
-
   def self.new_upload_product_file(file)
 
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
@@ -43,22 +29,23 @@ class Product < ActiveRecord::Base
         filter_name = row["FILTERS"] || ""
         filter_name2 = row["FILTERS2"] || ""
         genre_names = row["GENRES"] || ""
+        args = {}
+        args[:product_type] = ProductType.get_arg row
+        args[:product_sub_type] = ProductSubType.get_arg row
+        
 
-        #if !Product.exists?(number: product_number) || product_number != "no product number"
           begin
             product_type =ProductType.where('lower(name) = ?', product_type.downcase.strip).first 
             product_sub_type = ProductSubType.where('lower(name) =?', product_sub_type.downcase.strip).first 
-          #  if !generic_product_number.nil? && generic_product_number != ""
               product_group_args = { number: generic_product_number,
                                      name: name, 
                                      product_type: product_type, 
                                      product_sub_type: product_sub_type }
               product_group = ProductGroup.first_or_custom_create(product_group_args)
-           # end
             product = Product.new(name: name, 
                                      number: generic_product_number, 
-                                     product_type: product_type, 
-                                     product_sub_type: product_sub_type,
+                                     product_type: args[:product_type], 
+                                     product_sub_type: args[:product_sub_type],
                                      product_group: product_group)
             if product.number.include?('-XX')
               product.finishes = Finish.all
@@ -78,11 +65,8 @@ class Product < ActiveRecord::Base
           end
 
           begin
-           # if !product_group.nil? && product_group.name != "TITLE-XX"
-  #            if !style_name.nil? && style_name != ""
                 style = Style.where(name: style_name.downcase.strip).first_or_create
                 product.styles << style
-             # if !filter_name.nil? && filter_name !=""
               if !filter_name.blank?
                 filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
                 product.filter_values << filter_value if !filter_value.nil?
@@ -98,13 +82,11 @@ class Product < ActiveRecord::Base
                 end
               end
               product_group.save
-           # end
 
           rescue
             binding.pry
           end
         end
-      #end
   end
   
   def add_materials(material_code)
