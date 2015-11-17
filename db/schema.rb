@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103181437) do
+ActiveRecord::Schema.define(version: 20151117030320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,14 @@ ActiveRecord::Schema.define(version: 20151103181437) do
 
   add_index "china_colors_product_groups", ["china_color_id"], name: "index_china_colors_product_groups_on_china_color_id", using: :btree
   add_index "china_colors_product_groups", ["product_group_id"], name: "index_china_colors_product_groups_on_product_group_id", using: :btree
+
+  create_table "china_colors_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "china_color_id"
+  end
+
+  add_index "china_colors_products", ["china_color_id"], name: "index_china_colors_products_on_china_color_id", using: :btree
+  add_index "china_colors_products", ["product_id"], name: "index_china_colors_products_on_product_id", using: :btree
 
   create_table "console_counter_vanity_designs", force: :cascade do |t|
     t.string   "name"
@@ -102,6 +110,14 @@ ActiveRecord::Schema.define(version: 20151103181437) do
   add_index "filter_values_product_groups", ["filter_value_id"], name: "index_filter_values_product_groups_on_filter_value_id", using: :btree
   add_index "filter_values_product_groups", ["product_group_id"], name: "index_filter_values_product_groups_on_product_group_id", using: :btree
 
+  create_table "filter_values_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "filter_value_id"
+  end
+
+  add_index "filter_values_products", ["filter_value_id"], name: "index_filter_values_products_on_filter_value_id", using: :btree
+  add_index "filter_values_products", ["product_id"], name: "index_filter_values_products_on_product_id", using: :btree
+
   create_table "filters", force: :cascade do |t|
     t.string "name"
   end
@@ -120,6 +136,14 @@ ActiveRecord::Schema.define(version: 20151103181437) do
 
   add_index "finishes_product_groups", ["finish_id"], name: "index_finishes_product_groups_on_finish_id", using: :btree
   add_index "finishes_product_groups", ["product_group_id"], name: "index_finishes_product_groups_on_product_group_id", using: :btree
+
+  create_table "finishes_products", force: :cascade do |t|
+    t.integer "finish_id"
+    t.integer "product_id"
+  end
+
+  add_index "finishes_products", ["finish_id"], name: "index_finishes_products_on_finish_id", using: :btree
+  add_index "finishes_products", ["product_id"], name: "index_finishes_products_on_product_id", using: :btree
 
   create_table "genres", force: :cascade do |t|
     t.string   "name"
@@ -172,6 +196,14 @@ ActiveRecord::Schema.define(version: 20151103181437) do
 
   add_index "materials_product_groups", ["material_id"], name: "index_materials_product_groups_on_material_id", using: :btree
   add_index "materials_product_groups", ["product_group_id"], name: "index_materials_product_groups_on_product_group_id", using: :btree
+
+  create_table "materials_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "material_id"
+  end
+
+  add_index "materials_products", ["material_id"], name: "index_materials_products_on_material_id", using: :btree
+  add_index "materials_products", ["product_id"], name: "index_materials_products_on_product_id", using: :btree
 
   create_table "overall_colors", force: :cascade do |t|
     t.string   "name"
@@ -331,6 +363,8 @@ ActiveRecord::Schema.define(version: 20151103181437) do
   add_foreign_key "accents_products", "products"
   add_foreign_key "china_colors_product_groups", "china_colors"
   add_foreign_key "china_colors_product_groups", "product_groups"
+  add_foreign_key "china_colors_products", "china_colors"
+  add_foreign_key "china_colors_products", "products"
   add_foreign_key "filter_product_group_values", "filter_values"
   add_foreign_key "filter_product_group_values", "filters"
   add_foreign_key "filter_product_group_values", "product_groups"
@@ -341,8 +375,12 @@ ActiveRecord::Schema.define(version: 20151103181437) do
   add_foreign_key "filter_values", "filters"
   add_foreign_key "filter_values_product_groups", "filter_values"
   add_foreign_key "filter_values_product_groups", "product_groups"
+  add_foreign_key "filter_values_products", "filter_values"
+  add_foreign_key "filter_values_products", "products"
   add_foreign_key "finishes_product_groups", "finishes"
   add_foreign_key "finishes_product_groups", "product_groups"
+  add_foreign_key "finishes_products", "finishes"
+  add_foreign_key "finishes_products", "products"
   add_foreign_key "genres_product_groups", "genres"
   add_foreign_key "genres_product_groups", "product_groups"
   add_foreign_key "genres_products", "genres"
@@ -351,6 +389,8 @@ ActiveRecord::Schema.define(version: 20151103181437) do
   add_foreign_key "inserts_products", "products"
   add_foreign_key "materials_product_groups", "materials"
   add_foreign_key "materials_product_groups", "product_groups"
+  add_foreign_key "materials_products", "materials"
+  add_foreign_key "materials_products", "products"
   add_foreign_key "product_group_filters", "filters"
   add_foreign_key "product_group_filters", "product_groups"
   add_foreign_key "product_groups", "product_sub_types"

@@ -15,6 +15,14 @@ class Product < ActiveRecord::Base
  # belongs_to :product_type
  # belongs_to :product_sub_type  
   belongs_to :product_group
+  belongs_to :product_type
+  belongs_to :product_sub_type
+  has_and_belongs_to_many :genres
+  has_and_belongs_to_many :filter_values
+  has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
+  has_and_belongs_to_many :china_colors, class_name: 'ChinaColor', join_table: :china_colors_products
+  has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
+  has_and_belongs_to_many :styles
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -48,8 +56,22 @@ class Product < ActiveRecord::Base
               product_group = ProductGroup.first_or_custom_create(product_group_args)
            # end
             product = Product.new(name: name, 
-                                     number: product_number, 
+                                     number: generic_product_number, 
+                                     product_type: product_type, 
+                                     product_sub_type: product_sub_type,
                                      product_group: product_group)
+            if product.number.include?('-XX')
+              product.finishes = Finish.all
+            end
+
+            if product.number.include?('CC')
+              product.china_colors = ChinaColor.all
+            end
+
+            Material.codes.each do |code|
+              product.add_materials(code) if product.number.include? "-#{code}"
+            end
+
             product.save if product.valid?
           rescue
             binding.pry
@@ -59,20 +81,20 @@ class Product < ActiveRecord::Base
            # if !product_group.nil? && product_group.name != "TITLE-XX"
   #            if !style_name.nil? && style_name != ""
                 style = Style.where(name: style_name.downcase.strip).first_or_create
-                product_group.styles << style
+                product.styles << style
              # if !filter_name.nil? && filter_name !=""
               if !filter_name.blank?
                 filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
-                product_group.filter_values << filter_value if !filter_value.nil?
+                product.filter_values << filter_value if !filter_value.nil?
               end
               if !filter_name2.nil? && filter_name2 !=""
                 filter_value = FilterValue.where('lower(name) = ?', filter_name2.downcase.strip).first
-                product_group.filter_values << filter_value if !filter_value.nil?
+                product.filter_values << filter_value if !filter_value.nil?
               end
               if !genre_names.blank?
                 genre_names.split(',').each do |genre_name|
-                  genre = Genre.where(name: genre_name.downcase.strip).first_or_create
-                  product_group.genres = product_group.genres | [genre] if (!genre.nil?)
+                  genre = Genre.where('lower(name) = ?', genre_name.downcase.strip)  
+                  product.genres << genre if (!genre.nil?)
                 end
               end
               product_group.save
@@ -85,6 +107,14 @@ class Product < ActiveRecord::Base
       #end
   end
   
+  def add_materials(material_code)
+    begin
+      self.materials.concat Material.where(code: material_code)
+      self.save
+    rescue
+      binding.pry
+    end
+  end
 
 end
 
