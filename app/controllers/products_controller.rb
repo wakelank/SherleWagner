@@ -32,8 +32,12 @@ class ProductsController < ApplicationController
 #  end
 
   def show
-    @product_number = params[:product_number]
-    @product_group = ProductGroup.find(params[:product_group_id])
+    @product = Product.find(params[:id])
+  end
+
+  def show_tearsheet
+    @product_number = params[:product_number] 
+    @product = Product.find(params[:product_id])
     @finish_id = params[:finish_id]
     @material_id = params[:material_id]
     @china_color_id = params[:china_color_id]
