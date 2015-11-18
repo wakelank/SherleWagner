@@ -40,9 +40,10 @@ class Product < ActiveRecord::Base
            #   product.finishes = Finish.all
            # end
 
-            if product.number.include?('CC')
-              product.china_colors = ChinaColor.all
-            end
+            ChinaColor.add_china_colors_to product if product.needs_china_colors?
+           # if product.number.include?('CC')
+           #   product.china_colors = ChinaColor.all
+           # end
 
             Material.codes.each do |code|
               product.add_materials(code) if product.number.include? "-#{code}"
@@ -82,6 +83,10 @@ class Product < ActiveRecord::Base
     self.number.include? Finish::INDICATOR
   end
 
+  def needs_china_colors?
+    self.number.include? Finish::INDICATOR
+  end
+   
   def self.get_name_from(row)
     row["GENERIC PRODUCT NAME _ Revised"] || "no name"
   end
