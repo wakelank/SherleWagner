@@ -3,7 +3,7 @@ module CanExtractFromFile
 
 
   def extract_from(row)
-    row[self.header]  || "NONE"
+    row[self::HEADER] || "NONE"
   end
 
   def case_insensitive_find(find_me)

@@ -6,9 +6,7 @@ class ProductType < ActiveRecord::Base
 
   extend CanExtractFromFile
 
-  def self.header
-    "MAIN"
-  end
-  
+  HEADER = "MAIN"
+
     
 end
