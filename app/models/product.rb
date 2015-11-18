@@ -20,8 +20,8 @@ class Product < ActiveRecord::Base
   def self.new_upload_product_file(file)
 
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-        name = row["GENERIC PRODUCT NAME _ Revised"] || "no name"
-        generic_product_number = row["Generic Product Number"] || "no product number"
+        #name = row["GENERIC PRODUCT NAME _ Revised"] || "no name"
+        #generic_product_number = row["Generic Product Number"] || "no product number"
         product_number = row["IMAGE FILE"] || "no image"
         product_type = row['MAIN'] || "no product type"
         product_sub_type = row['SUB FOLDER'] || "no product sub type"
@@ -32,21 +32,23 @@ class Product < ActiveRecord::Base
         args = {}
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
+        args[:name] = self.get_name_from row
+        args[:generic_product_number] = self.get_generic_number_from row
         
 
           begin
-            product_type =ProductType.where('lower(name) = ?', product_type.downcase.strip).first 
-            product_sub_type = ProductSubType.where('lower(name) =?', product_sub_type.downcase.strip).first 
-              product_group_args = { number: generic_product_number,
-                                     name: name, 
-                                     product_type: product_type, 
-                                     product_sub_type: product_sub_type }
-              product_group = ProductGroup.first_or_custom_create(product_group_args)
-            product = Product.new(name: name, 
-                                     number: generic_product_number, 
+        #    product_type =ProductType.where('lower(name) = ?', product_type.downcase.strip).first 
+         #   product_sub_type = ProductSubType.where('lower(name) =?', product_sub_type.downcase.strip).first 
+          #    product_group_args = { number: generic_product_number,
+           #                          name: name, 
+            #                         product_type: product_type, 
+             #                        product_sub_type: product_sub_type }
+            #  product_group = ProductGroup.first_or_custom_create(product_group_args)
+            product = Product.new(name: args[:name], 
+                                     number: args[:generic_product_number], 
                                      product_type: args[:product_type], 
-                                     product_sub_type: args[:product_sub_type],
-                                     product_group: product_group)
+                                     product_sub_type: args[:product_sub_type]
+                                 )
             if product.number.include?('-XX')
               product.finishes = Finish.all
             end
@@ -81,13 +83,24 @@ class Product < ActiveRecord::Base
                   product.genres << genre if (!genre.nil?)
                 end
               end
-              product_group.save
+              #product_group.save
 
           rescue
             binding.pry
           end
         end
   end
+
+  def self.get_name_from(row)
+    row["GENERIC PRODUCT NAME _ Revised"] || "no name"
+  end
+
+  def self.get_generic_number_from(row)
+    row["Generic Product Number"] || "no product number"
+  end
+
+
+
   
   def add_materials(material_code)
     begin
