@@ -20,11 +20,7 @@ class Product < ActiveRecord::Base
   def self.new_upload_product_file(file)
 
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-        #name = row["GENERIC PRODUCT NAME _ Revised"] || "no name"
-        #generic_product_number = row["Generic Product Number"] || "no product number"
-        product_number = row["IMAGE FILE"] || "no image"
-        product_type = row['MAIN'] || "no product type"
-        product_sub_type = row['SUB FOLDER'] || "no product sub type"
+        ##product_number = row["IMAGE FILE"] || "no image"
         style_name = row["STYLES"] || ""
         filter_name = row["FILTERS"] || ""
         filter_name2 = row["FILTERS2"] || ""
@@ -33,25 +29,16 @@ class Product < ActiveRecord::Base
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
         args[:name] = self.get_name_from row
-        args[:generic_product_number] = self.get_generic_number_from row
+        args[:number] = self.get_generic_number_from row
         
 
           begin
-        #    product_type =ProductType.where('lower(name) = ?', product_type.downcase.strip).first 
-         #   product_sub_type = ProductSubType.where('lower(name) =?', product_sub_type.downcase.strip).first 
-          #    product_group_args = { number: generic_product_number,
-           #                          name: name, 
-            #                         product_type: product_type, 
-             #                        product_sub_type: product_sub_type }
-            #  product_group = ProductGroup.first_or_custom_create(product_group_args)
-            product = Product.new(name: args[:name], 
-                                     number: args[:generic_product_number], 
-                                     product_type: args[:product_type], 
-                                     product_sub_type: args[:product_sub_type]
-                                 )
-            if product.number.include?('-XX')
-              product.finishes = Finish.all
-            end
+            product = Product.new(args)
+
+            Finish.add_finishes_to product if product.needs_finishes? 
+           # if product.number.include?('-XX')
+           #   product.finishes = Finish.all
+           # end
 
             if product.number.include?('CC')
               product.china_colors = ChinaColor.all
@@ -89,6 +76,10 @@ class Product < ActiveRecord::Base
             binding.pry
           end
         end
+  end
+
+  def needs_finishes?
+    self.number.include? Finish::INDICATOR
   end
 
   def self.get_name_from(row)
