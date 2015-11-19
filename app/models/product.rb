@@ -21,10 +21,6 @@ class Product < ActiveRecord::Base
 
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
         ##product_number = row["IMAGE FILE"] || "no image"
-        style_name = row["STYLES"] || ""
-        filter_name = row["FILTERS"] || ""
-        filter_name2 = row["FILTERS2"] || ""
-        genre_names = row["GENRES"] || ""
         args = {}
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
@@ -33,6 +29,7 @@ class Product < ActiveRecord::Base
 
         style = Style.get_arg row
         filters = FilterValue.get_arg row
+        genres= Genre.get_arg row
         
 
           begin
@@ -42,32 +39,11 @@ class Product < ActiveRecord::Base
             ChinaColor.add_china_colors_to product if product.needs_china_colors?
             Material.add_materials_to product if product.needs_materials?
 
+            product.styles << style
+            product.filter_values.concat filters
+            product.genres.concat genres
+
             product.save if product.valid?
-          rescue
-            binding.pry
-          end
-
-          begin
-                #style = Style.where(name: style_name.downcase.strip).first_or_create
-
-                product.styles << style
-                product.filter_values.concat filters
-             # if !filter_name.blank?
-             #   filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
-             #   product.filter_values << filter_value if !filter_value.nil?
-             # end
-             # if !filter_name2.nil? && filter_name2 !=""
-             #   filter_value = FilterValue.where('lower(name) = ?', filter_name2.downcase.strip).first
-             #   product.filter_values << filter_value if !filter_value.nil?
-             # end
-              if !genre_names.blank?
-                genre_names.split(',').each do |genre_name|
-                  genre = Genre.where('lower(name) = ?', genre_name.downcase.strip)  
-                  product.genres << genre if (!genre.nil?)
-                end
-              end
-              #product_group.save
-
           rescue
             binding.pry
           end

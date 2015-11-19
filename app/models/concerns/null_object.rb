@@ -4,10 +4,12 @@ class NullObject
     self
   end
 
-  def nil?
-    true
+  def hey
+    'hey'
   end
-
+  def to_a
+    []
+  end
 
 end
 
