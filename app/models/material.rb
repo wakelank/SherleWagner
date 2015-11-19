@@ -7,5 +7,13 @@ class Material < ActiveRecord::Base
     self.pluck(:code).uniq.compact
   end
 
+  def self.add_materials_to(product)
+    codes.each do |code|
+      product.materials = Material.where(code: code)
+    end
+
+  end
+  
+  
 end
 

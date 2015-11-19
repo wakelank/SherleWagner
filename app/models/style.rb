@@ -3,6 +3,10 @@ class Style < ActiveRecord::Base
   has_and_belongs_to_many :product_groups
   has_and_belongs_to_many :products
 
+  extend CanExtractFromFile
+
+  HEADER = "STYLES"
+
   def products
     product_arr = []
     self.product_groups.each do |pg|

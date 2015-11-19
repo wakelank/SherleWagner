@@ -30,24 +30,17 @@ class Product < ActiveRecord::Base
         args[:product_sub_type] = ProductSubType.get_arg row
         args[:name] = self.get_name_from row
         args[:number] = self.get_generic_number_from row
+
+        style = Style.get_arg row
+        filters = FilterValue.get_arg row
         
 
           begin
             product = Product.new(args)
 
             Finish.add_finishes_to product if product.needs_finishes? 
-           # if product.number.include?('-XX')
-           #   product.finishes = Finish.all
-           # end
-
             ChinaColor.add_china_colors_to product if product.needs_china_colors?
-           # if product.number.include?('CC')
-           #   product.china_colors = ChinaColor.all
-           # end
-
-            Material.codes.each do |code|
-              product.add_materials(code) if product.number.include? "-#{code}"
-            end
+            Material.add_materials_to product if product.needs_materials?
 
             product.save if product.valid?
           rescue
@@ -55,16 +48,18 @@ class Product < ActiveRecord::Base
           end
 
           begin
-                style = Style.where(name: style_name.downcase.strip).first_or_create
+                #style = Style.where(name: style_name.downcase.strip).first_or_create
+
                 product.styles << style
-              if !filter_name.blank?
-                filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
-                product.filter_values << filter_value if !filter_value.nil?
-              end
-              if !filter_name2.nil? && filter_name2 !=""
-                filter_value = FilterValue.where('lower(name) = ?', filter_name2.downcase.strip).first
-                product.filter_values << filter_value if !filter_value.nil?
-              end
+                product.filter_values.concat filters
+             # if !filter_name.blank?
+             #   filter_value = FilterValue.where('lower(name) = ?', filter_name.downcase.strip).first
+             #   product.filter_values << filter_value if !filter_value.nil?
+             # end
+             # if !filter_name2.nil? && filter_name2 !=""
+             #   filter_value = FilterValue.where('lower(name) = ?', filter_name2.downcase.strip).first
+             #   product.filter_values << filter_value if !filter_value.nil?
+             # end
               if !genre_names.blank?
                 genre_names.split(',').each do |genre_name|
                   genre = Genre.where('lower(name) = ?', genre_name.downcase.strip)  
@@ -84,8 +79,16 @@ class Product < ActiveRecord::Base
   end
 
   def needs_china_colors?
-    self.number.include? Finish::INDICATOR
+    self.number.include? ChinaColor::INDICATOR
   end
+
+  def needs_materials?
+    Material.codes.each do |code|
+      return true if self.number.include? code
+    end
+  end
+  
+    
    
   def self.get_name_from(row)
     row["GENERIC PRODUCT NAME _ Revised"] || "no name"
