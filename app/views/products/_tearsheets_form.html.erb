@@ -1,0 +1,10 @@
+
+  <div class='tearsheet-form-box'>
+    <%= form_tag tearsheets_path do %>
+      <%= hidden_field_tag('product_id', @product.id) %>
+      <%= collection_select(:tearsheet, :material_id, @product.materials, :id, :name, include_blank: '') %>
+      <%= collection_select(:tearsheet, :finish_id, @product.finishes, :id, :name, include_blank: '') %>
+      <%= collection_select(:tearsheet, :china_color_id, @product.china_colors, :id, :name, include_blank: '') %>
+      <%= submit_tag "Generate Tear Sheet" %>
+    <% end %>
+  </div>

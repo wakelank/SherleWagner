@@ -20,6 +20,13 @@ class NullObject
     []
   end
 
+  def number
+    ""
+  end
+  def identifier
+    ""
+  end
+
 
 end
 
