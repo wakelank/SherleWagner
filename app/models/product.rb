@@ -109,35 +109,3 @@ class Product < ActiveRecord::Base
 end
 
 
-
-class NonClass
-  attr_accessor :name
-  def initialize
-    @name = "no name"
-  end
-end
-
-class NonProductType < NonClass
-  ProductType.first
-end
-
-class NonProductSubType < NonClass
-  ProductSubType.first
-end
-
-
-class NonStyle < NonClass
-end
-
-class NonFilter < NonClass
-  attr_accessor :filter_value
-  def initialize
-    @filter_value = "Non filter value"
-  end
-
-end
-
-class NonGenre < NonClass
-end
-
-

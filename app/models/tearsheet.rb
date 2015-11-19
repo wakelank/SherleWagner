@@ -14,6 +14,7 @@ class Tearsheet
   end
 
   def number
+    #TODO refactor material_code_regex into helper
     material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
     number = @product.number
     number.sub!("XX", @finish.identifier) if !@finish.nil?
