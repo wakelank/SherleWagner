@@ -6,6 +6,12 @@
   <p>
   <%= @product.number %>
   </p>
+  Existing images:
+  <ul>
+    <% @product.product_configurations.each do |config| %>
+      <li><%= config.number %></li>
+    <% end %>
+  </ul>
   <%= render 'product_info' %>
   <%= render 'tearsheets_form' %>
 </div>

@@ -16,7 +16,8 @@ class Genre < ActiveRecord::Base
     arr = []
     find_mes.each do |find_me|
       if !find_me.nil?
-        arr << self.where('lower(name) = ?', find_me.downcase.strip).first 
+        genre = self.where('lower(name) = ?', find_me.downcase.strip).first || NullObject.new
+        arr << genre if !genre.nil?
       end
     end
     arr
