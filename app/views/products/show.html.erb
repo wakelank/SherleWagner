@@ -4,7 +4,6 @@
     <%= hidden_field_tag :product_id, @product.id %>
     <%= submit_tag 'add to favorites' %>
   <% end %>
-  <%= link_to 'add to favorites', favorites_path(:product_id => @product.id), method: 'post' %>
   <p>
   <%= @product.name%>
   </p>

@@ -1,12 +1,13 @@
 class FavoritesController < ApplicationController
 
   def index
-    @products = []
+    @favorites = []
     favorite_params = JSON.parse(cookies[:favorites])
     favorite_params.each do |favorite_param|
       product_id = favorite_param["product_id"]
       product = Product.find_by(id: product_id) || NullObject.new
-      @products << product if !product.nil?
+      url = favorite_param["url"] || ""
+      @favorites << { product: product, url: url }
     end
 
   end
@@ -14,12 +15,13 @@ class FavoritesController < ApplicationController
   def create
     favorites = []
     favorites = JSON.parse(cookies[:favorites]) if cookies[:favorites].length >=2
-    favorites << { product_id: params[:product_id] }
+    favorites << { product_id: params[:product_id],
+                    url: request.referrer }
     cookies[:favorites] = favorites.to_json
      
     redirect_to :back 
   end
-  
+ 
 
 end
 

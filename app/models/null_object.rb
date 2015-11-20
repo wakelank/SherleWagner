@@ -20,6 +20,9 @@ class NullObject
     ""
   end
 
+  def _path
+    ""
+  end
 
   def split(*args)
     []

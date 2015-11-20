@@ -1,8 +1,8 @@
 <div class="prod_wrapper">
   <h1>favorites</h1>
   <ul>
-  <% @products.each do |product| %>
-    <li><%= product.name %></li>
+  <% @favorites.each do |favorite| %>
+    <li><%= link_to favorite[:product].name, favorite[:url] %></li>
   <% end %>
   </ul>
 </div>
