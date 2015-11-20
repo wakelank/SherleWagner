@@ -30,12 +30,11 @@ class Product < ActiveRecord::Base
         style = Style.get_arg row
         filters = FilterValue.get_arg row
         genres= Genre.get_arg row
-        product_configuration_number = ProductConfiguration.get_arg row
+        product_configuration = ProductConfiguration.get_arg row
         begin
 
             product = Product.new(args)
 
-            product_configuration = ProductConfiguration.new(number: product_configuration_number) || NullObject.new
 
             Finish.add_finishes_to product if product.needs_finishes? 
             ChinaColor.add_china_colors_to product if product.needs_china_colors?
@@ -50,7 +49,7 @@ class Product < ActiveRecord::Base
               product = Product.find_by(number: args[:number])
             end
 
-            product.product_configurations << product_configuration
+            product.product_configurations << product_configuration if !product_configuration.nil?
             product.save if product.valid?
           rescue
             binding.pry
