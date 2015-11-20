@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
 
   def create
     favorites = []
-    favorites = JSON.parse(cookies[:favorites]) if cookies[:favorites].length >=2
+    favorites = JSON.parse(cookies[:favorites]) if cookies[:favorites]
     favorites << { product_id: params[:product_id],
                     url: request.referrer }
     cookies[:favorites] = favorites.to_json
