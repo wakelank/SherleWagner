@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   belongs_to :product_group
   belongs_to :product_type
   belongs_to :product_sub_type
+  has_many :product_configurations
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :filter_values
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
@@ -20,7 +21,6 @@ class Product < ActiveRecord::Base
   def self.new_upload_product_file(file)
 
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-        ##product_number = row["IMAGE FILE"] || "no image"
         args = {}
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
@@ -30,19 +30,27 @@ class Product < ActiveRecord::Base
         style = Style.get_arg row
         filters = FilterValue.get_arg row
         genres= Genre.get_arg row
-        
+        product_configuration_number = ProductConfiguration.get_arg row
+        begin
 
-          begin
             product = Product.new(args)
+
+            product_configuration = ProductConfiguration.new(number: product_configuration_number) || NullObject.new
 
             Finish.add_finishes_to product if product.needs_finishes? 
             ChinaColor.add_china_colors_to product if product.needs_china_colors?
             Material.add_materials_to product if product.needs_materials?
 
+
             product.styles << style
             product.filter_values.concat filters
             product.genres.concat genres
 
+            if Product.exists?(number: product.number)
+              product = Product.find_by(number: args[:number])
+            end
+
+            product.product_configurations << product_configuration
             product.save if product.valid?
           rescue
             binding.pry

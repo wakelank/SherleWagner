@@ -60,9 +60,13 @@ RSpec.describe ProductsController, :type => :controller do
       expect(@product.styles.first.name).to eq "Arco"
     end
     it "genre" do
-      expect(@product.genres.first.name).to eq "Traditional"
+      expect(@product.genres.first.name).to eq "Contemporary"
     end
 
+    it "product_configuration" do
+      @product_with_configurations = Product.find_by(number: '008BSN108-SLSL-XX')
+      expect(@product_with_configurations.product_configurations.pluck(:number).sort).to eq ["008BSN108-BLTI-CP","008BSN108-RHOD-CP"]
+    end 
   end
 
  # describe "Upload process creates ProductGroups" do

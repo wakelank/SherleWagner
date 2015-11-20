@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151117030320) do
+ActiveRecord::Schema.define(version: 20151120182737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,13 @@ ActiveRecord::Schema.define(version: 20151117030320) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_configurations", force: :cascade do |t|
+    t.integer "product_id"
+    t.string  "number"
+  end
+
+  add_index "product_configurations", ["product_id"], name: "index_product_configurations_on_product_id", using: :btree
+
   create_table "product_group_filters", force: :cascade do |t|
     t.integer "product_group_id"
     t.integer "filter_id"
@@ -391,6 +398,7 @@ ActiveRecord::Schema.define(version: 20151117030320) do
   add_foreign_key "materials_product_groups", "product_groups"
   add_foreign_key "materials_products", "materials"
   add_foreign_key "materials_products", "products"
+  add_foreign_key "product_configurations", "products"
   add_foreign_key "product_group_filters", "filters"
   add_foreign_key "product_group_filters", "product_groups"
   add_foreign_key "product_groups", "product_sub_types"
