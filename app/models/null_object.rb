@@ -16,6 +16,11 @@ class NullObject
     ""
   end
 
+  def to_str
+    ""
+  end
+
+
   def split(*args)
     []
   end
