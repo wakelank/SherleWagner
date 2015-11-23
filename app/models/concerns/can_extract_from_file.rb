@@ -14,5 +14,12 @@ module CanExtractFromFile
     result = self.extract_from row
     case_insensitive_find(result)
   end
-end
 
+  def assign_attribute(args)
+    product = args[:product] || NullObject.new
+    row = args[:row] || NullObject.new
+    result = self.extract_from row
+    case_insensitive_find(result)
+    product.product_type = result
+  end
+end

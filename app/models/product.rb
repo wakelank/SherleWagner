@@ -34,7 +34,7 @@ class Product < ActiveRecord::Base
         begin
 
             product = Product.new(args)
-
+            #ProductType.assign_attribute({ row: row, product: product })
             Finish.add_finishes_to product if product.needs_finishes? 
             ChinaColor.add_china_colors_to product if product.needs_china_colors?
             Material.add_materials_to product if product.needs_materials?

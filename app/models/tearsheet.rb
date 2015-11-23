@@ -20,7 +20,7 @@ class Tearsheet
     number.sub!("XX", @finish.identifier) if !@finish.nil?
     number.sub!("CC", @china_color.identifier) if !@china_color.nil?
     number.sub!(material_code_regex, @material.identifier) if !@material.nil?
-
+    number
   end
 
     
