@@ -30,8 +30,10 @@ class Favorites
     @all << favorite
   end
 
-  def delete(favorite_id)
-    puts '========================'
+  def delete(delete_me_id)
+    @all.delete_if do |favorite|
+      favorite.id == delete_me_id.to_i
+    end
   end
 
 

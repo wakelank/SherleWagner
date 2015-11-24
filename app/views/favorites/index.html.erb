@@ -7,7 +7,7 @@
        favorite.url,
         id:favorite.css_id,
         class: 'favorite' %>
-      <%= link_to "delete", favorites_path, method: 'delete', id: favorite.id %>
+      <%= link_to " [X] ", favorites_path + "/#{favorite.id}", method: 'delete' %>
     </li>
   <% end %>
   </ul>
