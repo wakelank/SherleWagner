@@ -1,10 +1,7 @@
 <div class="prod_wrapper">
   <h1>Product page</h1>
   <%= image_tag @product.image.url %>
-  <%= form_tag favorites_path, method: 'post' do %>
-    <%= hidden_field_tag :product_id, @product.id %>
-    <%= submit_tag 'add to favorites' %>
-  <% end %>
+  <%= render 'favorites/favorite_button' %>
   <p>
   <%= @product.name%>
   </p>
