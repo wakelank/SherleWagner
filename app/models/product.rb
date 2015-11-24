@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :china_colors, class_name: 'ChinaColor', join_table: :china_colors_products
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
+  has_and_belongs_to_many :compilations
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -21,11 +22,15 @@ class Product < ActiveRecord::Base
   def self.new_upload_product_file(file)
 
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-        args = {}
+      args = {}
+      args[:name] = self.get_name_from row
+      args[:number] = self.get_generic_number_from row
+      if args[:number] == "TITLE-XX"
+        compilation = Compilation.new(args)
+        compilation.save if compilation.valid?
+      else
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
-        args[:name] = self.get_name_from row
-        args[:number] = self.get_generic_number_from row
 
         style = Style.get_arg row
         filters = FilterValue.get_arg row
@@ -53,6 +58,7 @@ class Product < ActiveRecord::Base
             binding.pry
           end
         end
+    end
   end
 
   def needs_finishes?

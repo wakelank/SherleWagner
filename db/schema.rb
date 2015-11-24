@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120182737) do
+ActiveRecord::Schema.define(version: 20151124222236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(version: 20151120182737) do
 
   add_index "china_colors_products", ["china_color_id"], name: "index_china_colors_products_on_china_color_id", using: :btree
   add_index "china_colors_products", ["product_id"], name: "index_china_colors_products_on_product_id", using: :btree
+
+  create_table "compilations", force: :cascade do |t|
+    t.string "name"
+    t.string "number"
+  end
+
+  create_table "compilations_products", force: :cascade do |t|
+    t.integer "compilation_id"
+    t.integer "product_id"
+  end
+
+  add_index "compilations_products", ["compilation_id"], name: "index_compilations_products_on_compilation_id", using: :btree
+  add_index "compilations_products", ["product_id"], name: "index_compilations_products_on_product_id", using: :btree
 
   create_table "console_counter_vanity_designs", force: :cascade do |t|
     t.string   "name"
@@ -372,6 +385,8 @@ ActiveRecord::Schema.define(version: 20151120182737) do
   add_foreign_key "china_colors_product_groups", "product_groups"
   add_foreign_key "china_colors_products", "china_colors"
   add_foreign_key "china_colors_products", "products"
+  add_foreign_key "compilations_products", "compilations"
+  add_foreign_key "compilations_products", "products"
   add_foreign_key "filter_product_group_values", "filter_values"
   add_foreign_key "filter_product_group_values", "filters"
   add_foreign_key "filter_product_group_values", "product_groups"
