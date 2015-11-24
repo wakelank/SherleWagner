@@ -6,7 +6,6 @@ class FavoritesController < ApplicationController
 
   def create
     favorites = Favorites.new(favorites_args) || [NullObject.new]
-    binding.pry
     args = { product_id: params[:product_id],
                     url: request.referrer,
                     id: favorites.next_id,
@@ -19,6 +18,14 @@ class FavoritesController < ApplicationController
     redirect_to :back 
   end
  
+  def destroy
+    favorites = Favorites.new(favorites_args) || [NullObject.new]
+    favorites.delete(params[:id])
+    cookies[:favorites] = favorites.all.to_json
+
+    redirect_to favorites_path
+  end
+
   private
 
   def favorites_args

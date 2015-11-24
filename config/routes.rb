@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :tearsheets, only: [:show, :create]
   resources :favorites, only: [:index, :create]
+  delete 'favorites' => 'favorites#destroy'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

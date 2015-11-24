@@ -26,7 +26,7 @@ class Favorite
   end
 
   def id
-    @id
+    @id || 0
   end
 
   def product_name

@@ -30,4 +30,9 @@ class Favorites
     @all << favorite
   end
 
+  def delete(favorite_id)
+    puts '========================'
+  end
+
+
 end 
