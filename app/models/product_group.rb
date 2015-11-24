@@ -1,3 +1,11 @@
+class NameIsNot < ActiveModel::Validator
+  def validate(record)
+    if record.name == "TITLE-XX"
+      record.errors[:base] << "Name is TITLE-XX"
+    end
+  end
+end
+
 class ProductGroup < ActiveRecord::Base
   has_many :products
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_product_groups
@@ -15,7 +23,11 @@ class ProductGroup < ActiveRecord::Base
   validates_associated :product_type
   validates :product_sub_type, presence: true
   validates_associated :product_sub_type
+#  validates_with NameIsNot
 
+
+
+ 
   
   before_destroy { |record| Product.destroy_all "product_group_id= #{record.id}" }
 

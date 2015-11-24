@@ -1,47 +1,31 @@
-class ProductsController < ApplicationController
-  def upload_product_file
-    Product.new_upload_product_file(params[:filename])
-
-    redirect_to :back
+class Tearsheet 
+  def materials_id
+  end
+  def finish_id
+  end
+  def china_color_id
   end
 
-#  def show
-#    @product = Product.find(params[:id])
-#    @material_types = @product.material_types
-#    @insert_types = @product.insert_types
-#    @associated_products = []
-#    @associated_products = @product.product_group.products
-#    respond_to do |format|
-#      format.html
-#      format.json { render json: @product.to_json(:methods => [:filters]) }
-#    end
-#  end
-#
-#  def index
-#    @products = Product.all
-#    @products = Product.all
-#    @categories = ProductSubType.all
-#    @filters = FilterProductValue.unique_filters
-#
-#    respond_to do |format|
-#      format.html
-#      format.json { render json: { products: @products.as_json(:methods => [:filters]), 
-#                                   filters: @filters }
-#                   }
-#    end
-#  end
-
-  def show
-    @product = Product.find(params[:id])
+  def initialize(args)
+    @material = args[:material]
+    @finish = args[:finish]
+    @china_color = args[:china_color]
+    @product = args[:product]
   end
 
-  def show_tearsheet
-    @product_number = params[:product_number] 
-    @product = Product.find(params[:product_id])
-    @finish_id = params[:finish_id]
-    @material_id = params[:material_id]
-    @china_color_id = params[:china_color_id]
+  def number
+    #TODO refactor material_code_regex into helper
+    material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+    number = @product.number
+    number.sub!("XX", @finish.identifier) if !@finish.nil?
+    number.sub!("CC", @china_color.identifier) if !@china_color.nil?
+    number.sub!(material_code_regex, @material.identifier) if !@material.nil?
+
   end
+
+    
+    
+
 
   def build_tearsheet
 
@@ -84,12 +68,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show_tearsheet
-    @product_number = params[:product_number]
-
-  end
-
-
-   
-
 end
+
+

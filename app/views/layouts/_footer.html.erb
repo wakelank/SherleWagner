@@ -1,4 +1,5 @@
 <div class='footer'>
+<<<<<<< HEAD
   <div class="footer-links">
     <ul>
       <li>
@@ -22,4 +23,13 @@
   </div>
 
 
+=======
+  <% if admin? %>
+    <%= link_to 'logout', logout_path %>
+    <%= link_to 'add product', new_product_group_path %>
+  <% else %>
+    <%= link_to 'login', login_path %>
+  <% end %>
+  <%= link_to 'favorites', favorites_path if !cookies[:favorites].nil? %>
+>>>>>>> 8ec255223eef93eca2a911adc8c5de53a68b69cc
 </div> 

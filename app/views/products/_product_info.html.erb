@@ -1,0 +1,19 @@
+<h3>Finishes</h3>
+<ul>
+  <% @product.finishes.each do |finish| %>
+    <li><%= finish.name %></li>
+  <% end %>
+</ul>
+<h3>Materials</h3>
+<ul>
+  <% @product.materials.each do |material| %>
+    <li><%= material.name %></li>
+  <% end %>
+</ul>
+<h3>China Color</h3>
+<ul>
+  <% @product.china_colors.each do |china_color| %>
+    <li><%= china_color.name %></li>
+  <% end %>
+</ul>
+

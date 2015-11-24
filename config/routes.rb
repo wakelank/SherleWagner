@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
 
+  resources :tearsheets, only: [:show, :create]
+  resources :favorites, only: [:index, :create]
+
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   
   # The priority is based upon order of creation: first created -> highest priority.

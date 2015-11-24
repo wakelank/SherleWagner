@@ -1,6 +1,11 @@
 class Style < ActiveRecord::Base
-#  belongs_to :genre
+  belongs_to :genre
   has_and_belongs_to_many :product_groups
+  has_and_belongs_to_many :products
+
+  extend CanExtractFromFile
+
+  HEADER = "STYLES"
 
   def products
     product_arr = []

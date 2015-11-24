@@ -1,6 +1,21 @@
-<h1>Product page</h1>
-<%= @product_number %>
-<p>
-  <%= @product_group.name %>
-</p>
-<%= render 'product_groups/product_group_info' %>
+<div class="prod_wrapper">
+  <h1>Product page</h1>
+  <%= form_tag favorites_path, method: 'post' do %>
+    <%= hidden_field_tag :product_id, @product.id %>
+    <%= submit_tag 'add to favorites' %>
+  <% end %>
+  <p>
+  <%= @product.name%>
+  </p>
+  <p>
+  <%= @product.number %>
+  </p>
+  Existing images:
+  <ul>
+    <% @product.product_configurations.each do |config| %>
+      <li><%= config.number %></li>
+    <% end %>
+  </ul>
+  <%= render 'product_info' %>
+  <%= render 'tearsheets_form' %>
+</div>

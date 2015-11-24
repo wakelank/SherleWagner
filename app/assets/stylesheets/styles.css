@@ -80,6 +80,7 @@ ul.nav{
   clear: right;
   display: block;
   padding-top: 14em;
+  padding-bottom: 2em;
   margin: 0 auto;
   position: absolute;
   left: 250px;
@@ -131,7 +132,6 @@ ul.nav{
   padding-top: 11.5em;
 }
 .navvy .panel-default>.panel-heading{
-  background-color: ;
   border: none;
 }
 .navvy .panel{
@@ -144,7 +144,6 @@ ul.nav{
 }
 #accordion1 *{
   background-color: #e5e6df;
-  width: ;
 }
 /*media="all"
 .panel-group { 
