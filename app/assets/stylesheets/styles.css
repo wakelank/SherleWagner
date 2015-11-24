@@ -98,8 +98,8 @@ ul.nav{
   
   float:left;
   color: red;
-  height:19em;
-  width: 12.5em;
+  height:22.5em;
+  width: 15em;
   border: 1px solid grey;
   border-radius: 3px;
   margin:9px;
@@ -185,8 +185,8 @@ li.highlighted{
   
   float:left;
   color: red;
-  height: 17.5em;
-  width: 14.5em;
+  height: 22.5em;
+  width: 15em;
   border: 1px solid grey;
   border-radius: 3px;
   margin: 10px;
