@@ -25,15 +25,6 @@ RSpec.describe ProductsController, :type => :controller do
       expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
     end
 
-    it 'add compilation to database' do
-      expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Compilation, :count).by(1)
-    end
-
-    it 'assigns compilation name' do
-      post :upload_product_file, :controller => :products, :filename => @file 
-      expect(Compilation.first.name).to eq 'Concentric Shower Suite One'
-    end
-
 
   end
 

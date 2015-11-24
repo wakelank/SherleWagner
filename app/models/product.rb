@@ -25,10 +25,7 @@ class Product < ActiveRecord::Base
       args = {}
       args[:name] = self.get_name_from row
       args[:number] = self.get_generic_number_from row
-      if args[:number] == "TITLE-XX"
-        compilation = Compilation.new(args)
-        compilation.save if compilation.valid?
-      else
+      if args[:number] != "TITLE-XX"
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
 
@@ -59,6 +56,7 @@ class Product < ActiveRecord::Base
           end
         end
     end
+    
   end
 
   def needs_finishes?
