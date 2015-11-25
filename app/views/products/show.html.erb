@@ -14,6 +14,16 @@
       <li><%= config.number %></li>
     <% end %>
   </ul>
+  <% if @product.compilations.size > 0 %>
+    <p>
+    Compilations:
+    </p>
+    <ul>
+      <% @product.compilations.each do |compilation| %>
+        <li><%= link_to compilation.name, compilation_path(compilation) %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <%= render 'product_info' %>
   <%= render 'tearsheets_form' %>
 </div>

@@ -18,6 +18,11 @@ RSpec.describe ProductsController, :type => :controller do
       expect(Compilation.first.name).to eq 'Concentric Shower Suite One'
     end
 
+    it 'assigns products to compilation' do
+      post :upload_product_file, :controller => :products, :filename => @file 
+      expect((Compilation.first.products).pluck(:number).sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
+    end
+
 
   end
 end

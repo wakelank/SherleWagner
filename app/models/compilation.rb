@@ -10,6 +10,15 @@ class Compilation < ActiveRecord::Base
       if args[:number] == "TITLE-XX"
         compilation = Compilation.new(args)
         compilation.save if compilation.valid?
+      else
+        product_code = row["CODE under Product Name"] || "no name"
+        image_name  = row["IMAGE FILE"] || "no name"
+        if image_name == "no name"
+          product = Product.where('number like ?', "#{product_code}%") || NullObject.new
+          compilation = Compilation.last || NullObject.new
+          compilation.products << product if !product.nil?
+          compilation.save
+        end
       end
 
     end
