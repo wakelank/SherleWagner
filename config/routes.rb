@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
 
   resources :tearsheets, only: [:show, :create]
-  resources :favorites, only: [:index, :create]
+  resources :favorites, only: [:index, :create, :destroy]
+  resources :compilations, only: [:show]
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

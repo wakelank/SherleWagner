@@ -1,0 +1,14 @@
+<div class="prod_wrapper">
+  <h1>favorites</h1>
+  <ul>
+  <% @favorites.each do |favorite| %>
+    <li>
+      <%= link_to favorite.product_name,
+       favorite.url,
+        id:favorite.css_id,
+        class: 'favorite' %>
+      <%= link_to " [X] ", favorites_path + "/#{favorite.id}", method: 'delete' %>
+    </li>
+  <% end %>
+  </ul>
+</div>

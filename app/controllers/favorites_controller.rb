@@ -1,27 +1,43 @@
 class FavoritesController < ApplicationController
 
   def index
-    @favorites = []
-    favorite_params = JSON.parse(cookies[:favorites])
-    favorite_params.each do |favorite_param|
-      product_id = favorite_param["product_id"]
-      product = Product.find_by(id: product_id) || NullObject.new
-      url = favorite_param["url"] || ""
-      @favorites << { product: product, url: url }
-    end
-
+    @favorites = Favorites.new(favorites_args).all || [NullObject.new]
   end
 
   def create
-    favorites = []
-    favorites = JSON.parse(cookies[:favorites]) if cookies[:favorites]
-    favorites << { product_id: params[:product_id],
-                    url: request.referrer }
-    cookies[:favorites] = favorites.to_json
+    favorites = Favorites.new(favorites_args) || [NullObject.new]
+    args = { product_id: params[:product_id],
+                    url: request.referrer,
+                    id: favorites.next_id,
+                    tearsheet: params[:tearsheet] }
+    favorite = Favorite.new(args) || NullObject.new
+    favorites.save(favorite) if !favorite.nil?
+
+    cookies[:favorites] = favorites.all.to_json
      
     redirect_to :back 
   end
  
+  def destroy
+    favorites = Favorites.new(favorites_args) || [NullObject.new]
+    favorites.delete(params[:id])
+    cookies[:favorites] = favorites.all.to_json
+
+    redirect_to favorites_path
+  end
+
+  private
+
+  def favorites_args
+    if cookies[:favorites] && cookies[:favorites].length > 2
+      args = {}
+      args[:favorites] = JSON.parse(cookies[:favorites])
+      args
+    else
+      NullObject.new
+    end
+  end
+
 
 end
 

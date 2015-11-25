@@ -17,13 +17,15 @@ RSpec.describe ProductsController, :type => :controller do
     end
 
     it "uploading product file adds products to database" do
-      expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Product, :count).by(4)
+      expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Product, :count).by(7)
     end
 
     it 'product name' do
       post :upload_product_file, :controller => :products, :filename => @file 
       expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
     end
+
+
   end
 
   describe "Upload process associates with product:" do
