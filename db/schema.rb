@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124222236) do
+ActiveRecord::Schema.define(version: 20151130235734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,12 @@ ActiveRecord::Schema.define(version: 20151124222236) do
   add_index "china_colors_products", ["product_id"], name: "index_china_colors_products_on_product_id", using: :btree
 
   create_table "compilations", force: :cascade do |t|
-    t.string "name"
-    t.string "number"
+    t.string   "name"
+    t.string   "number"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "compilations_products", force: :cascade do |t|
@@ -225,8 +229,12 @@ ActiveRecord::Schema.define(version: 20151124222236) do
   end
 
   create_table "product_configurations", force: :cascade do |t|
-    t.integer "product_id"
-    t.string  "number"
+    t.integer  "product_id"
+    t.string   "number"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "product_configurations", ["product_id"], name: "index_product_configurations_on_product_id", using: :btree

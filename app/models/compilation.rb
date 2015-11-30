@@ -1,5 +1,7 @@
 class Compilation < ActiveRecord::Base
   has_and_belongs_to_many :products
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_compliation.jpg"
+  validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
 
   def self.upload_compilations_from_file(file)
