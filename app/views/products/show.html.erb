@@ -1,29 +1,42 @@
 <div class="prod_wrapper">
+
   <h1>Product page</h1>
-  <%= image_tag @product.image.url %>
+  
+  <div class="product_image">
+    <%= image_tag @product.image.url %>
+  </div>
+
   <%= render 'favorites/favorite_button' %>
-  <p>
-  <%= @product.name%>
-  </p>
-  <p>
-  <%= @product.number %>
-  </p>
-  Existing images:
-  <ul>
-    <% @product.product_configurations.each do |config| %>
-      <li><%= config.number %></li>
-    <% end %>
-  </ul>
-  <% if @product.compilations.size > 0 %>
+
+  <div class="product_details">
+    <h3>
+    <%= @product.name%>
+    </h3>
     <p>
-    Compilations:
+    <%= @product.number %>
     </p>
+  </div>
+
+  <div class="image_list">
+    Existing images:
     <ul>
-      <% @product.compilations.each do |compilation| %>
-        <li><%= link_to compilation.name, compilation_path(compilation) %></li>
+      <% @product.product_configurations.each do |config| %>
+        <li><%= config.number %></li>
       <% end %>
     </ul>
-  <% end %>
+  </div>
+  <div class="compilations">
+    <% if @product.compilations.size > 0 %>
+      <p>
+      Compilations:
+      </p>
+      <ul>
+        <% @product.compilations.each do |compilation| %>
+          <li><%= link_to compilation.name, compilation_path(compilation) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
   <%= render 'product_info' %>
   <%= render 'tearsheets_form' %>
 </div>

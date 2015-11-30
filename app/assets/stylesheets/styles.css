@@ -148,6 +148,9 @@ ul.nav{
 #accordion1 *{
   background-color: #e5e6df;
 }
+#accordion1 .panel-sub-heading{
+  padding-left: 10px;
+}
 /*media="all"
 .panel-group { 
     margin-bottom: 2px;
@@ -180,6 +183,10 @@ li.highlighted{
   width:90%;
 
 }
+.list_wrapper {
+  width: 100%;
+  margin:0 auto;
+}
 .sub_type_tile {
   padding: 0.5em;
   text-align: center;
@@ -199,6 +206,12 @@ li.highlighted{
   height: 100%;
   margin-top: -2em;
 }
+
+.plus_end{
+  display: block;
+  clear: left;
+  float: right;
+  }
 .right_side{
  
   height: 100%;
