@@ -65,6 +65,10 @@ RSpec.describe ProductsController, :type => :controller do
       expect(@product.genres.first.name).to eq "Contemporary"
     end
 
+    it "image" do
+      expect(@product.image.url).to eq "/system/products/images/000/001/927/original/008BSN108-CP.jpg?1448920256"
+    end
+
     it "product_configuration" do
       @product_with_configurations = Product.find_by(number: '008BSN108-SLSL-XX')
       expect(@product_with_configurations.product_configurations.pluck(:number).sort).to eq ["008BSN108-BLTI-CP","008BSN108-RHOD-CP"]
