@@ -1,5 +1,5 @@
 <div class="prod_wrapper">
-<<<<<<< HEAD
+
 
   <div class="prod_page_content">
 
@@ -9,8 +9,8 @@
       <%= @product.name%>
       </h3>
         <div class="product_image">
-          <div id="image_div"></div>
-      image_tag @product.image.url
+          
+      <%= image_tag @product.image.url(:medium) %>
     </div>
       <h4>
       <%= @product.number %>
@@ -39,30 +39,7 @@
             <li><%= link_to compilation.name, compilation_path(compilation) %></li>
           <% end %>
         </ul>
-=======
-  <h1>Product page</h1>
-  <%= image_tag @product.image.url(:medium) %>
-  <%= render 'favorites/favorite_button' %>
-  <p>
-  <%= @product.name%>
-  </p>
-  <p>
-  <%= @product.number %>
-  </p>
-  Existing images:
-  <ul>
-    <% @product.product_configurations.each do |config| %>
-      <li><%= config.number %></li>
-    <% end %>
-  </ul>
-  <% if @product.compilations.size > 0 %>
-    <p>
-    Compilations:
-    </p>
-    <ul>
-      <% @product.compilations.each do |compilation| %>
-        <li><%= link_to compilation.name, compilation_path(compilation) %></li>
->>>>>>> 632e912a227a90b16d851ab2302f96a51e0cbe7d
+
       <% end %>
     </div>
     <%= render 'product_info' %>
