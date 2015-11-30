@@ -1,19 +1,28 @@
+<div class="finishes">
 <h3>Finishes</h3>
-<ul>
+<ul id="product_finishes_list" class="detail_list">
   <% @product.finishes.each do |finish| %>
-    <li><%= finish.name %></li>
+    <li class="prod_tile finish_tile  "><%= finish.name %></li>
   <% end %>
 </ul>
+</div>
+<div class="materials">
 <h3>Materials</h3>
-<ul>
+<ul id="product_materials_list" class="detail_list">
   <% @product.materials.each do |material| %>
-    <li><%= material.name %></li>
+    <li class="prod_tile finish_tile  "><%= material.name %></li>
   <% end %>
 </ul>
-<h3>China Color</h3>
-<ul>
-  <% @product.china_colors.each do |china_color| %>
-    <li><%= china_color.name %></li>
-  <% end %>
+</div>
+<div class="china_colors">
+<% if @product.china_colors.length() > 0 %>
+  <h3>China Color</h3>
+  <ul id="product_china_list" class="detail_list">
+    <% @product.china_colors.each do |china_color| %>
+      <li class="prod_tile finish_tile  "><%= china_color.name %></li>
+    <% end %>
+<% end %>
+
 </ul>
+</div>
 

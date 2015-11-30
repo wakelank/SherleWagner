@@ -98,7 +98,7 @@ ul.nav{
   display:block;
   
   float:left;
-  color: red;
+  color: ;
   height:22.5em;
   width: 15em;
   border: 1px solid grey;
@@ -107,7 +107,19 @@ ul.nav{
 
 
 }
+.finish_tile{
+  width: 4em;
+  height: 4em;
 
+}
+.detail_list {
+  float:left;
+  padding-right: 20px;
+}
+
+.tearsheet-form-box{
+  float:left;
+}
 
 /*===Side Nav ===*/
 
@@ -131,6 +143,10 @@ ul.nav{
 .navvy{
   padding-top: 11.5em;
 }
+.navvy .panel-sub-heading {
+  padding-left: 0;
+}
+
 .navvy .panel-default>.panel-heading{
   border: none;
 }
@@ -149,7 +165,7 @@ ul.nav{
   background-color: #e5e6df;
 }
 #accordion1 .panel-sub-heading{
-  padding-left: 10px;
+  
 }
 /*media="all"
 .panel-group { 
@@ -160,12 +176,20 @@ li.highlighted{
   border: thin solid black;
 }
 
+.prod_page_content{
+  width:100%;
+  padding-left: 3em;
+}
+
+
+
+
 /*======Sub-type Show Dev ========*/
 .type-contain{
   margin-top: 1em;
   min-width: 850px;
 }
-.type-contain ul{
+.list_wrapper ul{
   margin:0, auto;
 }
 .sub_type_pane{
@@ -193,7 +217,7 @@ li.highlighted{
   display:block;
   
   float:left;
-  color: red;
+  color: ;
   height: 22.5em;
   width: 15em;
   border: 1px solid grey;
