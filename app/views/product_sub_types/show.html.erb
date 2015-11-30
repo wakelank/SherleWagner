@@ -4,7 +4,8 @@
 <h1><%= @product_sub_type.name %></h1>
 <ul class ="prod_list">
   <% @product_sub_type.products.each do |product| %>
-    <li class ="prod_tile"><%= link_to product.name, product_path(product) %></li>
+    <% bgimage= product.image.url(:medium) %>
+    <li class ="prod_tile" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;"><%= link_to product.name, product_path(product) %></li>
   <% end %>
 </ul>
 
