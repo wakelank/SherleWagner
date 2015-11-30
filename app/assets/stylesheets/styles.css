@@ -18,10 +18,10 @@ body{
 
 }
 #title_contain h1{
-  float: left;
+  position: absolute;
   font-size: x-large;
   font-weight: bold;
-  margin-left: -2em;
+  left: 65px;
   color: #e2e7e2;
 
 }
@@ -180,7 +180,13 @@ li.highlighted{
   width:100%;
   padding-left: 3em;
 }
+/*======Product Show ========*/
 
+#image_div{
+  height:43em;
+  width: 43em;
+  background-image: url("/assets/ex1.png");
+}
 
 
 
@@ -189,8 +195,12 @@ li.highlighted{
   margin-top: 1em;
   min-width: 850px;
 }
+.list_wrapper{
+  width: 100%;
+}
 .list_wrapper ul{
-  margin:0, auto;
+  width: 99%;
+  margin:0 auto;
 }
 .sub_type_pane{
   padding: 0.5em;
@@ -207,10 +217,7 @@ li.highlighted{
   width:90%;
 
 }
-.list_wrapper {
-  width: 100%;
-  margin:0 auto;
-}
+
 .sub_type_tile {
   padding: 0.5em;
   text-align: center;
