@@ -142,6 +142,9 @@ ul.nav{
   -webkit-box-shadow: none;/*0 1px 1px rgba(0,0,0,0.05)*/
   box-shadow: none; /*0 1px 1px rgba(0,0,0,0.05) */
 }
+.panel-body {
+  padding: 0px 15px;
+}
 #accordion1 *{
   background-color: #e5e6df;
 }
