@@ -1,5 +1,6 @@
 require 'english'
 require 'csv'
+require 'find'
 
 class Product < ActiveRecord::Base
   belongs_to :product_group
@@ -28,6 +29,16 @@ class Product < ActiveRecord::Base
       if args[:number] != "TITLE-XX"
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
+        image_name = self.get_image_name_from row
+        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        image_file = NullObject.new
+        Find.find(images_path) do |filepath|
+          if File.basename(filepath) == image_name
+            image_file = File.new(filepath) || NullObject.new
+          end
+        end
+        args[:image] = image_file if !image_file.nil?
+
 
         style = Style.get_arg row
         filters = FilterValue.get_arg row
@@ -83,6 +94,12 @@ class Product < ActiveRecord::Base
     row["Generic Product Number"] || "no product number"
   end
 
+  def self.get_image_name_from(row)
+    name = row["IMAGE FILE"] || "no image"
+    name = name + ".jpg" if name != "no image"
+    name
+  end
+
 
 
   
@@ -117,6 +134,7 @@ class Product < ActiveRecord::Base
   end
 
 
+
 searchable do
     text :name
     # text :product_sub_type do
@@ -128,7 +146,12 @@ searchable do
     
 end
 
-  
+
+  def china_colors?
+    self.china_colors.length > 0
+  end
+
+
 end
 
 

@@ -6,31 +6,6 @@ class ProductsController < ApplicationController
     redirect_to :back
   end
 
-#  def show
-#    @product = Product.find(params[:id])
-#    @material_types = @product.material_types
-#    @insert_types = @product.insert_types
-#    @associated_products = []
-#    @associated_products = @product.product_group.products
-#    respond_to do |format|
-#      format.html
-#      format.json { render json: @product.to_json(:methods => [:filters]) }
-#    end
-#  end
-#
-#  def index
-#    @products = Product.all
-#    @products = Product.all
-#    @categories = ProductSubType.all
-#    @filters = FilterProductValue.unique_filters
-#
-#    respond_to do |format|
-#      format.html
-#      format.json { render json: { products: @products.as_json(:methods => [:filters]), 
-#                                   filters: @filters }
-#                   }
-#    end
-#  end
 
   def show
     @product = Product.find(params[:id])

@@ -38,12 +38,18 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+# config.paperclip_defaults = {
+#  :storage => :s3,
+#  :s3_credentials => {
+#    :bucket => 'sw-rails-images1',
+#     :s3_credentials => '#{Rails.root}/config/aws.yml'
+#
+#  }
  config.paperclip_defaults = {
   :storage => :s3,
-  :s3_credentials => {
-    :bucket => 'sherle-wagner',
-     :s3_credentials => '#{Rails.root}/config/aws.yml',
+  :bucket => 'sw-rails-images1',
+ }
 
-  }
-}
+
+
 end
