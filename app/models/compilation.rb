@@ -1,5 +1,7 @@
 class Compilation < ActiveRecord::Base
   has_and_belongs_to_many :products
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_compliation.jpg"
+  validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
 
   def self.upload_compilations_from_file(file)
@@ -8,6 +10,16 @@ class Compilation < ActiveRecord::Base
       args[:name] = self.get_name_from row
       args[:number] = self.get_generic_number_from row
       if args[:number] == "TITLE-XX"
+        image_name = self.get_image_name_from row
+        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        image_file = NullObject.new
+        Find.find(images_path) do |filepath|
+          if File.basename(filepath) == image_name
+            image_file = File.new(filepath) || NullObject.new
+          end
+        end
+        args[:image] = image_file if !image_file.nil?
+
         compilation = Compilation.new(args)
         compilation.save if compilation.valid?
       else
@@ -31,5 +43,12 @@ class Compilation < ActiveRecord::Base
   def self.get_generic_number_from(row)
     row["Generic Product Number"] || "no product number"
   end
+
+  def self.get_image_name_from(row)
+    name = row["IMAGE FILE"] || "no image"
+    name = name + ".jpg" if name != "no image"
+    name
+  end
+
 end
 

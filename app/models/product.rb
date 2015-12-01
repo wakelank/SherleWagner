@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :compilations
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   validates :name, presence: true
   validates :number, presence: true, uniqueness: true
@@ -94,7 +94,7 @@ class Product < ActiveRecord::Base
     row["Generic Product Number"] || "no product number"
   end
 
-  def self.get_image_name_from(row)
+  def self.get_image_name_from(row)18
     name = row["IMAGE FILE"] || "no image"
     name = name + ".jpg" if name != "no image"
     name
