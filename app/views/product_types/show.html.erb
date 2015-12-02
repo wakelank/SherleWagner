@@ -11,14 +11,20 @@
           <% @product_type.product_sub_types.each do |product_sub_type| %>
             
             
-              <li class="sub_type_tile">
-                <h3><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li></h3>
+              <li class="prod_tile" id="sub_type_tile">
+                <h3 ><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type),class:"sub_type_tile_title" %></h3></li>
               
                 <% product_sub_type.four_products.each do |product| %>
-                  <li class="sub_type_tile"><%=  link_to product.name, product_path(product) %></li>
+                  <% bgimage= product.image.url(:medium) %>
+
+    <li class ="prod_tile" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
+      <div class="prod_title">
+        <%= link_to product.name, product_path(product), class:"prod_title_link" %>
+      </div>
+    </li>
 
                 <% end %>
-                <li class="sub_type_tile"><%= link_to '+', product_sub_type_path(product_sub_type) %></li> <div class="plus_end"></div>
+                <li class="prod_tile"><%= link_to '+', product_sub_type_path(product_sub_type) %></li> <div class="plus_end"></div>
               
             
             </li>
