@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   post 'products/upload_products' => 'products#upload_product_file'
   post 'products/tearsheet' => 'products#build_tearsheet'
   get 'products/tearsheet' => 'products#show'
+
 #  get 'product_groups/add_favorite' => 'product_groups#add_favorite'
+
 
   root 'product_types#index'
   resources :products
@@ -14,7 +16,9 @@ Rails.application.routes.draw do
 
  # get 'product_types/:product_type' => 'product_groups#index'
   
+
 #  resources :product_groups, :defaults => { :format => 'html' }
+
   resources :product_types
   resources :product_sub_types
   

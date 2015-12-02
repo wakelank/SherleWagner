@@ -1,31 +1,38 @@
 <div class="test_auto">
   <div class="prod_page">
-    <div class="left_side bumper"></div>
+    <!-- <div class="left_side bumper"></div> -->
 
-    <div class="type-contain prod_wrapper">
+    <!-- <div class="type-contain prod_wrapper"> -->
+    <div class=" prod_wrapper">
+      <div class="list_pad"></div>
+      <div class="list_wrapper">
 
-    <ul >
-      <% @product_type.product_sub_types.each do |product_sub_type| %>
-        <li class='sub_type_pane'>
-        <ul class="sub_type_list">
-          <li class="sub_type_tile">
-            <h3><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li></h3>
-          
-            <% product_sub_type.four_products.each do |product| %>
-              <li class="sub_type_tile"><%=  link_to product.name, product_path(product) %></li>
+        <ul >
+          <% @product_type.product_sub_types.each do |product_sub_type| %>
+            
+            
+              <li class="sub_type_tile">
+                <h3><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type) %></li></h3>
+              
+                <% product_sub_type.four_products.each do |product| %>
+                  <li class="sub_type_tile"><%=  link_to product.name, product_path(product) %></li>
 
-            <% end %>
-            <li class="sub_type_tile"><%= link_to '+', product_sub_type_path(product_sub_type) %></li>
-          
+                <% end %>
+                <li class="sub_type_tile"><%= link_to '+', product_sub_type_path(product_sub_type) %></li> <div class="plus_end"></div>
+              
+            
+            </li>
+
+
+
+
+          <% end %>
         </ul>
-        </li>
-
-
-      <% end %>
-    </ul>
+      </div>
+      <div class="list_pad"></div>
     </div>
-    <div class="right_side bumper">
+    <!-- <div class="right_side bumper">
       
-    </div>
+    </div> -->
 </div>
 </div>

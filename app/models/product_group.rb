@@ -99,16 +99,7 @@ class ProductGroup < ActiveRecord::Base
   end
 
 
-searchable do
-    text :name
-    # text :product_sub_type do
-    #      product_sub_type.name
-    #    end
-    #    text :product_type do
-    #      product_type.name
-    #    end
-    
-end
+
   
 
 end

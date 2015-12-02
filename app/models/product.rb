@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
         image_name = self.get_image_name_from row
-        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        images_path = "/Users/ph1am/Desktop/SW website/images1"
         image_file = NullObject.new
         Find.find(images_path) do |filepath|
           if File.basename(filepath) == image_name
@@ -135,9 +135,24 @@ class Product < ActiveRecord::Base
     f_hashes
   end
 
+
+
+# searchable do
+#     text :name
+#     # text :product_sub_type do
+#     #      product_sub_type.name
+#     #    end
+#     #    text :product_type do
+#     #      product_type.name
+#     #    end
+    
+# end
+
+
   def china_colors?
     self.china_colors.length > 0
   end
+
 
 end
 

@@ -5,12 +5,13 @@
 
 
 <div class="prod_wrapper ">
-  
+  <div class="list_wrapper">
     <ul class="prod_list">
      <% @product_types.each do |product_type| %>
-    <li class ="prod_tile"><%= link_to product_type.name, product_type_path(product_type) %></li>
-  <% end %>
+      <li class ="prod_tile"><%= link_to product_type.name, product_type_path(product_type) %></li>
+    <% end %>
     </ul>
+  </div>
 </div>
 
 
