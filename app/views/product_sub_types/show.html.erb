@@ -5,12 +5,15 @@
 <ul class ="prod_list">
   <% @product_sub_type.products.each do |product| %>
     <% bgimage= product.image.url(:medium) %>
-    <li class ="prod_tile", 
-     style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
-     <%= link_to product.name, product_path(product), class:"prod_title_link" %>
+
+    <li class ="prod_tile" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
+      <div class="prod_title">
+        <%= link_to product.name, product_path(product), class:"prod_title_link" %>
+      </div>
     </li>
+        
   <% end %>
 </ul>
 
 </div>
-</div>
+  </div>
