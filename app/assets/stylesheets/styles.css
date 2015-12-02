@@ -107,6 +107,13 @@ ul.nav{
 
 
 }
+.prod_list .prod_tile ul li a {
+      display: block;
+    margin-top: 135%;
+
+}
+/*+++++THE PRODUCT SHOW PAGE++++++*/
+
 .finish_tile{
   width: 4em;
   height: 4em;
