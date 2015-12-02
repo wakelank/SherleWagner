@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
   validates :number, presence: true, uniqueness: true
 
   def self.new_upload_product_file(file)
-
+    start_time = Time.new
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       args = {}
       args[:name] = self.get_name_from row
@@ -67,6 +67,8 @@ class Product < ActiveRecord::Base
           end
         end
     end
+    puts "Start time: #{start_time}."
+    puts "End time: #{Time.new}."
     
   end
 
