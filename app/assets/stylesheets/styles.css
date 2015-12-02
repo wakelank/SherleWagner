@@ -73,7 +73,7 @@ ul.nav{
 }
 /*====The product browse page===*/
 .prod_wrapper {
-  background-color: white;
+  background-color: #F5F5F5;
   width: 60%;
   float: left;
   min-width: 900px;
@@ -96,20 +96,27 @@ ul.nav{
   padding: 0.5em;
   text-align: center;
   display:block;
-  
+  background-color: white;
   float:left;
   color: ;
   height:22.5em;
   width: 15em;
-  border: 1px solid grey;
+  /*border: 1px solid grey;*/
   border-radius: 3px;
   margin:9px;
 
 
 }
-.prod_list .prod_tile ul li a {
-      display: block;
-    margin-top: 135%;
+ul.prod_list li.prod_tile div.prod_title {
+  
+ 
+
+
+}
+ul.prod_list li.prod_tile a.prod_title_link {
+    display: block;
+    margin-top: 125%;
+    color: grey;
 
 }
 /*+++++THE PRODUCT SHOW PAGE++++++*/
