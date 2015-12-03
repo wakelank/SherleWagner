@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index, :create, :destroy]
   resources :compilations, only: [:show]
 
+  get "/fetch_items" => 'products#from_category', as: 'fetch_items'
+
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   
   # The priority is based upon order of creation: first created -> highest priority.

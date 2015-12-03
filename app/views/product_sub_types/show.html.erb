@@ -1,6 +1,8 @@
 
 <div class="prod_wrapper">
 <div class="type-contain">
+  <%= render partial: 'products/item_grid', locals: {items: @items} %>
+  <h1>end of partial</h1>
 <h1><%= @product_sub_type.name %></h1>
 <ul class ="prod_list">
   <% @product_sub_type.products.each do |product| %>
