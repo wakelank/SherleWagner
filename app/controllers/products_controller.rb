@@ -67,6 +67,7 @@ class ProductsController < ApplicationController
 
   def from_category
     @selected = Product.where(product_sub_type: params[:cat_id])
+    @product_sub_type = ProductSubType.find_by(id: params[:cat_id])
 
     respond_to do |format|
       format.js
