@@ -25,7 +25,9 @@
       Existing images:
       <ul>
         <% @product.product_configurations.each do |config| %>
-          <li><%= config.number %></li>
+          <li><%= config.number %>
+              <%= image_tag config.image.url(:thumb) %> 
+        </li>
         <% end %>
       </ul>
     </div>
@@ -36,7 +38,10 @@
         </p>
         <ul>
           <% @product.compilations.each do |compilation| %>
-            <li><%= link_to compilation.name, compilation_path(compilation) %></li>
+            <li><%= link_to(compilation.name, compilation_path(compilation))  %>
+
+              <%= image_tag compilation.image.url(:thumb) %> 
+            </li>
           <% end %>
         </ul>
 

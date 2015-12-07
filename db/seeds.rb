@@ -323,9 +323,8 @@ types = [
             { name: "Wall Mount Tub Sets"},
             { name: "Exposed Tub Sets"},
             { name: "Exposed Shower Sets"},
-            { name: "Bidet Sets - Four Hole"},
-            { name: "Bidet Sets - Single Hole"},
-            { name: "WC Trip Levers"},
+            { name: "Bidet Sets"},
+            { name: "Trip Levers"},
             { name: "Components"}
            ]
           

@@ -1,0 +1,11 @@
+<div class="prod_wrapper">
+  <div class="type-contain">
+    <h1><%= @product_sub_type.name %></h1>
+    <ul id="prod_list">
+      <% products.each do |product| %>
+        <%= render product %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
