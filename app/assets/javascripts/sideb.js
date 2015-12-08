@@ -71,21 +71,22 @@ function filter_products(){
   var filtersArr = [];
   var $filters = $('.filter');
   for(var i = 0, len = $filters.length; i < len; ++i){
-    filtersArr.push($($filters[i]).find('input:checked').map(function(i, val, arr){
-      return (val.id.toLowerCase());
-    }));
+    var arr = $($filters[i]).find('input:checked').map(function(i, val){
+      return(val.id.toLowerCase());
+    })
+    filtersArr.push(arr);
   };
   $product_tiles = $('.prod_tile');
   $product_tiles.show();
 
   for(var i = 0, len = filtersArr.length; i < len; ++i){
     var filterArr = filtersArr[i];
-    
     if (filterArr.length >0){
       $product_tiles.filter(function(index, $element, array){
         var element_filters = $element.dataset.filtervalues.split(' ');
         return (containsAtLeastOne(filterArr, element_filters) == false);
       }).hide();
+      $product_tiles = $('.prod_tile:visible');
     }
   }
 }

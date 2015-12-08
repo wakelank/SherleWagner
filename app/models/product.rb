@@ -136,9 +136,13 @@ class Product < ActiveRecord::Base
   end
 
   def filter_value_names
-    filter_values.map do |filter_value|
+    arr = filter_values.map do |filter_value|
       filter_value.name
     end
+    arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
+    arr << "Metal" if number.include?("XX")
+    arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
+    arr
   end
 
 
