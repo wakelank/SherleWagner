@@ -7,6 +7,7 @@ $(function(){
   productCategory();
   subTypePanel();
   hideNeighbors('#accordion2');
+  attach_filters_to_checkboxes();
  
 
 });
@@ -62,6 +63,33 @@ function hideNeighbors(panel){
    //  });
 }
 
+function attach_filters_to_checkboxes(){
+  $('.filter').click(filter_products);
+}
+
+function filter_products(){
+  var filterArr = $('input:checked').map(function(i, val, arr){
+    return (val.id.toLowerCase());
+  });
+  $product_tiles = $('.prod_tile');
+
+  $product_tiles.filter(function(index, $element, array){
+    var element_filters = $element.dataset.filtervalues.split(' ');
+    return (containsAll(filterArr, element_filters) == false);
+    }).hide();
+
+  $product_tiles.filter(function(index, $element, array){
+    var element_filters = $element.dataset.filtervalues.split(' ');
+    return (containsAll(filterArr, element_filters) == true);
+    }).show();
+}
+
+function containsAll(needles, haystack){
+  for(i = 0, len = needles.length; i < len; ++i){
+    if($.inArray(needles[i], haystack) == -1) return false;
+  }
+  return true;
+}
 // var checked = []
 // var sidebarCat = function(cat){
 
