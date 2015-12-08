@@ -64,37 +64,49 @@ function hideNeighbors(panel){
 }
 
 function attach_filters_to_checkboxes(){
-  $('.filter').click(filter_products);
+  $('.filter').find('input:checkbox').click(filter_products);
 }
 
 function filter_products(){
-  var filterArr = $('input:checked').map(function(i, val, arr){
-    return (val.id.toLowerCase());
-  });
+  var filtersArr = [];
+  var $filters = $('.filter');
+  for(var i = 0, len = $filters.length; i < len; ++i){
+    filtersArr.push($($filters[i]).find('input:checked').map(function(i, val, arr){
+      return (val.id.toLowerCase());
+    }));
+  };
   $product_tiles = $('.prod_tile');
+  $product_tiles.show();
 
-  $product_tiles.filter(function(index, $element, array){
-    var element_filters = $element.dataset.filtervalues.split(' ');
-    return (containsAll(filterArr, element_filters) == false);
-    }).hide();
-
-  $product_tiles.filter(function(index, $element, array){
-    var element_filters = $element.dataset.filtervalues.split(' ');
-    return (containsAll(filterArr, element_filters) == true);
-    }).show();
+  for(var i = 0, len = filtersArr.length; i < len; ++i){
+    var filterArr = filtersArr[i];
+    
+    if (filterArr.length >0){
+      $product_tiles.filter(function(index, $element, array){
+        var element_filters = $element.dataset.filtervalues.split(' ');
+        return (containsAtLeastOne(filterArr, element_filters) == false);
+      }).hide();
+    }
+  }
 }
 
 function containsAll(needles, haystack){
-  for(i = 0, len = needles.length; i < len; ++i){
+  for(var i = 0, len = needles.length; i < len; ++i){
     if($.inArray(needles[i], haystack) == -1) return false;
   }
   return true;
 }
 
 
+function containsAtLeastOne(needles, haystack){
+  for(i = 0, len = needles.length; i < len; ++i){
+    if($.inArray(needles[i], haystack) != -1) return true;
+  }
+  return false;
+}
+// var checked = []
+// var sidebarCat = function(cat){
 
-
-//OLD CRAP FOR REFERENCE
 // var checked = []
 // var sidebarCat = function(cat){
 
