@@ -3,6 +3,7 @@ class Filter < ActiveRecord::Base
   #has_many :filter_values, through: :filter_product_group_values
   #has_many :product_groups, through: :filter_product_values
   has_many :filter_values
+  has_and_belongs_to_many :product_sub_type
 
   extend CanExtractFromFile
   HEADER = ""

@@ -135,6 +135,11 @@ class Product < ActiveRecord::Base
     f_hashes
   end
 
+  def filter_value_names
+    filter_values.map do |filter_value|
+      filter_value.name
+    end
+  end
 
 
 # searchable do
@@ -152,7 +157,6 @@ class Product < ActiveRecord::Base
   def china_colors?
     self.china_colors.length > 0
   end
-
 
 end
 

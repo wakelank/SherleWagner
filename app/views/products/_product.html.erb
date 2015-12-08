@@ -1,6 +1,6 @@
 <% bgimage= product.image.url(:medium) %>
 <%= link_to(product_path(product), class:"prod_title_link")  do %>
-  <li class ="prod_tile" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
+  <li class ="prod_tile" style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>">
     <div class="prod_title">
       <%= product.name %>
     </div>

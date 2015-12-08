@@ -191,16 +191,16 @@ china_colors.each do |china_color|
 end
 
 
-
-filters = %w(handle\ design)
-
-Filter.create(name: 'no filter')
-
-filters.each do |filter|
-  Filter.create(name: filter)
-end
-
-
+#
+#filters = %w(handle\ design)
+#
+#Filter.create(name: 'no filter')
+#
+#filters.each do |filter|
+#  Filter.create(name: filter)
+#end
+#
+#
 
 
 

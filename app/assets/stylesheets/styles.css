@@ -94,6 +94,8 @@ ul.nav{
 
 }
 .prod_tile{
+  background-size: contain;
+  background-repeat: no-repeat;
   padding: 0.5em;
   text-align: center;
   display:block;

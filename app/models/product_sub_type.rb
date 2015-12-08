@@ -1,7 +1,8 @@
 class ProductSubType < ActiveRecord::Base
   belongs_to :product_type
-  has_many :product_groups
+#  has_many :product_groups
   has_many :products
+  has_and_belongs_to_many :filters
   
   extend CanExtractFromFile
 
