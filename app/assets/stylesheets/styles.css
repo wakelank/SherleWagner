@@ -107,13 +107,11 @@ ul.nav{
   
   margin: 10px;
 
-}
-ul.prod_list li.prod_tile div.prod_title {
-  
- 
-
+  /*for before photos are set*/
+      background-position: 0 50px;
 
 }
+
 ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     display: block;
     margin-top: 125%;
