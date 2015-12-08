@@ -90,6 +90,11 @@ function containsAll(needles, haystack){
   }
   return true;
 }
+
+
+
+
+//OLD CRAP FOR REFERENCE
 // var checked = []
 // var sidebarCat = function(cat){
 
