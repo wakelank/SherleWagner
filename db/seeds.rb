@@ -490,6 +490,8 @@ end
 
 ProductSubType.all.each do |product_sub_type|
   product_sub_type.filters << Filter.find_by(name: "Handle Design")
+  product_sub_type.filters << Filter.find_by(name: "Materials")
+  product_sub_type.filters << Filter.find_by(name: "Styles")
 end
 
 ProductSubType.find_by(name: "Basins").filters << Filter.find_by(name: "Sink Design")
