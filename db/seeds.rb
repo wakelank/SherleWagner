@@ -37,6 +37,8 @@ WallPaperDesign.delete_all
 FilterValue.delete_all
 Filter.delete_all
 ChinaColor.delete_all
+#Compilation.delete_all
+#ProductConfiguration.delete_all
 
 finishes = [ 
   { name: 'Polished Nickel', identifier: 'PN' },
@@ -418,60 +420,6 @@ types.each do |type|
 end
 
 
-#end
-#
-#sub_types.each do |type, sub_types|
-#  type = ProductType.where("lower(name) = ?",  type.to_s.downcase).first
-#  sub_types.each do |sub_type|
-#    ProductSubType.create( name: sub_type, product_type: type)
-#  end
-#end
-
-#genres = %w(Ornate Traditional Classic Mid_Century Contemporary)
-#styles = {
-#            ornate: 
-#              %w(LOUIS\ SEIZE
-#              CHERUB
-#              SWAN
-#              DOLPHIN
-#              FILIGREE
-#              1040\ LEAVES\ RSQU),
-#            traditional:
-#              %w(ACANTHUS
-#              RIBBON\ &\ REED
-#              CUT\ CRYSTAL
-#              CLASSIC
-#              MING\ BLOSSOM
-#              ONYX
-#              1029\ ROCK\ CRYSTAL),
-#            classic:
-#              %w(HARRISON
-#              GREY
-#              CLASSIC
-#              MELON),
-#            Mid_Century:
-#              %w(APOLLO
-#              NOUVEAU
-#              COSMOS
-#              MOLECULES
-#              PYRAMID),
-#            Contemporary:
-#              %w(ARCO
-#              NAIAD
-#              AQUEDUCT
-#              ARBOR)
-#}
-#genres.each do |type|
-#  Genre.create(name: type.humanize)
-#end
-#
-#styles.each do |genre, styles|
-#  genre = Genre.where("lower(name) = ?",  genre.to_s.humanize.downcase).first
-#  styles.each do |style|
-#    Style.create( name: style, genre: genre)
-#  end
-#end
-
 genres_styles = [
   { genre_name: "Contemporary",
     styles: [ "Arco", "Molecule", "Apollo", "Nouveau" ]
@@ -518,8 +466,16 @@ filters = [
   },
   { name: "Wallpaper Color",
     filter_values: [ "Neutral", "Blue", "Pink", "Yellow", "Black", "Red", "Green", "Metallic" ]
+  },
+  { name: "Materials",
+    filter_values: [ "Metal", "Marble", "China", "Onyx", "Semi_Precious" ]
   }
 ]
+genre_filter_hash = { name: "Styles" }
+genre_filter_hash[:filter_values] = genres_styles.map { |style| style[:genre_name] }
+
+filters << genre_filter_hash
+
 
 Filter.create(name: "no filter").filter_values << FilterValue.create(name: "no filter value")
 
@@ -530,6 +486,20 @@ filters.each do |filter|
   end
 end
 
+
+
+ProductSubType.all.each do |product_sub_type|
+  product_sub_type.filters << Filter.find_by(name: "Handle Design")
+  product_sub_type.filters << Filter.find_by(name: "Materials")
+  product_sub_type.filters << Filter.find_by(name: "Styles")
+end
+
+ProductSubType.find_by(name: "Basins").filters << Filter.find_by(name: "Sink Design")
+
+#end
+#
+#sub_types.each do |type, sub_types|
+#  type = ProductType.where("lower(name) = ?",  type.to_s.downcase).first
 
 
 
