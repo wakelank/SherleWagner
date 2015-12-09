@@ -1,11 +1,18 @@
   <div class="panel panel-default">
     <div class="panel-heading product-type" id="<%= product_type.name.gsub(' ','_') %>">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>" class="prod-cat">
+        <a data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>1" class="prod-cat">
           <%= product_type.name %>
         </a>
       </h4>
-      <%= render product_type.product_sub_types %>
     </div>
+    <div id="<%= product_type.name.gsub(' ','_') %>1" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="panel-group" id="acordion<%=product_type.id%>">
+          <%= render product_type.product_sub_types %>
+        </div>
+      </div> <!-- panel-body -->
+    </div> <!-- panel-collapse -->
+   
   </div>
   

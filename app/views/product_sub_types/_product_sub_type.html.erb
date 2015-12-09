@@ -1,2 +1,22 @@
-<p><%= product_sub_type.name %></p>
-<%= render product_sub_type.filters %>
+                          
+  <div class="panel panel-default">
+    <div class="panel-sub-heading" >
+      <div class="panel-title" id="<%= product_sub_type.name.gsub(' ','_') %>">
+        <div class="checkbox">
+          <label data-toggle="collapse" data-parent="#acordion<%= product_sub_type.product_type.id%>" href="#collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>">
+            <%= link_to product_sub_type.name , fetch_items_path(:cat_id => product_sub_type.id ), :remote => true %> 
+          </label>
+        </div>  
+      </div>
+    </div>
+    <div id="collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>" class="panel-collapse collapse">
+      <div class="panel-body filter">
+        FILTERS
+        <%= render product_sub_type.filters %>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+
+

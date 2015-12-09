@@ -5,7 +5,11 @@
 $(document).on('ready page:load', function () { 
   productCategory();
   subTypePanel();
-  hideNeighbors('#accordion2');
+  for (var i = 0; i < 6; i++) {
+    tgrtdiv = '#acordion'+i;
+   hideNeighbors(tgrtdiv);
+  };
+  
   attach_filters_to_checkboxes();
  
 
@@ -47,9 +51,11 @@ function subTypePanel(){
 // ** it accepts the css id in 'quotes' of the panel to target 
 function hideNeighbors(panel){
   var $trgt = $(panel);
+
    $trgt.on('show.bs.collapse', function () {
       selectr = panel+" .in";
       $(selectr).collapse('hide');
+      console.log('hiding');
 
     });
 
