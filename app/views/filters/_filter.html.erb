@@ -1,16 +1,12 @@
 <%= filter.name %>
 lookatME
  <div class="filter">
-    <ul>
+   <ul>
+     <% filter.filter_values.each do |filter_value| %>
       <li>
-        <label><input type="checkbox" value="" id="Metal"> Metal </label>
+        <label><input type="checkbox" value="" id="<%= filter_value.name %>"> <%= filter_value.name %> </label>
       </li>
-      <li>
-        <label><input type="checkbox" value="" id="Marble"> Marble </label>
-      </li>
-      <li>
-        <label><input type="checkbox" value="" id="Semi_Precious"> Semi Precious </label>
-      </li>
+    <% end %>
     </ul>
   </div>
 <!-- <img alt="meseeks" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRJHrSQHxqFjiv1n8qJiN64E0wveCCaqQEK7LbuTnLS_-qEU_T" /> -->
