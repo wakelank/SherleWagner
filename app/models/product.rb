@@ -51,7 +51,7 @@ class Product < ActiveRecord::Base
             #ProductType.assign_attribute({ row: row, product: product })
             Finish.add_finishes_to product if product.needs_finishes? 
             ChinaColor.add_china_colors_to product if product.needs_china_colors?
-            Material.add_materials_to product if product.needs_materials?
+            Material.add_materials_to(product, product.needed_materials)
 
             product.styles << style
             product.filter_values.concat filters
@@ -81,10 +81,11 @@ class Product < ActiveRecord::Base
     self.number.include? ChinaColor::INDICATOR
   end
 
-  def needs_materials?
-    Material.codes.each do |code|
-      return true if self.number.include? code
+  def needed_materials
+    arr = Material.codes.select do |code|
+      self.number.include? code
     end
+   arr 
   end
   
     
