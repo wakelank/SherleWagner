@@ -1,4 +1,4 @@
-<div class="prod_wrapper">
+
 <h1><%= @product_group.name %></h1>
 <% if admin? %>
   <p>
@@ -27,5 +27,4 @@
     <%= collection_select(:product, :china_color_id, @product_group.china_colors, :id, :name, include_blank: '') %>
     <%= submit_tag("generate tear sheet", class:'tear-sheet-submit') %>
   </form>
-</div>
 </div>

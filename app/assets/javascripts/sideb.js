@@ -2,8 +2,7 @@
 //this is JS to manage that sticky sidebar
 
 
-$(function(){
-
+$(document).on('ready page:load', function () { 
   productCategory();
   subTypePanel();
   hideNeighbors('#accordion2');

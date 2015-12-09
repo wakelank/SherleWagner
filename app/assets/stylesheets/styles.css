@@ -72,11 +72,11 @@ ul.nav{
     text-decoration-color: white;
 }
 /*====The product browse page===*/
-.prod_wrapper {
+#content_wrapper {
   background-color: #F5F5F5;
-  width: 60%;
+  width: 70%;
   float: left;
-  min-width: 900px;
+  min-width: 700px;
   clear: right;
   display: block;
   padding-top: 14em;
@@ -87,6 +87,7 @@ ul.nav{
   box-shadow: 4px 5px 5px #999999;
  
 }
+
 .prod_list{
   list-style: none;
   width:90%;
@@ -206,7 +207,7 @@ li.highlighted{
 /*======Sub-type Show Dev ========*/
 .type-contain{
   margin-top: 1em;
-  min-width: 850px;
+  min-width: 700px;
 }
 .list_wrapper{
   width: 100%;
@@ -215,6 +216,7 @@ li.highlighted{
   width: 99%;
   margin:0 auto;
 }
+
 .sub_type_pane{
   padding: 0.5em;
   text-align: center;
