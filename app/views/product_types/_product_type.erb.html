@@ -1,0 +1,31 @@
+<div class="something">
+  <% @product_type.product_sub_types.each do |product_sub_type| %>
+  <%= render product_sub_type %>
+  <% end %>
+</div>
+
+
+#_product_sub_type.html.erb
+
+<div class="more things">
+  <%= product_sub_type.name %>
+  <% product_sub_type.fitlers.each do |filter| %>
+  <%= render filter %>
+  <% end %>
+</div>
+
+#_filter.html.erb
+
+<div class=filter>
+  <% filter.filter_values.each do |filter_value| %>
+  <% render filter_value
+     ....
+
+
+#_filter_value.html.erb
+
+     checkbox_tag filter_value.id filter_value.name ....
+
+     ..
+
+
