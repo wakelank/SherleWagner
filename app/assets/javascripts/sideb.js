@@ -98,6 +98,7 @@ function containsAll(needles, haystack){
   return true;
 }
 
+
 function containsAtLeastOne(needles, haystack){
   for(i = 0, len = needles.length; i < len; ++i){
     if($.inArray(needles[i], haystack) != -1) return true;
@@ -106,7 +107,6 @@ function containsAtLeastOne(needles, haystack){
 }
 // var checked = []
 // var sidebarCat = function(cat){
-
 
 // var checked = []
 // var sidebarCat = function(cat){
