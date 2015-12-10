@@ -110,7 +110,7 @@ materials = [{ type: "China-Hand Painted",
                         { name: "Acorn & Oakleaf -Sage-99SG", identifier: "99SG" }]
               },
               {type: "China-Metal Plated",
-               code: "GLAZE",
+               code: "CHINAMETAL",
                entries: [ { name: "Burnished Gold-14GP", identifier: "14GP" },
                         { name: "Burnished Platinum-15PL", identifier: "15PL" },
                         { name: "Highly Polished Platinum-17HP", identifier: "17HP" },
