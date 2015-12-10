@@ -103,7 +103,7 @@ ul.nav{
   background-color: white;
   float:left;
   color: ;
-  height: 22.5em;
+  height: 19.5em;
   width: 15em;
   
   margin: 10px;
@@ -115,7 +115,7 @@ ul.nav{
 
 ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     display: block;
-    margin-top: 125%;
+    margin-top: 110%;
     color: grey;
 
 }
