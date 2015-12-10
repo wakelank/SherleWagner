@@ -4,8 +4,15 @@
           <% @product_type.product_sub_types.each do |product_sub_type| %>
             
             
-              <li class="prod_tile" id="sub_type_tile">
-                <h3 ><%= link_to product_sub_type.name, product_sub_type_path(product_sub_type),class:"sub_type_tile_title" %></h3></li>
+             <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
+                   <li class="prod_tile" id="sub_type_tile">
+                    <h3 > 
+                      <%= product_sub_type.name %>
+                    </h3>
+                  </li>              
+                  <% end %>
+
+                
               
                 <% product_sub_type.four_products.each do |product| %>
                   <% bgimage= product.image.url(:medium) %>
