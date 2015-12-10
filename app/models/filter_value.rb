@@ -5,6 +5,8 @@ class FilterValue < ActiveRecord::Base
   #has_many :filter_product_group_values
   #has_many :filters, through: :filter_product_group_values
   #has_many :product_groups, through: :filter_product_values
+  
+  include SnakeCase
 
   def self.get_arg(row)
     result = self.extract_from row
@@ -28,4 +30,9 @@ class FilterValue < ActiveRecord::Base
     end
     arr
   end
+
+  def snake_case_name
+    snake_case name
+  end
+
 end
