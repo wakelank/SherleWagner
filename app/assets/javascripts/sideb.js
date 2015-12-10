@@ -20,11 +20,22 @@ function productCategory() {
   $( ".prod-cat" ).click(function()
   {
     var anchor = this;
+    
     var link = $(anchor).attr('href');
-    var text = $(anchor).text().toLowerCase();
+    var text = $(anchor).text();
     console.log(text);
     console.log("clicked product-type");
 
+    var $trgt = $(link);
+    var tag = $trgt.selector;
+    // $trgt.addClass('in');
+    if ($(tag).find(".in").length > 0)
+    { 
+      console.log('im open');
+  
+    }else{
+      $trgt.collapse('toggle');
+    }
   });
 }
 
