@@ -145,7 +145,9 @@ class Product < ActiveRecord::Base
     end
     arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
     arr << "Metal" if number.include?("XX")
+    arr << "Onyx" if number.include?("ONYX")
     arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
+    arr << "China" if (number.include?("HANDPAINTED") || number.include?("CHINAMETAL") || number.include?("HANDDECORATED"))
     arr
   end
 
