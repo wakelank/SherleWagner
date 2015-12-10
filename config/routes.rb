@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :compilations, only: [:show]
 
   get "/fetch_items" => 'products#from_category', as: 'fetch_items'
+  get "/fetch_cat" => 'product_types#an_category', as: 'fetch_cat'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

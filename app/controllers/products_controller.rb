@@ -73,6 +73,7 @@ class ProductsController < ApplicationController
       format.js
     end
   end
+  
 
 
    
