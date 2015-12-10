@@ -3,6 +3,8 @@ require 'csv'
 require 'find'
 
 class Product < ActiveRecord::Base
+
+
   belongs_to :product_group
   belongs_to :product_type
   belongs_to :product_sub_type
@@ -30,8 +32,8 @@ class Product < ActiveRecord::Base
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
         image_name = self.get_image_name_from row
-        images_path = "/Users/ph1am/Desktop/SW website/images1"
-        #images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        #images_path = "/Users/ph1am/Desktop/SW website/images1"
+        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
         image_file = NullObject.new
         Find.find(images_path) do |filepath|
           if File.basename(filepath) == image_name
@@ -47,30 +49,30 @@ class Product < ActiveRecord::Base
         product_configuration = ProductConfiguration.get_arg row
         begin
 
-            product = Product.new(args)
-            #ProductType.assign_attribute({ row: row, product: product })
-            Finish.add_finishes_to product if product.needs_finishes? 
-            ChinaColor.add_china_colors_to product if product.needs_china_colors?
-            Material.add_materials_to(product, product.needed_materials)
+          product = Product.new(args)
+          #ProductType.assign_attribute({ row: row, product: product })
+          Finish.add_finishes_to product if product.needs_finishes? 
+          ChinaColor.add_china_colors_to product if product.needs_china_colors?
+          Material.add_materials_to(product, product.needed_materials)
 
-            product.styles << style
-            product.filter_values.concat filters
-            product.genres.concat genres
+          product.styles << style
+          product.filter_values.concat filters
+          product.genres.concat genres
 
-            if Product.exists?(number: product.number)
-              product = Product.find_by(number: args[:number])
-            end
-
-            product.product_configurations << product_configuration if !product_configuration.nil?
-            product.save if product.valid?
-          rescue
-            binding.pry
+          if Product.exists?(number: product.number)
+            product = Product.find_by(number: args[:number])
           end
+
+          product.product_configurations << product_configuration if !product_configuration.nil?
+          product.save if product.valid?
+        rescue
+          binding.pry
         end
+      end
     end
     puts "Start time: #{start_time}."
     puts "End time: #{Time.new}."
-    
+
   end
 
   def needs_finishes?
@@ -85,11 +87,11 @@ class Product < ActiveRecord::Base
     arr = Material.codes.select do |code|
       self.number.include? code
     end
-   arr 
+    arr 
   end
-  
-    
-   
+
+
+
   def self.get_name_from(row)
     row["GENERIC PRODUCT NAME _ Revised"] || "no name"
   end
@@ -106,7 +108,7 @@ class Product < ActiveRecord::Base
 
 
 
-  
+
   def add_materials(material_code)
     begin
       self.materials.concat Material.where(code: material_code)
@@ -139,7 +141,7 @@ class Product < ActiveRecord::Base
 
   def filter_value_names
     arr = filter_values.map do |filter_value|
-      filter_value.name
+      filter_value.snake_case_name
     end
     arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
     arr << "Metal" if number.include?("XX")

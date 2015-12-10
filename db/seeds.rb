@@ -17,28 +17,27 @@
 #sub_categories.each { |sub_cat| SubCategory.create(name: sub_cat) }
 
 
-Sku.delete_all
-#Product.delete_all
-Style.delete_all
-Genre.delete_all
-Material.delete_all
-Finish.delete_all
-ProductSubType.delete_all
-ProductType.delete_all
-LeverDesign.delete_all
-BasinDesign.delete_all
-ConsoleCounterVanityDesign.delete_all
-WaterClosetHandleDesign.delete_all
-DoorTrimDesign.delete_all
-WallTrimDesign.delete_all
-CeilingLightsDesign.delete_all
-WallLightsDesign.delete_all
-WallPaperDesign.delete_all
-FilterValue.delete_all
-Filter.delete_all
-ChinaColor.delete_all
-#Compilation.delete_all
-#ProductConfiguration.delete_all
+#Product.destroy_all
+Style.destroy_all
+Genre.destroy_all
+Material.destroy_all
+Finish.destroy_all
+ProductSubType.destroy_all
+ProductType.destroy_all
+LeverDesign.destroy_all
+BasinDesign.destroy_all
+ConsoleCounterVanityDesign.destroy_all
+WaterClosetHandleDesign.destroy_all
+DoorTrimDesign.destroy_all
+WallTrimDesign.destroy_all
+CeilingLightsDesign.destroy_all
+WallLightsDesign.destroy_all
+WallPaperDesign.destroy_all
+FilterValue.destroy_all
+Filter.destroy_all
+ChinaColor.destroy_all
+#Compilation.destroy_all
+#ProductConfiguration.destroy_all
 
 finishes = [ 
   { name: 'Polished Nickel', identifier: 'PN' },
