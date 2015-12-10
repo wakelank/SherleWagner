@@ -181,6 +181,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 #accordion1 *{
   background-color: #e5e6df;
 }
+#accordion1 a:link, #accordion1 a:visited{
+color: black;
+}
 #accordion1 .panel-sub-heading .panel-title label{
   margin-left: -15px;
 }
