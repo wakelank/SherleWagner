@@ -5,13 +5,11 @@
 $(document).on('ready page:load', function () { 
   productCategory();
   subTypePanel();
-  for (var i = 0; i < 6; i++) {
-    tgrtdiv = '#acordion'+i;
-   hideNeighbors(tgrtdiv);
-  };
+  hideTypeNeighbors('#accordion1');
+  hideSubTypeNeighbors('#accordion1'); 
   
   attach_filters_to_checkboxes();
- 
+  //do an uncheck on collapse function****
 
 });
 
@@ -60,16 +58,48 @@ function subTypePanel(){
 
 //Make sure sidenav subtype links close their neighbors
 // ** it accepts the css id in 'quotes' of the panel to target 
-function hideNeighbors(panel){
-  var $trgt = $(panel);
+function hideTypeNeighbors(panel){
+  $( ".prod-cat" ).click(function(){
+    var $trgt = $(panel);
 
-   $trgt.on('show.bs.collapse', function () {
-      selectr = panel+" .in";
-      $(selectr).collapse('hide');
-      console.log('hiding');
+      // $trgt.on('show.bs.collapse', function () {
+        selectr = panel+" .in";
+        
+         typearr = ["no_type1","Fittings1","Fixtures1","Accessories1","Hardware1","Lighting1","Wall_Coverings1"];
 
-    });
+        if (typearr.indexOf($(selectr).attr('id')) != null ){
+          $(selectr).collapse('hide');
+           console.log('hiding');
+        }
 
+
+      // });
+  });
+
+   // $('#accordion2').on('show.bs.collapse', function () 
+   //  {
+   //    console.log("SHOWBS COLL?")
+   //    $('#accordion2 .in').collapse('hide')
+
+   //  });
+}
+function hideSubTypeNeighbors(panel){
+  $( ".panel-sub-heading label" ).click(function(){
+    var $trgt = $(panel);
+
+      // $trgt.on('show.bs.collapse', function () {
+        selectr = panel+" .sub-type-panel .in";
+        
+        
+
+        
+          $(selectr).collapse('hide');
+           console.log('hiding');
+        
+
+
+      // });
+  });
 
    // $('#accordion2').on('show.bs.collapse', function () 
    //  {

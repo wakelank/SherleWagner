@@ -6,7 +6,7 @@
         </a>
       </h4>
     </div>
-    <div id="<%= product_type.name.gsub(' ','_') %>1" class="panel-collapse collapse">
+    <div id="<%= product_type.name.gsub(' ','_') %>1" class="panel-collapse collapse sub-type-panel">
       <div class="panel-body">
         <div class="panel-group" id="acordion<%=product_type.id%>">
           <%= render product_type.product_sub_types %>
