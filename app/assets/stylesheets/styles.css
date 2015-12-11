@@ -215,6 +215,14 @@ li.highlighted{
   margin-top: 1em;
   min-width: 700px;
 }
+
+#subtype_list_name{
+  padding-left: 0.5em;
+  text-transform: uppercase;
+  color: white;
+  
+}
+
 .list_wrapper{
   width: 100%;
 }

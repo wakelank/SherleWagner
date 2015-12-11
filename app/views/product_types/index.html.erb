@@ -1,15 +1,7 @@
 
 
 
-<script>
-  // toggle open the side nav panel for the clicked category tile ***
-  $('.prod_tile').click(function(){
-    var thiss =$(this);
 
-    var cat = '#' + thiss[0].innerHTML.trim() + "1";
-    $(cat).collapse('toggle');
-  })
-</script>
 
 
 <div class="prod_wrapper ">
@@ -32,6 +24,14 @@
 </div>
 
 
+<script>
+  // toggle open the side nav panel for the clicked category tile ***
+  $('.prod_tile').click(function(){
+    var thiss =$(this);
 
+    var cat = '#' + thiss[0].innerHTML.trim() + "1";
+    $(cat).collapse('toggle');
+  })
+</script>
 
 
