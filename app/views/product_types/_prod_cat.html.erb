@@ -43,6 +43,20 @@
     </ul>
 </div>
 <script>
+
+  // toggle open the side nav panel for the clicked panel heading (instead of clsing the one you are in) ***
+  
+   nowcat = $('.sub-type-panel.in')
+   heading1 = '#'+ nowcat.get(0).id;
+   heading = heading1.replace('1','');
+   $(heading).click(function{
+     $(heading).collapse('show')
+     //does this even work yet?
+   })
+
+    
+ 
+
   // toggle open the side nav panel for the clicked category tile ***
   $('.prod_tile').click(function(){
     var thiss =$(this);
@@ -52,5 +66,5 @@
     //open the subtype collapse panel in the sidebar
     $(sideb_collapse).collapse('toggle');
 
-  })
+  });
 </script>
