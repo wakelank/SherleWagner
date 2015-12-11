@@ -67,13 +67,13 @@ function subTypePanel(){
 function hideTypeNeighbors(panel){
   $( ".prod-cat" ).click(function(){
     var $trgt = $(panel);
-
+        dis = this;
       // $trgt.on('show.bs.collapse', function () {
         selectr = panel+" .in";
         
          typearr = ["no_type1","Fittings1","Fixtures1","Accessories1","Hardware1","Lighting1","Wall_Coverings1"];
 
-        if (typearr.indexOf($(selectr).attr('id')) != null ){
+        if (typearr.indexOf($(selectr).attr('id')) != null){
           $(selectr).collapse('hide');
            console.log('hiding');
 
@@ -161,4 +161,17 @@ function containsAtLeastOne(needles, haystack){
     if($.inArray(needles[i], haystack) != -1) return true;
   }
   return false;
+}
+
+function keepCatOpenOnClick(){
+  //this is for if we want the Cat button to be a back button from the subtype page*
+  //without closing the relevant panel in sidebar
+  //unfortunatly this function blocks the link from rendering correct partial...
+  $('.prod-cat a').on('click',function(e){
+    if($(this).parents('.panel').children('.panel-collapse').hasClass('in')){
+        //*this is the code that stops the close but also blocks the render
+        // e.preventDefault();
+        // e.stopPropagation();
+    }
+  });
 }
