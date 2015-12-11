@@ -168,6 +168,10 @@ class Product < ActiveRecord::Base
     self.china_colors.length > 0
   end
 
+  def product_configurations_except_first
+    product_configurations[1..product_configurations.length-1]
+  end
+
 end
 
 
