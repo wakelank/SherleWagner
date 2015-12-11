@@ -73,6 +73,10 @@ class ProductsController < ApplicationController
       format.js
     end
   end
+
+  def product_json
+    # this will receive ajax req and send a product's data to product/show in order to correctly position the side nav
+  end
   
 
 

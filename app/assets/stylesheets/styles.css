@@ -103,19 +103,19 @@ ul.nav{
   background-color: white;
   float:left;
   color: ;
-  height: 22.5em;
+  height: 19.5em;
   width: 15em;
   
   margin: 10px;
 
   /*for before photos are set*/
-      background-position: 0 50px;
+      /*background-position: 0 50px;*/
 
 }
 
 ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     display: block;
-    margin-top: 125%;
+    margin-top: 110%;
     color: grey;
 
 }
@@ -215,6 +215,14 @@ li.highlighted{
   margin-top: 1em;
   min-width: 700px;
 }
+
+#subtype_list_name{
+  padding-left: 0.5em;
+  text-transform: uppercase;
+  color: white;
+  
+}
+
 .list_wrapper{
   width: 100%;
 }
