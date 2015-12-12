@@ -2,6 +2,7 @@
 <div class="list_wrapper">
 
     <ul >
+      <h3 id="subtype_list_name"><%= @product_type.name %></h3>
       <% @product_type.product_sub_types.each do |product_sub_type| %>
         
         
@@ -43,10 +44,16 @@
     </ul>
 </div>
 <script>
-
-
-    
- 
+  $(function(){
+  thisac ="#"+$('#subtype_list_name').text();
+  sideac = thisac.replace(" ","_");
+  actrgt = $(sideac).parents('.panel').children('.panel-collapse');
+  
+  // actrgt.toggle('show');
+  
+  //this is an open subtype panel after a sideac has been set
+    // opensubt = $(sideac).parents('.panel').children('.panel-collapse').children().children().children().children('.in')
+ });
 
   // toggle open the side nav panel for the clicked category tile ***
   $('.prod_tile').click(function(){
@@ -54,8 +61,7 @@
 
     var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
     var sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
-    //open the subtype collapse panel in the sidebar
-    $(sideb_collapse).collapse('toggle');
+    
 
   });
 </script>
