@@ -50,7 +50,8 @@
   actrgt = $(sideac).parents('.panel').children('.panel-collapse');
   
   // actrgt.toggle('show');
-  
+  //code for toggling the 'open' prodcat panel based onthe title in prod list
+  // $(sideac).parents('.panel').children('.panel-collapse').collapse('toggle')
   //this is an open subtype panel after a sideac has been set
     // opensubt = $(sideac).parents('.panel').children('.panel-collapse').children().children().children().children('.in')
  });
@@ -59,9 +60,9 @@
   $('.prod_tile').click(function(){
     var thiss =$(this);
 
-    var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
-    var sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
-    
+     console.log(sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];)
+     sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
+    $(sideb_collapse).collapse('toggle');
 
   });
 </script>
