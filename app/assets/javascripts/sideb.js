@@ -30,16 +30,16 @@ function productCategory() {
     console.log(text);
     console.log("clicked product-type");
 
-    var $trgt = $(link);
-    var tag = $trgt.selector;
+     $trgt = $(link);
+     tag = $trgt.selector;
     // $trgt.addClass('in');
-    if ($(tag).find(".in").length > 0)
-    { 
-      console.log('im open');
+    // if ($(tag).hasClass(".in"))
+    // { 
+    //   console.log('im open');
   
-    }else{
+    // }else{
       $trgt.collapse('toggle');
-    }
+    // }
   });
 }
 
@@ -75,7 +75,7 @@ function hideTypeNeighbors(panel){
 
         if (typearr.indexOf($(selectr).attr('id')) != null){
           $(selectr).collapse('hide');
-           console.log('hiding');
+           //console.log('hiding');
 
         }
 
