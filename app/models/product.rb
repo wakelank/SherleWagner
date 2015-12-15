@@ -35,12 +35,12 @@ class Product < ActiveRecord::Base
         #images_path = "/Users/ph1am/Desktop/SW website/images1"
         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
         image_file = NullObject.new
-        Find.find(images_path) do |filepath|
-          if File.basename(filepath) == image_name
-            image_file = File.new(filepath) || NullObject.new
-          end
-        end
-        args[:image] = image_file if !image_file.nil?
+       # Find.find(images_path) do |filepath|
+       #   if File.basename(filepath) == image_name
+       #     image_file = File.new(filepath) || NullObject.new
+       #   end
+       # end
+       # args[:image] = image_file if !image_file.nil?
 
 
         style = Style.get_arg row
@@ -143,6 +143,7 @@ class Product < ActiveRecord::Base
     arr = filter_values.map do |filter_value|
       filter_value.snake_case_name
     end
+    arr.concat genres.pluck(:name)
     arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
     arr << "Metal" if number.include?("XX")
     arr << "Onyx" if number.include?("ONYX")

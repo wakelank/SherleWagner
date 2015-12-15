@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208120002) do
+ActiveRecord::Schema.define(version: 20151215162834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "china_colors_product_groups", force: :cascade do |t|
-    t.integer "china_color_id"
-    t.integer "product_group_id"
-  end
-
-  add_index "china_colors_product_groups", ["china_color_id"], name: "index_china_colors_product_groups_on_china_color_id", using: :btree
-  add_index "china_colors_product_groups", ["product_group_id"], name: "index_china_colors_product_groups_on_product_group_id", using: :btree
 
   create_table "china_colors_products", force: :cascade do |t|
     t.integer "product_id"
@@ -88,28 +80,14 @@ ActiveRecord::Schema.define(version: 20151208120002) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "filter_product_group_values", force: :cascade do |t|
-    t.integer  "product_group_id"
-    t.integer  "filter_id"
-    t.integer  "filter_value_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "filter_product_group_values", ["filter_id"], name: "index_filter_product_group_values_on_filter_id", using: :btree
-  add_index "filter_product_group_values", ["filter_value_id"], name: "index_filter_product_group_values_on_filter_value_id", using: :btree
-  add_index "filter_product_group_values", ["product_group_id"], name: "index_filter_product_group_values_on_product_group_id", using: :btree
-
   create_table "filter_product_values", force: :cascade do |t|
     t.integer "product_id"
     t.integer "filter_id"
     t.integer "filter_value_id"
-    t.integer "product_group_id"
   end
 
   add_index "filter_product_values", ["filter_id"], name: "index_filter_product_values_on_filter_id", using: :btree
   add_index "filter_product_values", ["filter_value_id"], name: "index_filter_product_values_on_filter_value_id", using: :btree
-  add_index "filter_product_values", ["product_group_id"], name: "index_filter_product_values_on_product_group_id", using: :btree
   add_index "filter_product_values", ["product_id"], name: "index_filter_product_values_on_product_id", using: :btree
 
   create_table "filter_values", force: :cascade do |t|
@@ -118,14 +96,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
   end
 
   add_index "filter_values", ["filter_id"], name: "index_filter_values_on_filter_id", using: :btree
-
-  create_table "filter_values_product_groups", force: :cascade do |t|
-    t.integer "filter_value_id"
-    t.integer "product_group_id"
-  end
-
-  add_index "filter_values_product_groups", ["filter_value_id"], name: "index_filter_values_product_groups_on_filter_value_id", using: :btree
-  add_index "filter_values_product_groups", ["product_group_id"], name: "index_filter_values_product_groups_on_product_group_id", using: :btree
 
   create_table "filter_values_products", force: :cascade do |t|
     t.integer "product_id"
@@ -154,14 +124,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
     t.string   "identifier"
   end
 
-  create_table "finishes_product_groups", force: :cascade do |t|
-    t.integer "finish_id"
-    t.integer "product_group_id"
-  end
-
-  add_index "finishes_product_groups", ["finish_id"], name: "index_finishes_product_groups_on_finish_id", using: :btree
-  add_index "finishes_product_groups", ["product_group_id"], name: "index_finishes_product_groups_on_product_group_id", using: :btree
-
   create_table "finishes_products", force: :cascade do |t|
     t.integer "finish_id"
     t.integer "product_id"
@@ -175,14 +137,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "genres_product_groups", force: :cascade do |t|
-    t.integer "genre_id"
-    t.integer "product_group_id"
-  end
-
-  add_index "genres_product_groups", ["genre_id"], name: "index_genres_product_groups_on_genre_id", using: :btree
-  add_index "genres_product_groups", ["product_group_id"], name: "index_genres_product_groups_on_product_group_id", using: :btree
 
   create_table "genres_products", force: :cascade do |t|
     t.integer "genre_id"
@@ -214,14 +168,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
     t.string  "identifier"
   end
 
-  create_table "materials_product_groups", force: :cascade do |t|
-    t.integer "material_id"
-    t.integer "product_group_id"
-  end
-
-  add_index "materials_product_groups", ["material_id"], name: "index_materials_product_groups_on_material_id", using: :btree
-  add_index "materials_product_groups", ["product_group_id"], name: "index_materials_product_groups_on_product_group_id", using: :btree
-
   create_table "materials_products", force: :cascade do |t|
     t.integer "product_id"
     t.integer "material_id"
@@ -246,36 +192,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
   end
 
   add_index "product_configurations", ["product_id"], name: "index_product_configurations_on_product_id", using: :btree
-
-  create_table "product_group_filters", force: :cascade do |t|
-    t.integer "product_group_id"
-    t.integer "filter_id"
-  end
-
-  add_index "product_group_filters", ["filter_id"], name: "index_product_group_filters_on_filter_id", using: :btree
-  add_index "product_group_filters", ["product_group_id"], name: "index_product_group_filters_on_product_group_id", using: :btree
-
-  create_table "product_groups", force: :cascade do |t|
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "name"
-    t.integer  "product_type_id"
-    t.integer  "product_sub_type_id"
-    t.integer  "style_id"
-    t.string   "number"
-  end
-
-  add_index "product_groups", ["product_sub_type_id"], name: "index_product_groups_on_product_sub_type_id", using: :btree
-  add_index "product_groups", ["product_type_id"], name: "index_product_groups_on_product_type_id", using: :btree
-  add_index "product_groups", ["style_id"], name: "index_product_groups_on_style_id", using: :btree
-
-  create_table "product_groups_styles", force: :cascade do |t|
-    t.integer "product_group_id"
-    t.integer "style_id"
-  end
-
-  add_index "product_groups_styles", ["product_group_id"], name: "index_product_groups_styles_on_product_group_id", using: :btree
-  add_index "product_groups_styles", ["style_id"], name: "index_product_groups_styles_on_style_id", using: :btree
 
   create_table "product_sub_types", force: :cascade do |t|
     t.string   "name"
@@ -302,7 +218,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
     t.integer  "product_sub_type_id"
     t.integer  "genre_id"
     t.integer  "style_id"
-    t.integer  "product_group_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -310,7 +225,6 @@ ActiveRecord::Schema.define(version: 20151208120002) do
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree
-  add_index "products", ["product_group_id"], name: "index_products_on_product_group_id", using: :btree
   add_index "products", ["product_sub_type_id"], name: "index_products_on_product_sub_type_id", using: :btree
   add_index "products", ["product_type_id"], name: "index_products_on_product_type_id", using: :btree
   add_index "products", ["style_id"], name: "index_products_on_style_id", using: :btree
@@ -397,51 +311,29 @@ ActiveRecord::Schema.define(version: 20151208120002) do
 
   add_foreign_key "accents_products", "finishes"
   add_foreign_key "accents_products", "products"
-  add_foreign_key "china_colors_product_groups", "china_colors"
-  add_foreign_key "china_colors_product_groups", "product_groups"
   add_foreign_key "china_colors_products", "china_colors"
   add_foreign_key "china_colors_products", "products"
   add_foreign_key "compilations_products", "compilations"
   add_foreign_key "compilations_products", "products"
-  add_foreign_key "filter_product_group_values", "filter_values"
-  add_foreign_key "filter_product_group_values", "filters"
-  add_foreign_key "filter_product_group_values", "product_groups"
   add_foreign_key "filter_product_values", "filter_values"
   add_foreign_key "filter_product_values", "filters"
-  add_foreign_key "filter_product_values", "product_groups"
   add_foreign_key "filter_product_values", "products"
   add_foreign_key "filter_values", "filters"
-  add_foreign_key "filter_values_product_groups", "filter_values"
-  add_foreign_key "filter_values_product_groups", "product_groups"
   add_foreign_key "filter_values_products", "filter_values"
   add_foreign_key "filter_values_products", "products"
   add_foreign_key "filters_product_sub_types", "filters"
   add_foreign_key "filters_product_sub_types", "product_sub_types"
-  add_foreign_key "finishes_product_groups", "finishes"
-  add_foreign_key "finishes_product_groups", "product_groups"
   add_foreign_key "finishes_products", "finishes"
   add_foreign_key "finishes_products", "products"
-  add_foreign_key "genres_product_groups", "genres"
-  add_foreign_key "genres_product_groups", "product_groups"
   add_foreign_key "genres_products", "genres"
   add_foreign_key "genres_products", "products"
   add_foreign_key "inserts_products", "materials"
   add_foreign_key "inserts_products", "products"
-  add_foreign_key "materials_product_groups", "materials"
-  add_foreign_key "materials_product_groups", "product_groups"
   add_foreign_key "materials_products", "materials"
   add_foreign_key "materials_products", "products"
   add_foreign_key "product_configurations", "products"
-  add_foreign_key "product_group_filters", "filters"
-  add_foreign_key "product_group_filters", "product_groups"
-  add_foreign_key "product_groups", "product_sub_types"
-  add_foreign_key "product_groups", "product_types"
-  add_foreign_key "product_groups", "styles"
-  add_foreign_key "product_groups_styles", "product_groups"
-  add_foreign_key "product_groups_styles", "styles"
   add_foreign_key "product_sub_types", "product_types"
   add_foreign_key "products", "genres"
-  add_foreign_key "products", "product_groups"
   add_foreign_key "products", "product_sub_types"
   add_foreign_key "products", "product_types"
   add_foreign_key "products", "styles"
