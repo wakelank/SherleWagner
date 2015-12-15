@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :compilations
+  belongs_to :associated_collection, class_name:  "Style"
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -46,6 +47,8 @@ class Product < ActiveRecord::Base
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
           Material.add_materials_to(product, product.needed_materials)
 
+          product.add_associated_collection
+
           product.styles << style
           product.filter_values.concat filters
           product.genres.concat genres
@@ -62,6 +65,14 @@ class Product < ActiveRecord::Base
       end
     end
 
+  end
+
+  def add_associated_collection
+    Style.all.each do |collection|
+      if self.name.include? collection.name
+        self.associated_collection = collection
+      end
+    end
   end
 
   def needs_finishes?

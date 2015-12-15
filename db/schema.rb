@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215165720) do
+ActiveRecord::Schema.define(version: 20151215222836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,8 +150,8 @@ ActiveRecord::Schema.define(version: 20151215165720) do
     t.string   "name"
     t.string   "number"
     t.text     "long_description"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "product_type_id"
     t.integer  "product_sub_type_id"
     t.integer  "genre_id"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20151215165720) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "associated_collection_id"
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree

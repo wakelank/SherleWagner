@@ -64,6 +64,7 @@
       <% end %>
     </div>
     <%= render 'product_info' %>
+    <div>Associated collection: <%= link_to @product.associated_collection.name, style_path(@product.associated_collection.id) %></div>
     <%= render 'tearsheets_form' %>
   </div>
 
