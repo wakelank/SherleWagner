@@ -7,16 +7,19 @@ class Style < ActiveRecord::Base
 
   HEADER = "STYLES"
 
-  def products
-    product_arr = []
-    self.products.each do |p|
-        name = p.name ? p.name : "none"
-        product_arr << p.name + " : " + name + "-" + p.number
-      end
-
-    product_arr
-
+  def self.names
+    self.pluck(:name)
   end
+#  def products
+#    product_arr = []
+#    self.products.each do |p|
+#        name = p.name ? p.name : "none"
+#        product_arr << p.name + " : " + name + "-" + p.number
+#      end
+#
+#    product_arr
+#
+#  end
 
 
 

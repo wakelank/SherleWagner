@@ -9,22 +9,37 @@ RSpec.describe ProductsController, :type => :controller do
     end
   end
 
+ # describe "Product upload" do
+ #   it "uploading product file adds products to database" do
+ #     @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
+ #     @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
+ #     expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Product, :count).by(7)
+ #     request.env["HTTP_REFERER"] = products_upload_page_path
+ #   end
+ # end
+
   describe "Product upload" do
     before :each do
       @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
       @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
       request.env["HTTP_REFERER"] = products_upload_page_path
+      post :upload_product_file, :controller => :products, :filename => @file 
+      @product = Product.find_by(number: '008BSN108-XX') || :non_product
+      @product_with_china_colors = Product.find_by(number: '1029BSN821-04CC-XX') || :non_product
+      @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
     end
 
-#    it "uploading product file adds products to database" do
-#      expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Product, :count).by(7)
-#    end
-#
-#    it 'product name' do
-#      post :upload_product_file, :controller => :products, :filename => @file 
-#      expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
-#    end
-#
+    it 'adds 7 products to table' do
+      expect(Product.count).to eq 7
+    end
+
+    it 'product name' do
+      expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
+    end
+
+    it "product_type" do
+      expect(@product.product_type.name).to eq "Fittings"
+    end
 
   end
 

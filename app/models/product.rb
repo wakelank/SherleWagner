@@ -35,14 +35,6 @@ class Product < ActiveRecord::Base
         #images_path = "/Users/ph1am/Desktop/SW website/images1"
         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
         image_file = NullObject.new
-       # Find.find(images_path) do |filepath|
-       #   if File.basename(filepath) == image_name
-       #     image_file = File.new(filepath) || NullObject.new
-       #   end
-       # end
-       # args[:image] = image_file if !image_file.nil?
-
-
         style = Style.get_arg row
         filters = FilterValue.get_arg row
         genres= Genre.get_arg row
@@ -50,7 +42,6 @@ class Product < ActiveRecord::Base
         begin
 
           product = Product.new(args)
-          #ProductType.assign_attribute({ row: row, product: product })
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
           Material.add_materials_to(product, product.needed_materials)
@@ -70,8 +61,6 @@ class Product < ActiveRecord::Base
         end
       end
     end
-    puts "Start time: #{start_time}."
-    puts "End time: #{Time.new}."
 
   end
 
@@ -86,6 +75,10 @@ class Product < ActiveRecord::Base
   def needed_materials
     arr = Material.codes.select do |code|
       self.number.include? code
+    end
+    if arr.include? "STONE"
+      arr << "ONYX"
+      arr < "MARBL"
     end
     arr 
   end

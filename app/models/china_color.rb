@@ -5,7 +5,12 @@ class ChinaColor < ActiveRecord::Base
   INDICATOR = "CC"
 
   def self.add_china_colors_to(product)
-    product.china_colors = ChinaColor.all
+    if product.number.include? "HANDPAINTED"
+      product.china_colors = ChinaColor.where(name: "White").where(name: "Sand")
+    else
+      product.china_colors = ChinaColor.all
+    end
+
   end
 
 
