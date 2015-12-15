@@ -24,15 +24,6 @@ Material.destroy_all
 Finish.destroy_all
 ProductSubType.destroy_all
 ProductType.destroy_all
-LeverDesign.destroy_all
-BasinDesign.destroy_all
-ConsoleCounterVanityDesign.destroy_all
-WaterClosetHandleDesign.destroy_all
-DoorTrimDesign.destroy_all
-WallTrimDesign.destroy_all
-CeilingLightsDesign.destroy_all
-WallLightsDesign.destroy_all
-WallPaperDesign.destroy_all
 FilterValue.destroy_all
 Filter.destroy_all
 ChinaColor.destroy_all

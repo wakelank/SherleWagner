@@ -5,7 +5,7 @@ require 'find'
 class Product < ActiveRecord::Base
 
 
-  belongs_to :product_group
+#  belongs_to :product_group
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
