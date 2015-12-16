@@ -33,6 +33,7 @@ $(document).on("page:change", (function(){
        debugger
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
+       var product_id = tearSheetForm.elements["product_id"].value;
        var material_id = tearSheetForm.elements["tearsheet[material_id]"].value;
        var finish_id = tearSheetForm.elements["tearsheet[finish_id]"].value;
        var china_color_id = tearSheetForm.elements["tearsheet[china_color_id]"].value;
@@ -42,10 +43,13 @@ $(document).on("page:change", (function(){
          "china_color_id" : china_color_id
        }
       var root_url = window.location.origin
-      var product_id = "3"
-      var tearsheet_number = product_base_number
+      var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+      var tearsheet_number = product_base_number.replace("XX", finish_id);
+      var tearsheet_number = tearsheet_number.replace("CC", china_color_id);
+      var tearsheet_number = tearsheet_number.replace(material_code_regex, material_id);
 
-      var url = root_url + "/tearsheets/" + product_id + "?number=" + tearsheet_number;
+
+      var url = root_url + "/tearsheets/" + product_id + "?tearsheet=" + tearsheet_number;
       return url;
      }
 
