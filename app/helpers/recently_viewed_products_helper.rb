@@ -4,7 +4,7 @@ module RecentlyViewedProductsHelper
     if there_are_recently_viewed_products?
       recently_viewed_products = JSON.parse(cookies[:recently_viewed_products])
       recently_viewed_products.map do |recently_viewed_product|
-        Product.find_by(id: recently_viewed_product["product_id"])
+        Product.find_by(id: recently_viewed_product["product_id"]) || NullObject.new
       end
     end
   end

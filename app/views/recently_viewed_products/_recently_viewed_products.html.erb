@@ -2,7 +2,7 @@
    Recently viewed products 
   <ul class="recently-viewed-products">
   <% recently_viewed_products.each do |recently_viewed_product| %>
-    <li><%= link_to recently_viewed_product.name, product_path(recently_viewed_product) %></li>
+    <li><%= link_to recently_viewed_product.name, product_path(recently_viewed_product.id) %></li>
   <% end %>
   </ul>
 </div>
