@@ -94,6 +94,10 @@ class Product < ActiveRecord::Base
     arr 
   end
 
+  def associated_collection
+    @associated_product || NullObject.new
+  end
+
 
 
   def self.get_name_from(row)
