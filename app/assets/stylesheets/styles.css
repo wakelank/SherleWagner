@@ -295,5 +295,6 @@ li.highlighted{
 } 
 .recently-viewed-products li{
   display: inline;
+  border: thin white solid;
 }
   
