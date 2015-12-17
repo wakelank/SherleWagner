@@ -286,8 +286,14 @@ li.highlighted{
   position:fixed;
    left:0px;
    bottom:0px;
-   height:30px;
+   height:60px;
    width:100%;
    background:#353535;
 }
-
+.recently-viewed-products{
+  color: white;
+} 
+.recently-viewed-products li{
+  display: inline;
+}
+  

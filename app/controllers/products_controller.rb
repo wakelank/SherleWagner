@@ -10,13 +10,14 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     recently_viewed_products = []
-    binding.pry
     if cookies[:recently_viewed_products] && cookies[:recently_viewed_products].length > 2
       recently_viewed_products = JSON.parse(cookies[:recently_viewed_products])
     end
     recently_viewed_products << { product_id: @product.id }
+    while recently_viewed_products.length > 5
+      recently_viewed_products.shift 1
+    end
     cookies[:recently_viewed_products] = recently_viewed_products.to_json
-    binding.pry
                                             
   end
 
