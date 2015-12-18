@@ -41,6 +41,11 @@ RSpec.describe ProductsController, :type => :controller do
       expect(@product.product_type.name).to eq "Fittings"
     end
 
+    it "assigns associated collection" do
+      associated_collection = Style.find_by(name: "Arco")
+      expect(@product.associated_collection).to eq associated_collection
+    end
+
   end
 
 #  describe "Upload process associates with product:" do

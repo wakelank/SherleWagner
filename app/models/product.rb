@@ -47,8 +47,10 @@ class Product < ActiveRecord::Base
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
           Material.add_materials_to(product, product.needed_materials)
 
-          product.add_associated_collection
-
+          coll = product.find_associated_collection
+          if !coll.nil?
+            product.associated_collection = coll 
+          end
           product.styles << style
           product.filter_values.concat filters
           product.genres.concat genres
@@ -67,12 +69,14 @@ class Product < ActiveRecord::Base
 
   end
 
-  def add_associated_collection
-    Style.all.each do |collection|
-      if self.name.include? collection.name
-        self.associated_collection = collection
-      end
-    end
+  def find_associated_collection
+    collection =  Style.all.select { |collection| self.name.include? collection.name }.first
+    return collection || NullObject.new
+  end
+
+
+  def add_associated_collection collection
+    self.associated_collection = collection if !collection.nil?
   end
 
   def needs_finishes?
@@ -94,8 +98,8 @@ class Product < ActiveRecord::Base
     arr 
   end
 
-  def associated_collection
-    @associated_product || NullObject.new
+  def associated_collection_or_null
+    self.associated_collection || NullObject.new
   end
 
 
