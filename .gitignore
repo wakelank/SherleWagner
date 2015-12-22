@@ -21,4 +21,5 @@
 
 /solr/pids/*
 solr/*
+public/system/product_configurations/images/*
 

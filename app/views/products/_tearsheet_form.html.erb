@@ -2,9 +2,9 @@
   <%= form_tag '#', id: 'tearsheet-form', class: "thisclass"  do %>
     <%= hidden_field_tag('product_id', @product.id) %>
     <%= hidden_field_tag('product_base_number', @product.number) %>
-    <%= collection_select(:tearsheet, :material_id, @product.materials, :identifier, :name, include_blank: '') %>
-    <%= collection_select(:tearsheet, :finish_id, @product.finishes, :identifier, :name, include_blank: '') %>
-    <%= collection_select(:tearsheet, :china_color_id, @product.china_colors, :identifier, :name, include_blank: '') %>
+    <%= collection_select(:tearsheet, :material_identifier, @product.materials, :identifier, :name, include_blank: '') %>
+    <%= collection_select(:tearsheet, :finish_identifier, @product.finishes, :identifier, :name, include_blank: '') %>
+    <%= collection_select(:tearsheet, :china_color_identifier, @product.china_colors, :identifier, :name, include_blank: '') %>
   <% end %>
     <%= link_to "Generate Tear Sheet", "#" ,class: 'tear-sheet-submit', target: '_blank' %>
 </div>

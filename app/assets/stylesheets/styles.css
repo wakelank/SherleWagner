@@ -300,3 +300,9 @@ li.highlighted{
 .tearsheet-form-box{
   outline: thin black solid;
 }
+.highlight{
+  outline: thick red solid;
+}
+.prod_tile{
+  cursor: pointer;
+}
