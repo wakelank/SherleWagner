@@ -14,7 +14,7 @@ class ProductConfigurationsController < ApplicationController
     configurations = product.product_configurations.all unless configurations.length > 0
 
     configurations = configurations.select{ |configuration| configuration.number.include?(params[:material]) }
-
+#todo this may not work if a material is not available
     data = {configuration: configurations}.to_json
 
     render json: data
