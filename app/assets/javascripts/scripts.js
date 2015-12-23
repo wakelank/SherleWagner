@@ -68,6 +68,13 @@ $(document).on("page:change", (function(){
 
      var configurationObject = {finish: "CP", material: "MALA"};
 
+     function setProductInfoWithConfiguration(config){
+       if (typeof config != "undefined") {
+           $('.prod-config-number').html("shown: " + config.number);
+           $('.prod-config-description').html("shown: " + config.description);
+       }
+     }
+
      $('#product_finishes_list').find('li').click(function(e){
        var URLparts = window.location.pathname.split('/');
        var product_id = URLparts[URLparts.length - 1];
@@ -86,6 +93,7 @@ $(document).on("page:change", (function(){
          data: configurationObject,
          success: function(data){
            console.log("success" + JSON.stringify(data));
+           setProductInfoWithConfiguration(data.configuration[0])
          },
          error: function(xhr, options, err){
            console.log("ajax error");
@@ -95,11 +103,29 @@ $(document).on("page:change", (function(){
      });
 
      $('#product_materials_list').find('li').click(function(e){
+       var URLparts = window.location.pathname.split('/');
+       var product_id = URLparts[URLparts.length - 1];
+       var product_object = { product_id: product_id }
        var material_identifier = $(e.target).data().material_identifier
        var material_config = {material: material_identifier}
+       debugger
        $.extend(configurationObject, material_config);
+       $.extend(configurationObject, product_object);
        $('#product_materials_list').find('li').removeClass('highlight');
        $(e.target).addClass('highlight');
        console.log("configObj: " + JSON.stringify(configurationObject));
+       $.ajax({
+         url: "/product_configurations/show",
+         type: 'GET',
+         dataType: 'json',
+         data: configurationObject,
+         success: function(data){
+           console.log("success" + JSON.stringify(data));
+           setProductInfoWithConfiguration(data.configuration[0])
+         },
+         error: function(xhr, options, err){
+           console.log("ajax error");
+         }
+       });
      });
 }))

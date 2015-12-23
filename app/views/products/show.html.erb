@@ -28,10 +28,10 @@
           
       <%= image_tag @product.image.url(:medium) %>
     </div>
-      <h4>
+      <h4 class="prod-config-number">
       shown: <%= @product.product_configurations.last.number %>
       </h4>
-      <h4>
+      <h4 class="prod-config-description">
       shown: <%= @product.product_configurations.last.description %>
       </h4>
     </div>
