@@ -1,12 +1,21 @@
 class ProductConfigurationsController < ApplicationController
   def show
     product = Product.find_by(id: params[:product_id])
-    configuration = product.
-      product_configurations.
-      where("number LIKE ?", "%#{params[:finish]}%").
-      where("number LIKE ?", "%#{params[:material]}%")
+#    configuration = product.
+#      product_configurations.
+#      where("number LIKE ?", "%#{params[:finish]}%").
+#      where("number LIKE ?", "%#{params[:material]}%")
 
-    data = {configuration: configuration}.to_json
+
+    configurations = product.
+      product_configurations.
+      where("number LIKE ?", "%#{params[:finish]}%")
+
+    configurations = product.product_configurations.all unless configurations.length > 0
+
+    configurations = configurations.select{ |configuration| configuration.number.include?(params[:material]) }
+
+    data = {configuration: configurations}.to_json
 
     render json: data
   end

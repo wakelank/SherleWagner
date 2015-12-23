@@ -66,7 +66,7 @@ $(document).on("page:change", (function(){
        $tearsheetTag.attr("href", url);
      }
 
-     var configurationObject = {finish: "CP", material: "MALA"};
+     var configurationObject = {};
 
      function setProductInfoWithConfiguration(config){
        if (typeof config != "undefined") {
@@ -108,7 +108,6 @@ $(document).on("page:change", (function(){
        var product_object = { product_id: product_id }
        var material_identifier = $(e.target).data().material_identifier
        var material_config = {material: material_identifier}
-       debugger
        $.extend(configurationObject, material_config);
        $.extend(configurationObject, product_object);
        $('#product_materials_list').find('li').removeClass('highlight');
