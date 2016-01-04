@@ -3,6 +3,7 @@ require 'csv'
 require 'find'
 
 class Product < ActiveRecord::Base
+  extend ImageFilePath
 
 
 #  belongs_to :product_group
@@ -34,7 +35,8 @@ class Product < ActiveRecord::Base
         args[:product_sub_type] = ProductSubType.get_arg row
         image_name = self.get_image_name_from row
         #images_path = "/Users/ph1am/Desktop/SW website/images1"
-         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        # images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        images_path = self.image_file_path
         image_file = NullObject.new
         style = Style.get_arg row
         filters = FilterValue.get_arg row

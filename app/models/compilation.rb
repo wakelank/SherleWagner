@@ -2,7 +2,7 @@ class Compilation < ActiveRecord::Base
   has_and_belongs_to_many :products
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_compliation.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
-
+  extend ImageFilePath
 
   def self.upload_compilations_from_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
@@ -12,7 +12,8 @@ class Compilation < ActiveRecord::Base
       if args[:number] == "TITLE-XX"
         image_name = self.get_image_name_from row
         #images_path = "/Users/ph1am/Desktop/SW website/images1"
-        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+#        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        images_path = self.image_file_path
         image_file = NullObject.new
       #  Find.find(images_path) do |filepath|
       #    if File.basename(filepath) == image_name
