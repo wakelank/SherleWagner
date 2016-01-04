@@ -23,5 +23,5 @@
 solr/*
 public/system/product_configurations/images/*
 public/system/compilations/images/*
-/app/models/concerns/image_file_path.rb
+app/models/concerns/image_file_path.rb   
 
