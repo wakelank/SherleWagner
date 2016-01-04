@@ -33,8 +33,8 @@ class Product < ActiveRecord::Base
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
         image_name = self.get_image_name_from row
-        images_path = "/Users/ph1am/Desktop/SW website/images1"
-        # images_path = "/Users/wake/Documents/Work/SherleWagner/images"
+        #images_path = "/Users/ph1am/Desktop/SW website/images1"
+         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
         image_file = NullObject.new
         style = Style.get_arg row
         filters = FilterValue.get_arg row
