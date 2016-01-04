@@ -2,11 +2,12 @@
 <div class="list_wrapper">
 
     <ul >
+      <h3 id="subtype_list_name"><%= @product_type.name %></h3>
       <% @product_type.product_sub_types.each do |product_sub_type| %>
         
         
         <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
-               <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %>" id="sub_type_tile">
+               <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id="">
                 <h3 > 
                   <%= product_sub_type.name %>
                 </h3>
@@ -43,8 +44,20 @@
     </ul>
 </div>
 <script>
+  $(function(){
+  thisac ="#"+$('#subtype_list_name').text();
+  sideac = thisac.replace(" ","_");
+  actrgt = $(sideac).parents('.panel').children('.panel-collapse');
+  // $(actrgt).collapse('show');
+  
+  //code for toggling the 'open' prodcat panel based onthe title in prod list
+  // $(sideac).parents('.panel').children('.panel-collapse').collapse('toggle')
+  //this is an open subtype panel after a sideac has been set
+    // opensubt = $(sideac).parents('.panel').children('.panel-collapse').children().children().children().children('.in')
+ });
+
   // toggle open the side nav panel for the clicked category tile ***
-  $('.prod_tile').click(function(){
+   $('.sub_type_tile').click(function(){
     var thiss =$(this);
 
     var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
@@ -52,5 +65,5 @@
     //open the subtype collapse panel in the sidebar
     $(sideb_collapse).collapse('toggle');
 
-  })
+  });
 </script>

@@ -16,7 +16,8 @@ $(document).on('ready page:load', function () {
   uncheckOnCollapse("#Hardware");
   uncheckOnCollapse("#Lighting");
   uncheckOnCollapse("#Wall_Coverings");
-
+  
+  keepCatOpenOnClick();
 });
 
 
@@ -30,16 +31,11 @@ function productCategory() {
     console.log(text);
     console.log("clicked product-type");
 
-    var $trgt = $(link);
-    var tag = $trgt.selector;
-    // $trgt.addClass('in');
-    if ($(tag).find(".in").length > 0)
-    { 
-      console.log('im open');
-  
-    }else{
+     $trgt = $(link);
+     tag = $trgt.selector;
+
       $trgt.collapse('toggle');
-    }
+
   });
 }
 
@@ -48,10 +44,9 @@ function subTypePanel(){
   $('div.panel-title label').click(function()
   { 
     var href = $(this).attr('href');
-    // console.log($href);
-    //var id ="'" + href + "'";
+    
     var $trgt = $(href);
-    // $trgt.addClass('in');
+    
     $trgt.collapse('toggle');
 
     var neighbors = $()
@@ -67,28 +62,23 @@ function subTypePanel(){
 function hideTypeNeighbors(panel){
   $( ".prod-cat" ).click(function(){
     var $trgt = $(panel);
-
-      // $trgt.on('show.bs.collapse', function () {
+        dis = this;
+      
         selectr = panel+" .in";
         
          typearr = ["no_type1","Fittings1","Fixtures1","Accessories1","Hardware1","Lighting1","Wall_Coverings1"];
 
-        if (typearr.indexOf($(selectr).attr('id')) != null ){
+        if (typearr.indexOf($(selectr).attr('id')) != null){
           $(selectr).collapse('hide');
-           console.log('hiding');
+           //console.log('hiding');
 
         }
 
 
-      // });
+
   });
 
-   // $('#accordion2').on('show.bs.collapse', function () 
-   //  {
-   //    console.log("SHOWBS COLL?")
-   //    $('#accordion2 .in').collapse('hide')
 
-   //  });
 }
 function hideSubTypeNeighbors(panel){
   $( ".panel-sub-heading label" ).click(function(){
@@ -96,16 +86,10 @@ function hideSubTypeNeighbors(panel){
 
       // *collapse event option* $trgt.on('show.bs.collapse', function () {
         selectr = panel+" .sub-type-panel .in";
-        
-        
 
-        
           $(selectr).collapse('hide');
            console.log('hiding');
-        
 
-
-      // });
   });
 
    
@@ -161,4 +145,34 @@ function containsAtLeastOne(needles, haystack){
     if($.inArray(needles[i], haystack) != -1) return true;
   }
   return false;
+}
+
+function keepCatOpenOnClick(){
+  //this is for getting back to prod-type from subtype in side nav w\ out prod type closing
+  //this solution changes classes in the collapse target and then reverts them after small delay
+  $('.prod-cat a').on('click',function(e){
+   
+    if($(this).parents('.panel').find('.panel-collapse.in').size() >= 2){
+      hh = $(this).parents('.panel');
+      v = $(hh).find('h4 label')
+      targ = $(this).parents('.panel').children('.panel-collapse');
+      old_id = $(targ).attr('id');
+      old_classes = $(targ).attr('class');
+      $(targ).attr('id', 'umm');
+      $(targ).attr('class', '');
+
+      //WOORK?
+      setTimeout(function(){
+        $(targ).attr('id', old_id);
+        $(targ).attr('class', old_classes);
+        }, 100
+      );
+
+
+      console.log('mess w targ');
+      
+     
+        
+    }
+  });
 }
