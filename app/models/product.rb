@@ -5,7 +5,7 @@ require 'find'
 class Product < ActiveRecord::Base
 
 
-  belongs_to :product_group
+#  belongs_to :product_group
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :compilations
+  belongs_to :associated_collection, class_name:  "Style"
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -35,14 +36,6 @@ class Product < ActiveRecord::Base
         #images_path = "/Users/ph1am/Desktop/SW website/images1"
         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
         image_file = NullObject.new
-        Find.find(images_path) do |filepath|
-          if File.basename(filepath) == image_name
-            image_file = File.new(filepath) || NullObject.new
-          end
-        end
-        args[:image] = image_file if !image_file.nil?
-
-
         style = Style.get_arg row
         filters = FilterValue.get_arg row
         genres= Genre.get_arg row
@@ -50,11 +43,14 @@ class Product < ActiveRecord::Base
         begin
 
           product = Product.new(args)
-          #ProductType.assign_attribute({ row: row, product: product })
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
           Material.add_materials_to(product, product.needed_materials)
 
+          coll = product.find_associated_collection
+          if !coll.nil?
+            product.associated_collection = coll 
+          end
           product.styles << style
           product.filter_values.concat filters
           product.genres.concat genres
@@ -70,9 +66,17 @@ class Product < ActiveRecord::Base
         end
       end
     end
-    puts "Start time: #{start_time}."
-    puts "End time: #{Time.new}."
 
+  end
+
+  def find_associated_collection
+    collection =  Style.all.select { |collection| self.name.include? collection.name }.first
+    return collection || NullObject.new
+  end
+
+
+  def add_associated_collection collection
+    self.associated_collection = collection if !collection.nil?
   end
 
   def needs_finishes?
@@ -87,7 +91,15 @@ class Product < ActiveRecord::Base
     arr = Material.codes.select do |code|
       self.number.include? code
     end
+    if arr.include? "STONE"
+      arr << "ONYX"
+      arr < "MARBL"
+    end
     arr 
+  end
+
+  def associated_collection_or_null
+    self.associated_collection || NullObject.new
   end
 
 
@@ -143,6 +155,7 @@ class Product < ActiveRecord::Base
     arr = filter_values.map do |filter_value|
       filter_value.snake_case_name
     end
+    arr.concat genres.pluck(:name)
     arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
     arr << "Metal" if number.include?("XX")
     arr << "Onyx" if number.include?("ONYX")
@@ -166,6 +179,10 @@ class Product < ActiveRecord::Base
 
   def china_colors?
     self.china_colors.length > 0
+  end
+
+  def product_configurations_except_first
+    product_configurations[1..product_configurations.length-1]
   end
 
 end

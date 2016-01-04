@@ -7,5 +7,5 @@
     <%= link_to 'login', login_path %>
   <% end %>
   <%= link_to 'favorites', favorites_path if !cookies[:favorites].nil? %>
-
+  <%= render 'recently_viewed_products/recently_viewed_products' %>
 </div> 

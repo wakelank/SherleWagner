@@ -80,7 +80,7 @@ ul.nav{
   clear: right;
   display: block;
   padding-top: 14em;
-  padding-bottom: 2em;
+  padding-bottom: 5em;
   margin: 0 auto;
   position: absolute;
   left: 250px;
@@ -286,8 +286,23 @@ li.highlighted{
   position:fixed;
    left:0px;
    bottom:0px;
-   height:30px;
+   height:60px;
    width:100%;
    background:#353535;
 }
-
+.recently-viewed-products{
+  color: white;
+} 
+.recently-viewed-products li{
+  display: inline;
+  border: thin white solid;
+}
+.tearsheet-form-box{
+  outline: thin black solid;
+}
+.highlight{
+  outline: thick red solid;
+}
+.prod_tile{
+  cursor: pointer;
+}

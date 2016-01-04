@@ -14,12 +14,12 @@ class Compilation < ActiveRecord::Base
         #images_path = "/Users/ph1am/Desktop/SW website/images1"
         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
         image_file = NullObject.new
-        Find.find(images_path) do |filepath|
-          if File.basename(filepath) == image_name
-            image_file = File.new(filepath) || NullObject.new
-          end
-        end
-        args[:image] = image_file if !image_file.nil?
+      #  Find.find(images_path) do |filepath|
+      #    if File.basename(filepath) == image_name
+      #      image_file = File.new(filepath) || NullObject.new
+      #    end
+      #  end
+      #  args[:image] = image_file if !image_file.nil?
 
         compilation = Compilation.new(args)
         compilation.save if compilation.valid?

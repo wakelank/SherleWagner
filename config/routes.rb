@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'product_configurations/show'
+
+  get 'styles/show'
+
+  get 'style/show'
+
   get 'product_sub_types/show'
 
   get 'products/upload_page' => 'static_pages#upload_page'
@@ -31,6 +37,8 @@ Rails.application.routes.draw do
   resources :tearsheets, only: [:show, :create]
   resources :favorites, only: [:index, :create, :destroy]
   resources :compilations, only: [:show]
+  resources :styles, only: [:show]
+  resources :product_configurations, only: [:show]
 
   get "/fetch_items" => 'products#from_category', as: 'fetch_items'
   get "/fetch_cat" => 'product_types#an_category', as: 'fetch_cat'

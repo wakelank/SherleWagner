@@ -45,11 +45,10 @@ Rails.application.configure do
 #     :s3_credentials => '#{Rails.root}/config/aws.yml'
 #
 #  }
- config.paperclip_defaults = {
-  :storage => :s3,
-  :bucket => 'sw-rails-images1',
- }
-
-
+# config.paperclip_defaults = {
+#  :storage => :s3,
+#  :bucket => 'sw-rails-images1',
+# }
+#
 
 end

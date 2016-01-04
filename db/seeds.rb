@@ -24,15 +24,6 @@ Material.destroy_all
 Finish.destroy_all
 ProductSubType.destroy_all
 ProductType.destroy_all
-LeverDesign.destroy_all
-BasinDesign.destroy_all
-ConsoleCounterVanityDesign.destroy_all
-WaterClosetHandleDesign.destroy_all
-DoorTrimDesign.destroy_all
-WallTrimDesign.destroy_all
-CeilingLightsDesign.destroy_all
-WallLightsDesign.destroy_all
-WallPaperDesign.destroy_all
 FilterValue.destroy_all
 Filter.destroy_all
 ChinaColor.destroy_all
@@ -110,7 +101,7 @@ materials = [{ type: "China-Hand Painted",
                         { name: "Acorn & Oakleaf -Sage-99SG", identifier: "99SG" }]
               },
               {type: "China-Metal Plated",
-               code: "GLAZE",
+               code: "CHINAMETAL",
                entries: [ { name: "Burnished Gold-14GP", identifier: "14GP" },
                         { name: "Burnished Platinum-15PL", identifier: "15PL" },
                         { name: "Highly Polished Platinum-17HP", identifier: "17HP" },
@@ -118,28 +109,23 @@ materials = [{ type: "China-Hand Painted",
                         { name: "Platinum Accents-24PL", identifier: "24PL" }]
               },
               {type: "Marble",
-               
-               entries: [{ name: "ROSE AURORA (RSAU)", identifier: "RSAU" },
-                       { name: "ROSE DU MONTE (RSDM)", identifier: "RSDM" },
-                       { name: "CARARRA (CARR)", identifier: "CARR" },
-                       { name: "MARIANELLA (MARI)", identifier: "MARI" },
-                       { name: "ANTIQUE WHITE (ANWH)", identifier: "ANWH" },
-                       { name: "ANTIQUE BROWN (ANBR)", identifier: "ANBR" },
-                       { name: "ESTREMOZ (ESTR)", identifier: "ESTR" },
-                       { name: "VERDI VIANA (VERD)", identifier: "VERD" },
-                       { name: "CREMA MARFIL (CREMA)", identifier: "CREMA" },
-                       { name: "BELGIAN BLACK (BLGB)", identifier: "BLGB" },
-                       { name: "ROJO ALICANTE (ROJO)", identifier: "ROJO" },
-                       { name: "BLACK MARBLE (BLMA)", identifier: "BLMA" },
-                       { name: "ROSA LEVANTO (RSLV)", identifier: "RSLV" },
-                       { name: "IMPERADOR BROWN (IMBR)", identifier: "IMBR" },
-                       { name: "CARNICO GREY (CRGR)", identifier: "CRGR" },
-                       { name: "ARABESCATO (ARAB)", identifier: "ARAB" },
-                       { name: "NEGRO MARQUINA (NEMA)", identifier: "NEMA" },
-                       { name: "PORTORO (PORT)", identifier: "PORT" },
-                       { name: "VALVERDE (VLVD)", identifier: "VLVD" },
-                       { name: "CALACATTA (CALA)", identifier: "CALA" },
-                       { name: "PORT LAURENT (PTLA))", identifier: "PTLA" }]
+               code:"MARBL",            
+               entries: [ { name: "ARABESCATO", indentifier: "ARAB" },
+               { name: "CALCATTA", indentifier: "CALA" },
+               { name: "CARNICO GREY", indentifier: "CAGR" },
+               { name: "CARRERA", indentifier: "CARR" },
+               { name: "CREMA MARFIL", indentifier: "CREMA" },
+               { name: "IMPERADOR BROWN", indentifier: "IMBR" },
+               { name: "MARIANELLA", indentifier: "MARI" },
+               { name: "NEGRO MARQUINA", indentifier: "NEMA " },
+               { name: "PORT LAURENT", indentifier: "PRLT" },
+               { name: "PORTORO", indentifier: "PORT" },
+               { name: "ROSA DU MONTE", indentifier: "RSDM" },
+               { name: "ROSE AURORA", indentifier: "RSAU" },
+               { name: "ROSE DU MONTE", indentifier: "RSDM" },
+               { name: "RUVINA", indentifier: "RUVI" },
+               { name: "VEREDI VIANA", indentifier: "VERD" },
+               { name: "WHITE THASSOS", indentifier: "THAS" }]
               },
               {type: "Semi-precious Stone",
               code: "SEMI",
@@ -318,8 +304,7 @@ types = [
             { name: "Bar Spout Basin Sets"},
             { name: "Single Handle Basin Sets"},
             { name: "Wall Mount Basin Sets"},
-            { name: "Concentric Thermostatic Shower Systems"},
-            { name: "High Flow Thermostatic Shower Systems"},
+            { name: "Shower Systems"},
             { name: "Deck Mount Tub Sets"},
             { name: "Wall Mount Tub Sets"},
             { name: "Exposed Tub Sets"},
@@ -350,20 +335,12 @@ types = [
                 { name: "Towel Rings" },
                 { name: "Paper Holders" },
                 { name: "Hooks" },
-                { name: "Tumblers" },
-                { name: "Soap Dishes" },
-                { name: "Tumbler Holders" },
-                { name: "Soap Dish Holders" },
-                { name: "Soap Pump" },
-                { name: "Boutique Tissue Box Covers" },
-                { name: "Elongated Tissue Box Covers" },
-                { name: "Covered Jars" },
-                { name: "Waste Baskets" },
-                { name: "Mirrors" },
-                { name: "Medicine Cabinets" },
-                { name: "Countertop Accessories" },
-                { name: "Tub and Shower" },
+                { name: "Holders, Baskets" },
                 { name: "Grab Bars" },
+                { name: "Mirrors & Medicine Cabinets" },
+                { name: "Tub and Shower" },
+                { name: "Countertop Accessories" },
+                { name: "Decorative Objects" },
                 { name: "Bench" }
               ]
             
@@ -372,6 +349,7 @@ types = [
                sub_types: [
                   { name: "Door Levers" },
                   { name: "Door Knobs" },
+                  { name: "Elongated Back Plate Systems" },
                   { name: "Back Plates" },
                   { name: "Push Plates" },
                   { name: "Flush Pulls" },
@@ -379,7 +357,7 @@ types = [
                   { name: "Cremone Bolts" },
                   { name: "Slide Bolts" },
                   { name: "Bar Pulls" },
-                  { name: "Cabinet Knobs" },
+                  { name: "Cabinet and Drawer Knobs" },
                   { name: "Door Bells" },
                   { name: "Door Stops" },
                   { name: "Cylinder Covers" },
@@ -445,20 +423,50 @@ filters = [
   { name: "Handle Design",
     filter_values: [ "Levers", "Knobs" ]
   },
+  { name: "Shower Type",
+    filter_values: [ "Concentric Thermostatic Shower Systems", "High Flow Thermostatic Shower Systems" ]
+  },
   { name: "Sink Design",
     filter_values: [ "Under Edge", "Over Edge" ]
   },
+  { name: "Sink Shape",
+    filter_values: [ "Oval", "Round", "Geometric" ]
+  },
+  { name: "Bidet Design",
+    filter_values: [ "Two Hole", "Four Hole" ]
+  },
   { name: "Console or Counter",
-    filter_values: ["Console", "Counter" ]
+    filter_values: ["Consoles", "Counters", "Legs" ]
   },
-  { name: "Bidet or Water Closet",
-    filter_values: [ "Bidet", "Water Closet" ]
+  { name: "Trim Type",
+    filter_values: [ "Concentric Thermostatic Trim", "High Flow Thermostatic Trim"]
   },
-  { name: "Ceiling Light Design",
-    filter_values: [ "Pendant", "Chandelier", "Flush Mount" ]
+  { name: "Component Type",
+    filter_values: [ "Volume Controls",
+                      "Ceiling Shower Heads",
+                      "Shower Heads",
+                      "Rain Bars",
+                      "Body Sprays",
+                      "Rain Bars",
+                      "Hand Showers",
+                      "Wall Mount Spouts",
+                      "Deck Mount Tub Spouts",
+                      "Telephone Cradles",
+                      "Supplies and Shut Offs"
+                     ]
   },
-  { name: "Wall Light Design",
-    filter_values: [ "Sconce", "Panel Light" ]
+  { name: "Paper Holder Design",
+    filter_values: [ "Single Post", "Double Post", "Wall Mount" ]
+  },
+  { name: "Countertop Accessory Types",
+    filter_values: [ "Tumblers ­ inside counter top",
+                     "Soap Dishes",
+                     "Boutique Tissue Box Covers",
+                     "Elongated Tissue Box Covers",
+                     "Covered Jars"]
+  },
+  { name: "Hinge Types",
+    filter_values: [ "Paumelle Hinge", "Butt Hinge"]
   },
   { name: "Wallpaper Design",
     filter_values: [ "Toiles", "Floral", "Geometric" ]
@@ -468,6 +476,12 @@ filters = [
   },
   { name: "Materials",
     filter_values: [ "Metal", "Marble", "China", "Onyx", "Semi_Precious" ]
+  },
+  { name: "Glazes",
+    filter_values: [ "Banded", "Solid", "Burnished", "Polished"]
+  },
+  { name: "China",
+    filter_values: [ "Hand Painted", "Hand Decorated"]
   }
 ]
 genre_filter_hash = { name: "Styles" }
@@ -485,15 +499,49 @@ filters.each do |filter|
   end
 end
 
+ProductType.find_by(name: "Fittings").product_sub_types.each do |sub_type|
+  sub_type.filters << Filter.find_by(name: "Handle Design")
+end
+fixtures = ProductType.where(name: "Fixtures")
+
+ProductSubType.where(product_type: fixtures).where.not(name: "Legs").each do |product_sub_type|
+  product_sub_type.filters << Filter.find_by(name: "Glazes")
+end
+
+ProductSubType.where(product_type: fixtures).where.not(name: "Legs").where.not(name: "Consoles").each do |product_sub_type|
+  product_sub_type.filters << Filter.find_by(name: "China")
+end
+
+ProductSubType.where.not(product_type: fixtures).each do |product_sub_type|
+  product_sub_type.filters << Filter.find_by(name: "Materials")
+end
 
 
 ProductSubType.all.each do |product_sub_type|
-  product_sub_type.filters << Filter.find_by(name: "Handle Design")
-  product_sub_type.filters << Filter.find_by(name: "Materials")
   product_sub_type.filters << Filter.find_by(name: "Styles")
+  case product_sub_type.name
+  when "Bidet Sets"
+    product_sub_type.filters << Filter.find_by(name: "Bidet Design")
+  when "Shower Systems"
+    product_sub_type.filters << Filter.find_by(name: "Shower Type")
+  when "Components"
+    product_sub_type.filters << Filter.find_by(name: "Trim Type")
+    product_sub_type.filters << Filter.find_by(name: "Component Type")
+  when "Basins"
+    product_sub_type.filters << Filter.find_by(name: "Sink Design")
+    product_sub_type.filters << Filter.find_by(name: "Sink Shape")
+  when "Paper Holders"
+    product_sub_type.filters << Filter.find_by(name: "Paper Holder Design")
+  when "Countertop Accessories"
+    product_sub_type.filters << Filter.find_by(name: "Countertop Accessory Types")
+  when "Hinges"
+    product_sub_type.filters << Filter.find_by(name: "Hinge Types")
+  when "Wallpaper"
+    product_sub_type.filters << Filter.find_by(name: "Wallpaper Design")
+    product_sub_type.filters << Filter.find_by(name: "Wallpaper Color")
+  end
 end
 
-ProductSubType.find_by(name: "Basins").filters << Filter.find_by(name: "Sink Design")
 
 #end
 #
