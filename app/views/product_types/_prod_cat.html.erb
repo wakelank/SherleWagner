@@ -7,7 +7,7 @@
         
         
         <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
-               <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %>" id="sub_type_tile">
+               <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id="">
                 <h3 > 
                   <%= product_sub_type.name %>
                 </h3>
@@ -57,7 +57,7 @@
  });
 
   // toggle open the side nav panel for the clicked category tile ***
-   $('.prod_tile').click(function(){
+   $('.sub_type_tile').click(function(){
     var thiss =$(this);
 
     var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
