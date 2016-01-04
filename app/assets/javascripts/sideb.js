@@ -16,7 +16,8 @@ $(document).on('ready page:load', function () {
   uncheckOnCollapse("#Hardware");
   uncheckOnCollapse("#Lighting");
   uncheckOnCollapse("#Wall_Coverings");
-
+//testing
+  keepCatOpenOnClick();
 });
 
 
@@ -164,14 +165,32 @@ function containsAtLeastOne(needles, haystack){
 }
 
 function keepCatOpenOnClick(){
-  //this is for if we want the Cat button to be a back button from the subtype page*
-  //without closing the relevant panel in sidebar
-  //unfortunatly this function blocks the link from rendering correct partial...
+  //this is for getting back to prod-type from subtype in side nav w\ out prod type closing
+  //this solution changes classes in the collapse target and then reverts them after small delay
   $('.prod-cat a').on('click',function(e){
-    if($(this).parents('.panel').children('.panel-collapse').hasClass('in')){
-        //*this is the code that stops the close but also blocks the render
-        // e.preventDefault();
-        // e.stopPropagation();
+    // $(this).parents('.panel').children('.panel-collapse').hasClass('in')
+    // $(this).parents('.panel').find('.panel-collapse.in')
+    if($(this).parents('.panel').find('.panel-collapse.in').size() >= 2){
+      hh = $(this).parents('.panel');
+      v = $(hh).find('h4 label')
+      targ = $(this).parents('.panel').children('.panel-collapse');
+      old_id = $(targ).attr('id');
+      old_classes = $(targ).attr('class');
+      $(targ).attr('id', 'umm');
+      $(targ).attr('class', '');
+
+      //WOORK?
+      setTimeout(function(){
+        $(targ).attr('id', old_id);
+        $(targ).attr('class', old_classes);
+        }, 100
+      );
+
+
+      console.log('mess w targ');
+      
+     
+        
     }
   });
 }
