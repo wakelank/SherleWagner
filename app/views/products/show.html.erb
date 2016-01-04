@@ -26,7 +26,7 @@
       </h3>
         <div class="product_image">
           
-      <%= image_tag @product.image.url(:medium) %>
+      <%= image_tag @product.image.url(:medium), class: 'product-image' %>
     </div>
       <h4 class="prod-config-number">
       shown: <%= @product.product_configurations.last.number %>

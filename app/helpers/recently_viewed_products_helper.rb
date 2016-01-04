@@ -6,6 +6,8 @@ module RecentlyViewedProductsHelper
       recently_viewed_products.map do |recently_viewed_product|
         Product.find_by(id: recently_viewed_product["product_id"]) || NullObject.new
       end
+    else
+      []
     end
   end
 

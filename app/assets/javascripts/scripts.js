@@ -72,6 +72,7 @@ $(document).on("page:change", (function(){
        if (typeof config != "undefined") {
            $('.prod-config-number').html("shown: " + config.number);
            $('.prod-config-description').html("shown: " + config.description);
+           $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
 
