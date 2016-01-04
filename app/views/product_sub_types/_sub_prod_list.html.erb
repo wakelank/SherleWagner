@@ -1,15 +1,16 @@
+<div class="list_wrapper">
 
-
-<ul class ="prod_list">
-  <% @product_sub_type.products.each do |product| %>
-    <% bgimage= product.image.url(:medium) %>
-     <%= link_to(product_path(product), class:"prod_title_link")  do %>
-    <li class ="prod_tile" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
-      <div class="prod_title">
-       <%= product.name %>
-      </div>
-    </li>
-  <% end %>
-        
-  <% end %>
-</ul>
+  <ul class ="prod_list">
+    <% @product_sub_type.products.each do |product| %>
+      <% bgimage= product.image.url(:medium) %>
+       <%= link_to(product_path(product), class:"prod_title_link")  do %>
+      <li class ="prod_tile" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
+        <div class="prod_title">
+         <%= product.name %>
+        </div>
+      </li>
+    <% end %>
+          
+    <% end %>
+  </ul>
+</div>

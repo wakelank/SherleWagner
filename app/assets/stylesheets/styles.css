@@ -77,6 +77,7 @@ ul.nav{
   width: 70%;
   float: left;
   min-width: 700px;
+  max-width: 1000px;
   clear: right;
   display: block;
   padding-top: 14em;
@@ -252,10 +253,14 @@ li.highlighted{
 
 .list_wrapper{
   width: 100%;
+  padding-left: 40px;
 }
 .list_wrapper ul{
   width: 99%;
-  margin:0 auto;
+  
+}
+.list_wrapper ul li{
+  margin: 1.5em;
 }
 
 .sub_type_pane{
@@ -274,10 +279,14 @@ li.highlighted{
 
 }
 
-#sub_type_tile a.sub_type_tile_title {
+a.sub_type_tile_title {
   color:gray;
   
 }
+.sub_type_tile{
+  clear:left;
+}
+
 .sub_type_list {
   list-style: none;
   height: 100%;
