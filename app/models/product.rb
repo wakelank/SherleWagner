@@ -40,6 +40,13 @@ class Product < ActiveRecord::Base
         filters = FilterValue.get_arg row
         genres= Genre.get_arg row
         product_configuration = ProductConfiguration.get_arg row
+        Find.find(images_path) do |filepath|
+          if File.basename(filepath) == image_name
+            image_file = File.new(filepath) || NullObject.new
+          end
+        end
+        args[:image] = image_file if !image_file.nil?
+
         begin
 
           product = Product.new(args)
