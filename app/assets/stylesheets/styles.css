@@ -119,21 +119,6 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     color: grey;
 
 }
-/*+++++THE PRODUCT SHOW PAGE++++++*/
-
-.finish_tile{
-  width: 4em;
-  height: 4em;
-
-}
-.detail_list {
-  float:left;
-  padding-right: 20px;
-}
-
-.tearsheet-form-box{
-  float:left;
-}
 
 /*===Side Nav ===*/
 
@@ -201,6 +186,16 @@ li.highlighted{
   padding-left: 3em;
 }
 /*======Product Show ========*/
+/*+++++THE PRODUCT SHOW PAGE++++++*/
+
+.detail_list {
+  float:left;
+  padding-right: 20px;
+}
+
+.tearsheet-form-box{
+  float:left;
+}
 
 #image_div{
   height:43em;
@@ -208,6 +203,38 @@ li.highlighted{
   background-image: url("/assets/ex1.png");
 }
 
+.product_image{
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  float: left;
+  margin-right: 3em;
+}
+.product_info{
+  /*stuff to R of image*/
+  
+}
+.product_info h3{
+  margin-bottom: 2em;
+
+}
+.image_list{
+  float: left;
+  padding-top: 10px;
+}
+.materials, .finishes{
+  clear: left;
+  width: 650px;
+
+}
+.finish_tile{
+  width: 4em;
+  height: 4em;
+  margin: 0.2em;
+}
+#product_finishes_list{
+  padding-left: 0;
+}
 
 
 /*======Sub-type Show Dev ========*/

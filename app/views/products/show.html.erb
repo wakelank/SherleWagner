@@ -1,55 +1,46 @@
 
-
-<script>
-  // $.ajax({
-  //               url: '/products/product.json',
-  //               contentType: "application/json",
-  //               dataType: "json",
-  //               error: function(req, err){ console.log("my message" + err); },  
-  //               success: function(data) 
-  //               {
-  //                   jsonproduct = data
-  //                   console.log(data);
-  //                   //currentData = $.parseJSON(data);
+<div class="prod_page_content">
 
 
- 
-  //               }
-  //           });
-</script>
-  <div class="prod_page_content">
-
-  
-    <div class="product_details">
+  <div class="product_details">
+   
+    <div class="product_image" style="background-image:url(<%= @product.image.url%>)" ></div>
+      <!-- <div class="product_image">     
+        image_tag @product.image.url(:medium), class: 'product-image' 
+      </div> -->
+    
+    <div class="product_info">
       <h3>
-      <%= @product.name%>
+        <%= @product.name%>
       </h3>
-        <div class="product_image">
-          
-      <%= image_tag @product.image.url(:medium), class: 'product-image' %>
-    </div>
-      <h4 class="prod-config-number">
-      shown: <%= @product.product_configurations.last.number %>
-      </h4>
       <h4 class="prod-config-description">
-      shown: <%= @product.product_configurations.last.description %>
+        shown: <%= @product.product_configurations.last.description %>
       </h4>
-    </div>
-  
-
-    <%= render 'favorites/favorite_button' %>
-
-
-    <div class="image_list">
+      <h5 class="prod-config-number">
+        product number: <%= @product.product_configurations.last.number %>
+      </h4>
+      <%= render 'favorites/favorite_button' %>
+      <div>Associated collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
+      </div>
+      
+      <div class="image_list">
       Existing images:
       <ul>
         <% @product.product_configurations_except_first.each do |config| %>
           <li><%= config.number %>
               <%= image_tag config.image.url(:thumb) %> 
-        </li>
+          </li>
         <% end %>
       </ul>
+    </div>  
     </div>
+  </div>
+   
+
+  
+
+  <div class="product_info2">
+    
     <div class="compilations">
       <% if @product.compilations.size > 0 %>
         <p>
@@ -67,7 +58,9 @@
       <% end %>
     </div>
     <%= render 'product_info' %>
-    <div>Associated collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></div>
-    <%= render 'tearsheet_form' %>
+   
   </div>
+
+  <%= render 'tearsheet_form' %>
+</div>
 
