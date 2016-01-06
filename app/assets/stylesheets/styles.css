@@ -75,6 +75,11 @@ ul.nav{
    -moz-text-decoration-color: white; /* Code for Firefox */
     text-decoration-color: white;
 }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color:grey;
+    color: white;
+}
+
 /*====The product browse page===*/
 #content_wrapper {
   background-color: #F5F5F5;
@@ -191,7 +196,7 @@ color: black;
 #subtype_list_name{
   padding-left: 0.5em;
   text-transform: uppercase;
-  color: white;
+  color: grey;
   
 }
 
