@@ -1,7 +1,7 @@
-
+<div class="prod_wrapper ">
 <div class="list_wrapper">
 
-    <ul >
+    <ul class="prod_list">
       <h3 id="subtype_list_name"><%= @product_type.name %></h3>
       <% @product_type.product_sub_types.each do |product_sub_type| %>
         
@@ -42,6 +42,7 @@
 
         <% end %>
     </ul>
+</div>
 </div>
 <script>
   $(function(){

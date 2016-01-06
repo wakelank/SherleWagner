@@ -1,11 +1,12 @@
-  <div class="type-contain">
+  <div class="prod_wrapper">
     
-    
-    <ul id="prod_list">
-      <h3 id="subtype_list_name"><%= @product_sub_type.name %></h3>
-      <% products.each do |product| %>
-        <%= render product %>
-      <% end %>
-    </ul>
+    <div class="list_wrapper">
+      <ul id="prod_list">
+        <h3 id="subtype_list_name"><%= @product_sub_type.name %></h3>
+        <% products.each do |product| %>
+          <%= render product %>
+        <% end %>
+      </ul>
+    </div>
     
   </div>

@@ -23,5 +23,9 @@
 solr/*
 public/system/product_configurations/images/*
 public/system/compilations/images/*
+<<<<<<< HEAD
 app/models/concerns/image_file_path.rb   
+=======
+app/models/concerns/image_file_path.rb
+>>>>>>> 03ad7304b3604e880944ac9067266832b6908c6a
 
