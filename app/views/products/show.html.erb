@@ -27,8 +27,9 @@
       Existing images:
       <ul>
         <% @product.product_configurations_except_first.each do |config| %>
-          <li><%= config.number %>
+          <li>
               <%= image_tag config.image.url(:thumb) %> 
+              <%= config.number %>
           </li>
         <% end %>
       </ul>
