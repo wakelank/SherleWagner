@@ -182,11 +182,21 @@ color: black;
 #accordion1 .panel-sub-heading .panel-title label{
   margin-left: -15px;
 }
+
+.filter ul{
+  padding-left: 1em;
+}
+
+.filter li{
+  list-style: none; 
+}
+
 /*media="all"
 .panel-group { 
     margin-bottom: 2px;
 }*/
 
+/*=============++++ + ++++=============*/
 
 .type-contain{
   margin-top: 1em;
