@@ -6,7 +6,7 @@
    
    <!--  <div class="product_image" style="background-image:url(<%= @product.image.url%>)" ></div> -->
       <div class="product_image">     
-        image_tag @product.image.url(:medium), class: 'product-image' 
+        <%= image_tag @product.image.url(:medium), class: 'product-image' %>
       </div>
     
     <div class="product_info">
