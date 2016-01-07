@@ -341,6 +341,7 @@ li.highlighted{
   border: 1px solid;
   display: inline-block;
   margin-right: 2em;
+  vertical-align:top;
     
 }
 

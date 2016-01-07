@@ -37,15 +37,20 @@
       </div>
       
       <div class="options">
-        <div id="finish_choice" class="option_box">
+        <% if @product.finishes.length >= 1 %>
+          <div id="finish_choice" class="option_box">
           
-        </div>
-        <div id="material_choice" class="option_box">
+          </div>
+        <% end %>
+
+        <% if @product.materials.length >= 1 %>
+          <div id="material_choice" class="option_box">
+
+          </div>
+        <% end %>
+        
           
-        </div>
-        <div id="china_choice" class="option_box">
-          
-        </div>
+        
         <%= render 'tearsheet_form' %>
       </div>
        

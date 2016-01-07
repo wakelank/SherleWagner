@@ -87,6 +87,9 @@ $(document).on("page:change", (function(){
        $('#product_finishes_list').find('li').removeClass('highlight');
        $(e.target).addClass('highlight');
        console.log("configObj: " + JSON.stringify(configurationObject));
+
+       $('#finish_choice').html(finish_identifier);
+
        $.ajax({
          url: "/product_configurations/show",
          type: 'GET',
@@ -114,6 +117,9 @@ $(document).on("page:change", (function(){
        $('#product_materials_list').find('li').removeClass('highlight');
        $(e.target).addClass('highlight');
        console.log("configObj: " + JSON.stringify(configurationObject));
+
+       $('#material_choice').html(material_identifier);
+
        $.ajax({
          url: "/product_configurations/show",
          type: 'GET',
