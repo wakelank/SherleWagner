@@ -305,7 +305,9 @@ li.highlighted{
 .tearsheet-form-box{
   float:left;
 }
-
+.images{
+  
+}
 #image_div{
   height:43em;
   width: 43em;
@@ -313,7 +315,7 @@ li.highlighted{
 }
 
 .product_image{
-  width: 400px;
+  width: 50%;
   height: 400px;
       background-size: contain;
     background-position-y: 60%;
@@ -332,15 +334,19 @@ li.highlighted{
   float: left;
   padding-top: 10px;
   clear: both;
+  width: 50%;
 }
 
 #alt_imgs{
   list-style: none;
   padding-left: 0;
-  width:70%;
+  overflow: auto;
+  
 }
 #alt_imgs li{
-  display: inline-block;
+  display: table-cell;
+  font-size: 10px;
+  padding-right: 5px;
 }
 .materials, .finishes{
   clear: left;
