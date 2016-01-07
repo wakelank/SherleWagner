@@ -1,5 +1,5 @@
-<div class='tearsheet-form-box'>
-  <%= form_tag '#', id: 'tearsheet-form', class: "thisclass"  do %>
+<div class='tearsheet-form-box' style=''>
+  <%= form_tag '#', id: 'tearsheet-form', class: "thisclass", style: "display:none;"  do %>
     <%= hidden_field_tag('product_id', @product.id) %>
     <%= hidden_field_tag('product_base_number', @product.number) %>
     <%= collection_select(:tearsheet, :material_identifier, @product.materials, :identifier, :name, include_blank: '') %>

@@ -1,5 +1,11 @@
 $(document).on("page:change", (function(){
-     $('#tearsheet-form').children().change(set_tearsheet_link);
+     //$('#tearsheet-form').children().change(set_tearsheet_link);
+     var finish_identifier ="blank";
+     set_tearsheet_link();
+     
+      
+     
+
 //  function submitTearSheet(){
 ////    e.preventDefault();
 //    var tearSheetForm = document.getElementById('tearsheet-form');
@@ -30,12 +36,12 @@ $(document).on("page:change", (function(){
 //       submitTearSheet();
 //     });
      function generate_tearsheet_link(){
-        
+        console.log('generate tear sheet link');
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
        var product_id = tearSheetForm.elements["product_id"].value;
        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-       var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+      //finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
        var product_data = { "product_base_number" : product_base_number,
          "material_identifier" : material_identifier,
@@ -77,10 +83,14 @@ $(document).on("page:change", (function(){
      }
 
      $('#product_finishes_list').find('li').click(function(e){
+       console.log(finish_identifier);
        var URLparts = window.location.pathname.split('/');
        var product_id = URLparts[URLparts.length - 1];
        var product_object = { product_id: product_id }
-       var finish_identifier = $(e.target).data().finish_identifier
+       console.log($(e.target).data().finish_identifier);
+        finish_identifier = $(e.target).data().finish_identifier;
+        set_tearsheet_link();
+
        var finish_config = {finish: finish_identifier}
        $.extend(configurationObject, finish_config);
        $.extend(configurationObject, product_object);
