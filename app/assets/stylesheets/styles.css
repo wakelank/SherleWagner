@@ -348,11 +348,16 @@ li.highlighted{
   font-size: 10px;
   padding-right: 5px;
 }
-.materials, .finishes{
+.finishes{
   clear: left;
-  width: 650px;
+}
+.finishes, .materials{
+  
+  width: 50%;
+  float: left;
 
 }
+
 .finish_tile{
   width: 4em;
   height: 4em;
