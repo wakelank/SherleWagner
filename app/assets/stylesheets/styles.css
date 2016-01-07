@@ -72,11 +72,16 @@ ul.nav{
 .nav li a:hover{
   background-color: rgba(0,0,0,0);
   text-decoration: underline;
-   -moz-text-decoration-color: white; /* Code for Firefox */
-    text-decoration-color: white;
+   -moz-text-decoration-color: black; /* Code for Firefox */
+    text-decoration-color: black;
+}
+.nav li a:visited{
+  background-color: #F5F5F5;
+  
+
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color:grey;
+    background-color:rgba(0,0,0,0);
     color: white;
 }
 
@@ -280,7 +285,10 @@ a.sub_type_tile_title {
  display: block;
  padding-top: 17em;  
 }
-/*===Product page ===*/
+
+/*======Product Show ========*/
+/*+++++THE PRODUCT SHOW PAGE++++++*/
+
 li.highlighted{
   border: thin solid black;
 }
@@ -289,9 +297,6 @@ li.highlighted{
   width:100%;
   padding-left: 3em;
 }
-/*======Product Show ========*/
-/*+++++THE PRODUCT SHOW PAGE++++++*/
-
 .detail_list {
   float:left;
   padding-right: 20px;
@@ -310,7 +315,8 @@ li.highlighted{
 .product_image{
   width: 400px;
   height: 400px;
-  background-size: cover;
+      background-size: contain;
+    background-position-y: 60%;
   float: left;
   margin-right: 3em;
 }
@@ -325,6 +331,16 @@ li.highlighted{
 .image_list{
   float: left;
   padding-top: 10px;
+  clear: both;
+}
+
+#alt_imgs{
+  list-style: none;
+  padding-left: 0;
+  width:70%;
+}
+#alt_imgs li{
+  display: inline-block;
 }
 .materials, .finishes{
   clear: left;
