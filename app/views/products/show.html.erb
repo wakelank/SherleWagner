@@ -32,9 +32,22 @@
         product number: <%= @product.product_configurations.last.number %>
       </h4>
       <%= render 'favorites/favorite_button' %>
-      <div>Associated collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
+      <div class="associated">
+        Associated collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
       </div>
       
+      <div class="options">
+        <div id="finish_choice" class="option_box">
+          
+        </div>
+        <div id="material_choice" class="option_box">
+          
+        </div>
+        <div id="china_choice" class="option_box">
+          
+        </div>
+        <%= render 'tearsheet_form' %>
+      </div>
        
     </div>
   </div>
@@ -63,7 +76,7 @@
     <%= render 'product_info' %>
    
   </div>
+<br/>
 
-<!--   %= render 'tearsheet_form' %> -->
 </div>
 

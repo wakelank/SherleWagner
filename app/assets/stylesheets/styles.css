@@ -321,15 +321,29 @@ li.highlighted{
     background-position-y: 60%;
   float: left;
   margin-right: 3em;
+  
 }
 .product_info{
   /*stuff to R of image*/
+  padding-top: 1em;
   
 }
 .product_info h3{
   margin-bottom: 2em;
 
 }
+.options{
+  margin-top: 4em;
+}
+.option_box{
+  width: 4em;
+  height: 4em;
+  border: 1px solid;
+  display: inline-block;
+  margin-right: 2em;
+    
+}
+
 .image_list{
   float: left;
   padding-top: 10px;
@@ -357,13 +371,17 @@ li.highlighted{
   float: left;
 
 }
+.materials {
+  padding-left: 3em;
+
+}
 
 .finish_tile{
   width: 4em;
   height: 4em;
   margin: 0.2em;
 }
-#product_finishes_list{
+.detail_list{
   padding-left: 0;
 }
 
@@ -388,7 +406,7 @@ li.highlighted{
   outline: thin black solid;
 }
 .highlight{
-  outline: thick red solid;
+  outline: 2px black solid;
 }
 .prod_tile{
   cursor: pointer;
