@@ -30,8 +30,8 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
     end
 
-    it 'adds 7 products to table' do
-      expect(Product.count).to eq 7
+    it 'adds 8 products to table' do
+      expect(Product.count).to eq 8
     end
 
     it 'product name' do
@@ -49,52 +49,56 @@ RSpec.describe ProductsController, :type => :controller do
 
   end
 
-#  describe "Upload process associates with product:" do
-#    before :each do
-#      @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
-#      @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
-#      request.env["HTTP_REFERER"] = products_upload_page_path
-#      post :upload_product_file, :controller => :products, :filename => @file 
-#      @product = Product.find_by(number: '008BSN108-XX') || :non_product
-#      @product_with_china_colors = Product.find_by(number: '1029BSN821-04CC-XX') || :non_product
-#      @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
+  describe "Upload process associates with product:" do
+    before :each do
+      @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
+      @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
+      request.env["HTTP_REFERER"] = products_upload_page_path
+      post :upload_product_file, :controller => :products, :filename => @file 
+      @product = Product.find_by(number: '008BSN108-XX') || :non_product
+      @product_with_china_colors = Product.find_by(number: '1029BSN821-04CC-XX') || :non_product
+      @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
+      @product_with_chinametal = Product.find_by(number: 'UE15-CHINAMETAL-CC') || :non_product
+    end
+
+    it "product_type" do
+      expect(@product.product_type.name).to eq "Fittings"
+    end
+
+    it "product_sub_type" do
+      expect(@product.product_sub_type.name).to eq "Basin Sets"
+    end
+    it "filter_values" do
+      expect(@product.filter_values.first.name).to eq "Levers"
+    end
+    it "finishes" do
+      expect(@product.finishes.count).to be 20
+    end
+    it "china color" do
+      expect(@product_with_china_colors.china_colors.count).to be 4
+    end
+    it "materials with material code SLSL" do
+      expect(@product_with_materials.materials.count).to be 6
+    end
+    it "materials with material code CHINAMETAL" do
+      expect(@product_with_chinametal.materials.count).to be 49
+    end
+    it "style" do
+      expect(@product.styles.first.name).to eq "Arco"
+    end
+    it "genre" do
+      expect(@product.genres.first.name).to eq "Contemporary"
+    end
+
+#    it "image" do
+#      expect(@product.image.url).to eq "/system/products/images/000/001/927/original/008BSN108-CP.jpg?1448920256"
 #    end
-#
-#    it "product_type" do
-#      expect(@product.product_type.name).to eq "Fittings"
-#    end
-#
-#    it "product_sub_type" do
-#      expect(@product.product_sub_type.name).to eq "Basin Sets"
-#    end
-#    it "filter_values" do
-#      expect(@product.filter_values.first.name).to eq "Levers"
-#    end
-#    it "finishes" do
-#      expect(@product.finishes.count).to be 20
-#    end
-#    it "china color" do
-#      expect(@product_with_china_colors.china_colors.count).to be 4
-#    end
-#    it "materials with material code SLSL" do
-#      expect(@product_with_materials.materials.count).to be 6
-#    end
-#    it "style" do
-#      expect(@product.styles.first.name).to eq "Arco"
-#    end
-#    it "genre" do
-#      expect(@product.genres.first.name).to eq "Contemporary"
-#    end
-#
-##    it "image" do
-##      expect(@product.image.url).to eq "/system/products/images/000/001/927/original/008BSN108-CP.jpg?1448920256"
-##    end
-#
-#    it "product_configuration" do
-#      @product_with_configurations = Product.find_by(number: '008BSN108-SLSL-XX')
-#      expect(@product_with_configurations.product_configurations.pluck(:number).sort).to eq ["008BSN108-BLTI-CP","008BSN108-RHOD-CP"]
-#    end 
-#  end
+
+    it "product_configuration" do
+      @product_with_configurations = Product.find_by(number: '008BSN108-SLSL-XX')
+      expect(@product_with_configurations.product_configurations.pluck(:number).sort).to eq ["008BSN108-BLTI-CP","008BSN108-RHOD-CP"]
+    end 
+  end
 
  # describe "Upload process creates ProductGroups" do
  #   before :each do
