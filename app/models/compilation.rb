@@ -11,16 +11,16 @@ class Compilation < ActiveRecord::Base
       args[:number] = self.get_generic_number_from row
       if args[:number] == "TITLE-XX"
         image_name = self.get_image_name_from row
-        images_path = "/Users/ph1am/Desktop/SW website/images1"
+     #   images_path = "/Users/ph1am/Desktop/SW website/images1"
 #        images_path = "/Users/wake/Documents/Work/SherleWagner/images"
-        # images_path = self.image_file_path
+         images_path = self.image_file_path
         image_file = NullObject.new
-      #  Find.find(images_path) do |filepath|
-      #    if File.basename(filepath) == image_name
-      #      image_file = File.new(filepath) || NullObject.new
-      #    end
-      #  end
-      #  args[:image] = image_file if !image_file.nil?
+        Find.find(images_path) do |filepath|
+          if File.basename(filepath) == image_name
+            image_file = File.new(filepath) || NullObject.new
+          end
+        end
+        args[:image] = image_file if !image_file.nil?
 
         compilation = Compilation.new(args)
         compilation.save if compilation.valid?
