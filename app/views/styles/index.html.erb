@@ -1,0 +1,16 @@
+<div class="list_wrapper">
+     
+    <ul class="styles_list prod_list">
+     <% @styles.each do |style| %>
+      
+        <%= link_to  style_path(:id => style.id) do %> 
+        <li class ="style_tile prod_tile">
+          <%= style.name %>
+        </li>
+
+        <% end %>
+      
+
+    <% end %>
+    </ul>
+  </div>

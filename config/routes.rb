@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   get 'product_configurations/show'
 
-  get 'styles/show'
 
   get 'style/show'
 
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
   resources :tearsheets, only: [:show, :create]
   resources :favorites, only: [:index, :create, :destroy]
   resources :compilations, only: [:show]
-  resources :styles, only: [:show]
+  resources :styles, only: [:index, :show]
   resources :product_configurations, only: [:show]
 
   get "/fetch_items" => 'products#from_category', as: 'fetch_items'
