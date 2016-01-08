@@ -72,11 +72,16 @@ ul.nav{
 .nav li a:hover{
   background-color: rgba(0,0,0,0);
   text-decoration: underline;
-   -moz-text-decoration-color: white; /* Code for Firefox */
-    text-decoration-color: white;
+   -moz-text-decoration-color: black; /* Code for Firefox */
+    text-decoration-color: black;
+}
+.nav li a:visited{
+  background-color: #F5F5F5;
+  
+
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color:grey;
+    background-color:rgba(0,0,0,0);
     color: white;
 }
 
@@ -182,11 +187,21 @@ color: black;
 #accordion1 .panel-sub-heading .panel-title label{
   margin-left: -15px;
 }
+
+.filter ul{
+  padding-left: 1em;
+}
+
+.filter li{
+  list-style: none; 
+}
+
 /*media="all"
 .panel-group { 
     margin-bottom: 2px;
 }*/
 
+/*=============++++ + ++++=============*/
 
 .type-contain{
   margin-top: 1em;
@@ -270,7 +285,10 @@ a.sub_type_tile_title {
  display: block;
  padding-top: 17em;  
 }
-/*===Product page ===*/
+
+/*======Product Show ========*/
+/*+++++THE PRODUCT SHOW PAGE++++++*/
+
 li.highlighted{
   border: thin solid black;
 }
@@ -279,9 +297,6 @@ li.highlighted{
   width:100%;
   padding-left: 3em;
 }
-/*======Product Show ========*/
-/*+++++THE PRODUCT SHOW PAGE++++++*/
-
 .detail_list {
   float:left;
   padding-right: 20px;
@@ -290,7 +305,9 @@ li.highlighted{
 .tearsheet-form-box{
   float:left;
 }
-
+.images{
+  
+}
 #image_div{
   height:43em;
   width: 43em;
@@ -298,9 +315,10 @@ li.highlighted{
 }
 
 .product_image{
-  width: 400px;
+  width: 50%;
   height: 400px;
-  background-size: cover;
+      background-size: contain;
+    background-position-y: 60%;
   float: left;
   margin-right: 3em;
 }
@@ -315,12 +333,31 @@ li.highlighted{
 .image_list{
   float: left;
   padding-top: 10px;
+  clear: both;
+  width: 50%;
 }
-.materials, .finishes{
+
+#alt_imgs{
+  list-style: none;
+  padding-left: 0;
+  overflow: auto;
+  
+}
+#alt_imgs li{
+  display: table-cell;
+  font-size: 10px;
+  padding-right: 5px;
+}
+.finishes{
   clear: left;
-  width: 650px;
+}
+.finishes, .materials{
+  
+  width: 50%;
+  float: left;
 
 }
+
 .finish_tile{
   width: 4em;
   height: 4em;
