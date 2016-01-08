@@ -78,7 +78,7 @@ class Product < ActiveRecord::Base
   end
 
   def find_associated_collection
-    collection =  Style.all.select { |collection| self.name.include? collection.name }.first
+    collection =  Style.all.select { |collection| self.name.include? collection.name }.last
     return collection || NullObject.new
   end
 
