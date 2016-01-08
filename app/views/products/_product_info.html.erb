@@ -9,7 +9,11 @@
     </ul>
   </div>
   <div class="materials">
+    <% if @product.finishes.length >= 1 %>
+    <h3>Detail</h3>
+    <% else %>
     <h3>Materials</h3>
+    <% end %>
     <ul id="product_materials_list" class="detail_list">
       <% @product.materials.each do |material| %>
         <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>"><%= material.name %></li>

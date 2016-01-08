@@ -1,6 +1,11 @@
 $(document).on("page:change", (function(){
      //$('#tearsheet-form').children().change(set_tearsheet_link);
-     var finish_identifier ="blank";
+     var tearSheetForm = document.getElementById('tearsheet-form');
+        product_base_number = tearSheetForm.elements["product_base_number"].value;
+        product_id = tearSheetForm.elements["product_id"].value;
+        material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+     finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+     
      set_tearsheet_link();
      
       
@@ -41,7 +46,7 @@ $(document).on("page:change", (function(){
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
        var product_id = tearSheetForm.elements["product_id"].value;
        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-      //finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+      // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
        var product_data = { "product_base_number" : product_base_number,
          "material_identifier" : material_identifier,

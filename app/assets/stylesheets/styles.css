@@ -404,7 +404,8 @@ li.highlighted{
   border: thin white solid;
 }
 .tearsheet-form-box{
-  outline: thin black solid;
+  /*outline: thin black solid;*/
+  margin-left: 5em;
 }
 .highlight{
   outline: 2px black solid;
