@@ -1,33 +1,33 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+  # This file should contain all the record creation needed to seed the database with its default values.
+  # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+  #
+  # Examples:
+  #
+  #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+  #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#
-##Category.delete_all
-#SubCategory.delete_all
-#
-#categories = %w(APOLLO ARCO GREY HARRISON MOLECULE NOUVEAU ONYX RIBBON\ &\ REED)
-#sub_categories = %w(Accessories Fittings Fixtures Hardware Lighting)
-#
-#categories.each { |category| Category.create(name: category) }
-#sub_categories.each { |sub_cat| SubCategory.create(name: sub_cat) }
+  #
+  ##Category.delete_all
+  #SubCategory.delete_all
+  #
+  #categories = %w(APOLLO ARCO GREY HARRISON MOLECULE NOUVEAU ONYX RIBBON\ &\ REED)
+  #sub_categories = %w(Accessories Fittings Fixtures Hardware Lighting)
+  #
+  #categories.each { |category| Category.create(name: category) }
+  #sub_categories.each { |sub_cat| SubCategory.create(name: sub_cat) }
 
 
-#Product.destroy_all
-Style.destroy_all
-Genre.destroy_all
-Material.destroy_all
-Finish.destroy_all
-ProductSubType.destroy_all
-ProductType.destroy_all
-FilterValue.destroy_all
-Filter.destroy_all
-ChinaColor.destroy_all
-#Compilation.destroy_all
+  #Product.destroy_all
+  Style.destroy_all
+  Genre.destroy_all
+  Material.destroy_all
+  Finish.destroy_all
+  ProductSubType.destroy_all
+  ProductType.destroy_all
+  FilterValue.destroy_all
+  Filter.destroy_all
+  ChinaColor.destroy_all
+  #Compilation.destroy_all
 #ProductConfiguration.destroy_all
 
 finishes = [ 
@@ -48,7 +48,7 @@ finishes = [
   { name: 'Almond Gold', identifier: 'AL' },
   { name: 'Antique Gold', identifier: 'AG' },
   { name: 'Polished Brass', identifier: 'PB' },
-  { name: 'Flemish Patina', identifier: 'FB' },
+  { name: 'Flemish Patina', identifier: 'FP' },
   { name: 'Rose Gold', identifier: 'RG' }
 ]
 
@@ -100,14 +100,9 @@ materials = [{ type: "China-Hand Painted",
                         { name: "Acorn & Oakleaf - Blue-99BL", identifier: "99BL" },
                         { name: "Acorn & Oakleaf -Sage-99SG", identifier: "99SG" }]
               },
-              {type: "China-Metal Plated",
-               code: "CHINAMETAL",
-               entries: [ { name: "Burnished Gold-14GP", identifier: "14GP" },
-                        { name: "Burnished Platinum-15PL", identifier: "15PL" },
-                        { name: "Highly Polished Platinum-17HP", identifier: "17HP" },
-                        { name: "Gold Accents-24GP", identifier: "24GP" },
-                        { name: "Platinum Accents-24PL", identifier: "24PL" }]
-              },
+
+
+
               {type: "Marble",
                code:"MARBL",            
                entries: [ { name: "ARABESCATO", indentifier: "ARAB" },
@@ -153,6 +148,41 @@ materials = [{ type: "China-Hand Painted",
                     }
               ]
 Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
+metal_patterns = [ {name: "Masonry", identifier: "MS" },
+                    {name: "Modern Rings", identifier: "MR"},
+                    {name: "Classic Lines", identifier: "8EN" },
+                    {name: "Greek Key", identifier: "1EN" },
+                    {name: "Acanthus", identifier: "2EN" },
+                    {name: "Ribbon & Reed", identifier: "3EN" },
+                    {name: "Scroll", identifier: "4EN" },
+                    {name: "Fleur de Lis", identifier: "5EN" },
+                    {name: "Renaissance", identifier: "6EN" },
+                    {name: "Napoleonic Bee", identifier: "7EN" },
+                    {name: "Imperial", identifier: "9EN" },
+                    {name: "English Ivy Lace", identifier: "10EN" },
+                    {name: "Rose Garland", identifier: "11EN" },
+                    {name: "Acorn Garland", identifier: "12EN" },
+                    {name: "Empire", identifier: "21EN" },
+                    {name: "Random Leaves", identifier: "25" }
+]
+metal_types = [ {name: "Gold", identifier: "G"},
+                  {name: "Platinum", identifier: "P"},
+                {name: "Highly Polished Platinum", identifier: "HP"}
+                              ]
+chinametal_hash = {type: "China Metal", code: "CHINAMETAL"}
+chinametal_entries = []
+metal_patterns.each do |pattern|
+  metal_types.each do |type|
+    entry = { name: "#{pattern[:name]} #{type[:name]}", identifier: "#{pattern[:identifier]}-#{type[:identifier]}" }
+    chinametal_entries.push entry
+  end
+end
+chinametal_hash[:entries] = chinametal_entries
+black_random_leaves_entry = { name: "Random Leaves Black", identifier: "25-B" }
+chinametal_hash[:entries].push black_random_leaves_entry
+
+materials.push chinametal_hash
+
 
 materials.each do |material|
   type = material[:type]
