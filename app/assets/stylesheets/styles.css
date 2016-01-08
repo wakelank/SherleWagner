@@ -69,20 +69,24 @@ ul.nav{
   color: #e2e7e2;
 
 }
+.nav>li>a{
+  padding: 0 15px;
+}
 .nav li a:hover{
   background-color: rgba(0,0,0,0);
-  text-decoration: underline;
-   -moz-text-decoration-color: black; /* Code for Firefox */
-    text-decoration-color: black;
+  /*text-decoration: underline;
+   -moz-text-decoration-color: white; /* Code for Firefox */
+  border-bottom: 1px solid grey;
+  
 }
 .nav li a:visited{
-  background-color: #F5F5F5;
+  background-color: #353535;
   
 
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     background-color:rgba(0,0,0,0);
-    color: white;
+    
 }
 
 /*====The product browse page===*/

@@ -5,8 +5,10 @@ $(document).on("page:change", (function(){
         product_id = tearSheetForm.elements["product_id"].value;
         material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
      finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+     if($('body').attr('class') == 'products show'){
+      set_tearsheet_link();
+     }
      
-     set_tearsheet_link();
      
       
      
@@ -45,7 +47,7 @@ $(document).on("page:change", (function(){
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
        var product_id = tearSheetForm.elements["product_id"].value;
-       var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+       //var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
        var product_data = { "product_base_number" : product_base_number,
