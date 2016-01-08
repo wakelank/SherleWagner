@@ -208,16 +208,6 @@ china_colors.each do |china_color|
 end
 
 
-#
-#filters = %w(handle\ design)
-#
-#Filter.create(name: 'no filter')
-#
-#filters.each do |filter|
-#  Filter.create(name: filter)
-#end
-#
-#
 
 
 
@@ -504,14 +494,14 @@ filters = [
   { name: "Wallpaper Color",
     filter_values: [ "Neutral", "Blue", "Pink", "Yellow", "Black", "Red", "Green", "Metallic" ]
   },
-  { name: "Materials",
-    filter_values: [ "Metal", "Marble", "China", "Onyx", "Semi_Precious" ]
-  },
   { name: "Glazes",
     filter_values: [ "Banded", "Solid", "Burnished", "Polished"]
   },
   { name: "China",
     filter_values: [ "Hand Painted", "Hand Decorated"]
+  },
+  { name: "Materials",
+    filter_values: [ "Metal", "China", "Onyx", "Semi_Precious", "Stone" ]
   }
 ]
 genre_filter_hash = { name: "Styles" }
