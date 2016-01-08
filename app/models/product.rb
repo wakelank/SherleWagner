@@ -170,6 +170,17 @@ class Product < ActiveRecord::Base
     arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
     arr << "China" if (number.include?("HANDPAINTED") || number.include?("CHINAMETAL") || number.include?("HANDDECORATED"))
     arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") || number.include?("SEMI") || number.include?("ONYX"))
+    arr << "Banded" if (number.incude?("CHINAMETAL"))
+    arr << "Burnished" if (number.include?("15PL") ||
+                           number.include?("14GP") ||
+                           number.include?("G") ||
+                           number.inlcude?("P")
+                          )
+    arr << "Solid" if (number.include?("GLAZE"))
+    arr << "Polished" if (number.include?("17HP") ||
+                          number.include?("HP")
+                         )
+
     arr
   end
 
