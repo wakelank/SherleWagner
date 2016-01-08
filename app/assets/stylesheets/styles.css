@@ -117,7 +117,6 @@ ul.nav{
   display:block;
   background-color: white;
   float:left;
-  color: ;
   height: 19.5em;
   width: 15em;
   
@@ -217,12 +216,10 @@ color: black;
 
 .list_wrapper{
   width: 95%;
-  padding-left: ;
   margin: 0 auto;
 }
 .list_wrapper ul{
   width: 90%;
-  padding-left: ;
   
 }
 .list_wrapper ul li{
