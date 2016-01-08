@@ -9,7 +9,7 @@
       <div class="product_image" style="background-image:url(<%= @product.image.url%>)" ></div>  
       <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
       <div class="image_list">
-      Existing images:
+      
         <ul id="alt_imgs">
           <% @product.product_configurations_except_first.each do |config| %>
             <li class="alt_img">
