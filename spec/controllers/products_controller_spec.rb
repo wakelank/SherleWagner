@@ -30,8 +30,8 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
     end
 
-    it 'adds 7 products to table' do
-      expect(Product.count).to eq 7
+    it 'adds 8 products to table' do
+      expect(Product.count).to eq 8
     end
 
     it 'product name' do
