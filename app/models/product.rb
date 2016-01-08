@@ -29,10 +29,10 @@ class Product < ActiveRecord::Base
       args = {}
       args[:name] = self.get_name_from row
       args[:number] = self.get_generic_number_from row
-      if args[:number] != "TITLE-XX"
+      image_name = self.get_image_name_from row
+      if args[:number] != "TITLE-XX" && image_name != "no name"
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
-        image_name = self.get_image_name_from row
     #    images_path = "/Users/ph1am/Desktop/SW website/images1"
         # images_path = "/Users/wake/Documents/Work/SherleWagner/images"
          images_path = self.image_file_path
@@ -59,7 +59,7 @@ class Product < ActiveRecord::Base
           if !coll.nil?
             product.associated_collection = coll 
           end
-          product.styles << style
+          product.styles << style if !style.nil?
           product.filter_values.concat filters
           product.genres.concat genres
 
@@ -170,20 +170,27 @@ class Product < ActiveRecord::Base
     arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
     arr << "China" if (number.include?("HANDPAINTED") || number.include?("CHINAMETAL") || number.include?("HANDDECORATED"))
     arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") || number.include?("SEMI") || number.include?("ONYX"))
-    arr << "Banded" if (number.incude?("CHINAMETAL"))
-    arr << "Burnished" if (number.include?("15PL") ||
-                           number.include?("14GP") ||
-                           number.include?("G") ||
-                           number.inlcude?("P")
-                          )
+    arr << "Banded" if (number.include?("CHINAMETAL"))
     arr << "Solid" if (number.include?("GLAZE"))
-    arr << "Polished" if (number.include?("17HP") ||
-                          number.include?("HP")
-                         )
+    arr << "Burnished" if self.burnished?
+    arr << "Polished" if self.polished?
 
     arr
   end
 
+  def burnished?
+    identifiers = self.materials.pluck(:identifier)
+    identifiers.include?("15PL") ||
+      identifiers.include?("14GP") ||
+      identifiers.include?("G") ||
+      identifiers.include?("P") 
+  end
+
+def polished?
+  self.materials.select { |material| material.name.include?("17HP")||
+                            material.name.include?("HP")
+                          }.length > 0
+  end
 
 # searchable do
 #     text :name

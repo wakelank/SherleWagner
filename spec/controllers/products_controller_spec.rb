@@ -35,7 +35,7 @@ RSpec.describe ProductsController, :type => :controller do
     end
 
     it 'product name' do
-      expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
+      expect(Product.first.name).to eq 'Arco With Arco Lever'
     end
 
     it "product_type" do
@@ -45,6 +45,11 @@ RSpec.describe ProductsController, :type => :controller do
     it "assigns associated collection" do
       associated_collection = Style.find_by(name: "Arco")
       expect(@product.associated_collection).to eq associated_collection
+    end
+
+    it "assigns one product to Arco" do
+      style = Style.find_by(name: "Arco")
+      expect(style.products.count).to eq 1
     end
 
   end

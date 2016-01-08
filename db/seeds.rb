@@ -145,7 +145,19 @@ materials = [{ type: "China-Hand Painted",
                         { name: "GREEN\ ONYX\ \(GROX\)", identifier: "GROX" },
                         { name: "PINK\ ONYX\ \(PKOX\)", identifier: "PKOX" },
                         { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
+                    },
+                    {type: "Glaze",
+                     code: "GLAZE",
+                     entries: [ {name: "High Polished Platinum", identifier: "17HP" },
+                                {name: "White", identifier: "WHT" },
+                                {name: "Sand", identifier: "SND" },
+                                {name: "Burnished Plantinum", identifier: "15PL" },
+                                {name: "Burnished Gold", identifier: "14GP" }
+                    ]
                     }
+
+
+
               ]
 Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
 metal_patterns = [ {name: "Masonry", identifier: "MS" },
@@ -431,6 +443,9 @@ genres_styles = [
     styles: [ "Dolphin", "Swan", "Semiprecious Leaves" ]
   }
 ]
+
+Genre.create(name: "No genre")
+Style.create(name: "no style")
 
 genres_styles.each do |genre_style|
   genre = Genre.create(name: genre_style[:genre_name])
