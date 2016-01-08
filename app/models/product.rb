@@ -169,6 +169,7 @@ class Product < ActiveRecord::Base
     arr << "Onyx" if number.include?("ONYX")
     arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
     arr << "China" if (number.include?("HANDPAINTED") || number.include?("CHINAMETAL") || number.include?("HANDDECORATED"))
+    arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") || number.include?("SEMI") || number.include?("ONYX")
     arr
   end
 
