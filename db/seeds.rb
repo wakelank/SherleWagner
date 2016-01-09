@@ -562,7 +562,6 @@ ProductSubType.all.each do |product_sub_type|
     product_sub_type.filters << Filter.find_by(name: "Trim Type")
     product_sub_type.filters << Filter.find_by(name: "Component Type")
   when "Basins"
-    binding.pry
     product_sub_type.filters << Filter.find_by(name: "Sink Design")
     product_sub_type.filters << Filter.find_by(name: "Sink Shape")
   when "Paper Holders"
