@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/paperclip_stub.rb'
 
 RSpec.describe ProductsController, :type => :controller do
 
@@ -10,7 +11,7 @@ RSpec.describe ProductsController, :type => :controller do
     end
 
     it 'add compilation to database' do
-      expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Compilation, :count).by(1)
+      expect{ post :upload_product_file, :controller => :products, :filename => @file }.to change(Compilation, :count).by(2)
     end
 
     it 'assigns compilation name' do
@@ -21,6 +22,16 @@ RSpec.describe ProductsController, :type => :controller do
     it 'assigns products to compilation' do
       post :upload_product_file, :controller => :products, :filename => @file 
       expect((Compilation.first.products).pluck(:number).sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
+    end
+
+    it 'assigns associated compilations to new compilation' do
+      post :upload_product_file, :controller => :products, :filename => @file 
+      expect(Compilation.first.associated_compilations).to include Compilation.second
+    end
+
+    it 'associates new compilation with existing compilations' do
+      post :upload_product_file, :controller => :products, :filename => @file 
+      expect(Compilation.second.associated_compilations).to include Compilation.first
     end
 
 

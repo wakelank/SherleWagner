@@ -27,6 +27,20 @@ class Compilation < ActiveRecord::Base
         args[:image] = image_file if !image_file.nil?
 
         compilation = Compilation.new(args)
+        assoc_compilations = Compilation.all.select do |other_compilation|
+          compilation.should_be_associated_with? other_compilation
+        end
+        compilation.compilations << assoc_compilations
+        assoc_compilations.each do |other_compilation|
+          other_compilation.compilations << compilation
+          other_compilation.save
+        end
+        compilation.save if compilation.valid?
+      
+        assoc_compilations.each do |other_compilation|
+          other_compilation.compilations << compilation
+          other_compilation.save
+        end
         compilation.save if compilation.valid?
       else
         product_code = row["CODE under Product Name"] || "no name"
@@ -40,6 +54,18 @@ class Compilation < ActiveRecord::Base
       end
 
     end
+  end
+
+  def first_eight_characters
+    self.image_file_name[0..8]
+  end
+
+  def should_be_associated_with?(test_compilation)
+    self.first_eight_characters == test_compilation.first_eight_characters
+  end
+
+  def associated_compilations
+    self.compilations
   end
 
   def self.get_name_from(row)
