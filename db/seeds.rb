@@ -551,7 +551,6 @@ ProductSubType.where.not(product_type: fixtures).each do |product_sub_type|
   product_sub_type.filters << Filter.find_by(name: "Materials")
 end
 
-
 ProductSubType.all.each do |product_sub_type|
   product_sub_type.filters << Filter.find_by(name: "Styles")
   case product_sub_type.name
@@ -563,6 +562,7 @@ ProductSubType.all.each do |product_sub_type|
     product_sub_type.filters << Filter.find_by(name: "Trim Type")
     product_sub_type.filters << Filter.find_by(name: "Component Type")
   when "Basins"
+    binding.pry
     product_sub_type.filters << Filter.find_by(name: "Sink Design")
     product_sub_type.filters << Filter.find_by(name: "Sink Shape")
   when "Paper Holders"

@@ -105,6 +105,20 @@ RSpec.describe ProductsController, :type => :controller do
     end 
   end
 
+  describe "Seed file assigns filters" do
+    before :each do
+      @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
+      @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
+      request.env["HTTP_REFERER"] = products_upload_page_path
+      post :upload_product_file, :controller => :products, :filename => @file 
+      @basins = ProductSubType.find_by(name: "Basins")
+    end
+
+    it "assings 5 filters to Basins" do
+      expect(@basins.filters.count).to eq 5
+    end
+
+  end
  # describe "Upload process creates ProductGroups" do
  #   before :each do
  #     @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
