@@ -37,11 +37,6 @@ class Compilation < ActiveRecord::Base
         end
         compilation.save if compilation.valid?
       
-        assoc_compilations.each do |other_compilation|
-          other_compilation.compilations << compilation
-          other_compilation.save
-        end
-        compilation.save if compilation.valid?
       else
         product_code = row["CODE under Product Name"] || "no name"
         image_name  = row["IMAGE FILE"] || "no name"

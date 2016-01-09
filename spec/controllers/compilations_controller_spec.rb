@@ -34,6 +34,15 @@ RSpec.describe ProductsController, :type => :controller do
       expect(Compilation.second.associated_compilations).to include Compilation.first
     end
 
+    it 'assigns 1 associated compilation to new compilation' do
+      post :upload_product_file, :controller => :products, :filename => @file 
+      expect(Compilation.first.associated_compilations.count).to eq 1
+    end
+
+    it 'associates 1 compilation to existing compilations' do
+      post :upload_product_file, :controller => :products, :filename => @file 
+      expect(Compilation.second.associated_compilations.count).to eq 1
+    end
 
   end
 end
