@@ -179,17 +179,11 @@ class Product < ActiveRecord::Base
   end
 
   def burnished?
-    identifiers = self.materials.pluck(:identifier)
-    identifiers.include?("15PL") ||
-      identifiers.include?("14GP") ||
-      identifiers.include?("G") ||
-      identifiers.include?("P") 
+    identifiers = self.materials.select { |material| material.burnished? }.length > 0
   end
 
 def polished?
-  self.materials.select { |material| material.name.include?("17HP")||
-                            material.name.include?("HP")
-                          }.length > 0
+    identifiers = self.materials.select { |material| material.polished? }.length > 0
   end
 
 # searchable do

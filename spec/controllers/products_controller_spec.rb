@@ -105,7 +105,7 @@ RSpec.describe ProductsController, :type => :controller do
     end 
   end
 
-  describe "Seed file assigns filters" do
+  describe "Seed file assigns filters:" do
     before :each do
       @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
       @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
@@ -114,7 +114,7 @@ RSpec.describe ProductsController, :type => :controller do
       @basins = ProductSubType.find_by(name: "Basins")
     end
 
-    it "assings 5 filters to Basins" do
+    it "5 filters to Basins" do
       expect(@basins.filters.count).to eq 5
     end
 
