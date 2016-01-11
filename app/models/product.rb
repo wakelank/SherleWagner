@@ -51,6 +51,9 @@ class Product < ActiveRecord::Base
       if image_name != "no name"
         begin
 
+          if args[:number] == "TITLE-XX"
+            args[:number] = row["IMAGE FILE"]
+          end
           product = Product.new(args)
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
@@ -75,7 +78,34 @@ class Product < ActiveRecord::Base
         end
       end
     end
+    components = get_components_hash_from file
 
+
+  end
+
+  def self.get_components_hash_from file
+    compilations = []
+    compilation = {}
+    make_compilation = false
+    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
+      if row["Generic Product Number"] == "TITLE-XX"
+        make_compilation = true
+        compilation[:number] = row["IMAGE FILE"]
+        compilation[:components] = []
+      elsif row["IMAGE FILE"].blank? && make_compilation
+        compilation[:components] << row["CODE under Product Name"]
+      else
+        if make_compilation
+          compilations << compilation
+          compilation = {}
+        end
+        make_compilation = false
+      end
+    end
+    if make_compilation
+      compilations << compilation
+    end
+    compilations
   end
 
   def find_associated_collection
