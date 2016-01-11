@@ -31,7 +31,6 @@ class Product < ActiveRecord::Base
       args[:name] = self.get_name_from row
       args[:number] = self.get_generic_number_from row
       image_name = self.get_image_name_from row
-      if args[:number] != "TITLE-XX" && image_name != "no name"
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
     #    images_path = "/Users/ph1am/Desktop/SW website/images1"
@@ -49,6 +48,7 @@ class Product < ActiveRecord::Base
         end
         args[:image] = image_file if !image_file.nil?
 
+      if image_name != "no name"
         begin
 
           product = Product.new(args)
