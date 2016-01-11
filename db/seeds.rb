@@ -422,7 +422,7 @@ types = [
                 { name: "Masonry Stripe" },
                 { name: "Modern Rings" },
                 { name: "Modern Rings Stripe" },
-                { name: "Textrured Stripe" },
+                { name: "Textured Stripe" },
                 { name: "English Country Tartan" },
                 { name: "English Country Manor" },
                 { name: "English Country Cameo" },
