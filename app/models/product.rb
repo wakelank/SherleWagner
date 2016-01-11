@@ -117,6 +117,10 @@ class Product < ActiveRecord::Base
     make_compilation = false
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       if row["Generic Product Number"] == "TITLE-XX"
+        if make_compilation == true
+          compilations << compilation
+          compilation = {}
+        end
         make_compilation = true
         compilation[:number] = row["IMAGE FILE"]
         compilation[:components] = []
