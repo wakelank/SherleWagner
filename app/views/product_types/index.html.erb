@@ -4,9 +4,9 @@
      
     <ul class="prod_list">
      <% @product_types.each do |product_type| %>
-      
+      <!-- , :anchor => "type="+product_type.id.to_s -->
         <%= link_to  fetch_cat_path(:cat_id => product_type.id), :remote => true do %> 
-        <li class ="prod_tile">
+        <li class ="prod_tile" id = "<%= product_type.name.gsub(' ','_') %>">
           <%= product_type.name %>
         </li>
 
@@ -23,9 +23,11 @@
   // toggle open the side nav panel for the clicked category tile ***
   $('.prod_tile').click(function(){
     var thiss =$(this);
+     var cat = thiss[0].id
+    window.history.pushState(cat, null, cat);
 
-    var cat = '#' + thiss[0].innerHTML.trim() + "1";
-    $(cat).collapse('toggle');
+     var panel = '#' + cat + "1";
+    $(panel).collapse('toggle');
   })
 </script>
 

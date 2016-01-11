@@ -1,15 +1,37 @@
 $(document).on("page:change", (function(){
      //$('#tearsheet-form').children().change(set_tearsheet_link);
-     var tearSheetForm = document.getElementById('tearsheet-form');
+    
+     // if($('body').attr('class') == 'products show'){
+     //   var tearSheetForm = document.getElementById('tearsheet-form');
+     //    product_base_number = tearSheetForm.elements["product_base_number"].value;
+     //    product_id = tearSheetForm.elements["product_id"].value;
+     //    material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+     // finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+     //  set_tearsheet_link();
+     // }
+    switch (window.history.state){
+      case '':
+
+      
+        break;
+      default:
+        break;
+    }
+
+     switch ($('body').attr('class')){
+      case 'products show':
+        var tearSheetForm = document.getElementById('tearsheet-form');
         product_base_number = tearSheetForm.elements["product_base_number"].value;
         product_id = tearSheetForm.elements["product_id"].value;
         material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-     finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-     if($('body').attr('class') == 'products show'){
-      set_tearsheet_link();
+        finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        set_tearsheet_link();
+        break;
+      default:
+        var tearSheetForm = 'not form';
+      break;
+
      }
-     
-     
       
      
 
