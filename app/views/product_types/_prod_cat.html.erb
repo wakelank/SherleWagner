@@ -45,24 +45,34 @@
   </div>
 </div>
 <script>
+
   $(function(){
   thisac ="#"+$('#subtype_list_name').text();
   sideac = thisac.replace(" ","_");
   actrgt = $(sideac).parents('.panel').children('.panel-collapse');
   // $(actrgt).collapse('show');
-  
+
+
   //code for toggling the 'open' prodcat panel based onthe title in prod list
   // $(sideac).parents('.panel').children('.panel-collapse').collapse('toggle')
   //this is an open subtype panel after a sideac has been set
     // opensubt = $(sideac).parents('.panel').children('.panel-collapse').children().children().children().children('.in')
+
  });
 
   // toggle open the side nav panel for the clicked category tile ***
    $('.sub_type_tile').click(function(){
-    var thiss =$(this);
+     thiss =$(this);
 
-    var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
-    var sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
+     history_cat = thiss.get(0).className.split(' ')[1];
+     new_state = (window.history.state);
+
+     new_state+=('/'+history_cat);
+     // window.history.pushState(new_state, null, new_state);
+
+
+     sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
+     sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
     //open the subtype collapse panel in the sidebar
     $(sideb_collapse).collapse('toggle');
 
