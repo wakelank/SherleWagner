@@ -26,6 +26,17 @@ $(document).on("page:change", (function(){
         material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
         finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
         set_tearsheet_link();
+
+        $('.prod-cat').click(function(){
+                thiis = $(this);
+                var type_id = thiis[0].id
+                window.history.pushState(type_id, null,"/product_types");
+                //history state is a wormhole
+                // window.history.replaceState(type_id, null,"product_types/"+type_id);
+               
+                
+                
+              });
         break;
       default:
         var tearSheetForm = 'not form';

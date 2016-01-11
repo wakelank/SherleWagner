@@ -25,8 +25,8 @@
      var thiss =$(this);
       var cat = thiss[0].id;
       var type_id = $("#"+cat).find('a').attr('href').split('=')[1];
-      // window.history.pushState(null, null, "product_types");
-     //window.history.pushState(type_id, null,"product_types/"+type_id);
+      //window.history.pushState(null, null, "product_types");
+     // window.history.pushState(type_id, null,"product_types/"+type_id);
 
      var panel = '#' + cat + "1";
     $(panel).collapse('toggle');
