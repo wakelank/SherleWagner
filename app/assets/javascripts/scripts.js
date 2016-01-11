@@ -1,11 +1,12 @@
 $(document).on("page:change", (function(){
      //$('#tearsheet-form').children().change(set_tearsheet_link);
+     if($('body').attr('class') == 'products show'){
      var tearSheetForm = document.getElementById('tearsheet-form');
         product_base_number = tearSheetForm.elements["product_base_number"].value;
         product_id = tearSheetForm.elements["product_id"].value;
         material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
      finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-     if($('body').attr('class') == 'products show'){
+     
       set_tearsheet_link();
      }
      
