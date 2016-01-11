@@ -89,6 +89,14 @@ class Product < ActiveRecord::Base
 
   end
 
+  def compilation?
+    self.components.count > 0
+  end
+
+  def components
+    self.products
+  end
+
   def self.assign_components compilations
     compilations.each do |compilation|
       product = Product.find_by(number: compilation[:number])
