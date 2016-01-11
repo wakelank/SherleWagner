@@ -17,13 +17,16 @@
               
             
                 <% product_sub_type.four_products.each do |product| %>
+                <%= link_to product_path(product) do %>
                   <% bgimage= product.image.url(:medium) %>
-
+  
                   <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %>" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
                     <div class="prod_title ">
-                      <%= link_to product.name, product_path(product), class:"prod_title_link" %>
+                      <%= product.name %>
+                      
                     </div>
                   </li>
+                  <% end %>
 
                 <% end %>
                 <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
@@ -47,9 +50,9 @@
 <script>
 
   $(function(){
-  thisac ="#"+$('#subtype_list_name').text();
-  sideac = thisac.replace(" ","_");
-  actrgt = $(sideac).parents('.panel').children('.panel-collapse');
+  var thisac ="#"+$('#subtype_list_name').text();
+  var sideac = thisac.replace(" ","_");
+  var actrgt = $(sideac).parents('.panel').children('.panel-collapse');
   // $(actrgt).collapse('show');
 
 
@@ -61,14 +64,15 @@
  });
 
   // toggle open the side nav panel for the clicked category tile ***
+
    $('.sub_type_tile').click(function(){
      thiss =$(this);
 
      history_cat = thiss.get(0).className.split(' ')[1];
-     new_state = (window.history.state);
+     
 
-     new_state+=('/'+history_cat);
-     // window.history.pushState(new_state, null, new_state);
+     new_state ='/'+history_cat;
+      // window.history.pushState(new_state, null, new_state);
 
 
      sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];

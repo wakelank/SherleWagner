@@ -24,8 +24,9 @@ Rails.application.routes.draw do
 
 #  resources :product_groups, :defaults => { :format => 'html' }
 
-  resources :product_types
-  resources :product_sub_types
+  resources :product_types do
+    resources :product_sub_types
+  end
   
   get 'search'=>'search#index'
 

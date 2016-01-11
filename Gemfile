@@ -7,7 +7,7 @@ gem 'jquery-turbolinks'
 gem 'awesome_print'
 gem 'faker'
 gem "twitter-bootstrap-rails"
-gem "wiselinks"
+
 #these may require more configuration
 #gem 'postmark-rails'
 gem 'aws-sdk-v1'
