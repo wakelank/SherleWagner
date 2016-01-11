@@ -34,7 +34,9 @@ $(document).on("page:change", (function(){
                 //history state is a wormhole
                 // window.history.replaceState(type_id, null,"product_types/"+type_id);
                
-                
+                var href = thiis.find('a').html();
+                var panel = '#' + href.replace(' ','_') + "1";
+                $(panel).collapse('toggle');
                 
               });
         break;
