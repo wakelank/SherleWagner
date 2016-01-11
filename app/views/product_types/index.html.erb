@@ -22,9 +22,11 @@
 <script>
   // toggle open the side nav panel for the clicked category tile ***
   $('.prod_tile').click(function(){
-    var thiss =$(this);
-     var cat = thiss[0].id
-    window.history.pushState(cat, null, cat);
+     thiss =$(this);
+      cat = thiss[0].id;
+      type_id = $("#"+cat).find('a').attr('href').split('=')[1];
+      // window.history.pushState(null, null, "product_types");
+    window.history.pushState(cat, null, "product_types/"+type_id);
 
      var panel = '#' + cat + "1";
     $(panel).collapse('toggle');
