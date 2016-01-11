@@ -19,6 +19,11 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :compilations
   belongs_to :associated_collection, class_name:  "Style"
+  has_and_belongs_to_many(:products,
+                          :join_table => "product_components",
+                          :foreign_key => "product_a_id",
+                          :association_foreign_key => "product_b_id")
+
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -78,10 +83,25 @@ class Product < ActiveRecord::Base
         end
       end
     end
-    components = get_components_hash_from file
+    compilations = get_components_hash_from file
 
+    assign_components compilations
 
   end
+
+  def self.assign_components compilations
+    compilations.each do |compilation|
+      product = Product.find_by(number: compilation[:number])
+      compilation[:components].each do |component|
+        component_obj = Product.where('number like ?', "#{component}%").first
+        if !product.nil? && !component_obj.nil?
+          product.products << component_obj
+        end
+      end
+      product.save
+    end
+  end
+      
 
   def self.get_components_hash_from file
     compilations = []
