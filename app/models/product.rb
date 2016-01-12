@@ -41,6 +41,22 @@ class Product < ActiveRecord::Base
   end
 
 
+  def compilation?
+    self.components.count > 0
+  end
+
+  def components
+    self.products
+  end
+
+  def compilations
+    self.products.select { |product| product.compilation? }
+  end
+
+  def component?
+    self.compilations.count > 0
+  end
+
   def add_associated_collection collection
     self.associated_collection = collection if !collection.nil?
   end
@@ -67,25 +83,6 @@ class Product < ActiveRecord::Base
   def associated_collection_or_null
     self.associated_collection || NullObject.new
   end
-
-
-
-  def self.get_name_from(row)
-    row["GENERIC PRODUCT NAME _ Revised"] || "no name"
-  end
-
-  def self.get_generic_number_from(row)
-    row["Generic Product Number"] || "no product number"
-  end
-
-  def self.get_image_name_from(row)18
-    name = row["IMAGE FILE"] || "no image"
-    name = name + ".jpg" if name != "no image"
-    name
-  end
-
-
-
 
   def add_materials(material_code)
     begin
