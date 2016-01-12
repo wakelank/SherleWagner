@@ -62,24 +62,6 @@
 
   
 
-  <div class="product_info2">
-    
-    <div class="compilations">
-      <% if @product.compilations.size > 0 %>
-        <p>
-        Compilations:
-        </p>
-        <ul>
-          <% @product.compilations.each do |compilation| %>
-            <li><%= link_to(compilation.name, compilation_path(compilation))  %>
-
-              <%= image_tag compilation.image.url(:thumb) %> 
-            </li>
-          <% end %>
-        </ul>
-
-      <% end %>
-    </div>
     <%= render 'product_info' %>
    
   </div>

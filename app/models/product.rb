@@ -96,10 +96,17 @@ class Product < ActiveRecord::Base
     self.products
   end
 
+  def compilations
+    self.products.select { |product| product.compilation? }
+  end
+
+  def component?
+    self.compilations.count > 0
+  end
+
   def self.assign_components compilations
     compilations.each do |compilation|
       product = Product.find_by(number: compilation[:number])
-      binding.pry if compilation[:number] == "1085BP-21-XX"
       compilation[:components].each do |component|
         component_obj = Product.where('number like ?', "#{component}%").first
         if !product.nil? && !component_obj.nil?
