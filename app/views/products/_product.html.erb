@@ -1,7 +1,7 @@
 <% bgimage= product.image.url(:medium) %>
 <%= link_to(product_path(product), class:"prod_title_link")  do %>
   <li class ="prod_tile" 
-    style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>">
+    style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
     <div class="prod_title">
       <%= product.name %>
     </div>

@@ -186,12 +186,25 @@ $(document).on("page:change", (function(){
   function filter_types(){
     
     $('.panel-title input').click(function(){
-    check_cat = []
-    var cat = $('.panel-heading').find('input:checked').map(function(i, val){
+      var check_cat = []
+      var cat = $('.panel-heading').find('input:checked').map(function(i, val){
         check_cat.push(val.id);
+        
 
       });
-  });
+      if (check_cat.length >= 1){
+        $('.prod_tile').each(function(key, tile){
+          
+          
+          if ($.inArray(tile.dataset.category, check_cat)){
+            console.log(tile.dataset.category);
+            
+            
+          }
+        });
+      }
+
+    });
 
   }
 }))
