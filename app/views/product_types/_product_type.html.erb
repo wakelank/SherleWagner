@@ -4,8 +4,12 @@
         
           <% if controller_name == 'products' && action_name == 'show' %>
             
-            <label class="prod-cat">
-            <%= link_to product_type.name, product_type_path(:id => product_type.id) %>
+            <label id='<%= product_type.id %>' class="prod-cat">
+              
+            <%= link_to product_type.name, fetch_cat_path(:cat_id => product_type.id), :remote => true %>
+
+            
+
 
           <% else %>
             <label data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>1" class="prod-cat">
@@ -25,3 +29,7 @@
    
   </div>
 
+<script>
+              
+                
+              </script>

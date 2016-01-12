@@ -1,13 +1,51 @@
 $(document).on("page:change", (function(){
      //$('#tearsheet-form').children().change(set_tearsheet_link);
-     var tearSheetForm = document.getElementById('tearsheet-form');
+    
+     // if($('body').attr('class') == 'products show'){
+     //   var tearSheetForm = document.getElementById('tearsheet-form');
+     //    product_base_number = tearSheetForm.elements["product_base_number"].value;
+     //    product_id = tearSheetForm.elements["product_id"].value;
+     //    material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+     // finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+     //  set_tearsheet_link();
+     // }
+    switch (window.history.state){
+      case '':
+
+      
+        break;
+      default:
+        break;
+    }
+
+     switch ($('body').attr('class')){
+      case 'products show':
+        var tearSheetForm = document.getElementById('tearsheet-form');
         product_base_number = tearSheetForm.elements["product_base_number"].value;
         product_id = tearSheetForm.elements["product_id"].value;
         material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-     finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-     
-     set_tearsheet_link();
-     
+        finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        set_tearsheet_link();
+
+        $('.prod-cat').click(function(){
+                thiis = $(this);
+                var type_id = thiis[0].id
+                window.history.pushState(type_id, null,"/product_types");
+                //history state is a wormhole
+                // window.history.replaceState(type_id, null,"product_types/"+type_id);
+               
+                var href = thiis.find('a').html();
+                var panel = '#' + href.replace(' ','_') + "1";
+                $(panel).collapse('toggle');
+                
+              });
+        break;
+      default:
+        var tearSheetForm = 'not form';
+      break;
+
+
+     }
       
      
 
@@ -45,7 +83,7 @@ $(document).on("page:change", (function(){
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
        var product_id = tearSheetForm.elements["product_id"].value;
-       var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+       //var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
        var product_data = { "product_base_number" : product_base_number,
