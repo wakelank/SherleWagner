@@ -16,8 +16,9 @@ class FileUploadManager
 
   def new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
+      data_row = DataRow.new(row)
       args = {}
-      args[:name] = self.get_name_from row
+      args[:name] = data_row.get_name_from 
       args[:number] = self.get_generic_number_from row
       image_name = self.get_image_name_from row
         args[:product_type] = ProductType.get_arg row
@@ -72,7 +73,6 @@ class FileUploadManager
 
   end
   
-
   def assign_components compilations
     compilations.each do |compilation|
       product = Product.find_by(number: compilation[:number])
@@ -86,7 +86,6 @@ class FileUploadManager
       product.save
     end
   end
-      
 
   def get_components_hash_from file
     compilations = []
@@ -116,14 +115,7 @@ class FileUploadManager
     end
     compilations
   end
-
   
-  def find_associated_collection
-    collection =  Style.all.select { |collection| self.name.include? collection.name }.last
-    return collection || NullObject.new
-  end
-
-
   def get_name_from(row)
     row["GENERIC PRODUCT NAME _ Revised"] || "no name"
   end
@@ -137,8 +129,5 @@ class FileUploadManager
     name = name + ".jpg" if name != "no image"
     name
   end
-
-
-
 
 end
