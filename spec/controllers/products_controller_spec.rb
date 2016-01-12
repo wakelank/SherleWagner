@@ -30,8 +30,8 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
     end
 
-    it 'adds 8 products to table' do
-      expect(Product.count).to eq 8
+    it 'adds 10 products to table' do
+      expect(Product.count).to eq 10 
     end
 
     it 'product name' do
@@ -103,6 +103,17 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_configurations = Product.find_by(number: '008BSN108-SLSL-XX')
       expect(@product_with_configurations.product_configurations.pluck(:number).sort).to eq ["008BSN108-BLTI-CP","008BSN108-RHOD-CP"]
     end 
+
+    it 'compilation' do
+      @compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
+      expect((@compilation.products).pluck(:number).sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
+    end
+
+    it 'components' do
+      compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
+      component = Product.find_by(number: '101-SHHD-XX')
+      expect((component.products).pluck(:number).sort).to eq ['T101-CTS-008-SHR-HS-CP', 'T101-CTS-TUB-SHR-CP']
+    end
   end
 
   describe "Seed file assigns filters:" do
@@ -117,6 +128,7 @@ RSpec.describe ProductsController, :type => :controller do
     it "5 filters to Basins" do
       expect(@basins.filters.count).to eq 5
     end
+
 
   end
  # describe "Upload process creates ProductGroups" do

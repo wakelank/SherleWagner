@@ -35,6 +35,25 @@
       <% end %>
   <% end %>
 
+  <% if @product.compilation? %>
+    <h3>Components</h3>
+    <ul>
+    <% @product.components.each do |component| %>
+      <li><%= link_to component.name, product_path(component) %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+
+  <% if @product.component? %>
+    <h3>Compilations</h3>
+    <ul>
+      <% @product.compilations.each do |comp| %>
+        <li><%= link_to comp.name, product_path(comp) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   </ul>
   </div>
 </div>
