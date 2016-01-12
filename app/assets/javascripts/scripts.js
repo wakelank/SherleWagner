@@ -27,7 +27,7 @@ $(document).on("page:change", (function(){
         finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
         set_tearsheet_link();
 
-        $('.prod-cat').click(function(){
+        $('.prod-cat a').click(function(){
                 thiis = $(this);
                 var type_id = thiis[0].id
                 window.history.pushState(type_id, null,"/product_types");
