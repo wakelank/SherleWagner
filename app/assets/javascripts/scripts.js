@@ -192,16 +192,22 @@ $(document).on("page:change", (function(){
         
 
       });
+      
+
       if (check_cat.length >= 1){
+        $('.prod_tile').hide();
         $('.prod_tile').each(function(key, tile){
           
           
           if ($.inArray(tile.dataset.category, check_cat)){
             console.log(tile.dataset.category);
-            
+            $(tile).show();
+
             
           }
         });
+      } else{
+        $('.prod_tile').show();
       }
 
     });
