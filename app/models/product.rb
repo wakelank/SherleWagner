@@ -104,6 +104,7 @@ class Product < ActiveRecord::Base
         component_obj = Product.where('number like ?', "#{component}%").first
         if !product.nil? && !component_obj.nil?
           product.products << component_obj
+          component_obj.products << product
         end
       end
       product.save

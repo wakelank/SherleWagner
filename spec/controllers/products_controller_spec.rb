@@ -108,6 +108,12 @@ RSpec.describe ProductsController, :type => :controller do
       @compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
       expect((@compilation.products).pluck(:number).sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
     end
+
+    it 'components' do
+      compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
+      component = Product.find_by(number: '101-SHHD-XX')
+      expect((component.products).pluck(:number).sort).to eq ['T101-CTS-008-SHR-HS-CP', 'T101-CTS-TUB-SHR-CP']
+    end
   end
 
   describe "Seed file assigns filters:" do
