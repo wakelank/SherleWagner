@@ -14,14 +14,14 @@ $(document).on("page:change", (function(){
      switch ($('body').attr('class')){
       case 'products show':
         var tearSheetForm = document.getElementById('tearsheet-form');
-        product_base_number = tearSheetForm.elements["product_base_number"].value;
-        product_id = tearSheetForm.elements["product_id"].value;
-        material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-        finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        var product_base_number = tearSheetForm.elements["product_base_number"].value;
+        var product_id = tearSheetForm.elements["product_id"].value;
+        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+        var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
         set_tearsheet_link();
 
         $('.prod-cat a').click(function(){
-                thiis = $(this);
+                var thiis = $(this);
                 var type_id = thiis[0].id
                 window.history.pushState(type_id, null,"/product_types");
                 //history state is a wormhole
@@ -33,6 +33,9 @@ $(document).on("page:change", (function(){
                 
               });
         break;
+      case 'styles show':
+          filter_types();
+        break;  
       default:
         var tearSheetForm = 'not form';
       break;
@@ -72,7 +75,7 @@ $(document).on("page:change", (function(){
 //       submitTearSheet();
 //     });
      function generate_tearsheet_link(){
-        console.log('generate tear sheet link');
+       // console.log('generate tear sheet link');
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
        var product_id = tearSheetForm.elements["product_id"].value;
@@ -180,4 +183,15 @@ $(document).on("page:change", (function(){
          }
        });
      });
+  function filter_types(){
+    
+    $('.panel-title input').click(function(){
+    check_cat = []
+    var cat = $('.panel-heading').find('input:checked').map(function(i, val){
+        check_cat.push(val.id);
+
+      });
+  });
+
+  }
 }))

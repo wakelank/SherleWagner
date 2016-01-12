@@ -114,7 +114,7 @@ function filter_products(){
   for(var i = 0, len = $filters.length; i < len; ++i){
     var arr = $($filters[i]).find('input:checked').map(function(i, val){
       return(val.id.toLowerCase());
-    })
+    });
     filtersArr.push(arr);
   };
   $product_tiles = $('.prod_tile');

@@ -10,8 +10,8 @@
             <%= link_to product_type.name, fetch_cat_path(:cat_id => product_type.id), :remote => true %>
 
           <% elsif controller_name == 'styles' && action_name == 'show' %>
-              <label data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>1" class="prod-cat">
-              <%= product_type.name %>
+              <label><input type="checkbox" value="" id="<%= product_type.id %>"> <%= product_type.name %> </label>
+              
 
           <% else %>
             <label data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>1" class="prod-cat">
@@ -25,7 +25,9 @@
     <div id="<%= product_type.name.gsub(' ','_') %>1" class="panel-collapse collapse sub-type-panel">
       <div class="panel-body">
         <div class="panel-group" id="acordion<%=product_type.id%>">
-          <%= render product_type.product_sub_types %>
+          <% if controller_name != 'styles' && action_name != 'show' %>
+            <%= render product_type.product_sub_types %>
+          <% end %>
         </div>
       </div> <!-- panel-body -->
     </div> <!-- panel-collapse -->
