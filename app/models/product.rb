@@ -84,7 +84,6 @@ class Product < ActiveRecord::Base
       end
     end
     compilations = get_components_hash_from file
-
     assign_components compilations
 
   end
@@ -100,6 +99,7 @@ class Product < ActiveRecord::Base
   def self.assign_components compilations
     compilations.each do |compilation|
       product = Product.find_by(number: compilation[:number])
+      binding.pry if compilation[:number] == "1085BP-21-XX"
       compilation[:components].each do |component|
         component_obj = Product.where('number like ?', "#{component}%").first
         if !product.nil? && !component_obj.nil?
@@ -266,7 +266,7 @@ def polished?
   end
 
   def product_configurations_except_first
-    product_configurations[1..product_configurations.length-1]
+    product_configurations[1..product_configurations.length-1] || []
   end
 
 end

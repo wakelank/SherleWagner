@@ -39,7 +39,7 @@
     <h3>Components</h3>
     <ul>
     <% @product.components.each do |component| %>
-      <li><% link_to component.name, product_path(component) %></li>
+      <li><%= link_to component.name, product_path(component) %></li>
     <% end %>
     </ul>
   <% end %>
