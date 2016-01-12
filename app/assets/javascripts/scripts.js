@@ -9,14 +9,7 @@ $(document).on("page:change", (function(){
      // finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
      //  set_tearsheet_link();
      // }
-    switch (window.history.state){
-      case '':
-
-      
-        break;
-      default:
-        break;
-    }
+    
 
      switch ($('body').attr('class')){
       case 'products show':

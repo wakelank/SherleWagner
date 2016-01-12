@@ -1,22 +1,25 @@
+<%  if product_type.id != 1 %>
   <div class="panel panel-default">
     <div class="panel-heading product-type" id="<%= product_type.name.gsub(' ','_') %>">
       <h4 class="panel-title">
         
           <% if controller_name == 'products' && action_name == 'show' %>
             
-            <label id='<%= product_type.id %>' class="prod-cat">
+            <label id='<%= product_type.id  %>' class="prod-cat">
               
             <%= link_to product_type.name, fetch_cat_path(:cat_id => product_type.id), :remote => true %>
 
-            
-
+          <% elsif controller_name == 'styles' && action_name == 'show' %>
+              <label data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>1" class="prod-cat">
+              <%= product_type.name %>
 
           <% else %>
             <label data-toggle="collapse" data-parent="#accordion1" href="#<%= product_type.name.gsub(' ','_') %>1" class="prod-cat">
            <%= link_to product_type.name, fetch_cat_path(:cat_id => product_type.id), :remote => true %> 
+           
           <% end %>
          
-        </a>
+        </label>
       </h4>
     </div>
     <div id="<%= product_type.name.gsub(' ','_') %>1" class="panel-collapse collapse sub-type-panel">
@@ -28,8 +31,4 @@
     </div> <!-- panel-collapse -->
    
   </div>
-
-<script>
-              
-                
-              </script>
+<% end %>

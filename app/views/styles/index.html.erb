@@ -1,16 +1,25 @@
 <div class="list_wrapper">
      
     <ul class="styles_list prod_list">
-     <% @styles.each do |style| %>
-      
-        <%= link_to  style_path(:id => style.id) do %> 
-        <li class ="style_tile prod_tile">
-          <%= style.name %>
-        </li>
+     <% @genres.each do |genre| %>
+       <li class ="style_tile prod_tile">
+          <%= genre.name %> <br/>
+        
+          <% genre.styles.each do |style| %>
+            <%= link_to style.name, style_path(:id => style.id)  %> <br/>
+           
 
-        <% end %>
+          <% end %>
+        </li>
+        
+
+      
+        
       
 
     <% end %>
     </ul>
   </div>
+  <script>
+  $('.navvy').css('display','none');
+  </script>

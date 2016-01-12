@@ -62,7 +62,9 @@
 
   <div class="product_info2">
     
-    <div class="compilations">
+    
+    <%= render 'product_info' %>
+   <div class="compilations">
       <% if @product.compilations.size > 0 %>
         <p>
         Compilations:
@@ -78,8 +80,6 @@
 
       <% end %>
     </div>
-    <%= render 'product_info' %>
-   
   </div>
 <br/>
 
