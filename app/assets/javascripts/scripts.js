@@ -203,7 +203,10 @@ $(document).on("page:change", (function(){
             
             $(tile).hide();
 
+
             
+          } else {
+            $(tile).show();
           }
         });
       } else{
