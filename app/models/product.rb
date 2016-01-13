@@ -1,4 +1,5 @@
 require 'english'
+require 'paperclip_stub.rb'
 require 'csv'
 require 'find'
 
@@ -18,6 +19,11 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   has_and_belongs_to_many :compilations
   belongs_to :associated_collection, class_name:  "Style"
+  has_and_belongs_to_many(:products,
+                          :join_table => "product_components",
+                          :foreign_key => "product_a_id",
+                          :association_foreign_key => "product_b_id")
+
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -29,10 +35,9 @@ class Product < ActiveRecord::Base
       args = {}
       args[:name] = self.get_name_from row
       args[:number] = self.get_generic_number_from row
-      if args[:number] != "TITLE-XX"
+      image_name = self.get_image_name_from row
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
-        image_name = self.get_image_name_from row
     #    images_path = "/Users/ph1am/Desktop/SW website/images1"
         # images_path = "/Users/wake/Documents/Work/SherleWagner/images"
          images_path = self.image_file_path
@@ -48,8 +53,12 @@ class Product < ActiveRecord::Base
         end
         args[:image] = image_file if !image_file.nil?
 
+      if image_name != "no name"
         begin
 
+          if args[:number] == "TITLE-XX"
+            args[:number] = row["IMAGE FILE"]
+          end
           product = Product.new(args)
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
@@ -59,7 +68,7 @@ class Product < ActiveRecord::Base
           if !coll.nil?
             product.associated_collection = coll 
           end
-          product.styles << style
+          product.styles << style if !style.nil?
           product.filter_values.concat filters
           product.genres.concat genres
 
@@ -74,11 +83,73 @@ class Product < ActiveRecord::Base
         end
       end
     end
+    compilations = get_components_hash_from file
+    assign_components compilations
 
   end
 
+  def compilation?
+    self.components.count > 0
+  end
+
+  def components
+    self.products
+  end
+
+  def compilations
+    self.products.select { |product| product.compilation? }
+  end
+
+  def component?
+    self.compilations.count > 0
+  end
+
+  def self.assign_components compilations
+    compilations.each do |compilation|
+      product = Product.find_by(number: compilation[:number])
+      compilation[:components].each do |component|
+        component_obj = Product.where('number like ?', "#{component}%").first
+        if !product.nil? && !component_obj.nil?
+          product.products << component_obj
+          component_obj.products << product
+        end
+      end
+      product.save
+    end
+  end
+      
+
+  def self.get_components_hash_from file
+    compilations = []
+    compilation = {}
+    make_compilation = false
+    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
+      if row["Generic Product Number"] == "TITLE-XX"
+        if make_compilation == true
+          compilations << compilation
+          compilation = {}
+        end
+        make_compilation = true
+        compilation[:number] = row["IMAGE FILE"]
+        compilation[:components] = []
+      elsif row["IMAGE FILE"].blank? && make_compilation
+        compilation[:components] << row["CODE under Product Name"]
+      else
+        if make_compilation
+          compilations << compilation
+          compilation = {}
+        end
+        make_compilation = false
+      end
+    end
+    if make_compilation
+      compilations << compilation
+    end
+    compilations
+  end
+
   def find_associated_collection
-    collection =  Style.all.select { |collection| self.name.include? collection.name }.first
+    collection =  Style.all.select { |collection| self.name.include? collection.name }.last
     return collection || NullObject.new
   end
 
@@ -170,9 +241,21 @@ class Product < ActiveRecord::Base
     arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
     arr << "China" if (number.include?("HANDPAINTED") || number.include?("CHINAMETAL") || number.include?("HANDDECORATED"))
     arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") || number.include?("SEMI") || number.include?("ONYX"))
+    arr << "Banded" if (number.include?("CHINAMETAL"))
+    arr << "Solid" if (number.include?("GLAZE"))
+    arr << "Burnished" if self.burnished?
+    arr << "Polished" if self.polished?
+
     arr
   end
 
+  def burnished?
+    identifiers = self.materials.select { |material| material.burnished? }.length > 0
+  end
+
+def polished?
+    identifiers = self.materials.select { |material| material.polished? }.length > 0
+  end
 
 # searchable do
 #     text :name
@@ -191,7 +274,7 @@ class Product < ActiveRecord::Base
   end
 
   def product_configurations_except_first
-    product_configurations[1..product_configurations.length-1]
+    product_configurations[1..product_configurations.length-1] || []
   end
 
 end

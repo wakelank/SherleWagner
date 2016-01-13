@@ -145,7 +145,19 @@ materials = [{ type: "China-Hand Painted",
                         { name: "GREEN\ ONYX\ \(GROX\)", identifier: "GROX" },
                         { name: "PINK\ ONYX\ \(PKOX\)", identifier: "PKOX" },
                         { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
+                    },
+                    {type: "Glaze",
+                     code: "GLAZE",
+                     entries: [ {name: "High Polished Platinum", identifier: "17HP" },
+                                {name: "White", identifier: "WHT" },
+                                {name: "Sand", identifier: "SND" },
+                                {name: "Burnished Plantinum", identifier: "15PL" },
+                                {name: "Burnished Gold", identifier: "14GP" }
+                    ]
                     }
+
+
+
               ]
 Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
 metal_patterns = [ {name: "Masonry", identifier: "MS" },
@@ -361,7 +373,8 @@ types = [
                 { name: "Tub and Shower" },
                 { name: "Countertop Accessories" },
                 { name: "Decorative Objects" },
-                { name: "Bench" }
+                { name: "Benches" },
+                { name: "Toilet Brush & China Holders" }
               ]
             
   },
@@ -378,10 +391,13 @@ types = [
                   { name: "Slide Bolts" },
                   { name: "Bar Pulls" },
                   { name: "Cabinet and Drawer Knobs" },
-                  { name: "Door Bells" },
+                  { name: "Door Bell Covers" },
                   { name: "Door Stops" },
                   { name: "Cylinder Covers" },
-                  { name: "Key Hole Covers" },
+                  { name: "Keyhole Covers" },
+                  { name: "Decorative Box Lock Covers" },
+                  { name: "Thumb Turns" },
+                  { name: "Latches" },
                 ]
               
   },
@@ -393,13 +409,40 @@ types = [
                 { name: "Sconces" },
                 { name: "Wall Lights" },
                 { name: "Electrical Covers" },
-                { name: "Table Lights" }
+                { name: "Table and Floor Lights" },
+                { name: "Ceiling Lights" },
+                { name: "Wall Lights" },
+                { name: "Bulb Covers" },
               ]
             
   },
   { name: "Wall Coverings",
              sub_types: [
-                { name: "Wallpaper" }
+                { name: "Masonry" },
+                { name: "Masonry Stripe" },
+                { name: "Modern Rings" },
+                { name: "Modern Rings Stripe" },
+                { name: "Textured Stripe" },
+                { name: "English Country Tartan" },
+                { name: "English Country Manor" },
+                { name: "English Country Cameo" },
+                { name: "Le Jardin" },
+                { name: "Acorn & Oak Leaf Toile" },
+                { name: "Simply Delft" },
+                { name: "Delft" },
+                { name: "Acanthus" },
+                { name: "Louis Damask" },
+                { name: "Ming Blossom" },
+                { name: "Chinoiserie" },
+                { name: "Summer Garden" },
+                { name: "Lotus" },
+                { name: "Kamalama Cay Lattice" },
+                { name: "Kamalama Cay Stripe" },
+                { name: "Poppies" },
+                { name: "Summer Garden" },
+                { name: "Artichoke" },
+                { name: "Waterlilies" },
+                { name: "Mums" }
               ]
             
   }
@@ -431,6 +474,9 @@ genres_styles = [
     styles: [ "Dolphin", "Swan", "Semiprecious Leaves" ]
   }
 ]
+
+Genre.create(name: "No genre")
+Style.create(name: "no style")
 
 genres_styles.each do |genre_style|
   genre = Genre.create(name: genre_style[:genre_name])
@@ -535,7 +581,6 @@ end
 ProductSubType.where.not(product_type: fixtures).each do |product_sub_type|
   product_sub_type.filters << Filter.find_by(name: "Materials")
 end
-
 
 ProductSubType.all.each do |product_sub_type|
   product_sub_type.filters << Filter.find_by(name: "Styles")

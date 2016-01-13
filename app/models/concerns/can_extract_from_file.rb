@@ -7,7 +7,7 @@ module CanExtractFromFile
   end
 
   def case_insensitive_find(find_me)
-    self.where('lower(name) = ?', find_me.downcase.strip).first || self.first 
+    self.where('lower(name) = ?', find_me.downcase.strip).first || self.first
   end
 
   def get_arg(row)

@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217195547) do
+ActiveRecord::Schema.define(version: 20160111215624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "associated_compilations", id: false, force: :cascade do |t|
+    t.integer "compilation_a_id", null: false
+    t.integer "compilation_b_id", null: false
+  end
 
   create_table "china_colors", force: :cascade do |t|
     t.string   "name"
@@ -119,6 +124,11 @@ ActiveRecord::Schema.define(version: 20151217195547) do
 
   add_index "materials_products", ["material_id"], name: "index_materials_products_on_material_id", using: :btree
   add_index "materials_products", ["product_id"], name: "index_materials_products_on_product_id", using: :btree
+
+  create_table "product_components", id: false, force: :cascade do |t|
+    t.integer "product_a_id", null: false
+    t.integer "product_b_id", null: false
+  end
 
   create_table "product_configurations", force: :cascade do |t|
     t.integer  "product_id"

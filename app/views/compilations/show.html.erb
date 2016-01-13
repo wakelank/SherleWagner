@@ -7,4 +7,8 @@
       <li><%= link_to product.name, product_path(product) %></li>
     <% end %>
   </ul>
-
+  <h2>associated compilations</h2>
+  <% @compilation.associated_compilations.each do |assoc_comp| %>
+    <li><%= link_to assoc_comp.name, compilation_path(assoc_comp)%></li>
+  <% end %>
+  </ul>

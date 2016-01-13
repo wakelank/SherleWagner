@@ -12,7 +12,18 @@ class Material < ActiveRecord::Base
       product.materials = Material.where(code: code)
     end
   end
+
+  def burnished?
+    identifier == "15PL" ||
+      identifier == "14GP" ||
+      identifier.last(2) == "-G" ||
+      identifier.last(2) == "-P"
+  end
   
+  def polished?
+    identifier == "17HP" ||
+      identifier.last(2) == "HP"
+  end
   
 end
 

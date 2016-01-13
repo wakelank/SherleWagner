@@ -30,12 +30,12 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_materials = Product.find_by(number: '008BSN108-SLSL-XX') || :non_product
     end
 
-    it 'adds 8 products to table' do
-      expect(Product.count).to eq 8
+    it 'adds 10 products to table' do
+      expect(Product.count).to eq 10 
     end
 
     it 'product name' do
-      expect(Product.first.name).to eq 'Grey Series I Tub Shower Set'
+      expect(Product.first.name).to eq 'Arco With Arco Lever'
     end
 
     it "product_type" do
@@ -45,6 +45,11 @@ RSpec.describe ProductsController, :type => :controller do
     it "assigns associated collection" do
       associated_collection = Style.find_by(name: "Arco")
       expect(@product.associated_collection).to eq associated_collection
+    end
+
+    it "assigns one product to Arco" do
+      style = Style.find_by(name: "Arco")
+      expect(style.products.count).to eq 1
     end
 
   end
@@ -98,8 +103,34 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_configurations = Product.find_by(number: '008BSN108-SLSL-XX')
       expect(@product_with_configurations.product_configurations.pluck(:number).sort).to eq ["008BSN108-BLTI-CP","008BSN108-RHOD-CP"]
     end 
+
+    it 'compilation' do
+      @compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
+      expect((@compilation.products).pluck(:number).sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
+    end
+
+    it 'components' do
+      compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
+      component = Product.find_by(number: '101-SHHD-XX')
+      expect((component.products).pluck(:number).sort).to eq ['T101-CTS-008-SHR-HS-CP', 'T101-CTS-TUB-SHR-CP']
+    end
   end
 
+  describe "Seed file assigns filters:" do
+    before :each do
+      @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
+      @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
+      request.env["HTTP_REFERER"] = products_upload_page_path
+      post :upload_product_file, :controller => :products, :filename => @file 
+      @basins = ProductSubType.find_by(name: "Basins")
+    end
+
+    it "5 filters to Basins" do
+      expect(@basins.filters.count).to eq 5
+    end
+
+
+  end
  # describe "Upload process creates ProductGroups" do
  #   before :each do
  #     @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
