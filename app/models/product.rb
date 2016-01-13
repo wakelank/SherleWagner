@@ -30,6 +30,8 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :number, presence: true, uniqueness: true
 
+  after_create :add_finishes
+
   def self.new_upload_product_file(file)
     file_upload_manager = FileUploadManager.new file
     file_upload_manager.upload
@@ -161,6 +163,9 @@ def polished?
     product_configurations[1..product_configurations.length-1] || []
   end
 
+  def add_finishes
+    Finish.add_finishes_to self if self.needs_finishes? 
+  end
 end
 
 

@@ -27,7 +27,6 @@ class FileUploadManager
         begin
 
           product = Product.new(data_row.product_args)
-          Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
           Material.add_materials_to(product, product.needed_materials)
 
