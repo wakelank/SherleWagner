@@ -20,7 +20,9 @@ class DataRow
 
  
   def normal_product?
-    !@image_name.blank? && !compilation?
+    !@image_name.blank? &&
+      !compilation? &&
+      !configuration?
   end
 
   def compilation?
@@ -31,8 +33,12 @@ class DataRow
   end
 
   def configuration?
+    Product.exists?(number: @generic_number) && 
+      @generic_name != "TITLE-XX" &&
+      !@image_name.blank?
   end
 
+  
   def product_args
     { name: @generic_name,
       number: @generic_number,
@@ -40,6 +46,10 @@ class DataRow
       product_sub_type: @product_sub_type,
       image: @image
     }
+  end
+
+  def product
+    Product.find_by(number: @generic_number)
   end
 
   def get_generic_name

@@ -45,13 +45,21 @@ class FileUploadManager
         #    product = Product.find_by(number: args[:number])
         #  end
 
-          product.product_configurations << product_configuration if !product_configuration.nil?
+          #product.product_configurations << product_configuration if !product_configuration.nil?
+          product.product_configurations << data_row.get_product_configuration
           product.save if product.valid?
+
         rescue
           binding.pry
         end
+
+        elsif data_row.configuration?
+          product = data_row.product
+          product.product_configurations << data_row.get_product_configuration
+          product.save
+
+        end
       end
-    end
     #compilations = get_components_hash_from file
     #assign_components compilations
 
