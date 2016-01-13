@@ -22,7 +22,7 @@ class FileUploadManager
         genres= data_row.get_genres
         product_configuration = data_row.get_product_configuration 
 
-      if data_row.normal_product?
+      if data_row.normal_product? || data_row.compilation?
         begin
 
         #  if args[:number] == "TITLE-XX"
@@ -41,14 +41,8 @@ class FileUploadManager
           product.filter_values.concat filters
           product.genres.concat genres
 
-        #  if Product.exists?(number: product.number)
-        #    product = Product.find_by(number: args[:number])
-        #  end
-
-          #product.product_configurations << product_configuration if !product_configuration.nil?
           product.product_configurations << data_row.get_product_configuration
           product.save if product.valid?
-
         rescue
           binding.pry
         end

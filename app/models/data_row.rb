@@ -40,12 +40,16 @@ class DataRow
 
   
   def product_args
-    { name: @generic_name,
+    args = { name: @generic_name,
       number: @generic_number,
       product_type: @product_type,
       product_sub_type: @product_sub_type,
       image: @image
     }
+    if compilation?
+      args[:number] = @specific_number
+    end
+    args
   end
 
   def product
