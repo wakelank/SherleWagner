@@ -4,6 +4,8 @@ class DataRow
   #images_path = "/Users/ph1am/Desktop/SW website/images1"
   IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
   # images_path = image_file_path
+  #
+  attr_reader :component_number, :compilation_number
 
   def initialize row
     @row = row
@@ -16,6 +18,8 @@ class DataRow
     @image = get_image
     @style = get_style
     @genres = get_genres
+    @compilation_number = @specific_number
+    @component_number = get_component_number
   end
 
  
@@ -29,7 +33,10 @@ class DataRow
     @generic_number == "TITLE-XX"
   end
 
+
   def component?
+    @image_name.blank? && @generic_number.blank?
+    
   end
 
   def configuration?
@@ -53,7 +60,16 @@ class DataRow
   end
 
   def product
-    Product.find_by(number: @generic_number)
+    if compilation?
+      Product.find_by(number: @specific_number)
+    else
+      Product.find_by(number: @generic_number)
+    end
+  end
+
+  def component
+    Product.where('number like ?' , "#{@component_number}%").first ||
+      NullObject.new
   end
 
   def get_generic_name
@@ -104,6 +120,10 @@ class DataRow
 
   def get_genres
     Genre.get_arg @row
+  end
+
+  def get_component_number
+    @row["CODE under Product Name"] || ""
   end
 
 end

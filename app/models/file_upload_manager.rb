@@ -17,17 +17,15 @@ class FileUploadManager
   def new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
-        style = data_row.get_style
-        filters = data_row.get_filters
-        genres= data_row.get_genres
-        product_configuration = data_row.get_product_configuration 
+      style = data_row.get_style
+      filters = data_row.get_filters
+      genres= data_row.get_genres
+      product_configuration = data_row.get_product_configuration 
+
 
       if data_row.normal_product? || data_row.compilation?
         begin
 
-        #  if args[:number] == "TITLE-XX"
-        #    args[:number] = row["IMAGE FILE"]
-        #  end
           product = Product.new(data_row.product_args)
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
@@ -47,18 +45,39 @@ class FileUploadManager
           binding.pry
         end
 
-        elsif data_row.configuration?
-          product = data_row.product
-          product.product_configurations << data_row.get_product_configuration
-          product.save
+      elsif data_row.configuration?
+        product = data_row.product
+        product.product_configurations << data_row.get_product_configuration
+        product.save
 
-        end
       end
+
+    end
+    set_compilations file
     #compilations = get_components_hash_from file
     #assign_components compilations
 
   end
-  
+  def set_compilations(file)
+    current_compilation = NullObject.new
+    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
+      data_row = DataRow.new row
+      if data_row.compilation?
+        current_compilation = data_row.product
+      elsif data_row.normal_product?
+        current_compilation = NullObject.new
+      elsif data_row.component?
+        component = data_row.component
+        if !component.nil? && !current_compilation.nil?
+          current_compilation.products << component
+          component.products << current_compilation
+          current_compilation.save
+          component.save
+        end
+      end
+
+    end
+  end
   def assign_components compilations
     compilations.each do |compilation|
       product = Product.find_by(number: compilation[:number])
@@ -78,26 +97,27 @@ class FileUploadManager
     compilation = {}
     make_compilation = false
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-      if row["Generic Product Number"] == "TITLE-XX"
+      data_row = DataRow.new row
+      if data_row.compilation?
         if make_compilation == true
-          compilations << compilation
-          compilation = {}
+          compilations << new_compilation
+          new_compilation = {}
         end
         make_compilation = true
-        compilation[:number] = row["IMAGE FILE"]
-        compilation[:components] = []
-      elsif row["IMAGE FILE"].blank? && make_compilation
-        compilation[:components] << row["CODE under Product Name"]
+        new_compilation[:number] = data_file.compilation_number
+        new_compilation[:components] = []
+      elsif data_row.compoment? && make_compilation
+        new_compilation[:components] << data_row.component_number
       else
         if make_compilation
-          compilations << compilation
-          compilation = {}
+          compilations << new_compilation
+          new_compilation = {}
         end
         make_compilation = false
       end
     end
     if make_compilation
-      compilations << compilation
+      compilations << new_compilation
     end
     compilations
   end
