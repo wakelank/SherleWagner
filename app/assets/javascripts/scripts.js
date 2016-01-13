@@ -186,7 +186,7 @@ $(document).on("page:change", (function(){
   function filter_types(){
     
     $('.panel-title input').click(function(){
-      var check_cat = []
+       check_cat = []
       var cat = $('.panel-heading').find('input:checked').map(function(i, val){
         check_cat.push(val.id);
         
@@ -195,13 +195,13 @@ $(document).on("page:change", (function(){
       
 
       if (check_cat.length >= 1){
-        $('.prod_tile').hide();
+        
         $('.prod_tile').each(function(key, tile){
           
           
-          if ($.inArray(tile.dataset.category, check_cat)){
-            console.log(tile.dataset.category);
-            $(tile).show();
+          if ($.inArray(tile.dataset.category, check_cat) == -1){
+            
+            $(tile).hide();
 
             
           }
