@@ -54,10 +54,9 @@ class FileUploadManager
 
     end
     set_compilations file
-    #compilations = get_components_hash_from file
-    #assign_components compilations
 
   end
+
   def set_compilations(file)
     current_compilation = NullObject.new
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
@@ -75,65 +74,7 @@ class FileUploadManager
           component.save
         end
       end
-
     end
-  end
-  def assign_components compilations
-    compilations.each do |compilation|
-      product = Product.find_by(number: compilation[:number])
-      compilation[:components].each do |component|
-        component_obj = Product.where('number like ?', "#{component}%").first
-        if !product.nil? && !component_obj.nil?
-          product.products << component_obj
-          component_obj.products << product
-        end
-      end
-      product.save
-    end
-  end
-
-  def get_components_hash_from file
-    compilations = []
-    compilation = {}
-    make_compilation = false
-    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-      data_row = DataRow.new row
-      if data_row.compilation?
-        if make_compilation == true
-          compilations << new_compilation
-          new_compilation = {}
-        end
-        make_compilation = true
-        new_compilation[:number] = data_file.compilation_number
-        new_compilation[:components] = []
-      elsif data_row.compoment? && make_compilation
-        new_compilation[:components] << data_row.component_number
-      else
-        if make_compilation
-          compilations << new_compilation
-          new_compilation = {}
-        end
-        make_compilation = false
-      end
-    end
-    if make_compilation
-      compilations << new_compilation
-    end
-    compilations
-  end
-  
-  def get_name_from(row)
-    row["GENERIC PRODUCT NAME _ Revised"] || "no name"
-  end
-
-  def get_generic_number_from(row)
-    row["Generic Product Number"] || "no product number"
-  end
-
-  def get_image_name_from(row)
-    name = row["IMAGE FILE"] || "no image"
-    name = name + ".jpg" if name != "no image"
-    name
   end
 
 end
