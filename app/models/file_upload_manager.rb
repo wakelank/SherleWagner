@@ -18,9 +18,9 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
       args = {}
-      args[:name] = data_row.get_name_from 
-      args[:number] = self.get_generic_number_from row
-      image_name = self.get_image_name_from row
+      args[:name] = data_row.get_generic_name 
+      args[:number] = data_row.get_generic_number
+      image_name = data_row.get_image_name
         args[:product_type] = ProductType.get_arg row
         args[:product_sub_type] = ProductSubType.get_arg row
     #    images_path = "/Users/ph1am/Desktop/SW website/images1"
@@ -38,13 +38,13 @@ class FileUploadManager
         end
         args[:image] = image_file if !image_file.nil?
 
-      if image_name != "no name"
+      if data_row.normal_product?
         begin
 
           if args[:number] == "TITLE-XX"
             args[:number] = row["IMAGE FILE"]
           end
-          product = Product.new(args)
+          product = Product.new(data_row.product_args)
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
           Material.add_materials_to(product, product.needed_materials)
@@ -68,8 +68,8 @@ class FileUploadManager
         end
       end
     end
-    compilations = get_components_hash_from file
-    assign_components compilations
+    #compilations = get_components_hash_from file
+    #assign_components compilations
 
   end
   
