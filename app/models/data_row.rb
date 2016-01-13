@@ -52,6 +52,7 @@ class DataRow
       product_type: @product_type,
       product_sub_type: @product_sub_type,
       image: @image
+
     }
     if compilation?
       args[:number] = @specific_number

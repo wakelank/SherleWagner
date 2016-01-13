@@ -17,22 +17,22 @@ class FileUploadManager
   def new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
-      style = data_row.get_style
-      filters = data_row.get_filters
-      genres= data_row.get_genres
-      product_configuration = data_row.get_product_configuration 
 
 
       if data_row.normal_product? || data_row.compilation?
         begin
 
+         # style = data_row.get_style
+         # filters = data_row.get_filters
+         # genres= data_row.get_genres
+         # product_configuration = data_row.get_product_configuration 
           product = Product.new(data_row.product_args)
 
-          product.styles << style if !style.nil?
-          product.filter_values.concat filters
-          product.genres.concat genres
+          product.styles.concat data_row.get_style
+          product.filter_values.concat data_row.get_filters
+          product.genres.concat data_row.get_genres
+          product.product_configurations.concat data_row.get_product_configuration
 
-          product.product_configurations << data_row.get_product_configuration
           product.save if product.valid?
         rescue
           binding.pry
