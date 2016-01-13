@@ -27,8 +27,6 @@ class FileUploadManager
         begin
 
           product = Product.new(data_row.product_args)
-          ChinaColor.add_china_colors_to product if product.needs_china_colors?
-          Material.add_materials_to(product, product.needed_materials)
 
           coll = product.find_associated_collection
           if !coll.nil?

@@ -30,7 +30,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :number, presence: true, uniqueness: true
 
-  after_create :add_finishes
+  after_create :add_finishes, :add_material, :add_china_color
 
   def self.new_upload_product_file(file)
     file_upload_manager = FileUploadManager.new file
@@ -166,6 +166,15 @@ def polished?
   def add_finishes
     Finish.add_finishes_to self if self.needs_finishes? 
   end
+
+  def add_china_color
+    ChinaColor.add_china_colors_to self if self.needs_china_colors?
+  end
+  
+  def add_material
+    Material.add_materials_to(self, self.needed_materials)
+  end
+
 end
 
 
