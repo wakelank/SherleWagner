@@ -17,33 +17,17 @@ class FileUploadManager
   def new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
-      args = {}
-      args[:name] = data_row.get_generic_name 
-      args[:number] = data_row.get_generic_number
-      image_name = data_row.get_image_name
-        args[:product_type] = ProductType.get_arg row
-        args[:product_sub_type] = ProductSubType.get_arg row
-    #    images_path = "/Users/ph1am/Desktop/SW website/images1"
-         images_path = "/Users/wake/Documents/Work/SherleWagner/images"
-        # images_path = image_file_path
-        image_file = NullObject.new
         style = Style.get_arg row
         filters = FilterValue.get_arg row
         genres= Genre.get_arg row
         product_configuration = ProductConfiguration.get_arg row
-        Find.find(images_path) do |filepath|
-          if File.basename(filepath) == image_name
-            image_file = File.new(filepath) || NullObject.new
-          end
-        end
-        args[:image] = image_file if !image_file.nil?
 
       if data_row.normal_product?
         begin
 
-          if args[:number] == "TITLE-XX"
-            args[:number] = row["IMAGE FILE"]
-          end
+        #  if args[:number] == "TITLE-XX"
+        #    args[:number] = row["IMAGE FILE"]
+        #  end
           product = Product.new(data_row.product_args)
           Finish.add_finishes_to product if product.needs_finishes? 
           ChinaColor.add_china_colors_to product if product.needs_china_colors?
@@ -57,9 +41,9 @@ class FileUploadManager
           product.filter_values.concat filters
           product.genres.concat genres
 
-          if Product.exists?(number: product.number)
-            product = Product.find_by(number: args[:number])
-          end
+        #  if Product.exists?(number: product.number)
+        #    product = Product.find_by(number: args[:number])
+        #  end
 
           product.product_configurations << product_configuration if !product_configuration.nil?
           product.save if product.valid?
