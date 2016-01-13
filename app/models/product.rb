@@ -30,6 +30,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :number, presence: true, uniqueness: true
 
+  before_create :add_associated_collection
   after_create :add_finishes, :add_material, :add_china_color
 
   def self.new_upload_product_file(file)
@@ -174,6 +175,15 @@ def polished?
   def add_material
     Material.add_materials_to(self, self.needed_materials)
   end
+
+  def add_associated_collection
+    coll = self.find_associated_collection
+    if !coll.nil?
+      self.associated_collection = coll 
+    end
+
+  end
+
 
 end
 

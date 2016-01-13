@@ -28,10 +28,6 @@ class FileUploadManager
 
           product = Product.new(data_row.product_args)
 
-          coll = product.find_associated_collection
-          if !coll.nil?
-            product.associated_collection = coll 
-          end
           product.styles << style if !style.nil?
           product.filter_values.concat filters
           product.genres.concat genres
