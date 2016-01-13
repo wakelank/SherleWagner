@@ -15,7 +15,7 @@ class DataRow
     @product_sub_type = get_product_sub_type
     @image = get_image
     @style = get_style
-    @genre = get_genre
+    @genres = get_genres
   end
 
  
@@ -68,6 +68,14 @@ class DataRow
     ProductSubType.get_arg @row
   end
 
+  def get_filters
+    FilterValue.get_arg @row
+  end
+
+  def get_product_configuration
+    ProductConfiguration.get_arg @row
+  end
+
   def get_image
     Find.find(IMAGES_PATH) do |filepath|
       if File.basename(filepath) == @image_name
@@ -80,7 +88,7 @@ class DataRow
     Style.get_arg @row
   end
 
-  def get_genre
+  def get_genres
     Genre.get_arg @row
   end
 
