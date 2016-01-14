@@ -31,7 +31,7 @@ class FileUploadManager
           product.styles.concat data_row.get_style
           product.filter_values.concat data_row.get_filters
           product.genres.concat data_row.get_genres
-          product.product_configurations.concat data_row.get_product_configuration
+          product.add_configuration data_row.get_product_configuration
 
           product.save if product.valid?
         rescue

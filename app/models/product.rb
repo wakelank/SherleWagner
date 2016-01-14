@@ -42,6 +42,14 @@ class Product < ActiveRecord::Base
     file_upload_manager.upload
   end
 
+  def compilation?
+    components.count > 0
+  end
+
+  def component?
+    compilations.count > 0
+  end
+
   def find_associated_collection
     collection =  Style.all.select { |collection| self.name.include? collection.name }.last
     return collection || NullObject.new
