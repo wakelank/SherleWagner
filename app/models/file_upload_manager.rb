@@ -40,7 +40,7 @@ class FileUploadManager
 
       elsif data_row.configuration?
         product = data_row.product
-        product.product_configurations << data_row.get_product_configuration
+        product.add_configuration data_row.get_product_configuration
         product.save
 
       end

@@ -26,6 +26,8 @@ class ProductConfiguration < ActiveRecord::Base
     if product_configuration.valid?
       product_configuration
     else
+      logger.info "====================================="
+      logger.info product_configuration.errors.messages
       NullObject.new
     end
 

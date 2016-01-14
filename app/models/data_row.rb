@@ -62,7 +62,7 @@ class DataRow
 
   def product
     if compilation?
-      Product.find_by(number: @specific_number)
+      Product.where(number: @specific_number).where(name: @generic_name)
     else
       Product.find_by(number: @generic_number)
     end
