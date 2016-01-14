@@ -17,12 +17,16 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :china_colors, class_name: 'ChinaColor', join_table: :china_colors_products
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
-  has_and_belongs_to_many :compilations
   belongs_to :associated_collection, class_name:  "Style"
-  has_and_belongs_to_many(:products,
-                          :join_table => "product_components",
-                          :foreign_key => "product_a_id",
-                          :association_foreign_key => "product_b_id")
+  has_many :has_components_relationships,
+    foreign_key: :compilation_id,
+    class_name:"CompilationRelationship"
+  has_many :components, through: :has_components_relationships
+
+  has_many :in_compilation_relationships,
+    foreign_key: :component_id,
+    class_name: "CompilationRelationship"
+  has_many :compilations, through: :in_compilation_relationships
 
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
@@ -41,23 +45,6 @@ class Product < ActiveRecord::Base
   def find_associated_collection
     collection =  Style.all.select { |collection| self.name.include? collection.name }.last
     return collection || NullObject.new
-  end
-
-
-  def compilation?
-    self.components.count > 0
-  end
-
-  def components
-    self.products
-  end
-
-  def compilations
-    self.products.select { |product| product.compilation? }
-  end
-
-  def component?
-    self.compilations.count > 0
   end
 
   def add_associated_collection collection

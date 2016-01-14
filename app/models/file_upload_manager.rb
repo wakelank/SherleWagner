@@ -61,10 +61,8 @@ class FileUploadManager
       elsif data_row.component?
         component = data_row.component
         if !component.nil? && !current_compilation.nil?
-          current_compilation.products << component
-          component.products << current_compilation
+          current_compilation.components << component
           current_compilation.save
-          component.save
         end
       end
     end
