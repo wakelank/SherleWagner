@@ -10,8 +10,8 @@
 <body class="<%=controller_name%> <%=action_name%>">
 
   <%= render "/layouts/navbar" %>
-<!-- this is the sidenavJS ::::: render "/layouts/sideb"-->
-                          <!-- ** to do: Make sideb and ajax1 into a real JS file -->
+
+                        
 
   <div class="side-nav-contain span4" id="pg-nav">
 
@@ -23,10 +23,11 @@
   <div class="container">
     <div id="content_wrapper">
     <%= yield %>
+    
     </div>
     <%= render 'recently_viewed_products/recently_viewed_products' %>
     <%= render 'layouts/footer' %>
-  </div>
+  </div>  
   
 
 </body>

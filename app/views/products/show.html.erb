@@ -12,9 +12,8 @@
       
         <ul id="alt_imgs">
           <% @product.product_configurations_except_first.each do |config| %>
-            <li class="alt_img">
+            <li class="alt_img" data-url= '<%= config.image.url %>' >
                 <%= image_tag config.image.url(:thumb) %> <br/>
-                <%= config.number %>
             </li>
           <% end %>
         </ul>
@@ -89,3 +88,14 @@
 
 </div>
 
+<script>
+// make the image swap happen ... where to put this?
+  $('.alt_img').click(function(){
+    thiz = this;
+    new_img = thiz.dataset.url;
+    $('.product_image').css('background-image','url('+new_img+')');
+    console.log(new_img);
+
+  });
+
+</script>
