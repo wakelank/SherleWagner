@@ -308,6 +308,7 @@ li.highlighted{
 .images{
   float: left;
   padding-left: 1em;  
+  width:50%;
 }
 #image_div{
   height:43em;
