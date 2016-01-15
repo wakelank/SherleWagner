@@ -38,6 +38,7 @@ $(document).on("page:change", (function(){
           var thiz = this;
           var new_img = thiz.dataset.url;
           swap_product_image(new_img);
+          $(thiz).addClass('alt_choice');
           
         });
 
@@ -56,6 +57,7 @@ $(document).on("page:change", (function(){
 
    function swap_product_image(alt_img){
     $('.product_image').css('background-image','url('+ alt_img +')');
+    $('.alt_img').removeClass('alt_choice');
    }
 
 //  function submitTearSheet(){

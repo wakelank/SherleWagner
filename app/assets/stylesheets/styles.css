@@ -298,7 +298,8 @@ li.highlighted{
 
 .prod_page_content{
   width:100%;
-  padding-left: 1 em;
+  padding-left: 1em;
+  padding-top: 1em;
 }
 .detail_list {
   float:left;
@@ -326,6 +327,36 @@ li.highlighted{
   background-color: white;
     background-repeat: no-repeat;
   
+}
+.image_list{
+  float: left;
+  padding-top: 10px;
+  clear: both;
+  width: 100%;
+}
+
+#alt_imgs{
+  list-style: none;
+  padding-right: 0;
+  overflow: auto;
+  /*height: auto;*/
+  /*width:100%;*/
+
+  
+}
+.alt_choice{
+  opacity: .4;
+}
+#alt_imgs li{
+  
+  font-size: 10px;
+  float: right;
+  margin: 2px;
+  margin-right: 0;
+  padding:0;
+}
+.alt_img:hover{
+  cursor: pointer;
 }
 .product_info{
   /*stuff to R of image*/
@@ -356,6 +387,10 @@ li.highlighted{
   float: left;
 }
 
+.options{
+  float: left;
+  padding-left: 6em;
+}
 .option_box{
   width: 4em;
   height: 4em;
@@ -371,39 +406,23 @@ li.highlighted{
     width: 80%;*/
 }
 div.tearsheet-form-box {
-  float: left;
+  
   clear: left;
+  
   margin-top: 10px; 
 }
 
 .tearsheet-form-box{
   float:left;
-  padding-left: 1em;
-}
-
-.image_list{
-  float: left;
-  padding-top: 10px;
-  clear: both;
-  width: 100%;
-}
-
-#alt_imgs{
-  list-style: none;
-  padding-left: 0;
-  overflow: auto;
   
 }
-#alt_imgs li{
-  display: table-cell;
-  font-size: 10px;
-  float: right;
+.tear-sheet-submit{
+  padding-left: 3em;
+  
 }
 
-.options{
-  float: left;
-  padding-left: 1em;
-}
+
+
 .choice_title{
   padding-left: 5px;
 }
