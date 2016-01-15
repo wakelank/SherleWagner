@@ -319,7 +319,7 @@ li.highlighted{
 }
 
 .product_image{
-  width: 100%;
+  width: 99.5%;
   height: 400px;
       background-size: contain;
     background-position-y: 60%;
@@ -348,12 +348,14 @@ li.highlighted{
 }
 
 .links{
+  padding-top: 2em;
   list-style: none;
   color: lightgray;
+  float: left;
 }
 
 .options{
-  
+  float: left;
 }
 .option_box{
   width: 4em;
@@ -363,6 +365,16 @@ li.highlighted{
   margin-right: 2em;
   vertical-align:top;
     
+}
+.tearsheet_wrapper{
+  padding-top: 7em;
+  margin: 0 auto;
+    width: 80%;
+}
+div.tearsheet-form-box {
+  float: left;
+  clear: left;
+  margin-top: 10px; 
 }
 
 .image_list{
@@ -381,7 +393,7 @@ li.highlighted{
 #alt_imgs li{
   display: table-cell;
   font-size: 10px;
-  padding-right: 5px;
+  float: right;
 }
 .finishes{
   clear: left;
@@ -417,10 +429,7 @@ li.highlighted{
 .compilations li{
   padding-left: none;
 }
-div.tearsheet-form-box {
-  float: none;
-  margin-top: 10px; 
-}
+
 .highlight{
   outline: 2px black solid;
 }
