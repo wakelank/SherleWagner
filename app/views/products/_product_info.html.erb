@@ -1,7 +1,7 @@
 <div class="options">
   <div class="finishes">
     <% if @product.finishes.length >= 1 %>
-    <h3>Finishes</h3>
+    <h3 class='choice_title'>Finish</h3>
     <% end %>
     <ul id="product_finishes_list" class="detail_list">
       <% @product.finishes.each do |finish| %>
@@ -13,7 +13,7 @@
   <div class="materials">
     <% if @product.materials.length >= 1 %>
       <% if @product.finishes.length >= 1 %>
-      <h3>Detail</h3>
+      <h3 class='choice_title'>Detail</h3>
       <% else %>
       <h3>Materials</h3>
       <% end %>

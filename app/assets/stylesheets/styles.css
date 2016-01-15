@@ -305,9 +305,6 @@ li.highlighted{
   padding-right: 20px;
 }
 
-.tearsheet-form-box{
-  float:left;
-}
 .images{
   float: left;
   padding-left: 1em;  
@@ -335,6 +332,10 @@ li.highlighted{
   padding-left: 1em;
   padding-top: 1em;
   width:44%;
+  color: grey;
+}
+.product_info a{
+  color: darkgray;
 }
 .product_info h3{
   margin-bottom: 2em;
@@ -350,17 +351,14 @@ li.highlighted{
 .links{
   padding-top: 2em;
   list-style: none;
-  color: lightgray;
+  color: darkgray;
   float: left;
 }
 
-.options{
-  float: left;
-}
 .option_box{
   width: 4em;
   height: 4em;
-  border: 1px solid;
+  border: 1px solid lightgrey;
   display: inline-block;
   margin-right: 2em;
   vertical-align:top;
@@ -368,13 +366,18 @@ li.highlighted{
 }
 .tearsheet_wrapper{
   padding-top: 7em;
-  margin: 0 auto;
-    width: 80%;
+ /* margin: 0 auto;
+    width: 80%;*/
 }
 div.tearsheet-form-box {
   float: left;
   clear: left;
   margin-top: 10px; 
+}
+
+.tearsheet-form-box{
+  float:left;
+  padding-left: 1em;
 }
 
 .image_list{
@@ -395,6 +398,14 @@ div.tearsheet-form-box {
   font-size: 10px;
   float: right;
 }
+
+.options{
+  float: left;
+  padding-left: 1em;
+}
+.choice_title{
+  padding-left: 5px;
+}
 .finishes{
   clear: left;
 }
@@ -402,10 +413,11 @@ div.tearsheet-form-box {
   
   width: 50%;
   float: left;
+  color: grey;
 
 }
 .materials {
-  padding-left: 3em;
+  padding-left: 1em;
 
 }
 
