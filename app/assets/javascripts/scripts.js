@@ -38,6 +38,7 @@ $(document).on("page:change", (function(){
           var thiz = this;
           var new_img = thiz.dataset.url;
           swap_product_image(new_img);
+          
         });
 
         break;
@@ -56,7 +57,7 @@ $(document).on("page:change", (function(){
    function swap_product_image(alt_img){
     $('.product_image').css('background-image','url('+ alt_img +')');
    }
-   
+
 //  function submitTearSheet(){
 ////    e.preventDefault();
 //    var tearSheetForm = document.getElementById('tearsheet-form');
@@ -180,6 +181,7 @@ $(document).on("page:change", (function(){
        $(e.target).addClass('highlight');
        console.log("configObj: " + JSON.stringify(configurationObject));
 
+      //* set the choice box values ****
        $('#material_choice').html(material_identifier);
 
        $.ajax({

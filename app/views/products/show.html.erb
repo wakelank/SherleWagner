@@ -2,14 +2,14 @@
 <div class="prod_page_content">
 
 
-  <div class="product_details">
-   
-    
+  
+
+
     <div class="images">   
       <div class="product_image" style="background-image:url(<%= @product.image.url%>)" ></div>  
       <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
       <div class="image_list">
-        
+
         <ul id="alt_imgs">
           <% @product.product_configurations_except_first.each do |config| %>
           <li class="alt_img" data-url= '<%= config.image.url %>' >
@@ -33,17 +33,30 @@
         product number: <%= @product.product_configurations.last.number %>
       </h5>
       <% end %>
-      
 
-      <%= render 'favorites/favorite_button' %>
+
+      
       <div class="associated">
         Associated collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
+      </div>
+
+      <div class="prod_links">
+        <ul id="links1" class='links'>
+          <li><%= render 'favorites/favorite_button' %></li>
+          <li>spec sheet</li>
+
+          
+        </ul>
+        <ul id="links2" class='links'>
+        
+        <li>installation guide</li>
+          <li>renderings</li>
       </div>
       
       <div class="options">
         <% if @product.finishes.length >= 1 %>
         <div id="finish_choice" class="option_box">
-          
+
         </div>
         <% end %>
 
@@ -53,21 +66,21 @@
         </div>
         <% end %>
         
-        
+
         
         
       </div>
       <%= render 'tearsheet_form' %>
     </div>
-  </div>
   
+
 
   
 
 
   <div class="product_info2">
-    
-    
+
+
     <%= render 'product_info' %>
     <div class="compilations">
       <% if @product.compilations.size > 0 %>
