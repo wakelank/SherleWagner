@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   validates :name, presence: true
- # validates :number, presence: true, uniqueness: true
+  validates :number, presence: true
 
   before_create :add_associated_collection
   after_create :add_finishes, :add_material, :add_china_color

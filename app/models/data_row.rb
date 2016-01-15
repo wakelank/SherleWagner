@@ -35,7 +35,7 @@ class DataRow
 
 
   def component?
-    @image_name.blank? && @generic_number.blank?
+    @image_name.blank? && @generic_number.blank? && !@component_number.blank?
     
   end
 

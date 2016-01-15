@@ -31,6 +31,7 @@ RSpec.describe ProductsController, :type => :controller do
     end
 
     it 'adds 9 products to table' do
+      Product.all.each { |p| puts p.number }
       expect(Product.count).to eq 9 
     end
 

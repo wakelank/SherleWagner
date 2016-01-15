@@ -17,16 +17,16 @@ class FileUploadManager
   def new_upload_product_file(file)
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
+      product = Product.new(data_row.product_args)
 
 
-      if data_row.normal_product? || data_row.compilation?
+      if !Product.exists?(number: product.number) && !data_row.component?
         begin
 
          # style = data_row.get_style
          # filters = data_row.get_filters
          # genres= data_row.get_genres
          # product_configuration = data_row.get_product_configuration 
-          product = Product.new(data_row.product_args)
 
           product.styles.concat data_row.get_style
           product.filter_values.concat data_row.get_filters
@@ -38,10 +38,10 @@ class FileUploadManager
           binding.pry
         end
 
-      elsif data_row.configuration?
+      elsif !data_row.component?
         product = data_row.product
         product.add_configuration data_row.get_product_configuration
-        product.save
+        product.save if product.valid?
 
       end
 
@@ -54,12 +54,14 @@ class FileUploadManager
     current_compilation = NullObject.new
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new row
-      if data_row.compilation?
+      binding.pry if data_row.get_specific_number == '1071-1021-GP'
+      if !data_row.component?
         current_compilation = data_row.product
-      elsif data_row.normal_product?
-        current_compilation = NullObject.new
-      elsif data_row.component?
+      else
         component = data_row.component
+        if !current_compilation.nil? && current_compilation.number == "1104-0031DOR-GP" 
+        binding.pry 
+        end
         if !component.nil? && !current_compilation.nil?
           current_compilation.components << component
           current_compilation.save
