@@ -56,6 +56,7 @@ $(document).on("page:change", (function(){
    function swap_product_image(alt_img){
     $('.product_image').css('background-image','url('+ alt_img +')');
    }
+   
 //  function submitTearSheet(){
 ////    e.preventDefault();
 //    var tearSheetForm = document.getElementById('tearsheet-form');
