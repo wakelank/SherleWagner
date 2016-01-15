@@ -324,6 +324,8 @@ li.highlighted{
     background-position-y: 60%;
   float: left;
   margin-right: 3em;
+  background-color: white;
+  background-repeat: no-repeat;
   
 }
 .product_info{
