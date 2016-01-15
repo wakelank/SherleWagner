@@ -35,7 +35,7 @@ class DataRow
 
 
   def component?
-    @image_name.blank? && @generic_number.blank? && !@component_number.blank?
+    @image_name.blank? && !@component_number.blank?
     
   end
 
@@ -69,7 +69,10 @@ class DataRow
   end
 
   def component
-    Product.where('number like ?' , "#{@component_number}%").first ||
+    ebps_id = ProductSubType.find_by(name: "Elongated Back Plate Systems").id
+    Product.
+      where.not(product_sub_type: ebps_id). 
+      where('number like ?' , "#{@component_number}%").first ||
       NullObject.new
   end
 

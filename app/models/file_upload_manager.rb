@@ -40,8 +40,11 @@ class FileUploadManager
 
       elsif !data_row.component?
         product = data_row.product
-        product.add_configuration data_row.get_product_configuration
-        product.save if product.valid?
+        if !product.nil?
+          product.add_configuration data_row.get_product_configuration
+          product.save if product.valid?
+        end
+
 
       end
 
@@ -54,14 +57,10 @@ class FileUploadManager
     current_compilation = NullObject.new
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new row
-      binding.pry if data_row.get_specific_number == '1071-1021-GP'
       if !data_row.component?
         current_compilation = data_row.product
       else
         component = data_row.component
-        if !current_compilation.nil? && current_compilation.number == "1104-0031DOR-GP" 
-        binding.pry 
-        end
         if !component.nil? && !current_compilation.nil?
           current_compilation.components << component
           current_compilation.save
