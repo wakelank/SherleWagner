@@ -35,10 +35,22 @@ $(document).on("page:change", (function(){
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
-          var thiz = this;
-          var new_img = thiz.dataset.url;
+           thiz = this;
+           new_img = thiz.dataset.url;
           swap_product_image(new_img);
           $(thiz).addClass('alt_choice');
+
+          $('#product_materials_list .finish_tile').each(function(i,t){
+            // console.log(t.dataset.material_identifier)
+            mat = t.dataset.material_identifier
+            if (thiz.dataset.url.includes('-'+mat+'-')){
+              console.log(mat);
+              $(t).trigger('click');
+              console.log(t);
+            }
+
+          });
+
           
         });
 
@@ -58,6 +70,7 @@ $(document).on("page:change", (function(){
    function swap_product_image(alt_img){
     $('.product_image').css('background-image','url('+ alt_img +')');
     $('.alt_img').removeClass('alt_choice');
+
    }
 
 //  function submitTearSheet(){
