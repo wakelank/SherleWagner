@@ -452,6 +452,7 @@ div.tearsheet-form-box {
 .swatch_name{
   font-size: 9px;
   color: lightgrey;
+  pointer-events: none;
 }
 .swatch_div{
   display: none;
