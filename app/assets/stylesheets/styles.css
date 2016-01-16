@@ -429,14 +429,14 @@ div.tearsheet-form-box {
 .finishes{
   clear: left;
 }
-.finishes, .materials{
+.finishes, .materials, .china_colors{
   
   width: 50%;
   float: left;
   color: grey;
 
 }
-.materials {
+.materials, .china_colors {
   padding-left: 1em;
 
 }
@@ -449,7 +449,21 @@ div.tearsheet-form-box {
 .detail_list{
   padding-left: 0;
 }
-
+.swatch_name{
+  font-size: 9px;
+  color: lightgrey;
+}
+.swatch_div{
+  display: none;
+  pointer-events: none;
+  margin-top: -10px;
+  position: absolute;
+  background-color: white;
+  width:6em;
+}
+.finish_tile:hover .swatch_div{
+  display:block;
+}
 
 .compilations {
   float: left;
