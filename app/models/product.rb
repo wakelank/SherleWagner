@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
+  has_many :name_only_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :filter_values
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
@@ -47,7 +48,11 @@ class Product < ActiveRecord::Base
   end
 
   def component?
-    compilations.count > 0
+    compilations.count > 0 && name_only_products > 0
+  end
+
+  def all_components
+    components + name_only_products
   end
 
   def find_associated_collection
