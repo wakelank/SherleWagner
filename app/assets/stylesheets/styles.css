@@ -478,7 +478,7 @@ div.tearsheet-form-box {
 }
 
 .highlight{
-  outline: 2px black solid;
+  outline: 2px darkgrey solid;
 }
 .prod_tile{
   cursor: pointer;
