@@ -72,8 +72,7 @@ class DataRow
     ebps_id = ProductSubType.find_by(name: "Elongated Back Plate Systems").id
     Product.
       where.not(product_sub_type: ebps_id). 
-      where('number like ?' , "#{@component_number}%").first ||
-      NullObject.new
+      where('number like ?' , "#{@component_number}%").first
   end
 
   def get_generic_name

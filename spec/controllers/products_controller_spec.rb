@@ -115,6 +115,12 @@ RSpec.describe ProductsController, :type => :controller do
       component = Product.find_by(number: '101-SHHD-XX')
       expect((component.compilations).pluck(:number).sort).to eq ['T101-CTS-008-SHR-HS-CP', 'T101-CTS-TUB-SHR-CP']
     end
+
+    it 'no_name_products' do
+      compilation = Product.find_by(number: "T101-CTS-008-SHR-HS-CP")
+      components = compilation.all_components.map { |comp| comp[:name] }.sort
+      expect(components).to eq ["Arco Lever Diverter Trim", "Modern Concentric Thermostatic Trim", "Modern Cylindrical Wall Mount Hand Shower on Supply Hook", "Modern Shower Head With Square Flange", "Modern Wall Mount Tub Spout"]
+    end
   end
 
   describe "Seed file assigns filters:" do

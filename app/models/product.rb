@@ -55,6 +55,15 @@ class Product < ActiveRecord::Base
     components + name_only_products
   end
 
+  def add_component component
+    if component.class.name == "Product"
+      self.components << component
+    else
+      self.name_only_products << component
+    end
+  end
+
+
   def find_associated_collection
     collection =  Style.all.select { |collection| self.name.include? collection.name }.last
     return collection || NullObject.new
