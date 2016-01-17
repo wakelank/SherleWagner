@@ -103,8 +103,12 @@
         components:
       </p>
       <ul>
-        <% @product.components.each do |component| %>
-        <li><%= link_to(component.name, product_path(component))  %>
+        <% @product.all_components.each do |component| %>
+          <% if component.class.name == "Product" %>
+            <li><%= link_to(component.name, product_path(component))  %>
+          <% else %>
+            <li><%= component.name %>
+          <% end %>
         </li>
         <% end %>
       </ul>
