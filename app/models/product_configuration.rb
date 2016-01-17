@@ -3,7 +3,7 @@ class ProductConfiguration < ActiveRecord::Base
   extend ImageFilePath
 
   belongs_to :product
-  validates :number, presence: true, uniqueness: true
+  validates :number, presence: true
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_configuration.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
@@ -26,6 +26,8 @@ class ProductConfiguration < ActiveRecord::Base
     if product_configuration.valid?
       product_configuration
     else
+      logger.info "====================================="
+      logger.info product_configuration.errors.messages
       NullObject.new
     end
 
