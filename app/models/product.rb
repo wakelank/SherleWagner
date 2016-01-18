@@ -11,148 +11,63 @@ class Product < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
+  has_many :name_only_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :filter_values
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
   has_and_belongs_to_many :china_colors, class_name: 'ChinaColor', join_table: :china_colors_products
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
-  has_and_belongs_to_many :compilations
   belongs_to :associated_collection, class_name:  "Style"
-  has_and_belongs_to_many(:products,
-                          :join_table => "product_components",
-                          :foreign_key => "product_a_id",
-                          :association_foreign_key => "product_b_id")
+  has_many :has_components_relationships,
+    foreign_key: :compilation_id,
+    class_name:"CompilationRelationship"
+  has_many :components, through: :has_components_relationships
+
+  has_many :in_compilation_relationships,
+    foreign_key: :component_id,
+    class_name: "CompilationRelationship"
+  has_many :compilations, through: :in_compilation_relationships
 
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   validates :name, presence: true
-  validates :number, presence: true, uniqueness: true
+  validates :number, presence: true
+
+  before_create :add_associated_collection
+  after_create :add_finishes, :add_material, :add_china_color
 
   def self.new_upload_product_file(file)
-    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-      args = {}
-      args[:name] = self.get_name_from row
-      args[:number] = self.get_generic_number_from row
-      image_name = self.get_image_name_from row
-        args[:product_type] = ProductType.get_arg row
-        args[:product_sub_type] = ProductSubType.get_arg row
-       # images_path = "/Users/ph1am/Desktop/SW website/images1"
-        # images_path = "/Users/wake/Documents/Work/SherleWagner/images"
-         # images_path = self.image_file_path
-        image_file = NullObject.new
-        style = Style.get_arg row
-        filters = FilterValue.get_arg row
-        genres= Genre.get_arg row
-        product_configuration = ProductConfiguration.get_arg row
-        Find.find(images_path) do |filepath|
-          if File.basename(filepath) == image_name
-            image_file = File.new(filepath) || NullObject.new
-          end
-        end
-        args[:image] = image_file if !image_file.nil?
-
-      if image_name != "no name"
-        begin
-
-          if args[:number] == "TITLE-XX"
-            args[:number] = row["IMAGE FILE"]
-          end
-          product = Product.new(args)
-          Finish.add_finishes_to product if product.needs_finishes? 
-          ChinaColor.add_china_colors_to product if product.needs_china_colors?
-          Material.add_materials_to(product, product.needed_materials)
-
-          coll = product.find_associated_collection
-          if !coll.nil?
-            product.associated_collection = coll 
-          end
-          product.styles << style if !style.nil?
-          product.filter_values.concat filters
-          product.genres.concat genres
-
-          if Product.exists?(number: product.number)
-            product = Product.find_by(number: args[:number])
-          end
-
-          product.product_configurations << product_configuration if !product_configuration.nil?
-          product.save if product.valid?
-        rescue
-          binding.pry
-        end
-      end
-    end
-    compilations = get_components_hash_from file
-    assign_components compilations
-
+    file_upload_manager = FileUploadManager.new file
+    file_upload_manager.upload
   end
 
   def compilation?
-    self.components.count > 0
-  end
-
-  def components
-    self.products
-  end
-
-  def compilations
-    self.products.select { |product| product.compilation? }
+    components.count > 0
   end
 
   def component?
-    self.compilations.count > 0
+    compilations.count > 0 && name_only_products > 0
   end
 
-  def self.assign_components compilations
-    compilations.each do |compilation|
-      product = Product.find_by(number: compilation[:number])
-      compilation[:components].each do |component|
-        component_obj = Product.where('number like ?', "#{component}%").first
-        if !product.nil? && !component_obj.nil?
-          product.products << component_obj
-          component_obj.products << product
-        end
-      end
-      product.save
-    end
+  def all_components
+    components + name_only_products
   end
-      
 
-  def self.get_components_hash_from file
-    compilations = []
-    compilation = {}
-    make_compilation = false
-    CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
-      if row["Generic Product Number"] == "TITLE-XX"
-        if make_compilation == true
-          compilations << compilation
-          compilation = {}
-        end
-        make_compilation = true
-        compilation[:number] = row["IMAGE FILE"]
-        compilation[:components] = []
-      elsif row["IMAGE FILE"].blank? && make_compilation
-        compilation[:components] << row["CODE under Product Name"]
-      else
-        if make_compilation
-          compilations << compilation
-          compilation = {}
-        end
-        make_compilation = false
-      end
+  def add_component component
+    if component.class.name == "Product"
+      self.components << component
+    else
+      self.name_only_products << component
     end
-    if make_compilation
-      compilations << compilation
-    end
-    compilations
   end
+
 
   def find_associated_collection
     collection =  Style.all.select { |collection| self.name.include? collection.name }.last
     return collection || NullObject.new
   end
-
 
   def add_associated_collection collection
     self.associated_collection = collection if !collection.nil?
@@ -181,24 +96,11 @@ class Product < ActiveRecord::Base
     self.associated_collection || NullObject.new
   end
 
-
-
-  def self.get_name_from(row)
-    row["GENERIC PRODUCT NAME _ Revised"] || "no name"
+  def add_configuration(configuration)
+    if !configuration.nil? 
+      self.product_configurations << configuration
+    end
   end
-
-  def self.get_generic_number_from(row)
-    row["Generic Product Number"] || "no product number"
-  end
-
-  def self.get_image_name_from(row)18
-    name = row["IMAGE FILE"] || "no image"
-    name = name + ".jpg" if name != "no image"
-    name
-  end
-
-
-
 
   def add_materials(material_code)
     begin
@@ -276,6 +178,27 @@ def polished?
   def product_configurations_except_first
     product_configurations[1..product_configurations.length-1] || []
   end
+
+  def add_finishes
+    Finish.add_finishes_to self if self.needs_finishes? 
+  end
+
+  def add_china_color
+    ChinaColor.add_china_colors_to self if self.needs_china_colors?
+  end
+  
+  def add_material
+    Material.add_materials_to(self, self.needed_materials)
+  end
+
+  def add_associated_collection
+    coll = self.find_associated_collection
+    if !coll.nil?
+      self.associated_collection = coll 
+    end
+
+  end
+
 
 end
 

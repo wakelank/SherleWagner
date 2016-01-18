@@ -11,15 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111215624) do
+ActiveRecord::Schema.define(version: 20160117205803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "associated_compilations", id: false, force: :cascade do |t|
-    t.integer "compilation_a_id", null: false
-    t.integer "compilation_b_id", null: false
-  end
 
   create_table "china_colors", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +30,16 @@ ActiveRecord::Schema.define(version: 20160111215624) do
 
   add_index "china_colors_products", ["china_color_id"], name: "index_china_colors_products_on_china_color_id", using: :btree
   add_index "china_colors_products", ["product_id"], name: "index_china_colors_products_on_product_id", using: :btree
+
+  create_table "compilation_relationships", force: :cascade do |t|
+    t.integer  "component_id"
+    t.integer  "compilation_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "compilation_relationships", ["compilation_id"], name: "index_compilation_relationships_on_compilation_id", using: :btree
+  add_index "compilation_relationships", ["component_id"], name: "index_compilation_relationships_on_component_id", using: :btree
 
   create_table "compilations", force: :cascade do |t|
     t.string   "name"
@@ -125,6 +130,15 @@ ActiveRecord::Schema.define(version: 20160111215624) do
   add_index "materials_products", ["material_id"], name: "index_materials_products_on_material_id", using: :btree
   add_index "materials_products", ["product_id"], name: "index_materials_products_on_product_id", using: :btree
 
+  create_table "name_only_products", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "product_id"
+  end
+
+  add_index "name_only_products", ["product_id"], name: "index_name_only_products_on_product_id", using: :btree
+
   create_table "product_components", id: false, force: :cascade do |t|
     t.integer "product_a_id", null: false
     t.integer "product_b_id", null: false
@@ -212,6 +226,7 @@ ActiveRecord::Schema.define(version: 20160111215624) do
   add_foreign_key "genres_products", "products"
   add_foreign_key "materials_products", "materials"
   add_foreign_key "materials_products", "products"
+  add_foreign_key "name_only_products", "products"
   add_foreign_key "product_configurations", "products"
   add_foreign_key "product_sub_types", "product_types"
   add_foreign_key "products", "genres"

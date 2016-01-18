@@ -90,15 +90,30 @@
       </p>
       <ul>
         <% @product.compilations.each do |compilation| %>
-        <li><%= link_to(compilation.name, compilation_path(compilation))  %>
-
-          <%= image_tag compilation.image.url(:thumb) %> 
+        <li><%= link_to(compilation.name, product_path(compilation))  %>
         </li>
         <% end %>
       </ul>
 
       <% end %>
     </div>
+    <div class="components">
+      <% if @product.components.size > 0 %>
+      <p>
+        components:
+      </p>
+      <ul>
+        <% @product.all_components.each do |component| %>
+          <% if component.class.name == "Product" %>
+            <li><%= link_to(component.name, product_path(component))  %>
+          <% else %>
+            <li><%= component.name %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+
+      <% end %>
 
   </div>
   <br/>
