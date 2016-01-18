@@ -22,12 +22,12 @@ $(document).on("page:change", (function(){
 
         $('.prod-cat a').click(function(){
           // *make side nav links go back to cat pg*
-           thiis = $(this);
+          var thiis = $(this);
           var type_id = thiis[0].id
           window.history.pushState(type_id, null,"/product_types");
           //history state is a wormhole
           // window.history.replaceState(type_id, null,"product_types/"+type_id);               
-           href = $(thiis[0]).html();
+          var href = $(thiis[0]).html();
           var panel = '#' + href.replace(' ','_') + "1";
           $(panel).collapse('toggle');
                 
