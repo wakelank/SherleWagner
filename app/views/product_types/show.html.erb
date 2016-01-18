@@ -1,9 +1,9 @@
 <%= render partial: 'prod_cat', locals: {products: @selected}  %>
 <script>
   $(function(){
-  thisac ="#"+$('#subtype_list_name').text();
-  sideac = thisac.replace(" ","_");
-  actrgt = $(sideac).parents('.panel').children('.panel-collapse');
+  var thisac ="#"+$('#subtype_list_name').text();
+  var sideac = thisac.replace(" ","_");
+  var actrgt = $(sideac).parents('.panel').children('.panel-collapse');
   $(actrgt).collapse('show');
   
   //code for toggling the 'open' prodcat panel based onthe title in prod list
