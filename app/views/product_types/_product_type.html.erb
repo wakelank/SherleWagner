@@ -25,7 +25,7 @@
     <div id="<%= product_type.name.gsub(' ','_') %>1" class="panel-collapse collapse sub-type-panel">
       <div class="panel-body">
         <div class="panel-group" id="acordion<%=product_type.id%>">
-          <% if controller_name != 'styles' && action_name != 'show' %>
+          <% unless controller_name == 'styles' && action_name == 'show' %>
             <%= render product_type.product_sub_types %>
           <% end %>
         </div>

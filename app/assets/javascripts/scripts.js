@@ -27,7 +27,7 @@ $(document).on("page:change", (function(){
           window.history.pushState(type_id, null,"/product_types");
           //history state is a wormhole
           // window.history.replaceState(type_id, null,"product_types/"+type_id);               
-          var href = thiis.find('a').html();
+          var href = $(thiis[0]).html();
           var panel = '#' + href.replace(' ','_') + "1";
           $(panel).collapse('toggle');
                 
