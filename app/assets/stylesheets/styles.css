@@ -389,7 +389,8 @@ li.highlighted{
 
 .options{
   float: left;
-  padding-left: 6em;
+  /*padding-left: 6em;*/
+  clear: left;
 }
 .option_box{
   width: 4em;
@@ -402,6 +403,7 @@ li.highlighted{
 }
 .tearsheet_wrapper{
   padding-top: 7em;
+  padding-left: 5em;
  /* margin: 0 auto;
     width: 80%;*/
 }
@@ -431,7 +433,7 @@ div.tearsheet-form-box {
 }
 .finishes, .materials, .china_colors{
   
-  width: 50%;
+  max-width: 50%;
   float: left;
   color: grey;
 
