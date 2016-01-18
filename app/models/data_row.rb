@@ -110,11 +110,13 @@ class DataRow
   end
 
   def get_image
+    image_file = NullObject.new
     Find.find(IMAGES_PATH) do |filepath|
       if File.basename(filepath) == @image_name
-        @image_file = File.new(filepath) || NullObject.new
+        image_file = File.new(filepath) || NullObject.new
       end
     end
+    image_file
   end
 
   def get_style

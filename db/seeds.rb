@@ -540,9 +540,13 @@ filters = [
   { name: "Wallpaper Color",
     filter_values: [ "Neutral", "Blue", "Pink", "Yellow", "Black", "Red", "Green", "Metallic" ]
   },
-  { name: "Glazes",
-    filter_values: [ "Banded", "Solid", "Burnished", "Polished"]
+  { name: "Glazed",
+    filter_values: [ "Solid", "Hand Painted", "Hand Decorated"]
   },
+  { name: "Burnished & Polished",
+    filter_values: ["Banded", "Solid", "Decorated" ]
+  },
+
   { name: "China",
     filter_values: [ "Hand Painted", "Hand Decorated"]
   },
@@ -571,7 +575,7 @@ end
 fixtures = ProductType.where(name: "Fixtures")
 
 ProductSubType.where(product_type: fixtures).where.not(name: "Legs").each do |product_sub_type|
-  product_sub_type.filters << Filter.find_by(name: "Glazes")
+  product_sub_type.filters << Filter.find_by(name: "Glazed")
 end
 
 ProductSubType.where(product_type: fixtures).where.not(name: "Legs").where.not(name: "Consoles").each do |product_sub_type|
