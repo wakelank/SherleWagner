@@ -67,6 +67,10 @@ RSpec.describe ProductsController, :type => :controller do
       @product_with_chinametal = Product.find_by(number: 'UE15-CHINAMETAL-CC') || :non_product
     end
 
+    it "image" do
+      expect(@product.image_file_name).to eq "008BSN108-CP.jpg"
+    end
+
     it "product_type" do
       expect(@product.product_type.name).to eq "Fittings"
     end
