@@ -361,40 +361,39 @@ li.highlighted{
 .product_info{
   /*stuff to R of image*/
   float: left;
-  padding-left: 1em;
+  padding-left: 2em;
   padding-top: 1em;
   width:44%;
   color: grey;
 }
-.product_info a{
-  color: darkgray;
+.prod-config-description{
+  color: black;
+  margin-top: 0;
 }
-.product_info h3{
-  margin-bottom: 2em;
-
+.prod-config-number{
+  color: darkgrey;
+}
+.product_info a{
+  color:gray;
+}
+.product_info h3#prod_name{
+  height: 2em;
+  color: black;
 }
 .favorite{
   border: 0;
-    color: lightgrey;
+    color: gray;
     background-color: inherit;
     padding: 0;
 }
 
-.links{
-  padding-top: 2em;
-  list-style: none;
-  color: darkgray;
-  float: left;
-}
-
 .options{
   float: left;
-  
   clear: left;
 }
 .option_box{
-  width: 4em;
-  height: 4em;
+  width: 8em;
+  height: 8em;
   border: 1px solid lightgrey;
   display: inline-block;
   margin-right: 2em;
@@ -402,8 +401,8 @@ li.highlighted{
     
 }
 .tearsheet_wrapper{
-  padding-top: 7em;
-  padding-left: 5em;
+  padding-top: 2em;
+  /*padding-left: 4em;*/
  /* margin: 0 auto;
     width: 80%;*/
 }
@@ -419,11 +418,26 @@ div.tearsheet-form-box {
   
 }
 .tear-sheet-submit{
-  padding-left: 3em;
+  /*padding-left: 2em;*/
   
 }
 
+.prod_links{
+  float: left;
+  clear: left;
+  text-align: left;
 
+}
+.links{
+  padding-top: 2em;
+  padding-left: 0;
+  list-style: none;
+  color: gray;
+  float: left;
+}
+#links2{
+  padding-left: 4em;
+}
 
 .choice_title{
   padding-left: 5px;

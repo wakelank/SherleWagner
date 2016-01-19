@@ -21,7 +21,7 @@
   </div>
   
   <div class="product_info">
-    <h3>
+    <h3 id="prod_name">
       <%= @product.name%>
     </h3>
 
@@ -30,48 +30,51 @@
       shown: <%= @product.product_configurations.last.description %>
     </h4>
     <h5 class="prod-config-number">
-      product number: <%= @product.product_configurations.last.number %>
+       <%= @product.product_configurations.last.number %>
     </h5>
     <% end %>
 
 
     
     <div class="associated">
-      Associated collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
+      Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
     </div>
+    <div class="centered">
+      <div class="tearsheet_wrapper">
+        <div class="options">
+          <% if @product.finishes.length >= 1 %>
+          <div id="finish_choice" class="option_box">
 
-    <div class="prod_links">
-      <ul id="links1" class='links'>
-        <li><%= render 'favorites/favorite_button' %></li>
-        <li>spec sheet</li>
+          </div>
+          <% end %>
 
-        
-      </ul>
-      <ul id="links2" class='links'>
-      
-      <li>installation guide</li>
-        <li>renderings</li>
-    </div>
-    <div class="tearsheet_wrapper">
-      <div class="options">
-        <% if @product.finishes.length >= 1 %>
-        <div id="finish_choice" class="option_box">
+          <% if @product.materials.length >= 1 %>
+          <div id="material_choice" class="option_box">
 
+          </div>
+          <% end %>
+          
+
+          
+          
         </div>
-        <% end %>
-
-        <% if @product.materials.length >= 1 %>
-        <div id="material_choice" class="option_box">
-
-        </div>
-        <% end %>
-        
-
-        
-        
+        <%= render 'tearsheet_form' %>
       </div>
-      <%= render 'tearsheet_form' %>
+
+      <div class="prod_links">
+        <ul id="links1" class='links'>
+          <li><%= render 'favorites/favorite_button' %></li>
+          <li>spec sheet</li>
+
+          
+        </ul>
+        <ul id="links2" class='links'>
+        
+        <li>installation guide</li>
+          <li>renderings</li>
+      </div>
     </div>
+    
   </div>
   
 
