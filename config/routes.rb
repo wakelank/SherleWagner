@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 #  get 'product_groups/add_favorite' => 'product_groups#add_favorite'
 
 
-  root 'product_types#index'
+  root 'static_pages#home'
   resources :products
   #resources :product_groups
 
