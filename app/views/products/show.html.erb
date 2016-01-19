@@ -27,7 +27,7 @@
 
     <% if @product.product_configurations.length > 0 %>
     <h4 class="prod-config-description">
-      shown: <%= @product.product_configurations.last.description %>
+      <span id="shown">shown:</span> <%= @product.product_configurations.last.description %>
     </h4>
     <h5 class="prod-config-number">
        <%= @product.product_configurations.last.number %>

@@ -369,6 +369,13 @@ li.highlighted{
 .prod-config-description{
   color: black;
   margin-top: 0;
+  height: 2em;
+}
+#shown{
+  font-style: italic;
+  color: grey;
+  font-size: 15px;
+
 }
 .prod-config-number{
   color: darkgrey;
@@ -380,13 +387,10 @@ li.highlighted{
   height: 2em;
   color: black;
 }
-.favorite{
-  border: 0;
-    color: gray;
-    background-color: inherit;
-    padding: 0;
-}
 
+.centered{
+  padding-left: 15%;
+}
 .options{
   float: left;
   clear: left;
@@ -421,6 +425,12 @@ div.tearsheet-form-box {
   /*padding-left: 2em;*/
   
 }
+.favorite{
+  border: 0;
+    color: gray;
+    background-color: inherit;
+    padding: 0;
+}
 
 .prod_links{
   float: left;
@@ -428,6 +438,7 @@ div.tearsheet-form-box {
   text-align: left;
 
 }
+
 .links{
   padding-top: 2em;
   padding-left: 0;
@@ -444,6 +455,7 @@ div.tearsheet-form-box {
 }
 .finishes{
   clear: left;
+  margin-right: .5em;
 }
 .finishes, .materials, .china_colors{
   
