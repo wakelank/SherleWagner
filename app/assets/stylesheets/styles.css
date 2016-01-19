@@ -102,9 +102,9 @@ ul.nav{
   display: block;
   padding-top: 11.5em;
   padding-bottom: 5em;
-  margin: 0 auto;
-  position: absolute;
-  left: 250px;
+  
+  margin-left: 130px;
+  /*left: 250px;*/
   box-shadow: 4px 5px 5px #999999;
  
 }

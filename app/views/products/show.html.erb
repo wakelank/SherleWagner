@@ -83,12 +83,14 @@
 
 
     <%= render 'product_info' %>
+
+
     <div class="compilations">
       <% if @product.compilations.size > 0 %>
       <p>
         Compilations:
       </p>
-      <ul>
+      <ul id="compilations_list" class="comp_list links">
         <% @product.compilations.each do |compilation| %>
         <li><%= link_to(compilation.name, product_path(compilation))  %>
         </li>
@@ -99,10 +101,11 @@
     </div>
     <div class="components">
       <% if @product.all_components.size > 0 %>
-      <p>
-        components:
-      </p>
-      <ul>
+      
+        
+      
+      <ul id="components_list" class="comp_list links">
+        <p> Components:</p>
         <% @product.all_components.each do |component| %>
           <% if component.class.name == "Product" %>
             <li><%= link_to(component.name, product_path(component))  %>
