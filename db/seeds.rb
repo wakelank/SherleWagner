@@ -492,11 +492,8 @@ filters = [
   { name: "Shower Type",
     filter_values: [ "Concentric Thermostatic Shower Systems", "High Flow Thermostatic Shower Systems" ]
   },
-  { name: "Sink Design",
+  { name: "Type",
     filter_values: [ "Under Edge", "Over Edge" ]
-  },
-  { name: "Sink Shape",
-    filter_values: [ "Oval", "Round", "Geometric" ]
   },
   { name: "Bidet Design",
     filter_values: [ "Two Hole", "Four Hole" ]
@@ -546,6 +543,9 @@ filters = [
   { name: "Burnished & Polished",
     filter_values: ["Banded", "Solid", "Decorated" ]
   },
+  { name: "Sink Shape",
+    filter_values: [ "Oval", "Round", "Geometric" ]
+  },
 
   { name: "China",
     filter_values: [ "Hand Painted", "Hand Decorated"]
@@ -578,7 +578,10 @@ ProductSubType.where(product_type: fixtures).where.not(name: "Legs").each do |pr
   product_sub_type.filters << Filter.find_by(name: "Glazed")
 end
 
-ProductSubType.where(product_type: fixtures).where.not(name: "Legs").where.not(name: "Consoles").each do |product_sub_type|
+ProductSubType.where(product_type: fixtures).
+  where.not(name: "Legs").
+  where.not(name: "Basins").
+  where.not(name: "Consoles").each do |product_sub_type|
   product_sub_type.filters << Filter.find_by(name: "China")
 end
 
@@ -597,8 +600,9 @@ ProductSubType.all.each do |product_sub_type|
     product_sub_type.filters << Filter.find_by(name: "Trim Type")
     product_sub_type.filters << Filter.find_by(name: "Component Type")
   when "Basins"
-    product_sub_type.filters << Filter.find_by(name: "Sink Design")
+    product_sub_type.filters << Filter.find_by(name: "Type")
     product_sub_type.filters << Filter.find_by(name: "Sink Shape")
+    product_sub_type.filters << Filter.find_by(name: "Burnished & Polished")
   when "Paper Holders"
     product_sub_type.filters << Filter.find_by(name: "Paper Holder Design")
   when "Countertop Accessories"
