@@ -40,10 +40,11 @@ $(document).on("page:change", (function(){
           swap_product_image(new_img);
           $(thiz).addClass('alt_choice');
 
-          $('#product_materials_list .finish_tile').each(function(i,t){
+          $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
-            mat = t.dataset.material_identifier
-            if (thiz.dataset.url.includes('-'+mat+'-')){
+            mat = t.dataset.material_identifier;
+            fin = t.dataset.finish_identifier;
+            if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
               console.log(mat);
               $(t).trigger('click');
               console.log(t);

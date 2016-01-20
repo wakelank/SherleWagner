@@ -6,10 +6,10 @@
     
     <ul id="product_finishes_list" class="detail_list">
       <% @product.finishes.each do |finish| %>
-        <li class="prod_tile finish_tile", data-finish_identifier="<%= finish.identifier %>">
-          <p class="swatch_name">
-            <%= finish.name %> 
-          </p><div class="swatch_div"><%= finish.name %> </div>
+        <li class="prod_tile finish_tile", data-finish_identifier="<%= finish.identifier %>", style="background-image: url(<%= finish.modern_swatch_url %>);">
+          <!-- <p class="swatch_name">
+            %= finish.name %> 
+          </p> --><div class="swatch_div"><%= finish.name %> </div>
 
         </li>
         <!-- finish.image -->
