@@ -168,6 +168,10 @@ $(document).on("page:change", (function(){
        console.log("configObj: " + JSON.stringify(configurationObject));
 
        $('#finish_choice').html(finish_identifier);
+       targ = $(e.target);
+       bg = targ.css("background-image");
+       $('#finish_choice').css("background-image", bg);
+       $('#finish_choice').css("background-size", 'contain');
 
        $.ajax({
          url: "/product_configurations/show",

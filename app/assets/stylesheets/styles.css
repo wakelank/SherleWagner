@@ -402,6 +402,7 @@ li.highlighted{
   display: inline-block;
   margin-right: 2em;
   vertical-align:top;
+  color: white; 
     
 }
 .tearsheet_wrapper{
