@@ -178,19 +178,20 @@ metal_patterns = [ {name: "Masonry", identifier: "MS" },
                     {name: "Random Leaves", identifier: "25" }
 ]
 metal_types = [ {name: "Gold", identifier: "G"},
-                  {name: "Platinum", identifier: "P"},
-                {name: "Highly Polished Platinum", identifier: "HP"}
+                  {name: "Platinum", identifier: "P"}
                               ]
 chinametal_hash = {type: "China Metal", code: "CHINAMETAL"}
 chinametal_entries = []
 metal_patterns.each do |pattern|
-  metal_types.each do |type|
-    entry = { name: "#{pattern[:name]} #{type[:name]}", identifier: "#{pattern[:identifier]}-#{type[:identifier]}" }
+  metal_types.each_with_index do |type, index|
+      entry = { name: "#{pattern[:name]} #{type[:name]}", identifier: "#{pattern[:identifier]}-#{type[:identifier]}" }
     chinametal_entries.push entry
   end
 end
 chinametal_hash[:entries] = chinametal_entries
-black_random_leaves_entry = { name: "Random Leaves Black", identifier: "25-B" }
+black_random_leaves_entry = { name: "Random Leaves Black", identifier: "25BK" }
+hp_entries = []
+
 chinametal_hash[:entries].push black_random_leaves_entry
 
 materials.push chinametal_hash
