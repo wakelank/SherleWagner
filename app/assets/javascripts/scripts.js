@@ -25,6 +25,7 @@ $(document).on("page:change", (function(){
           var thiis = $(this);
           var type_id = thiis[0].id
           window.history.pushState(type_id, null,"/product_types");
+
           //history state is a wormhole
           // window.history.replaceState(type_id, null,"product_types/"+type_id);               
           var href = $(thiis[0]).html();
@@ -58,7 +59,11 @@ $(document).on("page:change", (function(){
         break;
       case 'styles show':
           filter_types();
-        break;  
+        break; 
+      case 'static_pages home':
+          // $('.side-nav-contain').css('display','none');
+          
+        break;
       default:
         var tearSheetForm = 'not form';
       break;

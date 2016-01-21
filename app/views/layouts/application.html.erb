@@ -21,14 +21,12 @@
   </div>
 
   <div class="container">
-     <% if controller_name == 'static_pages' && action_name == 'home' %>
-      <%= yield %>
-     <% else %>
+     
         <div id="content_wrapper">
       <%= yield %>
       
        </div>
-     <% end %>
+     
      
     <%= render 'layouts/footer' %>
   </div>  
