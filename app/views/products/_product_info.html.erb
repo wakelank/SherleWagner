@@ -5,11 +5,13 @@
     <h3 class='choice_title'>Finish</h3>
     
     <ul id="product_finishes_list" class="detail_list">
-      <% @product.finishes.each do |finish| %>
-        <li class="prod_tile finish_tile", data-finish_identifier="<%= finish.identifier %>", style="background-image: url(<%= finish.modern_swatch_url %>);">
+       
+      <% @finishes.each do |finish| %>
+      
+        <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", style="background-image: url(<%= finish["swatch"] %>);">
           <!-- <p class="swatch_name">
             %= finish.name %> 
-          </p> --><div class="swatch_div"><%= finish.name %> </div>
+          </p> --><div class="swatch_div"><%= finish["name"] %> </div>
 
         </li>
         <!-- finish.image -->

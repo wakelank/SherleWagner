@@ -47,6 +47,10 @@ class Product < ActiveRecord::Base
     components.count > 0
   end
 
+  def ornate?
+    genres.pluck(:name).include?("Ornate")
+  end
+
   def component?
     compilations.count > 0 && name_only_products > 0
   end
