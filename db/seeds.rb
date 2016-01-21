@@ -148,11 +148,9 @@ materials = [{ type: "China-Hand Painted",
               },
               {type: "Glaze",
                code: "GLAZE",
-               entries: [ {name: "High Polished Platinum", identifier: "17HP" },
+               entries: [
                           {name: "White", identifier: "WHT" },
-                          {name: "Sand", identifier: "SND" },
-                          {name: "Burnished Plantinum", identifier: "15PL" },
-                          {name: "Burnished Gold", identifier: "14GP" }]
+                          {name: "Sand", identifier: "SND" }],
               },
               {type: "Banded",
                code: "CHINABANDED",
@@ -187,8 +185,22 @@ materials = [{ type: "China-Hand Painted",
                          { name:"Ribbon & Reed with highly polished platinum", identifier: "3EN-HP" },
                          { name:"Scroll with highly polished platinum", identifier: "4EN-HP" },
                          { name:"Renaissance with highly polished platinum", identifier: "6EN-HP" },
-                         { name:"Imperial with highly polished platinum", identifier: "9EN-HP" } ]
-               }
+                         { name:"Imperial with highly polished platinum", identifier: "9EN-HP" },
+                         { name:"Empire with Highly polished platinum", identifier: "21EN-HP" } ]
+               },
+               {type: "China Metal Decorated",
+                code: "METALDECO",
+                entries: [
+                  { name:"Masonry with gold", identifier: "MS-G" },
+                  { name:"Modern Rings with gold", identifier: "MR-G" },
+                  { name:"Fleur de Lis with gold", identifier: "5EN-G" },
+                  { name:"Random Leaves with gold", identifier: "25-G" },
+                  { name:"Masonry with platinum", identifier: "MS-P" },
+                  { name:"Modern Rings with platinum", identifier: "MR-P" },
+                  { name:"Fleur de Lis with platinum", identifier: "5EN-P" },
+                  { name:"Fleur de Lis with highly polished platinum", identifier: "5EN-HP" },
+                  { name:"Random Leaves with highly polished platinum", identifier: "25BK" }]
+                }
 
 
 ]
