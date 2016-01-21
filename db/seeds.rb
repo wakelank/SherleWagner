@@ -51,11 +51,13 @@ finishes = [
   { name: 'Flemish Patina', identifier: 'FP' },
   { name: 'Rose Gold', identifier: 'RG' }
 ]
+img_mod_path = '/images/finishes2/modern/'
+img_orn_path = '/images/finishes2/ornate/'
 
 Finish.create(name: 'non finish', identifier: '00')
 
 finishes.each do |finish|
-  Finish.create(name: finish[:name], identifier: finish[:identifier])
+  Finish.create(name: finish[:name], identifier: finish[:identifier], modern_swatch_url: img_mod_path + finish[:identifier] + '.jpg', ornate_swatch_url: img_orn_path + finish[:identifier] + '.jpg' )
 end
 
 materials = [{ type: "China-Hand Painted",
