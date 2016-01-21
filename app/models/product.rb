@@ -1,10 +1,8 @@
 require 'english'
-#require 'paperclip_stub.rb'
 require 'csv'
 require 'find'
 
 class Product < ActiveRecord::Base
-  extend ImageFilePath
 
 
 #  belongs_to :product_group
