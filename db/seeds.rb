@@ -200,6 +200,12 @@ materials = [{ type: "China-Hand Painted",
                   { name:"Fleur de Lis with platinum", identifier: "5EN-P" },
                   { name:"Fleur de Lis with highly polished platinum", identifier: "5EN-HP" },
                   { name:"Random Leaves with highly polished platinum", identifier: "25BK" }]
+                },
+                {type: "China Metal",
+                 code: "CHINAMETAL",
+                 entries: [{name: "Burnished Platinum, Solid", identifier: "15PL" },
+                           {name: "Highly Polished Platinum, Solid", identifier: "17HP" },
+                           {name: "Burnished Gold, Solid", identifier: "14GP" } ]
                 }
 
 
