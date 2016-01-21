@@ -145,7 +145,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 .side-nav-contain {
   float: left;
   margin: 2%;
-  min-width: 275px;
+  /*min-width: 275px;*/
   
   position:fixed; top:20;
   overflow-y: scroll;
@@ -155,7 +155,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 .nav-wrap {
   float:left;
-  width: 80%;
+  width: 100%;
   
   padding: 5px;
 }
@@ -184,7 +184,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   padding: 0px 15px;
 }
 #accordion1 *{
-  background-color: #e5e6df;
+  /*background-color: #e5e6df;*/
+  background-color: rgba(0,0,0,0);
 }
 #accordion1 a:link, #accordion1 a:visited{
 color: black;

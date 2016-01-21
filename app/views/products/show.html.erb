@@ -6,12 +6,12 @@
 
 
   <div class="images">   
-    <div class="product_image" style="background-image:url(<%= @product.image.url%>)" ></div>  
+    <div class="product_image" style="background-image:url(<%= @product.image.url%>)" data-url= '<%= @product.image.url %>' ></div>  
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
     <div class="image_list">
 
       <ul id="alt_imgs">
-        <% @product.product_configurations_except_first.each do |config| %>
+        <% @product.product_configurations.each do |config| %>
         <li class="alt_img" data-url= '<%= config.image.url %>' >
           <%= image_tag config.image.url(:thumb) %> <br/>
         </li>

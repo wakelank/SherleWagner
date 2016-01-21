@@ -20,6 +20,33 @@ $(document).on("page:change", (function(){
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
         set_tearsheet_link();
 
+        image = $('.product_image')[0].dataset.url;
+        matchr = image.match(/\/[^\/]+.jpg/);
+
+        $('.alt_img').each(function(i,t){
+          if(t.dataset.url.indexOf(matchr) > -1){
+            console.log('MAATCH');
+            $(t).addClass('alt_choice');
+          }
+        });
+        
+        $('.finish_tile').each(function(i,t){
+         
+          if ($($(t).parents()[1]).hasClass('finishes')){
+             ident = t.dataset.finish_identifier;
+          }else{
+             ident = t.dataset.material_identifier;
+          }
+           
+          if (image.includes('-'+ ident )){
+            console.log(t);
+
+          }
+
+        }); 
+
+
+
         $('.prod-cat a').click(function(){
           // *make side nav links go back to cat pg*
           var thiis = $(this);
@@ -36,24 +63,34 @@ $(document).on("page:change", (function(){
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
-           thiz = this;
-           new_img = thiz.dataset.url;
+          var thiz = this;
+           var new_img = thiz.dataset.url;
           swap_product_image(new_img);
           $(thiz).addClass('alt_choice');
 
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
-            mat = t.dataset.material_identifier;
-            fin = t.dataset.finish_identifier;
+            var mat = t.dataset.material_identifier;
+            var fin = t.dataset.finish_identifier;
             if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
               console.log(mat);
               $(t).trigger('click');
               console.log(t);
             }
 
-          });
+          }); 
 
           
+        });
+        $('.materials .finish_tile').click(function(f){
+            var mat = this.dataset.material_identifier;
+          $('.alt_img').each(function(i,t){
+             if (t.dataset.url.includes('-'+mat)){
+              swap_product_image(t.dataset.url);
+              $(t).addClass('alt_choice');
+             }
+            // fin = $('.finishes .highlight')[0].dataset.finish_identifier
+          });
         });
 
         break;
@@ -62,7 +99,7 @@ $(document).on("page:change", (function(){
         break; 
       case 'static_pages home':
           // $('.side-nav-contain').css('display','none');
-          
+
         break;
       default:
         var tearSheetForm = 'not form';
@@ -73,8 +110,8 @@ $(document).on("page:change", (function(){
       
      
 
-   function swap_product_image(alt_img){
-    $('.product_image').css('background-image','url('+ alt_img +')');
+   function swap_product_image(url){
+    $('.product_image').css('background-image','url('+ url +')');
     $('.alt_img').removeClass('alt_choice');
 
    }
@@ -173,8 +210,8 @@ $(document).on("page:change", (function(){
        console.log("configObj: " + JSON.stringify(configurationObject));
 
        $('#finish_choice').html(finish_identifier);
-       targ = $(e.target);
-       bg = targ.css("background-image");
+       var targ = $(e.target);
+       var bg = targ.css("background-image");
        $('#finish_choice').css("background-image", bg);
        $('#finish_choice').css("background-size", 'contain');
 
