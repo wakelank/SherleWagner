@@ -171,9 +171,7 @@ $(document).on("page:change", (function(){
      }
 
      function swatch_tile_actions(targ, listId){
-        // $(listId).find('li').click(function(e){
-          //console.log(e);
-          //var targ = $(e.target);
+       
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
