@@ -178,8 +178,8 @@ $(document).on("page:change", (function(){
 
      function setProductInfoWithConfiguration(config){
        if (typeof config != "undefined") {
-           $('.prod-config-number').html("shown: " + config.number);
-           $('.prod-config-description').html(config.description);
+           $('.prod-config-number').html(config.number);
+           $('.prod-config-description #description').html(config.description);
            $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
