@@ -17,15 +17,12 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
   belongs_to :associated_collection, class_name:  "Style"
-  has_many :has_components_relationships,
-    foreign_key: :compilation_id,
-    class_name:"CompilationRelationship"
-  has_many :components, through: :has_components_relationships
 
-  has_many :in_compilation_relationships,
+has_many :in_compilation_relationships,
     foreign_key: :component_id,
     class_name: "CompilationRelationship"
   has_many :compilations, through: :in_compilation_relationships
+
 
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"

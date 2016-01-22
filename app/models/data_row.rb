@@ -77,6 +77,10 @@ class DataRow
       where('number like ?' , "#{@component_number}%").first
   end
 
+  def configuration
+    ProductConfiguration.find_by(number: @specific_number)
+  end
+
   def get_generic_name
     @row["GENERIC PRODUCT NAME _ Revised"] || ""
   end

@@ -4,6 +4,13 @@ class ProductConfiguration < ActiveRecord::Base
 
   belongs_to :product
   validates :number, presence: true
+  has_many :has_components_relationships,
+    foreign_key: :compilation_id,
+    class_name:"CompilationRelationship"
+  has_many :components, through: :has_components_relationships
+
+  
+
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_configuration.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
@@ -33,6 +40,9 @@ class ProductConfiguration < ActiveRecord::Base
     end
 
   end
+def add_component component
+  self.components << component if component.class.name == "Product"
+end
 
   def self.get_image_name_from(row)
     name = row["IMAGE FILE"] || "no image"

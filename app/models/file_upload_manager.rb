@@ -1,6 +1,6 @@
 require 'english'
 
-# require 'paperclip_stub.rb'
+ require 'paperclip_stub.rb'
 
 require 'csv'
 require 'find'
@@ -59,7 +59,7 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new row
       if !data_row.component?
-        current_compilation = data_row.product
+        current_compilation = data_row.configuration
       else
         component = data_row.component ||
           NameOnlyProduct.create(name: data_row.get_generic_name)
