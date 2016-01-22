@@ -39,7 +39,7 @@
 
     
     <div class="associated">
-      Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %>
+      
     </div>
     <div class="centered">
       <div class="tearsheet_wrapper">
@@ -60,20 +60,23 @@
           
           
         </div>
-        <%= render 'tearsheet_form' %>
+        
       </div>
 
       <div class="prod_links">
         <ul id="links1" class='links'>
+          <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
+          <li><%= render 'tearsheet_form' %></li>
           <li><%= render 'favorites/favorite_button' %></li>
-          <li>spec sheet</li>
+          
 
           
         </ul>
         <ul id="links2" class='links'>
-        
-        <li>installation guide</li>
-          <li>renderings</li>
+          <li>Spec Sheet</li>
+          <li>3D/2D Renderings</li>
+          <li>Installation Guide</li>
+          
       </div>
     </div>
     

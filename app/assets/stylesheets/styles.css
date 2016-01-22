@@ -103,7 +103,7 @@ ul.nav{
   padding-top: 11.5em;
   padding-bottom: 5em;
   
-  margin-left: 80px;
+  /*margin-left: 80px;*/
   /*left: 250px;*/
   box-shadow: 4px 5px 5px #999999;
  
@@ -141,7 +141,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 
 /*===Side Nav ===*/
-
+.side_nav{
+  width: 15%;
+  min-width: 240px;
+  height: 100vh;
+  display: block;
+  float: left;
+}
 .side-nav-contain {
   float: left;
   margin: 2%;
@@ -414,9 +420,6 @@ li.highlighted{
 }
 div.tearsheet-form-box {
   
-  clear: left;
-  
-  margin-top: 10px; 
 }
 
 .tearsheet-form-box{
