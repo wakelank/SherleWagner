@@ -12,9 +12,13 @@ $(document).on("page:change", (function(){
         var image = $('.product_image')[0].dataset.url;
         var matchr = image.match(/\/[^\/]+.jpg/);
 
-        swatch_tile_actions('#product_finishes_list');
-        swatch_tile_actions('#product_materials_list');
-        
+        $('#product_finishes_list').find('li').click(function(e){
+          swatch_tile_actions(e,'#product_finishes_list');
+        });
+        $('#product_materials_list').find('li').click(function(e){
+        swatch_tile_actions(e,'#product_materials_list');
+        });
+
         nav_back();
 
         //select the featured image from the alt's
@@ -164,8 +168,9 @@ $(document).on("page:change", (function(){
        }
      }
 
-     function swatch_tile_actions(listId){
-        $(listId).find('li').click(function(e){
+     function swatch_tile_actions(e, listId){
+        // $(listId).find('li').click(function(e){
+          console.log(e);
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
@@ -179,7 +184,7 @@ $(document).on("page:change", (function(){
             var choice_id = "#material_choice";
             var config = {material: material_identifier};
            }
-           
+
            $.extend(configurationObject, config);
            $.extend(configurationObject, product_object);
            $(listId).find('li').removeClass('highlight');
@@ -205,7 +210,7 @@ $(document).on("page:change", (function(){
                console.log("ajax error");
               }
             });
-          });
+        // });
       }
       
 
