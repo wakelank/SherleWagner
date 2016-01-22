@@ -111,8 +111,6 @@ $(document).on("page:change", (function(){
             var href = $(thiis[0]).html();
             var panel = '#' + href.replace(' ','_') + "1";
             $(panel).collapse('toggle');
-
-            
                   
           });
         }
@@ -171,6 +169,7 @@ $(document).on("page:change", (function(){
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
+
            if ($(e.target).data().material_identifier === undefined){
             var identifier = $(e.target).data().finish_identifier;
             var choice_id = "#finish_choice";
@@ -188,7 +187,6 @@ $(document).on("page:change", (function(){
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
            $(choice_id).html(identifier);
-             
            var targ = $(e.target);
            var bg = targ.css("background-image");
            $(choice_id).css("background-image", bg);
