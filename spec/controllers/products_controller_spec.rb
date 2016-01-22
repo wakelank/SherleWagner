@@ -91,7 +91,7 @@ RSpec.describe ProductsController, :type => :controller do
       expect(@product_with_materials.materials.count).to be 6
     end
     it "materials with material code CHINAMETAL" do
-      expect(@product_with_chinametal.materials.count).to be 49
+      expect(@product_with_chinametal.materials.count).to be 3 
     end
     it "style" do
       expect(@product.styles.first.name).to eq "Arco"
