@@ -23,6 +23,9 @@ $(document).on("page:change", (function(){
         var image = $('.product_image')[0].dataset.url;
         var matchr = image.match(/\/[^\/]+.jpg/);
 
+        swatch_tile_actions('#product_finishes_list');
+        swatch_tile_actions('#product_materials_list');
+
         //select the featured image from the alt's
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
@@ -46,7 +49,6 @@ $(document).on("page:change", (function(){
           }
 
         }); 
-
 
 
         $('.prod-cat a').click(function(){
@@ -119,35 +121,7 @@ $(document).on("page:change", (function(){
 
    }
 
-//  function submitTearSheet(){
-////    e.preventDefault();
-//    var tearSheetForm = document.getElementById('tearsheet-form');
-//    var product_base_number = tearSheetForm.elements["product_base_number"].value;
-//    var material_id = tearSheetForm.elements["tearsheet[material_id]"].value;
-//    var finish_id = tearSheetForm.elements["tearsheet[finish_id]"].value;
-//    var china_color_id = tearSheetForm.elements["tearsheet[china_color_id]"].value;
-//    var product_data = { "product_base_number" : product_base_number,
-//                "material_id" : material_id,
-//                "finish_id" : finish_id,
-//                "china_color_id" : china_color_id
-//      }
-//     $.ajax({
-//            url: '/products/tearsheet.json',
-//            type: 'POST',
-//            contentType: "application/json",
-//            data: JSON.stringify(product_data),
-//            error: function(req, err){ console.log("my message" + err); },  
-//            success: function(data) {
-//              location.href = '/products/tearsheet.html?' + $.param(data);
-//            }
-//    });
-//  }
-//
-//# $('.tear-sheet-submit').click(function(e){
-//       console.log("clicked");
-//       e.preventDefault();
-//       submitTearSheet();
-//     });
+
 
      function generate_tearsheet_link(){
        // console.log('generate tear sheet link');
@@ -196,10 +170,6 @@ $(document).on("page:change", (function(){
        }
      }
 
-
-     swatch_tile_actions('#product_finishes_list');
-     swatch_tile_actions('#product_materials_list');
-
      function swatch_tile_actions(listId){
         $(listId).find('li').click(function(e){
            var URLparts = window.location.pathname.split('/');
@@ -215,14 +185,11 @@ $(document).on("page:change", (function(){
             var config = {material: material_identifier};
            }
            
-           
-           
            $.extend(configurationObject, config);
            $.extend(configurationObject, product_object);
            $(listId).find('li').removeClass('highlight');
            $(e.target).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
-
           //* set the choice box values ****
            $(choice_id).html(identifier);
              
@@ -230,7 +197,6 @@ $(document).on("page:change", (function(){
            var bg = targ.css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
-
 
             $.ajax({
               url: "/product_configurations/show",
@@ -246,8 +212,6 @@ $(document).on("page:change", (function(){
               }
             });
           });
-
-
       }
       
 
