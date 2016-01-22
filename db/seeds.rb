@@ -565,7 +565,7 @@ filters = [
   },
 
   { name: "China",
-    filter_values: [ "Hand Painted", "Hand Decorated"]
+    filter_values: [ "Hand_Painted", "Hand_Decorated"]
   },
   { name: "Materials",
     filter_values: [ "Metal", "China", "Onyx", "Semi_Precious", "Stone" ]

@@ -138,11 +138,19 @@ class Product < ActiveRecord::Base
     arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
     arr << "Metal" if number.include?("XX")
     arr << "Onyx" if number.include?("ONYX")
-    arr << "Marble" if (number.include?("MARBLE") || number.include?("STONE"))
-    arr << "China" if (number.include?("HANDPAINTED") || number.include?("CHINAMETAL") || number.include?("HANDDECORATED"))
-    arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") || number.include?("SEMI") || number.include?("ONYX"))
+    arr << "Marble" if (number.include?("MARBLE") ||
+                        number.include?("STONE"))
+    arr << "China" if (number.include?("HANDPAINTED") ||
+                       number.include?("CHINAMETAL") ||
+                       number.include?("HANDDECORATED"))
+    arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") ||
+                       number.include?("SEMI") ||
+                       number.include?("ONYX"))
     arr << "Banded" if (number.include?("CHINABANDED"))
-    arr << "Solid" if (number.include?("CHINAGLAZED"))
+    arr << "Solid" if (number.include?("GLAZE"))
+    arr << "Hand_Painted" if (number.include?("HANDPAINTED"))
+    arr << "Hand_Decorated" if (number.include?("HANDDECORATED"))
+    arr << "Decorated" if (number.include?("METALDECO"))
 
     arr
   end
