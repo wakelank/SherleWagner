@@ -149,7 +149,7 @@ class Product < ActiveRecord::Base
     arr << "Banded" if (number.include?("CHINABANDED"))
     arr << "Solid" if (number.include?("GLAZE"))
     arr << "Hand_Painted" if (number.include?("HANDPAINTED"))
-    arr << "Hand_Decorated" if (number.include?("HANDDECORATED"))
+    arr << "Hand_Decorated" if (number.include?("CHINADECO"))
     arr << "Decorated" if (number.include?("METALDECO"))
 
     arr
