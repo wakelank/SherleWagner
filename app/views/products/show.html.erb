@@ -8,6 +8,7 @@
   <div class="images">   
     <div class="product_image" style="background-image:url(<%= @product.image.url%>)" data-url= '<%= @product.image.url %>' ></div>  
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
+    <% if @product.product_configurations.count > 1 %>
     <div class="image_list">
 
       <ul id="alt_imgs">
@@ -17,7 +18,8 @@
         </li>
         <% end %>
       </ul>
-    </div> 
+    </div>
+    <% end %> 
   </div>
   
   <div class="product_info">

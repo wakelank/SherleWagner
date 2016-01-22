@@ -20,9 +20,10 @@ $(document).on("page:change", (function(){
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
         set_tearsheet_link();
 
-        image = $('.product_image')[0].dataset.url;
-        matchr = image.match(/\/[^\/]+.jpg/);
+        var image = $('.product_image')[0].dataset.url;
+        var matchr = image.match(/\/[^\/]+.jpg/);
 
+        //select the featured image from the alt's
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
             console.log('MAATCH');
@@ -40,6 +41,7 @@ $(document).on("page:change", (function(){
            
           if (image.includes('-'+ ident )){
             console.log(t);
+            $(t).addClass('highlight');
 
           }
 
@@ -88,6 +90,7 @@ $(document).on("page:change", (function(){
              if (t.dataset.url.includes('-'+mat)){
               swap_product_image(t.dataset.url);
               $(t).addClass('alt_choice');
+
              }
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
@@ -198,8 +201,8 @@ $(document).on("page:change", (function(){
        var URLparts = window.location.pathname.split('/');
        var product_id = URLparts[URLparts.length - 1];
        var product_object = { product_id: product_id }
-       console.log($(e.target).data().finish_identifier);
-        finish_identifier = $(e.target).data().finish_identifier;
+       //console.log($(e.target).data().finish_identifier);
+        var finish_identifier = $(e.target).data().finish_identifier;
         set_tearsheet_link();
 
        var finish_config = {finish: finish_identifier}
@@ -230,6 +233,8 @@ $(document).on("page:change", (function(){
        });
 
      });
+      
+
 
      $('#product_materials_list').find('li').click(function(e){
        var URLparts = window.location.pathname.split('/');
@@ -241,7 +246,7 @@ $(document).on("page:change", (function(){
        $.extend(configurationObject, product_object);
        $('#product_materials_list').find('li').removeClass('highlight');
        $(e.target).addClass('highlight');
-       console.log("configObj: " + JSON.stringify(configurationObject));
+       //console.log("configObj: " + JSON.stringify(configurationObject));
 
       //* set the choice box values ****
        $('#material_choice').html(material_identifier);
@@ -251,15 +256,18 @@ $(document).on("page:change", (function(){
          type: 'GET',
          dataType: 'json',
          data: configurationObject,
-         success: function(data){
+          success: function(data){
            console.log("success" + JSON.stringify(data));
-           setProductInfoWithConfiguration(data.configuration[0])
-         },
-         error: function(xhr, options, err){
+           setProductInfoWithConfiguration(data.configuration[0]);
+          },
+          error: function(xhr, options, err){
            console.log("ajax error");
-         }
-       });
-     });
+          }
+        });
+      });
+
+      
+
   function filter_types(){
     
     $('.panel-title input').click(function(){
