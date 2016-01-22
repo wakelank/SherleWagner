@@ -1,16 +1,5 @@
 $(document).on("page:change", (function(){
-     //$('#tearsheet-form').children().change(set_tearsheet_link);
     
-     // if($('body').attr('class') == 'products show'){
-     //   var tearSheetForm = document.getElementById('tearsheet-form');
-     //    product_base_number = tearSheetForm.elements["product_base_number"].value;
-     //    product_id = tearSheetForm.elements["product_id"].value;
-     //    material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-     // finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-     //  set_tearsheet_link();
-     // }
-    
-
      switch ($('body').attr('class')){
       case 'products show':
         var tearSheetForm = document.getElementById('tearsheet-form');
@@ -216,7 +205,7 @@ $(document).on("page:change", (function(){
       
 
   function filter_types(){
-    
+    //filter on collections browse page
     $('.panel-title input').click(function(){
        check_cat = []
       var cat = $('.panel-heading').find('input:checked').map(function(i, val){
