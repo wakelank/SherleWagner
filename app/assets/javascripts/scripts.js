@@ -9,8 +9,8 @@ $(document).on("page:change", (function(){
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
         set_tearsheet_link();
 
-        var image = $('.product_image')[0].dataset.url;
-        var matchr = image.match(/\/[^\/]+.jpg/);
+       
+
 
         $('#product_finishes_list').find('li').click(function(e){
           var trg = $(e.target);
@@ -24,6 +24,9 @@ $(document).on("page:change", (function(){
         nav_back();
 
         //select the featured image from the alt's
+        image = $('.product_image')[0].dataset.url;
+        matchr = image.match(/\/[^\/]+.jpg/);
+
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
             console.log('MAATCH');
@@ -32,17 +35,21 @@ $(document).on("page:change", (function(){
         });
         
         $('.finish_tile').each(function(i,t){
-         
+          var ident = '';
+          var parent_div = ''
           if ($($(t).parents()[1]).hasClass('finishes')){
              ident = t.dataset.finish_identifier;
+             parent_div = '#product_finishes_list';
           }else{
-             ident = t.dataset.material_identifier;
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_materials_list';
           }
            
           if (image.includes('-'+ ident )){
-            console.log(t);
-            $(t).addClass('highlight');
-
+            //console.log(t);
+            // $(t).addClass('highlight');
+            swatch_tile_actions(t, parent_div);
+            
           }
 
         }); 
@@ -70,6 +77,7 @@ $(document).on("page:change", (function(){
 
           
         });
+
         $('.materials .finish_tile').click(function(f){
             var mat = this.dataset.material_identifier;
           $('.alt_img').each(function(i,t){
@@ -194,7 +202,7 @@ $(document).on("page:change", (function(){
           //* set the choice box values ****
            $(choice_id).html(identifier);
            
-           var bg = targ.css("background-image");
+           var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
 
