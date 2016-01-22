@@ -141,14 +141,14 @@ class Product < ActiveRecord::Base
     #arr.concat genres.pluck(:name)
     arr.concat genres.map { |genre| "Styles_#{genre.name}" }
     arr << "Materials_Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
-    arr << "Material_Metal" if number.include?("XX")
-    arr << "Material_Onyx" if number.include?("ONYX")
-    arr << "Material_Marble" if (number.include?("MARBLE") ||
+    arr << "Materials_Metal" if number.include?("XX")
+    arr << "Materials_Onyx" if number.include?("ONYX")
+    arr << "Materials_Marble" if (number.include?("MARBLE") ||
                         number.include?("STONE"))
-    arr << "Material_China" if (number.include?("HANDPAINTED") ||
+    arr << "Materials_China" if (number.include?("HANDPAINTED") ||
                        number.include?("CHINAMETAL") ||
                        number.include?("HANDDECORATED"))
-    arr << "Material_Stone" if (number.include?("STONE") || number.include?("SLSL") ||
+    arr << "Materials_Stone" if (number.include?("STONE") || number.include?("SLSL") ||
                        number.include?("SEMI") ||
                        number.include?("ONYX"))
     arr << "Burnished_&_Polished_Banded" if (number.include?("CHINABANDED"))
