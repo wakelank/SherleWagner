@@ -14,6 +14,8 @@ $(document).on("page:change", (function(){
 
         swatch_tile_actions('#product_finishes_list');
         swatch_tile_actions('#product_materials_list');
+        
+        nav_back();
 
         //select the featured image from the alt's
         $('.alt_img').each(function(i,t){
@@ -40,19 +42,6 @@ $(document).on("page:change", (function(){
         }); 
 
 
-        $('.prod-cat a').click(function(){
-          // *make side nav links go back to cat pg*
-          var thiis = $(this);
-          var type_id = thiis[0].id
-          window.history.pushState(type_id, null,"/product_types");
-
-          //history state is a wormhole
-          // window.history.replaceState(type_id, null,"product_types/"+type_id);               
-          var href = $(thiis[0]).html();
-          var panel = '#' + href.replace(' ','_') + "1";
-          $(panel).collapse('toggle');
-                
-        });
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
@@ -109,6 +98,24 @@ $(document).on("page:change", (function(){
     $('.alt_img').removeClass('alt_choice');
 
    }
+
+   function nav_back(){
+          $('.prod-cat a').click(function(){
+            // *make side nav links go back to cat pg*
+            var thiis = $(this);
+            var type_id = thiis[0].id
+            // window.history.pushState(type_id, null,"/product_types");
+
+            //history state is a wormhole
+            // window.history.replaceState(type_id, null,"product_types/"+type_id);               
+            var href = $(thiis[0]).html();
+            var panel = '#' + href.replace(' ','_') + "1";
+            $(panel).collapse('toggle');
+
+            
+                  
+          });
+        }
 
 
 
