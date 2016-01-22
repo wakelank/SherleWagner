@@ -8,6 +8,21 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @finishes = []
+    @product.finishes.each do |f|
+      ob = {}
+      ob["name"] = f.name
+      ob["identifier"] = f.identifier
+      ob["swatch"] = f.modern_swatch_url
+      if @product.ornate?
+        ob["swatch"] = f.ornate_swatch_url
+      end
+    @finishes << ob
+    end
+
+
+      
+
     recently_viewed_products = []
     if cookies[:recently_viewed_products] && cookies[:recently_viewed_products].length > 2
       recently_viewed_products = JSON.parse(cookies[:recently_viewed_products])

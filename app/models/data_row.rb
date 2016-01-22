@@ -5,7 +5,7 @@ class DataRow
 #  IMAGES_PATH = "/Users/ph1am/Desktop/SW website/images1"
   # IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
    IMAGES_PATH = image_file_path
-  #
+
   attr_reader :component_number, :compilation_number
 
   def initialize row
@@ -21,6 +21,7 @@ class DataRow
     @genres = get_genres
     @compilation_number = @specific_number
     @component_number = get_component_number
+    
   end
 
  
@@ -112,12 +113,14 @@ class DataRow
 
   def get_image
     image_file = NullObject.new
+    
     Find.find(IMAGES_PATH) do |filepath|
       if File.basename(filepath) == @image_name
         image_file = File.new(filepath) || NullObject.new
       end
     end
     image_file
+        
   end
 
   def get_style

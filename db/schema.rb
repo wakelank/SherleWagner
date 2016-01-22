@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117205803) do
+ActiveRecord::Schema.define(version: 20160120170855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "associated_compilations", id: false, force: :cascade do |t|
+    t.integer "compilation_a_id", null: false
+    t.integer "compilation_b_id", null: false
+  end
 
   create_table "china_colors", force: :cascade do |t|
     t.string   "name"
@@ -87,9 +92,11 @@ ActiveRecord::Schema.define(version: 20160117205803) do
 
   create_table "finishes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "identifier"
+    t.string   "modern_swatch_url"
+    t.string   "ornate_swatch_url"
   end
 
   create_table "finishes_products", force: :cascade do |t|

@@ -3,6 +3,18 @@ class TearsheetsController < ApplicationController
   def show
     @tearsheet_number = params[:tearsheet]
     @product = Product.find(params[:id]) || NullObject.new
+    @finishes = []
+    @product.finishes.each do |f|
+      ob = {}
+      ob["name"] = f.name
+      ob["identifier"] = f.identifier
+      ob["swatch"] = f.modern_swatch_url
+      if @product.ornate?
+        ob["swatch"] = f.ornate_swatch_url
+      end
+      @finishes << ob
+    end
+
   end
 
   def create
