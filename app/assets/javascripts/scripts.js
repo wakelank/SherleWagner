@@ -196,6 +196,60 @@ $(document).on("page:change", (function(){
        }
      }
 
+
+     swatch_tile_actions('#product_finishes_list');
+     swatch_tile_actions('#product_materials_list');
+
+     function swatch_tile_actions(listId){
+        $(listId).find('li').click(function(e){
+           var URLparts = window.location.pathname.split('/');
+           var product_id = URLparts[URLparts.length - 1];
+           var product_object = { product_id: product_id };
+           if ($(e.target).data().material_identifier === undefined){
+            var identifier = $(e.target).data().finish_identifier;
+            var choice_id = "#finish_choice";
+            var config = {finish: finish_identifier};
+           }else{
+            var identifier = $(e.target).data().material_identifier;
+            var choice_id = "#material_choice";
+            var config = {material: material_identifier};
+           }
+           
+           
+           
+           $.extend(configurationObject, config);
+           $.extend(configurationObject, product_object);
+           $(listId).find('li').removeClass('highlight');
+           $(e.target).addClass('highlight');
+           //console.log("configObj: " + JSON.stringify(configurationObject));
+
+          //* set the choice box values ****
+           $(choice_id).html(identifier);
+             
+           var targ = $(e.target);
+           var bg = targ.css("background-image");
+           $(choice_id).css("background-image", bg);
+           $(choice_id).css("background-size", 'contain');
+
+
+            $.ajax({
+              url: "/product_configurations/show",
+              type: 'GET',
+              dataType: 'json',
+              data: configurationObject,
+              success: function(data){
+               console.log("success" + JSON.stringify(data));
+               setProductInfoWithConfiguration(data.configuration[0])
+              },
+              error: function(xhr, options, err){
+               console.log("ajax error");
+              }
+            });
+          });
+
+
+      }
+
      $('#product_finishes_list').find('li').click(function(e){
        console.log(finish_identifier);
        var URLparts = window.location.pathname.split('/');
