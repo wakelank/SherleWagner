@@ -13,10 +13,12 @@ $(document).on("page:change", (function(){
         var matchr = image.match(/\/[^\/]+.jpg/);
 
         $('#product_finishes_list').find('li').click(function(e){
-          swatch_tile_actions(e,'#product_finishes_list');
+          var trg = $(e.target);
+          swatch_tile_actions(trg,'#product_finishes_list');
         });
         $('#product_materials_list').find('li').click(function(e){
-        swatch_tile_actions(e,'#product_materials_list');
+          var trg = $(e.target);
+        swatch_tile_actions(trg,'#product_materials_list');
         });
 
         nav_back();
@@ -168,19 +170,20 @@ $(document).on("page:change", (function(){
        }
      }
 
-     function swatch_tile_actions(e, listId){
+     function swatch_tile_actions(targ, listId){
         // $(listId).find('li').click(function(e){
-          console.log(e);
+          //console.log(e);
+          //var targ = $(e.target);
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
 
-           if ($(e.target).data().material_identifier === undefined){
-            var identifier = $(e.target).data().finish_identifier;
+           if ($(targ).data().material_identifier === undefined){
+            var identifier = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
             var config = {finish: finish_identifier};
            }else{
-            var identifier = $(e.target).data().material_identifier;
+            var identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
             var config = {material: material_identifier};
            }
@@ -188,11 +191,11 @@ $(document).on("page:change", (function(){
            $.extend(configurationObject, config);
            $.extend(configurationObject, product_object);
            $(listId).find('li').removeClass('highlight');
-           $(e.target).addClass('highlight');
+           $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
            $(choice_id).html(identifier);
-           var targ = $(e.target);
+           
            var bg = targ.css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
