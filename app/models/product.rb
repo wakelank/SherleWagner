@@ -136,25 +136,27 @@ class Product < ActiveRecord::Base
 
   def filter_value_names
     arr = filter_values.map do |filter_value|
-      filter_value.snake_case_name
+      filter_value.filter_name_and_value
     end
-    arr.concat genres.pluck(:name)
-    arr << "Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
-    arr << "Metal" if number.include?("XX")
-    arr << "Onyx" if number.include?("ONYX")
-    arr << "Marble" if (number.include?("MARBLE") ||
+    #arr.concat genres.pluck(:name)
+    arr.concat genres.map { |genre| "Styles_#{genre.name}" }
+    arr << "Materials_Semi_Precious" if (number.include?("SLSL") || number.include?("SEMI"))
+    arr << "Material_Metal" if number.include?("XX")
+    arr << "Material_Onyx" if number.include?("ONYX")
+    arr << "Material_Marble" if (number.include?("MARBLE") ||
                         number.include?("STONE"))
-    arr << "China" if (number.include?("HANDPAINTED") ||
+    arr << "Material_China" if (number.include?("HANDPAINTED") ||
                        number.include?("CHINAMETAL") ||
                        number.include?("HANDDECORATED"))
-    arr << "Stone" if (number.include?("STONE") || number.include?("SLSL") ||
+    arr << "Material_Stone" if (number.include?("STONE") || number.include?("SLSL") ||
                        number.include?("SEMI") ||
                        number.include?("ONYX"))
-    arr << "Banded" if (number.include?("CHINABANDED"))
-    arr << "Solid" if (number.include?("GLAZE"))
-    arr << "Hand_Painted" if (number.include?("HANDPAINTED"))
-    arr << "Hand_Decorated" if (number.include?("CHINADECO"))
-    arr << "Decorated" if (number.include?("METALDECO"))
+    arr << "Burnished_&_Polished_Banded" if (number.include?("CHINABANDED"))
+    arr << "Burnished_&_Polished_Solid" if (number.include?("CHINAMETAL"))
+    arr << "Burnished_&_Polished_Decorated" if (number.include?("METALDECO"))
+    arr << "Glazed_Solid" if (number.include?("GLAZE"))
+    arr << "Glazed_Hand_Painted" if (number.include?("HANDPAINTED"))
+    arr << "Glazed_Hand_Decorated" if (number.include?("CHINADECO"))
 
     arr
   end
