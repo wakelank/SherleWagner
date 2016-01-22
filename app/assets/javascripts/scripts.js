@@ -2,12 +2,13 @@ $(document).on("page:change", (function(){
     
      switch ($('body').attr('class')){
       case 'products show':
-        var tearSheetForm = document.getElementById('tearsheet-form');
+      var configurationObject = {};
+         tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
         var product_id = tearSheetForm.elements["product_id"].value;
-        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-        var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-        set_tearsheet_link();
+        // var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+        // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        //set_tearsheet_link();
 
        
 
@@ -24,6 +25,7 @@ $(document).on("page:change", (function(){
         nav_back();
 
         //select the featured image from the alt's
+      
         image = $('.product_image')[0].dataset.url;
         matchr = image.match(/\/[^\/]+.jpg/);
 
@@ -48,11 +50,15 @@ $(document).on("page:change", (function(){
           if (image.includes('-'+ ident )){
             //console.log(t);
             // $(t).addClass('highlight');
-            swatch_tile_actions(t, parent_div);
+            $t = $(t);
+            
+            pr = $(parent_div);
+            swatch_tile_actions($t, pr);
             
           }
 
         }); 
+
 
 
 
@@ -168,18 +174,88 @@ $(document).on("page:change", (function(){
        $tearsheetTag.attr("href", url);
      }
 
-     var configurationObject = {};
+     
 
      function setProductInfoWithConfiguration(config){
        if (typeof config != "undefined") {
            $('.prod-config-number').html("shown: " + config.number);
-           $('.prod-config-description').html("shown: " + config.description);
+           $('.prod-config-description').html(config.description);
            $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
 
+
+     // $('#product_finishes_list').find('li').click(function(e){
+     //   console.log(finish_identifier);
+     //   var URLparts = window.location.pathname.split('/');
+     //   var product_id = URLparts[URLparts.length - 1];
+     //   var product_object = { product_id: product_id }
+     //   console.log($(e.target).data().finish_identifier);
+     //    finish_identifier = $(e.target).data().finish_identifier;
+     //    set_tearsheet_link();
+
+     //   var finish_config = {finish: finish_identifier}
+     //   $.extend(configurationObject, finish_config);
+     //   $.extend(configurationObject, product_object);
+     //   $('#product_finishes_list').find('li').removeClass('highlight');
+     //   $(e.target).addClass('highlight');
+     //   console.log("configObj: " + JSON.stringify(configurationObject));
+
+     //   $('#finish_choice').html(finish_identifier);
+     //   targ = $(e.target);
+     //   bg = targ.css("background-image");
+     //   $('#finish_choice').css("background-image", bg);
+     //   $('#finish_choice').css("background-size", 'contain');
+
+     //   $.ajax({
+     //     url: "/product_configurations/show",
+     //     type: 'GET',
+     //     dataType: 'json',
+     //     data: configurationObject,
+     //     success: function(data){
+     //       console.log("success" + JSON.stringify(data));
+     //       setProductInfoWithConfiguration(data.configuration[0])
+     //     },
+     //     error: function(xhr, options, err){
+     //       console.log("ajax error");
+     //     }
+     //   });
+
+     // });
+
+     // $('#product_materials_list').find('li').click(function(e){
+     //   var URLparts = window.location.pathname.split('/');
+     //   var product_id = URLparts[URLparts.length - 1];
+     //   var product_object = { product_id: product_id }
+     //   var material_identifier = $(e.target).data().material_identifier
+     //   var material_config = {material: material_identifier}
+     //   $.extend(configurationObject, material_config);
+     //   $.extend(configurationObject, product_object);
+     //   $('#product_materials_list').find('li').removeClass('highlight');
+     //   $(e.target).addClass('highlight');
+     //   console.log("configObj: " + JSON.stringify(configurationObject));
+
+     //  //* set the choice box values ****
+     //   $('#material_choice').html(material_identifier);
+
+     //   $.ajax({
+     //     url: "/product_configurations/show",
+     //     type: 'GET',
+     //     dataType: 'json',
+     //     data: configurationObject,
+     //     success: function(data){
+     //       console.log("success" + JSON.stringify(data));
+     //       setProductInfoWithConfiguration(data.configuration[0])
+     //     },
+     //     error: function(xhr, options, err){
+     //       console.log("ajax error");
+     //     }
+     //   });
+     // });
+
      function swatch_tile_actions(targ, listId){
-       
+       r = targ;
+       l = listId;
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
@@ -187,11 +263,11 @@ $(document).on("page:change", (function(){
            if ($(targ).data().material_identifier === undefined){
             var identifier = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
-            var config = {finish: finish_identifier};
+            var config = {finish: identifier};
            }else{
             var identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
-            var config = {material: material_identifier};
+            var config = {material: identifier};
            }
 
            $.extend(configurationObject, config);
@@ -205,7 +281,8 @@ $(document).on("page:change", (function(){
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
-
+           ct1 = configurationObject;
+          
             $.ajax({
               url: "/product_configurations/show",
               type: 'GET',
@@ -214,9 +291,14 @@ $(document).on("page:change", (function(){
               success: function(data){
                console.log("success" + JSON.stringify(data));
                setProductInfoWithConfiguration(data.configuration[0])
+               dta = data.configuration[0]
+               cta = configurationObject;
+
               },
               error: function(xhr, options, err){
                console.log("ajax error");
+               cta = configurationObject;
+
               }
             });
         // });
