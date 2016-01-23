@@ -111,7 +111,7 @@ RSpec.describe ProductsController, :type => :controller do
 
     it 'compilation' do
       @compilation = Product.find_by(number: "T101-CTS-TUB-SHR-CP")
-      expect((@compilation.components).pluck(:number).sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
+      expect((@compilation.components).map { |comp| comp.number }.sort).to eq ['101-SHHD-XX','101TUB-XX','T101-001-TMT-XX']
     end
 
     it 'components' do

@@ -54,6 +54,14 @@ has_many :in_compilation_relationships,
     components + name_only_products
   end
 
+  def components
+    arr = []
+    product_configurations.each do |config|
+      arr << config.components
+    end
+    arr.uniq.flatten
+  end
+
   def add_component component
     if component.class.name == "Product"
       self.components << component
