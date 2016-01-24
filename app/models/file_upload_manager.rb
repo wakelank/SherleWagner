@@ -62,7 +62,7 @@ class FileUploadManager
         current_compilation = data_row.configuration
       else
         component = data_row.component ||
-          NameOnlyProduct.create(name: data_row.get_generic_name)
+          NameOnlyProduct.find_or_create_by(name: data_row.get_generic_name)
         if !component.nil? && !current_compilation.nil?
           current_compilation.add_component component
           current_compilation.save
