@@ -304,9 +304,13 @@ li.highlighted{
 }
 
 .prod_page_content{
-  width:100%;
-  padding-left: 1em;
+  width:90%;
+  /*padding-left: 1em;*/
+  margin: 0 auto;
   padding-top: 1em;
+}
+.prod-text{
+  padding-left: 15%;
 }
 .detail_list {
   float:left;
@@ -377,6 +381,7 @@ li.highlighted{
   color: black;
   margin-top: 0;
   height: 2em;
+  padding-top: 5px;
 }
 #shown{
   font-style: italic;

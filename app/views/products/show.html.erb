@@ -23,18 +23,20 @@
   </div>
   
   <div class="product_info">
-    <h3 id="prod_name">
-      <%= @product.name%>
-    </h3>
+    <div class="prod-text">
+      <h3 id="prod_name">
+        <%= @product.name%>
+      </h3>
 
-    <% if @product.product_configurations.length > 0 %>
-    <h4 class="prod-config-description">
-      <span id="shown">shown:</span> <span id="description"> <%= @product.product_configurations.first.description %></span>
-    </h4>
-    <h5 class="prod-config-number">
-       <!-- %= @product.product_configurations.last.number %> -->
-    </h5>
-    <% end %>
+      <% if @product.product_configurations.length > 0 %>
+      <h4 class="prod-config-description">
+        <span id="shown">shown:</span> <span id="description"> <%= @product.product_configurations.first.description %></span>
+      </h4>
+      <h5 class="prod-config-number">
+         <%= @product.product_configurations.last.number %>
+      </h5>
+      <% end %>
+    </div>
 
 
     
