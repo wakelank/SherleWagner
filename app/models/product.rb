@@ -9,7 +9,6 @@ class Product < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
-  has_many :name_only_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :filter_values
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
@@ -54,12 +53,20 @@ has_many :in_compilation_relationships,
     components + name_only_products
   end
 
+  def all_compilations
+    compilations.map { |comp| comp.product }
+  end
+
   def components
-    arr = []
-    product_configurations.each do |config|
-      arr << config.components
-    end
-    arr.uniq.flatten
+    product_configurations.map { |config| config.components }.flatten
+  end
+
+  def compilations_number_string
+    compilations.map { |comp| comp.number }.join(" ")
+  end
+
+  def name_only_products
+    product_configurations.map { |config| config.name_only_products }.flatten
   end
 
   def add_component component

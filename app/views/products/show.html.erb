@@ -96,7 +96,7 @@
         Compilations:
       </p>
       <ul id="compilations_list" class="comp_list links">
-        <% @product.compilations.each do |compilation| %>
+        <% @product.all_compilations.each do |compilation| %>
         <li><%= link_to(compilation.name, product_path(compilation))  %>
         </li>
         <% end %>
