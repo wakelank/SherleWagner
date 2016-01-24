@@ -113,7 +113,7 @@
         <p> Components:</p>
         <% @product.all_components.each do |component| %>
           <% if component.class.name == "Product" %>
-            <li><%= link_to(component.name, product_path(component))  %>
+            <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>
           <% else %>
             <li><%= component.name %>
           <% end %>
