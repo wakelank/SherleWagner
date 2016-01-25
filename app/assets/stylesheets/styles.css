@@ -480,7 +480,7 @@ div.tearsheet-form-box {
 }
 .finishes, .materials, .china_colors{
   
-  max-width: 50%;
+  max-width: 49%;
   float: left;
   color: grey;
   padding-left: 1em;

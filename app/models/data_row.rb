@@ -1,7 +1,7 @@
 require 'find'
 class DataRow
 
- IMAGES_PATH = "/Users/ph1am/Desktop/SW website/images1"
+ # IMAGES_PATH = "/Users/ph1am/Desktop/SW website/images1"
    # IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
   # IMAGES_PATH = image_file_path
   #
