@@ -101,6 +101,29 @@ class ProductsController < ApplicationController
   def product_json
     # this will receive ajax req and send a product's data to product/show in order to correctly position the side nav
   end
+
+ def edit
+    @product = Product.find(params[:product_id])
+   
+  end
+
+  def update
+    @product = Product.find(params[:product_id])
+    
+    @product.update(product_params)
+    redirect_to "/products/#{product.id}"
+  end
+
+  def destroy
+    
+    
+  end
+
+private
+  def product_params
+    params.require(:product).permit(:name, :product_id)
+  end
+end
   
 
 
