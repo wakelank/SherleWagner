@@ -21,6 +21,7 @@ class DataRow
     @genres = get_genres
     @compilation_number = @specific_number
     @component_number = get_component_number
+    @specific_name = get_specific_name
     
   end
 
@@ -32,7 +33,7 @@ class DataRow
   end
 
   def compilation?
-    @generic_number == "TITLE-XX"
+    @component_number == "TITLE"
   end
 
 
@@ -58,6 +59,7 @@ class DataRow
     }
     if compilation?
       args[:number] = @specific_number
+      args[:name] = @specific_name
     end
     args
   end
@@ -139,5 +141,8 @@ class DataRow
     @row["CODE under Product Name"] || ""
   end
 
+  def get_specific_name
+    @row["NAME"] || ""
+  end
 end
 

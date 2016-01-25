@@ -1,6 +1,6 @@
 require 'english'
 
- require 'paperclip_stub.rb'
+# require 'paperclip_stub.rb'
 
 require 'csv'
 require 'find'
