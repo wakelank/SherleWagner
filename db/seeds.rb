@@ -108,94 +108,111 @@ materials = [{ type: "China-Hand Painted",
               {type: "Marble",
                code:"MARBL",            
                entries: [ { name: "ARABESCATO", indentifier: "ARAB" },
-               { name: "CALCATTA", indentifier: "CALA" },
-               { name: "CARNICO GREY", indentifier: "CAGR" },
-               { name: "CARRERA", indentifier: "CARR" },
-               { name: "CREMA MARFIL", indentifier: "CREMA" },
-               { name: "IMPERADOR BROWN", indentifier: "IMBR" },
-               { name: "MARIANELLA", indentifier: "MARI" },
-               { name: "NEGRO MARQUINA", indentifier: "NEMA " },
-               { name: "PORT LAURENT", indentifier: "PRLT" },
-               { name: "PORTORO", indentifier: "PORT" },
-               { name: "ROSA DU MONTE", indentifier: "RSDM" },
-               { name: "ROSE AURORA", indentifier: "RSAU" },
-               { name: "ROSE DU MONTE", indentifier: "RSDM" },
-               { name: "RUVINA", indentifier: "RUVI" },
-               { name: "VEREDI VIANA", indentifier: "VERD" },
-               { name: "WHITE THASSOS", indentifier: "THAS" }]
+                          { name: "CALCATTA", indentifier: "CALA" },
+                          { name: "CARNICO GREY", indentifier: "CAGR" },
+                          { name: "CARRERA", indentifier: "CARR" },
+                          { name: "CREMA MARFIL", indentifier: "CREMA" },
+                          { name: "IMPERADOR BROWN", indentifier: "IMBR" },
+                          { name: "MARIANELLA", indentifier: "MARI" },
+                          { name: "NEGRO MARQUINA", indentifier: "NEMA " },
+                          { name: "PORT LAURENT", indentifier: "PRLT" },
+                          { name: "PORTORO", indentifier: "PORT" },
+                          { name: "ROSA DU MONTE", indentifier: "RSDM" },
+                          { name: "ROSE AURORA", indentifier: "RSAU" },
+                          { name: "ROSE DU MONTE", indentifier: "RSDM" },
+                          { name: "RUVINA", indentifier: "RUVI" },
+                          { name: "VEREDI VIANA", indentifier: "VERD" },
+                          { name: "WHITE THASSOS", indentifier: "THAS" }]
               },
               {type: "Semi-precious Stone",
-              code: "SEMI",
-              entries: [{ name: "ROCK CRYSTAL", identifier: "RKCR" },
-                        { name: "ROSE\ QUARTZ\ \(RSQU\)", identifier: "RSQU" },
-                        { name: "AMETHYST\ \(AMET\)", identifier: "AMET" }]
-                    },
+               code: "SEMI",
+               entries: [{ name: "ROCK CRYSTAL", identifier: "RKCR" },
+                         { name: "ROSE\ QUARTZ\ \(RSQU\)", identifier: "RSQU" },
+                         { name: "AMETHYST\ \(AMET\)", identifier: "AMET" }]
+              },
               { type: "Semi-precious Laminate",
-               code: "SLSL",
-               entries: [{ name: "LAPIS\ LAZULI\ \(LAPI\)", identifier: "LAPI" },
-                         { name: "MALACHITE\ \(MALA\)", identifier: "MALA" },
-                         { name: "JASPER\ \(JASP\)", identifier: "JASP" },
-                         { name: "BROWN\ TIGER\ EYE\ \(BRTI\)", identifier: "BRTI" },
-                         { name: "BLUE\ TIGER\ EYE\ \(BLTI\)", identifier: "BLTI" },
-                         { name: "RHODOCHROSITE\ \(RHOD\)", identifier: "RHOD" } ]
-                    },
+                code: "SLSL",
+                entries: [{ name: "LAPIS\ LAZULI\ \(LAPI\)", identifier: "LAPI" },
+                          { name: "MALACHITE\ \(MALA\)", identifier: "MALA" },
+                          { name: "JASPER\ \(JASP\)", identifier: "JASP" },
+                          { name: "BROWN\ TIGER\ EYE\ \(BRTI\)", identifier: "BRTI" },
+                          { name: "BLUE\ TIGER\ EYE\ \(BLTI\)", identifier: "BLTI" },
+                          { name: "RHODOCHROSITE\ \(RHOD\)", identifier: "RHOD" } ]
+              },
               {type: "Onyx", 
                code: "ONYX",
                entries: [ { name: "BLACK\ ONYX\ \(BKOX\)", identifier: "BKOX" },
-                        { name: "WHITE\ ONYX\ \(WHOX\)", identifier: "WHOX" },
-                        { name: "HONEY\ ONYX\ \(HNOX\)", identifier: "HNOX" },
-                        { name: "GREEN\ ONYX\ \(GROX\)", identifier: "GROX" },
-                        { name: "PINK\ ONYX\ \(PKOX\)", identifier: "PKOX" },
-                        { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
-                    },
-                    {type: "Glaze",
-                     code: "GLAZE",
-                     entries: [ {name: "High Polished Platinum", identifier: "17HP" },
-                                {name: "White", identifier: "WHT" },
-                                {name: "Sand", identifier: "SND" },
-                                {name: "Burnished Plantinum", identifier: "15PL" },
-                                {name: "Burnished Gold", identifier: "14GP" }
-                    ]
-                    }
+                          { name: "WHITE\ ONYX\ \(WHOX\)", identifier: "WHOX" },
+                          { name: "HONEY\ ONYX\ \(HNOX\)", identifier: "HNOX" },
+                          { name: "GREEN\ ONYX\ \(GROX\)", identifier: "GROX" },
+                          { name: "PINK\ ONYX\ \(PKOX\)", identifier: "PKOX" },
+                          { name: "BROWN\ ONYX\ \(BROX\)",  identifier: "BROX" }]
+              },
+              {type: "Glaze",
+               code: "GLAZE",
+               entries: [
+                          {name: "White", identifier: "WHT" },
+                          {name: "Sand", identifier: "SND" }],
+              },
+              {type: "Banded",
+               code: "CHINABANDED",
+               entries: [{ name: "Classic Lines with Gold", identifier: "8EN-G" },
+                         { name:"Greek Key with gold", identifier: "1EN-G" },
+                         { name:"Acanthus with gold", identifier: "2EN-G" },
+                         { name:"Ribbon & Reed with gold", identifier: "3EN-G" },
+                         { name:"Scroll with gold", identifier: "4EN-G" },
+                         { name:"Renaissance with gold", identifier: "6EN-G" },
+                         { name:"Napoleonic Bee with gold", identifier: "7EN-G" },
+                         { name:"Imperial with gold", identifier: "9EN-G" },
+                         { name:"English Ivy Lace with gold", identifier: "10EN-G" },
+                         { name:"Rose Garland with gold", identifier: "11EN-G" },
+                         { name:"Acorn Garland with gold", identifier: "12EN-G" },
+                         { name:"Empire with gold", identifier: "21EN-G" },
+                         { name:"Classic Lines with platinum", identifier: "8EN-P" },
+                         { name:"Greek Key with platinum", identifier: "1EN-P" },
+                         { name:"Acanthus with platinum", identifier: "2EN-P" },
+                         { name:"Ribbon & Reed with platinum", identifier: "3EN-P" },
+                         { name:"Scroll with platinum", identifier: "4EN-P" },
+                         { name:"Renaissance with platinum", identifier: "6EN-P" },
+                         { name:"Napoleonic Bee with platinum", identifier: "7EN-P" },
+                         { name:"Imperial with platinum", identifier: "9EN-P" },
+                         { name:"English Ivy Lace with platinum", identifier: "10EN-P" },
+                         { name:"Rose Garland with platinum", identifier: "11EN-P" },
+                         { name:"Acorn Garland with platinum", identifier: "12EN-P" },
+                         { name:"Empire with platinum", identifier: "21EN-P" },
+                         { name:"Randome Leaves with platinum", identifier: "25PL-P" },
+                         { name:"Classic Lines with highly polished platinum", identifier: "8EN-HP" },
+                         { name:"Greek Key with highly polished platinum", identifier: "1EN-HP" },
+                         { name:"Acanthus with highly polished platinum", identifier: "2EN-HP" },
+                         { name:"Ribbon & Reed with highly polished platinum", identifier: "3EN-HP" },
+                         { name:"Scroll with highly polished platinum", identifier: "4EN-HP" },
+                         { name:"Renaissance with highly polished platinum", identifier: "6EN-HP" },
+                         { name:"Imperial with highly polished platinum", identifier: "9EN-HP" },
+                         { name:"Empire with Highly polished platinum", identifier: "21EN-HP" } ]
+               },
+               {type: "China Metal Decorated",
+                code: "METALDECO",
+                entries: [
+                  { name:"Masonry with gold", identifier: "MS-G" },
+                  { name:"Modern Rings with gold", identifier: "MR-G" },
+                  { name:"Fleur de Lis with gold", identifier: "5EN-G" },
+                  { name:"Random Leaves with gold", identifier: "25-G" },
+                  { name:"Masonry with platinum", identifier: "MS-P" },
+                  { name:"Modern Rings with platinum", identifier: "MR-P" },
+                  { name:"Fleur de Lis with platinum", identifier: "5EN-P" },
+                  { name:"Fleur de Lis with highly polished platinum", identifier: "5EN-HP" },
+                  { name:"Random Leaves with highly polished platinum", identifier: "25BK" }]
+                },
+                {type: "China Metal",
+                 code: "CHINAMETAL",
+                 entries: [{name: "Burnished Platinum, Solid", identifier: "15PL" },
+                           {name: "Highly Polished Platinum, Solid", identifier: "17HP" },
+                           {name: "Burnished Gold, Solid", identifier: "14GP" } ]
+                }
 
 
-
-              ]
-Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
-metal_patterns = [ {name: "Masonry", identifier: "MS" },
-                    {name: "Modern Rings", identifier: "MR"},
-                    {name: "Classic Lines", identifier: "8EN" },
-                    {name: "Greek Key", identifier: "1EN" },
-                    {name: "Acanthus", identifier: "2EN" },
-                    {name: "Ribbon & Reed", identifier: "3EN" },
-                    {name: "Scroll", identifier: "4EN" },
-                    {name: "Fleur de Lis", identifier: "5EN" },
-                    {name: "Renaissance", identifier: "6EN" },
-                    {name: "Napoleonic Bee", identifier: "7EN" },
-                    {name: "Imperial", identifier: "9EN" },
-                    {name: "English Ivy Lace", identifier: "10EN" },
-                    {name: "Rose Garland", identifier: "11EN" },
-                    {name: "Acorn Garland", identifier: "12EN" },
-                    {name: "Empire", identifier: "21EN" },
-                    {name: "Random Leaves", identifier: "25" }
 ]
-metal_types = [ {name: "Gold", identifier: "G"},
-                  {name: "Platinum", identifier: "P"},
-                {name: "Highly Polished Platinum", identifier: "HP"}
-                              ]
-chinametal_hash = {type: "China Metal", code: "CHINAMETAL"}
-chinametal_entries = []
-metal_patterns.each do |pattern|
-  metal_types.each do |type|
-    entry = { name: "#{pattern[:name]} #{type[:name]}", identifier: "#{pattern[:identifier]}-#{type[:identifier]}" }
-    chinametal_entries.push entry
-  end
-end
-chinametal_hash[:entries] = chinametal_entries
-black_random_leaves_entry = { name: "Random Leaves Black", identifier: "25-B" }
-chinametal_hash[:entries].push black_random_leaves_entry
-
-materials.push chinametal_hash
+Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
 
 
 materials.each do |material|
@@ -550,7 +567,7 @@ filters = [
   },
 
   { name: "China",
-    filter_values: [ "Hand Painted", "Hand Decorated"]
+    filter_values: [ "Hand_Painted", "Hand_Decorated"]
   },
   { name: "Materials",
     filter_values: [ "Metal", "China", "Onyx", "Semi_Precious", "Stone" ]

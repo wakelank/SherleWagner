@@ -16,11 +16,6 @@ ActiveRecord::Schema.define(version: 20160120170855) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "associated_compilations", id: false, force: :cascade do |t|
-    t.integer "compilation_a_id", null: false
-    t.integer "compilation_b_id", null: false
-  end
-
   create_table "china_colors", force: :cascade do |t|
     t.string   "name"
     t.string   "identifier"

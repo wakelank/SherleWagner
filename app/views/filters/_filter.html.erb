@@ -4,7 +4,7 @@
    <ul>
      <% filter.filter_values.each do |filter_value| %>
       <li>
-        <label><input type="checkbox" value="" id="<%= filter_value.snake_case_name %>"> <%= filter_value.name %> </label>
+        <label><input type="checkbox" value="" id="<%= filter_value.filter_name_and_value %>"> <%= filter_value.name %> </label>
       </li>
     <% end %>
     </ul>

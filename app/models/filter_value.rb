@@ -1,10 +1,6 @@
 class FilterValue < ActiveRecord::Base
   belongs_to :filter
-#  has_and_belongs_to_many :product_groups
   has_and_belongs_to_many :products
-  #has_many :filter_product_group_values
-  #has_many :filters, through: :filter_product_group_values
-  #has_many :product_groups, through: :filter_product_values
   
   include SnakeCase
 
@@ -33,6 +29,10 @@ class FilterValue < ActiveRecord::Base
 
   def snake_case_name
     snake_case name
+  end
+
+  def filter_name_and_value
+    snake_case(self.filter.name + '_' + self.name)
   end
 
 end
