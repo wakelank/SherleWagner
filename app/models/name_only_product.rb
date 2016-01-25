@@ -3,6 +3,6 @@ class NameOnlyProduct < ActiveRecord::Base
 
 
   def compilations_number_string
-    product_configuration.map { |conf| conf.number }.join(" ")
+    product_configurations.map { |conf| conf.number }.join(" ")
   end
 end
