@@ -21,6 +21,8 @@ class FileUploadManager
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
 
+      binding.pry if product.number == "T101-CTS-XX"
+
 
       if !Product.exists?(number: product.number) && !data_row.component?
         begin

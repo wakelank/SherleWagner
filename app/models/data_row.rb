@@ -58,18 +58,13 @@ class DataRow
 
     }
     if compilation?
-      args[:number] = @specific_number
       args[:name] = @specific_name
     end
     args
   end
 
   def product
-    if compilation?
-      Product.where(number: @specific_number).where(name: @generic_name).first
-    else
-      Product.find_by(number: @generic_number)
-    end
+    Product.find_by(number: @generic_number)
   end
 
   def component
