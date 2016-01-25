@@ -10,26 +10,29 @@
 <body class="<%=controller_name%> <%=action_name%>">
 
   <%= render "/layouts/navbar" %>
+<div class="page">
+  <div class="side_nav">
 
-                        
+    <div class="side-nav-contain span4" id="pg-nav">
 
-  <div class="side-nav-contain span4" id="pg-nav">
+      <%= render "/layouts/sidebar" %>
+        
 
-  <%= render "/layouts/sidebar" %>
-      
+    </div>
+  </div>                      
 
-  </div>
-
-  <div class="container">
-     
-        <div id="content_wrapper">
-      <%= yield %>
-      
-       </div>
-     
-     
-    <%= render 'layouts/footer' %>
+  <div class="contain">
+       
+    <div id="content_wrapper">
+        <%= yield %>
+        
+    </div>
+         <%= render 'recently_viewed_products/recently_viewed_products' %>
+       
+       
+      <%= render 'layouts/footer' %>
   </div>  
+</div>
   
 
 </body>

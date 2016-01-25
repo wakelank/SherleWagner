@@ -1,32 +1,34 @@
 $(document).on("page:change", (function(){
-     //$('#tearsheet-form').children().change(set_tearsheet_link);
     
-     // if($('body').attr('class') == 'products show'){
-     //   var tearSheetForm = document.getElementById('tearsheet-form');
-     //    product_base_number = tearSheetForm.elements["product_base_number"].value;
-     //    product_id = tearSheetForm.elements["product_id"].value;
-     //    material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-     // finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-     //  set_tearsheet_link();
-     // }
-    
-
      switch ($('body').attr('class')){
       case 'products show':
-        var tearSheetForm = document.getElementById('tearsheet-form');
+      var configurationObject = {};
+         tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
         var product_id = tearSheetForm.elements["product_id"].value;
-        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-        var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-        set_tearsheet_link();
+        // var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+        // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        //set_tearsheet_link();
 
-        var image = $('.product_image')[0].dataset.url;
-        var matchr = image.match(/\/[^\/]+.jpg/);
+       
 
-        swatch_tile_actions('#product_finishes_list');
-        swatch_tile_actions('#product_materials_list');
+
+        $('#product_finishes_list').find('li').click(function(e){
+          var trg = $(e.target);
+          swatch_tile_actions(trg,'#product_finishes_list');
+        });
+        $('#product_materials_list').find('li').click(function(e){
+          var trg = $(e.target);
+        swatch_tile_actions(trg,'#product_materials_list');
+        });
+
+        nav_back();
 
         //select the featured image from the alt's
+      
+        image = $('.product_image')[0].dataset.url;
+        matchr = image.match(/\/[^\/]+.jpg/);
+
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
             console.log('MAATCH');
@@ -35,35 +37,30 @@ $(document).on("page:change", (function(){
         });
         
         $('.finish_tile').each(function(i,t){
-         
+          var ident = '';
+          var parent_div = ''
           if ($($(t).parents()[1]).hasClass('finishes')){
              ident = t.dataset.finish_identifier;
+             parent_div = '#product_finishes_list';
           }else{
-             ident = t.dataset.material_identifier;
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_materials_list';
           }
            
           if (image.includes('-'+ ident )){
-            console.log(t);
-            $(t).addClass('highlight');
-
+            //console.log(t);
+            // $(t).addClass('highlight');
+            $t = $(t);
+            
+            pr = $(parent_div);
+            swatch_tile_actions($t, pr);
+            
           }
 
         }); 
 
 
-        $('.prod-cat a').click(function(){
-          // *make side nav links go back to cat pg*
-          var thiis = $(this);
-          var type_id = thiis[0].id
-          window.history.pushState(type_id, null,"/product_types");
 
-          //history state is a wormhole
-          // window.history.replaceState(type_id, null,"product_types/"+type_id);               
-          var href = $(thiis[0]).html();
-          var panel = '#' + href.replace(' ','_') + "1";
-          $(panel).collapse('toggle');
-                
-        });
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
@@ -86,6 +83,7 @@ $(document).on("page:change", (function(){
 
           
         });
+
         $('.materials .finish_tile').click(function(f){
             var mat = this.dataset.material_identifier;
           $('.alt_img').each(function(i,t){
@@ -121,6 +119,22 @@ $(document).on("page:change", (function(){
 
    }
 
+   function nav_back(){
+          $('.prod-cat a').click(function(){
+            // *make side nav links go back to cat pg*
+            var thiis = $(this);
+            var type_id = thiis[0].id
+            // window.history.pushState(type_id, null,"/product_types");
+
+            //history state is a wormhole
+            // window.history.replaceState(type_id, null,"product_types/"+type_id);               
+            var href = $(thiis[0]).html();
+            var panel = '#' + href.replace(' ','_') + "1";
+            $(panel).collapse('toggle');
+                  
+          });
+        }
+
 
 
      function generate_tearsheet_link(){
@@ -128,8 +142,8 @@ $(document).on("page:change", (function(){
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
        var product_id = tearSheetForm.elements["product_id"].value;
-       //var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-      // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+       var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+      var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
        var product_data = { "product_base_number" : product_base_number,
          "material_identifier" : material_identifier,
@@ -160,44 +174,115 @@ $(document).on("page:change", (function(){
        $tearsheetTag.attr("href", url);
      }
 
-     var configurationObject = {};
+     
 
      function setProductInfoWithConfiguration(config){
        if (typeof config != "undefined") {
-           $('.prod-config-number').html("shown: " + config.number);
-           $('.prod-config-description').html("shown: " + config.description);
+           $('.prod-config-number').html(config.number);
+           $('.prod-config-description #description').html(config.description);
            $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
 
-     function swatch_tile_actions(listId){
-        $(listId).find('li').click(function(e){
+
+     // $('#product_finishes_list').find('li').click(function(e){
+     //   console.log(finish_identifier);
+     //   var URLparts = window.location.pathname.split('/');
+     //   var product_id = URLparts[URLparts.length - 1];
+     //   var product_object = { product_id: product_id }
+     //   console.log($(e.target).data().finish_identifier);
+     //    finish_identifier = $(e.target).data().finish_identifier;
+     //    set_tearsheet_link();
+
+     //   var finish_config = {finish: finish_identifier}
+     //   $.extend(configurationObject, finish_config);
+     //   $.extend(configurationObject, product_object);
+     //   $('#product_finishes_list').find('li').removeClass('highlight');
+     //   $(e.target).addClass('highlight');
+     //   console.log("configObj: " + JSON.stringify(configurationObject));
+
+     //   $('#finish_choice').html(finish_identifier);
+     //   targ = $(e.target);
+     //   bg = targ.css("background-image");
+     //   $('#finish_choice').css("background-image", bg);
+     //   $('#finish_choice').css("background-size", 'contain');
+
+     //   $.ajax({
+     //     url: "/product_configurations/show",
+     //     type: 'GET',
+     //     dataType: 'json',
+     //     data: configurationObject,
+     //     success: function(data){
+     //       console.log("success" + JSON.stringify(data));
+     //       setProductInfoWithConfiguration(data.configuration[0])
+     //     },
+     //     error: function(xhr, options, err){
+     //       console.log("ajax error");
+     //     }
+     //   });
+
+     // });
+
+     // $('#product_materials_list').find('li').click(function(e){
+     //   var URLparts = window.location.pathname.split('/');
+     //   var product_id = URLparts[URLparts.length - 1];
+     //   var product_object = { product_id: product_id }
+     //   var material_identifier = $(e.target).data().material_identifier
+     //   var material_config = {material: material_identifier}
+     //   $.extend(configurationObject, material_config);
+     //   $.extend(configurationObject, product_object);
+     //   $('#product_materials_list').find('li').removeClass('highlight');
+     //   $(e.target).addClass('highlight');
+     //   console.log("configObj: " + JSON.stringify(configurationObject));
+
+     //  //* set the choice box values ****
+     //   $('#material_choice').html(material_identifier);
+
+     //   $.ajax({
+     //     url: "/product_configurations/show",
+     //     type: 'GET',
+     //     dataType: 'json',
+     //     data: configurationObject,
+     //     success: function(data){
+     //       console.log("success" + JSON.stringify(data));
+     //       setProductInfoWithConfiguration(data.configuration[0])
+     //     },
+     //     error: function(xhr, options, err){
+     //       console.log("ajax error");
+     //     }
+     //   });
+     // });
+
+     function swatch_tile_actions(targ, listId){
+       r = targ;
+       l = listId;
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
-           if ($(e.target).data().material_identifier === undefined){
-            var identifier = $(e.target).data().finish_identifier;
+
+           if ($(targ).data().material_identifier === undefined){
+            var identifier = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
-            var config = {finish: finish_identifier};
+            var config = {finish: identifier};
            }else{
-            var identifier = $(e.target).data().material_identifier;
+            var identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
-            var config = {material: material_identifier};
+            var config = {material: identifier};
            }
-           
+
            $.extend(configurationObject, config);
            $.extend(configurationObject, product_object);
            $(listId).find('li').removeClass('highlight');
-           $(e.target).addClass('highlight');
+           $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
            $(choice_id).html(identifier);
-             
-           var targ = $(e.target);
-           var bg = targ.css("background-image");
+           
+           var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
-
+           ct1 = configurationObject;
+          
             $.ajax({
               url: "/product_configurations/show",
               type: 'GET',
@@ -206,17 +291,22 @@ $(document).on("page:change", (function(){
               success: function(data){
                console.log("success" + JSON.stringify(data));
                setProductInfoWithConfiguration(data.configuration[0])
+               dta = data.configuration[0]
+               cta = configurationObject;
+
               },
               error: function(xhr, options, err){
                console.log("ajax error");
+               cta = configurationObject;
+
               }
             });
-          });
+        // });
       }
       
 
   function filter_types(){
-    
+    //filter on collections browse page
     $('.panel-title input').click(function(){
        check_cat = []
       var cat = $('.panel-heading').find('input:checked').map(function(i, val){

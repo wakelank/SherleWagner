@@ -2,22 +2,20 @@
      
     <ul class="styles_list prod_list">
      <% @genres.each do |genre| %>
-       <li class ="style_tile prod_tile">
-          <%= genre.name %> <br/>
-        
-          <% genre.styles.each do |style| %>
-            <%= link_to style.name, style_path(:id => style.id)  %> <br/>
-           
+       <% unless genre.name == 'No genre' %> 
+         <li class ="style_tile prod_tile">
+            <%= genre.name %> <br/>
+          
+            <% genre.styles.each do |style| %>
+              
+                <%= link_to style.name, style_path(:id => style.id)  %> <br/>
+               
+              <% end %>
 
-          <% end %>
-        </li>
-        
-
-      
-        
-      
-
-    <% end %>
+            
+          </li>
+        <% end %>
+     <% end %>
     </ul>
   </div>
   <script>

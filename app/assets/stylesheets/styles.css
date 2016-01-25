@@ -7,7 +7,7 @@ body{
 .navbar-inner{
   height:10em;
 }
-.navbar-inner .container{
+.navbar-inner .nav-container{
   padding-top:2em;
   height:100%;
 }
@@ -88,6 +88,15 @@ ul.nav{
     background-color:rgba(0,0,0,0);
     
 }
+/*====END NAVBAR===*/
+
+.contain{
+  float: left;
+  margin-left: 15%;
+}
+
+
+
 
 /*====The product browse page===*/
 #content_wrapper {
@@ -103,7 +112,7 @@ ul.nav{
   padding-top: 11.5em;
   padding-bottom: 5em;
   
-  margin-left: 80px;
+  /*margin-left: 15%;*/
   /*left: 250px;*/
   box-shadow: 4px 5px 5px #999999;
  
@@ -140,8 +149,16 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 }
 
-/*===Side Nav ===*/
 
+
+/*===Side Nav ===*/
+.side_nav{
+  width: 15%;
+  min-width: 240px;
+  /*height: 100vh;*/
+  display: block;
+  float: left;
+}
 .side-nav-contain {
   float: left;
   margin: 2%;
@@ -298,9 +315,13 @@ li.highlighted{
 }
 
 .prod_page_content{
-  width:100%;
-  padding-left: 1em;
+  width:90%;
+  /*padding-left: 1em;*/
+  margin: 0 auto;
   padding-top: 1em;
+}
+.prod-text{
+  padding-left: 15%;
 }
 .detail_list {
   float:left;
@@ -371,6 +392,7 @@ li.highlighted{
   color: black;
   margin-top: 0;
   height: 2em;
+  padding-top: 5px;
 }
 #shown{
   font-style: italic;
@@ -414,9 +436,6 @@ li.highlighted{
 }
 div.tearsheet-form-box {
   
-  clear: left;
-  
-  margin-top: 10px; 
 }
 
 .tearsheet-form-box{
@@ -514,6 +533,58 @@ div.tearsheet-form-box {
 .prod_tile{
   cursor: pointer;
 }
+
+.dropdown-menu {
+  position: relative;
+  box-shadow: none;
+  border: none;
+  height: 30em;
+  overflow: scroll;
+  padding-left: 2%;
+  margin-left: 3%;
+  background-color: #e5e6df;
+  }
+
+.recently-viewed-list{
+       list-style: none;
+    width: 13em;
+    text-align: center;
+   
+}
+
+.recently-viewed-products{
+    color: grey;
+    width: 15%;
+    float: left;
+    padding-top: 12.5em;
+    padding-left: 2%;
+    text-align: center;
+
+} 
+
+.recent_tile li{
+  /*display: inline;*/
+  border: 2px solid black;
+  display: block;
+
+}
+ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
+    
+    color: grey;
+
+}
+.icon_img{
+      background-size: contain;
+    background-repeat: no-repeat;
+    width: 6em;
+    height: 5em;
+    margin: 0 auto;
+}
+
+
+
+
+
 /*STYLES PAGE*/
 .style_tile{
   width: 22em;
@@ -529,12 +600,4 @@ div.tearsheet-form-box {
    height:60px;
    width:100%;
    background:#353535;
-}
-.recently-viewed-products, .recently-viewed-products a {
-  color: grey;
-} 
-.recently-viewed-products li{
-  display: inline;
-  border-left: thin grey solid;
-
 }

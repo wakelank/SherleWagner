@@ -3,6 +3,16 @@
   <div class="list_wrapper">
      
     <ul class="prod_list">
+      <% if params['name'] %>
+<script>
+  var prm = decodeURIComponent(window.location.search.substring(1))
+  var cat_name = prm.split('=')[1];
+  var panel = '#' + cat_name
+  $(panel).find('a').trigger('click')
+</script>
+  <% else %>
+  
+<% end %>
      <% @product_types.each do |product_type| %>
       <!-- , :anchor => "type="+product_type.id.to_s -->
         <%= link_to  fetch_cat_path(:cat_id => product_type.id), :remote => true do %> 
