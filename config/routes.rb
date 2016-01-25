@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   get "/fetch_items" => 'products#from_category', as: 'fetch_items'
   get "/fetch_cat" => 'product_types#an_category', as: 'fetch_cat'
-  get "/product_types/:name" => 'product_types#fetched_category', as: 'fetched_cat'
+  get "/product_types" => 'product_types#fetched_category', as: 'fetched_cat'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   

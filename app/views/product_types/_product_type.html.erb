@@ -7,7 +7,7 @@
             
             <label id='<%= product_type.id  %>' class="prod-cat">
               
-            <%= link_to product_type.name, fetch_cat_path(:cat_id => product_type.id), :remote => true %>
+            <%= link_to product_type.name, fetched_cat_path(:name => product_type.name) %>
 
           <% elsif controller_name == 'styles' && action_name == 'show' %>
               <label><input type="checkbox" value="" id="<%= product_type.id %>"> <%= product_type.name %> </label>
