@@ -7,7 +7,7 @@ body{
 .navbar-inner{
   height:10em;
 }
-.navbar-inner .container{
+.navbar-inner .nav-container{
   padding-top:2em;
   height:100%;
 }
@@ -88,6 +88,14 @@ ul.nav{
     background-color:rgba(0,0,0,0);
     
 }
+/*====END NAVBAR===*/
+
+.contain{
+  float: left;
+  margin-left: 15%;
+}
+
+
 
 /*====The product browse page===*/
 #content_wrapper {
@@ -103,7 +111,7 @@ ul.nav{
   padding-top: 11.5em;
   padding-bottom: 5em;
   
-  /*margin-left: 80px;*/
+  /*margin-left: 15%;*/
   /*left: 250px;*/
   box-shadow: 4px 5px 5px #999999;
  
@@ -144,7 +152,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 .side_nav{
   width: 15%;
   min-width: 240px;
-  height: 100vh;
+  /*height: 100vh;*/
   display: block;
   float: left;
 }
@@ -540,6 +548,8 @@ div.tearsheet-form-box {
 }
 .recently-viewed-products, .recently-viewed-products a {
   color: grey;
+  width: 10%;
+  float: left;
 } 
 .recently-viewed-products li{
   display: inline;
