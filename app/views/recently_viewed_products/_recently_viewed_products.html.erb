@@ -1,11 +1,16 @@
-<div class="recently-viewed-products">
-   Recently viewed products 
-  <ul class="recently-viewed-list">
+<div class="recently-viewed-products dropdown">
+    <a class=" dropdown-toggle" type="button" data-toggle="dropdown">Recently viewed products
+  <!-- <span class="caret"></span> --></a>
+  <ul class="recently-viewed-list dropdown-menu">
+    
   <% recently_viewed_products.each do |recently_viewed_product| %>
-    <li class="recent_tile" style="background-image:url(<%= recently_viewed_product.image.url%>); background-size: contain">
+    <li class="recent_tile" >
       <div class="prod_title">
-        <%= link_to recently_viewed_product.name, product_path(recently_viewed_product.id) %>
+         <%= link_to recently_viewed_product.name, product_path(recently_viewed_product.id) %>
+        <div class="icon_img" style="background-image:url(<%= recently_viewed_product.image.url%>)"></div>
+       
       </div>
+      
     </li>
   <% end %>
   </ul>

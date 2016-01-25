@@ -1,1 +1,1 @@
-$("#content_wrapper").html("<%= escape_javascript(render partial: 'prod_cat', locals: {products: @selected} ) %>");
+$("#content_wrapper").html("<%= escape_javascript(render partial: 'prod_cat', locals: {product_type: @product_type} ) %>");
