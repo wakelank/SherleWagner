@@ -562,9 +562,10 @@ div.tearsheet-form-box {
 
 } 
 
-.recent_tile li{
+.recent_tile {
   /*display: inline;*/
-  border: 2px solid black;
+  margin-top: 2em;
+  /*border: 2px solid black;*/
   display: block;
 
 }
