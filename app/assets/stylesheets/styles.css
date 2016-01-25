@@ -97,6 +97,7 @@ ul.nav{
 
 
 
+
 /*====The product browse page===*/
 #content_wrapper {
   background-color: #F5F5F5;
@@ -147,6 +148,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     color: grey;
 
 }
+
+
 
 /*===Side Nav ===*/
 .side_nav{
@@ -530,6 +533,46 @@ div.tearsheet-form-box {
 .prod_tile{
   cursor: pointer;
 }
+
+
+
+
+
+.recently-viewed-products{
+  color: grey;
+  width: 10%;
+  float: left;
+  padding-top: 11em;
+} 
+.recently-viewed-products li{
+  display: inline;
+  
+
+}
+.recent_tile{
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  background-color: white;
+  float:left;
+  height: 12em;
+  width: 12em;
+  margin: 10px;
+
+}
+ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
+    display: block;
+    margin-top: 75%;
+    color: grey;
+
+}
+
+
+
+
+
 /*STYLES PAGE*/
 .style_tile{
   width: 22em;
@@ -545,14 +588,4 @@ div.tearsheet-form-box {
    height:60px;
    width:100%;
    background:#353535;
-}
-.recently-viewed-products, .recently-viewed-products a {
-  color: grey;
-  width: 10%;
-  float: left;
-} 
-.recently-viewed-products li{
-  display: inline;
-  border-left: thin grey solid;
-
 }
