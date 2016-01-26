@@ -43,9 +43,9 @@ class ProductConfiguration < ActiveRecord::Base
 
   def add_component component
     if component.class.name == "Product"
-      self.components << component 
+      self.components << component if !self.components.include? component
     else
-      self.name_only_products << component
+      self.name_only_products << component if !self.name_only_products.include? component
     end
   end
 

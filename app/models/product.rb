@@ -58,7 +58,7 @@ has_many :in_compilation_relationships,
   end
 
   def components
-    product_configurations.map { |config| config.components }.flatten
+    product_configurations.map { |config| config.components }.flatten.uniq
   end
 
   def compilations_number_string
@@ -66,7 +66,7 @@ has_many :in_compilation_relationships,
   end
 
   def name_only_products
-    product_configurations.map { |config| config.name_only_products }.flatten
+    product_configurations.map { |config| config.name_only_products }.flatten.uniq
   end
 
   def add_component component
