@@ -103,15 +103,16 @@ class ProductsController < ApplicationController
   end
 
  def edit
-    @product = Product.find(params[:product_id])
+    @product = Product.find(params[:id])
+    @materials = @product.materials
    
   end
 
   def update
-    @product = Product.find(params[:product_id])
+    @product = Product.find(params[:id])
     
     @product.update(product_params)
-    redirect_to "/products/#{product.id}"
+    redirect_to "/products/#{@product.id}"
   end
 
   def destroy
@@ -121,9 +122,9 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:name, :product_id)
+    params.require(:product).permit(:name, :id)
   end
-end
+
   
 
 
