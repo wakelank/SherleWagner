@@ -19,9 +19,10 @@ class ProductsController < ApplicationController
       end
     @finishes << ob
     end
+    
+    
 
-
-      
+ 
 
     recently_viewed_products = []
     if cookies[:recently_viewed_products] && cookies[:recently_viewed_products].length > 2
@@ -112,22 +113,21 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     
     @product.update(product_params)
-    redirect_to "/products/#{@product.id}"
+    redirect_to product_path params[:id]
   end
 
+    
   def destroy
-    
-    
+    product = ProductGroup.find(params[:id])
+    product.destroy
+    redirect_to product_path
   end
+
 
 private
   def product_params
-    params.require(:product).permit(:name, :id)
+    params.require(:product).permit(:name, :number, :finish_ids => [], :material_ids => [])
   end
 
-  
-
-
-   
 
 end
