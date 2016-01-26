@@ -21,6 +21,7 @@ class DataRow
     @genres = get_genres
     @compilation_number = @specific_number
     @component_number = get_component_number
+    @specific_name = get_specific_name
     
   end
 
@@ -32,7 +33,7 @@ class DataRow
   end
 
   def compilation?
-    @generic_number == "TITLE-XX"
+    @component_number == "TITLE"
   end
 
 
@@ -57,17 +58,13 @@ class DataRow
 
     }
     if compilation?
-      args[:number] = @specific_number
+      args[:name] = @specific_name
     end
     args
   end
 
   def product
-    if compilation?
-      Product.where(number: @specific_number).where(name: @generic_name).first
-    else
-      Product.find_by(number: @generic_number)
-    end
+    Product.find_by(number: @generic_number)
   end
 
   def component
@@ -75,6 +72,10 @@ class DataRow
     Product.
       where.not(product_sub_type: ebps_id). 
       where('number like ?' , "#{@component_number}%").first
+  end
+
+  def configuration
+    ProductConfiguration.find_by(number: @specific_number)
   end
 
   def get_generic_name
@@ -135,5 +136,8 @@ class DataRow
     @row["CODE under Product Name"] || ""
   end
 
+  def get_specific_name
+    @row["NAME"] || ""
+  end
 end
 

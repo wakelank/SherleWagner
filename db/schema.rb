@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120170855) do
+ActiveRecord::Schema.define(version: 20160123143706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,14 @@ ActiveRecord::Schema.define(version: 20160120170855) do
   add_index "materials_products", ["material_id"], name: "index_materials_products_on_material_id", using: :btree
   add_index "materials_products", ["product_id"], name: "index_materials_products_on_product_id", using: :btree
 
+  create_table "name_only_prod_prod_configs", force: :cascade do |t|
+    t.integer "name_only_product_id"
+    t.integer "product_configuration_id"
+  end
+
+  add_index "name_only_prod_prod_configs", ["name_only_product_id"], name: "index_name_only_prod_prod_configs_on_name_only_product_id", using: :btree
+  add_index "name_only_prod_prod_configs", ["product_configuration_id"], name: "index_name_only_prod_prod_configs_on_product_configuration_id", using: :btree
+
   create_table "name_only_products", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -154,8 +162,10 @@ ActiveRecord::Schema.define(version: 20160120170855) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "description"
+    t.integer  "name_only_product_id"
   end
 
+  add_index "product_configurations", ["name_only_product_id"], name: "index_product_configurations_on_name_only_product_id", using: :btree
   add_index "product_configurations", ["product_id"], name: "index_product_configurations_on_product_id", using: :btree
 
   create_table "product_sub_types", force: :cascade do |t|
@@ -228,7 +238,10 @@ ActiveRecord::Schema.define(version: 20160120170855) do
   add_foreign_key "genres_products", "products"
   add_foreign_key "materials_products", "materials"
   add_foreign_key "materials_products", "products"
+  add_foreign_key "name_only_prod_prod_configs", "name_only_products"
+  add_foreign_key "name_only_prod_prod_configs", "product_configurations"
   add_foreign_key "name_only_products", "products"
+  add_foreign_key "product_configurations", "name_only_products"
   add_foreign_key "product_configurations", "products"
   add_foreign_key "product_sub_types", "product_types"
   add_foreign_key "products", "genres"
