@@ -106,7 +106,7 @@
         Compilations:
       </p>
       <ul id="compilations_list" class="comp_list links">
-        <% @product.compilations.each do |compilation| %>
+        <% @product.all_compilations.each do |compilation| %>
         <li><%= link_to(compilation.name, product_path(compilation))  %>
         </li>
         <% end %>
@@ -123,9 +123,9 @@
         <p> Components:</p>
         <% @product.all_components.each do |component| %>
           <% if component.class.name == "Product" %>
-            <li><%= link_to(component.name, product_path(component))  %>
+            <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>
           <% else %>
-            <li><%= component.name %>
+            <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
           <% end %>
         </li>
         <% end %>

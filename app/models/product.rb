@@ -9,7 +9,6 @@ class Product < ActiveRecord::Base
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
-  has_many :name_only_products
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :filter_values
   has_and_belongs_to_many :finishes, class_name: 'Finish', join_table: :finishes_products
@@ -17,15 +16,12 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :materials, class_name: 'Material', join_table: :materials_products
   has_and_belongs_to_many :styles
   belongs_to :associated_collection, class_name:  "Style"
-  has_many :has_components_relationships,
-    foreign_key: :compilation_id,
-    class_name:"CompilationRelationship"
-  has_many :components, through: :has_components_relationships
 
-  has_many :in_compilation_relationships,
+has_many :in_compilation_relationships,
     foreign_key: :component_id,
     class_name: "CompilationRelationship"
   has_many :compilations, through: :in_compilation_relationships
+#thing
 
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
@@ -55,6 +51,22 @@ class Product < ActiveRecord::Base
 
   def all_components
     components + name_only_products
+  end
+
+  def all_compilations
+    compilations.map { |comp| comp.product }
+  end
+
+  def components
+    product_configurations.map { |config| config.components }.flatten.uniq
+  end
+
+  def compilations_number_string
+    compilations.map { |comp| comp.number }.join(" ")
+  end
+
+  def name_only_products
+    product_configurations.map { |config| config.name_only_products }.flatten.uniq
   end
 
   def add_component component

@@ -1,6 +1,6 @@
 require 'english'
 
-# require 'paperclip_stub.rb'
+ require 'paperclip_stub.rb'
 
 require 'csv'
 require 'find'
@@ -20,6 +20,7 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
+
 
 
       if !Product.exists?(number: product.number) && !data_row.component?
@@ -58,10 +59,10 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new row
       if !data_row.component?
-        current_compilation = data_row.product
+        current_compilation = data_row.configuration
       else
         component = data_row.component ||
-          NameOnlyProduct.create(name: data_row.get_generic_name)
+          NameOnlyProduct.find_or_create_by(name: data_row.get_generic_name)
         if !component.nil? && !current_compilation.nil?
           current_compilation.add_component component
           current_compilation.save
