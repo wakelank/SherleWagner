@@ -16,4 +16,9 @@ class ProductSubType < ActiveRecord::Base
     self.filters.order(:id)
   end
 
+  def filter_values
+    filters.map{ |f| f.filter_values }.flatten
+
+  end
+
 end

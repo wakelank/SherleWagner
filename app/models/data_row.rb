@@ -115,7 +115,7 @@ class DataRow
     filter_values << @row["FILTERS"] || ""
     filter_values << @row["FILTERS2"] || ""
 
-    {sub_type: @sub_type, values: filter_values}
+    {sub_type: @product_sub_type, values: filter_values}
   end
 
   def get_product_configuration
