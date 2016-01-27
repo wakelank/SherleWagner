@@ -112,9 +112,9 @@ class DataRow
   def filter_args
     
     filter_values = []
-    filter_values << @row["FILTERS"] || ""
-    filter_values << @row["FILTERS2"] || ""
-
+    filter_values << (@row["FILTERS"] || "").downcase
+    filter_values << (@row["FILTERS2"] || "").downcase
+    
     {sub_type: @product_sub_type, values: filter_values}
   end
 

@@ -5,7 +5,7 @@ class FilterValue < ActiveRecord::Base
   include SnakeCase
 
   def self.get_filter_values(args)
-    args[:sub_type].filter_values.select { |fv| args[:values].include? fv.name }
+    args[:sub_type].filter_values.select { |fv| args[:values].include? fv.name.downcase }
 #    arr = []
 #    args[:values].each do value
 #      arr << FilterValue.where(filter.product_sub_type: args[:product_sub_type]).
