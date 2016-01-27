@@ -26,4 +26,4 @@ public/system/compilations/images/*
 
 app/models/concerns/image_file_path.rb   
 
-
+spec/fixtures/files/.~lock.test_product_data.csv#

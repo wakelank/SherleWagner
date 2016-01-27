@@ -123,7 +123,7 @@ RSpec.describe ProductsController, :type => :controller do
     it 'no_name_products' do
       compilation = Product.find_by(number: "T101-CTS-XX")
       components = compilation.all_components.map { |comp| comp[:name] }.sort
-      expect(components).to eq ["Arco Lever Diverter Trim", "Modern Concentric Thermostatic Trim", "Modern Cylindrical Wall Mount Hand Shower on Supply Hook", "Modern Shower Head With Square Flange", "Modern Wall Mount Tub Spout"]
+      expect(components).to eq ["Arco Lever Diverter Trim", "Modern Concentric Thermostatic Trim", "Modern Concentric Trim With Diverter", "Modern Cylindrical Wall Mount Hand Shower on Supply Hook", "Modern Shower Head With Square Flange", "Modern Wall Mount Tub Spout"]   
     end
   end
 
