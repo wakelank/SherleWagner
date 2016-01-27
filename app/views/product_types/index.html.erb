@@ -8,6 +8,8 @@
   var prm = decodeURIComponent(window.location.search.substring(1))
   var cat_name = prm.split('=')[1];
   var panel = '#' + cat_name
+  var panel2 = panel + "1";
+    $(panel2).collapse('toggle');
   $(panel).find('a').trigger('click')
 </script>
   <% else %>

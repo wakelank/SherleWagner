@@ -2,9 +2,10 @@ require 'find'
 class DataRow
   extend ImageFilePath
 
-#  IMAGES_PATH = "/Users/ph1am/Desktop/SW website/images1"
+ # IMAGES_PATH = "/Users/ph1am/Desktop/SW_website/images1"
   # IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
    IMAGES_PATH = image_file_path
+
 
   attr_reader :component_number, :compilation_number
 

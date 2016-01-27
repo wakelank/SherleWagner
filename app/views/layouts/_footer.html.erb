@@ -2,7 +2,7 @@
 
   <% if admin? %>
     <%= link_to 'logout', logout_path %>
-    <%= link_to 'add product', new_product_group_path %>
+    <%= link_to 'add product', new_product_path %>
   <% else %>
     <%= link_to 'login', login_path %>
   <% end %>

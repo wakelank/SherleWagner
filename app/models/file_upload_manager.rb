@@ -34,7 +34,6 @@ class FileUploadManager
           product.filter_values.concat data_row.get_filters
           product.genres.concat data_row.get_genres
           product.add_configuration data_row.get_product_configuration
-
           product.save if product.valid?
         rescue
           binding.pry

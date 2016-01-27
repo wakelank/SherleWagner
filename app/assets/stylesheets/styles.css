@@ -92,7 +92,7 @@ ul.nav{
 
 .contain{
   float: left;
-  margin-left: 15%;
+  /*margin-left: 15%;*/
 }
 
 
@@ -164,7 +164,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   margin: 2%;
   /*min-width: 275px;*/
   
-  position:fixed; top:20;
+  /*position:fixed; 
+  top:20;*/
   overflow-y: scroll;
   
   height: 100%;
@@ -480,7 +481,7 @@ div.tearsheet-form-box {
 }
 .finishes, .materials, .china_colors{
   
-  max-width: 50%;
+  max-width: 49%;
   float: left;
   color: grey;
   padding-left: 1em;
@@ -562,9 +563,10 @@ div.tearsheet-form-box {
 
 } 
 
-.recent_tile li{
+.recent_tile {
   /*display: inline;*/
-  border: 2px solid black;
+  margin-top: 2em;
+  /*border: 2px solid black;*/
   display: block;
 
 }
