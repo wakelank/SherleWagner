@@ -19,9 +19,9 @@ class ProductConfiguration < ActiveRecord::Base
     args[:number] = row["IMAGE FILE"] || NullObject.new() 
     args[:description] = row["NAME"] || NullObject.new() 
     image_name = self.get_image_name_from row
-    images_path = "/Users/ph1am/Desktop/SW_website/images1"
+    # images_path = "/Users/ph1am/Desktop/SW_website/images1"
       # images_path = "/Users/wake/Documents/Work/SherleWagner/images"
-     # images_path = self.image_file_path
+     images_path = self.image_file_path
     image_file = NullObject.new
     Find.find(images_path) do |filepath|
       if File.basename(filepath) == image_name
