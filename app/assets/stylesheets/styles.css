@@ -362,14 +362,13 @@ li.highlighted{
   list-style: none;
   padding-right: 0;
   overflow: auto;
+  
   /*height: auto;*/
   /*width:100%;*/
 
   
 }
-.alt_choice{
-  opacity: .4;
-}
+
 #alt_imgs li{
   
   font-size: 10px;
@@ -377,10 +376,24 @@ li.highlighted{
   margin: 2px;
   margin-right: 0;
   padding:0;
+  
+}
+#alt_imgs img{
+border: thin solid #e5e6df;
+
 }
 .alt_img:hover{
   cursor: pointer;
 }
+.alt_choice{
+  opacity: .4;
+
+}
+#alt_imgs li.alt_img.alt_choice img{
+  border: thin solid black;
+}
+
+
 .product_info{
   /*stuff to R of image*/
   float: left;
