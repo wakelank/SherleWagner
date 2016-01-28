@@ -20,7 +20,7 @@ class DataRow
     @image = get_image
     @style = get_style
     @genres = get_genres
-    @compilation_number = @specific_number
+    @compilation_number = get_compilation_number
     @component_number = get_component_number
     @specific_name = get_specific_name
     
@@ -34,7 +34,7 @@ class DataRow
   end
 
   def compilation?
-    @component_number == "TITLE"
+    @component_number[0..4] == "TITLE"
   end
 
 
@@ -60,6 +60,7 @@ class DataRow
     }
     if compilation?
       args[:name] = @specific_name
+      args[:number] = @compilation_number
     end
     args
   end
@@ -125,7 +126,6 @@ class DataRow
 
   def get_image
     image_file = NullObject.new
-    
     Find.find(IMAGES_PATH) do |filepath|
       if File.basename(filepath) == @image_name
         image_file = File.new(filepath) || NullObject.new
@@ -149,6 +149,10 @@ class DataRow
 
   def get_specific_name
     @row["NAME"] || ""
+  end
+
+  def get_compilation_number
+    @specific_number[0..7]+@generic_number[5..-1]
   end
 end
 
