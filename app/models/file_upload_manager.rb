@@ -25,7 +25,6 @@ class FileUploadManager
 
       if !Product.exists?(number: product.number) && !data_row.component?
         begin
-
          # style = data_row.get_style
          # filters = data_row.get_filters
          # genres= data_row.get_genres
