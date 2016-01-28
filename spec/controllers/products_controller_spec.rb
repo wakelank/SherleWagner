@@ -32,7 +32,7 @@ RSpec.describe ProductsController, :type => :controller do
 
     it 'adds 9 products to table' do
       Product.all.each { |p| puts p.number }
-      expect(Product.count).to eq 8 
+      expect(Product.count).to eq 9 
     end
 
     it 'product name' do
@@ -123,7 +123,7 @@ RSpec.describe ProductsController, :type => :controller do
     it 'no_name_products' do
       compilation = Product.find_by(number: "T101-CTS-XX")
       components = compilation.all_components.map { |comp| comp[:name] }.sort
-      expect(components).to eq ["Arco Lever Diverter Trim", "Modern Concentric Thermostatic Trim", "Modern Cylindrical Wall Mount Hand Shower on Supply Hook", "Modern Shower Head With Square Flange", "Modern Wall Mount Tub Spout"]
+      expect(components).to eq ["Arco Lever Diverter Trim", "Modern Concentric Thermostatic Trim", "Modern Concentric Trim With Diverter", "Modern Cylindrical Wall Mount Hand Shower on Supply Hook", "Modern Shower Head With Square Flange", "Modern Wall Mount Tub Spout"]   
     end
   end
 
@@ -138,6 +138,14 @@ RSpec.describe ProductsController, :type => :controller do
 
     it "5 filters to Basins" do
       expect(@basins.filters.count).to eq 5
+    end
+
+    it "attaches sink shape->geometric filter to basin instead of wallpaper->geometric" do
+      product = Product.find_by(number: "OE11-GLAZE")
+      filter = Filter.find_by(name: "Sink Shape")
+      filter_value = filter.filter_values.find_by(name: "Geometric")
+
+      expect(product.filter_values).to include filter_value
     end
 
 

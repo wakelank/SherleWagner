@@ -4,6 +4,16 @@ class FilterValue < ActiveRecord::Base
   
   include SnakeCase
 
+  def self.get_filter_values(args)
+    args[:sub_type].filter_values.select { |fv| args[:values].include? fv.name.downcase }
+#    arr = []
+#    args[:values].each do value
+#      arr << FilterValue.where(filter.product_sub_type: args[:product_sub_type]).
+#        where('lower(name) = ?', value)
+#    end
+#    arr
+  end
+
   def self.get_arg(row)
     result = self.extract_from row
     case_insensitive_find(result)

@@ -106,7 +106,17 @@ class DataRow
   end
 
   def get_filters
-    FilterValue.get_arg @row
+    
+    FilterValue.get_filter_values filter_args
+  end
+
+  def filter_args
+    
+    filter_values = []
+    filter_values << (@row["FILTERS"] || "").downcase
+    filter_values << (@row["FILTERS2"] || "").downcase
+    
+    {sub_type: @product_sub_type, values: filter_values}
   end
 
   def get_product_configuration
