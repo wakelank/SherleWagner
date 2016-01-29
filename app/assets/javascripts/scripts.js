@@ -3,7 +3,7 @@ $(document).on("page:change", (function(){
      switch ($('body').attr('class')){
       case 'products show':
       var configurationObject = {};
-         tearSheetForm = document.getElementById('tearsheet-form');
+        var tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
         var product_id = tearSheetForm.elements["product_id"].value;
         // var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
@@ -26,8 +26,8 @@ $(document).on("page:change", (function(){
 
         //select the featured image from the alt's
       
-        image = $('.product_image')[0].dataset.url;
-        matchr = image.match(/\/[^\/]+.jpg/);
+        var image = $('.product_image')[0].dataset.url;
+        var matchr = image.match(/\/[^\/]+.jpg/);
 
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
@@ -178,8 +178,8 @@ $(document).on("page:change", (function(){
 
      function setProductInfoWithConfiguration(config){
        if (typeof config != "undefined") {
-           $('.prod-config-number').html(config.number);
-           $('.prod-config-description #description').html(config.description);
+           // $('.prod-config-number').html(config.number);
+           // $('.prod-config-description #description').html(config.description);
            $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
@@ -224,13 +224,13 @@ $(document).on("page:change", (function(){
               success: function(data){
                console.log("success" + JSON.stringify(data));
                setProductInfoWithConfiguration(data.configuration[0])
-               // dta = data.configuration[0]
-               // cta = configurationObject;
+               dta = data.configuration[0]
+               cta = configurationObject;
 
               },
               error: function(xhr, options, err){
                console.log("ajax error");
-               // cta = configurationObject;
+               cta = configurationObject;
 
               }
             });
