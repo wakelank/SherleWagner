@@ -7,10 +7,11 @@ class DataRow
    IMAGES_PATH = image_file_path
 
 
-  attr_reader :component_number, :compilation_number
+  attr_reader :component_number
 
-  def initialize row
+  def initialize(row)
     @row = row
+
     @component_number = @row["CODE under Product Name"] || ""
     @generic_name = @row["GENERIC PRODUCT NAME _ Revised"] || ""
     @generic_number = @row["Generic Product Number"] || "" 
@@ -23,7 +24,6 @@ class DataRow
     @image = get_image
     @style = get_style
     @genres = get_genres
-    @compilation_number = get_compilation_number
     
   end
 
@@ -54,7 +54,7 @@ class DataRow
     num = @generic_number
     
     if compilation?
-      num = @compilation_number
+      num = compilation_number
     end
     return num
   end
@@ -160,8 +160,9 @@ class DataRow
     @row["NAME"] || ""
   end
 
-  def get_compilation_number
-    if !component?
+  def compilation_number
+   # if !component?
+   if @specific_number.length > 8 && @generic_number.length > 6
       binding.pry if @specific_number[0..7].nil? || @generic_number[5..-1].nil?
       @specific_number[0..7]+@generic_number[5..-1]
     else

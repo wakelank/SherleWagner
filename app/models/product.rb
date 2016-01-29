@@ -54,7 +54,7 @@ has_many :in_compilation_relationships,
   end
 
   def all_compilations
-    compilations.map { |comp| comp.product }
+    compilations.map { |comp| comp.product }.uniq
   end
 
   def components
