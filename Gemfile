@@ -26,6 +26,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'filterrific'
 
+gem "capistrano", "~> 3.4", group: :development
+gem 'capistrano-passenger'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
@@ -40,4 +45,3 @@ group :development, :test do
   # meta_request allows RailsPanel Chrome extension to work
   gem 'meta_request'
 end
-
