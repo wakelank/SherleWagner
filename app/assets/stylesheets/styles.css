@@ -112,7 +112,7 @@ ul.nav{
   padding-top: 11.5em;
   padding-bottom: 5em;
   
-  margin-left: 15%;
+  /*margin-left: 15%;*/
   /*left: 250px;*/
   box-shadow: 4px 5px 5px #999999;
  
@@ -184,6 +184,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 .navvy{
   padding-top: 9.5em;
+  width: 85%;
 }
 .navvy .panel-sub-heading {
   padding-left: 0;
@@ -423,7 +424,7 @@ border: thin solid #e5e6df;
   color:gray;
 }
 .product_info h3#prod_name{
-  height: 2em;
+  height: 3em;
   color: black;
 }
 
