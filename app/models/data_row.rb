@@ -7,22 +7,23 @@ class DataRow
    IMAGES_PATH = image_file_path
 
 
-  attr_reader :component_number, :compilation_number
+  attr_reader :component_number
 
-  def initialize row
+  def initialize(row)
     @row = row
-    @generic_name = get_generic_name
-    @generic_number = get_generic_number
+
+    @component_number = @row["CODE under Product Name"] || ""
+    @generic_name = @row["GENERIC PRODUCT NAME _ Revised"] || ""
+    @generic_number = @row["Generic Product Number"] || "" 
+    @specific_number = @row["IMAGE FILE"] || ""
+    @specific_name = @row["NAME"] || ""
+
     @image_name = get_image_name
-    @specific_number = get_specific_number
     @product_type = get_product_type
     @product_sub_type = get_product_sub_type
     @image = get_image
     @style = get_style
     @genres = get_genres
-    @compilation_number = @specific_number
-    @component_number = get_component_number
-    @specific_name = get_specific_name
     
   end
 
@@ -34,7 +35,7 @@ class DataRow
   end
 
   def compilation?
-    @component_number == "TITLE"
+    @component_number[0..4] == "TITLE"
   end
 
 
@@ -49,10 +50,19 @@ class DataRow
       !@image_name.blank?
   end
 
+  def product_number
+    num = @generic_number
+    
+    if compilation?
+      num = compilation_number
+    end
+    return num
+  end
+
   
   def product_args
     args = { name: @generic_name,
-      number: @generic_number,
+      number: product_number,
       product_type: @product_type,
       product_sub_type: @product_sub_type,
       image: @image
@@ -65,7 +75,7 @@ class DataRow
   end
 
   def product
-    Product.find_by(number: @generic_number)
+    Product.find_by(number: product_number)
   end
 
   def component
@@ -84,7 +94,7 @@ class DataRow
   end
 
   def get_generic_number
-    @row["Generic Product Number"] || ""
+      @row["Generic Product Number"] || ""
   end
 
   def get_image_name
@@ -125,7 +135,6 @@ class DataRow
 
   def get_image
     image_file = NullObject.new
-    
     Find.find(IMAGES_PATH) do |filepath|
       if File.basename(filepath) == @image_name
         image_file = File.new(filepath) || NullObject.new
@@ -149,6 +158,16 @@ class DataRow
 
   def get_specific_name
     @row["NAME"] || ""
+  end
+
+  def compilation_number
+   # if !component?
+   if @specific_number.length > 8 && @generic_number.length > 6
+      binding.pry if @specific_number[0..7].nil? || @generic_number[5..-1].nil?
+      @specific_number[0..7]+@generic_number[5..-1]
+    else
+      ""
+    end
   end
 end
 
