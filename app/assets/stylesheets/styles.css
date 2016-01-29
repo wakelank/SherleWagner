@@ -363,7 +363,7 @@ li.highlighted{
 
 #alt_imgs{
   list-style: none;
-  padding-right: 0;
+  padding-left: 0;
   overflow: auto;
   
   /*height: auto;*/
@@ -375,9 +375,9 @@ li.highlighted{
 #alt_imgs li{
   
   font-size: 10px;
-  float: right;
+  float: left;
   margin: 2px;
-  margin-right: 0;
+  margin-left: 0;
   padding:0;
   
 }
