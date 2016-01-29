@@ -1,9 +1,11 @@
-<div class="list_wrapper">
+
+<div class="styles_wrapper">
+
      
-    <ul class="styles_list prod_list">
+    <ul class="styles_list ">
      <% @genres.each do |genre| %>
        <% unless genre.name == 'No genre' %> 
-         <li class ="style_tile prod_tile">
+         <li class ="style_tile">
             <%= genre.name %> <br/>
           
             <% genre.styles.each do |style| %>
@@ -18,6 +20,7 @@
      <% end %>
     </ul>
   </div>
+
   <script>
   $('.navvy').css('display','none');
   </script>

@@ -162,6 +162,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 .side-nav-contain {
   float: left;
   margin: 2%;
+  margin-left: 0;
+  width: inherit;
   min-width: 275px;
   
   position:fixed; 
@@ -599,13 +601,13 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
 
 
 
-
 /*STYLES PAGE*/
 .style_tile{
   width: 22em;
 }
 .styles_list{
-  margin-left: 9%;
+  
+  margin-top: 11em;
 }
 /*footer*/
 .footer {
