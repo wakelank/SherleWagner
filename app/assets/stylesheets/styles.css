@@ -92,7 +92,7 @@ ul.nav{
 
 .contain{
   float: left;
-  /*margin-left: 15%;*/
+  margin-left: 15%;
 }
 
 
@@ -162,10 +162,10 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 .side-nav-contain {
   float: left;
   margin: 2%;
-  /*min-width: 275px;*/
+  min-width: 275px;
   
-  /*position:fixed; 
-  top:20;*/
+  position:fixed; 
+  top:20;
   overflow-y: scroll;
   
   height: 100%;
