@@ -1,4 +1,3 @@
-require 'english'
 require 'csv'
 require 'find'
 
@@ -103,7 +102,7 @@ has_many :in_compilation_relationships,
       arr << "ONYX"
       arr < "MARBL"
     end
-    arr 
+    arr
   end
 
   def associated_collection_or_null
@@ -111,7 +110,7 @@ has_many :in_compilation_relationships,
   end
 
   def add_configuration(configuration)
-    if !configuration.nil? 
+    if !configuration.nil?
       self.product_configurations << configuration
     end
   end
@@ -120,7 +119,7 @@ has_many :in_compilation_relationships,
     begin
       self.materials.concat Material.where(code: material_code)
       self.save
-    rescue
+    rescue => ex
       binding.pry
     end
   end
@@ -189,7 +188,7 @@ searchable do
        text :product_type do
          product_type.name
        end
-    
+
 end
 
 
@@ -202,13 +201,13 @@ end
   end
 
   def add_finishes
-    Finish.add_finishes_to self if self.needs_finishes? 
+    Finish.add_finishes_to self if self.needs_finishes?
   end
 
   def add_china_color
     ChinaColor.add_china_colors_to self if self.needs_china_colors?
   end
-  
+
   def add_material
     Material.add_materials_to(self, self.needed_materials)
   end
@@ -216,12 +215,10 @@ end
   def add_associated_collection
     coll = self.find_associated_collection
     if !coll.nil?
-      self.associated_collection = coll 
+      self.associated_collection = coll
     end
 
   end
 
 
 end
-
-
