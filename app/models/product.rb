@@ -119,7 +119,7 @@ has_many :in_compilation_relationships,
     begin
       self.materials.concat Material.where(code: material_code)
       self.save
-    rescue => ex
+    rescue
       binding.pry
     end
   end
