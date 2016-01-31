@@ -221,6 +221,12 @@ def polished?
 
   end
 
+  def self.exitst?(product)
+    super.exists?(product.sub('CTO','TMO')) ||
+      super.exists?(product.sub('TMO','CTO')) ||
+      super
+  end
+
 
 end
 
