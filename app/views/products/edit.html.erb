@@ -14,7 +14,15 @@
     <% end %>
   <% end %>
   </p>
-  
+  <%= #field_set_tag "Materials" do %>
+    <% #@materials.each do |material|  %>
+      <%= #field_set_tag material do %>
+        <%=# f.collection_check_boxes(:material_ids, Material.where(material: material), :id, :name) do |fin| %>
+          <% #fin.label(class: "checkbox inline") {fin.check_box + fin.text} %>
+        <%# end %>
+      <% #end %>
+    <%# end %>
+  <%# end %>
   <%= f.submit 'save changes' %>
 <% end %>
 

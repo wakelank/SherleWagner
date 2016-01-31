@@ -21,7 +21,7 @@ $(document).on("page:change", (function(){
           var trg = $(e.target);
         swatch_tile_actions(trg,'#product_materials_list');
         });
-        //TODO*** refactor to do swatch tile actions on all possibles (china patterns etc) ****
+        
 
         nav_back();
 
@@ -44,17 +44,29 @@ $(document).on("page:change", (function(){
           if ($($(t).parents()[1]).hasClass('finishes')){
              ident = t.dataset.finish_identifier;
              parent_div = '#product_finishes_list';
-          }else{
+          }else if ($($(t).parents()[1]).hasClass('materials')){
               ident = t.dataset.material_identifier;
               parent_div = '#product_materials_list';
+          }else if ($($(t).parents()[1]).hasClass('china_colors')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_china_list';
+          }else{
+
           }
            
-          if (image.includes('-'+ ident )){
+          if (image.includes('-'+ ident ) && parent_div == '#product_china_list' ){
             //console.log(t);
-            // $(t).addClass('highlight');
-            $t = $(t);
+             $(t).addClass('highlight');
+            // $t = $(t);
             
-            pr = $(parent_div);
+            // pr = $(parent_div);
+            // swatch_tile_actions($t, pr); 
+          }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+            //console.log(t);
+             // $(t).addClass('highlight');
+            var $t = $(t);
+            
+            var pr = $(parent_div);
             swatch_tile_actions($t, pr); 
           }
         }); 
