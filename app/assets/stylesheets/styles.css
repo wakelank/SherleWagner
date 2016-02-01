@@ -603,8 +603,11 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
 
 
 /*STYLES PAGE*/
-.style_tile{
-  width: 22em;
+.style_div{
+  width: 48%;
+  height: 9em;
+  float: left;
+  border: solid black;
 }
 .styles_wrapper{
   margin-left: 0;

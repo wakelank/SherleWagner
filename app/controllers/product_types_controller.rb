@@ -1,6 +1,7 @@
 class ProductTypesController < ApplicationController
 
   def index
+    binding.pry
     @product_types = ProductType.all
   end
   

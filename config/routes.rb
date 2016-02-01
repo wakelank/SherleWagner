@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
 #  resources :product_groups, :defaults => { :format => 'html' }
 
-  resources :product_types do
+  resources :product_types, except:[:create] do
     resources :product_sub_types
   end
   
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
   get "/fetch_items" => 'products#from_category', as: 'fetch_items'
   get "/fetch_cat" => 'product_types#an_category', as: 'fetch_cat'
-  # get "/fetched_cat" => 'product_types#fetched_category', as: 'fetched_cat'
+  post "/product_types" => 'product_types#index'
 
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   
