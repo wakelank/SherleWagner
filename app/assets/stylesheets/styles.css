@@ -644,7 +644,8 @@ width: 100%;
    width:100%;
    background:#353535;
 }
-li.foot_link {
+li.foot_link, li.foot_link a{
     display: inline;
     margin: 0 1em;
+    color:grey;
 }

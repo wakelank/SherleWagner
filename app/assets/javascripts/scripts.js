@@ -56,28 +56,20 @@ $(document).on("page:change", (function(){
               ident = t.dataset.material_identifier;
               parent_div = '#product_china_list';
           }else{
-
           }
            
           if (image.includes('-'+ ident ) && parent_div == '#product_china_list' ){
-            //console.log(t);
              $(t).addClass('highlight');
-            // $t = $(t);
-            
-            // pr = $(parent_div);
-            // swatch_tile_actions($t, pr); 
+
           }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
-            //console.log(t);
-             // $(t).addClass('highlight');
             var $t = $(t);
-            
             var pr = $(parent_div);
             swatch_tile_actions($t, pr); 
           }
         }); 
 
          //set the current configuration
-conff = $('.alt_choice')[0]
+         conff = $('.alt_choice')[0]
         swap_product_info_for_configuration(conff);
 
 
@@ -116,7 +108,9 @@ conff = $('.alt_choice')[0]
             var mat = this.dataset.material_identifier;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){
+              
               swap_product_image(t.dataset.url);
+              swap_product_info_for_configuration(t);
               $(t).addClass('alt_choice');
 
              }
@@ -222,6 +216,7 @@ conff = $('.alt_choice')[0]
      
 
      function setProductInfoWithConfiguration(config){
+
        if (typeof config != "undefined") {
            // $('.prod-config-number').html(config.number);
            // $('.prod-config-description #description').html(config.description);
@@ -250,6 +245,8 @@ conff = $('.alt_choice')[0]
 
            $.extend(configurationObject, config);
            $.extend(configurationObject, product_object);
+
+
            $(listId).find('li').removeClass('highlight');
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
