@@ -7,14 +7,15 @@
     <ul id="product_finishes_list" class="detail_list">
        
       <% @finishes.each do |finish| %>
-      
-        <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", style="background-image: url(<%= finish["swatch"] %>);">
-          <!-- <p class="swatch_name">
-            %= finish.name %> 
-          </p> --><div class="swatch_div"><%= finish["name"] %> </div>
+        <% unless finish["name"] == 'non finish' %>
+        
+          <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", style="background-image: url(<%= finish["swatch"] %>);">
+            <!-- <p class="swatch_name">
+              %= finish.name %> 
+            </p> --><div class="swatch_div"><%= finish["name"] %> </div>
 
-        </li>
-        <!-- finish.image -->
+          </li>
+        <% end %>  <!-- finish.image -->
       <% end %>
     </ul>
   </div>
@@ -47,12 +48,14 @@
     <h3 class='choice_title'>China Color</h3>
     <ul id="product_china_list" class="detail_list">
       <% @product.china_colors.each do |china_color| %>
-        <li class="prod_tile finish_tile  ", data-material_identifier="<%= china_color.identifier %>">
-          <p class="swatch_name">
-            <%= china_color.name %>
-          </p><div class="swatch_div"><%= china_color.name %> </div>
-        </li>
-        <!-- china_color.image -->
+        <% unless china_color.name == 'no name' %>
+          <li class="prod_tile finish_tile  ", data-material_identifier="<%= china_color.identifier %>">
+            <p class="swatch_name">
+              <%= china_color.name %>
+            </p><div class="swatch_div"><%= china_color.name %> </div>
+          </li>
+          <!-- china_color.image -->
+        <% end %>
       <% end %>
   
 

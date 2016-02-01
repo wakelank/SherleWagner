@@ -105,7 +105,7 @@ class ProductsController < ApplicationController
 
  def edit
     @product = Product.find(params[:id])
-    @materials = @product.materials
+    @materials = Material.all#@product.materials
    
   end
 

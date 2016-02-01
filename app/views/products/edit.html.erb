@@ -7,22 +7,25 @@
   <%= f.text_field :name, class: 'form-control' %>
   <%= f.label :number %>
   <%= f.text_field :number, class: 'form-control' %>
-  <p>
+  <div class="set_finishes setters">
   <%= field_set_tag "Finishes" do %>
     <%= f.collection_check_boxes(:finish_ids, Finish.all, :id, :name) do |fin| %>
       <% fin.label(class: "checkbox inline") {fin.check_box + fin.text} %>
     <% end %>
   <% end %>
-  </p>
-  <%= #field_set_tag "Materials" do %>
-    <% #@materials.each do |material|  %>
-      <%= #field_set_tag material do %>
-        <%=# f.collection_check_boxes(:material_ids, Material.where(material: material), :id, :name) do |fin| %>
-          <% #fin.label(class: "checkbox inline") {fin.check_box + fin.text} %>
-        <%# end %>
-      <% #end %>
-    <%# end %>
-  <%# end %>
+
+  </div>
+  <div class="set_materials setters">
+  <%= field_set_tag "Materials" do %>
+    <% @materials.each do |material|  %>
+      <%= field_set_tag do %>
+        <%= f.collection_check_boxes(:material_ids, Material.where(id: material.id), :id, :name) do |fin| %>
+          <% fin.label(class: "checkbox inline #{material.code}") {fin.check_box + fin.text} %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
   <%= f.submit 'save changes' %>
 <% end %>
 

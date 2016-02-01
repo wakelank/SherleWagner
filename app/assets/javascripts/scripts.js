@@ -21,6 +21,11 @@ $(document).on("page:change", (function(){
           var trg = $(e.target);
         swatch_tile_actions(trg,'#product_materials_list');
         });
+        $('#product_china_list').find('li').click(function(e){
+          $('#product_china_list').find('li').removeClass('highlight');
+          var trg = $(e.target);
+         $(trg).addClass('highlight');
+        });
         
 
         nav_back();
