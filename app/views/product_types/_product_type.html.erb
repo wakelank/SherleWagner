@@ -6,11 +6,15 @@
           <% if controller_name == 'products' && action_name == 'show' %>
             
             <label id='<%= product_type.id  %>' class="prod-cat">
-              
-            <%= link_to product_type.name, fetched_cat_path(:name => product_type.name) %>
+              <%= form_tag({controller:'product_types', action:'index'},  method: 'post')  do %>
+              <%= hidden_field_tag("id", product_type.id) %>
+              <%= submit_tag product_type.name, class: 'back' %>
+
+              <% end %>
+              </label>
 
           <% elsif controller_name == 'styles' && action_name == 'show' %>
-              <label><input type="checkbox" value="" id="<%= product_type.id %>"> <%= product_type.name %> </label>
+              <label><input type="checkbox" value="" id="<%= product_type.id %>"> <%= product_type.name %> 
               
 
           <% else %>

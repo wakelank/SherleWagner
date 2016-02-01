@@ -12,7 +12,7 @@ gem "twitter-bootstrap-rails"
 #gem 'postmark-rails'
 gem 'aws-sdk-v1'
 gem 'paperclip', '~> 4.3'
-gem 'sunspot_rails'
+# gem 'sunspot_rails'
 gem "rails-bootstrap-helpers"
 
 gem 'rails', '4.2.1'
@@ -37,7 +37,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'sunspot_solr'
+  # gem 'sunspot_solr'
   gem 'pry-rails'
   gem 'pry-nav'
   gem 'web-console', '~> 2.0'

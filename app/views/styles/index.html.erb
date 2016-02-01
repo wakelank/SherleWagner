@@ -1,23 +1,26 @@
-<div class="list_wrapper">
-     
-    <ul class="styles_list prod_list">
-     <% @genres.each do |genre| %>
-       <% unless genre.name == 'No genre' %> 
-         <li class ="style_tile prod_tile">
+<div class="pg">
+<div class="styles_wrapper">
+  
+       
+      
+       <% @genres.each do |genre| %>
+         <% unless genre.name == 'No genre' %> 
+         <div class="style_div" id="<%= genre.name%>">
+          <h3>
             <%= genre.name %> <br/>
-          
-            <% genre.styles.each do |style| %>
-              
-                <%= link_to style.name, style_path(:id => style.id)  %> <br/>
-               
-              <% end %>
+          </h3>
+         </div>  
 
-            
-          </li>
-        <% end %>
-     <% end %>
-    </ul>
+              
+         <% end %>
+          
+       <% end %>
+      </ul>
+
   </div>
+  </div>
+
   <script>
-  $('.navvy').css('display','none');
+  $('.side_nav').css('display','none');
+  $('body').css('background-color','white');
   </script>

@@ -4,7 +4,7 @@ require 'find'
 class Product < ActiveRecord::Base
 
 
-#  belongs_to :product_group
+  #  belongs_to :product_group
   belongs_to :product_type
   belongs_to :product_sub_type
   has_many :product_configurations
@@ -16,11 +16,11 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :styles
   belongs_to :associated_collection, class_name:  "Style"
 
-has_many :in_compilation_relationships,
+  has_many :in_compilation_relationships,
     foreign_key: :component_id,
     class_name: "CompilationRelationship"
   has_many :compilations, through: :in_compilation_relationships
-#thing
+  #thing
 
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
@@ -49,11 +49,16 @@ has_many :in_compilation_relationships,
   end
 
   def all_components
-    components + name_only_products
+    self_component = NameOnlyProduct.new(name: name)
+    if product_sub_type.name == "Shower Systems"
+      components + name_only_products
+    else
+      [self_component] + components + name_only_products
+    end
   end
 
   def all_compilations
-    compilations.map { |comp| comp.product }
+    compilations.map { |comp| comp.product }.uniq
   end
 
   def components
@@ -155,13 +160,13 @@ has_many :in_compilation_relationships,
     arr << "Materials_Metal" if number.include?("XX")
     arr << "Materials_Onyx" if number.include?("ONYX")
     arr << "Materials_Marble" if (number.include?("MARBLE") ||
-                        number.include?("STONE"))
+                                  number.include?("STONE"))
     arr << "Materials_China" if (number.include?("HANDPAINTED") ||
-                       number.include?("CHINAMETAL") ||
-                       number.include?("HANDDECORATED"))
+                                 number.include?("CHINAMETAL") ||
+                                 number.include?("HANDDECORATED"))
     arr << "Materials_Stone" if (number.include?("STONE") || number.include?("SLSL") ||
-                       number.include?("SEMI") ||
-                       number.include?("ONYX"))
+                                 number.include?("SEMI") ||
+                                 number.include?("ONYX"))
     arr << "Burnished_&_Polished_Banded" if (number.include?("CHINABANDED"))
     arr << "Burnished_&_Polished_Solid" if (number.include?("CHINAMETAL"))
     arr << "Burnished_&_Polished_Decorated" if (number.include?("METALDECO"))
@@ -176,20 +181,20 @@ has_many :in_compilation_relationships,
     identifiers = self.materials.select { |material| material.burnished? }.length > 0
   end
 
-def polished?
+  def polished?
     identifiers = self.materials.select { |material| material.polished? }.length > 0
   end
 
-searchable do
-    text :name
- text :product_sub_type do
-     product_sub_type.name
-   end
-       text :product_type do
-         product_type.name
-       end
+  # searchable do
+  #     text :name
+  #  text :product_sub_type do
+  #      product_sub_type.name
+  #    end
+  #        text :product_type do
+  #          product_type.name
+  #        end
 
-end
+  # end
 
 
   def china_colors?
@@ -219,6 +224,43 @@ end
     end
 
   end
+
+  def self.uber_exists?(product)
+    case product.product_sub_type
+    when "Shower Systems"
+      Product.shower_system_exists?(number: product.number)
+    when "Elongated Backplate Systems"
+      Product.elong_backplate_system_exists?(number: product.number)
+    else
+      exists?(number: product.number)
+    end
+  end
+
+  private
+
+
+  def self.shower_system_exists?(args)
+    similar_product_exists?(args, "TMO") ||
+      similar_product_exists?(args, "CTS")
+  end
+
+  def self.elong_backplate_system_exists?(args)
+    similar_product_exists?(args, "DOR")
+  end
+
+  def similar_product_exists?(product_args, code)
+    num = product_args[:number]
+    if num.include? code
+      binding.pry
+      cut_here = num.index(code) + code.length - 1
+      sub_number = num[0..cut_here]
+      product.where('number LIKE ?', "#{sub_number}%").any?
+    else
+      false
+    end
+  end
+
+
 
 
 end

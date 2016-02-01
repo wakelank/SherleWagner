@@ -92,7 +92,7 @@ ul.nav{
 
 .contain{
   float: left;
-  /*margin-left: 15%;*/
+  margin-left: 15%;
 }
 
 
@@ -162,10 +162,12 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 .side-nav-contain {
   float: left;
   margin: 2%;
+  margin-left: 0;
+  width: inherit;
   /*min-width: 275px;*/
   
-  /*position:fixed; 
-  top:20;*/
+  position:fixed; 
+  top:20;
   overflow-y: scroll;
   
   height: 100%;
@@ -182,6 +184,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 .navvy{
   padding-top: 9.5em;
+  width: 85%;
 }
 .navvy .panel-sub-heading {
   padding-left: 0;
@@ -310,6 +313,11 @@ a.sub_type_tile_title {
 
 /*======Product Show ========*/
 /*+++++THE PRODUCT SHOW PAGE++++++*/
+.back{
+  border: none;
+  color: black;
+  padding: 0;
+}
 
 li.highlighted{
   border: thin solid black;
@@ -360,32 +368,45 @@ li.highlighted{
 
 #alt_imgs{
   list-style: none;
-  padding-right: 0;
+  padding-left: 0;
   overflow: auto;
+  
   /*height: auto;*/
   /*width:100%;*/
 
   
 }
-.alt_choice{
-  opacity: .4;
-}
+
 #alt_imgs li{
   
   font-size: 10px;
-  float: right;
+  float: left;
   margin: 2px;
-  margin-right: 0;
+  margin-left: 0;
   padding:0;
+  
+}
+#alt_imgs img{
+border: thin solid #e5e6df;
+
 }
 .alt_img:hover{
   cursor: pointer;
 }
+.alt_choice{
+  opacity: .4;
+
+}
+#alt_imgs li.alt_img.alt_choice img{
+  border: thin solid black;
+}
+
+
 .product_info{
   /*stuff to R of image*/
   float: left;
   padding-left: 2em;
-  padding-top: 1em;
+  /*padding-top: 1em;*/
   width:44%;
   color: grey;
 }
@@ -408,7 +429,7 @@ li.highlighted{
   color:gray;
 }
 .product_info h3#prod_name{
-  height: 2em;
+  height: 3em;
   color: black;
 }
 
@@ -583,17 +604,37 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
     margin: 0 auto;
 }
 
-
-
-
-
-/*STYLES PAGE*/
-.style_tile{
-  width: 22em;
+/* #######EDIT PRODUCTS####### */
+.setters{
+  padding-left: 3.5em;
 }
-.styles_list{
-  margin-left: 9%;
+
+/*STYLES / COLLECTIONS PAGE*/
+.style_div{
+  width: 48%;
+  height: 40%;
+  margin:0.5em;
+  float: left;
+  border: thin solid black;
+  padding: 0;
 }
+.styles_wrapper{
+  margin:0 auto;
+  margin-top: 11em;
+  
+width: 100%;
+  
+  height:90vh;
+}
+.pg{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding-left: 2%;
+  height: 100vh;
+}
+
 /*footer*/
 .footer {
   position:fixed;
