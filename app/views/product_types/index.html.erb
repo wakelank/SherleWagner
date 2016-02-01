@@ -3,14 +3,17 @@
   <div class="list_wrapper">
      
     <ul class="prod_list">
-      <% if params['name'] %>
+      <% if @id %>
+      
 <script>
-  var prm = decodeURIComponent(window.location.search.substring(1))
-  var cat_name = prm.split('=')[1];
-  var panel = '#' + cat_name
-  var panel2 = panel + "1";
-    $(panel2).collapse('toggle');
-  $(panel).find('a').trigger('click')
+  $("#content_wrapper").html("<%= escape_javascript(render partial: 'prod_cat', locals: {products: @selected} ) %>");
+  var type = $('#subtype_list_name')[0].textContent;
+   panel = '#' + type + "1";
+   setTimeout(function(){
+    $(panel).collapse('toggle');
+  },50);
+  
+
 </script>
   <% else %>
   
@@ -37,10 +40,7 @@
      var thiss =$(this);
       var cat = thiss[0].id;
       var type_id = $("#"+cat).find('a').attr('href').split('=')[1];
-      //history state is a wormhole
-      //window.history.pushState(null, null, "product_types");
-     // window.history.pushState(type_id, null,"product_types/"+type_id);
-
+      
      var panel = '#' + cat + "1";
     $(panel).collapse('toggle');
 

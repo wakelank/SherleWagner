@@ -3,7 +3,7 @@ $(document).on("page:change", (function(){
      switch ($('body').attr('class')){
       case 'products show':
       var configurationObject = {};
-         tearSheetForm = document.getElementById('tearsheet-form');
+        var tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
         var product_id = tearSheetForm.elements["product_id"].value;
         // var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
@@ -21,13 +21,15 @@ $(document).on("page:change", (function(){
           var trg = $(e.target);
         swatch_tile_actions(trg,'#product_materials_list');
         });
+        
 
         nav_back();
 
+
         //select the featured image from the alt's
       
-        image = $('.product_image')[0].dataset.url;
-        matchr = image.match(/\/[^\/]+.jpg/);
+        var image = $('.product_image')[0].dataset.url;
+        var matchr = image.match(/\/[^\/]+.jpg/);
 
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
@@ -42,22 +44,36 @@ $(document).on("page:change", (function(){
           if ($($(t).parents()[1]).hasClass('finishes')){
              ident = t.dataset.finish_identifier;
              parent_div = '#product_finishes_list';
-          }else{
+          }else if ($($(t).parents()[1]).hasClass('materials')){
               ident = t.dataset.material_identifier;
               parent_div = '#product_materials_list';
+          }else if ($($(t).parents()[1]).hasClass('china_colors')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_china_list';
+          }else{
+
           }
            
-          if (image.includes('-'+ ident )){
+          if (image.includes('-'+ ident ) && parent_div == '#product_china_list' ){
             //console.log(t);
-            // $(t).addClass('highlight');
-            $t = $(t);
+             $(t).addClass('highlight');
+            // $t = $(t);
             
-            pr = $(parent_div);
-            swatch_tile_actions($t, pr);
+            // pr = $(parent_div);
+            // swatch_tile_actions($t, pr); 
+          }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+            //console.log(t);
+             // $(t).addClass('highlight');
+            var $t = $(t);
             
+            var pr = $(parent_div);
+            swatch_tile_actions($t, pr); 
           }
-
         }); 
+
+         //set the current configuration
+conff = $('.alt_choice')[0]
+        swap_product_info_for_configuration(conff);
 
 
 
@@ -66,17 +82,24 @@ $(document).on("page:change", (function(){
         $('.alt_img').click(function(){
           var thiz = this;
            var new_img = thiz.dataset.url;
+           new_config = thiz;
           swap_product_image(new_img);
+          swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
+          //SWAP OUT PRODUCT INFO W INFO FROM DATASET//
+
+
+
 
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
             var mat = t.dataset.material_identifier;
             var fin = t.dataset.finish_identifier;
             if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
-              console.log(mat);
+      //TODO refactor for all possible finishes ******
+              // console.log(mat);
               $(t).trigger('click');
-              console.log(t);
+              // console.log(t);
             }
 
           }); 
@@ -111,7 +134,24 @@ $(document).on("page:change", (function(){
 
      }
       
-     
+  function swap_product_info_for_configuration(li){
+    var config = li.dataset.number;
+    $('.prod-config-number').html(li.dataset.number);
+    $('.prod-config-description #description').html(li.dataset.description);
+    show_only_config_components(config);
+  }
+  function show_only_config_components(config){
+    var comp = $('#components_list').find('li');
+    comp.hide();
+    
+    $.each(comp, function(i, c){
+      
+      if (c.dataset.configurations.indexOf(config) >= 0){
+        $(c).show();
+      }
+
+    });
+  }
 
    function swap_product_image(url){
     $('.product_image').css('background-image','url('+ url +')');
@@ -178,8 +218,8 @@ $(document).on("page:change", (function(){
 
      function setProductInfoWithConfiguration(config){
        if (typeof config != "undefined") {
-           $('.prod-config-number').html(config.number);
-           $('.prod-config-description #description').html(config.description);
+           // $('.prod-config-number').html(config.number);
+           // $('.prod-config-description #description').html(config.description);
            $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
@@ -216,25 +256,8 @@ $(document).on("page:change", (function(){
            $(choice_id).css("background-size", 'contain');
            ct1 = configurationObject;
           
-            $.ajax({
-              url: "/product_configurations/show",
-              type: 'GET',
-              dataType: 'json',
-              data: configurationObject,
-              success: function(data){
-               console.log("success" + JSON.stringify(data));
-               setProductInfoWithConfiguration(data.configuration[0])
-               // dta = data.configuration[0]
-               // cta = configurationObject;
-
-              },
-              error: function(xhr, options, err){
-               console.log("ajax error");
-               // cta = configurationObject;
-
-              }
-            });
-        // });
+            
+        
       }
       
 

@@ -2,25 +2,22 @@
 <div class="styles_wrapper">
 
      
-    <ul class="styles_list ">
+    
      <% @genres.each do |genre| %>
        <% unless genre.name == 'No genre' %> 
-         <li class ="style_tile">
-            <%= genre.name %> <br/>
-          
-            <% genre.styles.each do |style| %>
-              
-                <%= link_to style.name, style_path(:id => style.id)  %> <br/>
-               
-              <% end %>
+       <div class="style_div" id="<%= genre.name%>">
+        <h3>
+          <%= genre.name %> <br/>
+        </h3>
+       </div>  
 
             
-          </li>
-        <% end %>
+       <% end %>
+        
      <% end %>
     </ul>
   </div>
 
   <script>
-  $('.navvy').css('display','none');
+  $('.side_nav').css('display','none');
   </script>

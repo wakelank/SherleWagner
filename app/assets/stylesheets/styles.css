@@ -164,7 +164,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   margin: 2%;
   margin-left: 0;
   width: inherit;
-  min-width: 275px;
+  /*min-width: 275px;*/
   
   position:fixed; 
   top:20;
@@ -313,6 +313,11 @@ a.sub_type_tile_title {
 
 /*======Product Show ========*/
 /*+++++THE PRODUCT SHOW PAGE++++++*/
+.back{
+  border: none;
+  color: black;
+  padding: 0;
+}
 
 li.highlighted{
   border: thin solid black;
@@ -363,7 +368,7 @@ li.highlighted{
 
 #alt_imgs{
   list-style: none;
-  padding-right: 0;
+  padding-left: 0;
   overflow: auto;
   
   /*height: auto;*/
@@ -375,9 +380,9 @@ li.highlighted{
 #alt_imgs li{
   
   font-size: 10px;
-  float: right;
+  float: left;
   margin: 2px;
-  margin-right: 0;
+  margin-left: 0;
   padding:0;
   
 }
@@ -401,7 +406,7 @@ border: thin solid #e5e6df;
   /*stuff to R of image*/
   float: left;
   padding-left: 2em;
-  padding-top: 1em;
+  /*padding-top: 1em;*/
   width:44%;
   color: grey;
 }
@@ -603,11 +608,14 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
 
 
 /*STYLES PAGE*/
-.style_tile{
-  width: 22em;
+.style_div{
+  width: 48%;
+  height: 9em;
+  float: left;
+  border: solid black;
 }
-.styles_list{
-  
+.styles_wrapper{
+  margin-left: 0;
   margin-top: 11em;
 }
 /*footer*/
