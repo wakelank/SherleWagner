@@ -221,10 +221,10 @@ def polished?
 
   end
 
-  def self.exitst?(product)
-    super.exists?(product.sub('CTO','TMO')) ||
-      super.exists?(product.sub('TMO','CTO')) ||
-      super
+  def self.uber_exists?(product)
+    exists?(number: product.number.sub('CTO','TMO')) ||
+      exists?(number: product.number.sub('TMO','CTO')) ||
+      exists?(number: product.number)
   end
 
 
