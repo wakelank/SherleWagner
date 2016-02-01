@@ -75,8 +75,10 @@ class DataRow
   end
 
   def product
-    Product.find_by(number: product_number)
+    Product.find_by(number: product_number) ||
+      Product.find_similar(product_number)
   end
+
 
   def component
     ebps_id = ProductSubType.find_by(name: "Elongated Back Plate Systems").id

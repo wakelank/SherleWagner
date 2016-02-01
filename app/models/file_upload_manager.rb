@@ -20,7 +20,6 @@ class FileUploadManager
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
 
-
       if !Product.uber_exists?(product) && !data_row.component?
         begin
 

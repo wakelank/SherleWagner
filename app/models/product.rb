@@ -226,7 +226,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.uber_exists?(product)
-    case product.product_sub_type
+    case product.product_sub_type.name
     when "Shower Systems"
       Product.shower_system_exists?(number: product.number)
     when "Elongated Backplate Systems"
@@ -236,25 +236,37 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.find_similar(number)
+    if number.include? 'CTS'
+      number.sub!('CTS', 'TMO')
+      return Product.find_by(number: number)
+    elsif number.include? 'TMO'
+      number.sub!('TMO', 'CTS')
+      return Product.find_by(number: number)
+    end
+  end
   private
 
 
   def self.shower_system_exists?(args)
-    similar_product_exists?(args, "TMO") ||
-      similar_product_exists?(args, "CTS")
+    args_tmo = args
+    args_tmo[:number].sub!('CTS', 'TMO')
+    args_cts = args
+    args_cts[:number].sub!('TMO', 'CTS')
+    similar_product_exists?(args_tmo, "TMO") ||
+      similar_product_exists?(args_cts, "CTS")
   end
 
   def self.elong_backplate_system_exists?(args)
     similar_product_exists?(args, "DOR")
   end
 
-  def similar_product_exists?(product_args, code)
+  def self.similar_product_exists?(product_args, code)
     num = product_args[:number]
     if num.include? code
-      binding.pry
       cut_here = num.index(code) + code.length - 1
       sub_number = num[0..cut_here]
-      product.where('number LIKE ?', "#{sub_number}%").any?
+      Product.where('number LIKE ?', "#{sub_number}%").any?
     else
       false
     end
