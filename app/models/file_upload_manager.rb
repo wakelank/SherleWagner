@@ -22,7 +22,7 @@ class FileUploadManager
       product = Product.new(data_row.product_args)
 
 
-      if !Product.exists?(number: product.number) && !data_row.component?
+      if !Product.uber_exists?(number: product.number) && !data_row.component?
         begin
 
          # style = data_row.get_style

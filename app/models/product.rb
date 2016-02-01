@@ -221,23 +221,27 @@ def polished?
 
   end
 
-  def self.uber_exists?(product)
-    Product.shower_system_exists?(product) ||
-      Product.elong_backplate_system_exists?(product) ||
-      exists?(number: product.number)
+  def self.uber_exists?(args)
+    Product.shower_system_exists?(args) ||
+      Product.elong_backplate_system_exists?(args) ||
+      exists?(args)
   end
 
   private
 
-  def self.shower_system_exists?(product)
-    exists?(number: product.number.sub('CTO','TMO')) ||
-      exists?(number: product.number.sub('TMO','CTO')) 
+  def self.shower_system_exists?(args)
+    exists?(number: args[:number].sub('CTO','TMO')) ||
+      exists?(number: args[:number].sub('TMO','CTO')) 
   end
 
-  def self.elong_backplate_system_exists?(product)
-    num = product.number
-    backplate_num = num[0..num.index("DOR")+2]  
-    Product.where('number LIKE ?', "#{backplate_num}%").any?
+  def self.elong_backplate_system_exists?(args)
+    num = args[:number]
+    if num.include? "DOR"
+      backplate_num = num[0..num.index("DOR")+2]  
+      Product.where('number LIKE ?', "#{backplate_num}%").any?
+    else
+      false
+    end
   end
 
 
