@@ -7,6 +7,13 @@
       
 <script>
   $("#content_wrapper").html("<%= escape_javascript(render partial: 'prod_cat', locals: {products: @selected} ) %>");
+  var type = $('#subtype_list_name')[0].textContent;
+   panel = '#' + type + "1";
+   setTimeout(function(){
+    $(panel).collapse('toggle');
+  },50);
+  
+
 </script>
   <% else %>
   
