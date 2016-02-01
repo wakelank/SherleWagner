@@ -604,8 +604,10 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
     margin: 0 auto;
 }
 
-
-
+/* #######EDIT PRODUCTS####### */
+.setters{
+  padding-left: 3.5em;
+}
 
 /*STYLES PAGE*/
 .style_div{
