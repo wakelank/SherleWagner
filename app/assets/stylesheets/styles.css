@@ -606,8 +606,8 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
 .style_tile{
   width: 22em;
 }
-.styles_list{
-  
+.styles_wrapper{
+  margin-left: 0;
   margin-top: 11em;
 }
 /*footer*/

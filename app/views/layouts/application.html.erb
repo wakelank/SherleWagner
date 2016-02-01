@@ -21,23 +21,25 @@
     </div>
   </div>                      
 
-  <div class="contain">
+  
        <% if controller_name == "styles" && action_name == "index" %>
         <%= yield %>
 
        <% else %>
-
+  <div class="contain">
         <div id="content_wrapper">
             <%= yield %>
             
         </div>
+
         <%= render 'recently_viewed_products/recently_viewed_products' %>
+  </div>  
         <% end %>
          
        
        
       <%= render 'layouts/footer' %>
-  </div>  
+  
 </div>
   
 
