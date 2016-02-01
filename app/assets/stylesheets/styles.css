@@ -644,3 +644,7 @@ width: 100%;
    width:100%;
    background:#353535;
 }
+li.foot_link {
+    display: inline;
+    margin: 0 1em;
+}

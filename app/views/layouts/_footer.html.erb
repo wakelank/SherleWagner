@@ -7,5 +7,15 @@
     <%= link_to 'login', login_path %>
   <% end %>
   <%= link_to 'favorites', favorites_path if !cookies[:favorites].nil? %>
-  <!-- %= render 'recently_viewed_products/recently_viewed_products' %> -->
+  <div class="links">
+    <ul class="links_list">
+      <!-- Contact Us, Showroom Locations, History & Manufacturing, etc
+One of these should be an option to go to technical drawings/tear sheets -->
+      <li class="foot_link">Contact Us</li>
+      <li class="foot_link">Showroom Locations</li>
+      <li class="foot_link">History & Manufacturing</li>
+      <li class="foot_link">technical drawings/tear sheets</li>
+
+    </ul>
+  </div>
 </div> 
