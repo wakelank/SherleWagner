@@ -1,4 +1,3 @@
-require 'english'
 require 'csv'
 require 'find'
 
@@ -108,7 +107,7 @@ class Product < ActiveRecord::Base
       arr << "ONYX"
       arr < "MARBL"
     end
-    arr 
+    arr
   end
 
   def associated_collection_or_null
@@ -116,7 +115,7 @@ class Product < ActiveRecord::Base
   end
 
   def add_configuration(configuration)
-    if !configuration.nil? 
+    if !configuration.nil?
       self.product_configurations << configuration
     end
   end
@@ -207,7 +206,7 @@ class Product < ActiveRecord::Base
   end
 
   def add_finishes
-    Finish.add_finishes_to self if self.needs_finishes? 
+    Finish.add_finishes_to self if self.needs_finishes?
   end
 
   def add_china_color
@@ -221,7 +220,7 @@ class Product < ActiveRecord::Base
   def add_associated_collection
     coll = self.find_associated_collection
     if !coll.nil?
-      self.associated_collection = coll 
+      self.associated_collection = coll
     end
 
   end
@@ -265,5 +264,3 @@ class Product < ActiveRecord::Base
 
 
 end
-
-
