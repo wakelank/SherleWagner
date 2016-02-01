@@ -313,6 +313,11 @@ a.sub_type_tile_title {
 
 /*======Product Show ========*/
 /*+++++THE PRODUCT SHOW PAGE++++++*/
+.back{
+  border: none;
+  color: black;
+  padding: 0;
+}
 
 li.highlighted{
   border: thin solid black;

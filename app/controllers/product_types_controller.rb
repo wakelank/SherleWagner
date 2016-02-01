@@ -1,8 +1,15 @@
 class ProductTypesController < ApplicationController
 
   def index
-    binding.pry
+    
+
     @product_types = ProductType.all
+    if params["id"]
+      @id = params["id"]
+      @selected = Product.where(product_type: @id)
+    @product_type = ProductType.find_by(id: @id)
+
+    end
   end
   
   def show

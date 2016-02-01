@@ -7,8 +7,8 @@
             
             <label id='<%= product_type.id  %>' class="prod-cat">
               <%= form_tag({controller:'product_types', action:'index'},  method: 'post')  do %>
-              <%= hidden_field_tag id: product_type.id %>
-              <%= submit_tag product_type.name %>
+              <%= hidden_field_tag("id", product_type.id) %>
+              <%= submit_tag product_type.name, class: 'back' %>
 
               <% end %>
               </label>
