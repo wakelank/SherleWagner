@@ -1,10 +1,5 @@
 require 'find'
 class DataRow
-  extend ImageFilePath
-
- # IMAGES_PATH = "/Users/ph1am/Desktop/SW_website/images1"
-  # IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
-   IMAGES_PATH = image_file_path
 
 
   attr_reader :component_number
@@ -21,7 +16,6 @@ class DataRow
     @image_name = get_image_name
     @product_type = get_product_type
     @product_sub_type = get_product_sub_type
-    @image = get_image
     @style = get_style
     @genres = get_genres
     
@@ -65,7 +59,6 @@ class DataRow
       number: product_number,
       product_type: @product_type,
       product_sub_type: @product_sub_type,
-      image: @image
 
     }
     if compilation?
@@ -133,17 +126,6 @@ class DataRow
 
   def get_product_configuration
     ProductConfiguration.get_arg @row
-  end
-
-  def get_image
-    image_file = NullObject.new
-    Find.find(IMAGES_PATH) do |filepath|
-      if File.basename(filepath) == @image_name
-        image_file = File.new(filepath) || NullObject.new
-      end
-    end
-    image_file
-        
   end
 
   def get_style
