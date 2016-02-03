@@ -8,7 +8,7 @@ extend ImageFilePath
 
 # IMAGES_PATH = "/Users/ph1am/Desktop/SW_website/images1"
 # IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
-IMAGES_PATH = image_file_path
+#IMAGES_PATH = image_file_path
 
 class FileUploadManager
   extend ImageFilePath
@@ -17,7 +17,7 @@ class FileUploadManager
     @file = file
     @bucket = get_bucket
     @bucket_objects = get_bucket_objects
-    binding.pry
+    @images_on_aws = @bucket_objects.keys
   end
 
   def upload
@@ -28,7 +28,7 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
-      product.image = get_image data_row.get_image_name
+      product.image = get_image_from_aws data_row.get_image_name
 
       if !Product.uber_exists?(product) && !data_row.component?
         begin
@@ -91,9 +91,17 @@ class FileUploadManager
         
   end
 
+  def get_image_from_aws image_name
+    if @images_on_aws.include? image_name
+      @bucket_objects[image_name]
+    else
+      NullObject.new
+    end
+  end
+
   def get_bucket
     begin 
-      bucket = AWS::S3.new().buckets["sw-image-storage"]
+      bucket = AWS::S3.new().buckets["sw-raw-images"]
     rescue
       bucket = NullBucket.new
       binding.pry
