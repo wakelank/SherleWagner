@@ -15,6 +15,9 @@ class FileUploadManager
 
   def initialize file
     @file = file
+    @bucket = get_bucket
+    @bucket_objects = get_bucket_objects
+    binding.pry
   end
 
   def upload
@@ -86,6 +89,32 @@ class FileUploadManager
     end
     image_file
         
+  end
+
+  def get_bucket
+    begin 
+      bucket = AWS::S3.new().buckets["sw-image-storage"]
+    rescue
+      bucket = NullBucket.new
+      binding.pry
+    end
+    bucket
+  end
+
+  def get_bucket_objects
+    obj_hash = {}
+    begin
+      @bucket.objects.each do |obj|
+
+        image_name = obj.key.split('/').last
+        image_url = obj.public_url.to_s
+        obj_hash[image_name] = image_url
+
+      end
+    rescue
+      binding.pry
+    end
+    obj_hash
   end
 
 end
