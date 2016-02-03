@@ -1,5 +1,5 @@
 
-require 'paperclip_stub.rb'
+#require 'paperclip_stub.rb'
 
 require 'csv'
 require 'find'
@@ -93,7 +93,11 @@ class FileUploadManager
 
   def get_image_from_aws image_name
     if @images_on_aws.include? image_name
-      @bucket_objects[image_name]
+      begin
+        @bucket_objects[image_name]
+      rescue
+        binding.pry
+      end
     else
       NullObject.new
     end
