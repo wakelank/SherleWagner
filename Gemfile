@@ -30,7 +30,7 @@ gem "capistrano", "~> 3.4", group: :development
 gem 'capistrano-passenger'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
-
+gem 'sshkit', '~> 1.3'
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
