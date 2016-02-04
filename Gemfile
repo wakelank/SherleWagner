@@ -45,3 +45,6 @@ group :development, :test do
   # meta_request allows RailsPanel Chrome extension to work
   gem 'meta_request'
 end
+group :production do
+  gem 'pry-remote'
+end
