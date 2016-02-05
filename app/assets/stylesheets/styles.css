@@ -330,7 +330,7 @@ li.highlighted{
   padding-top: 1em;
 }
 .prod-text{
-  padding-left: 15%;
+  /*padding-left: 15%;*/
 }
 .detail_list {
   float:left;
@@ -348,17 +348,50 @@ li.highlighted{
   background-image: url("/assets/ex1.png");
 }
 
+
 .product_image{
   width: 99.5%;
   height: 400px;
+  position: relative;
       background-size: contain;
     background-position-y: 60%;
   float: left;
   margin-right: 3em;
+  margin-bottom: 20px;
   background-color: white;
     background-repeat: no-repeat;
   
 }
+.product_info{
+  /*stuff to R of image*/
+  float: left;
+  padding-left: 2em;
+  /*padding-top: 1em;*/
+  width:44%;
+  color: grey;
+}
+
+.config_info{
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+}
+.prod-config-number{
+  color: darkgrey;
+  margin: 0;
+}
+#shown{
+  font-style: italic;
+  color: lightgrey;
+  font-size: 15px;
+
+}
+.prod-config-description{
+  color: grey;
+  
+}
+
 .image_list{
   float: left;
   padding-top: 10px;
@@ -402,29 +435,7 @@ border: thin solid #e5e6df;
 }
 
 
-.product_info{
-  /*stuff to R of image*/
-  float: left;
-  padding-left: 2em;
-  /*padding-top: 1em;*/
-  width:44%;
-  color: grey;
-}
-.prod-config-description{
-  color: black;
-  margin-top: 0;
-  height: 2em;
-  padding-top: 5px;
-}
-#shown{
-  font-style: italic;
-  color: grey;
-  font-size: 15px;
 
-}
-.prod-config-number{
-  color: darkgrey;
-}
 .product_info a{
   color:gray;
 }
@@ -500,13 +511,18 @@ div.tearsheet-form-box {
   clear: left;
   margin-right: .5em;
 }
-.finishes, .materials, .china_colors{
+.swatches{
   
   max-width: 49%;
   float: left;
   color: grey;
-  padding-left: 1em;
+  padding-left: 2em;
 
+}
+.finishes{
+  clear: left;
+  margin-right: .5em;
+  padding-left: 1em;
 }
 .materials, .china_colors {
   
@@ -565,6 +581,7 @@ div.tearsheet-form-box {
   padding-left: 2%;
   margin-left: 3%;
   background-color: #e5e6df;
+  z-index: 0;
   }
 
 .recently-viewed-list{

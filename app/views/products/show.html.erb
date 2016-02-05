@@ -6,8 +6,26 @@
 
 
   <div class="images">   
-    <div class="product_image" style="background-image:url(<%= @product.image.url%>)" data-url= '<%= @product.image.url %>' ></div>  
+    <div class="product_image" style="background-image:url(<%= @product.image.url%>)" data-url= '<%= @product.image.url %>' >
+      <div class="config_info">
+      <h5 class="prod-config-number">
+         <%= @product.product_configurations.last.number %>
+      </h5>
+      
+      
+      
+    </div>
+
+    </div>  
+    <% if @product.product_configurations.length > 0 %>
+    <div class="prod-config-description">
+      <h4>
+         <span id="shown">shown:</span> <span id="description"><%= @product.product_configurations.first.description %></span>
+      </h4>
+      </div>
+      <% end %>
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
+
     <% if @product.product_configurations.count > 1 %>
     <div class="image_list">
 
@@ -27,21 +45,15 @@
       <h3 id="prod_name">
         <%= @product.name%>
       </h3>
-
-      <% if @product.product_configurations.length > 0 %>
-      <h4 class="prod-config-description">
-        <span id="shown">shown:</span> <span id="description"> <%= @product.product_configurations.first.description %></span>
-      </h4>
-      <h5 class="prod-config-number">
-         <%= @product.product_configurations.last.number %>
-      </h5>
-      <% end %>
-
-      <% if admin? %>
-    <%= link_to 'edit product', edit_product_path %>
+     <% if admin? %>
+      <%= link_to 'edit product', edit_product_path %>
     
-  <% end %>
+     <% end %>
     </div>
+    
+
+
+ 
 
 
     
