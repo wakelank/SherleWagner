@@ -58,7 +58,7 @@
         
       
       <ul id="components_list" class="comp_list links">
-        <p> Components:</p>
+        <span id="components">Components:</span>
         <% @product.all_components.each do |component| %>
           <% if component.class.name == "Product" %>
             <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>

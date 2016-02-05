@@ -434,7 +434,9 @@ border: thin solid #e5e6df;
   border: thin solid black;
 }
 
-
+#components_list{
+  padding-top: 0;
+}
 
 .product_info a{
   color:gray;
@@ -443,7 +445,9 @@ border: thin solid #e5e6df;
   height: 3em;
   color: black;
 }
-
+#components_list{
+  margin-bottom: 1.5em;
+}
 .centered{
   padding-left: 15%;
 }
@@ -490,12 +494,13 @@ div.tearsheet-form-box {
 .prod_links{
   float: left;
   clear: left;
+  margin-top: 1em;
   text-align: left;
 
 }
 
 .links{
-  padding-top: 2em;
+  padding-top: 1em;
   padding-left: 0;
   list-style: none;
   color: gray;
@@ -511,7 +516,7 @@ div.tearsheet-form-box {
 
 .swatches{
   
-  max-width: 49%;
+  max-width: 52%;
   float: left;
   color: grey;
   /*padding-left: 2em;*/
