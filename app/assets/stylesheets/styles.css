@@ -448,6 +448,7 @@ border: thin solid #e5e6df;
   padding-left: 15%;
 }
 .options{
+  width: 100%;
   float: left;
   clear: left;
 }
@@ -507,21 +508,18 @@ div.tearsheet-form-box {
 .choice_title{
   padding-left: 5px;
 }
-.finishes{
-  clear: left;
-  margin-right: .5em;
-}
+
 .swatches{
   
   max-width: 49%;
   float: left;
   color: grey;
-  padding-left: 2em;
+  /*padding-left: 2em;*/
 
 }
 .finishes{
   clear: left;
-  margin-right: .5em;
+  margin-right: 3em;
   padding-left: 1em;
 }
 .materials, .china_colors {
