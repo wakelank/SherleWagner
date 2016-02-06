@@ -92,7 +92,7 @@ ul.nav{
 
 .contain{
   float: left;
-  margin-left: 15%;
+  margin-left: 18em;
 }
 
 
@@ -153,8 +153,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 /*===Side Nav ===*/
 .side_nav{
-  width: 15%;
-  min-width: 240px;
+  width: 17em;
+  min-width: 17em;
   /*height: 100vh;*/
   display: block;
   float: left;
@@ -163,9 +163,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   float: left;
   margin: 2%;
   margin-left: 0;
-  width: inherit;
   /*min-width: 275px;*/
-  
   position:fixed; 
   top:20;
   overflow-y: scroll;
@@ -175,7 +173,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 .nav-wrap {
   float:left;
-  width: 100%;
+  width: 18em;
   
   padding: 5px;
 }
@@ -184,7 +182,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 .navvy{
   padding-top: 9.5em;
-  width: 85%;
+  width: 100%;
 }
 .navvy .panel-sub-heading {
   padding-left: 0;
