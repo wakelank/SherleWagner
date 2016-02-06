@@ -591,7 +591,9 @@ div.tearsheet-form-box {
     text-align: center;
    
 }
-
+.recently-viewed-products a {
+  float: left;
+}
 .recently-viewed-products{
     color: grey;
     width: 15%;
