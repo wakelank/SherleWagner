@@ -201,7 +201,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     
     padding-left: 4px;
   }
+  .panel-title a{
+    color: black;
+  }
 
+  input.back{
+    background-color: whitesmoke;
+  }
 /*===REGULAR Side Nav ===*/
  .navvy{
     padding-top: 150px;
@@ -312,6 +318,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 /*======Sub-type Show Dev ========*/
 
+a .sub_type_tile{
+  color: black;
+}
 .sub_type_pane{
   padding: 0.5em;
   text-align: center;
