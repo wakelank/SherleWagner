@@ -175,6 +175,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   #content_wrapper{
     min-width: 700px;
         width: 100%;
+        padding-top: 1em;
   }
   ul.prod_list{
     float: left; 
@@ -184,8 +185,23 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   .panel-body.filter{
     display: inline-flex;
   }
+  .hide-dropdowns{
+    height: 4em;
+    margin-top: 0;
+    margin-left: 1em;
+    margin-bottom: .5em;
+    background-color: whitesmoke;
+    border: thin solid whitesmoke;
+    border-radius: 10px;
+    vertical-align: bottom;
 
-}
+  }
+  .filter ul{
+    list-style: none;
+    
+    padding-left: 4px;
+  }
+
 /*===REGULAR Side Nav ===*/
  .navvy{
     padding-top: 150px;
