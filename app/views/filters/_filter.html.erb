@@ -1,12 +1,14 @@
-<%= filter.name %>
+
 
  <div class="filter">
    <ul>
+    <%= filter.name %>
      <% filter.filter_values.each do |filter_value| %>
       <li>
         <label><input type="checkbox" value="" id="<%= filter_value.filter_name_and_value %>"> <%= filter_value.name %> </label>
       </li>
     <% end %>
     </ul>
+   
   </div>
 <!-- <img alt="meseeks" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRJHrSQHxqFjiv1n8qJiN64E0wveCCaqQEK7LbuTnLS_-qEU_T" /> -->

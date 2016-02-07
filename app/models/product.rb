@@ -226,6 +226,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.uber_exists?(product)
+    
     case product.product_sub_type.name
     when "Shower Systems"
       Product.shower_system_exists?(number: product.number)

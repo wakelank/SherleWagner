@@ -18,8 +18,66 @@ $(document).on('ready page:load', function () {
   uncheckOnCollapse("#Wall_Coverings");
   
   keepCatOpenOnClick();
+
+   $( ".hide-dropdowns" ).click(function()
+   {
+    
+      if(isSmall == true){
+      yo = $(this);
+
+       // $('.panel-heading:not($(this))').hide()
+       opn = $('.panel').find('.in');
+       pn = opn.parent();
+        $('.panel:not(yo)').toggle();
+        
+        $(opn).show();
+        $(pn).show();
+        $(yo).parent().show();
+        $( ".panel-title" ).click(function()
+        {
+          $('.panel:not(yo)').show();
+        });
+
+      }
+      
+    });
 });
 
+// media query
+var isSmall = false;
+if (matchMedia) {
+  var mq = window.matchMedia("(min-width: 800px)");
+  mq.addListener(WidthChange);
+  WidthChange(mq);
+}
+
+// media query change
+function WidthChange(mq) {
+
+  if (mq.matches) {
+    // window width is at least 500px
+    console.log ('IIITSSSS BIIIIG')
+    isSmall = false;
+    $('.hide-dropdowns').hide();
+    $('.panel').show();
+  } else {
+    // window width is less than 500px
+    console.log ('IIITSSSS SMALLL')
+
+
+    isSmall = true;
+    $('.hide-dropdowns').show();
+
+    console.log(isSmall);
+    $('body').addClass('mobile');
+  }
+
+}
+
+ 
+
+
+//end media query
 
 function productCategory() {
   $( ".prod-cat" ).click(function()
@@ -28,8 +86,8 @@ function productCategory() {
     
     var link = $(anchor).attr('href');
     var text = $(anchor).text();
-    console.log(text);
-    console.log("clicked product-type");
+    // console.log(text);
+    // console.log("clicked product-type");
 
      $trgt = $(link);
      tag = $trgt.selector;
@@ -88,7 +146,7 @@ function hideSubTypeNeighbors(panel){
         selectr = panel+" .sub-type-panel .in";
 
           $(selectr).collapse('hide');
-           console.log('hiding');
+           // console.log('hiding');
 
   });
 
