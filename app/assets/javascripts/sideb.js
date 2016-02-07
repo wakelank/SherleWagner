@@ -20,6 +20,29 @@ $(document).on('ready page:load', function () {
   keepCatOpenOnClick();
 });
 
+// media query
+
+if (matchMedia) {
+  var mq = window.matchMedia("(min-width: 800px)");
+  mq.addListener(WidthChange);
+  WidthChange(mq);
+}
+
+// media query change
+function WidthChange(mq) {
+
+  if (mq.matches) {
+    // window width is at least 500px
+    console.log ('IIITSSSS BIIIIG')
+  } else {
+    // window width is less than 500px
+    console.log ('IIITSSSS SMALLL')
+    
+  }
+
+}
+
+//end media query
 
 function productCategory() {
   $( ".prod-cat" ).click(function()
