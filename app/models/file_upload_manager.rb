@@ -11,7 +11,7 @@ extend ImageFilePath
 #IMAGES_PATH = image_file_path
 
 class FileUploadManager
-  extend ImageFilePath
+#  extend ImageFilePath
 
   def initialize file
     @file = file
