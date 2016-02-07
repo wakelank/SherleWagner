@@ -107,6 +107,7 @@ ul.nav{
   #content_wrapper {
     min-width: 995px;
 }
+ 
 }
 
 
@@ -162,9 +163,30 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 }
 
+@media (max-width: 800px) {
 
+ .contain{
+    float: left;
+    margin-left: 0;
+    /*THIS IS SO scroll left keeps side nav on top*/
+    position: relative;
+    z-index: -10;
+  }
+  #content_wrapper{
+    min-width: 700px;
+        width: 100%;
+  }
+  ul.prod_list{
+    float: left; 
+    padding-left: 0;
+  }
+  /*===SMALL Side Nav ===*/
+  .panel-body.filter{
+    display: inline-flex;
+  }
 
-/*===Side Nav ===*/
+}
+/*===REGULAR Side Nav ===*/
  .navvy{
     padding-top: 150px;
   
