@@ -69,7 +69,7 @@ function WidthChange(mq) {
     $('.hide-dropdowns').show();
 
     console.log(isSmall);
-    $('body').addClass('mobile');
+    // $('body').addClass('mobile');
   }
 
 }
