@@ -15,9 +15,9 @@ class FileUploadManager
 
   def initialize file
     @file = file
-    @bucket = get_bucket
-    @bucket_objects = get_bucket_objects
-    @images_on_aws = @bucket_objects.keys
+    @bucket
+    @bucket_objects
+    @images_on_aws
   end
 
   def upload
@@ -92,9 +92,9 @@ class FileUploadManager
   end
 
   def get_image_from_aws image_name
-    if @images_on_aws.include? image_name
+    if images_on_aws.include? image_name
       begin
-        @bucket_objects[image_name]
+        bucket_objects[image_name]
       rescue
         binding.pry
       end
@@ -103,30 +103,38 @@ class FileUploadManager
     end
   end
 
-  def get_bucket
-    begin 
-      bucket = AWS::S3.new().buckets["sw-raw-images"]
-    rescue
-      bucket = NullBucket.new
-      binding.pry
-    end
-    bucket
+  def images_on_aws
+    @images_on_aws ||= bucket_objects.keys
   end
 
-  def get_bucket_objects
-    obj_hash = {}
-    begin
-      @bucket.objects.each do |obj|
-
-        image_name = obj.key.split('/').last
-        image_url = obj.public_url.to_s
-        obj_hash[image_name] = image_url
-
+  def bucket
+    if @bucket.nil?
+      begin 
+        @bucket = AWS::S3.new().buckets["sw-raw-images"]
+      rescue
+        @bucket = NullBucket.new
+        binding.pry
       end
-    rescue
-      binding.pry
     end
-    obj_hash
+    @bucket
+  end
+
+  def bucket_objects
+    if @bucket_objects.nil?
+      @bucket_objects = {}
+      begin
+        bucket.objects.each do |obj|
+
+          image_name = obj.key.split('/').last
+          image_url = obj.public_url.to_s
+          @bucket_objects[image_name] = image_url
+
+        end
+      rescue
+        binding.pry
+      end
+    end
+    @bucket_objects
   end
 
 end
