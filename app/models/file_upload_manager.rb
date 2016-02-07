@@ -33,10 +33,6 @@ class FileUploadManager
       if !Product.uber_exists?(product) && !data_row.component?
         begin
 
-          # style = data_row.get_style
-          # filters = data_row.get_filters
-          # genres= data_row.get_genres
-          # product_configuration = data_row.jget_product_configuration
           product.styles.concat data_row.get_style
           product.filter_values.concat data_row.get_filters
           product.genres.concat data_row.get_genres
