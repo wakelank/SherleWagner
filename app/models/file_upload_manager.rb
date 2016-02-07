@@ -36,7 +36,7 @@ class FileUploadManager
           product.styles.concat data_row.get_style
           product.filter_values.concat data_row.get_filters
           product.genres.concat data_row.get_genres
-          product.add_configuration data_row.get_product_configuration
+          product.add_configuration get_product_configuration data_row
           product.save if product.valid?
         rescue
           binding.pry
@@ -45,7 +45,8 @@ class FileUploadManager
       elsif !data_row.component?
         product = data_row.product
         if !product.nil?
-          product.add_configuration data_row.get_product_configuration
+          product.add_configuration get_product_configuration data_row
+          #product.add_configuration data_row.get_product_configuration
           product.save if product.valid?
         end
 
@@ -75,6 +76,13 @@ class FileUploadManager
   end
 
   private
+
+  def get_product_configuration data_row
+    configuration = ProductConfiguration.new(data_row.configuration_args)
+    configuration.image = get_image_from_aws data_row.get_image_name
+  
+    configuration
+  end
 
   def get_image image_name
     image_file = NullObject.new
