@@ -28,7 +28,7 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
-      #product.image = get_image_from_aws data_row.get_image_name
+      product.image = get_image_from_aws data_row.get_image_name
 
       if !Product.uber_exists?(product) && !data_row.component?
         begin
