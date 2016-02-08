@@ -67,6 +67,13 @@ class DataRow
     args
   end
 
+  def configuration_args
+    args = {
+      number: @specific_number,
+      description: @specific_name
+    }
+  end
+
   def product
     Product.find_by(number: product_number) ||
       Product.find_similar(product_number)
@@ -124,9 +131,9 @@ class DataRow
     {sub_type: @product_sub_type, values: filter_values}
   end
 
-  def get_product_configuration
-    ProductConfiguration.get_arg @row
-  end
+#  def get_product_configuration
+#    ProductConfiguration.get_arg @row
+#  end
 
   def get_style
     Style.get_arg @row

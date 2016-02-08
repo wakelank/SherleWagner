@@ -11,13 +11,13 @@ extend ImageFilePath
 #IMAGES_PATH = image_file_path
 
 class FileUploadManager
-  extend ImageFilePath
+#  extend ImageFilePath
 
   def initialize file
     @file = file
-    @bucket = get_bucket
-    @bucket_objects = get_bucket_objects
-    @images_on_aws = @bucket_objects.keys
+    @bucket
+    @bucket_objects
+    @images_on_aws
   end
 
   def upload
@@ -33,14 +33,10 @@ class FileUploadManager
       if !Product.uber_exists?(product) && !data_row.component?
         begin
 
-          # style = data_row.get_style
-          # filters = data_row.get_filters
-          # genres= data_row.get_genres
-          # product_configuration = data_row.jget_product_configuration
           product.styles.concat data_row.get_style
           product.filter_values.concat data_row.get_filters
           product.genres.concat data_row.get_genres
-          product.add_configuration data_row.get_product_configuration
+          product.add_configuration get_product_configuration data_row
           product.save if product.valid?
         rescue
           binding.pry
@@ -49,7 +45,8 @@ class FileUploadManager
       elsif !data_row.component?
         product = data_row.product
         if !product.nil?
-          product.add_configuration data_row.get_product_configuration
+          product.add_configuration get_product_configuration data_row
+          #product.add_configuration data_row.get_product_configuration
           product.save if product.valid?
         end
 
@@ -80,6 +77,13 @@ class FileUploadManager
 
   private
 
+  def get_product_configuration data_row
+    configuration = ProductConfiguration.new(data_row.configuration_args)
+    configuration.image = get_image_from_aws data_row.get_image_name
+  
+    configuration
+  end
+
   def get_image image_name
     image_file = NullObject.new
     Find.find(IMAGES_PATH) do |filepath|
@@ -92,9 +96,9 @@ class FileUploadManager
   end
 
   def get_image_from_aws image_name
-    if @images_on_aws.include? image_name
+    if images_on_aws.include? image_name
       begin
-        @bucket_objects[image_name]
+        bucket_objects[image_name]
       rescue
         binding.pry
       end
@@ -103,30 +107,38 @@ class FileUploadManager
     end
   end
 
-  def get_bucket
-    begin 
-      bucket = AWS::S3.new().buckets["sw-raw-images"]
-    rescue
-      bucket = NullBucket.new
-      binding.pry
-    end
-    bucket
+  def images_on_aws
+    @images_on_aws ||= bucket_objects.keys
   end
 
-  def get_bucket_objects
-    obj_hash = {}
-    begin
-      @bucket.objects.each do |obj|
-
-        image_name = obj.key.split('/').last
-        image_url = obj.public_url.to_s
-        obj_hash[image_name] = image_url
-
+  def bucket
+    if @bucket.nil?
+      begin 
+        @bucket = AWS::S3.new().buckets["sw-raw-images"]
+      rescue
+        @bucket = NullBucket.new
+        binding.pry
       end
-    rescue
-      binding.pry
     end
-    obj_hash
+    @bucket
+  end
+
+  def bucket_objects
+    if @bucket_objects.nil?
+      @bucket_objects = {}
+      begin
+        bucket.objects.each do |obj|
+
+          image_name = obj.key.split('/').last
+          image_url = obj.public_url.to_s
+          @bucket_objects[image_name] = image_url
+
+        end
+      rescue
+        binding.pry
+      end
+    end
+    @bucket_objects
   end
 
 end

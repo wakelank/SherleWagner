@@ -37,6 +37,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'rspec-activemodel-mocks'
   # gem 'sunspot_solr'
   gem 'pry-rails'
   gem 'pry-nav'
