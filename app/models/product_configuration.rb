@@ -1,6 +1,5 @@
 
 class ProductConfiguration < ActiveRecord::Base
-  #extend ImageFilePath
 
   belongs_to :product
   has_many :has_components_relationships,
