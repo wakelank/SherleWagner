@@ -54,10 +54,10 @@ finishes = [
 img_mod_path = '/images/finishes2/modern/'
 img_orn_path = '/images/finishes2/ornate/'
 
-Finish.create(name: 'non finish', identifier: '00')
+Finish.create!(name: 'non finish', identifier: '00')
 
 finishes.each do |finish|
-  Finish.create(name: finish[:name], identifier: finish[:identifier], modern_swatch_url: img_mod_path + finish[:identifier] + '.jpg', ornate_swatch_url: img_orn_path + finish[:identifier] + '.jpg' )
+  Finish.create!(name: finish[:name], identifier: finish[:identifier], modern_swatch_url: img_mod_path + finish[:identifier] + '.jpg', ornate_swatch_url: img_orn_path + finish[:identifier] + '.jpg' )
 end
 
 materials = [{ type: "China-Hand Painted",
@@ -212,7 +212,7 @@ materials = [{ type: "China-Hand Painted",
 
 
 ]
-Material.create(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
+Material.create!(material_type: "no type", name: "no name", code: "no code", identifier: '0000')
 
 
 materials.each do |material|
@@ -220,7 +220,7 @@ materials.each do |material|
   code = material[:code]
   names = material[:names]
   material[:entries].each do |entry|
-    Material.create(material_type:type, name: entry[:name], code:code, identifier: entry[:identifier] )
+    Material.create!(material_type:type, name: entry[:name], code:code, identifier: entry[:identifier] )
   end
 end
 
@@ -230,12 +230,12 @@ china_colors =  [ { name: "Sand", identifier: "SD" },
         { name: "White", identifier: "WH" },
         { name: "Black", identifier: "BL" }]
 
-ChinaColor.create(name: 'no name', identifier: '00')
+ChinaColor.create!(name: 'no name', identifier: '00')
 
 china_colors.each do |china_color|
   name = china_color[:name]
   identifier = china_color[:identifier]
-  ChinaColor.create(name: name, identifier: identifier)
+  ChinaColor.create!(name: name, identifier: identifier)
 end
 
 
@@ -467,14 +467,14 @@ types = [
   }
 ]
 
-pt = ProductType.create(name: 'no type')
-ProductSubType.create(name: 'no sub type', product_type: pt)
+pt = ProductType.create!(name: 'no type')
+ProductSubType.create!(name: 'no sub type', product_type: pt)
 
 
 types.each do |type|
-  new_type = ProductType.create(name: type[:name])
+  new_type = ProductType.create!(name: type[:name])
   type[:sub_types].each do |sub_type|
-    ProductSubType.create(name: sub_type[:name], product_type: new_type)
+    ProductSubType.create!(name: sub_type[:name], product_type: new_type)
   end
 end
 
@@ -494,13 +494,13 @@ genres_styles = [
   }
 ]
 
-Genre.create(name: "No genre")
-Style.create(name: "no style")
+Genre.create!(name: "No genre")
+Style.create!(name: "no style")
 
 genres_styles.each do |genre_style|
-  genre = Genre.create(name: genre_style[:genre_name])
+  genre = Genre.create!(name: genre_style[:genre_name])
   genre_style[:styles].each do |style|
-    genre.styles << Style.create(name: style)
+    genre.styles << Style.create!(name: style)
   end
 end
 
@@ -579,12 +579,12 @@ genre_filter_hash[:filter_values] = genres_styles.map { |style| style[:genre_nam
 filters << genre_filter_hash
 
 
-Filter.create(name: "no filter").filter_values << FilterValue.create(name: "no filter value")
+Filter.create!(name: "no filter").filter_values << FilterValue.create!(name: "no filter value")
 
 filters.each do |filter|
-  this_filter = Filter.create( name: filter[:name] )
+  this_filter = Filter.create!( name: filter[:name] )
   filter[:filter_values].each do |filter_value|
-    this_filter.filter_values << FilterValue.create(name: filter_value)
+    this_filter.filter_values << FilterValue.create!(name: filter_value)
   end
 end
 
