@@ -39,7 +39,7 @@ class FileUploadManager
           product.add_configuration get_product_configuration data_row
           product.save if product.valid?
         rescue
-          binding.pry
+          # binding.pry
         end
 
       elsif !data_row.component?
@@ -100,7 +100,7 @@ class FileUploadManager
       begin
         bucket_objects[image_name]
       rescue
-        binding.pry
+        # binding.pry
       end
     else
       NullObject.new
@@ -117,7 +117,7 @@ class FileUploadManager
         @bucket = AWS::S3.new().buckets["sw-raw-images"]
       rescue
         @bucket = NullBucket.new
-        binding.pry
+        # binding.pry
       end
     end
     @bucket
@@ -135,7 +135,7 @@ class FileUploadManager
 
         end
       rescue
-        binding.pry
+        # binding.pry
       end
     end
     @bucket_objects
