@@ -102,7 +102,8 @@ ul.nav{
 
 
 /*====The product browse page===*/
-/*LARGE WIDTH?*/
+
+/*===LARGEST WIDTH===*/
 @media (min-width: 1200px) {
   #content_wrapper {
     min-width: 995px;
@@ -111,7 +112,7 @@ ul.nav{
 }
 
 
-/*DESKTOP SIZE*/
+/*=====NO QUERY====*/
 #content_wrapper {
   background-color: #F5F5F5;
   width: 70%;
@@ -162,9 +163,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     color: grey;
 
 }
-/*SMALL SIZE*/
+
+
+/*=======SMALL SIZE========*/
+
+
 @media (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2) {
-/*BROWSE*/
+  /*BROWSE*/
  .contain{
     float: left;
     margin-left: 0;
@@ -184,7 +189,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   .tile2, .tile3{
     display:none;
   }
-  /*SHOW*/
+
+  /*=====SHOW=====*/
+  
   ul#links2{
     clear: left;
     padding-left: 0;
@@ -192,6 +199,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   #material_choice{
     margin-top: 1em;
 
+  }
+  .swatches{
+    max-width: 85%;
   }
 
 
@@ -223,12 +233,28 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     background-color: whitesmoke;
   }
 }
-/*===REGULAR Side Nav ===*/
+
  .navvy{
     padding-top: 150px;
   
   }
+  /*===REGULAR (800+) DESKTOP SIZE ===*/
+
+
+
 @media (min-width: 800px) {
+
+
+  .swatches{
+    
+    max-width: 52%;
+    float: left;
+    color: grey;
+    /*padding-left: 2em;*/
+
+  }
+/*===REGULAR (800+) Side Nav ===*/
+
   .side_nav{
     width: 17em;
     min-width: 17em;
@@ -304,6 +330,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       margin-bottom: 2px;
   }*/
 }
+
+/*=============++++ END LARGE SIZE EXCLUSIVE STYLES ++++=============*/
+
 /*=============++++ END SIDE NAV+ ++++=============*/
 
 .type-contain{
@@ -593,14 +622,6 @@ div.tearsheet-form-box {
   padding-left: 5px;
 }
 
-.swatches{
-  
-  max-width: 52%;
-  float: left;
-  color: grey;
-  /*padding-left: 2em;*/
-
-}
 .finishes{
   clear: left;
   margin-right: 3em;
