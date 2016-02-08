@@ -102,7 +102,7 @@ ul.nav{
 
 
 /*====The product browse page===*/
-/*MOBILE SIZE*/
+/*LARGE WIDTH?*/
 @media (min-width: 1200px) {
   #content_wrapper {
     min-width: 995px;
@@ -162,9 +162,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     color: grey;
 
 }
-
-@media (max-width: 800px) {
-
+/*SMALL SIZE*/
+@media (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2) {
+/*BROWSE*/
  .contain{
     float: left;
     margin-left: 0;
@@ -181,6 +181,20 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     float: left; 
     padding-left: 0;
   }
+  .tile2, .tile3{
+    display:none;
+  }
+  /*SHOW*/
+  ul#links2{
+    clear: left;
+    padding-left: 0;
+  }
+  #material_choice{
+    margin-top: 1em;
+
+  }
+
+
   /*===SMALL Side Nav ===*/
   .panel-body.filter{
     display: inline-flex;
@@ -201,7 +215,14 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     
     padding-left: 4px;
   }
+  .panel-title a{
+    color: black;
+  }
 
+  input.back{
+    background-color: whitesmoke;
+  }
+}
 /*===REGULAR Side Nav ===*/
  .navvy{
     padding-top: 150px;
@@ -312,6 +333,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 /*======Sub-type Show Dev ========*/
 
+a .sub_type_tile{
+  color: black;
+}
 .sub_type_pane{
   padding: 0.5em;
   text-align: center;
