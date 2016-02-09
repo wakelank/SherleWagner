@@ -117,7 +117,7 @@ ul.nav{
   background-color: #F5F5F5;
   width: 70%;
   height: inherit;
-  min-height: 100%;
+  min-height: 100vh;
   float: left;
   min-width: 985px;
   /*max-width: 1050px;*/
@@ -724,6 +724,7 @@ div.tearsheet-form-box {
 }
 .recently-viewed-products a {
   float: left;
+
 }
 .recently-viewed-products{
     color: grey;
@@ -732,6 +733,9 @@ div.tearsheet-form-box {
     padding-top: 12.5em;
     padding-left: 2%;
     text-align: center;
+    position: fixed;
+    top: -35px;
+    right: -6px;
 
 } 
 
