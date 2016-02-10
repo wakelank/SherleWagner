@@ -39,6 +39,13 @@ class Product < ActiveRecord::Base
     components.count > 0
   end
 
+  def associated_images
+    image_names = []
+   image_names = product_configurations.pluck(:image_file_name).uniq.compact 
+   image_names << image_file_name
+   image_names.uniq
+  end
+
   def ornate?
     genres.pluck(:name).include?("Ornate")
   end
