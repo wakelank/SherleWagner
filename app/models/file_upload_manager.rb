@@ -114,11 +114,16 @@ class FileUploadManager
   end
 
   def get_images_from_aws image_name_arr
-    image_name_arr.map do |name|
+    image_name_arr.map! do |name|
       image = get_image_from_aws name
     end
-    image_name_arr.select do |image|
+    image_name_arr.select! do |image|
       image.class != NullObject
+    end
+    image_name_arr.map do |image|
+      other_image = OtherImage.new
+      other_image.image = image
+      other_image
     end
   end
 
@@ -126,13 +131,19 @@ class FileUploadManager
     images = []
     materials_array.each do |material|
       if product.number.include? material[:code]
-        material[:identifiers].each do |ident|
-          image_name = product.name.sub(material[:code], ident) + ".jpg"
-          images << image_name
+        material[:identifiers].each do |material_ident|
+            Finish.finishes_identifiers.each do |finish_ident|
+              ChinaColor.china_colors_identifiers.each do |china_ident|
+                image_name = product.number.sub(material[:code], material_ident) + ".jpg"
+                image_name.sub!("XX", finish_ident)
+                image_name.sub!("CC", china_ident)
+                images << image_name
+              end
+            end
+          end
         end
       end
-    end
-    images
+    images.uniq
   end
 
   def images_on_aws
