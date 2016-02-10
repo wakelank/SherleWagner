@@ -48,7 +48,6 @@ class FileUploadManager
         product = data_row.product
         if !product.nil?
           product.add_configuration get_product_configuration data_row
-          #product.add_configuration data_row.get_product_configuration
           product.save if product.valid?
         end
 

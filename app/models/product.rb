@@ -124,6 +124,7 @@ class Product < ActiveRecord::Base
     if !configuration.nil?
       self.product_configurations << configuration
     end
+    self.other_images = self.other_images.select { |oi| oi.image_file_name != configuration.image_file_name }
   end
 
   def add_materials(material_code)
