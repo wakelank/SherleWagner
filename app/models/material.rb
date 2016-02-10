@@ -4,6 +4,7 @@ class Material < ActiveRecord::Base
   #has_and_belongs_to_many :inserted_products, class_name: 'Materials', join_table: 'inserts_products'
 
   @@codes_arr 
+  @@materials_array = nil
 
   def self.codes
     @@codes_arr ||= self.pluck(:code).uniq.compact
@@ -14,11 +15,13 @@ class Material < ActiveRecord::Base
   end
 
   def self.materials_arr
-    arr = []
-    codes.each do |code|
-      arr << { code: code, identifiers: identifiers_for(code) }
+    if @@materials_array.nil?
+      @@materials_array = []
+      codes.each do |code|
+        @@materials_array << { code: code, identifiers: identifiers_for(code) }
+      end
     end
-    arr
+    @@materials_array
 
   end
 
