@@ -9,6 +9,19 @@ class Material < ActiveRecord::Base
     @@codes_arr ||= self.pluck(:code).uniq.compact
   end
 
+  def self.identifiers_for code
+    self.where(code: code).pluck(:identifier).uniq.compact
+  end
+
+  def self.materials_arr
+    arr = []
+    codes.each do |code|
+      arr << { code: code, identifiers: identifiers_for(code) }
+    end
+    arr
+
+  end
+
   def self.add_materials_to(product, code)
     if code
       product.materials = Material.where(code: code)
