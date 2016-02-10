@@ -107,6 +107,9 @@ class Product < ActiveRecord::Base
       arr << "ONYX"
       arr < "MARBL"
     end
+    if product_sub_type == "Consoles"
+      arr << "STONE"
+    end
     arr
   end
 
