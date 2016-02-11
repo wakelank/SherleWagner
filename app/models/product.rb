@@ -20,8 +20,7 @@ class Product < ActiveRecord::Base
     foreign_key: :component_id,
     class_name: "CompilationRelationship"
   has_many :compilations, through: :in_compilation_relationships
-  #thing
-
+  has_many :other_images
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
@@ -38,6 +37,13 @@ class Product < ActiveRecord::Base
 
   def compilation?
     components.count > 0
+  end
+
+  def associated_images
+    image_names = []
+   image_names = product_configurations.pluck(:image_file_name).uniq.compact 
+   image_names << image_file_name
+   image_names.uniq
   end
 
   def ornate?
@@ -121,6 +127,7 @@ class Product < ActiveRecord::Base
     if !configuration.nil?
       self.product_configurations << configuration
     end
+    self.other_images = self.other_images.select { |oi| oi.image_file_name != configuration.image_file_name }
   end
 
   def add_materials(material_code)

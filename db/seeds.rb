@@ -276,11 +276,18 @@ materials = [{ type: "China-Hand Painted",
               },
               {type: "Semi-precious Stone",
                code: "SEMI",
-               entries: []
+               entries: [{ name: "ROCK CRYSTAL", identifier: "RKCR" },
+                         { name: "ROSE QUARTZ (RSQU)", identifier: "RSQU" },
+                         { name: "AMETHYST (AMET)", identifier: "AMET" }]
               },
               { type: "Semi-precious Laminate",
                 code: "SLSL",
-                entries: [ ]
+                entries: [{ name: "LAPIS LAZULI (LAPI)", identifier: "LAPI" },
+                          { name: "MALACHITE (MALA)", identifier: "MALA" },
+                          { name: "JASPER (JASP)", identifier: "JASP" },
+                          { name: "BROWN TIGER EYE (BRTI)", identifier: "BRTI" },
+                          { name: "BLUE TIGER EYE (BLTI)", identifier: "BLTI" },
+                          { name: "RHODOCHROSITE (RHOD)", identifier: "RHOD" } ]
               },
               {type: "Onyx", 
                code: "ONYX",

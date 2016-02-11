@@ -3,8 +3,26 @@ class Material < ActiveRecord::Base
   has_and_belongs_to_many :materialed_products, class_name: 'Materials', join_table: 'materials_products'
   #has_and_belongs_to_many :inserted_products, class_name: 'Materials', join_table: 'inserts_products'
 
+  @@codes_arr 
+  @@materials_array = nil
+
   def self.codes
-    self.pluck(:code).uniq.compact
+    @@codes_arr ||= self.pluck(:code).uniq.compact
+  end
+
+  def self.identifiers_for code
+    self.where(code: code).pluck(:identifier).uniq.compact
+  end
+
+  def self.materials_arr
+    if @@materials_array.nil?
+      @@materials_array = []
+      codes.each do |code|
+        @@materials_array << { code: code, identifiers: identifiers_for(code) }
+      end
+    end
+    @@materials_array
+
   end
 
   def self.add_materials_to(product, code)

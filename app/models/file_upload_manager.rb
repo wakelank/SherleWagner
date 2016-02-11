@@ -18,6 +18,7 @@ class FileUploadManager
     @bucket
     @bucket_objects
     @images_on_aws
+    @materials_array
   end
 
   def upload
@@ -29,6 +30,7 @@ class FileUploadManager
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
       product.image = get_image_from_aws data_row.get_image_name
+      product.other_images << get_images_from_aws(get_other_potential_images_for(product))
 
       if !Product.uber_exists?(product) && !data_row.component?
         begin
@@ -46,7 +48,6 @@ class FileUploadManager
         product = data_row.product
         if !product.nil?
           product.add_configuration get_product_configuration data_row
-          #product.add_configuration data_row.get_product_configuration
           product.save if product.valid?
         end
 
@@ -95,6 +96,10 @@ class FileUploadManager
         
   end
 
+  def materials_array
+    @materials_array ||= Material.materials_arr
+  end
+
   def get_image_from_aws image_name
     if images_on_aws.include? image_name
       begin
@@ -105,6 +110,39 @@ class FileUploadManager
     else
       NullObject.new
     end
+  end
+
+  def get_images_from_aws image_name_arr
+    image_name_arr.map! do |name|
+      image = get_image_from_aws name
+    end
+    image_name_arr.select! do |image|
+      image.class != NullObject
+    end
+    image_name_arr.map do |image|
+      other_image = OtherImage.new
+      other_image.image = image
+      other_image
+    end
+  end
+
+  def get_other_potential_images_for product
+    images = []
+    materials_array.each do |material|
+      if product.number.include? material[:code]
+        material[:identifiers].each do |material_ident|
+            Finish.finishes_identifiers.each do |finish_ident|
+              ChinaColor.china_colors_identifiers.each do |china_ident|
+                image_name = product.number.sub(material[:code], material_ident) + ".jpg"
+                image_name.sub!("XX", finish_ident)
+                image_name.sub!("CC", china_ident)
+                images << image_name
+              end
+            end
+          end
+        end
+      end
+    images.uniq
   end
 
   def images_on_aws

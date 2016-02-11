@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123143706) do
+ActiveRecord::Schema.define(version: 20160210154315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,18 @@ ActiveRecord::Schema.define(version: 20160123143706) do
 
   add_index "name_only_products", ["product_id"], name: "index_name_only_products_on_product_id", using: :btree
 
+  create_table "other_images", force: :cascade do |t|
+    t.integer  "product_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "other_images", ["product_id"], name: "index_other_images_on_product_id", using: :btree
+
   create_table "product_components", id: false, force: :cascade do |t|
     t.integer "product_a_id", null: false
     t.integer "product_b_id", null: false
@@ -172,6 +184,14 @@ ActiveRecord::Schema.define(version: 20160123143706) do
 
   add_index "product_configurations", ["name_only_product_id"], name: "index_product_configurations_on_name_only_product_id", using: :btree
   add_index "product_configurations", ["product_id"], name: "index_product_configurations_on_product_id", using: :btree
+
+  create_table "product_images", force: :cascade do |t|
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "product_images", ["product_id"], name: "index_product_images_on_product_id", using: :btree
 
   create_table "product_sub_types", force: :cascade do |t|
     t.string   "name"
@@ -246,8 +266,10 @@ ActiveRecord::Schema.define(version: 20160123143706) do
   add_foreign_key "name_only_prod_prod_configs", "name_only_products"
   add_foreign_key "name_only_prod_prod_configs", "product_configurations"
   add_foreign_key "name_only_products", "products"
+  add_foreign_key "other_images", "products"
   add_foreign_key "product_configurations", "name_only_products"
   add_foreign_key "product_configurations", "products"
+  add_foreign_key "product_images", "products"
   add_foreign_key "product_sub_types", "product_types"
   add_foreign_key "products", "genres"
   add_foreign_key "products", "product_sub_types"
