@@ -341,6 +341,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .filter li{
         list-style: none; 
       }
+      .hide-dropdowns{
+        display: none;
+      }
 
       /*media="all"
       .panel-group { 
