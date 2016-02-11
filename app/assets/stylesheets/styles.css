@@ -164,99 +164,6 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 }
 
-/*=======SIZE SPECIFIC========*/
-
-
-     /*=====Medium/SMALL SHOW=====*/
-     @media (max-width: 1100px) and (-webkit-min-device-pixel-ratio: 2) {
-      
-      ul#links2{
-        clear: left;
-        padding-left: 0;
-      }
-      #material_choice{
-        margin-top: 1em;
-
-      }
-      .swatches{
-
-        width: 85%;
-      }
-
-      div h3#prod_name {
-        height: 3em;
-        color: black;
-        width:100%;
-        padding-left: 0.5em;
-        /*float: right;*/
-        
-      }
-      .options {
-    width: 80% !important;
-   
-}
-  .tearsheet_wrapper{
-    padding-top: 0 !important;
-   
-  }
-}
-
-
-
-/*=======SMALL SIZE========*/
-
-
-    @media (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2) {
-      /*BROWSE*/
-     .contain{
-        float: left;
-        margin-left: 0;
-        /*THIS IS SO scroll left keeps side nav on top*/
-        position: relative;
-        z-index: -10;
-      }
-      #content_wrapper{
-        min-width: 700px;
-            width: 100%;
-            padding-top: 1em;
-      }
-      ul.prod_list{
-        float: left; 
-        padding-left: 0;
-      }
-      .tile2, .tile3{
-        display:none;
-      }
-
- 
-      /*===SMALL Side Nav ===*/
-      .panel-body.filter{
-        display: inline-flex;
-      }
-      .hide-dropdowns{
-        height: 4em;
-        margin-top: 0;
-        margin-left: 1em;
-        margin-bottom: .5em;
-        background-color: whitesmoke;
-        border: thin solid whitesmoke;
-        border-radius: 10px;
-        vertical-align: bottom;
-
-      }
-      .filter ul{
-        list-style: none;
-        
-        padding-left: 4px;
-      }
-      .panel-title a{
-        color: black;
-      }
-
-      input.back{
-        background-color: whitesmoke;
-      }
-    }
 
      .navvy{
         padding-top: 150px;
@@ -816,3 +723,98 @@ li.foot_link, li.foot_link a{
     margin: 0 1em;
     color:grey;
 }
+
+/*=======SIZE SPECIFIC========*/
+
+
+     /*=====Medium/SMALL SHOW=====*/
+     @media (max-width: 1100px) and (-webkit-min-device-pixel-ratio: 2) {
+      
+      ul#links2{
+        clear: left;
+        padding-left: 0;
+      
+      }
+      #material_choice{
+        margin-top: 1em;
+
+      }
+      .swatches{
+
+        width: 100%;
+      }
+
+      div h3#prod_name {
+        height: 3em;
+        color: black;
+        width:100%;
+        padding-left: 0.5em;
+        /*float: right;*/
+        
+      }
+      .options {
+    width: 80% ;
+   
+}
+  .tearsheet_wrapper{
+    padding-top: 0 ;
+   
+  }
+}
+
+
+
+/*=======SMALL SIZE========*/
+
+
+    @media (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2) {
+      /*BROWSE*/
+     .contain{
+        float: left;
+        margin-left: 0;
+        /*THIS IS SO scroll left keeps side nav on top*/
+        position: relative;
+        z-index: -10;
+      }
+      #content_wrapper{
+        min-width: 700px;
+            width: 100%;
+            padding-top: 1em;
+      }
+      ul.prod_list{
+        float: left; 
+        padding-left: 0;
+      }
+      .tile2, .tile3{
+        display:none;
+      }
+
+ 
+      /*===SMALL Side Nav ===*/
+      .panel-body.filter{
+        display: inline-flex;
+      }
+      .hide-dropdowns{
+        height: 4em;
+        margin-top: 0;
+        margin-left: 1em;
+        margin-bottom: .5em;
+        background-color: whitesmoke;
+        border: thin solid whitesmoke;
+        border-radius: 10px;
+        vertical-align: bottom;
+
+      }
+      .filter ul{
+        list-style: none;
+        
+        padding-left: 4px;
+      }
+      .panel-title a{
+        color: black;
+      }
+
+      input.back{
+        background-color: whitesmoke;
+      }
+    }
