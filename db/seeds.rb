@@ -244,13 +244,13 @@ materials = [{ type: "China-Hand Painted",
                         { name: "Le Jardin - Charcoal-89CH", identifier: "89CH" },
                         { name: "Le Jardin - Blue-89BL", identifier: "89BL" },
                         { name: "Le Jardin -Sage-89SG", identifier: "89SG" },
-                        { name: "Acorn & Oakleaf - Garnet-99GA", identifier: "99GA" },
-                        { name: "Acorn & Oakleaf - Greige/Taupe-99GG", identifier: "99GG" },
-                        { name: "Acorn & Oakleaf - Sepia-99SP", identifier: "99SP" },
-                        { name: "Acorn & Oakleaf - Light Blue-99LB", identifier: "99LB" },
-                        { name: "Acorn & Oakleaf - Charcoal-99CH", identifier: "99CH" },
-                        { name: "Acorn & Oakleaf - Blue-99BL", identifier: "99BL" },
-                        { name: "Acorn & Oakleaf -Sage-99SG", identifier: "99SG" }]
+                        { name: "Acorn and Oakleaf - Garnet-99GA", identifier: "99GA" },
+                        { name: "Acorn and Oakleaf - Greige/Taupe-99GG", identifier: "99GG" },
+                        { name: "Acorn and Oakleaf - Sepia-99SP", identifier: "99SP" },
+                        { name: "Acorn and Oakleaf - Light Blue-99LB", identifier: "99LB" },
+                        { name: "Acorn and Oakleaf - Charcoal-99CH", identifier: "99CH" },
+                        { name: "Acorn and Oakleaf - Blue-99BL", identifier: "99BL" },
+                        { name: "Acorn and Oakleaf -Sage-99SG", identifier: "99SG" }]
               },
 
 
