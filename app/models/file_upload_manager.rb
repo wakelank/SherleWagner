@@ -1,10 +1,10 @@
 
-require 'paperclip_stub.rb'
+#require 'paperclip_stub.rb'
 
 require 'csv'
 require 'find'
 
-extend ImageFilePath
+#extend ImageFilePath
 
 # IMAGES_PATH = "/Users/ph1am/Desktop/SW_website/images1"
 # IMAGES_PATH = "/Users/wake/Documents/Work/SherleWagner/images"
