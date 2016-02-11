@@ -30,9 +30,10 @@ body{
   color:inherit;
 }
 input.button{
-  background-color:#353535;
-  border: none;
-  margin-top:0.2em;
+     background-color: inherit;
+    border: none;
+    margin-top: 0.2em;
+    color: whitesmoke;
 }
 input#search{
   background-color:#353535;
@@ -40,9 +41,9 @@ input#search{
   box-shadow: none;
 }
 .searcher{
-  float: right;
-  margin-right: 0;
-  margin-top: 1em;
+    float: right;
+    margin-right: 5%;
+    margin-top: 2em;
 }
 
 /*NAV BUTTONS*/
@@ -73,14 +74,14 @@ ul.nav{
   padding: 0 15px;
 }
 .nav li a:hover{
-  background-color: rgba(0,0,0,0);
+ 
   /*text-decoration: underline;
    -moz-text-decoration-color: white; /* Code for Firefox */
-  border-bottom: 1px solid grey;
+  
 
 }
 .nav li a:visited{
-  background-color: #353535;
+  background-color:whitesmoke;
   
 
 }
@@ -123,7 +124,7 @@ ul.nav{
   /*max-width: 1050px;*/
   clear: right;
   display: block;
-  padding-top: 11.5em;
+  padding-top: 1.5em;
   padding-bottom: 5em;
 
   
@@ -166,18 +167,18 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
      .navvy{
-        padding-top: 150px;
+        /*padding-top: 150px;*/
       
       }
-      /*===REGULAR (800+) DESKTOP SIZE ===*/
+      /*===REGULAR (950+) DESKTOP SIZE ===*/
 
 
 
-    @media (min-width: 800px) {
+    @media (min-width: 950px) {
 
 
       
-    /*===REGULAR (800+) Side Nav ===*/
+    /*===REGULAR (950+) Side Nav ===*/
 
       .side_nav{
         width: 17em;
@@ -208,7 +209,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         
       }
       .navvy{
-        padding-top: 9.5em;
+        /*padding-top: 9.5em;*/
         padding-left: 15px;
         width: 100%;
       }
@@ -557,7 +558,7 @@ div.tearsheet-form-box {
   padding-left: 5px;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 950px) {
   .swatches{
           
           max-width: 47%;
@@ -649,7 +650,7 @@ div.tearsheet-form-box {
     color: grey;
     width: 15%;
     float: left;
-    padding-top: 12.5em;
+    /*padding-top: 12.5em;*/
     padding-left: 2%;
     text-align: center;
     position: fixed;
@@ -733,7 +734,7 @@ li.foot_link, li.foot_link a{
       ul#links2{
         clear: left;
         padding-left: 0;
-      
+
       }
       #material_choice{
         margin-top: 1em;
@@ -767,7 +768,15 @@ li.foot_link, li.foot_link a{
 /*=======SMALL SIZE========*/
 
 
-    @media (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2) {
+    @media (max-width: 950px) and (-webkit-min-device-pixel-ratio: 2) {
+  /*++++++==== NAVBAR ====+++++*/
+
+      .nav li{
+      padding-right: 4em;
+
+      }
+
+
       /*BROWSE*/
      .contain{
         float: left;
@@ -779,7 +788,7 @@ li.foot_link, li.foot_link a{
       #content_wrapper{
         min-width: 700px;
             width: 100%;
-            padding-top: 1em;
+            padding-top: 0;
       }
       ul.prod_list{
         float: left; 
