@@ -195,6 +195,10 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     width: 80% !important;
    
 }
+  .tearsheet_wrapper{
+    padding-top: 0 !important;
+   
+  }
 }
 
 
@@ -629,9 +633,14 @@ div.tearsheet-form-box {
   list-style: none;
   color: gray;
   float: left;
+
+}
+#links1{
+  max-width: 140px;
 }
 #links2{
   padding-left: 4em;
+  max-width: 170px;
 }
 
 .choice_title{
