@@ -694,6 +694,16 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
   background-size: cover;
   overflow-y: scroll;
 }
+.collection_div{
+  width: 98%;
+  height: 14em;
+  margin:0.5em;
+  float: left;
+  border: thin solid black;
+  padding: 0;
+  background-size: cover;
+  overflow: auto;
+}
 .styles_wrapper{
   margin:0 auto;
   margin-top: 11em;

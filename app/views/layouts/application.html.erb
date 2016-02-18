@@ -23,7 +23,7 @@
   </div>                      
 
   
-       <% if controller_name == "styles" && action_name == "index" %>
+       <% if controller_name == "styles" && action_name == "index" || controller_name == "genres" && action_name == "show" %>
         <%= yield %>
 
        <% else %>

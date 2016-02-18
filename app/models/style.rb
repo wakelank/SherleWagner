@@ -10,6 +10,10 @@ class Style < ActiveRecord::Base
   def self.names
     self.pluck(:name)
   end
+
+  def four_products
+    self.products.all.limit 4
+  end
 #  def products
 #    product_arr = []
 #    self.products.each do |p|
