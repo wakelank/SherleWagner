@@ -1,6 +1,4 @@
 
-#require 'paperclip_stub.rb'
-
 require 'csv'
 require 'find'
 
@@ -41,7 +39,7 @@ class FileUploadManager
           product.add_configuration get_product_configuration data_row
           product.save if product.valid?
         rescue
-          
+
         end
 
       elsif !data_row.component?
@@ -81,7 +79,7 @@ class FileUploadManager
   def get_product_configuration data_row
     configuration = ProductConfiguration.new(data_row.configuration_args)
     configuration.image = get_image_from_aws data_row.get_image_name
-  
+
     configuration
   end
 
@@ -93,7 +91,7 @@ class FileUploadManager
       end
     end
     image_file
-        
+
   end
 
   def materials_array
@@ -105,7 +103,7 @@ class FileUploadManager
       begin
         bucket_objects[image_name]
       rescue
-        
+
       end
     else
       NullObject.new
@@ -151,11 +149,11 @@ class FileUploadManager
 
   def bucket
     if @bucket.nil?
-      begin 
+      begin
         @bucket = AWS::S3.new().buckets["sw-raw-images"]
       rescue
         @bucket = NullBucket.new
-        
+
       end
     end
     @bucket
@@ -173,7 +171,7 @@ class FileUploadManager
 
         end
       rescue
-        
+
       end
     end
     @bucket_objects
