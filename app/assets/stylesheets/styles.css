@@ -1,6 +1,6 @@
 body{
   font-family: 'PT Sans', sans-serif;
-  background-color: #e5e6df;
+  /*background-color: #e5e6df;*/
 }
 
 /*=====header nav====*/
@@ -119,7 +119,7 @@ ul.nav.navbar-nav{
 
 /*=====NO QUERY====*/
 #content_wrapper {
-  background-color: #F5F5F5;
+  background-color: #eeeeee;
   width: 70%;
   height: inherit;
   min-height: 100vh;
@@ -134,7 +134,7 @@ ul.nav.navbar-nav{
   
   /*margin-left: 15%;*/
   /*left: 250px;*/
-  box-shadow: 4px 5px 5px #999999;
+  /*box-shadow: 4px 5px 5px #999999;*/
  
 }
 
@@ -195,7 +195,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         float: left;
         margin: 2%;
         margin-left: 0;
-        background-color: #e5e6df;
+        /*background-color: #e5e6df;*/
         position:fixed; 
         top:20;
         overflow-y: scroll;
@@ -206,8 +206,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .nav-wrap {
         float:left;
         width: 18em;
-        background-color: #e5e6df;
+        /*background-color: #e5e6df;*/
         padding: 5px;
+        padding-top: 1em;
       }
       .nav2{
         
@@ -653,16 +654,14 @@ div.tearsheet-form-box {
 }
 .recently-viewed-products{
     color: grey;
-    width: 15%;
-    float: left;
-    /*padding-top: 12.5em;*/
-    padding-left: 2%;
-    text-align: center;
-    position: fixed;
-    top: -35px;
-    right: -6px;
-
+    
+    /*padding-top:.5em;*/
+    padding-bottom: 1em;
 } 
+.well{
+      margin-top: 1.5em;
+}
+
 
 .recent_tile {
   /*display: inline;*/
