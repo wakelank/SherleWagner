@@ -97,7 +97,7 @@ ul.nav.navbar-nav{
 
 .contain{
   float: left;
-  margin-left: 18em;
+  /*margin-left: 18em;*/
   /*THIS IS SO scroll left keeps side nav on top*/
   position: relative;
   z-index: -10;
@@ -111,7 +111,7 @@ ul.nav.navbar-nav{
 /*===LARGEST WIDTH===*/
 @media (min-width: 1200px) {
   #content_wrapper {
-    min-width: 995px;
+    /*min-width: 995px;*/
 }
  
 }
@@ -120,13 +120,13 @@ ul.nav.navbar-nav{
 /*=====NO QUERY====*/
 #content_wrapper {
   background-color: #eeeeee;
-  width: 70%;
+  /*width: 70%;*/
   height: inherit;
   min-height: 100vh;
   float: left;
-  min-width: 985px;
+  /*min-width: 985px;*/
   /*max-width: 1050px;*/
-  clear: right;
+  /*clear: right;*/
   display: block;
   padding-top: 1.5em;
   padding-bottom: 5em;
@@ -140,7 +140,7 @@ ul.nav.navbar-nav{
 
 .prod_list{
   list-style: none;
-  width:90%;
+  width:98%;
   margin:auto;
 
 }
@@ -636,9 +636,9 @@ div.tearsheet-form-box {
   border: none;
   height: 30em;
   overflow: scroll;
-  padding-left: 2%;
-  margin-left: 3%;
-  background-color: #e5e6df;
+  /*padding-left: 2%;*/
+  /*margin-left: 3%;*/
+  /*background-color: #e5e6df;*/
   z-index: 0;
   }
 
@@ -649,7 +649,7 @@ div.tearsheet-form-box {
    
 }
 .recently-viewed-products a {
-  float: left;
+  /*float: left;*/
 
 }
 .recently-viewed-products{
@@ -658,9 +658,7 @@ div.tearsheet-form-box {
     /*padding-top:.5em;*/
     padding-bottom: 1em;
 } 
-.well{
-      margin-top: 1.5em;
-}
+
 
 
 .recent_tile {

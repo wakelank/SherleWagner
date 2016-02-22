@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+  
 </head>
 <body class="<%=controller_name%> <%=action_name%>">
 
@@ -20,20 +21,20 @@
         <%= yield %>
 
        <% else %>
-  <!-- <div class="contain">-->
+              <!-- <div class="contain">-->
         <div id="content_wrapper"> 
             <%= yield %>
             
          </div>
-<!--
+              <!--
         
-  </div>   -->
+                  </div>   -->
   
         <% end %>
     </div>
     <div class="col-sm-2 sidenav ">
       <div class="well">
-        <%= render 'recently_viewed_products/recently_viewed_products' %>
+       <!--  %= render 'recently_viewed_products/recently_viewed_products' % -->
       </div>
       
     </div>
