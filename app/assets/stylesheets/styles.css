@@ -102,6 +102,9 @@ ul.nav.navbar-nav{
   position: relative;
   z-index: -10;
 }
+#center_main{
+  background-color: #eeeeee;
+}
 
 
 
@@ -119,17 +122,17 @@ ul.nav.navbar-nav{
 
 /*=====NO QUERY====*/
 #content_wrapper {
-  background-color: #eeeeee;
+  /*background-color: #eeeeee;*/
   /*width: 70%;*/
-  height: inherit;
-  min-height: 100vh;
-  float: left;
+  /*height: inherit;*/
+  /*min-height: 100vh;*/
+  /*float: left;*/
   /*min-width: 985px;*/
   /*max-width: 1050px;*/
   /*clear: right;*/
-  display: block;
+  /*display: block;
   padding-top: 1.5em;
-  padding-bottom: 5em;
+  padding-bottom: 5em;*/
 
   
   /*margin-left: 15%;*/

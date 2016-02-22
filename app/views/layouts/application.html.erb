@@ -6,7 +6,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-  
 </head>
 <body class="<%=controller_name%> <%=action_name%>">
 
@@ -16,7 +15,7 @@
     <div class="col-sm-2 sidenav">
        <%= render "/layouts/sidebar" %>
     </div>
-    <div class="col-sm-8 "> 
+    <div class="col-sm-8"id='center_main'> 
       <% if controller_name == "styles" && action_name == "index" || controller_name == "genres" && action_name == "show" %>
         <%= yield %>
 
