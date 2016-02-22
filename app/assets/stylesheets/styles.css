@@ -4,9 +4,7 @@ body{
 }
 
 /*=====header nav====*/
-.navbar-inner{
-  /*height:10em;*/
-}
+
 .navbar-inner .nav-container{
   padding-top:2em;
   height:100%;
@@ -26,8 +24,12 @@ body{
 
 }
 #title_link a{
-  /*text-decoration: none;*/
   color:inherit;
+}
+#title_link{
+  /*text-decoration: none;*/
+  
+  height: 2em;
 }
 input.button{
      background-color: inherit;
@@ -47,8 +49,9 @@ input#search{
 }
 
 /*NAV BUTTONS*/
-ul.nav{
-  
+ul.nav.navbar-nav{
+  float: left;
+  clear: right;
 }
 .nav li{
   padding-right: 8em;
@@ -89,9 +92,7 @@ ul.nav{
     /*background-color:rgba(0,0,0,0);*/
     
 }
- .nav{
-        /*height:11em;*/
-      }
+ 
 /*====END NAVBAR===*/
 
 .contain{
