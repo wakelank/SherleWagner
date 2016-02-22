@@ -33,10 +33,9 @@
       
       <% @product.materials.each do |material| %>
         <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", style="background-image: url(/images/materials/<%= material.identifier + '.jpg'%>)">
-          <p class="swatch_name">
-            <%= material.name %>
-          </p><div class="swatch_div"> <%= material.name %> </div>
-        </li>
+         <div class="swatch_div"> <%= material.name %> </div>
+         
+        </li> 
         <!-- material.image -->
       <% end %>
     </ul>
