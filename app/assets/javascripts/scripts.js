@@ -1,4 +1,8 @@
 $(document).on("page:change", (function(){
+
+  
+             
+ 
     
      switch ($('body').attr('class')){
       case 'products show':
