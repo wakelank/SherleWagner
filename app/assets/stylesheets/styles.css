@@ -5,7 +5,7 @@ body{
 
 /*=====header nav====*/
 .navbar-inner{
-  height:10em;
+  /*height:10em;*/
 }
 .navbar-inner .nav-container{
   padding-top:2em;
@@ -55,10 +55,10 @@ ul.nav{
 
 }
 .nav{
-  display: inline-flex;
+  /*display: inline-flex;
   position: absolute;
   top:75%;
-  left:20%;
+  left:20%;*/
   
 }
 .nav ul{
@@ -86,9 +86,12 @@ ul.nav{
 
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color:rgba(0,0,0,0);
+    /*background-color:rgba(0,0,0,0);*/
     
 }
+ .nav{
+        /*height:11em;*/
+      }
 /*====END NAVBAR===*/
 
 .contain{
