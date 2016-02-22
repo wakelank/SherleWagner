@@ -1,6 +1,6 @@
 body{
   font-family: 'PT Sans', sans-serif;
-  background-color: #e5e6df;
+  /*background-color: #e5e6df;*/
 }
 
 /*=====header nav====*/
@@ -118,7 +118,7 @@ ul.nav{
 
 /*=====NO QUERY====*/
 #content_wrapper {
-  background-color: #F5F5F5;
+  background-color: #eeeeee;
   width: 70%;
   height: inherit;
   min-height: 100vh;
@@ -133,7 +133,7 @@ ul.nav{
   
   /*margin-left: 15%;*/
   /*left: 250px;*/
-  box-shadow: 4px 5px 5px #999999;
+  /*box-shadow: 4px 5px 5px #999999;*/
  
 }
 
@@ -194,7 +194,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         float: left;
         margin: 2%;
         margin-left: 0;
-        background-color: #e5e6df;
+        /*background-color: #e5e6df;*/
         position:fixed; 
         top:20;
         overflow-y: scroll;
@@ -205,7 +205,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .nav-wrap {
         float:left;
         width: 18em;
-        background-color: #e5e6df;
+        /*background-color: #e5e6df;*/
         padding: 5px;
       }
       .nav2{
