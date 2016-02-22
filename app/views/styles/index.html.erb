@@ -4,13 +4,14 @@
        
       
        <% @genres.each do |genre| %>
-         <% unless genre.name == 'No genre' %> 
-         <div class="style_div" id="<%= genre.name%>">
-          <h3>
-            <%= genre.name %> <br/>
-          </h3>
-         </div>  
-
+         <% unless genre.name == 'No genre' %>
+           <%=link_to genre_path(genre) do %> 
+           <div class="style_div" id="<%= genre.name%>">
+            <!-- <h3>
+              %= genre.name % <br/>
+            </h3> -->
+           </div>  
+          <% end %>
               
          <% end %>
           

@@ -239,6 +239,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
       #accordion1 .panel-sub-heading .panel-title label{
         margin-left: -15px;
+        
       }
 
       .filter ul{
@@ -686,11 +687,23 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
 /*STYLES / COLLECTIONS PAGE*/
 .style_div{
   width: 48%;
-  height: 40%;
+  height: 24em;
+  margin:0.5em;
+  float: left;
+  /*border: thin solid black;*/
+  padding: 0;
+  background-size: cover;
+  overflow-y: scroll;
+}
+.collection_div{
+  width: 98%;
+  height: 14em;
   margin:0.5em;
   float: left;
   border: thin solid black;
   padding: 0;
+  background-size: cover;
+  overflow: auto;
 }
 .styles_wrapper{
   margin:0 auto;
@@ -707,6 +720,21 @@ width: 100%;
   text-align: center;
   padding-left: 2%;
   height: 100vh;
+}
+
+#Contemporary{
+  background-image:url("/images/rough_collections/contemp.png");
+
+}
+#Traditional{
+  background-image:url("/images/rough_collections/traditional.png");
+}
+#Classic{
+  background-image:url("/images/rough_collections/classic.png");
+}
+#Ornate{
+  background-image:url("/images/rough_collections/ornate.png");
+
 }
 
 /*footer*/
