@@ -196,11 +196,11 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         margin: 2%;
         margin-left: 0;
         /*background-color: #e5e6df;*/
-        position:fixed; 
+        position:absolute; 
         top:20;
         overflow-y: scroll;
         
-        height: 100%;
+        /*height: 100%;*/
         
       }
       .nav-wrap {
