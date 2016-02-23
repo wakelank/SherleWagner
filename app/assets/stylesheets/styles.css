@@ -825,6 +825,7 @@ li.foot_link, li.foot_link a{
       ul.prod_list{
         float: left; 
         padding-left: 0;
+        margin-left: 10%;
       }
       .tile2, .tile3{
         display:none;
