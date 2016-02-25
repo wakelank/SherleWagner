@@ -9,6 +9,7 @@ gem 'faker'
 gem "twitter-bootstrap-rails"
 gem "rails_admin"
 
+
 #these may require more configuration
 #gem 'postmark-rails'
 gem 'aws-sdk-v1'

@@ -10,34 +10,39 @@
 <body class="<%=controller_name%> <%=action_name%>">
 
   <%= render "/layouts/navbar" %>
-<div class="container-fluid" id='main_contain'>    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-       <%= render "/layouts/sidebar" %>
-    </div>
-    <div class="col-sm-8"id='center_main'> 
-      <% if controller_name == "styles" && action_name == "index" || controller_name == "genres" && action_name == "show" %>
-        <%= yield %>
+<div class="container-fluid" id='main_contain'>  
 
-       <% else %>
-              <!-- <div class="contain">-->
-        <div id="content_wrapper"> 
-            <%= yield %>
-            
-         </div>
-              <!--
-        
-                  </div>   -->
-  
-        <% end %>
-    </div>
-    <div class="col-sm-2 sidenav ">
-      <div class="well">
-       <!--  %= render 'recently_viewed_products/recently_viewed_products' % -->
+    <div class="row content">
+
+      <div class="col-sm-2 sidenav" id="l_nav">
+         <%= render "/layouts/sidebar" %>
       </div>
-      
+
+      <div class=" col-lg-8 col-sm-10"id='center_main'> 
+        <% if controller_name == "styles" && action_name == "index" || controller_name == "genres" && action_name == "show" %>
+          <%= yield %>
+
+         <% else %>
+                <!-- <div class="contain">-->
+          <div id="content_wrapper"> 
+              <%= yield %>
+              
+           </div>
+                <!--
+          
+                    </div>   -->
+    
+          <% end %>
+      </div>
+
+      <div class="col-md-4 col-lg-2 sidenav r_col">
+        <div class="well">
+         <!--  %= render 'recently_viewed_products/recently_viewed_products' % -->
+        </div>
+        
+      </div>
     </div>
-  </div>
+
 </div>
 
 <footer class="container-fluid text-center">

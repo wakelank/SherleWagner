@@ -113,7 +113,7 @@ ul.nav.navbar-nav{
 /*===LARGEST WIDTH===*/
 @media (min-width: 1200px) {
   #content_wrapper {
-    min-width: 995px;
+    /*min-width: 995px;*/
 }
  
 }
@@ -122,11 +122,11 @@ ul.nav.navbar-nav{
 /*=====NO QUERY====*/
 #content_wrapper {
   background-color: white;
-  width: 70%;
+  /*width: 70%;*/
   height: inherit;
   min-height: 100vh;
   float: left;
-  min-width: 985px;
+  /*min-width: 985px;*/
   /*max-width: 1050px;*/
   clear: right;
   display: block;
@@ -822,7 +822,7 @@ li.foot_link, li.foot_link a{
         z-index: -10;
       }
       #content_wrapper{
-        min-width: 700px;
+        /*min-width: 700px;*/
             width: 100%;
             padding-top: 0;
       }
