@@ -404,6 +404,7 @@ li.highlighted{
   margin-bottom: 20px;
   background-color: white;
     background-repeat: no-repeat;
+    border: solid #eeeeee;
   
 }
 .product_info{
