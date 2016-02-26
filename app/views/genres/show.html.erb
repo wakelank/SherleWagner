@@ -6,30 +6,12 @@
        <% @styles.each do |style| %>
          <% unless style.name == 'No style' %>
            <%=link_to style_path(style) do %> 
-            <h3 style="float:left">
-              <%= style.name %> <br/>
-            </h3>
-           <div class="collection_div" id="<%= style.name%>">
+            
+           <div class="collection_div" id="<%= style.name%>" >
+            <%= image_tag("/images/rough_col/#{style.name.downcase}.png", :class => "collection_img") %>
+             
            
-            <ul style="list-style-type:none;white-space:nowrap;overflow-x:auto;">
-            <% style.products.each_with_index do |product, i| %>
-
-                 
-
-                  <% bgimage= product.image.url(:medium) %>
-  
-                  <li class ="prod_tile <%= style.name.gsub(' ','_') %> tile<%= i %>" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat; display:inline">
-                    <div class="prod_title">
-
-                      <%= product.name %>
-                      
-
-                    </div>
-                  </li>
-                  
-
-                <% end %>
-                </ul>
+            
            </div>  
           <% end %>
               

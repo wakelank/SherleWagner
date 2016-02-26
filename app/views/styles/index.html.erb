@@ -1,27 +1,82 @@
-<div class="pg">
-<div class="styles_wrapper">
-  
+<div class="pg2">
+
+ 
+
        
-      
-       <% @genres.each do |genre| %>
-         <% unless genre.name == 'No genre' %>
-           <%=link_to genre_path(genre) do %> 
-           <div class="style_div" id="<%= genre.name%>">
-            <!-- <h3>
-              %= genre.name % <br/>
-            </h3> -->
-           </div>  
-          <% end %>
-              
-         <% end %>
+
+<div class="container-fluid" id='genre_contain'>  
+  <div class="row content">   
+    
+
+      <div class="grid">
+        <% 10.times do %>
+          <% @pics.each do |image| %>
+          <% file = image.split('/').last %>
+          <% img = "col_img/#{file}" %>
+          <% link = file.split('_').first %>
+         
           
-       <% end %>
-      </ul>
+          
+          <a href="/genres/<%= instance_variable_set('@' + link, Genre.where(:name => link.capitalize ).pluck(:id).first) %>">
+            <%= image_tag(img, :class => "size-img") %>
+        </a>
+        
+        
+        
+          <% end %>
+        <% end %>
+        <!-- <div class="grid-sizer"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--width2 grid-item--height2"></div>
+        <div class="grid-item grid-item--height3"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item grid-item--width3"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item grid-item--width2 grid-item--height3"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--width2 grid-item--height2"></div>
+        <div class="grid-item grid-item--width2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height3"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div> -->
+      </div>
+
+
+
+    
 
   </div>
-  </div>
+</div>
+
+
+
+</div>
 
   <script>
-  $('.side_nav').css('display','none');
-  $('body').css('background-color','white');
+  $('.nav-wrap').css('display','none');
+
+  $('#main_content').css('background-color','white');
+$('.content').css('background-color','white');
+//   $('.grid').masonry({
+//   // options
+//   itemSelector: '.grid-item',
+//   columnWidth: 200
+// });
+  $('.grid').masonry({
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true
+  $('.r_col').css('display','none');
+});
   </script>
+  
