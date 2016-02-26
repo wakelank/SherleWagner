@@ -706,17 +706,21 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
 }
 .collection_div{
   width: 98%;
-  height: 14em;
-  margin:0.5em;
+  height: 50vh;
+  /*margin:0.5em;*/
   float: left;
-  border: thin solid black;
+  /*border: thin solid black;*/
   padding: 0;
   background-size: cover;
-  overflow: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.collection_img{
+  height: 50vh;
 }
 .styles_wrapper{
   margin:0 auto;
-  margin-top: 11em;
+  margin-top: 2em;
   
 width: 100%;
   
