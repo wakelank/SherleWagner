@@ -5,9 +5,9 @@
     <%= link_to 'logout', logout_path %>
     <%= link_to 'add product', new_product_path %>
   <% else %>
-    <%= link_to 'login', login_path %>
+    <!-- %= link_to 'login', login_path %> -->
   <% end %>
-  <%= link_to 'favorites', favorites_path if !cookies[:favorites].nil? %>
+  <!-- = link_to 'favorites', favorites_path if !cookies[:favorites].nil? %> -->
   <div class="links">
     <ul class="links_list">
       <!-- Contact Us, Showroom Locations, History & Manufacturing, etc

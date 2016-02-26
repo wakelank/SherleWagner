@@ -111,7 +111,7 @@ ul.nav.navbar-nav{
 /*====The product browse page===*/
 
 /*===LARGEST WIDTH===*/
-@media (min-width: 1200px) {
+@media (min-width: 1254px) {
   #center_main{
     min-width: 995px;
 }
@@ -182,8 +182,15 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
 
-    @media (min-width: 950px) {
+    @media (min-width: 768px) {
 
+    #content_wrapper{
+      min-width: 700px;
+    }
+    #l_nav{
+  min-width: 230px;
+  max-width: 240px;
+}
 
       
     /*===REGULAR (950+) Side Nav ===*/
@@ -853,7 +860,7 @@ li.foot_link, li.foot_link a{
       ul.prod_list{
         float: left; 
         padding-left: 0;
-        margin-left: 10%;
+        margin-left: 4%;
       }
       .tile2, .tile3{
         display:none;
@@ -888,3 +895,16 @@ li.foot_link, li.foot_link a{
         background-color: whitesmoke;
       }
     }
+
+@media (max-width: 635px) {
+  .list_wrapper ul li {
+    margin: 5px;
+  }
+  ul.prod_list{
+    margin: 0;
+  }
+  #content_wrapper{
+    min-width: 515px;
+  }
+
+}
