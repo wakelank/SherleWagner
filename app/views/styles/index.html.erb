@@ -1,16 +1,20 @@
 <div class="pg">
 
- <% binding.pry %>
+ 
 
        
 
 <div class="container-fluid" id='genre_contain'>  
   <div class="row content">   
+    <div class="grid">
 
       <% @pics.each do |image| %>
-   <%= image_tag "col_img/#{image.split('/').last}" %>
- <% end %>
-
+      <% img = "images/col_img/#{image.split('/').last}" %>
+        <div class="grid-item grid-item--width2" id="test" style="background-image:url(<%= img %>)">...</div>
+        
+        
+      <% end %>
+    </div>
 
   </div>
 </div>
