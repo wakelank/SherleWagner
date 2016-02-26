@@ -1,4 +1,4 @@
-<div class="pg">
+<div class="pg2">
 
  
 
@@ -6,15 +6,38 @@
 
 <div class="container-fluid" id='genre_contain'>  
   <div class="row content">   
-    <div class="grid">
+    
 
-      <% @pics.each do |image| %>
-      <% img = "images/col_img/#{image.split('/').last}" %>
-        <div class="grid-item grid-item--width2" id="test" style="background-image:url(<%= img %>)">...</div>
-        
-        
-      <% end %>
-    </div>
+      <div class="grid">
+        <div class="grid-sizer"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--width2 grid-item--height2"></div>
+        <div class="grid-item grid-item--height3"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item grid-item--width3"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item grid-item--width2 grid-item--height3"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--width2 grid-item--height2"></div>
+        <div class="grid-item grid-item--width2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height3"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+      </div>
+
+
+
+    
 
   </div>
 </div>
@@ -27,12 +50,16 @@
   $('.nav-wrap').css('display','none');
   $('#main_content').css('background-color','white');
 $('.content').css('background-color','white');
+//   $('.grid').masonry({
+//   // options
+//   itemSelector: '.grid-item',
+//   columnWidth: 200
+// });
   $('.grid').masonry({
-  // options
   itemSelector: '.grid-item',
-  columnWidth: 200
+  columnWidth: '.grid-sizer',
+  percentPosition: true
 });
-  
   </script>
   <!-- <div class="grid">
       <div class="grid-item">...</div><div class="grid-item">...</div><div class="grid-item">...</div><div class="grid-item">...</div>
