@@ -8,23 +8,27 @@
   <div class="row content">   
     
 
-      <div class="grid">
-        <% 10.times do %>
-          <% @pics.each do |image| %>
-          <% file = image.split('/').last %>
-          <% img = "col_img/#{file}" %>
-          <% link = file.split('_').first %>
-         
-          
-          
-          <a href="/genres/<%= instance_variable_set('@' + link, Genre.where(:name => link.capitalize ).pluck(:id).first) %>">
-            <%= image_tag(img, :class => "size-img") %>
-        </a>
-        
-        
-        
-          <% end %>
-        <% end %>
+      <!-- <div class="grid"> -->
+         <div class="grid">
+      <div class="grid-item">...</div><div class="grid-item">...</div><div class="grid-item">...</div><div class="grid-item">...</div><div class="grid-item">...</div>
+      <div class="grid-item grid-item--width2">...</div>
+      <div class="grid-item grid-item--width3">...</div>
+      <div class="grid-item">...</div>
+      <div class="grid-item grid-item--width4">...</div>
+      <div class="grid-item">...</div>
+      <div class="grid-item grid-item--width4">...</div>
+      <div class="grid-item grid-item--width2">...</div>
+      <div class="grid-item">...</div>
+      <div class="grid-item grid-item--width3">...</div>
+      <div class="grid-item grid-item--width2">...</div>
+      <div class="grid-item">...</div>
+      <div class="grid-item">...</div>
+      <div class="grid-item grid-item--width2">...</div>
+      <div class="grid-item">...</div>
+      <div class="grid-item grid-item--width4">...</div>
+      
+     </div>
+       
         <!-- <div class="grid-sizer"></div>
         <div class="grid-item"></div>
         <div class="grid-item grid-item--width2 grid-item--height2"></div>
@@ -49,7 +53,7 @@
         <div class="grid-item"></div>
         <div class="grid-item"></div>
         <div class="grid-item grid-item--height2"></div> -->
-      </div>
+      <!-- </div> -->
 
 
 
@@ -75,8 +79,10 @@ $('.content').css('background-color','white');
   $('.grid').masonry({
   itemSelector: '.grid-item',
   columnWidth: '.grid-sizer',
-  percentPosition: true
-  $('.r_col').css('display','none');
+  percentPosition: true,
+  columnWidth: 20%
+  
 });
+  $('.r_col').css('display','none');
   </script>
   
