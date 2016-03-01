@@ -619,7 +619,8 @@ div.tearsheet-form-box {
 .swatch_div{
   display: none;
   pointer-events: none;
-  margin-top: -10px;
+  margin-top: 45px;
+  margin-left: -25px;
   position: absolute;
   background-color: white;
   width:6em;
