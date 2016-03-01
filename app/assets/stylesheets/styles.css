@@ -793,6 +793,13 @@ li.foot_link, li.foot_link a{
     }
     
   }
+    @media (max-width: 1250px) and (min-width: 1100px) {
+      ul#links2{
+        clear: left;
+        padding-left: 0;
+
+      }
+    }
 
      /*=====Medium/SMALL SHOW=====*/
      @media (max-width: 1100px) and (-webkit-min-device-pixel-ratio: 2) {
