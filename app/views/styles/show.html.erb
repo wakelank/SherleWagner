@@ -1,17 +1,56 @@
 
+<style>
+  .prod_tile2{
+      background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  background-color: white;
+  float:left;
+  height: 22.5em;
+  width: 22.5em;
+  border: solid #eeeeee;
+  margin: 10px;
+  }
+
+</style>
 <div class="prod_wrapper">
   <div class="list_wrapper">
+    <h3 id="subtype_list_name"><%= @style.name %> </h3>
+    <div class="grid">
     <ul class="style_list prod_list">
-      <h3 id="subtype_list_name"><%= @style.name %> </h3>
-      <% @genre.products.each do |product| %>
-       <% bgimage= product.image.url(:medium) %>
-<%= link_to(product_path(product), class:"prod_title_link")  do %>
- <%= image_tag(product.image.url(:medium)) %>
-<% end %>
+      
+      <% @genre.products.each_with_index do |product, i| %>
+          
+            <% bgimage= product.image.url(:medium) %>
+        <% if i%4 == 0 %>
+            <%= link_to(product_path(product), class:"prod_title_link")  do %>
 
+              <li class ="prod_tile" 
+              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
+              <div class="prod_title">
+                <%= product.name %>
+              </div>
+              </li>
+            <% end %>
+        <% else %>
+          <%= link_to(product_path(product), class:"prod_title_link")  do %>
+           <li class ="prod_tile2" 
+              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+
+              <div class="prod_title">
+                <%= product.name %>
+              </div>
+            </li>
+
+          <% end %>
+
+        <% end %>
       <% end %>
     </ul>
+    </div>
   </div>
   
 </div>
@@ -29,5 +68,11 @@
   $('#center_main').addClass('col-sm-12');
   $('#center_main').css('background-color','white');
 
-
+// $('.grid').masonry({
+//   itemSelector: '.grid-item',
+//   columnWidth: '.grid-sizer',
+//   percentPosition: true,
+//   columnWidth: 20%
+  
+// });
   </script>
