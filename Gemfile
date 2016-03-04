@@ -8,6 +8,7 @@ gem 'awesome_print'
 gem 'faker'
 gem "twitter-bootstrap-rails"
 gem "rails_admin"
+gem "kaminari"
 
 
 #these may require more configuration
