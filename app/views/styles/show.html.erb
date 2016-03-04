@@ -2,7 +2,7 @@
 <div class="prod_wrapper">
   <div class="list_wrapper">
     <ul class="style_list prod_list">
-      <h3 id="subtype_list_name">Collection: <%= @style.name %> </h3>
+      <h3 id="subtype_list_name"><%= @style.name %> </h3>
       <% @style.products.each do |product| %>
         <%= render product %>
       <% end %>
@@ -17,5 +17,12 @@
   $('#content_wrapper').css('box-shadow','none');
   $('#content_wrapper').css('width','100%');
   $('body').css('background-color','white');
+  $('#l_nav').css('display','none');
+  $('#r_col').css('display','none');
+  $('#center_main').removeClass('col-lg-8');
+  $('#center_main').removeClass('col-sm-8');
+  $('#center_main').addClass('col-sm-12');
+  $('#center_main').css('background-color','white');
+
 
   </script>
