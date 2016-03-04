@@ -7,7 +7,7 @@ gem 'jquery-turbolinks'
 gem 'awesome_print'
 gem 'faker'
 gem "twitter-bootstrap-rails"
-# gem "rails_admin"
+gem "rails_admin"
 gem "kaminari"
 
 
