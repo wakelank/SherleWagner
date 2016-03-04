@@ -270,7 +270,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-  kaminari
   launchy
   meta_request
   paperclip (~> 4.3)
