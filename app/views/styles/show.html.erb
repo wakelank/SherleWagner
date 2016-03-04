@@ -3,8 +3,13 @@
   <div class="list_wrapper">
     <ul class="style_list prod_list">
       <h3 id="subtype_list_name"><%= @style.name %> </h3>
-      <% @style.products.each do |product| %>
-        <%= render product %>
+      <% @genre.products.each do |product| %>
+       <% bgimage= product.image.url(:medium) %>
+<%= link_to(product_path(product), class:"prod_title_link")  do %>
+ <%= image_tag(product.image.url(:medium)) %>
+<% end %>
+
+
       <% end %>
     </ul>
   </div>
