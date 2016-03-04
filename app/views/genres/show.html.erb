@@ -3,7 +3,7 @@
        
       
        <% @styles.each do |style| %>
-         <% unless style.name == 'No style' %>
+         <% unless style.name == "no style" %>
            <%=link_to style_path(style) do %> 
             
            <div class="collection_div" id="<%= style.name%>" >
@@ -17,7 +17,7 @@
          <% end %>
           
        <% end %>
-      </ul>
+      
 
   </div>
   </div>

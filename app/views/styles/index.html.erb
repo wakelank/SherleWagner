@@ -1,22 +1,26 @@
-<div class="pg2">
-
- 
-
+<div class="pg">
+<div class="styles_wrapper">
        
-
-<div class="container-fluid" id='genre_contain'>  
-  <div class="row content">   
-    
-
-
-    
+      
+       <% @styles.each do |style| %>
+         <% unless style.name == 'no style' %>
+           <%=link_to style_path(style) do %> 
+            
+           <div class="collection_div" id="<%= style.name%>" >
+            <%= image_tag("/images/rough_col/#{style.name.downcase}.png", :class => "collection_img") %>
+             
+           
+            
+           </div>  
+          <% end %>
+              
+         <% end %>
+          
+       <% end %>
+      
 
   </div>
-</div>
-
-
-
-</div>
+  </div>
 
   <script>
   $('.nav-wrap').css('display','none');
@@ -28,13 +32,13 @@ $('.content').css('background-color','white');
 //   itemSelector: '.grid-item',
 //   columnWidth: 200
 // });
-  $('.grid').masonry({
-  itemSelector: '.grid-item',
-  columnWidth: '.grid-sizer',
-  percentPosition: true,
-  columnWidth: 20%
+//   $('.grid').masonry({
+//   itemSelector: '.grid-item',
+//   columnWidth: '.grid-sizer',
+//   percentPosition: true,
+//   columnWidth: 20%
   
-});
+// });
   $('.r_col').css('display','none');
   </script>
   
