@@ -8,10 +8,26 @@
   display:block;
   background-color: white;
   float:left;
-  height: 22.5em;
-  width: 22.5em;
-  border: solid #eeeeee;
-  margin: 10px;
+  height: 30em;
+  width: 30em;
+  border:0;
+  margin: 0 !important;
+  }
+  .prod_tile3{
+      background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  background-color: white;
+  float:left;
+  height: 15em;
+  width: 15em;
+  border: 0;
+  margin: 0 !important;
+  }
+  .prod_wrapper{
+    background-color: #eeeeee!important;
   }
 
 </style>
@@ -37,7 +53,7 @@
             <% end %>
         <% else %>
           <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
-           <li class ="prod_tile" 
+           <li class ="prod_tile3" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
               <div class="prod_title">
@@ -71,6 +87,6 @@
     $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
-  columnWidth: 100
+  columnWidth: 70
 });
   </script>
