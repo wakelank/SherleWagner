@@ -3,7 +3,7 @@
 <head>
   <title>Sherlewagner</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, "data-turbolinks-eval" => false  %>
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
   <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
@@ -14,7 +14,7 @@
 <div class="container-fluid" id='main_contain'>  
 
     <div class="row content">
- <% if controller_name == "styles" && action_name == "index" || controller_name == "genres" && action_name == "show" %>
+ <% if controller_name == "styles" && action_name == "index" || controller_name == "styles" && action_name == "show" %>
           <%= yield %>
 
  <% else %>

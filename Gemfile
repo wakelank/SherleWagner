@@ -3,7 +3,7 @@ ruby '2.1.2'
 gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-gem 'jquery-turbolinks'
+
 gem 'awesome_print'
 gem 'faker'
 gem "twitter-bootstrap-rails"
@@ -28,6 +28,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'filterrific'
