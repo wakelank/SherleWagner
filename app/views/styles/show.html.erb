@@ -31,7 +31,7 @@
   }
 
 </style>
-<%= render "layouts/collections_nav"%>
+<%= render "layouts/collection_view_nav"%>
 <div class="prod_wrapper">
   <div class="list_wrapper">
     <h3 id="subtype_list_name"><%= @style.name %> </h3>
@@ -78,8 +78,8 @@
   $('#content_wrapper').css('box-shadow','none');
   $('#content_wrapper').css('width','100%');
   $('body').css('background-color','white');
-  $('#l_nav').css('display','none');
-  $('#r_col').css('display','none');
+  // $('#l_nav').css('display','none');
+  $('.r_col').css('display','none');
   $('#center_main').removeClass('col-lg-8');
   $('#center_main').removeClass('col-sm-8');
   $('#center_main').addClass('col-sm-12');

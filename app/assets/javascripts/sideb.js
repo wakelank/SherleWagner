@@ -56,13 +56,13 @@ function WidthChange(mq) {
 
   if (mq.matches) {
     // window width is at least 500px
-    console.log ('IIITSSSS BIIIIG')
+    // console.log ('IIITSSSS BIIIIG')
     isSmall = false;
     $('.hide-dropdowns').hide();
     $('.panel').show();
   } else {
     // window width is less than 500px
-    console.log ('IIITSSSS SMALLL')
+    // console.log ('IIITSSSS SMALLL')
 
 
     isSmall = true;
