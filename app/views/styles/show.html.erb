@@ -26,6 +26,12 @@
   border: 0;
   margin: 0 !important;
   }
+  .prod_tile4{
+    /*box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;*/
+    border:8px solid #eeeeee ;
+  }
   .prod_wrapper{
     background-color: #eeeeee!important;
   }
@@ -47,9 +53,9 @@
               <li class ="prod_tile2 prod_tile4 " 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-              <div class="prod_title">
-                <%= product.name %>
-              </div>
+              <!-- <div class="prod_title">
+                %= product.name %>
+              </div> -->
               </li>
             <% end %>
         <% else %>
@@ -57,9 +63,9 @@
            <li class ="prod_tile3 prod_tile4" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-              <div class="prod_title">
-                <%= product.name %>
-              </div>
+            <!--   <div class="prod_title">
+                %= product.name %>
+              </div> -->
             </li>
 
           <% end %>
