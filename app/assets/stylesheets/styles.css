@@ -378,6 +378,10 @@ a.sub_type_tile_title {
  padding-top: 17em;  
 }
 
+#collections_nav{
+  color:gray;
+}
+
 /*======Product Show ========*/
 /*+++++THE PRODUCT SHOW PAGE++++++*/
 .back{
