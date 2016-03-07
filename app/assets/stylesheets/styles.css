@@ -736,7 +736,7 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
   float: left;
   /*border: thin solid black;*/
   padding: 0;
-  background-size: ;
+  
   overflow-x: scroll;
   overflow-y: hidden;
 }
