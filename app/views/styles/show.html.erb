@@ -44,7 +44,7 @@
         <% if i%6 == 0 %>
             <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
 
-              <li class ="prod_tile2" 
+              <li class ="prod_tile2 prod_tile4 " 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
               <div class="prod_title">
@@ -54,7 +54,7 @@
             <% end %>
         <% else %>
           <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
-           <li class ="prod_tile3" 
+           <li class ="prod_tile3 prod_tile4" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
               <div class="prod_title">
