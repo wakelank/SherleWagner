@@ -9,8 +9,8 @@ RSpec.describe FileUploadManager, :type => :model do
       @file = fixture_file_upload('files/test_product_data.csv', 'text/csv')
       @file = Rack::Test::UploadedFile.new(@file, 'text/csv')
       file_upload_manager = FileUploadManager.new @file
-      allow(file_upload_manager).to receive(:get_image_from_aws).and_return(NullObject.new)
-      file_upload_manager.upload
+#      allow(file_upload_manager).to receive(:get_image_from_aws).and_return(NullObject.new)
+     file_upload_manager.upload
       @product = Product.find_by(number: '008BSN108-XX') || :non_product
     end
 
