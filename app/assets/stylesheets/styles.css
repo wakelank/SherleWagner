@@ -951,7 +951,7 @@ li.foot_link, li.foot_link a{
 .navbar .navbar-collapse {
     text-align: center;
 }
-#collections_nav label {
+#collections_nav label, #collections_nav li {
     padding-top: 10px;
 }
 .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
