@@ -17,6 +17,8 @@ class FileUploadManager
     @bucket_objects
     @images_on_aws
     @materials_array
+    @black_and_white_bucket
+    @color_bucket
   end
 
   def upload
@@ -27,8 +29,8 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
-      product.image = get_image_from_aws data_row.get_image_name
-      product.other_images << get_images_from_aws(get_other_potential_images_for(product))
+      product.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
+      product.other_images << color_bucket.get_images_from_aws(get_other_potential_images_for(product))
 
       if !Product.uber_exists?(product) && !data_row.component?
         begin
@@ -36,9 +38,10 @@ class FileUploadManager
           product.styles.concat data_row.get_style
           product.filter_values.concat data_row.get_filters
           product.genres.concat data_row.get_genres
-          product.add_configuration get_product_configuration data_row
+          product.add_configuration(get_product_configuration(data_row))
           product.save if product.valid?
         rescue
+          binding.pry
 
         end
 
@@ -78,7 +81,7 @@ class FileUploadManager
 
   def get_product_configuration data_row
     configuration = ProductConfiguration.new(data_row.configuration_args)
-    configuration.image = get_image_from_aws data_row.get_image_name
+    configuration.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
 
     configuration
   end
@@ -96,32 +99,6 @@ class FileUploadManager
 
   def materials_array
     @materials_array ||= Material.materials_arr
-  end
-
-  def get_image_from_aws image_name
-    if images_on_aws.include? image_name
-      begin
-        bucket_objects[image_name]
-      rescue
-
-      end
-    else
-      NullObject.new
-    end
-  end
-
-  def get_images_from_aws image_name_arr
-    image_name_arr.map! do |name|
-      image = get_image_from_aws name
-    end
-    image_name_arr.select! do |image|
-      image.class != NullObject
-    end
-    image_name_arr.map do |image|
-      other_image = OtherImage.new
-      other_image.image = image
-      other_image
-    end
   end
 
   def get_other_potential_images_for product
@@ -143,38 +120,12 @@ class FileUploadManager
     images.uniq
   end
 
-  def images_on_aws
-    @images_on_aws ||= bucket_objects.keys
+
+
+  def color_bucket
+      @color_bucket ||= AwsHelper.new('sw-raw-images-color')
   end
-
-  def bucket
-    if @bucket.nil?
-      begin
-        @bucket = AWS::S3.new().buckets["sw-raw-images"]
-      rescue
-        @bucket = NullBucket.new
-
-      end
-    end
-    @bucket
+  def black_and_white_bucket
+      @black_and_white_bucket ||= AwsHelper.new('sw-raw-images')
   end
-
-  def bucket_objects
-    if @bucket_objects.nil?
-      @bucket_objects = {}
-      begin
-        bucket.objects.each do |obj|
-
-          image_name = obj.key.split('/').last
-          image_url = obj.public_url.to_s
-          @bucket_objects[image_name] = image_url
-
-        end
-      rescue
-
-      end
-    end
-    @bucket_objects
-  end
-
 end
