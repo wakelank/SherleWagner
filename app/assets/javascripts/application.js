@@ -12,6 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require jquery.masonry.min
 //= require twitter/bootstrap
 //= require turbolinks
+
 //= require_tree .
+
+var loaded = function(){
+
+  // Use affix plugin
+  $("#collections_nav").affix({
+    offset: { top: 105 }
+  });
+};
+
+$(document).on("page:change", loaded);
+
+

@@ -1,12 +1,79 @@
 
+<style>
+  .prod_tile2{
+      background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  background-color: white;
+  float:left;
+  height: 30em;
+  width: 30em;
+  border:0;
+  margin: 0 !important;
+  }
+  .prod_tile3{
+      background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0.5em;
+  text-align: center;
+  display:block;
+  background-color: white;
+  float:left;
+  height: 15em;
+  width: 15em;
+  border: 0;
+  margin: 0 !important;
+  }
+  .prod_tile4{
+    /*box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;*/
+    border:8px solid #eeeeee ;
+  }
+  .prod_wrapper{
+    background-color: #eeeeee!important;
+  }
+
+</style>
+<%= render "layouts/collection_view_nav"%>
 <div class="prod_wrapper">
   <div class="list_wrapper">
+    <h3 id="subtype_list_name"><%= @style.name %> </h3>
+    <div class="grid">
     <ul class="style_list prod_list">
-      <h3 id="subtype_list_name">Collection: <%= @style.name %> </h3>
-      <% @style.products.each do |product| %>
-        <%= render product %>
+      
+      <% @genre.products.each_with_index do |product, i| %>
+          
+            <% bgimage= product.image.url(:medium) %>
+        <% if i%6 == 0 %>
+            <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
+
+              <li class ="prod_tile2 prod_tile4 " 
+              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+
+              <!-- <div class="prod_title">
+                %= product.name %>
+              </div> -->
+              </li>
+            <% end %>
+        <% else %>
+          <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
+           <li class ="prod_tile3 prod_tile4" 
+              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+
+            <!--   <div class="prod_title">
+                %= product.name %>
+              </div> -->
+            </li>
+
+          <% end %>
+
+        <% end %>
       <% end %>
     </ul>
+    </div>
   </div>
   
 </div>
@@ -17,5 +84,16 @@
   $('#content_wrapper').css('box-shadow','none');
   $('#content_wrapper').css('width','100%');
   $('body').css('background-color','white');
+  // $('#l_nav').css('display','none');
+  $('.r_col').css('display','none');
+  $('#center_main').removeClass('col-lg-8');
+  $('#center_main').removeClass('col-sm-8');
+  $('#center_main').addClass('col-sm-12');
+  $('#center_main').css('background-color','white');
 
+    $('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 70
+});
   </script>

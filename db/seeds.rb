@@ -107,22 +107,22 @@ materials = [{ type: "China-Hand Painted",
 
              {type: "Marble",
               code:"MARBL",            
-              entries: [ { name: "ARABESCATO", indentifier: "ARAB" },
-                         { name: "CALCATTA", indentifier: "CALA" },
-                         { name: "CARNICO GREY", indentifier: "CAGR" },
-                         { name: "CARRERA", indentifier: "CARR" },
-                         { name: "CREMA MARFIL", indentifier: "CREMA" },
-                         { name: "IMPERADOR BROWN", indentifier: "IMBR" },
-                         { name: "MARIANELLA", indentifier: "MARI" },
-                         { name: "NEGRO MARQUINA", indentifier: "NEMA " },
-                         { name: "PORT LAURENT", indentifier: "PRLT" },
-                         { name: "PORTORO", indentifier: "PORT" },
-                         { name: "ROSA DU MONTE", indentifier: "RSDM" },
-                         { name: "ROSE AURORA", indentifier: "RSAU" },
-                         { name: "ROSE DU MONTE", indentifier: "RSDM" },
-                         { name: "RUVINA", indentifier: "RUVI" },
-                         { name: "VEREDI VIANA", indentifier: "VERD" },
-                         { name: "WHITE THASSOS", indentifier: "THAS" }]
+              entries: [ { name: "ARABESCATO", identifier: "ARAB" },
+                         { name: "CALCATTA", identifier: "CALA" },
+                         { name: "CARNICO GREY", identifier: "CAGR" },
+                         { name: "CARRERA", identifier: "CARR" },
+                         { name: "CREMA MARFIL", identifier: "CREMA" },
+                         { name: "IMPERADOR BROWN", identifier: "IMBR" },
+                         { name: "MARIANELLA", identifier: "MARI" },
+                         { name: "NEGRO MARQUINA", identifier: "NEMA " },
+                         { name: "PORT LAURENT", identifier: "PRLT" },
+                         { name: "PORTORO", identifier: "PORT" },
+                         { name: "ROSA DU MONTE", identifier: "RSDM" },
+                         { name: "ROSE AURORA", identifier: "RSAU" },
+                         { name: "ROSE DU MONTE", identifier: "RSDM" },
+                         { name: "RUVINA", identifier: "RUVI" },
+                         { name: "VEREDI VIANA", identifier: "VERD" },
+                         { name: "WHITE THASSOS", identifier: "THAS" }]
              },
              {type: "Semi-precious Stone",
               code: "SEMI",
@@ -652,9 +652,9 @@ end
 #basin_designs = %w(Under\ edges Over\Edge)
 #ccv_designs = %w(Console Counter Vanity)
 #wc_handle_designs = %w(Drop\ pull Bar\ pull)
-#door_trim_designs = %w(Push\ plates	Back\ Plates	Hinges	Latches	Thumb\ turns	Flush\ pulls	Key\ hole\ cover)
-#wall_trim_designs = %w(Door\ stops	Bell\ Covers	Electrical\ plates)
-#ceiling_lights_designs = %w(Chandeliers	Flush\ Mounted)
+#door_trim_designs = %w(Push\ plates  Back\ Plates  Hinges  Latches Thumb\ turns  Flush\ pulls  Key\ hole\ cover)
+#wall_trim_designs = %w(Door\ stops Bell\ Covers  Electrical\ plates)
+#ceiling_lights_designs = %w(Chandeliers  Flush\ Mounted)
 #wall_lights_designs = %w(Sconces Panel\ lights)
 #wallpaper_designs = %w(Toiles Floral Geometric)
 #
@@ -721,6 +721,11 @@ num_products = 200
 #
 #
 #    product.skus << sku = sku
+#  end
+#end
+
+
+u
 #  end
 #end
 

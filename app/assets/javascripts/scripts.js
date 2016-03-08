@@ -1,4 +1,8 @@
 $(document).on("page:change", (function(){
+
+  
+             
+ 
     
      switch ($('body').attr('class')){
       case 'products show':
@@ -120,7 +124,7 @@ $(document).on("page:change", (function(){
 
         break;
       case 'styles show':
-          filter_types();
+          filter_types2();
         break; 
       case 'static_pages home':
           // $('.side-nav-contain').css('display','none');
@@ -262,18 +266,17 @@ $(document).on("page:change", (function(){
         
       }
       
-
-  function filter_types(){
+    function filter_types2(){
     //filter on collections browse page
-    $('.panel-title input').click(function(){
+    $('label input').click(function(){
        check_cat = []
-      var cat = $('.panel-heading').find('input:checked').map(function(i, val){
+      var cat = $('li label').find('input:checked').map(function(i, val){
         check_cat.push(val.id);      
       });
       
       if (check_cat.length >= 1){
         
-        $('.prod_tile').each(function(key, tile){
+        $('.prod_tile4').each(function(key, tile){
           if ($.inArray(tile.dataset.category, check_cat) == -1){  
             $(tile).hide();
 
@@ -282,8 +285,31 @@ $(document).on("page:change", (function(){
           }
         });
       } else{
-        $('.prod_tile').show();
+        $('.prod_tile4').show();
       }
     });
   }
+  // function filter_types(){
+  //   //filter on collections browse page
+  //   $('.panel-title input').click(function(){
+  //      check_cat = []
+  //     var cat = $('.panel-heading').find('input:checked').map(function(i, val){
+  //       check_cat.push(val.id);      
+  //     });
+      
+  //     if (check_cat.length >= 1){
+        
+  //       $('.prod_tile').each(function(key, tile){
+  //         if ($.inArray(tile.dataset.category, check_cat) == -1){  
+  //           $(tile).hide();
+
+  //         } else {
+  //           $(tile).show();
+  //         }
+  //       });
+  //     } else{
+  //       $('.prod_tile').show();
+  //     }
+  //   });
+  // }
 }));

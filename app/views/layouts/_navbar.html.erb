@@ -1,22 +1,23 @@
-<div class="navbar navbar-fixed-top" id="top-navigation">
-  <div class="navbar-inner">
-    <div class="nav-container">
-      <div id="title_contain" class="span8">
-        <h1 class=""id="title_link"><%= link_to "SHERLE WAGNER", "/" %> </h1>
-      </div>
-      <div id="nav_link_contain">
-        <ul class="nav pull-left">
-          <li class="active"><a href="/"><h4>HOME</h4></a></li>
-          <li><a href="/styles"><h4>COLLECTIONS</h4></a></li>
-          <li><a href="/product_types"><h4>PRODUCTS</h4></a></li>
-          <li><a href="#"><h4>CATALOGUE</h4></a></li>
-        </ul>
-      </div>
+<style> .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      width: 100%;
+    }
+    button.navbar-toggle{
+      margin-top: 20px;
+      }</style>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav_link_contain">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+       <h1 class=""id="title_link"><%= link_to "SHERLE WAGNER", "/" %> </h1>
 
-      
-
-
-      <div class="searcher span4">
+    </div>
+    <div class="searcher span4">
         
 
         <%= form_tag search_path, :method => :get do %>
@@ -27,14 +28,23 @@
                   </div>
 
                   <div class="s2">
-                    <%= submit_tag "Search", :name => nil, :class => "button" %>
+                    <%= submit_tag "", :name => nil, :style => "display:none" %>
                   </div>
               </div>
           </div>
         <% end %>
       </div>
+    
+    <div class="collapse navbar-collapse" id="nav_link_contain">
+      <ul class="nav navbar-nav">
+           <li><a href="/"><h4>HOME</h4></a></li>
+          <li><a href="/styles"><h4>COLLECTIONS</h4></a></li>
+          <li><a href="/product_types"><h4>PRODUCTS</h4></a></li>
+          <li><a href="#"><h4>CATALOGUE</h4></a></li>
 
+        </ul>
+      
     </div>
-
   </div>
-</div>
+</nav>
+

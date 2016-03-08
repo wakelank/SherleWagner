@@ -1,27 +1,50 @@
+<%= render "layouts/collections_nav"%>
 <div class="pg">
 <div class="styles_wrapper">
-  
        
       
-       <% @genres.each do |genre| %>
-         <% unless genre.name == 'No genre' %>
-           <%=link_to genre_path(genre) do %> 
-           <div class="style_div" id="<%= genre.name%>">
-            <!-- <h3>
-              %= genre.name % <br/>
-            </h3> -->
-           </div>  
-          <% end %>
-              
-         <% end %>
-          
-       <% end %>
-      </ul>
+   <% @genres.each do |genre| %>
+    
+    <% genre.styles.each do |style| %>
+     <% unless style.name == 'no style' %>
+      
+        
+       <div class="collection_div" id="<%= style.name.downcase%>" >
+        <a name="<%= genre.name.downcase %>"></a>
+         <%=link_to style_path(style) do %> 
+        <%= image_tag("/images/rough_col/#{style.name.downcase}.png", :class => "collection_img") %>
+         
+       
+        
+       </div>  
+      <% end %>
+     <% end %> 
+    <% end %>
+      
+   <% end %>
+      
 
   </div>
   </div>
 
   <script>
-  $('.side_nav').css('display','none');
-  $('body').css('background-color','white');
+  $('.nav-wrap').css('display','none');
+
+  $('#main_content').css('background-color','black');
+$('.content').css('background-color','black');
+//   $('.grid').masonry({
+//   // options
+//   itemSelector: '.grid-item',
+//   columnWidth: 200
+// });
+//   $('.grid').masonry({
+//   itemSelector: '.grid-item',
+//   columnWidth: '.grid-sizer',
+//   percentPosition: true,
+//   columnWidth: 20%
+  
+// });
+  $('.r_col').css('display','none');
+
   </script>
+  
