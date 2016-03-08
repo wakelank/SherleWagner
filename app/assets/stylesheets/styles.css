@@ -195,7 +195,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     @media (min-width: 768px) {
 
     #content_wrapper{
-      min-width: 700px;
+      min-width: 932px;
+      /*This is in flux*/
     }
     #l_nav{
   min-width: 230px;
