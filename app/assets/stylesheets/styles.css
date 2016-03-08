@@ -19,21 +19,14 @@ body{
   color: #e2e7e2;
 
 }
-#title_contain h1{
-  position: absolute;
-  font-size: x-large;
-  font-weight: bold;
-  left: 65px;
-  color: #e2e7e2;
 
-}
 #title_link a{
-  color:inherit;
+  color:gray;
 }
 #title_link{
   /*text-decoration: none;*/
   
-  height: 2em;
+  /*height: 2em;*/
 }
 input.button{
      background-color: inherit;
@@ -56,12 +49,14 @@ input#search{
 }
 
 /*NAV BUTTONS*/
-ul.nav.navbar-nav{
+/*ul.nav.navbar-nav{
   float: left;
   clear: right;
-}
+}*/
 .nav li{
-  padding-right: 8em;
+  /*padding-right: 8em;*/
+    padding-left:40px;
+  padding-right:40px;
 
 }
 .nav{
@@ -380,6 +375,9 @@ a.sub_type_tile_title {
 
 #collections_nav{
   color:gray;
+}
+#collections_nav label{
+
 }
 
 /*======Product Show ========*/
@@ -937,4 +935,27 @@ li.foot_link, li.foot_link a{
     min-width: 515px;
   }
 
+}
+#nav_link_contain ul.navbar-nav {
+    display: inline-block;
+    float: none;
+    clear: left;
+    text-align: center;
+
+}
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+#collections_nav label {
+    padding-top: 10px;
+}
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:32px !important}
+div#nav_link_contain.collapse.navbar-collapse{
+  clear: left;  
 }
