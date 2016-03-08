@@ -279,13 +279,28 @@ $(document).on("page:change", (function(){
         $('.prod_tile4').each(function(key, tile){
           if ($.inArray(tile.dataset.category, check_cat) == -1){  
             $(tile).hide();
+            $('.grid').masonry({
+  // options
+  itemSelector: '.prod_tile4',
+  columnWidth: 70
+});
 
           } else {
             $(tile).show();
+            $('.grid').masonry({
+  // options
+  itemSelector: '.prod_tile4',
+  columnWidth: 70
+});
           }
         });
       } else{
         $('.prod_tile4').show();
+        $('.grid').masonry({
+  // options
+  itemSelector: '.prod_tile4',
+  columnWidth: 70
+});
       }
     });
   }
