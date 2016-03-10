@@ -32,11 +32,12 @@ class AwsHelper
     image_name_arr.select! do |image|
       image.class != NullObject
     end
-    image_name_arr.map do |image|
+    image_name_arr.map! do |image|
       other_image = OtherImage.new
       other_image.image = image
       other_image
     end
+    image_name_arr
   end
 
 
