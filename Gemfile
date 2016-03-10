@@ -5,11 +5,11 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
 gem 'awesome_print'
-gem 'faker'
+# gem 'faker'
 gem "twitter-bootstrap-rails"
 
 # gem "rails_admin"
-gem "kaminari"
+# gem "kaminari"
 
 
 
@@ -19,7 +19,7 @@ gem "kaminari"
 gem 'aws-sdk-v1'
 gem 'paperclip', '~> 4.3'
 # gem 'sunspot_rails'
-gem "rails-bootstrap-helpers"
+# gem "rails-bootstrap-helpers"
 
 gem 'rails', '4.2.1'
 gem 'pg'
@@ -31,7 +31,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'filterrific'
+# gem 'filterrific'
 
 gem "capistrano", "~> 3.4", group: :development
 gem 'capistrano-passenger'
