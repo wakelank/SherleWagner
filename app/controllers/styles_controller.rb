@@ -5,14 +5,13 @@ class StylesController < ApplicationController
     @genres = Genre.all
     
     @pics = Dir.glob("#{Rails.root}/public/images/col_img/*.png")
-    # @contemporary = Genre.where(:name => "Contemporary").pluck(:id).first
-    # @classic = Genre.where(:name => "Classic").pluck(:id).first
-    # @ornate = Genre.where(:name => "Ornate").pluck(:id).first
-    # @traditional = Genre.where(:name => "Traditional").pluck(:id).first
-     
+
   end
   def show
     @style = Style.find(params[:id])
+    @envi = Dir.glob("#{Rails.root}/public/images/Collections/#{@style.genre}/#{@style.name}/*.jpg")
     @genre = @style.genre
+
+    
   end
 end
