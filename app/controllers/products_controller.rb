@@ -113,6 +113,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     
     @product.update(product_params)
+    @product.update(product_type: @product.product_sub_type.product_type)
     redirect_to product_path params[:id]
   end
 
@@ -128,6 +129,7 @@ private
   def product_params
     params.require(:product).permit(:name,
                                     :number,
+                                    :product_sub_type_id,
                                     :finish_ids => [],
                                     :material_ids => [],
                                     :style_ids => [],
