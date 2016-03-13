@@ -126,7 +126,13 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:name, :number, :finish_ids => [], :material_ids => [])
+    params.require(:product).permit(:name,
+                                    :number,
+                                    :finish_ids => [],
+                                    :material_ids => [],
+                                    :style_ids => [],
+                                    :genre_ids => []
+                                   )
   end
 
 
