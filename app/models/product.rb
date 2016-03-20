@@ -264,7 +264,7 @@ class Product < ActiveRecord::Base
   end
 
   def first_image
-    default_or_first_configuration.try(:image) ||
+    default_or_first_configuration.try(:image_or_product_image) ||
       self.image
   end
   private

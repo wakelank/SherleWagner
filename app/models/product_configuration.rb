@@ -25,6 +25,14 @@ class ProductConfiguration < ActiveRecord::Base
     end
   end
 
+  def image_or_product_image
+    if image.url.include? 'missing'
+      product.image
+    else
+      image
+    end
+  end
+
 
 
 end
