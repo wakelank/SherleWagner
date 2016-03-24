@@ -21,10 +21,10 @@ RailsAdmin.config do |config|
 
   config.actions do
     dashboard do
-      only ["Product"]# mandatory
+      only ["Product", "ProductSubType"]# mandatory
     end
     index do
-      only ["Product"]# mandatory
+      only ["Product", "ProductSubType"]# mandatory
     end
     new
     export
