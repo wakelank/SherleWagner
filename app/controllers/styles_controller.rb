@@ -9,8 +9,14 @@ class StylesController < ApplicationController
   end
   def show
     @style = Style.find(params[:id])
-    @envi = Dir.glob("#{Rails.root}/public/images/Collections/#{@style.genre}/#{@style.name}/*.jpg")
     @genre = @style.genre
+
+    @envi = []
+    @style.environment_shots.each{|e|
+      @envi.push(e.image.url)
+    }
+    
+    
 
     
   end
