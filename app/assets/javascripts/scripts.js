@@ -109,7 +109,9 @@ $(document).on("page:change", (function(){
           
         });
 
+
         $('.materials .finish_tile').click(function(f){
+          //set the corrosponding finish
             var mat = this.dataset.material_identifier;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){
@@ -118,6 +120,26 @@ $(document).on("page:change", (function(){
               swap_product_info_for_configuration(t);
               $(t).addClass('alt_choice');
 
+             }
+            // fin = $('.finishes .highlight')[0].dataset.finish_identifier
+          });
+        });
+
+        $('.finishes .finish_tile').click(function(f){
+          //set the corrosponding material
+            var mat = this.dataset.finish_identifier;
+            var foundit = 0;
+          $('.alt_img').each(function(i,t){
+             if (t.dataset.url.includes('-'+mat)){
+              
+              swap_product_image(t.dataset.url);
+              swap_product_info_for_configuration(t);
+              $(t).addClass('alt_choice');
+              foundit ++;
+
+             }
+             if (foundit < 1){
+              console.log("didn't find it");
              }
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
