@@ -160,21 +160,34 @@ $(document).on("page:change", (function(){
             }
              
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
-          });
-          if (foundit ==0){
-            if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
+          }, doublecheck());
+          function doublecheck(){
+            console.log('doubleing')
+            if (foundit ==0){
+              if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
 
-            }else{
-              $('.alt_img').each(function(i,t){
-                      if (t.dataset.url.includes('-'+mat)){  
-                        swap_product_image(t.dataset.url);
-                        swap_product_info_for_configuration(t);
-                        $(t).addClass('alt_choice');
+              }else{
+                $('.alt_img').each(function(i,t){
+                  if (t.dataset.url.includes('-'+mat)){  
+                    swap_product_image(t.dataset.url);
+                    swap_product_info_for_configuration(t);
+                    $(t).addClass('alt_choice');
+                    foundit = 1;
 
-                      }
-                    });
+                  }
+                });
+                if(foundit == 0){
+                  console.log("zero match");
+                  console.log(otherswatch);
+                  //to do
+                  // if the selection does not include otherswatch:
+                  //look for one that does and show that
+                  //if there isn't one, show BW
+
+                }
+              }
+
             }
-
           }
         });  
 
@@ -336,13 +349,17 @@ $(document).on("page:change", (function(){
       if (check_cat.length >= 1){
         
         $('.prod_tile4').each(function(key, tile){
-          if ($.inArray(tile.dataset.category, check_cat) == -1){  
+          if ($.inArray(tile.dataset.category, check_cat) == -1)){  
+
+          //$$$$#$##$@R#$#@$ WORKING ON THIS
+            // if ($(tile).hasClass('envi')){
             $(tile).hide();
             $('.grid').masonry({
-  // options
-  itemSelector: '.prod_tile4',
-  columnWidth: 70
-});
+              // options
+              itemSelector: '.prod_tile4',
+              columnWidth: 70
+            });
+          // }
 
           } else {
             $(tile).show();
