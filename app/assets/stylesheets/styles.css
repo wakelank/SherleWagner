@@ -935,7 +935,7 @@ li.foot_link, li.foot_link a{
     margin: 0;
   }
   #content_wrapper{
-    min-width: 515px;
+    /*min-width: 515px;*/
   }
 
 }
