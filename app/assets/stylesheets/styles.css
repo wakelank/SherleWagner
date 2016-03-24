@@ -470,6 +470,13 @@ li.highlighted{
   padding-top: 10px;
   clear: both;
   width: 100%;
+
+
+/* divider line */
+  padding-bottom: 60px;
+  margin-bottom: 40px;
+  border-bottom: thin solid gray;
+
 }
 
 

@@ -130,9 +130,10 @@ $(document).on("page:change", (function(){
             var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
             
             var mat = this.dataset.finish_identifier;
-            
+            var foundit = 0;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){  
+              //To do -- if  there are multiple finishes, need to check for double match before showing the single match.. so use commented code...
               //check if material is right then:
                 if (t.dataset.url.includes(otherswatch)){
 
@@ -141,23 +142,40 @@ $(document).on("page:change", (function(){
                   swap_product_image(t.dataset.url);
                   swap_product_info_for_configuration(t);
                   $(t).addClass('alt_choice');
+                  foundit = 1;
 
-                  
-                }else {
-                  $('.alt_img').each(function(i,t){
-                    if (t.dataset.url.includes('-'+mat)){  
 
-                      swap_product_image(t.dataset.url);
-                      swap_product_info_for_configuration(t);
-                      $(t).addClass('alt_choice');
-                    }
-                  });
+        
+                // }else if(i == $('.alt_img').length-1 ) {
+                //   $('.alt_img').each(function(i,t){
+                //     if (t.dataset.url.includes('-'+mat)){  
+
+                //       swap_product_image(t.dataset.url);
+                //       swap_product_info_for_configuration(t);
+                //       $(t).addClass('alt_choice');
+                //     }
+                //   });
                 }
 
             }
              
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
+          if (foundit ==0){
+            if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
+
+            }else{
+              $('.alt_img').each(function(i,t){
+                      if (t.dataset.url.includes('-'+mat)){  
+                        swap_product_image(t.dataset.url);
+                        swap_product_info_for_configuration(t);
+                        $(t).addClass('alt_choice');
+
+                      }
+                    });
+            }
+
+          }
         });  
 
         break;
