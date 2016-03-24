@@ -5,6 +5,7 @@ $(document).on("page:change", (function(){
  
     
      switch ($('body').attr('class')){
+    //PRODUCT SHOW page JS  
       case 'products show':
       var configurationObject = {};
         var tearSheetForm = document.getElementById('tearsheet-form');
@@ -35,14 +36,14 @@ $(document).on("page:change", (function(){
         nav_back();
 
 
-        //select the featured image from the alt's
+        //select the featured image from the alt's on load
       
         var image = $('.product_image')[0].dataset.url;
         var matchr = image.match(/\/[^\/]+.jpg/);
 
         $('.alt_img').each(function(i,t){
           if(t.dataset.url.indexOf(matchr) > -1){
-            console.log('MAATCH');
+            
             $(t).addClass('alt_choice');
           }
         });
@@ -123,6 +124,9 @@ $(document).on("page:change", (function(){
         });
 
         break;
+
+      //end of product show page JS
+        
       case 'styles show':
           filter_types2();
         break; 

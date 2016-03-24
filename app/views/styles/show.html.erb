@@ -44,7 +44,7 @@
     <div class="grid">
     <ul class="style_list prod_list">
       
-      <% @style.products.each_with_index do |product, i| %>
+      <% @genre.products.each_with_index do |product, i| %>
           
             <% bgimage= product.image.url(:medium) %>
         <% if i%6 == 0 %>
@@ -52,7 +52,7 @@
 
               <li class ="prod_tile2 prod_tile4 " 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
-
+  
               <!-- <div class="prod_title">
                 %= product.name %>
               </div> -->
