@@ -32,21 +32,11 @@
       </h4>
       </div>
       <% end %>
+  </div>
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
 
-    <% if @product.product_configurations.count > 1 %>
-    <div class="image_list">
-
-      <ul id="alt_imgs">
-        <% @product.product_configurations.each do |config| %>
-          <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
-          <%= image_tag config.image.url(:thumb) %> <br/>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %> 
-  </div>
+    
+  
   
   
   <div class="product_info">
@@ -119,7 +109,18 @@
     </div>
     
   </div>
-  
+  <% if @product.product_configurations.count > 1 %>
+    <div class="image_list">
+
+      <ul id="alt_imgs">
+        <% @product.product_configurations.each do |config| %>
+          <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
+          <%= image_tag config.image.url(:thumb) %> <br/>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %> 
 
 
   
