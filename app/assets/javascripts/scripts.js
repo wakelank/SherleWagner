@@ -127,23 +127,38 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
+            var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
+            
             var mat = this.dataset.finish_identifier;
-            var foundit = 0;
+            
           $('.alt_img').each(function(i,t){
-             if (t.dataset.url.includes('-'+mat)){
-              
-              swap_product_image(t.dataset.url);
-              swap_product_info_for_configuration(t);
-              $(t).addClass('alt_choice');
-              foundit ++;
+             if (t.dataset.url.includes('-'+mat)){  
+              //check if material is right then:
+                if (t.dataset.url.includes(otherswatch)){
 
-             }
-             if (foundit < 1){
-              console.log("didn't find it");
-             }
+
+              
+                  swap_product_image(t.dataset.url);
+                  swap_product_info_for_configuration(t);
+                  $(t).addClass('alt_choice');
+
+                  
+                }else {
+                  $('.alt_img').each(function(i,t){
+                    if (t.dataset.url.includes('-'+mat)){  
+
+                      swap_product_image(t.dataset.url);
+                      swap_product_info_for_configuration(t);
+                      $(t).addClass('alt_choice');
+                    }
+                  });
+                }
+
+            }
+             
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
-        });
+        });  
 
         break;
 

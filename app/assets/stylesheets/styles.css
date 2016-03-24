@@ -495,6 +495,7 @@ li.highlighted{
 }
 #alt_imgs img{
 border: thin solid #e5e6df;
+max-width: 100px;
 
 }
 .alt_img:hover{
@@ -843,8 +844,8 @@ li.foot_link, li.foot_link a{
 }
 #alt_imgs img {
     
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
 }
 
       div h3#prod_name {
