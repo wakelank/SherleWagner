@@ -3,6 +3,9 @@ class Style < ActiveRecord::Base
 #  has_and_belongs_to_many :product_groups
   has_and_belongs_to_many :products
 
+  has_many :environment_shot_styles
+  has_many :environment_shots, through: :environment_shot_styles
+
   extend CanExtractFromFile
 
   HEADER = "STYLES"

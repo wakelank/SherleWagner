@@ -21,10 +21,10 @@ RailsAdmin.config do |config|
 
   config.actions do
     dashboard do
-      only ["Product"]# mandatory
+      only ["Product", "ProductSubType", "Style"]# mandatory
     end
     index do
-      only ["Product"]# mandatory
+      only ["Product", "ProductSubType", "Style"]# mandatory
     end
     new
     export
@@ -83,6 +83,12 @@ RailsAdmin.config do |config|
   end
 
   config.model 'OtherImage' do
+    object_label_method do
+      :image_name
+    end
+  end
+
+  config.model 'EnvironmentShot' do
     object_label_method do
       :image_name
     end

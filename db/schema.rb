@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319204050) do
+ActiveRecord::Schema.define(version: 20160324165452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,23 @@ ActiveRecord::Schema.define(version: 20160319204050) do
 
   add_index "compilations_products", ["compilation_id"], name: "index_compilations_products_on_compilation_id", using: :btree
   add_index "compilations_products", ["product_id"], name: "index_compilations_products_on_product_id", using: :btree
+
+  create_table "environment_shot_styles", force: :cascade do |t|
+    t.integer "environment_shot_id"
+    t.integer "style_id"
+  end
+
+  add_index "environment_shot_styles", ["environment_shot_id"], name: "index_environment_shot_styles_on_environment_shot_id", using: :btree
+  add_index "environment_shot_styles", ["style_id"], name: "index_environment_shot_styles_on_style_id", using: :btree
+
+  create_table "environment_shots", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "filter_values", force: :cascade do |t|
     t.string  "name"
@@ -196,9 +213,13 @@ ActiveRecord::Schema.define(version: 20160319204050) do
 
   create_table "product_sub_types", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "product_type_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "product_sub_types", ["product_type_id"], name: "index_product_sub_types_on_product_type_id", using: :btree
@@ -253,6 +274,8 @@ ActiveRecord::Schema.define(version: 20160319204050) do
   add_foreign_key "china_colors_products", "products"
   add_foreign_key "compilations_products", "compilations"
   add_foreign_key "compilations_products", "products"
+  add_foreign_key "environment_shot_styles", "environment_shots"
+  add_foreign_key "environment_shot_styles", "styles"
   add_foreign_key "filter_values", "filters"
   add_foreign_key "filter_values_products", "filter_values"
   add_foreign_key "filter_values_products", "products"
