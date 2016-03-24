@@ -255,6 +255,17 @@ class Product < ActiveRecord::Base
       number.sub!('TMO', 'CTS')
       return Product.find_by(number: number)
     end
+
+  end
+
+  def default_or_first_configuration
+    self.product_configurations.where(default: true).first ||
+      self.product_configurations.try(:first)
+  end
+
+  def first_image
+    default_or_first_configuration.try(:image_or_product_image) ||
+      self.image
   end
   private
 
@@ -282,7 +293,6 @@ class Product < ActiveRecord::Base
       false
     end
   end
-
 
 
 

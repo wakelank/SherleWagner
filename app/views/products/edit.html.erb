@@ -1,20 +1,49 @@
 
 
-<h1>Edit a product group</h1>
+<h1>Edit a product</h1>
 <%= @product.number %>
 <%= form_for(@product, multipart: true) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
   <%= f.label :number %>
   <%= f.text_field :number, class: 'form-control' %>
+
+  <div class="set_product_type setters">
+    <%=field_set_tag "Type" do %>
+      <% ProductType.all.each do |type| %>
+        <%=field_set_tag type.name %>
+        <%= f.collection_radio_buttons(:product_sub_type_id, type.product_sub_types.all, :id, :name) do |sub_type| %>
+          <% sub_type.label(class: "radiobuttun inline") { sub_type.radio_button + sub_type.text } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class="set_genre setters">
+  <%= field_set_tag "Genre" do %>
+    <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+      <% genre.label(class: "checkbox inline") {genre.check_box + genre.text} %>
+    <% end %>
+  <% end %>
+  </div>
+
+  <div class="set_styles setters">
+  <%= field_set_tag "Styles" do %>
+    <%= f.collection_check_boxes(:style_ids, Style.all, :id, :name) do |style| %>
+      <% style.label(class: "checkbox inline") {style.check_box + style.text} %>
+    <% end %>
+  <% end %>
+  </div>
+
   <div class="set_finishes setters">
   <%= field_set_tag "Finishes" do %>
     <%= f.collection_check_boxes(:finish_ids, Finish.all, :id, :name) do |fin| %>
       <% fin.label(class: "checkbox inline") {fin.check_box + fin.text} %>
     <% end %>
   <% end %>
-
   </div>
+
   <div class="set_materials setters">
   <%= field_set_tag "Materials" do %>
     <% @materials.each do |material|  %>
