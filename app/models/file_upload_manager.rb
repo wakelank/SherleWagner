@@ -29,9 +29,11 @@ class FileUploadManager
     CSV.foreach(file.path, encoding: "MacRoman", col_sep: ',', headers: true) do |row|
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
-      product.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
-      product.other_images << color_bucket.get_images_from_aws(get_other_potential_images_for(product))
-
+      begin
+        product.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
+        product.other_images << color_bucket.get_images_from_aws(get_other_potential_images_for(product))
+      rescue
+      end
       if !Product.uber_exists?(product) && !data_row.component?
         begin
 
@@ -81,7 +83,10 @@ class FileUploadManager
 
   def get_product_configuration data_row
     configuration = ProductConfiguration.new(data_row.configuration_args)
-    configuration.image = color_bucket.get_image_from_aws(data_row.get_image_name)
+    begin
+      configuration.image = color_bucket.get_image_from_aws(data_row.get_image_name)
+    rescue
+    end
 
     configuration
   end
