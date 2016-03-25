@@ -35,6 +35,13 @@
   .prod_wrapper{
     background-color: #eeeeee!important;
   }
+  .slide_out{
+    position: absolute;
+    z-index: 2;
+    width: 3em;
+    background-color: gray;
+    opacity: 0;
+  }
 
 </style>
 <%= render "layouts/collection_view_nav"%>
@@ -59,24 +66,23 @@
               </div> -->
               </li>
               <% end %>
-        <% elsif i>1 && i%7 == 0 && envcount < 3 %>
+        <% elsif i>1 && i%7 == 0 %>
              <li class ="prod_tile3 prod_tile4 " 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
   
-              <!-- <div class="prod_title">
-                %= product.name %>
-              </div> -->
+              
               </li>
-               <li class ="prod_tile2 envi_tile grid-item" 
-              style="background-image: url(<%= @envi[envcount] %>)">
-  
-              <!-- <div class="prod_title">
-                %= product.name %>
-              </div> -->
-              </li>
-              <% envcount += 1 %>
-
+              <% if envcount < @envi.length %>
+                <li class ="prod_tile2 envi_tile grid-item" 
+                style="background-image: url(<%= @envi[envcount] %>)">
+    
+                <!-- <div class="prod_title">
+                  %= product.name %>
+                </div> -->
+                </li>
+                <% envcount += 1 %>
+              <% end %>
               
               
         <% else %>
@@ -88,6 +94,9 @@
                 %= product.name %>
               </div> -->
             </li>
+            <div class="slide_out">
+               <h4>test text 1</h4>
+              </div>
 
           <% end %>
 
@@ -119,7 +128,18 @@
   columnWidth: 70
 });
 
-  $('.prod_tile4').hover(console.log('hovered'));
+  $('.prod_tile4').hover(function(){
+    // console.log("hovering")
+    
+    $(this).addClass('hovers');
+    // sl = $('hovers').find('.slide_out');
+    // sl.animate({
+    //   right: '250px',
+    //   opacity: '0.5',
+    // });
+    // $('.slide_out').animate({right: '250px'});
+
+  })
 
 
   </script>
