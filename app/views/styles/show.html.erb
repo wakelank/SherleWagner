@@ -51,6 +51,10 @@
     border-color: #eeeeee;
 
   }
+  .hovering{
+    border-color:darkgray;
+
+  }
 
 </style>
 <%= render "layouts/collection_view_nav"%>
@@ -144,65 +148,52 @@
   itemSelector: '.grid-item',
   columnWidth: 70
 });
+
   var config = {    
-     sensitivity: 1,    
-     interval: 9000,     
-     timeout: 9000,    
+     over: show_slideout, // function = onMouseOver callback (REQUIRED)    
+     timeout: 100, // number = milliseconds delay before onMouseOut    
+     interval: 1000, // number = milliseconds delay before trying to call over    
+     out: hide_slideout // function = onMouseOut callback (REQUIRED)    
   };
-  $('.prod_tile4').hoverIntent(function(){
-    // console.log("hovering")
+
+  $('.prod_tile4').hover(function(){
+    $(this).addClass('hovering');
+    console.log('hovering?')
     
-    $(this).addClass('hovers');
-     sl = $('.hovers').find('.slide_out');
-
-    sl.animate({
-      // right: '50px',
-      width: '15em',
-      opacity: '1',
-    });
-  },
-  function(){
-    // console.log("hovering")
+  });
+  $('.prod_tile4').mouseout(function(){
+    $(this).removeClass('hovering');
     
-    
-     sl = $('.hovers').find('.slide_out');
-     $('.hovers').removeClass('hovers');
-     console.log('hiding');
-    sl.animate({
-      // right: '50px',
-      width: '0',
-      opacity: '0',
-    });
-  },
+  })
 
-   config);
+  $('.prod_tile4').hoverIntent(config);
 
-
-
+ 
   function show_slideout(){
     // console.log("hovering")
     
-    $(this).addClass('hovers');
-     sl = $('.hovers').find('.slide_out');
-
+    
+     sl = $(this).find('.slide_out');
     sl.animate({
       // right: '50px',
       width: '15em',
       opacity: '1',
     });
+    $(this).addClass('hovers');
   }
   function hide_slideout(){
-    console.log("hiding");
+    // console.log("hovering")
     
-    // $(this).removeClass('hovers');
-     sl = $('.hovers').find('.slide_out');
-     sl.parent().removeClass('hovers');
-    sl.animate({
+    
+     bl = $(this).find('.slide_out');
+     bl.removeClass('hovers');
+     bl.removeClass('#hovering');
+    bl.animate({
       // right: '50px',
-      width: '0',
+      
       opacity: '0',
+      width:'0'
     });
-
   }
 
   </script>
