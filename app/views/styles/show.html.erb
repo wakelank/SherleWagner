@@ -144,20 +144,65 @@
   itemSelector: '.grid-item',
   columnWidth: 70
 });
-
-  $('.prod_tile4').hover(function(){
+  var config = {    
+     sensitivity: 1,    
+     interval: 9000,     
+     timeout: 9000,    
+  };
+  $('.prod_tile4').hoverIntent(function(){
     // console.log("hovering")
     
     $(this).addClass('hovers');
      sl = $('.hovers').find('.slide_out');
+
     sl.animate({
       // right: '50px',
       width: '15em',
-      opacity: '0.5',
+      opacity: '1',
     });
-    // $('.slide_out').animate({right: '250px'});
+  },
+  function(){
+    // console.log("hovering")
+    
+    
+     sl = $('.hovers').find('.slide_out');
+     $('.hovers').removeClass('hovers');
+     console.log('hiding');
+    sl.animate({
+      // right: '50px',
+      width: '0',
+      opacity: '0',
+    });
+  },
 
-  })
+   config);
 
+
+
+  function show_slideout(){
+    // console.log("hovering")
+    
+    $(this).addClass('hovers');
+     sl = $('.hovers').find('.slide_out');
+
+    sl.animate({
+      // right: '50px',
+      width: '15em',
+      opacity: '1',
+    });
+  }
+  function hide_slideout(){
+    console.log("hiding");
+    
+    // $(this).removeClass('hovers');
+     sl = $('.hovers').find('.slide_out');
+     sl.parent().removeClass('hovers');
+    sl.animate({
+      // right: '50px',
+      width: '0',
+      opacity: '0',
+    });
+
+  }
 
   </script>
