@@ -36,11 +36,19 @@
     background-color: #eeeeee!important;
   }
   .slide_out{
+    
     position: absolute;
+    right: 0;
+    top: 22;
+    border-bottom: 8px solid blue;
+    height: 100%;
+    border-top: 8px solid gray;
+    top: 0;
+    border-right: 8px solid grey;
     z-index: 2;
-    width: 3em;
-    background-color: gray;
-    opacity: 0;
+    background-color: lightblue;
+     opacity: 0; 
+
   }
 
 </style>
@@ -51,7 +59,7 @@
     <div class="grid">
     <ul class="style_list prod_list">
       <% envcount= 0 %>
-      <% @genre.products.each_with_index do |product, i| %>
+      <% @style.products.each_with_index do |product, i| %>
           
             <% bgimage= product.image.url(:medium) %>
             
@@ -64,25 +72,31 @@
               <!-- <div class="prod_title">
                 %= product.name %>
               </div> -->
+              <div class="slide_out">
+               <h4>test text 1</h4>
+              </div>
+
               </li>
-              <% end %>
+            <% end %>
+
         <% elsif i>1 && i%7 == 0 %>
-             <li class ="prod_tile3 prod_tile4 " 
+             <!-- <li class ="prod_tile3 prod_tile4 " 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+
+              <div class="slide_out">
+               <h4>test text 1</h4>
+              </div>
 
   
               
               </li>
-              <% if envcount < @envi.length %>
+              % if envcount < @envi.length %>
                 <li class ="prod_tile2 envi_tile grid-item" 
                 style="background-image: url(<%= @envi[envcount] %>)">
     
-                <!-- <div class="prod_title">
-                  %= product.name %>
-                </div> -->
-                </li>
+                </li> -->
                 <% envcount += 1 %>
-              <% end %>
+              <!-- % end %> -->
               
               
         <% else %>
@@ -93,10 +107,11 @@
             <!--   <div class="prod_title">
                 %= product.name %>
               </div> -->
-            </li>
+            
             <div class="slide_out">
                <h4>test text 1</h4>
-              </div>
+            </div>
+            </li>
 
           <% end %>
 
@@ -132,11 +147,11 @@
     // console.log("hovering")
     
     $(this).addClass('hovers');
-    // sl = $('hovers').find('.slide_out');
-    // sl.animate({
-    //   right: '250px',
-    //   opacity: '0.5',
-    // });
+     sl = $('.hovers').find('.slide_out');
+    sl.animate({
+      // right: '250px',
+      opacity: '0.5',
+    });
     // $('.slide_out').animate({right: '250px'});
 
   })
