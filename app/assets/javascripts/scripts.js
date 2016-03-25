@@ -349,17 +349,15 @@ $(document).on("page:change", (function(){
       if (check_cat.length >= 1){
         
         $('.prod_tile4').each(function(key, tile){
-          if ($.inArray(tile.dataset.category, check_cat) == -1)){  
+          if ($.inArray(tile.dataset.category, check_cat) == -1){  
 
-          //$$$$#$##$@R#$#@$ WORKING ON THIS
-            // if ($(tile).hasClass('envi')){
             $(tile).hide();
             $('.grid').masonry({
               // options
               itemSelector: '.prod_tile4',
               columnWidth: 70
             });
-          // }
+         
 
           } else {
             $(tile).show();
