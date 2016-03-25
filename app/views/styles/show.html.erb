@@ -43,10 +43,11 @@
     <h3 id="subtype_list_name"><%= @style.name %> </h3>
     <div class="grid">
     <ul class="style_list prod_list">
-      
+      <% envcount= 0 %>
       <% @genre.products.each_with_index do |product, i| %>
           
             <% bgimage= product.image.url(:medium) %>
+            
         <% if i%6 == 0 %>
             <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
 
@@ -57,7 +58,27 @@
                 %= product.name %>
               </div> -->
               </li>
-            <% end %>
+              <% end %>
+        <% elsif i>1 && i%7 == 0 && envcount < 3 %>
+             <li class =" prod_tile4 envi" 
+              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+
+  
+              <!-- <div class="prod_title">
+                %= product.name %>
+              </div> -->
+              </li>
+               <li class ="prod_tile2 prod_tile4 grid-item" 
+              style="background-image: url(<%= @envi[envcount] %>)">
+  
+              <!-- <div class="prod_title">
+                %= product.name %>
+              </div> -->
+              </li>
+              <% envcount += 1 %>
+
+              
+              
         <% else %>
           <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
            <li class ="prod_tile3 prod_tile4" 
@@ -98,6 +119,7 @@
   columnWidth: 70
 });
 
+  $('.prod_tile4').hover(console.log('hovered'));
 
 
   </script>
