@@ -36,18 +36,19 @@
     background-color: #eeeeee!important;
   }
   .slide_out{
-    
-    position: absolute;
-    right: 0;
+      position: absolute;
+    left: 14em;
+    width: 0;
     top: 22;
-    border-bottom: 8px solid blue;
+    border-bottom: 8px solid grey;
     height: 100%;
     border-top: 8px solid gray;
     top: 0;
     border-right: 8px solid grey;
     z-index: 2;
-    background-color: lightblue;
-     opacity: 0; 
+    background-color: white;
+    opacity: 0;
+    border-color: #eeeeee;
 
   }
 
@@ -62,12 +63,13 @@
       <% @style.products.each_with_index do |product, i| %>
           
             <% bgimage= product.image.url(:medium) %>
+            <% bgimage2= product.image.url %>
             
         <% if i%6 == 0 %>
             <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
 
               <li class ="prod_tile2 prod_tile4 " 
-              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+              style="background-image: url(<%= bgimage2 %>); background-size:contain" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
   
               <!-- <div class="prod_title">
                 %= product.name %>
@@ -149,7 +151,8 @@
     $(this).addClass('hovers');
      sl = $('.hovers').find('.slide_out');
     sl.animate({
-      // right: '250px',
+      // right: '50px',
+      width: '15em',
       opacity: '0.5',
     });
     // $('.slide_out').animate({right: '250px'});
