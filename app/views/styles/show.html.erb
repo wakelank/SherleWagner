@@ -57,7 +57,7 @@
 <%= render "layouts/collection_view_nav"%>
 <div class="prod_wrapper">
   <div class="list_wrapper">
-    <h3 id="subtype_list_name"><%= @style.name %> </h3>
+    <!-- <h3 id="subtype_list_name">%= @style.name %> </h3> -->
     <div class="grid">
     <ul class="style_list prod_list">
       <% envcount= 0 %>
@@ -138,6 +138,8 @@
   $('#center_main').addClass('col-sm-12');
   $('#center_main').css('background-color','white');
 
+  
+
     $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
@@ -146,7 +148,7 @@
 
   var config = {    
      over: show_slideout, // function = onMouseOver callback (REQUIRED)    
-     timeout: 100, // number = milliseconds delay before onMouseOut    
+     timeout: 50, // number = milliseconds delay before onMouseOut    
      interval: 200, // number = milliseconds delay before trying to call over    
      out: hide_slideout // function = onMouseOut callback (REQUIRED)    
   };

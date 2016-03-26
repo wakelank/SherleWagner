@@ -374,7 +374,7 @@ a.sub_type_tile_title {
  padding-top: 17em;  
 }
 
-#collections_nav{
+.collection_view_nav{
   color:gray;
   background-color: #eeeeee;
   border-color: #eeeeee;
@@ -981,6 +981,11 @@ li.foot_link, li.foot_link a{
 }
 #collections_nav label, #collections_nav li {
     padding-top: 10px;
+}#collection_view_nav label, #collection_view_nav li {
+    padding-top: 10px;
+}
+#collection_name{
+  float: left;
 }
 .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
 .navbar {min-height:32px !important}
