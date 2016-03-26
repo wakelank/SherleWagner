@@ -797,6 +797,7 @@ width: 100%;
    height:60px;
    width:100%;
    background:#353535;
+   z-index: 3;
 }
 li.foot_link, li.foot_link a{
     display: inline;

@@ -36,25 +36,24 @@
     background-color: #eeeeee!important;
   }
   .slide_out{
+
+   
     position: absolute;
-    left: 240px;
+    left: 14em;
+
     width: 0;
     top: 22;
-    border-bottom: 8px solid grey;
-    height: 100%;
-    border-top: 8px solid gray;
-    top: 0;
-    border-right: 8px solid grey;
+    border-bottom: 16px solid grey;
+    height: 16.15em;
+    border-top: 16px solid gray;
+    top: -8px;
+    border-right: 16px solid grey;
     z-index: 2;
     background-color: white;
     opacity: 0;
     border-color: #eeeeee;
-
   }
-  .hovering{
-    border-color:darkgray;
-
-  }
+ 
 
 </style>
 <%= render "layouts/collection_view_nav"%>
@@ -75,13 +74,11 @@
               <li class ="prod_tile2 prod_tile4 " 
               style="background-image: url(<%= bgimage2 %>); background-size:contain" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
   
-              <!-- <div class="prod_title">
-                %= product.name %>
-              </div> -->
-              <div class="slide_out">
+             
+              <!-- <div class="slide_out">
                <h4>test text 1</h4>
               </div>
-
+ -->
               </li>
             <% end %>
 
@@ -152,19 +149,13 @@
   var config = {    
      over: show_slideout, // function = onMouseOver callback (REQUIRED)    
      timeout: 100, // number = milliseconds delay before onMouseOut    
-     interval: 250, // number = milliseconds delay before trying to call over    
+
+     interval: 200, // number = milliseconds delay before trying to call over    
      out: hide_slideout // function = onMouseOut callback (REQUIRED)    
   };
 
-  // $('.prod_tile4').hover(function(){
-  //   $(this).addClass('hovering');
-  //   console.log('hovering?')
-    
-  // });
-  // $('.prod_tile4').mouseout(function(){
-  //   $(this).removeClass('hovering');
-    
-  // })
+  
+
 
   $('.prod_tile4').hoverIntent(config);
 
@@ -176,8 +167,10 @@
      sl = $(this).find('.slide_out');
     sl.animate({
       // right: '50px',
-      width: '240px',
-      opacity: '1',
+
+      width: '16.5em',
+      opacity: '0.9',
+
     });
     $(this).addClass('hovers');
   }
