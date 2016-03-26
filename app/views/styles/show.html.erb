@@ -3,26 +3,26 @@
   .prod_tile2{
       background-size: contain;
   background-repeat: no-repeat;
-  padding: 8px;
+  padding: 0.5em;
   text-align: center;
   display:block;
   background-color: white;
   float:left;
-  height: 480px;
-  width: 480px;
+  height: 30em;
+  width: 30em;
   border:0;
   margin: 0 !important;
   }
   .prod_tile3{
       background-size: contain;
   background-repeat: no-repeat;
-  padding: 8px;
+  padding: 0.5em;
   text-align: center;
   display:block;
   background-color: white;
   float:left;
-  height: 240px;
-  width: 240px;
+  height: 15em;
+  width: 15em;
   border: 0;
   margin: 0 !important;
   }
@@ -36,11 +36,9 @@
     background-color: #eeeeee!important;
   }
   .slide_out{
-
    
     position: absolute;
     left: 14em;
-
     width: 0;
     top: 22;
     border-bottom: 16px solid grey;
@@ -131,7 +129,7 @@
   $('#content_wrapper').css('background-color','white');
   $('#content_wrapper').css('box-shadow','none');
   $('#content_wrapper').css('width','100%');
-  $('#content_wrapper').css('padding-bottom','160px');
+  $('#content_wrapper').css('padding-bottom','10em');
   $('body').css('background-color','#eeeeee');
   // $('#l_nav').css('display','none');
   $('.r_col').css('display','none');
@@ -143,19 +141,17 @@
     $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
-  columnWidth: 60
+  columnWidth: 70
 });
 
   var config = {    
      over: show_slideout, // function = onMouseOver callback (REQUIRED)    
      timeout: 100, // number = milliseconds delay before onMouseOut    
-
      interval: 200, // number = milliseconds delay before trying to call over    
      out: hide_slideout // function = onMouseOut callback (REQUIRED)    
   };
 
   
-
 
   $('.prod_tile4').hoverIntent(config);
 
@@ -167,10 +163,8 @@
      sl = $(this).find('.slide_out');
     sl.animate({
       // right: '50px',
-
       width: '16.5em',
       opacity: '0.9',
-
     });
     $(this).addClass('hovers');
   }
@@ -186,7 +180,7 @@
       
       opacity: '0',
       width:'0'
-    },"fast");
+    });
   }
 
   </script>
