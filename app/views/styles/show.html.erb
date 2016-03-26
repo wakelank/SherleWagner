@@ -46,6 +46,7 @@
     z-index: 2;
     background-color: white;
     opacity: 0;
+    display: none;
     
   }
  
@@ -106,7 +107,7 @@
                 %= product.name %>
               </div> -->
             
-            <div class="slide_out">
+            <div class="slide_out" >
                <h4>test text 1</h4>
             </div>
             </li>
@@ -145,8 +146,8 @@
 
   var config = {    
      over: show_slideout, // function = onMouseOver callback (REQUIRED)    
-     timeout: 50, // number = milliseconds delay before onMouseOut    
-     interval: 200, // number = milliseconds delay before trying to call over    
+     timeout: 100, // number = milliseconds delay before onMouseOut    
+     interval: 250, // number = milliseconds delay before trying to call over    
      out: hide_slideout // function = onMouseOut callback (REQUIRED)    
   };
 
@@ -160,6 +161,7 @@
     
     
      sl = $(this).find('.slide_out');
+     sl.show();
     sl.animate({
       
      // width: ''
@@ -174,10 +176,12 @@
      bl = $(this).find('.slide_out');
      bl.removeClass('hovers');
      bl.removeClass('#hovering');
-    bl.animate({
-      // right: '50px',
-      opacity: '0'
-    });
+     bl.hide();
+     bl.css('opacity','0');
+    // bl.animate({
+    //   // right: '50px',
+    //   opacity: '0'
+    // });
   }
 
   </script>
