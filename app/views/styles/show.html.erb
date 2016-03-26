@@ -37,7 +37,11 @@
   }
   .slide_out{
    
-    position: absolute;
+   opacity: 0;
+    display: none;
+  }
+  .details_right{
+     position: absolute;
     left: 8px;
     width: 405px;
     top: 8px;
@@ -45,8 +49,20 @@
     height: 194px;    
     z-index: 2;
     background-color: white;
-    opacity: 0;
-    display: none;
+    /*opacity: 0;
+    display: none;*/
+    
+  }
+  .details_left{
+     position: absolute;
+    left: 8px;
+    width: 405px;
+    top: 8px;
+    border: thin solid blue;
+    height: 194px;    
+    z-index: 2;
+    background-color: white;
+    
     
   }
  
@@ -157,25 +173,41 @@
 
  
   function show_slideout(){
+
     // console.log("hovering")
-    
-    
-     sl = $(this).find('.slide_out');
+    //pseudo
+    //check page position
+
+    //apply a class to slideout (giving it its size and left value (+ determine it's layout)
+    // make it visible..
+    var sl = $(this).find('.slide_out');
+      pageX = $(this).parent().position().left;
+      tileWidth = $(this).width();
+      gridWidth = $('.grid').width();
+      if(gridWidth-pageX < tileWidth*2){
+        sl.addClass('details_left');
+      }else{
+        sl.addClass('details_right');
+      }
+
+     
      sl.show();
-    // sl.animate({
+    sl.animate({
       
-    //  // width: ''
-    //   opacity: '0.9',
-    // });
+     // width: ''
+      opacity: '0.9',
+    });
     $(this).addClass('hovers');
   }
   function hide_slideout(){
     // console.log("hovering")
     
     
-     bl = $(this).find('.slide_out');
+     var bl = $(this).find('.slide_out');
      bl.removeClass('hovers');
-     bl.removeClass('#hovering');
+     bl.removeClass('details_left');
+     bl.removeClass('details_right');
+
      bl.hide();
      bl.css('opacity','0');
     // bl.animate({
