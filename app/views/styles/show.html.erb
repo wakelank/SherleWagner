@@ -38,18 +38,15 @@
   .slide_out{
    
     position: absolute;
-    left: 14em;
-    width: 0;
-    top: 22;
-    border-bottom: 16px solid grey;
-    height: 16.15em;
-    border-top: 16px solid gray;
-    top: -8px;
-    border-right: 16px solid grey;
+    left: 8px;
+    width: 405px;
+    top: 8px;
+    border: thin solid darkgray;
+    height: 194px;    
     z-index: 2;
     background-color: white;
     opacity: 0;
-    border-color: #eeeeee;
+    
   }
  
 
@@ -138,7 +135,7 @@
   $('#center_main').addClass('col-sm-12');
   $('#center_main').css('background-color','white');
 
-  
+
 
     $('.grid').masonry({
   // options
@@ -164,8 +161,8 @@
     
      sl = $(this).find('.slide_out');
     sl.animate({
-      // right: '50px',
-      width: '16.5em',
+      
+     // width: ''
       opacity: '0.9',
     });
     $(this).addClass('hovers');
@@ -179,9 +176,7 @@
      bl.removeClass('#hovering');
     bl.animate({
       // right: '50px',
-      
-      opacity: '0',
-      width:'0'
+      opacity: '0'
     });
   }
 
