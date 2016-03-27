@@ -80,7 +80,7 @@
   background-color: white;
   width:200px;
   height: 192px;
-
+  text-align: left;
  }
  .details_left .preview_text{
   background-color: white;
@@ -148,12 +148,16 @@
               </div> -->
             
             <div class="slide_out" >
+              <%= link_to(product_path(product), class:"")  do %>
                <div class="preview_img" style="background-image: url(<%= bgimage %>)">
                 
                  
                </div>
+               <%end%>
                <div class="preview_text">
-                 <h4>test</h4>
+                 <h5>
+                   <%= product.name %>
+                 </h5>
                </div>
               
             </div>
@@ -226,7 +230,7 @@
     sl.animate({
       
      // width: ''
-      opacity: '0.9',
+      opacity: '1',
     });
     $(this).addClass('hovers');
   }
