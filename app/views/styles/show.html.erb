@@ -58,7 +58,7 @@
     left: -204px;
     width: 405px;
     top: 8px;
-    border: thin solid blue;
+    border: thin solid darkgray;
     height: 194px;    
     z-index: 2;
     background-color: white;
@@ -68,9 +68,11 @@
  .preview_img{
   position: absolute;
   left: 0;
-  background-color: lightblue;
+  /*background-color: lightblue;*/
   width: 200px;
   height:192px;
+  background-size: contain;
+  background-repeat: no-repeat;
  }
  .preview_text{
   position: absolute;
@@ -85,8 +87,8 @@
   left:0;
  }
  .details_left .preview_img{
-  background-color: lightblue;
-  left: 203px;
+  /*background-color: lightblue;*/
+  left: 213px;
  }
 
 </style>
@@ -146,7 +148,8 @@
               </div> -->
             
             <div class="slide_out" >
-               <div class="preview_img">
+               <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+
                  
                </div>
                <div class="preview_text">
