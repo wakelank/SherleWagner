@@ -986,6 +986,7 @@ li.foot_link, li.foot_link a{
 }
 #collection_name{
   float: left;
+  padding-left: 25px;
 }
 .collection_view_nav .navbar-collapse .navbar-nav {
   float:left;

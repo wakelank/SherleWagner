@@ -55,7 +55,7 @@
   }
   .details_left{
      position: absolute;
-    left: 8px;
+    left: -204px;
     width: 405px;
     top: 8px;
     border: thin solid blue;
@@ -65,7 +65,24 @@
     
     
   }
- 
+ .preview_img{
+  position: absolute;
+  background-color: lightblue;
+  width: 220px;
+  height:200px;
+ }
+ .preview_text{
+  position: absolute;
+  background-color: grey;
+  width:220px;
+  height: 200px.
+ }
+ .details_left .preview_text{
+  background-color: black;
+ }
+ .details_left .preview_img{
+  background-color: black;
+ }
 
 </style>
 <%= render "layouts/collection_view_nav"%>
@@ -124,7 +141,13 @@
               </div> -->
             
             <div class="slide_out" >
-               <h4>test text 1</h4>
+               <div class="preview_img">
+                 
+               </div>
+               <div class="preview_text">
+                 
+               </div>
+              
             </div>
             </li>
 
