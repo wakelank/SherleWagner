@@ -42,9 +42,9 @@
   }
   .details_right{
      position: absolute;
-    left: 8px;
+    left: 0px;
     width: 405px;
-    top: 8px;
+    top: 0px;
     border: thin solid darkgray;
     height: 194px;    
     z-index: 2;
@@ -55,9 +55,9 @@
   }
   .details_left{
      position: absolute;
-    left: -204px;
+    left: -210px;
     width: 405px;
-    top: 8px;
+    top: 0px;
     border: thin solid darkgray;
     height: 194px;    
     z-index: 2;
@@ -139,8 +139,8 @@
               
               
         <% else %>
-          <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
-           <li class ="prod_tile3 prod_tile4" 
+          
+           <li class ="prod_tile3 prod_tile4 grid-item" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
             <!--   <div class="prod_title">
@@ -153,13 +153,13 @@
                  
                </div>
                <div class="preview_text">
-                 
+                 <h4>test</h4>
                </div>
               
             </div>
             </li>
 
-          <% end %>
+          <!-- % end %> -->
 
         <% end %>
       <% end %>
@@ -212,7 +212,7 @@
     //apply a class to slideout (giving it its size and left value (+ determine it's layout)
     // make it visible..
     var sl = $(this).find('.slide_out');
-      pageX = $(this).parent().position().left;
+      pageX = $(this).position().left;
       tileWidth = $(this).width();
       gridWidth = $('.grid').width();
       if(gridWidth-pageX < tileWidth*2){
