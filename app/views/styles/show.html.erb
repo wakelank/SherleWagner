@@ -81,14 +81,31 @@
   width:200px;
   height: 192px;
   text-align: left;
+  padding-left: 0;
+ }
+ .preview_text a{
+  color: black;
+  text-align: left;
+  padding-left: 0;
  }
  .details_left .preview_text{
+
   background-color: white;
   left:0;
+  padding-left: 1em;
  }
  .details_left .preview_img{
   /*background-color: lightblue;*/
   left: 213px;
+ }
+ .links_list{
+  list-style: none;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+ }
+ .list_wrapper ul .links_list li{
+  margin:0;
  }
 
 </style>
@@ -149,19 +166,32 @@
             
             <div class="slide_out" >
               <%= link_to(product_path(product), class:"")  do %>
-               <div class="preview_img" style="background-image: url(<%= bgimage %>)">
-                
-                 
-               </div>
-               <%end%>
-               <div class="preview_text">
+                <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+                </div>
+              <% end %> 
+            
+               
+            <div class="preview_text">
+              <%= link_to(product_path(product), class:"")  do %>
                  <h5>
                    <%= product.name %>
                  </h5>
-               </div>
-              
+              <% end %>
+              <div class="preview_links">
+                <ul  class='links_list'>
+                  
+                  <li>tearsheet</li>
+                  <li>Spec Sheet</li>
+                  <li>3D/2D Renderings</li>
+                  <li>Installation Guide</li>
+                </ul>
+              </div>
+
+
             </div>
-            </li>
+              
+          
+          </li>
 
           <!-- % end %> -->
 
