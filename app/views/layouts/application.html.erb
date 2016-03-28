@@ -8,6 +8,12 @@
   <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
   <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+  //active nav link
+    $(document).ready(function() {
+        $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+    });
+</script>
 </head>
 <body class="<%=controller_name%> <%=action_name%>">
 
