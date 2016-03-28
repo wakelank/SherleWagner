@@ -3,26 +3,26 @@
   .prod_tile2{
       background-size: contain;
   background-repeat: no-repeat;
-  padding: 0.5em;
+  padding: 7px;
   text-align: center;
   display:block;
   background-color: white;
   float:left;
-  height: 30em;
-  width: 30em;
+  height: 420px;
+  width: 420px;
   border:0;
   margin: 0 !important;
   }
   .prod_tile3{
       background-size: contain;
   background-repeat: no-repeat;
-  padding: 0.5em;
+  padding: 7px;
   text-align: center;
   display:block;
   background-color: white;
   float:left;
-  height: 15em;
-  width: 15em;
+  height: 210px;
+  width: 210px;
   border: 0;
   margin: 0 !important;
   }
@@ -121,7 +121,7 @@
             <% bgimage= product.image.url(:medium) %>
             <% bgimage2= product.image.url %>
             
-        <% if i%6 == 0 %>
+        <% if i%7 == 0 %>
             <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
 
               <li class ="prod_tile2 prod_tile4 " 
@@ -134,9 +134,9 @@
  -->
               </li>
             <% end %>
-
-        <% elsif i>1 && i%7 == 0 %>
-             <!-- <li class ="prod_tile3 prod_tile4 " 
+        
+        <% elsif i>1 && i%8 == 0 %>
+             <li class ="prod_tile3 prod_tile4 grid-item" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
               <div class="slide_out">
@@ -146,29 +146,29 @@
   
               
               </li>
-              % if envcount < @envi.length %>
-                <li class ="prod_tile2 envi_tile grid-item" 
-                style="background-image: url(<%= @envi[envcount] %>)">
+              <% if envcount < @envi.length %>
+                <li class ="prod_tile2 prod_tile4 envi_tile grid-item" 
+                style="background-image: url(<%= @envi[envcount] %>); background-size:cover">
     
-                </li> -->
+                </li>
                 <% envcount += 1 %>
-              <!-- % end %> -->
+              <% end %>
               
               
         <% else %>
           
-           <li class ="prod_tile3 prod_tile4 grid-item" 
-              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+         <li class ="prod_tile3 prod_tile4 grid-item" 
+            style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
             <!--   <div class="prod_title">
                 %= product.name %>
               </div> -->
             
-            <div class="slide_out" >
-              <%= link_to(product_path(product), class:"")  do %>
-                <div class="preview_img" style="background-image: url(<%= bgimage %>)">
-                </div>
-              <% end %> 
+          <div class="slide_out" >
+            <%= link_to(product_path(product), class:"")  do %>
+              <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+              </div>
+            <% end %> 
             
                
             <div class="preview_text">
@@ -189,9 +189,10 @@
 
 
             </div>
+          </div>
               
           
-          </li>
+        </li>
 
           <!-- % end %> -->
 
