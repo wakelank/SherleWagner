@@ -422,20 +422,17 @@ types = [
   },
   { name: "Lighting",
              sub_types: [
-                { name: "Chandeliers" },
-                { name: "Pendant Ceiling Lights" },
-                { name: "Flush Mount Lights" },
-                { name: "Sconces" },
-                { name: "Wall Lights" },
-                { name: "Electrical Covers" },
-                { name: "Table and Floor Lights" },
                 { name: "Ceiling Lights" },
                 { name: "Wall Lights" },
-                { name: "Bulb Covers" },
+                { name: "Table and Floor Lights" },
+                { name: "Electrical Covers" },
+                { name: "Bulb Covers" }
               ]
             
   },
-  { name: "Wall Coverings",
+
+  # #TODO lighting filters
+  { name: "Wallpaper",
              sub_types: [
                 { name: "Masonry" },
                 { name: "Masonry Stripe" },
@@ -571,6 +568,12 @@ filters = [
   },
   { name: "Materials",
     filter_values: [ "Metal", "China", "Onyx", "Semi_Precious", "Stone" ]
+  },
+  { name: "Ceiling Lights",
+    filter_values: [ "Chandeliers", "Pendants", "Flush Mount"]
+  },
+  { name: "Wall Lights",
+    filter_values: [ "Sconces", "Panel Lights", "Flush Mount"]
   }
 ]
 genre_filter_hash = { name: "Styles" }
@@ -631,6 +634,10 @@ ProductSubType.all.each do |product_sub_type|
   when "Wallpaper"
     product_sub_type.filters << Filter.find_by(name: "Wallpaper Design")
     product_sub_type.filters << Filter.find_by(name: "Wallpaper Color")
+  when "Ceiling Lights"
+    product_sub_type.filters << Filter.find_by(name: "Ceiling Lights")
+  when "Wall Lights"
+    product_sub_type.filters << Filter.find_by(name: "Wall Lights")
   end
 end
 
