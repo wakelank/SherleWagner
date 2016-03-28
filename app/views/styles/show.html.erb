@@ -1,32 +1,35 @@
 
 <style>
+  .grid{
+    margin-top: 50px;
+  }
   .prod_tile2{
       background-size: contain;
   background-repeat: no-repeat;
-  padding: 0.5em;
+  padding: 7px;
   text-align: center;
   display:block;
   background-color: white;
   float:left;
-  height: 30em;
-  width: 30em;
+  height: 420px;
+  width: 420px;
   border:0;
   margin: 0 !important;
   }
   .prod_tile3{
       background-size: contain;
   background-repeat: no-repeat;
-  padding: 0.5em;
+  padding: 7px;
   text-align: center;
   display:block;
   background-color: white;
   float:left;
-  height: 15em;
-  width: 15em;
+  height: 210px;
+  width: 210px;
   border: 0;
   margin: 0 !important;
   }
-  .prod_tile4{
+  .prod_tile4, .envi_tile{
     /*box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;*/
@@ -36,60 +39,222 @@
     background-color: #eeeeee!important;
   }
 
+
+  .slide_out{
+   
+   opacity: 0;
+    display: none;
+  }
+  .details_right{
+     position: absolute;
+    left: 0px;
+    width: 405px;
+    top: 0px;
+    border: thin solid darkgray;
+    height: 194px;    
+    z-index: 2;
+    background-color: white;
+    /*opacity: 0;
+    display: none;*/
+    
+  }
+  .details_left{
+     position: absolute;
+    left: -210px;
+    width: 405px;
+    top: 0px;
+    border: thin solid darkgray;
+    height: 194px;    
+    z-index: 2;
+    background-color: white;
+    
+    
+  }
+ .preview_img{
+  position: absolute;
+  left: 0;
+  /*background-color: lightblue;*/
+  width: 200px;
+  height:192px;
+  background-size: contain;
+  background-repeat: no-repeat;
+ }
+ .preview_text{
+  position: absolute;
+    left:203px;
+  background-color: white;
+  width:200px;
+  height: 192px;
+  text-align: left;
+  padding-left: 0;
+ }
+ .preview_text a{
+  color: black;
+  text-align: left;
+  padding-left: 0;
+ }
+ .details_left .preview_text{
+
+  background-color: white;
+  left:0;
+  padding-left: 1em;
+ }
+ .details_left .preview_img{
+  /*background-color: lightblue;*/
+  left: 203px;
+  padding-left: 0;
+  background-size: contain;
+  width: 200px;
+ }
+ .links_list{
+  list-style: none;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+ }
+ .list_wrapper ul .links_list li{
+  margin:0;
+ }
+
+.tall_slide_out.details_right, .tall_slide_out.details_left {
+  width: 614px;
+  height:404px;
+  }
+.tall_slide_out .preview_img{
+  width: 404px;
+  height:392px;
+ }
+ .tall_slide_out .preview_text{
+  left:403px;
+ }
+ .tall_slide_out.details_left .preview_text{
+  left:0;
+ }
+
+
 </style>
-<%= render "layouts/collection_view_nav"%>
+<%= render "collection_view_nav"%>
 <div class="prod_wrapper">
   <div class="list_wrapper">
-    <h3 id="subtype_list_name"><%= @style.name %> </h3>
+    <!-- <h3 id="subtype_list_name">%= @style.name %> </h3> -->
     <div class="grid">
     <ul class="style_list prod_list">
       <% envcount= 0 %>
-      <% @genre.products.each_with_index do |product, i| %>
+      <% @style.products.each_with_index do |product, i| %>
           
             <% bgimage= product.image.url(:medium) %>
+            <% bgimage2= product.image.url %>
             
-        <% if i%6 == 0 %>
-            <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
+        <% if i%7 == 0 %>
+            <li class ="prod_tile2 prod_tile4 grid-item" 
+            style="background-image: url(<%= bgimage2 %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-              <li class ="prod_tile2 prod_tile4 " 
-              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
-  
-              <!-- <div class="prod_title">
-                %= product.name %>
-              </div> -->
-              </li>
+          <div class="tall_slide_out slide_out" >
+            <%= link_to(product_path(product), class:"")  do %>
+              <div class="preview_img" style="background-image: url(<%= bgimage2 %>)">
+              </div>
+            <% end %>   
+            <div class="tall_preview_text preview_text">
+              <%= link_to(product_path(product), class:"")  do %>
+                 <h5>
+                   <%= product.name.capitalize %>
+                 </h5>
               <% end %>
-        <% elsif i>1 && i%7 == 0 && envcount < 3 %>
-             <li class =" prod_tile4 envi" 
+              <div class="tall_preview_links preview_links">
+                <ul  class='links_list'>
+                  <li>tearsheet</li>
+                  <li>Spec Sheet</li>
+                  <li>3D/2D Renderings</li>
+                  <li>Installation Guide</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        
+        <% elsif i>1 && i%8 == 0 %>
+             <li class ="prod_tile3 prod_tile4 grid-item" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-  
-              <!-- <div class="prod_title">
-                %= product.name %>
-              </div> -->
-              </li>
-               <li class ="prod_tile2 prod_tile4 grid-item" 
-              style="background-image: url(<%= @envi[envcount] %>)">
-  
-              <!-- <div class="prod_title">
-                %= product.name %>
-              </div> -->
-              </li>
-              <% envcount += 1 %>
+              <div class="slide_out" >
+            <%= link_to(product_path(product), class:"")  do %>
+              <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+              </div>
+            <% end %> 
+            
+               
+            <div class="preview_text">
+              <%= link_to(product_path(product), class:"")  do %>
+                 <h5>
+                   <%= product.name.capitalize %>
+                 </h5>
+              <% end %>
+              <div class="preview_links">
+                <ul  class='links_list'>
+                  
+                  <li>tearsheet</li>
+                  <li>Spec Sheet</li>
+                  <li>3D/2D Renderings</li>
+                  <li>Installation Guide</li>
+                </ul>
+              </div>
 
+
+            </div>
+          </div>
+
+  
+              
+              </li>
+              <% if envcount < @envi.length %>
+                <li class ="prod_tile2 prod_tile4 envi_tile grid-item" 
+                style="background-image: url(<%= @envi[envcount] %>); background-size:cover">
+    
+                </li>
+                <% envcount += 1 %>
+              <% end %>
               
               
         <% else %>
-          <%= link_to(product_path(product), class:"prod_title_link grid-item")  do %>
-           <li class ="prod_tile3 prod_tile4" 
-              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+          
+         <li class ="prod_tile3 prod_tile4 grid-item" 
+            style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
             <!--   <div class="prod_title">
                 %= product.name %>
               </div> -->
-            </li>
+            
+          <div class="slide_out" >
+            <%= link_to(product_path(product), class:"")  do %>
+              <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+              </div>
+            <% end %> 
+            
+               
+            <div class="preview_text">
+              <%= link_to(product_path(product), class:"")  do %>
+                 <h5>
+                   <%= product.name.capitalize %>
+                 </h5>
+              <% end %>
+              <div class="preview_links">
+                <ul  class='links_list'>
+                  
+                  <li>tearsheet</li>
+                  <li>Spec Sheet</li>
+                  <li>3D/2D Renderings</li>
+                  <li>Installation Guide</li>
+                </ul>
+              </div>
 
-          <% end %>
+
+            </div>
+          </div>
+              
+          
+        </li>
+
+          <!-- % end %> -->
 
         <% end %>
       <% end %>
@@ -113,13 +278,79 @@
   $('#center_main').addClass('col-sm-12');
   $('#center_main').css('background-color','white');
 
+
+
     $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
   columnWidth: 70
 });
 
-  $('.prod_tile4').hover(console.log('hovered'));
+  var config = {    
+     over: show_slideout, // function = onMouseOver callback (REQUIRED)    
+     timeout: 100, // number = milliseconds delay before onMouseOut    
+     interval: 250, // number = milliseconds delay before trying to call over    
+     out: hide_slideout // function = onMouseOut callback (REQUIRED)    
+  };
 
+  
+
+  $('.prod_tile4').hoverIntent(config);
+
+ 
+  function show_slideout(){    
+    //pseudo
+    //check page position
+    //apply a class to slideout (giving it its size and left value (+ determine it's layout)
+    // make it visible..
+    var sl = $(this).find('.slide_out');
+     pageX = $(this).position().left;
+     tileWidth = $(this).width();
+     gridWidth = $('.grid').width();
+    var isBig = false;
+    if ($(this).hasClass('prod_tile2')){
+      isBig = true;
+    }
+
+
+    if(gridWidth-pageX < tileWidth*2){
+      if (isBig){
+        console.log('isBigL');
+        sl.addClass('details_left');
+      }else{
+        sl.addClass('details_left');
+      }
+    }else{
+      if (isBig){
+        console.log('isBigR');
+        sl.addClass('details_right');
+      }else{
+        sl.addClass('details_right');
+      }
+    }
+
+    sl.show();
+    sl.animate({
+      opacity: '1',
+    });
+
+    $(this).addClass('hovers');
+  }
+  function hide_slideout(){
+    // console.log("hovering")
+    
+    
+     var bl = $(this).find('.slide_out');
+     bl.removeClass('hovers');
+     bl.removeClass('details_left');
+     bl.removeClass('details_right');
+
+     bl.hide();
+     bl.css('opacity','0');
+    // bl.animate({
+    //   // right: '50px',
+    //   opacity: '0'
+    // });
+  }
 
   </script>

@@ -16,22 +16,21 @@
   <div class="images">   
     <div class="product_image" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' >
       <div class="config_info">
-      <h5 class="prod-config-number">
+        <h5 class="prod-config-number">
          <%= @product.product_configurations.last.number %>
-      </h5>
-      
-      
+      </h5> 
+        <% if @product.product_configurations.length > 1 %>
+      <div class="prod-config-description">
+        <h5>
+        <!--  <span id="shown">shown:</span> --> <span id="description"><%= @product.product_configurations.first.description %></span>
+        </h5>
+      </div>
+    <% end %>
       
     </div>
 
     </div>  
-    <% if @product.product_configurations.length > 0 %>
-    <div class="prod-config-description">
-      <h4>
-         <span id="shown">shown:</span> <span id="description"><%= @product.product_configurations.first.description %></span>
-      </h4>
-      </div>
-      <% end %>
+    
   </div>
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
 
@@ -43,32 +42,11 @@
     
     
 
-    <div class="components">
-      <% if @product.all_components.size > 1 %>
-      
-        
-      
-      <ul id="components_list" class="comp_list links">
-        <span id="components">Components:</span>
-        <% @product.all_components.each do |component| %>
-          <% if component.class.name == "Product" %>
-            <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>
-          <% else %>
-            <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
-          <% end %>
-        </li>
-        <% end %>
-      </ul>
-
-      <% end %>
-    </div>
+    
  
 
 
     
-    <div class="associated">
-      
-    </div>
     <div class="centered">
       <div class="tearsheet_wrapper">
         <div class="options previews">
@@ -104,23 +82,26 @@
           <li>Spec Sheet</li>
           <li>3D/2D Renderings</li>
           <li>Installation Guide</li>
-          
+          </ul>
       </div>
     </div>
     
   </div>
-  <% if @product.product_configurations.count > 1 %>
+  
     <div class="image_list">
+      <% if @product.product_configurations.count > 1 %>
+        <ul id="alt_imgs">
+          <% @product.product_configurations.each do |config| %>
+            <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
+            <%= image_tag config.image.url(:thumb) %> <br/>
+          </li>
+          <% end %>
+        </ul>
+      <% end %> 
 
-      <ul id="alt_imgs">
-        <% @product.product_configurations.each do |config| %>
-          <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
-          <%= image_tag config.image.url(:thumb) %> <br/>
-        </li>
-        <% end %>
-      </ul>
+      
     </div>
-    <% end %> 
+    
 
 
   

@@ -2,6 +2,7 @@
       top: 0;
       width: 100%;
   }</style>
+  
 <nav class="navbar navbar-inverse" id="collections_nav" data-spy="affix" data-offset-top="105">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,3 +36,11 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<script>
+  $('#collections_nav li a').click(function(){
+    li = $(this).parent()[0];
+    $('#collections_nav li').removeClass('active');
+    $(li).addClass('active');
+    
+  });
+  </script>

@@ -23,11 +23,11 @@ $(document).on('ready page:load', function () {
    {
     
       if(isSmall == true){
-      yo = $(this);
+      var yo = $(this);
 
        // $('.panel-heading:not($(this))').hide()
-       opn = $('.panel').find('.in');
-       pn = opn.parent();
+       var opn = $('.panel').find('.in');
+       var pn = opn.parent();
         $('.panel:not(yo)').toggle();
         
         $(opn).show();
@@ -68,7 +68,7 @@ function WidthChange(mq) {
     isSmall = true;
     $('.hide-dropdowns').show();
 
-    console.log(isSmall);
+    // console.log(isSmall);
     // $('body').addClass('mobile');
   }
 
@@ -122,9 +122,9 @@ function hideTypeNeighbors(panel){
     var $trgt = $(panel);
         dis = this;
       
-        selectr = panel+" .in";
+        var selectr = panel+" .in";
         
-         typearr = ["no_type1","Fittings1","Fixtures1","Accessories1","Hardware1","Lighting1","Wall_Coverings1"];
+         var typearr = ["no_type1","Fittings1","Fixtures1","Accessories1","Hardware1","Lighting1","Wall_Coverings1"];
 
         if (typearr.indexOf($(selectr).attr('id')) != null){
           $(selectr).collapse('hide');
@@ -143,7 +143,7 @@ function hideSubTypeNeighbors(panel){
     var $trgt = $(panel);
 
       // *collapse event option* $trgt.on('show.bs.collapse', function () {
-        selectr = panel+" .sub-type-panel .in";
+        var selectr = panel+" .sub-type-panel .in";
 
           $(selectr).collapse('hide');
            // console.log('hiding');
@@ -227,7 +227,7 @@ function keepCatOpenOnClick(){
       );
 
 
-      console.log('mess w targ');
+      // console.log('mess w targ');
       
      
         

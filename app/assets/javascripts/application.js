@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require jquery.masonry.min
+//= require hoverintent
 //= require twitter/bootstrap
 //= require turbolinks
 
