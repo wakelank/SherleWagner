@@ -20,13 +20,15 @@
   
 <% end %>
      <% @product_types.each do |product_type| %>
-      <!-- , :anchor => "type="+product_type.id.to_s -->
-        <%= link_to  fetch_cat_path(:cat_id => product_type.id), :remote => true do %> 
-        <li class ="prod_tile" id = "<%= product_type.name.gsub(' ','_') %>">
-          <%= product_type.name %>
-        </li>
+     <% unless product_type.id == 1 %>
+        <!-- , :anchor => "type="+product_type.id.to_s -->
+          <%= link_to  fetch_cat_path(:cat_id => product_type.id), :remote => true do %> 
+          <li class ="prod_tile" id = "<%= product_type.name.gsub(' ','_') %>">
+            <%= product_type.name %>
+          </li>
 
-        <% end %>
+          <% end %>
+      <% end %>
       
 
     <% end %>
