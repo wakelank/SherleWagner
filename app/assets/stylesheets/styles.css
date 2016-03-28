@@ -1,5 +1,18 @@
+@font-face {
+  font-family: "DINPro-Medium";
+  src: url(/assets/DINPro-Medium.otf) format("truetype");
+}
+@font-face {
+  font-family: "DINPro-Bold";
+  src: url(/assets/DINPro-Bold.otf) format("truetype");
+}
+@font-face {
+  font-family: "DINPro-Light";
+  src: url(/assets/DINPro-Light.otf) format("truetype");
+}
 body{
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'DINPro-Light', sans-serif;
+  /*font-family: 'PT Sans', sans-serif;*/
   /*background-color: #e5e6df;*/
 }
 
@@ -112,7 +125,9 @@ input#search{
   z-index: -10;
 }
 
-
+.sub-type-panel{
+  color:#484848;
+}
 
 
 /*====The product browse page===*/
@@ -186,6 +201,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
      .navvy{
         /*padding-top: 150px;*/
         background-color: #eeeeee;
+        font-family: "PT Sans";
       
       }
       /*===REGULAR (950+) DESKTOP SIZE ===*/
@@ -236,7 +252,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
       .navvy{
         padding-top: 2em;
-        padding-left: 15px;
+        /*padding-left: 15px;*/
         width: 100%;
       }
       .navvy .panel-sub-heading {
@@ -253,6 +269,10 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         border-radius: none;
         -webkit-box-shadow: none;/*0 1px 1px rgba(0,0,0,0.05)*/
         box-shadow: none; /*0 1px 1px rgba(0,0,0,0.05) */
+      }
+      .navvy label.prod-cat{
+        font-weight: normal;
+        font-size: 18px;
       }
       .panel-body {
         padding: 0px 15px;
@@ -324,7 +344,6 @@ a .sub_type_tile{
   padding: 0.5em;
   text-align: center;
   display:block;
-  
   float:left;
   background-color: white;
   /*height:19em;*/
@@ -448,7 +467,10 @@ li.highlighted{
   display: block;
   position: absolute;
   bottom: 10px;
-  left: 5px;
+  left: 15px;
+}
+.config_info h5{
+  margin:0;
 }
 .prod-config-number{
   color: darkgrey;
@@ -468,6 +490,7 @@ li.highlighted{
 .image_list{
   float: left;
   padding-top: 10px;
+  padding-left: 1em;
   clear: both;
   width: 100%;
 
@@ -486,7 +509,8 @@ li.highlighted{
   overflow: auto;
   
   /*height: auto;*/
-  width:100%;
+  width:50%;
+  float: left;
 
   
 }
@@ -498,11 +522,12 @@ li.highlighted{
   margin: 2px;
   margin-left: 0;
   padding:0;
+ 
   
 }
 #alt_imgs img{
 border: thin solid #e5e6df;
-max-width: 100px;
+max-width: 80px;
 
 }
 .alt_img:hover{
@@ -532,6 +557,8 @@ h3#prod_name{
 }
 #components_list{
   margin-bottom: 1.5em;
+  width: 50%;
+  float: left;
 }
 .centered{
   padding-left: 15%;
