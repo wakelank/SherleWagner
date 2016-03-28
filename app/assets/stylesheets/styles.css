@@ -1,14 +1,14 @@
 @font-face {
   font-family: "DINPro-Medium";
-  src: url(/assets/DINPro-Medium.otf) format("truetype");
+  src: url(/assets/fonts/DINPro-Medium.otf) format("truetype");
 }
 @font-face {
   font-family: "DINPro-Bold";
-  src: url(/assets/DINPro-Bold.otf) format("truetype");
+  src: url(/assets/fonts/DINPro-Bold.otf) format("truetype");
 }
 @font-face {
   font-family: "DINPro-Light";
-  src: url(/assets/DINPro-Light.otf) format("truetype");
+  src: url(/assets/fonts/DINPro-Light.otf) format("truetype");
 }
 body{
   font-family: 'DINPro-Light', sans-serif;
@@ -300,6 +300,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       #accordion1 .panel-sub-heading .panel-title label{
         margin-left: -15px;
         
+        
       }
 
       .filter ul{
@@ -511,7 +512,7 @@ li.highlighted{
 /* divider line */
   padding-bottom: 60px;
   margin-bottom: 40px;
-  border-bottom: thin solid gray;
+  border-bottom: thin solid #EEEEEE;
 
 }
 
