@@ -10,7 +10,7 @@ gem "twitter-bootstrap-rails"
 
  gem "rails_admin"
 # gem "kaminari"
-
+gem "font-awesome-rails"
 
 
 

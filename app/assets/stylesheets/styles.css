@@ -187,12 +187,22 @@ input#search{
   width: 15em;
   border: solid #eeeeee;
   margin: 10px;
-
-  /*for before photos are set*/
-      /*background-position: 0 50px;*/
-
 }
-
+.type_tile{
+  background-size: cover;
+  height: 20em;
+  width: 16em;
+  border:none;
+}
+a .prod_tile.type_tile h4{
+ color: black;
+ font-family: "DINPro-Medium";
+  
+}
+#Wall_Coverings.type_tile{
+    background-position-y: 50px;
+    background-color: lightgray;
+}
 ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     display: block;
     margin-top: 110%;
@@ -326,7 +336,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 
 .list_wrapper{
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 .list_wrapper ul{
@@ -995,11 +1005,11 @@ li.foot_link, li.foot_link a{
 
 }
 #nav_link_contain ul.navbar-nav {
-    display: inline-block;
-    float: none;
-    clear: left;
-    text-align: center;
-
+  
+  display: inline-block;
+  float: right;
+  clear: left;
+  text-align: center;
 }
 .navbar .navbar-nav {
     display: inline-block;
