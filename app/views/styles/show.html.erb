@@ -103,7 +103,7 @@
  }
  .links_list{
   list-style: none;
-  font-size: 10px;
+  font-size: 12px;
   padding: 0;
   margin: 0;
  }
@@ -112,7 +112,7 @@
  }
 
 </style>
-<%= render "layouts/collection_view_nav"%>
+<%= render "collection_view_nav"%>
 <div class="prod_wrapper">
   <div class="list_wrapper">
     <!-- <h3 id="subtype_list_name">%= @style.name %> </h3> -->
@@ -142,9 +142,32 @@
              <li class ="prod_tile3 prod_tile4 grid-item" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-              <div class="slide_out">
-               <h4>test text 1</h4>
+              <div class="slide_out" >
+            <%= link_to(product_path(product), class:"")  do %>
+              <div class="preview_img" style="background-image: url(<%= bgimage %>)">
               </div>
+            <% end %> 
+            
+               
+            <div class="preview_text">
+              <%= link_to(product_path(product), class:"")  do %>
+                 <h5>
+                   <%= product.name.capitalize %>
+                 </h5>
+              <% end %>
+              <div class="preview_links">
+                <ul  class='links_list'>
+                  
+                  <li>tearsheet</li>
+                  <li>Spec Sheet</li>
+                  <li>3D/2D Renderings</li>
+                  <li>Installation Guide</li>
+                </ul>
+              </div>
+
+
+            </div>
+          </div>
 
   
               
@@ -177,7 +200,7 @@
             <div class="preview_text">
               <%= link_to(product_path(product), class:"")  do %>
                  <h5>
-                   <%= product.name %>
+                   <%= product.name.capitalize %>
                  </h5>
               <% end %>
               <div class="preview_links">

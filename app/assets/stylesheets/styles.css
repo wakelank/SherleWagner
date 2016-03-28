@@ -979,16 +979,32 @@ li.foot_link, li.foot_link a{
 .navbar .navbar-collapse {
     text-align: center;
 }
+#collections_nav {
+    background-color: black;
+    border:none;
+    float:left;
+  text-align: left ;
+    }
+    #collections_nav.collection_view_nav{
+      background-color: #eeeeee;
+      color: black;
+    }
+  /*  #collections_nav .navbar-collapse .navbar-nav{
+
+    }
+*/
 #collections_nav label, #collections_nav li {
-    padding-top: 10px;
-}#collection_view_nav label, #collection_view_nav li {
-    padding-top: 10px;
+    padding-top: 11px;
 }
+#collections_nav label input{
+  margin-right: 5px;
+}
+
 #collection_name{
   float: left;
   padding-left: 25px;
 }
-.collection_view_nav .navbar-collapse .navbar-nav {
+.collection_view_nav .navbar-collapse .navbar-nav, #collections_nav .navbar-collapse .navbar-nav {
   float:left;
   text-align: left ;
 }
