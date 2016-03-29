@@ -8,7 +8,8 @@
           
           
           <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
-                 <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id="">
+          <% bgimage= product_sub_type.image.url %>
+                 <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id=""style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat;">
                   <h3 > 
                     <%= product_sub_type.name %>
                   </h3>

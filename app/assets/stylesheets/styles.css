@@ -95,20 +95,15 @@ input#search{
   padding: 0 15px;
 }
 .nav li a:hover{
- 
   /*text-decoration: underline;
    -moz-text-decoration-color: white; /* Code for Firefox */
-  
-
 }
 .nav li a:visited{
   background-color:whitesmoke;
   
-
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    /*background-color:rgba(0,0,0,0);*/
-    
+    /*background-color:rgba(0,0,0,0);*/   
 }
  
 /*====END NAVBAR===*/
@@ -299,7 +294,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
       #accordion1 .panel-sub-heading .panel-title label{
         margin-left: -15px;
-        
+
         
       }
 
