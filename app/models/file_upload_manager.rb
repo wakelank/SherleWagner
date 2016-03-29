@@ -85,6 +85,9 @@ class FileUploadManager
     configuration = ProductConfiguration.new(data_row.configuration_args)
     begin
       configuration.image = color_bucket.get_image_from_aws(data_row.get_image_name)
+      if configuration.image == NullObject
+        configuration.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
+      end
     rescue
     end
 

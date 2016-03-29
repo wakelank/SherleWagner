@@ -3,7 +3,8 @@ module CanExtractFromFile
 
 
   def extract_from(row)
-    row[self::HEADER] || "NONE"
+    str = row[self::HEADER] || "NONE"
+    str = str.downcase.split.map(&:capitalize).join(' ')
   end
 
   def case_insensitive_find(find_me)

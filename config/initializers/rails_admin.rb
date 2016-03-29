@@ -21,16 +21,18 @@ RailsAdmin.config do |config|
 
   config.actions do
     dashboard do
-      only ["Product", "ProductSubType", "Style"]# mandatory
+      #only ["Product", "ProductSubType", "Style"]# mandatory
+#      except ["CompilationRelationship"]
     end
     index do
-      only ["Product", "ProductSubType", "Style"]# mandatory
+      #only ["Product", "ProductSubType", "Style"]# mandatory
+#      except ["CompilationRelationship"]
     end
     new
     export
     bulk_delete
     show
-    edit
+    edit 
     delete
     show_in_app
 
@@ -77,6 +79,7 @@ RailsAdmin.config do |config|
   end
 
   config.model 'ProductConfiguration' do
+    label "Configuration"
     object_label_method do
       :custom_label_method
     end
