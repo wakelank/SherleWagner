@@ -35,7 +35,7 @@ body{
 
 #title_link a{
   color:white;
-  font-family: "DINPro-Medium";
+  font-family: "DINPro-Light";
 }
 #title_link{
   /*text-decoration: none;*/
@@ -830,10 +830,14 @@ width: 100%;
   position:fixed;
    left:0px;
    bottom:0px;
-   height:60px;
+   height:30px;
    width:100%;
-   background:#353535;
+   background:#222222;
    z-index: 3;
+}
+.footer .links{
+  padding-top: 5px;
+  padding-bottom: 5px;  
 }
 li.foot_link, li.foot_link a{
     display: inline;
@@ -1049,4 +1053,16 @@ li.foot_link, li.foot_link a{
 .navbar {min-height:32px !important}
 div#nav_link_contain.collapse.navbar-collapse{
   clear: left;  
+}
+@media print{
+  nav.navbar.navbar-inverse{
+    display: none;
+
+  }
+  #l_nav{
+    display: none;
+  }
+  .image_list{
+    display: none;
+  }
 }
