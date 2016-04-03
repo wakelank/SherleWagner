@@ -187,6 +187,7 @@ input#search{
   width: 90%;
   height: 90%;
   margin: 0 auto;
+  background-color: gray;
 }
 .type_tile{
   background-size: cover;
