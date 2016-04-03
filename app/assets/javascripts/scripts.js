@@ -84,7 +84,7 @@ $(document).on("page:change", (function(){
         $('.alt_img').click(function(){
           var thiz = this;
            var new_img = thiz.dataset.url;
-           new_config = thiz;
+           var new_config = thiz;
           swap_product_image(new_img);
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
@@ -162,7 +162,7 @@ $(document).on("page:change", (function(){
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           }, doublecheck());
           function doublecheck(){
-            console.log('doubleing')
+            //console.log('doubleing')
             if (foundit ==0){
               if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
 
@@ -177,8 +177,8 @@ $(document).on("page:change", (function(){
                   }
                 });
                 if(foundit == 0){
-                  console.log("zero match");
-                  console.log(otherswatch);
+                  // console.log("zero match");
+                  // console.log(otherswatch);
                   //to do
                   // if the selection does not include otherswatch:
                   //look for one that does and show that

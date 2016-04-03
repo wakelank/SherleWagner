@@ -347,7 +347,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 /*======Sub-type Show Dev ========*/
 
 a .sub_type_tile{
-  color: black;
+  color: white;
 }
 .sub_type_pane{
   padding: 0.5em;
@@ -990,20 +990,34 @@ li.foot_link, li.foot_link a{
   #content_wrapper{
     /*min-width: 515px;*/
   }
-
-  /*Preview swatch and list 2 stacked vertical*/
-    #material_choice{
-      margin-top: 1em;
-
-    }
+  .product_info{
+    width: 100%;
+  }
+  .centered{
+    padding-left: 0;
+  }
+  .option_box{
+    width:5em;
+    height:5em ;
+  }
+  .prod_links .links{
+    padding-top: 0;
+  }
 
   ul#links2{
       clear: left;
       padding-left: 0;
 
     }
+    .images, #alt_imgs{
+      width: 100%;
+      padding-left: 0;
+    }
 
 }
+
+
+
 #nav_link_contain ul.navbar-nav {
   
   display: inline-block;
@@ -1018,6 +1032,10 @@ li.foot_link, li.foot_link a{
 
 .navbar .navbar-collapse {
     text-align: center;
+}
+
+div.panel-body.filter {
+    padding: 0px !important;
 }
 #collections_nav {
     background-color: black;
@@ -1054,6 +1072,9 @@ li.foot_link, li.foot_link a{
 div#nav_link_contain.collapse.navbar-collapse{
   clear: left;  
 }
+
+
+
 @media print{
   nav.navbar.navbar-inverse{
     display: none;
