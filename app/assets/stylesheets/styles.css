@@ -184,10 +184,12 @@ input#search{
   margin: 10px;
 }
 .prod_tile_img{
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
-  background-color: gray;
+      background-position-x: 50%;
+      background-position-y: 50%;
+  background-color: #eeeeee;
 }
 .type_tile{
   background-size: cover;
