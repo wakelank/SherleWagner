@@ -1015,6 +1015,7 @@ li.foot_link, li.foot_link a{
 @media (max-width: 770px) {
   .list_wrapper ul li {
     margin: 5px;
+    margin-bottom: 4em;
   }
   ul.prod_list{
     /*margin: 0;*/
