@@ -581,7 +581,7 @@ h3#prod_name{
     padding-top: 0;
     position: absolute;
     background-color: white;
-    opacity: 0.9;
+    opacity: 0.95;
     font-size: 12px;
     /*border: thin solid #eeeeee;*/
 }
@@ -919,6 +919,9 @@ li.foot_link, li.foot_link a{
 
 #material_choice{
   margin-top: 0.5em;
+}
+#finish_choice{
+  margin-top: 1em;
 }
 #alt_imgs img {
     
