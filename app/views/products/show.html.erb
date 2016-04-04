@@ -40,7 +40,24 @@
   
   <div class="product_info">
     
-    
+   <div class="components">
+      <% if @product.all_components.size > 1 %>
+        
+      
+      <ul id="components_list" class="comp_list links">
+        <span id="components"><h4>Components:</h4></span>
+        <% @product.all_components.each do |component| %>
+          <% if component.class.name == "Product" %>
+            <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>
+          <% else %>
+            <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+
+      <% end %>
+    </div> 
 
     
  
@@ -86,24 +103,7 @@
       </div>
     </div>
 
-    <div class="components">
-      <% if @product.all_components.size > 1 %>
-        
-      
-      <ul id="components_list" class="comp_list links">
-        <span id="components"><h3>Components:</h3></span>
-        <% @product.all_components.each do |component| %>
-          <% if component.class.name == "Product" %>
-            <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>
-          <% else %>
-            <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
-          <% end %>
-        </li>
-        <% end %>
-      </ul>
-
-      <% end %>
-    </div>
+    
     
   </div>
   
@@ -151,3 +151,26 @@
   <br/>
 
 </div>
+
+<script>
+  $('ul#components_list li').slice(1).hide();
+  $('ul#components_list').append("<a  id='see_all'><b>...See all</a></b>");
+  $('ul#components_list').append("<a  id='hide_all' style='float:right; padding-top:8px'><b>Collapse</a></b>");
+  $('#hide_all').hide();
+  $('#see_all').click(function(){
+      $('#see_all').hide();
+      $('ul#components_list li').slice(1).show();
+      $('#hide_all').show();
+      $('ul#components_list').addClass('expandComp');
+    }
+  );
+  $('#hide_all').click(function(){
+      $('#hide_all').hide();
+      $('ul#components_list li').slice(1).hide();
+      $('#see_all').show();
+      $('ul#components_list').removeClass('expandComp');
+      // $('ul#components_list').append($('#see_all'));
+    }
+  );
+
+</script>

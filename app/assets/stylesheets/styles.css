@@ -565,17 +565,35 @@ max-width: 80px;
   color:gray;
 }
 h3#prod_name{
-  height: 3em;
+  min-height: 2em;
   color: black;
       float: right;
     width: 50%;
     padding-left: 1em;
 }
-#components_list{
-  margin-bottom: 1.5em;
-  width: 100%;
-  float: left;
-  padding-top: 0;
+.components{
+  height:   3.5em;
+  margin-bottom: 1em;
+}
+#components_list {
+    margin-bottom: 1.5em;
+    float: left;
+    padding-top: 0;
+    position: absolute;
+    background-color: white;
+    opacity: 0.9;
+    font-size: 12px;
+    /*border: thin solid #eeeeee;*/
+}
+.expandComp{
+  border: solid #eeeeee;
+  padding: 4px;
+  font-size: 14px !important;
+  min-height: 318px;
+}
+.expandComp li{
+  padding-left: 8px;
+  padding-right: 8px;
 }
 .centered{
   padding-left: 15%;
@@ -909,7 +927,7 @@ li.foot_link, li.foot_link a{
 }
 
       div h3#prod_name {
-        height: 3em;
+        min-height: 2em;
         color: black;
         width:100%;
         padding-left: 0.5em;
