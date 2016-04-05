@@ -305,8 +305,10 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
       #accordion1 .panel-sub-heading .panel-title label{
         margin-left: -15px;
-
+      }
+       #accordion1 .panel-sub-heading .panel-title label a:link, #accordion1 .panel-sub-heading .panel-title label a:visited {
         
+        color: #484848;
       }
 
       .filter ul{
