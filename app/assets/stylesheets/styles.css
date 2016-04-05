@@ -606,6 +606,9 @@ h3#prod_name{
     font-size: 12px;
     /*border: thin solid #eeeeee;*/
 }
+.expander{
+  cursor:pointer;
+}
 .expandComp{
   border: solid #eeeeee;
   padding: 4px;
