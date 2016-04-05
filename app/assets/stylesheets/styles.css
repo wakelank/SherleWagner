@@ -229,20 +229,27 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
 
     #content_wrapper{
       /*min-width: 932px;*/
       /*This is in flux*/
       min-width: 114%;
     }
+    /*this is not compatible with the ipad, raise the media min* */
+    #nav-wrapper, body{
+          min-width: 1271px;
+    }
+    /*end comment ** */
+
     #l_nav{
   min-width: 230px;
   max-width: 240px;
 }
 
+
       
-    /*===REGULAR (950+) Side Nav ===*/
+    /*===REGULAR (768+) Side Nav ===*/
 
       .side_nav{
         width: 17em;
