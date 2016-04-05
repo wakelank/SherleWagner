@@ -1,0 +1,177 @@
+
+<div class="prod_page_content">
+
+
+<div class="prod-text">
+      <h3 id="prod_name">
+        <%= @product.name%>
+      </h3>
+     <% if admin? %>
+      <%= link_to 'edit product', edit_product_path %>
+    
+     <% end %>
+    </div>
+
+
+  <div class="images">   
+    <div class="product_image" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' >
+      <div class="config_info">
+        <h5 class="prod-config-number">
+         <%= @product.product_configurations.last.number %>
+      </h5> 
+        <% if @product.product_configurations.length > 1 %>
+      <div class="prod-config-description">
+        <h5>
+        <!--  <span id="shown">shown:</span> --> <span id="description"><%= @product.product_configurations.first.description %></span>
+        </h5>
+      </div>
+    <% end %>
+      
+    </div>
+
+    </div>  
+    
+  </div>
+    <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
+
+    
+  
+  
+  
+  <div class="product_info">
+    
+   
+    <% if @product.all_components.size > 1 %>
+      <div class="components">
+    
+        <ul id="components_list" class="comp_list links">
+          <span id="components"><h4>Components:</h4></span>
+          <% @product.all_components.each do |component| %>
+            <% if component.class.name == "Product" %>
+              <li data-configurations="<%= component.compilations_number_string %>"><%= link_to(component.name, product_path(component))  %>
+            <% else %>
+              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div> 
+
+    <% end %>
+   
+
+    
+ 
+
+
+    
+    <div class="centered">
+      <div class="tearsheet_wrapper">
+        <div class="options previews">
+          <% if @product.finishes.length >= 1 %>
+          <div id="finish_choice" class="option_box">
+
+          </div>
+          <% end %>
+
+          <% if @product.materials.length >= 1 %>
+          <div id="material_choice" class="option_box">
+
+          </div>
+          <% end %>
+          
+
+          
+          
+        </div>
+        
+      </div>
+
+      <div class="prod_links">
+        <ul id="links1" class='links'>
+          <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
+          <li><%= render 'tearsheet_form' %></li>
+          <li><%= render 'favorites/favorite_button' %></li>
+          
+
+          
+        </ul>
+        <ul id="links2" class='links'>
+          <li>Spec Sheet</li>
+          <li>3D/2D Renderings</li>
+          <li>Installation Guide</li>
+          </ul>
+      </div>
+    </div>
+
+    
+    
+  </div>
+  
+    <div class="image_list">
+      <% if @product.product_configurations.count > 1 %>
+        <ul id="alt_imgs">
+          <% @product.product_configurations.each do |config| %>
+            <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
+            <%= image_tag config.image.url(:thumb) %> <br/>
+          </li>
+          <% end %>
+        </ul>
+      <% end %> 
+
+
+    </div>
+    
+
+
+  
+
+
+  <div class="product_info2">
+
+
+    <%= render 'product_info' %>
+
+
+    <div class="compilations">
+      <% if @product.compilations.size > 0 %>
+      <p>
+        Compilations:
+      </p>
+      <ul id="compilations_list" class="comp_list links">
+        <% @product.all_compilations.each do |compilation| %>
+        <li><%= link_to(compilation.name, product_path(compilation))  %>
+        </li>
+        <% end %>
+      </ul>
+
+      <% end %>
+    </div>
+    
+  </div>
+  <br/>
+
+</div>
+
+<script>
+  $('ul#components_list li').slice(1).hide();
+  $('ul#components_list').append("<a  id='see_all'><b>...See all</a></b>");
+  $('ul#components_list').append("<a  id='hide_all' style='float:right; padding-top:8px'><b>Collapse</a></b>");
+  $('#hide_all').hide();
+  $('#see_all').click(function(){
+      $('#see_all').hide();
+      $('ul#components_list li').slice(1).show();
+      $('#hide_all').show();
+      $('ul#components_list').addClass('expandComp');
+    }
+  );
+  $('#hide_all').click(function(){
+      $('#hide_all').hide();
+      $('ul#components_list li').slice(1).hide();
+      $('#see_all').show();
+      $('ul#components_list').removeClass('expandComp');
+      // $('ul#components_list').append($('#see_all'));
+    }
+  );
+
+</script>

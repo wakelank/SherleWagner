@@ -1004,6 +1004,7 @@ li.foot_link, li.foot_link a{
 
  
       /*===SMALL Side Nav ===*/
+      
       .panel-body.filter{
         display: inline-flex;
       }
