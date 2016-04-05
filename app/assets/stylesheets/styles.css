@@ -281,7 +281,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
       .navvy{
         padding-top: 2em;
-        /*padding-left: 15px;*/
+        padding-left: 15px;
         width: 100%;
       }
       .navvy .panel-sub-heading {
@@ -322,6 +322,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         
         color: #484848;
       }
+      #accordion1 a:hover, #accordion1 a:focus{
+        text-decoration: none;
+      }
 
       .filter ul{
         padding-left: 1em;
@@ -352,8 +355,10 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 #subtype_list_name{
   padding-left: 0.5em;
   text-transform: uppercase;
-  color: grey;
-  
+  color: lightgrey;
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-size: 18px;
 }
 
 .list_wrapper{
@@ -888,7 +893,8 @@ width: 100%;
 li.foot_link, li.foot_link a{
     display: inline;
     margin: 0 1em;
-    color:grey;
+    color:darkgrey;
+    font-family: "DINPro-Light";
 }
 
 /*=======SIZE SPECIFIC========*/
@@ -1004,7 +1010,7 @@ li.foot_link, li.foot_link a{
 
  
       /*===SMALL Side Nav ===*/
-      
+
       .panel-body.filter{
         display: inline-flex;
       }
