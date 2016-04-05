@@ -19,6 +19,9 @@ body{
 #main_contain{
   background-color: #eeeeee;
 }
+#center_main{
+      margin-bottom: -45px;
+}
 
 /*=====header nav====*/
 
@@ -37,10 +40,12 @@ body{
   color:white;
   font-family: "DINPro-Light";
 }
-#title_link{
-  /*text-decoration: none;*/
-  
+#title_link a:hover{
+  text-decoration: none; 
   /*height: 2em;*/
+}
+#title_link h1{
+margin-bottom: 0;
 }
 input.button{
      background-color: inherit;
@@ -1063,8 +1068,8 @@ li.foot_link, li.foot_link a{
 #nav_link_contain ul.navbar-nav {
   
   display: inline-block;
-  float: right;
-  clear: left;
+  float: left;
+  /*clear: left;*/
   text-align: center;
 }
 .navbar .navbar-nav {
