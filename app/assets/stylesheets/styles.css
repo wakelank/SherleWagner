@@ -20,7 +20,7 @@ body{
   background-color: #eeeeee;
 }
 #center_main{
-      margin-bottom: -45px;
+      margin-bottom: -75px;
 }
 
 /*=====header nav====*/
@@ -238,7 +238,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     }
     /*this is not compatible with the ipad, raise the media min* */
     #nav-wrapper, body{
-          min-width: 1271px;
+          min-width: 1350px;
     }
     /*end comment ** */
 
@@ -879,7 +879,11 @@ width: 100%;
 }
 .footer .links{
   padding-top: 5px;
-  padding-bottom: 5px;  
+  padding-bottom: 5px;
+  
+    text-align: center;
+    float: none;
+  
 }
 li.foot_link, li.foot_link a{
     display: inline;
@@ -1075,9 +1079,11 @@ li.foot_link, li.foot_link a{
 #nav_link_contain ul.navbar-nav {
   
   display: inline-block;
-  float: left;
+  float: none;
   /*clear: left;*/
   text-align: center;
+  /*for offset to right*/
+      padding-left: 240px;
 }
 .navbar .navbar-nav {
     display: inline-block;
