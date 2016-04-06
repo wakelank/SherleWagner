@@ -232,13 +232,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     @media (min-width: 769px) {
 
     #content_wrapper{
-      /*min-width: 932px;*/
+      min-width: 1022px;
       /*This is in flux*/
-      min-width: 114%;
+      /*min-width: 114%;*/
     }
     /*this is not compatible with the ipad, raise the media min* */
     #nav-wrapper, body{
-          min-width: 1350px;
+          /*min-width: 1350px;*/
     }
     /*end comment ** */
 
@@ -973,8 +973,15 @@ li.foot_link, li.foot_link a{
   }
 }
 
-
-
+/*move searchbar to keep nav li's in proper place*/
+ @media (max-width: 1120px) and (min-width: 760px){
+#searcher_li{
+        /*margin-top: -55px;*/
+        position:absolute;
+        top:20px;
+        right: 20px;
+      }
+  }
 /*=======SMALL SIZE========*/
 
 
@@ -982,10 +989,11 @@ li.foot_link, li.foot_link a{
   /*++++++==== NAVBAR ====+++++*/
 
       .nav li{
-      padding-right: 4em;
+      /*padding-right: 4em;*/
 
       }
 
+      
 
       /*BROWSE*/
      .contain{
@@ -1093,7 +1101,8 @@ li.foot_link, li.foot_link a{
   /*clear: left;*/
   text-align: center;
   /*for offset to right*/
-      padding-left: 240px;
+      /*padding-left: 240px;*/
+  vertical-align: bottom;
 }
 .navbar .navbar-nav {
     display: inline-block;
