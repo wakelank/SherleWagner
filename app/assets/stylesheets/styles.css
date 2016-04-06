@@ -136,9 +136,9 @@ input#search{
 /*====The product browse page===*/
 
 /*===LARGEST WIDTH===*/
-@media (min-width: 1254px) {
+@media (min-width: 1154px) {
   #center_main{
-    min-width: 995px;
+    min-width: 880px;
 }
  
 }
@@ -232,13 +232,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     @media (min-width: 769px) {
 
     #content_wrapper{
-      min-width: 1022px;
+      /*min-width: 1022px;*/
       /*This is in flux*/
       /*min-width: 114%;*/
     }
     /*this is not compatible with the ipad, raise the media min* */
     #nav-wrapper, body{
-          /*min-width: 1350px;*/
+          min-width: 950px;
     }
     /*end comment ** */
 
