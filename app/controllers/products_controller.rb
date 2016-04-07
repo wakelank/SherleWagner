@@ -44,6 +44,7 @@ class ProductsController < ApplicationController
     @china_color_id = params[:china_color_id]
   end
 
+
   def build_tearsheet
 
 #    product_base_number = ""

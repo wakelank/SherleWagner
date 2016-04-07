@@ -1,4 +1,27 @@
 
+<style>
+  
+  /* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+footer#bottom {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    min-height: 60px;
+    padding-bottom: 30px;
+    background-color: #222222;
+    /*z-index: 11;*/
+}
+</style>
+
 <footer class='footer container-fluid text-center'>
 
   <% if admin? %>
@@ -20,3 +43,9 @@ One of these should be an option to go to technical drawings/tear sheets -->
     </ul>
   </div>
 </footer> 
+
+<footer id="bottom">
+      <div class="container">
+        <h3>SHERLE WAGNER</h3>
+      </div>
+</footer>

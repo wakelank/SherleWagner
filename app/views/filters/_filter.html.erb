@@ -2,10 +2,11 @@
 
  <div class="filter">
    <ul>
-    <%= filter.name %>
+    <h5>
+    <%= filter.name %></h5>
      <% filter.filter_values.each do |filter_value| %>
       <li>
-        <label><input type="checkbox" value="" id="<%= filter_value.filter_name_and_value %>"> <%= filter_value.name %> </label>
+        <label><input type="checkbox" value="" id="<%= filter_value.filter_name_and_value %>" class="check2"> <%= filter_value.name %> </label>
       </li>
     <% end %>
     </ul>

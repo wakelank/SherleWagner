@@ -3,4 +3,10 @@ class StaticPagesController < ApplicationController
   end
   def upload_page
   end
+
+  def catalogue
+  end
+
+
+
 end

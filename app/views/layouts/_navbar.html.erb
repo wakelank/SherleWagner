@@ -13,6 +13,8 @@
       margin-top: 20px;
       }
 </style>
+
+<div id="nav-wrapper">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -27,11 +29,14 @@
     
     <div class="collapse navbar-collapse" id="nav_link_contain">
       <ul class="nav navbar-nav">
+
+    
+
            <li><a href="/"><h4>HOME</h4></a></li>
           <li><a href="/styles"><h4>COLLECTIONS</h4></a></li>
           <li><a href="/product_types"><h4>PRODUCTS</h4></a></li>
-          <li><a href="#"><h4>CATALOGUE</h4></a></li>
-        <li>
+          <li><a href="/catalogue"><h4>CATALOGUE</h4></a></li>
+        <li id="searcher_li">
 
         <div class="searcher span4">
           
@@ -40,7 +45,8 @@
                 <div class="rcol">
                     <div class="s10">
                     <% fa = "fa fa-search"  %>
-                      <%= text_field_tag :search, params[:search], :placeholder=> "<i class=#{fa}></i>" %>
+                     
+                      <input type="text" name="search" id="search" placeholder="&#xF002;"style="font-family:Arial, FontAwesome" />
                     </div>
 
                     <div class="s2">
@@ -50,10 +56,11 @@
             </div>
           <% end %>
         </div>
-      </li>
+      </li> 
         </ul>
 
     </div>
   </div>
 </nav>
+</div>
 
