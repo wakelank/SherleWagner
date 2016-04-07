@@ -113,7 +113,7 @@ input#search{
 
 .nav #searcher_li{
       position: absolute;
-    right: -25px;
+    left: 81%;
 }
  
 /*====END NAVBAR===*/
@@ -379,7 +379,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   
 }
 .list_wrapper ul li{
-  margin: 1.5em;
+  margin: 1em;
 }
 
 
@@ -989,7 +989,7 @@ li.foot_link, li.foot_link a{
         
         position:absolute;
         top:20px;
-        right: 8%;
+        right: 1%;
       }
   }
 /*=======SMALL SIZE========*/
