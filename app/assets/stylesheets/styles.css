@@ -1052,6 +1052,14 @@ li.foot_link, li.foot_link a{
     }
 
 @media (max-width: 770px) {
+  #title_link a{
+  
+  font-family: "DINPro-Light";
+  font-size: 25px;
+  vertical-align: top;
+  }
+
+  
   .list_wrapper ul li {
     margin: 5px;
     margin-bottom: 4em;
@@ -1086,12 +1094,13 @@ li.foot_link, li.foot_link a{
       clear: left;
       padding-left: 0;
 
-    }
-    .images, #alt_imgs{
-      width: 100%;
-      padding-left: 0;
-    }
+  }
+  .images, #alt_imgs{
+    width: 100%;
+    padding-left: 0;
+  }
 
+  
 }
 
 
