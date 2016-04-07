@@ -246,8 +246,11 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       /*min-width: 114%;*/
     }
     /*this is not compatible with the ipad, raise the media min* */
-    #nav-wrapper, body{
-          min-width: 950px;
+    #row_content{
+          min-width: 1250px;
+    }
+    #nav-wrap{
+      min-width: 900px;
     }
     /*end comment ** */
 
@@ -602,11 +605,12 @@ h3#prod_name{
   color: black;
       float: right;
     width: 50%;
-    padding-left: 1em;
+    padding-left: 2em;
 }
 .components{
   height:   3.5em;
   margin-bottom: 1em;
+  padding-left: 1.7em;
 }
 #components_list {
     margin-bottom: 1.5em;
@@ -625,7 +629,7 @@ h3#prod_name{
   border: solid #eeeeee;
   padding: 4px;
   font-size: 14px !important;
-  min-height: 318px;
+  /*min-height: 318px;*/
 }
 .expandComp li{
   padding-left: 8px;
@@ -700,6 +704,10 @@ div.tearsheet-form-box {
 
 .choice_title{
   padding-left: 5px;
+}
+
+#compilations_list a {
+    color: gray;
 }
 
 @media (min-width: 950px) {
