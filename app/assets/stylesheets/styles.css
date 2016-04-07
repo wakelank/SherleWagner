@@ -238,7 +238,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
 
-    @media (min-width: 769px) {
+    @media (min-width: 770px) {
   
     #content_wrapper{
       /*min-width: 1022px;*/
@@ -246,8 +246,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       /*min-width: 114%;*/
     }
     /*this is not compatible with the ipad, raise the media min* */
-    #row_content{
-          min-width: 1250px;
+    .row_content_min{
+          min-width: 1350px;
     }
     #nav-wrap{
       min-width: 900px;
@@ -365,7 +365,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 
 #subtype_list_name{
-  padding-left: 0.5em;
+  padding-left: 1.5em;
   text-transform: uppercase;
   color: lightgrey;
   margin-top: 12px;
@@ -378,13 +378,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   margin: 0 auto;
 }
 .list_wrapper ul{
-  /*width: 90%;*/
+  width: 95%;
   
 }
 .list_wrapper ul li{
   margin: 2em;
-  margin-left: 1em;
-  margin-right: 1em;
+  /*margin-left: 1em;
+  margin-right: 1em;*/
 }
 
 
@@ -1073,6 +1073,14 @@ li.foot_link, li.foot_link a{
     }
 
 @media (max-width: 770px) {
+  .prod_tile{
+    height: 15em;
+    width: 12em;
+  }
+  .type_tile{
+    width: 15em;
+    height: 19.5em;
+  }
   #title_link a{
   
   font-family: "DINPro-Light";

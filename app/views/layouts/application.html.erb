@@ -23,7 +23,7 @@
   <%= render "/layouts/navbar" %>
 <div class="container-fluid" id='main_contain'>  
 
-    <div class="row content" id="row_content">
+    <div class="row content row_content_min" id="row_content">
  <% if controller_name == "styles" && action_name == "index" || controller_name == "styles" && action_name == "show" %>
           <%= yield %>
 
