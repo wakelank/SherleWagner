@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'catalog' => 'static_pages#catalog'
   get 'contact' => 'static_pages#contact'
+  get 'showrooms' => 'static_pages#showrooms'
+  get 'history' => 'static_pages#history'
 #  get 'product_groups/add_favorite' => 'product_groups#add_favorite'
   
 

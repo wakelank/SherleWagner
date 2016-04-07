@@ -199,9 +199,16 @@ $(document).on("page:change", (function(){
           filter_types2();
         break; 
       case 'static_pages home':
-          // $('.side-nav-contain').css('display','none');
+          
 
         break;
+      case 'static_pages contact':
+          set_map();
+
+        break;
+
+
+
       default:
         var tearSheetForm = 'not form';
       break;
@@ -402,3 +409,27 @@ $(document).on("page:change", (function(){
   //   });
   // }
 }));
+
+function set_map(){
+      var SW = {lat:40.7621881,lng:-73.9650126};
+      var mapOptions = {
+        center: SW,
+        zoom: 17,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var mapDiv = document.getElementById('map-canvas');
+      var map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions);
+      var marker = new google.maps.Marker({
+            position: SW,
+            map: map,
+            title: "Sherle Wagner"
+            
+          });
+
+     marker.addListener('click', function() {
+      window.open('https://www.google.com/maps/place/Sherle+Wagner+International/@40.7621881,-73.9650126,17z/data=!3m1!4b1!4m2!3m1!1s0x89c258e881faea7d:0xbc2c6a685eed277?hl=en','_blank');
+      });
+
+      
+    }

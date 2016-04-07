@@ -194,7 +194,7 @@ input#search{
   float:left;
   height: 19.5em;
   width: 15em;
-  border: solid #eeeeee;
+  border: 2px solid #eeeeee;
   margin: 10px;
 }
 .prod_tile_img{
@@ -375,11 +375,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   margin: 0 auto;
 }
 .list_wrapper ul{
-  width: 90%;
+  /*width: 90%;*/
   
 }
 .list_wrapper ul li{
-  margin: 1em;
+  margin: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 
