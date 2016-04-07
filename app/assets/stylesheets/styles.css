@@ -168,6 +168,10 @@ input#search{
  
 }
 
+#static_wrapper{
+  padding-left: 4em;
+}
+
 
 .prod_list{
   list-style: none;
