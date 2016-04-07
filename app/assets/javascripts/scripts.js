@@ -7,7 +7,10 @@ $(document).on("page:change", (function(){
      switch ($('body').attr('class')){
     //PRODUCT SHOW page JS  
       case 'products show':
-      $('#row_content').removeClass('row_content_min')
+      $('#row_content').removeClass('row_content_min');
+      $('#center_main').removeClass('center_min_width');
+      $('#center_main').addClass('center_min_show');
+
       var configurationObject = {};
         var tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;

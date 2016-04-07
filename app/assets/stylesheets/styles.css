@@ -142,8 +142,8 @@ input#search{
 
 /*===LARGEST WIDTH===*/
 @media (min-width: 1154px) {
-  #center_main{
-    min-width: 880px;
+  #center_min_show{
+    min-width: 900px;
 }
  
 }
@@ -240,8 +240,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
     @media (min-width: 770px) {
   
-    #content_wrapper{
-      /*min-width: 1022px;*/
+    .center_min_width{
+      min-width: 975px;
       /*This is in flux*/
       /*min-width: 114%;*/
     }
