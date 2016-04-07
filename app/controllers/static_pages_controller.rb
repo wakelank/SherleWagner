@@ -7,6 +7,8 @@ class StaticPagesController < ApplicationController
   def catalog
   end
 
+  def contact
+  end
 
 
 end

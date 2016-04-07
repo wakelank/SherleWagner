@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   post 'products/upload_products' => 'products#upload_product_file'
   post 'products/tearsheet' => 'products#build_tearsheet'
   get 'products/tearsheet' => 'products#show'
+
   get 'catalog' => 'static_pages#catalog'
+  get 'contact' => 'static_pages#contact'
 #  get 'product_groups/add_favorite' => 'product_groups#add_favorite'
   
 

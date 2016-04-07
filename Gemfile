@@ -20,6 +20,7 @@ gem 'aws-sdk-v1'
 gem 'paperclip', '~> 4.3'
 # gem 'sunspot_rails'
 # gem "rails-bootstrap-helpers"
+gem 'gmaps4rails'
 
 gem 'rails', '4.2.1'
 gem 'pg'
