@@ -30,7 +30,8 @@ class FileUploadManager
       data_row = DataRow.new(row)
       product = Product.new(data_row.product_args)
       begin
-        product.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
+        #product.image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
+        product.image = get_product_image(data_row, product)
         product.other_images << color_bucket.get_images_from_aws(get_other_potential_images_for(product))
       rescue
       end
@@ -60,6 +61,17 @@ class FileUploadManager
     end
     set_compilations file
 
+  end
+
+  def get_product_image(data_row, product)
+    image = black_and_white_bucket.get_image_from_aws(data_row.get_image_name)
+    if image.nil?
+      other_images = black_and_white_bucket.get_images_from_aws(get_other_potential_images_for(product))
+      other_image = !other_images.empty? ? other_images.first : nil
+      return other_image.image if !other_image.nil?
+    else
+      return image
+    end
   end
 
   def set_compilations(file)
