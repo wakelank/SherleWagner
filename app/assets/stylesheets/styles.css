@@ -239,7 +239,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
     @media (min-width: 769px) {
-
+  
     #content_wrapper{
       /*min-width: 1022px;*/
       /*This is in flux*/
@@ -913,7 +913,7 @@ li.foot_link, li.foot_link a{
 }
 
 /*=======SIZE SPECIFIC========*/
-@media (max-width: 1508px) and (-webkit-min-device-pixel-ratio: 2) {
+@media (max-width: 1508px) {
       .r_col{
     clear: left;
     float: right;
@@ -935,7 +935,7 @@ li.foot_link, li.foot_link a{
     }
 
      /*=====Medium/SMALL SHOW=====*/
-     @media (max-width: 1100px) and (-webkit-min-device-pixel-ratio: 2) {
+     @media (max-width: 1150px) {
 
       .r_col{
     clear: left;
@@ -997,9 +997,11 @@ li.foot_link, li.foot_link a{
 /*=======SMALL SIZE========*/
 
 
-    @media (max-width: 950px) and (-webkit-min-device-pixel-ratio: 2) {
+    @media (max-width: 950px) {
   /*++++++==== NAVBAR ====+++++*/
-
+      body{
+        min-width: none;
+      }
       .nav li{
       /*padding-right: 4em;*/
 
