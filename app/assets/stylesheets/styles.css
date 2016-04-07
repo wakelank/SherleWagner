@@ -110,6 +110,11 @@ input#search{
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     /*background-color:rgba(0,0,0,0);*/   
 }
+
+.nav #searcher_li{
+      position: absolute;
+    right: -25px;
+}
  
 /*====END NAVBAR===*/
 
@@ -891,7 +896,7 @@ width: 100%;
    z-index: 3;
 }
 .footer .links{
-  padding-top: 5px;
+  padding-top: 2px;
   padding-bottom: 5px;
   
     text-align: center;
