@@ -15,9 +15,9 @@ $(document).on("page:change", (function(){
         var tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
         var product_id = tearSheetForm.elements["product_id"].value;
-        // var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-        // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-        //set_tearsheet_link();
+        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+        var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        set_tearsheet_link();
 
        
 
@@ -103,7 +103,7 @@ $(document).on("page:change", (function(){
             var fin = t.dataset.finish_identifier;
             if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
-              // console.log(mat);
+              
               $(t).trigger('click');
               // console.log(t);
             }
@@ -112,11 +112,19 @@ $(document).on("page:change", (function(){
 
           
         });
+        
+         prod_config = {
+          "finish":" ",
+          "material":" ",
+          "china":" "
 
+        }
 
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
             var mat = this.dataset.material_identifier;
+            console.log(mat);
+            prod_config.material=mat;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){
               
@@ -134,6 +142,9 @@ $(document).on("page:change", (function(){
             var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
             
             var mat = this.dataset.finish_identifier;
+            console.log(mat);
+            prod_config.finish=mat;
+            // product_data[finish_identifier] = mat;
             var foundit = 0;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){  
@@ -272,16 +283,16 @@ $(document).on("page:change", (function(){
        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
-       var product_data = { "product_base_number" : product_base_number,
-         "material_identifier" : material_identifier,
-         "finish_identifier" : finish_identifier,
-         "china_color_identifier" : china_color_identifier
-       }
+           var product_data = { "product_base_number" : product_base_number,
+           "material_identifier" : material_identifier,
+           "finish_identifier" : finish_identifier,
+           "china_color_identifier" : china_color_identifier
+         }
       var root_url = window.location.origin
       var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-      var tearsheet_number = product_base_number.replace("XX", finish_identifier);
-      var tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
-      var tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+       var tearsheet_number = product_base_number.replace("XX", finish_identifier);
+       tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
+       tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
 
 
       var url = root_url + "/tearsheets/" + 
@@ -315,8 +326,8 @@ $(document).on("page:change", (function(){
 
 
      function swatch_tile_actions(targ, listId){
-       r = targ;
-       l = listId;
+       var r = targ;
+       var l = listId;
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
