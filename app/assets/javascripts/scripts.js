@@ -299,7 +299,7 @@ $(document).on("page:change", (function(){
         break; 
       case 'static_pages home':
           
-
+        
         break;
       case 'static_pages showrooms': 
        set_map();
