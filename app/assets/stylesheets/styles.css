@@ -141,9 +141,9 @@ input#search{
 /*====The product browse page===*/
 
 /*===LARGEST WIDTH===*/
-@media (min-width: 1154px) {
-  #center_min_show{
-    min-width: 900px;
+@media (min-width: 1150px) {
+  .center_min_show{
+    min-width: 835px;
 }
  
 }
