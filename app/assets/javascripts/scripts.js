@@ -208,7 +208,9 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
-            var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
+            if($('.materials .highlight')>0){
+              var otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+              }
 
             
             var mat = this.dataset.finish_identifier;
