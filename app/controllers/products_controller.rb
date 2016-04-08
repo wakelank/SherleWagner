@@ -86,9 +86,21 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show_tearsheet
-    @product_number = params[:product_number]
-
+  def tearsheet
+    product_number = params[:product_id]
+    @product = Product.find(product_number)
+    @tearsheet_number = params[:tearsheet_number]
+    @finishes = []
+    @product.finishes.each do |f|
+      ob = {}
+      ob["name"] = f.name
+      ob["identifier"] = f.identifier
+      ob["swatch"] = f.modern_swatch_url
+        if @product.ornate?
+          ob["swatch"] = f.ornate_swatch_url
+        end
+      @finishes << ob
+    end 
   end
 
   def from_category

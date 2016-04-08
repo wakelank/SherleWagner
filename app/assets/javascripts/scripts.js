@@ -112,19 +112,36 @@ $(document).on("page:change", (function(){
 
           
         });
+       //     var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       // var tearsheet_number = product_base_number.replace("XX", finish_identifier);
+       // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
+       // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+
         
          prod_config = {
           "finish":" ",
           "material":" ",
-          "china":" "
+          "color":" "
 
         }
+// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+        tearsheet_targ = $('.tear-sheet-submit').attr('href');
+
+           var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       
+
+
+
 
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
             var mat = this.dataset.material_identifier;
             console.log(mat);
+            tearsheet_targ = tearsheet_targ.replace(material_code_regex, mat);
+            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+
             prod_config.material=mat;
+
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){
               
@@ -140,10 +157,16 @@ $(document).on("page:change", (function(){
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
             var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
+
             
             var mat = this.dataset.finish_identifier;
             console.log(mat);
-            prod_config.finish=mat;
+
+            tearsheet_targ = tearsheet_targ.replace("XX", mat);
+            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+            prod_config.finish = mat;
+
+
             // product_data[finish_identifier] = mat;
             var foundit = 0;
           $('.alt_img').each(function(i,t){
@@ -279,9 +302,10 @@ $(document).on("page:change", (function(){
        // console.log('generate tear sheet link');
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
-       var product_id = tearSheetForm.elements["product_id"].value;
+        product_id = tearSheetForm.elements["product_id"].value;
+
        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-      var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+      var finish_identifier = "checkthis";
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
            var product_data = { "product_base_number" : product_base_number,
            "material_identifier" : material_identifier,
@@ -289,18 +313,19 @@ $(document).on("page:change", (function(){
            "china_color_identifier" : china_color_identifier
          }
       var root_url = window.location.origin
-      var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       var tearsheet_number = product_base_number.replace("XX", finish_identifier);
-       tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
-       tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+      // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       var tearsheet_number = product_base_number
+       // .replace("XX", finish_identifier);
+       // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
+       // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+       console.log(product_id);
 
 
-      var url = root_url + "/tearsheets/" + 
-        product_id +
-        "?tearsheet=" + 
-        tearsheet_number +
-        "&finish_identifier=" +
-        finish_identifier;
+
+      var url = root_url + "/products/tearsheet/" + 
+        product_id+ "/" +
+        tearsheet_number
+        
 
       return url;
      }

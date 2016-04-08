@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
   get 'products/upload_page' => 'static_pages#upload_page'
   post 'products/upload_products' => 'products#upload_product_file'
-  post 'products/tearsheet' => 'products#build_tearsheet'
-  get 'products/tearsheet' => 'products#show'
+ 
+  get 'products/tearsheet/:product_id/:tearsheet_number' => 'products#tearsheet'
 
   get 'catalog' => 'static_pages#catalog'
   get 'contact' => 'static_pages#contact'
