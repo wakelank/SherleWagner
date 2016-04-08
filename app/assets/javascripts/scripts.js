@@ -47,13 +47,15 @@ $(document).on("page:change", (function(){
 
          //set the current configuration
          conff = $('.alt_choice')[0]
-        swap_product_info_for_configuration(conff);
+         if (conff){
+            swap_product_info_for_configuration(conff);
+          }
 
     break
 
 
 
-      case 'products show':
+    case 'products show':
       $('#row_content').removeClass('row_content_min');
       $('#center_main').removeClass('center_min_width');
       $('#center_main').addClass('center_min_show');
@@ -86,6 +88,12 @@ $(document).on("page:change", (function(){
 
         nav_back();
 
+         prod_config = {
+          "finish":" ",
+          "material":" ",
+          "color":" "
+
+        }
 
         //select the featured image from the alt's on load
       
@@ -126,9 +134,11 @@ $(document).on("page:change", (function(){
 
          //set the current configuration
          conff = $('.alt_choice')[0]
-        swap_product_info_for_configuration(conff);
+         if (conff){
+            swap_product_info_for_configuration(conff);
+          }
 
-
+       
 
 
         // *switch out product feat. img.*
@@ -165,12 +175,7 @@ $(document).on("page:change", (function(){
        // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
 
         
-         prod_config = {
-          "finish":" ",
-          "material":" ",
-          "color":" "
-
-        }
+      
 // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
         tearsheet_targ = $('.tear-sheet-submit').attr('href');
 
