@@ -6,6 +6,53 @@ $(document).on("page:change", (function(){
     
      switch ($('body').attr('class')){
     //PRODUCT SHOW page JS  
+    case 'products tearsheet':
+
+    prod_config = {
+          "finish":" ",
+          "material":" ",
+          "color":" "
+
+        }
+// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+        tearsheet_config = $(window.location.pathname.split('/')).last()[0]
+
+      
+        
+        
+        $('.finish_tile').each(function(i,t){
+          var ident = '';
+          var parent_div = ''
+          if ($($(t).parents()[1]).hasClass('finishes')){
+             ident = t.dataset.finish_identifier;
+             parent_div = '#product_finishes_list';
+          }else if ($($(t).parents()[1]).hasClass('materials')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_materials_list';
+          }else if ($($(t).parents()[1]).hasClass('china_colors')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_china_list';
+          }else{
+          }
+           
+          if (tearsheet_config.includes('-'+ ident ) && parent_div == '#product_china_list' ){
+             $(t).addClass('highlight');
+
+          }else if (tearsheet_config.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+            var $t = $(t);
+            var pr = $(parent_div);
+            swatch_tile_actions($t, pr); 
+          }
+        }); 
+
+         //set the current configuration
+         conff = $('.alt_choice')[0]
+        swap_product_info_for_configuration(conff);
+
+    break
+
+
+
       case 'products show':
       $('#row_content').removeClass('row_content_min');
       $('#center_main').removeClass('center_min_width');
