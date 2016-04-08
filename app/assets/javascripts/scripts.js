@@ -281,7 +281,9 @@ $(document).on("page:change", (function(){
       //end of product show page JS
         
       case 'styles show':
-          filter_types2();
+          filter_types2()
+          $('#row_content').removeClass('row_content_min');
+      $('#center_main').removeClass('center_min_width');
         break; 
       case 'static_pages home':
           
