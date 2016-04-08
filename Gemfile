@@ -3,6 +3,7 @@ ruby '2.1.2'
 gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'pg_search'
 
 gem 'awesome_print'
 # gem 'faker'

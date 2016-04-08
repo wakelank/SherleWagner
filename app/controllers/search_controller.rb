@@ -1,10 +1,14 @@
 class SearchController < ApplicationController
 
 def index
-  @query = Product.search do
-        fulltext params[:search]
-    end
-    @searched = @query.results
+  #@query = Product.search do
+  #      fulltext params[:search]
+  #  end
+  #  @searched = @query.results
+
+    results = PgSearch.multisearch params[:search]
+    @searched = results.map { |result| Product.where(id: result.id) }.flatten
+    
 
 end
 

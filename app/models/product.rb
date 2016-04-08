@@ -3,6 +3,9 @@ require 'find'
 
 class Product < ActiveRecord::Base
 
+  include PgSearch
+  multisearchable :against => [:name, :number]
+
 
   #  belongs_to :product_group
   belongs_to :product_type
