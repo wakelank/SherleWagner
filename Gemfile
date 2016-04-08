@@ -22,6 +22,7 @@ gem 'paperclip', '~> 4.3'
 # gem 'sunspot_rails'
 # gem "rails-bootstrap-helpers"
 
+
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'

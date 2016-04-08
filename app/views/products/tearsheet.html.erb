@@ -1,4 +1,47 @@
 
+<style>
+  #tearsheet_number{
+    float: left;
+    padding-left: 1.2em;
+  }
+  .navvy{
+    display: none;
+  }
+  footer{
+    display: none;
+  }
+  nav div#nav_link_contain{
+    display: none !important;
+  }
+   .previews{
+    margin-top: 2em;
+    width: 115%;
+  }
+  .option_box{
+        width: 150px;
+    height: 150px;
+  }
+  .centered{
+    padding-left: 2em;
+
+  }
+
+
+  @media print{
+    .option_box{
+        width: 120px;
+    height: 120px;
+    }
+    .previews{
+      clear: none;
+      margin-top: none;
+    }
+    #tearsheet_number{
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+</style>
 <div class="prod_page_content">
 
 
@@ -6,13 +49,10 @@
       <h3 id="prod_name">
         <%= @product.name%>
       </h3>
-     <% if admin? %>
-      <%= link_to 'edit product', edit_product_path %>
     
-     <% end %>
+   
     </div>
-
-
+  
   <div class="images">   
     <div class="product_image" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' >
       <div class="config_info">
@@ -39,7 +79,10 @@
   
   
   <div class="product_info">
-    
+    <h4 id="tearsheet_number">
+        <%= @tearsheet_number%>
+      </h4>
+
    
     <% if @product.all_components.size > 1 %>
       <div class="components">
@@ -90,23 +133,14 @@
       <div class="prod_links">
         <ul id="links1" class='links'>
           <% if @product.associated_collection_or_null.id > 0 %>
-          <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
-          
-          <% else %>
-          <li>Collection: none </li>
-  
+          <li>Collection: <%= @product.associated_collection_or_null.name %></li>
           <% end %>
-          <li><%= render 'tearsheet_form' %></li>
-          <li><%= render 'favorites/favorite_button' %></li>
+         
           
 
           
         </ul>
-        <ul id="links2" class='links'>
-          <li>Spec Sheet</li>
-          <li>3D/2D Renderings</li>
-          <li>Installation Guide</li>
-          </ul>
+        
       </div>
     </div>
 
@@ -114,19 +148,7 @@
     
   </div>
   
-    <div class="image_list">
-      <% if @product.product_configurations.count > 1 %>
-        <ul id="alt_imgs">
-          <% @product.product_configurations.each do |config| %>
-            <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
-            <%= image_tag config.image.url(:thumb) %> <br/>
-          </li>
-          <% end %>
-        </ul>
-      <% end %> 
-
-
-    </div>
+    
     
 
 

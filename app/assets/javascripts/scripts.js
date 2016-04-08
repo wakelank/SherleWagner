@@ -6,14 +6,65 @@ $(document).on("page:change", (function(){
     
      switch ($('body').attr('class')){
     //PRODUCT SHOW page JS  
+    case 'products tearsheet':
+
+    prod_config = {
+          "finish":" ",
+          "material":" ",
+          "color":" "
+
+        }
+// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+        tearsheet_config = $(window.location.pathname.split('/')).last()[0]
+
+      
+        
+        
+        $('.finish_tile').each(function(i,t){
+          var ident = '';
+          var parent_div = ''
+          if ($($(t).parents()[1]).hasClass('finishes')){
+             ident = t.dataset.finish_identifier;
+             parent_div = '#product_finishes_list';
+          }else if ($($(t).parents()[1]).hasClass('materials')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_materials_list';
+          }else if ($($(t).parents()[1]).hasClass('china_colors')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_china_list';
+          }else{
+          }
+           
+          if (tearsheet_config.includes('-'+ ident ) && parent_div == '#product_china_list' ){
+             $(t).addClass('highlight');
+
+          }else if (tearsheet_config.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+            var $t = $(t);
+            var pr = $(parent_div);
+            swatch_tile_actions($t, pr); 
+          }
+        }); 
+
+         //set the current configuration
+         conff = $('.alt_choice')[0]
+        swap_product_info_for_configuration(conff);
+
+    break
+
+
+
       case 'products show':
+      $('#row_content').removeClass('row_content_min');
+      $('#center_main').removeClass('center_min_width');
+      $('#center_main').addClass('center_min_show');
+
       var configurationObject = {};
         var tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
         var product_id = tearSheetForm.elements["product_id"].value;
-        // var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-        // var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-        //set_tearsheet_link();
+        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+        var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+        set_tearsheet_link();
 
        
 
@@ -99,7 +150,7 @@ $(document).on("page:change", (function(){
             var fin = t.dataset.finish_identifier;
             if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
-              // console.log(mat);
+              
               $(t).trigger('click');
               // console.log(t);
             }
@@ -108,11 +159,36 @@ $(document).on("page:change", (function(){
 
           
         });
+       //     var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       // var tearsheet_number = product_base_number.replace("XX", finish_identifier);
+       // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
+       // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+
+        
+         prod_config = {
+          "finish":" ",
+          "material":" ",
+          "color":" "
+
+        }
+// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+        tearsheet_targ = $('.tear-sheet-submit').attr('href');
+
+           var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       
+
+
 
 
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
             var mat = this.dataset.material_identifier;
+            console.log(mat);
+            tearsheet_targ = tearsheet_targ.replace(material_code_regex, mat);
+            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+
+            prod_config.material=mat;
+
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){
               
@@ -128,8 +204,17 @@ $(document).on("page:change", (function(){
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
             var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
+
             
             var mat = this.dataset.finish_identifier;
+            console.log(mat);
+
+            tearsheet_targ = tearsheet_targ.replace("XX", mat);
+            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+            prod_config.finish = mat;
+
+
+            // product_data[finish_identifier] = mat;
             var foundit = 0;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes('-'+mat)){  
@@ -196,12 +281,25 @@ $(document).on("page:change", (function(){
       //end of product show page JS
         
       case 'styles show':
-          filter_types2();
+          filter_types2()
+          $('#row_content').removeClass('row_content_min');
+      $('#center_main').removeClass('center_min_width');
         break; 
       case 'static_pages home':
-          // $('.side-nav-contain').css('display','none');
+          
 
         break;
+      case 'static_pages showrooms': 
+       set_map();
+
+        break;
+      case 'static_pages contact':
+          set_map();
+
+        break;
+
+
+
       default:
         var tearSheetForm = 'not form';
       break;
@@ -256,28 +354,30 @@ $(document).on("page:change", (function(){
        // console.log('generate tear sheet link');
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
-       var product_id = tearSheetForm.elements["product_id"].value;
+        product_id = tearSheetForm.elements["product_id"].value;
+
        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-      var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+      var finish_identifier = "checkthis";
        var china_color_identifier = tearSheetForm.elements["tearsheet[china_color_identifier]"].value;
-       var product_data = { "product_base_number" : product_base_number,
-         "material_identifier" : material_identifier,
-         "finish_identifier" : finish_identifier,
-         "china_color_identifier" : china_color_identifier
-       }
+           var product_data = { "product_base_number" : product_base_number,
+           "material_identifier" : material_identifier,
+           "finish_identifier" : finish_identifier,
+           "china_color_identifier" : china_color_identifier
+         }
       var root_url = window.location.origin
-      var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-      var tearsheet_number = product_base_number.replace("XX", finish_identifier);
-      var tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
-      var tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+      // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       var tearsheet_number = product_base_number
+       // .replace("XX", finish_identifier);
+       // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
+       // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+       console.log(product_id);
 
 
-      var url = root_url + "/tearsheets/" + 
-        product_id +
-        "?tearsheet=" + 
-        tearsheet_number +
-        "&finish_identifier=" +
-        finish_identifier;
+
+      var url = root_url + "/products/tearsheet/" + 
+        product_id+ "/" +
+        tearsheet_number
+        
 
       return url;
      }
@@ -303,8 +403,8 @@ $(document).on("page:change", (function(){
 
 
      function swatch_tile_actions(targ, listId){
-       r = targ;
-       l = listId;
+       var r = targ;
+       var l = listId;
            var URLparts = window.location.pathname.split('/');
            var product_id = URLparts[URLparts.length - 1];
            var product_object = { product_id: product_id };
@@ -402,3 +502,27 @@ $(document).on("page:change", (function(){
   //   });
   // }
 }));
+
+function set_map(){
+      var SW = {lat:40.7621881,lng:-73.9650126};
+      var mapOptions = {
+        center: SW,
+        zoom: 17,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var mapDiv = document.getElementById('map-canvas');
+      var map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions);
+      var marker = new google.maps.Marker({
+            position: SW,
+            map: map,
+            title: "Sherle Wagner"
+            
+          });
+
+     marker.addListener('click', function() {
+      window.open('https://www.google.com/maps/place/Sherle+Wagner+International/@40.7621881,-73.9650126,17z/data=!3m1!4b1!4m2!3m1!1s0x89c258e881faea7d:0xbc2c6a685eed277?hl=en','_blank');
+      });
+
+      
+    }

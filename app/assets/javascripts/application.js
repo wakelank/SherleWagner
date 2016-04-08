@@ -18,6 +18,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 
+
 //= require_tree .
 
 var loaded = function(){
@@ -26,6 +27,7 @@ var loaded = function(){
   $("#collections_nav").affix({
     offset: { top: 105 }
   });
+  
 };
 
 $(document).on("page:change", loaded);

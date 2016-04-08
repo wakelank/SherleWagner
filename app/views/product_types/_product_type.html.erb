@@ -3,7 +3,7 @@
     <div class="panel-heading product-type" id="<%= product_type.name.gsub(' ','_') %>">
       <h4 class="panel-title">
         
-          <% if controller_name == 'products' && action_name == 'show' %>
+          <% if controller_name == 'products' && action_name == 'show' || controller_name == 'static_pages'  %>
             
             <label id='<%= product_type.id  %>' class="prod-cat">
               <%= form_tag({controller:'product_types', action:'index'},  method: 'post')  do %>

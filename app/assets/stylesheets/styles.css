@@ -110,6 +110,11 @@ input#search{
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     /*background-color:rgba(0,0,0,0);*/   
 }
+
+.nav #searcher_li{
+      position: absolute;
+    left: 81%;
+}
  
 /*====END NAVBAR===*/
 
@@ -136,9 +141,9 @@ input#search{
 /*====The product browse page===*/
 
 /*===LARGEST WIDTH===*/
-@media (min-width: 1154px) {
-  #center_main{
-    min-width: 880px;
+@media (min-width: 1150px) {
+  .center_min_show{
+    min-width: 835px;
 }
  
 }
@@ -168,6 +173,11 @@ input#search{
  
 }
 
+#static_wrapper{
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
 
 .prod_list{
   list-style: none;
@@ -185,7 +195,7 @@ input#search{
   float:left;
   height: 19.5em;
   width: 15em;
-  border: solid #eeeeee;
+  border: 2px solid #eeeeee;
   margin: 10px;
 }
 .prod_tile_img{
@@ -229,16 +239,19 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
 
-    @media (min-width: 769px) {
-
-    #content_wrapper{
-      /*min-width: 1022px;*/
+    @media (min-width: 770px) {
+  
+    .center_min_width{
+      min-width: 975px;
       /*This is in flux*/
       /*min-width: 114%;*/
     }
     /*this is not compatible with the ipad, raise the media min* */
-    #nav-wrapper, body{
-          min-width: 950px;
+    .row_content_min{
+          min-width: 1350px;
+    }
+    #nav-wrap{
+      min-width: 900px;
     }
     /*end comment ** */
 
@@ -353,7 +366,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 
 #subtype_list_name{
-  padding-left: 0.5em;
+  padding-left: 1.5em;
   text-transform: uppercase;
   color: lightgrey;
   margin-top: 12px;
@@ -366,11 +379,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   margin: 0 auto;
 }
 .list_wrapper ul{
-  width: 90%;
+  width: 95%;
   
 }
 .list_wrapper ul li{
-  margin: 1.5em;
+  margin: 2em;
+  /*margin-left: 1em;
+  margin-right: 1em;*/
 }
 
 
@@ -591,11 +606,12 @@ h3#prod_name{
   color: black;
       float: right;
     width: 50%;
-    padding-left: 1em;
+    padding-left: 2em;
 }
 .components{
   height:   3.5em;
   margin-bottom: 1em;
+  padding-left: 1.7em;
 }
 #components_list {
     margin-bottom: 1.5em;
@@ -614,7 +630,7 @@ h3#prod_name{
   border: solid #eeeeee;
   padding: 4px;
   font-size: 14px !important;
-  min-height: 318px;
+  /*min-height: 318px;*/
 }
 .expandComp li{
   padding-left: 8px;
@@ -689,6 +705,10 @@ div.tearsheet-form-box {
 
 .choice_title{
   padding-left: 5px;
+}
+
+#compilations_list a {
+    color: gray;
 }
 
 @media (min-width: 950px) {
@@ -887,7 +907,7 @@ width: 100%;
    z-index: 3;
 }
 .footer .links{
-  padding-top: 5px;
+  padding-top: 2px;
   padding-bottom: 5px;
   
     text-align: center;
@@ -902,7 +922,7 @@ li.foot_link, li.foot_link a{
 }
 
 /*=======SIZE SPECIFIC========*/
-@media (max-width: 1508px) and (-webkit-min-device-pixel-ratio: 2) {
+@media (max-width: 1508px) {
       .r_col{
     clear: left;
     float: right;
@@ -924,7 +944,7 @@ li.foot_link, li.foot_link a{
     }
 
      /*=====Medium/SMALL SHOW=====*/
-     @media (max-width: 1100px) and (-webkit-min-device-pixel-ratio: 2) {
+     @media (max-width: 1150px) {
 
       .r_col{
     clear: left;
@@ -951,7 +971,7 @@ li.foot_link, li.foot_link a{
   margin-top: 0.5em;
 }
 #finish_choice{
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 #alt_imgs img {
     
@@ -980,15 +1000,17 @@ li.foot_link, li.foot_link a{
         
         position:absolute;
         top:20px;
-        right: 8%;
+        right: 1%;
       }
   }
 /*=======SMALL SIZE========*/
 
 
-    @media (max-width: 950px) and (-webkit-min-device-pixel-ratio: 2) {
+    @media (max-width: 950px) {
   /*++++++==== NAVBAR ====+++++*/
-
+      body{
+        min-width: none;
+      }
       .nav li{
       /*padding-right: 4em;*/
 
@@ -1052,6 +1074,14 @@ li.foot_link, li.foot_link a{
     }
 
 @media (max-width: 770px) {
+  .prod_tile{
+    height: 15em;
+    width: 12em;
+  }
+  .type_tile{
+    width: 15em;
+    height: 19.5em;
+  }
   #title_link a{
   
   font-family: "DINPro-Light";
@@ -1173,8 +1203,30 @@ div#nav_link_contain.collapse.navbar-collapse{
   #l_nav{
     display: none;
   }
+
+  .product_image{
+    width:280px;
+    height: 280px;
+  }
+
   .image_list{
     display: none;
+  }
+  .choice_title{
+    margin: 0;
+  }
+
+  .prod_tile{
+    width: 40px;
+    height: 40px;
+  }
+  .previews{
+    margin-top: 1em;
+    width: 100%;
+  }
+  .option_box{
+        width: 120px;
+    height: 120px;
   }
 }
 

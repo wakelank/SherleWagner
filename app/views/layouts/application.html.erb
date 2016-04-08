@@ -7,7 +7,13 @@
   <%= csrf_meta_tags %>
   <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
   <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCimDgFMmcwBv25C0Rp1XtcIv-OS5rbe00&sensor=false">
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+
   <script>
   //active nav link
     $(document).ready(function() {
@@ -20,7 +26,7 @@
   <%= render "/layouts/navbar" %>
 <div class="container-fluid" id='main_contain'>  
 
-    <div class="row content">
+    <div class="row content row_content_min" id="row_content">
  <% if controller_name == "styles" && action_name == "index" || controller_name == "styles" && action_name == "show" %>
           <%= yield %>
 
@@ -29,7 +35,7 @@
          <%= render "/layouts/sidebar" %>
       </div>
 
-      <div class=" col-xs-12 col-sm-9"id='center_main'> 
+      <div class=" col-xs-12 col-sm-8 col-med-9 center_min_width"id='center_main'> 
        
                 <!-- <div class="contain">-->
           <div id="content_wrapper"> 
