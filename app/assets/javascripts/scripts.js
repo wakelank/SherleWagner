@@ -288,6 +288,9 @@ $(document).on("page:change", (function(){
 
         break;
       case 'static_pages showrooms': 
+       set_map();
+
+        break;
       case 'static_pages contact':
           set_map();
 
