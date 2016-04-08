@@ -128,7 +128,12 @@ $(document).on("page:change", (function(){
           }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
             var $t = $(t);
             var pr = $(parent_div);
-            swatch_tile_actions($t, pr); 
+            swatch_tile_actions($t, pr);
+              if  (parent_div == '#product_finishes_list'){
+                prod_config.finish = ident;
+              }else if  (parent_div == '#product_materials_list'){
+                prod_config.material = ident;
+              }
           }
         }); 
 
