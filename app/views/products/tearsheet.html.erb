@@ -13,6 +13,28 @@
   nav div#nav_link_contain{
     display: none !important;
   }
+   .previews{
+    margin-top: 2em;
+    width: 115%;
+  }
+  .option_box{
+        width: 150px;
+    height: 150px;
+  }
+  @media print{
+    .option_box{
+        width: 120px;
+    height: 120px;
+    }
+    .previews{
+      clear: none;
+      margin-top: none;
+    }
+    #tearsheet_number{
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
 </style>
 <div class="prod_page_content">
 
@@ -104,18 +126,15 @@
 
       <div class="prod_links">
         <ul id="links1" class='links'>
-          <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
-          <li><%= render 'tearsheet_form' %></li>
-          <li><%= render 'favorites/favorite_button' %></li>
+          <% if @product.associated_collection_or_null.id > 0 %>
+          <li>Collection: <%= @product.associated_collection_or_null.name %></li>
+          <% end %>
+         
           
 
           
         </ul>
-        <ul id="links2" class='links'>
-          <li>Spec Sheet</li>
-          <li>3D/2D Renderings</li>
-          <li>Installation Guide</li>
-          </ul>
+        
       </div>
     </div>
 

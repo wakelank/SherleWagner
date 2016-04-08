@@ -89,7 +89,13 @@
 
       <div class="prod_links">
         <ul id="links1" class='links'>
+          <% if @product.associated_collection_or_null.id > 0 %>
           <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
+          
+          <% else %>
+          <li>Collection: none </li>
+  
+          <% end %>
           <li><%= render 'tearsheet_form' %></li>
           <li><%= render 'favorites/favorite_button' %></li>
           
