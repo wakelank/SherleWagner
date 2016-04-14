@@ -230,7 +230,11 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         /*padding-top: 150px;*/
         background-color: #eeeeee;
         font-family: "PT Sans";
-      
+        height: 95vh;
+        overflow-y: scroll;
+      }
+      .affix{
+        top:0;
       }
       /*===REGULAR (950+) DESKTOP SIZE ===*/
 
@@ -351,10 +355,10 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         display: none;
       }
 
-      /*media="all"
+      
       .panel-group { 
-          margin-bottom: 2px;
-      }*/
+          max-width: 245px;
+      
     }
 
     /*=============++++ END LARGE SIZE EXCLUSIVE STYLES ++++=============*/

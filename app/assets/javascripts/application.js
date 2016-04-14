@@ -27,6 +27,9 @@ var loaded = function(){
   $("#collections_nav").affix({
     offset: { top: 105 }
   });
+  $(".navvy").affix({
+    offset: { top: 105 }
+  });
   
 };
 
