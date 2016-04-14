@@ -485,7 +485,7 @@ li.highlighted{
   width: 100%;
   height: 400px;
   position: relative;
-      background-size: cover;
+      background-size: contain;
     background-position-x: 50%;
   float: left;
   margin-right: 3em;
