@@ -237,25 +237,29 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
     @media (min-width: 770px) {
-  
-    .center_min_width{
-      /*min-width: 975px;*/
-      /*This is in flux*/
-      /*min-width: 114%;*/
-    }
-    /*this is not compatible with the ipad, raise the media min* */
-    .row_content_min{
-          /*min-width: 1350px;*/
-    }
-    #nav-wrap{
-      min-width: 900px;
-    }
-    /*end comment ** */
+      .nav #searcher_li{
+        position: absolute;
+        left: 0;
+        /*padding-right: 0 !important;*/
+        }
+      .center_min_width{
+        /*min-width: 975px;*/
+        /*This is in flux*/
+        /*min-width: 114%;*/
+      }
+      /*this is not compatible with the ipad, raise the media min* */
+      .row_content_min{
+            /*min-width: 1350px;*/
+      }
+      #nav-wrap{
+        min-width: 900px;
+      }
+      /*end comment ** */
 
-    #l_nav{
-  min-width: 230px;
-  max-width: 240px;
-}
+      #l_nav{
+        min-width: 230px;
+        max-width: 240px;
+      }
 
 
       
@@ -707,13 +711,21 @@ div.tearsheet-form-box {
 #compilations_list a {
     color: gray;
 }
+@media (min-width: 950px) {
+  body{
+    min-width: 1276px;
+  }
+}
+@media (min-width: 750px) and (max-width: 950px)  {
+  body{
+    min-width: 950px;
+  }
+}
+
 
 @media (min-width: 950px) {
-  .nav #searcher_li{
-      position: absolute;
-    left: 81%;
-    padding-right: 0 !important;
-}
+ 
+ 
   .swatches{
           
           max-width: 47%;
@@ -729,6 +741,8 @@ div.tearsheet-form-box {
     margin-right: 0;
     margin-left: 0;
     /*padding-left: 1em;*/
+ 
+
   }
 }
 .materials, .china_colors {
@@ -998,12 +1012,7 @@ li.foot_link, li.foot_link a{
 
 /*move searchbar to keep nav li's in proper place*/
  @media (max-width: 1120px) and (min-width: 760px){
-#searcher_li{
-        
-        position:absolute;
-        top:20px;
-        right: 1%;
-      }
+
   }
 /*=======SMALL SIZE========*/
 
