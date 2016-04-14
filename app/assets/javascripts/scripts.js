@@ -459,7 +459,7 @@ $('ul#components_list li').slice(1).hide();
        if (typeof config != "undefined") {
            // $('.prod-config-number').html(config.number);
            // $('.prod-config-description #description').html(config.description);
-           $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
+           // $('.product_image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
 
