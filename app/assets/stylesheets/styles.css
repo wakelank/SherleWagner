@@ -111,10 +111,7 @@ input#search{
     /*background-color:rgba(0,0,0,0);*/   
 }
 
-.nav #searcher_li{
-      position: absolute;
-    left: 81%;
-}
+
  
 /*====END NAVBAR===*/
 
@@ -242,13 +239,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     @media (min-width: 770px) {
   
     .center_min_width{
-      min-width: 975px;
+      /*min-width: 975px;*/
       /*This is in flux*/
       /*min-width: 114%;*/
     }
     /*this is not compatible with the ipad, raise the media min* */
     .row_content_min{
-          min-width: 1350px;
+          /*min-width: 1350px;*/
     }
     #nav-wrap{
       min-width: 900px;
@@ -285,7 +282,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
       .nav-wrap {
         float:left;
-        width: 18em;
+        width: 260px;
         /*background-color: #e5e6df;*/
         padding: 5px;
       }
@@ -293,8 +290,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         
       }
       .navvy{
-        padding-top: 2em;
-        padding-left: 15px;
+        padding-top: 35px;
+        padding-left: 0;
         width: 100%;
       }
       .navvy .panel-sub-heading {
@@ -712,6 +709,11 @@ div.tearsheet-form-box {
 }
 
 @media (min-width: 950px) {
+  .nav #searcher_li{
+      position: absolute;
+    left: 81%;
+    padding-right: 0 !important;
+}
   .swatches{
           
           max-width: 47%;
@@ -1153,9 +1155,14 @@ li.foot_link, li.foot_link a{
 .navbar .navbar-collapse {
     text-align: center;
 }
+div.panel-body{
+padding-left: 10px;
+}
 
 div.panel-body.filter {
     padding: 0px !important;
+        border-top: thin solid grey;
+    width: 190px;
 }
 #collections_nav {
     background-color: black;
@@ -1247,4 +1254,5 @@ div.filter label{
 }
 div.filter h5{
   font-weight: bold;
+  margin-left: -7px;
 }
