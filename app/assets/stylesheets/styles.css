@@ -216,7 +216,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         /*padding-top: 150px;*/
         background-color: #eeeeee;
         font-family: "PT Sans";
-        height: 95vh;
+        
         overflow-y: scroll;
       }
       .affix{
@@ -227,6 +227,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
     @media (min-width: 770px) {
+
       .nav #searcher_li{
         position: absolute;
         left: 0;
@@ -242,7 +243,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         min-width: 230px;
         max-width: 240px;
       }
-
+       .navvy{
+        height: 95vh;
+      }
 
       
     /*===REGULAR (768+) Side Nav ===*/
