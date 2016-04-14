@@ -66,8 +66,11 @@ $(document).on("page:change", (function(){
         var product_id = tearSheetForm.elements["product_id"].value;
         var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-        set_tearsheet_link();
 
+
+        // !!!!!!!!!!!!!!!!!!!!!
+        set_tearsheet_link();
+        // !!!!!!!!!!!!!!!!!!!!!
        
 
 
@@ -174,17 +177,23 @@ $(document).on("page:change", (function(){
 
           
         });
-       //     var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       // var tearsheet_number = product_base_number.replace("XX", finish_identifier);
-       // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
-       // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
-
+     
         
       
-// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
         tearsheet_targ = $('.tear-sheet-submit').attr('href');
+        console.log('teeeeeeeeeetime!!');
+        console.log(tearsheet_targ);
 
-           var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+        var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       
+        var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material);
+
+         tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish);
+        $('.tear-sheet-submit').attr('href',tearsheet_targ3);
+        console.log('BAAATTHHHTime!!');
+        console.log(tearsheet_targ);
+
+           // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
        
 
 
@@ -192,10 +201,13 @@ $(document).on("page:change", (function(){
 
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
-            var mat = this.dataset.material_identifier;
+             var mat = this.dataset.material_identifier;
             console.log(mat);
-            tearsheet_targ = tearsheet_targ.replace(material_code_regex, mat);
-            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+
+            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+
+             finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+            $('.tear-sheet-submit').attr('href',finish_sheet_targ);
 
             prod_config.material=mat;
 
@@ -221,8 +233,10 @@ $(document).on("page:change", (function(){
             var mat = this.dataset.finish_identifier;
             console.log(mat);
 
-            tearsheet_targ = tearsheet_targ.replace("XX", mat);
-            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+            the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
+
+             mat_sheet_targ = the_tear_targ.replace("XX", mat);
+            $('.tear-sheet-submit').attr('href',mat_sheet_targ);
             prod_config.finish = mat;
 
 
