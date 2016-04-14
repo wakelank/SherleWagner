@@ -917,7 +917,7 @@ width: 100%;
   position:fixed;
    left:0px;
    bottom:0px;
-   height:30px;
+   min-height:30px;
    width:100%;
    background:#222222;
    z-index: 3;
@@ -931,7 +931,7 @@ width: 100%;
   
 }
 li.foot_link, li.foot_link a{
-    display: inline;
+    display: inline-block;
     margin: 0 1em;
     color:darkgrey;
     font-family: "DINPro-Light";
