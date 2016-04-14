@@ -617,6 +617,7 @@ h3#prod_name{
   border: solid #eeeeee;
   padding: 4px;
   font-size: 14px !important;
+  width:;
   /*min-height: 318px;*/
 }
 .expandComp li{
@@ -1128,6 +1129,10 @@ li.foot_link, li.foot_link a{
   .finish_tile{
     height: 4em;
     width: 4em;
+  }
+
+  #components_list {
+    right:30%;
   }
 
   

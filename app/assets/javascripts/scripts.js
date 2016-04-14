@@ -313,8 +313,11 @@ $(document).on("page:change", (function(){
           }
         });  
 $('ul#components_list li').slice(1).hide();
+  
   $('ul#components_list').append("<a  id='see_all' class='expander'><b>...See all</a></b>");
+  
   $('ul#components_list').append("<a  id='hide_all' class='expander' style='float:right; padding-top:8px'><b>Collapse</a></b>");
+  
   $('#hide_all').hide();
   $('#see_all').click(function(){
       $('#see_all').hide();
@@ -328,7 +331,7 @@ $('ul#components_list li').slice(1).hide();
       $('ul#components_list li').slice(1).hide();
       $('#see_all').show();
       $('ul#components_list').removeClass('expandComp');
-      // $('ul#components_list').append($('#see_all'));
+      
     }
   );
 
@@ -368,6 +371,8 @@ $('ul#components_list li').slice(1).hide();
     $('.prod-config-number').html(li.dataset.number);
     $('.prod-config-description #description').html(li.dataset.description);
     show_only_config_components(config);
+    $('#see_all').hide();
+    $('#hide_all').show();
   }
   function show_only_config_components(config){
     var comp = $('#components_list').find('li');
@@ -380,15 +385,13 @@ $('ul#components_list li').slice(1).hide();
       }
 
     });
-     $('#hide_all').hide();
-      $('ul#components_list li').slice(1).hide();
-      $('#see_all').show();
-      $('ul#components_list').removeClass('expandComp');
+   
   }
 
    function swap_product_image(url){
     $('.product_image').css('background-image','url('+ url +')');
     $('.alt_img').removeClass('alt_choice');
+    $('ul#components_list').addClass('expandComp');
 
    }
 
