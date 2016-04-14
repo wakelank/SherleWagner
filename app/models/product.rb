@@ -270,6 +270,16 @@ class Product < ActiveRecord::Base
     default_or_first_configuration.try(:image_or_product_image) ||
       self.image
   end
+
+  def to_configuration
+    config = ProductConfiguration.new
+    config.number = number
+    config.image = image
+    config.description = name
+
+    config
+  end
+
   private
 
 
