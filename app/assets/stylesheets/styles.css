@@ -707,6 +707,7 @@ div.tearsheet-form-box {
 
 @media (min-width: 950px) {
  
+  
  
   .swatches{
           
@@ -980,14 +981,7 @@ li.foot_link, li.foot_link a{
         height: 80px;
     }
 
-    /*div h3#prod_name {
-    min-height: 2em;
-    color: black;
-    width:100%;
-    padding-left: 0.5em;
-    float: right;
-      
-    }*/
+   
 
     .tearsheet_wrapper{
       padding-top: 0 ;
@@ -1011,7 +1005,14 @@ li.foot_link, li.foot_link a{
       /*padding-right: 4em;*/
 
       }
-
+      div h3#prod_name {
+    min-height: 2em;
+    
+    width:100%;
+    padding-left: 0.5em;
+    float: left;
+      
+    }
       
 
       /*BROWSE*/
@@ -1036,6 +1037,9 @@ li.foot_link, li.foot_link a{
       }
       .tile2, .tile3{
         display:none;
+      }
+      #links2{
+        padding-left: 0;
       }
 
  
