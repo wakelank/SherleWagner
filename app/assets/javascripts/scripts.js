@@ -1,7 +1,12 @@
 $(document).on("page:change", (function(){
 
   
-             
+        $(window).scroll(function(){
+//box one
+    var $win = $(window);
+  
+    $('.navvy').css('left', 20 -$win.scrollLeft());
+});    
  
     
      switch ($('body').attr('class')){
