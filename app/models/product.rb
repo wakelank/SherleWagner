@@ -274,12 +274,15 @@ class Product < ActiveRecord::Base
   def to_configuration
     config = ProductConfiguration.new
     config.number = number
-    config.image = image
+    # config.image = image
     config.description = name
 
     config
   end
 
+  def sub_type_buddies
+    product_sub_type.products.select{ |product| self != product }
+  end
   private
 
 
