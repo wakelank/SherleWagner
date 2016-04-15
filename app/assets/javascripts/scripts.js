@@ -192,8 +192,7 @@ $(document).on("page:change", (function(){
         
       
         tearsheet_targ = $('.tear-sheet-submit').attr('href');
-        console.log('teeeeeeeeeetime!!');
-        console.log(tearsheet_targ);
+        
 
         var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
        

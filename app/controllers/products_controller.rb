@@ -90,6 +90,13 @@ class ProductsController < ApplicationController
     product_number = params[:product_id]
     @product = Product.find(product_number)
     @tearsheet_number = params[:tearsheet_number]
+    @configs = @product.product_configurations.where(:number => @tearsheet_number)
+    if @configs.length < 1
+      @config_img = @product.image.url 
+    else
+      @config_img = @configs[0].image.url 
+    end
+   
     @finishes = []
     @product.finishes.each do |f|
       ob = {}
