@@ -208,6 +208,7 @@ input#search{
   height: 20em;
   width: 16em;
   border:none;
+  margin-bottom: 2em !important;
 }
 a .prod_tile.type_tile h4{
  color: black;
@@ -220,7 +221,7 @@ a .prod_tile.type_tile h4{
 }
 ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
     display: block;
-    
+    padding-top: 5px;
     color: grey;
 
 }
@@ -386,8 +387,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 }
 .list_wrapper ul li{
   margin: 2em;
-  /*margin-left: 1em;
-  margin-right: 1em;*/
+  margin-bottom: 2.7em;
 }
 
 
@@ -1097,6 +1097,7 @@ li.foot_link, li.foot_link a{
   .type_tile{
     width: 15em;
     height: 19.5em;
+
   }
   #title_link a{
   
