@@ -418,7 +418,13 @@ a.sub_type_tile_title {
 .sub_type_tile{
   clear:left;
 }
-
+.sub_type_tile h3 {
+    background-color: rgba(0,0,0,0.7);
+    height: 2em;
+    vertical-align: top;
+    margin-top: 0em;
+    padding-top: 0.35em;
+}
 .sub_type_list {
   list-style: none;
   height: 100%;

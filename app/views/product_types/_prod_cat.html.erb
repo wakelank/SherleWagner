@@ -4,7 +4,7 @@
       <ul class="prod_list">
         <h3 id="subtype_list_name"><%= @product_type.name %></h3>
         
-        <% @product_type.product_sub_types.each do |product_sub_type| %>
+        <% @product_type.product_sub_types.order(:id).each do |product_sub_type| %>
           
           
           <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
