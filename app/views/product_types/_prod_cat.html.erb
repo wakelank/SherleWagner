@@ -7,19 +7,19 @@
         <% @product_type.product_sub_types.each do |product_sub_type| %>
           
           
-          <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
+         <!--  link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %> -->
           <% bgimage= product_sub_type.image.url %>
                  <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id=""style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat;">
                   <h3 > 
                     <%= product_sub_type.name %>
                   </h3>
                 </li>              
-                <% end %>
+                <!-- % end %> -->
 
             
                 <% product_sub_type.four_products.each_with_index do |product, i| %>
 
-                 <%= link_to product_path(product) do %>
+                 <!-- %= link_to product_path(product) do %> -->
 
                   <% bgimage= product.image.url(:medium) %>
 
@@ -34,7 +34,7 @@
 
                     </div>
                   </li>
-                  <% end %>
+                  <!-- % end %> -->
 
                 <% end %>
                 <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>

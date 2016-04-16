@@ -193,6 +193,7 @@ input#search{
   width: 15em;
   border: 2px solid #eeeeee;
   margin: 10px;
+  vertical-align: middle;
 }
 .prod_tile_img{
   width: 100%;
