@@ -178,7 +178,7 @@ input#search{
 
 .prod_list{
   list-style: none;
-  
+  padding-left: 0;
   /*padding: 0;*/
 }
 .prod_tile{
