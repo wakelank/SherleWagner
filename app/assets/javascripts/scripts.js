@@ -489,12 +489,13 @@ $('ul#components_list li').slice(1).hide();
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-           $(choice_id).html(identifier);
+          
+           // $(choice_id).html(identifier);
            
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
-           ct1 = configurationObject;
+           var ct1 = configurationObject;
           
             
         

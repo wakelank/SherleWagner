@@ -89,11 +89,13 @@
 
       <div class="prod_links">
         <ul id="links1" class='links'>
+
           <% if @product.associated_collection_or_null.id > 0 %>
-          <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
+            <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
           
           <% else %>
-          <li>Collection: none </li>
+
+            <li>Spec Sheet</li>
   
           <% end %>
           <li><%= render 'tearsheet_form' %></li>
@@ -102,8 +104,12 @@
 
           
         </ul>
+
         <ul id="links2" class='links'>
-          <li>Spec Sheet</li>
+          
+           <% if @product.associated_collection_or_null.id >= 1 %>
+            <li>Spec Sheet</li>
+           <% end %>
           <li>3D/2D Renderings</li>
           <li>Installation Guide</li>
           </ul>
