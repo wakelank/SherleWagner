@@ -128,6 +128,20 @@ input#search{
 /*====The product browse page===*/
 
 /*===LARGEST WIDTH===*/
+@media (min-width: 1450px) {
+ .prod_list{
+    padding: 0 10%;
+}
+ 
+}
+@media (min-width: 1800px) {
+ .list_wrapper{
+    padding: 0 10%;
+  }
+ 
+}
+
+
 @media (min-width: 1150px) {
   .center_min_show{
     min-width: 835px;
@@ -164,9 +178,8 @@ input#search{
 
 .prod_list{
   list-style: none;
-  width:90%;
-  margin:auto;
-
+  
+  /*padding: 0;*/
 }
 .prod_tile{
   background-size: contain;
@@ -175,7 +188,7 @@ input#search{
   text-align: center;
   display:block;
   background-color: white;
-  float:left;
+  display: inline-block;
   height: 19.5em;
   width: 15em;
   border: 2px solid #eeeeee;
@@ -366,7 +379,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
   margin: 0 auto;
 }
 .list_wrapper ul{
-  width: 95%;
+  /*width: 95%;*/
+  text-align: center;
   
 }
 .list_wrapper ul li{
@@ -906,7 +920,7 @@ width: 100%;
    z-index: 3;
 }
 .footer .links{
-  padding-top: 2px;
+  /*padding-top: 2px;*/
   padding-bottom: 5px;
   
     text-align: center;
@@ -1029,10 +1043,11 @@ li.foot_link, li.foot_link a{
             padding-top: 0;
       }
       ul.prod_list{
-        float: left; 
-        padding-left: 0;
+        /*float: left; */
+        
 
-        margin-left: 4%;
+        margin-left:0;
+        margin-right:0;
 
       }
       .tile2, .tile3{
@@ -1094,9 +1109,7 @@ li.foot_link, li.foot_link a{
     margin: 5px;
     margin-bottom: 4em;
   }
-  ul.prod_list{
-    /*margin: 0;*/
-  }
+ 
 
   #content_wrapper{
     /*min-width: 515px;*/
@@ -1263,3 +1276,4 @@ div.filter h5{
   font-weight: bold;
   margin-left: -7px;
 }
+
