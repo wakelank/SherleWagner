@@ -91,10 +91,11 @@ class ProductsController < ApplicationController
     @product = Product.find(product_number)
     @tearsheet_number = params[:tearsheet_number]
     @configs = @product.product_configurations.where(:number => @tearsheet_number)
-    if @configs.length < 1
-      @config_img = @product.image.url 
+    
+    if @configs.length >= 1 and !@configs[0].image.url.include?('missing')
+       @config_img = @configs[0].image.url 
     else
-      @config_img = @configs[0].image.url 
+      @config_img = @product.image.url  
     end
    
     @finishes = []
