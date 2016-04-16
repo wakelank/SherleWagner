@@ -717,13 +717,16 @@ div.tearsheet-form-box {
   body{
     min-width: 950px;
   }
+
 }
 
 
 @media (min-width: 950px) {
  
   
- 
+  #nav_link_contain{
+    padding-left: 10%;
+  }
   .swatches{
           
           max-width: 47%;
