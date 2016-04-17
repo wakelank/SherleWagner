@@ -489,8 +489,9 @@ $('ul#components_list li').slice(1).hide();
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-          
-           // $(choice_id).html(identifier);
+          identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim()
+
+           $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
            
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);

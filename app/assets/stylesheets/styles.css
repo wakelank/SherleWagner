@@ -675,7 +675,12 @@ div.tearsheet-form-box {
   float:left;
   
 }
+.m_name {
+    margin-top: -3em;
+    color: lightgray;
+    font-size: 10px;
 
+}
 .favorite{
   border: 0;
     color: gray;
@@ -752,10 +757,13 @@ div.tearsheet-form-box {
 
   }
 }
-.materials, .china_colors {
-  
 
-}
+   #material_choice{
+      margin-top: 0.5em;
+    }
+    #finish_choice{
+      margin-top: 0.5em;
+    }
 
 .finish_tile{
   width: 4em;
@@ -993,12 +1001,7 @@ li.foot_link, li.foot_link a{
       }
 
 
-    #material_choice{
-      margin-top: 0.5em;
-    }
-    #finish_choice{
-      margin-top: 0.5em;
-    }
+ 
     #alt_imgs img {
         
         width: 80px;
@@ -1007,14 +1010,11 @@ li.foot_link, li.foot_link a{
 
    
 
-    .tearsheet_wrapper{
-      padding-top: 0 ;
-     
-    }
+    
   }
 
 /*move searchbar to keep nav li's in proper place*/
- @media (max-width: 1120px) and (min-width: 760px){
+ @media (max-width: 950px) and (min-width: 760px){
 
   }
 /*=======SMALL SIZE========*/
@@ -1036,6 +1036,17 @@ li.foot_link, li.foot_link a{
     padding-left: 0.5em;
     float: left;
       
+    }
+    .m_name {
+    margin-top: 0;
+    color: white;
+    font-size: 10px;
+    background: rgba(0,0,0,0.5);
+
+    }
+    .tearsheet_wrapper{
+      padding-top: 0 ;
+     
     }
       
 
@@ -1131,11 +1142,11 @@ li.foot_link, li.foot_link a{
   .centered{
     padding-left: 0;
   }
-  .option_box{
+ /* .option_box{
     width:5em;
     height:5em ;
 
-  }
+  }*/
   
   #material_choice, #finish_choice {
     margin-top: 0;
