@@ -241,7 +241,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
 
 
-    @media (min-width: 770px) {
+    @media (min-width: 767px) {
 
       .nav #searcher_li{
         position: absolute;
@@ -724,9 +724,17 @@ div.tearsheet-form-box {
     min-width: 1276px;
   }
 }
-@media (min-width: 750px) and (max-width: 950px)  {
+@media (min-width: 777px) and (max-width: 950px)  {
   body{
     min-width: 950px;
+  }
+
+  .product_image {
+    width: 130%;
+    height: 410px;
+  }
+  .product_info {
+    padding-left: 7em;
   }
 
 }
@@ -1013,10 +1021,7 @@ li.foot_link, li.foot_link a{
     
   }
 
-/*move searchbar to keep nav li's in proper place*/
- @media (max-width: 950px) and (min-width: 760px){
 
-  }
 /*=======SMALL SIZE========*/
 
 
