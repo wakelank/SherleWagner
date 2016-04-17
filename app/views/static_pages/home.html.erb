@@ -2,15 +2,23 @@
   .navvy{
     display: none;
   }
+  #l_nav{
+    display: none;
+  }
+  .r_col{
+    display: none;
+  }
   #content_wrapper {
-    width: 100%;
-    background-image: url("images/HomeSW.jpg");
-    background-size: contain;
-    background-repeat: none;
+    /*width: 100%;*/
+    /*background-image: url("images/HomeSW.jpg");*/
+    padding: 0;
+    height: 100%;
+    /*display: none;*/
 }
   #center_main{
     height: 100%;
     width: 100%;
+    padding: 0;
   }
   #main_contain {
     background-color: #eeeeee;
@@ -18,12 +26,46 @@
     overflow: auto;
 
 }
-/*  #holder{
+
+  #holder{
     height: 100%;
     width: 100%;
+    /*background-image: url("images/HomeSW.jpg");*/
+    
+  }
+  .vertical{
+    border-color: solid blue;
+    height: 1000px;
+    height: 100%;
+    /*background-size: contain;*/
+    /*background-color: grey;*/
+    position: absolute;
+  }
+  #left{
+    width:40%;
+    background-image: url("images/sw_home1.jpg");
+  }
+  #right{
+    width: 20%;
+    background-image: url("images/sw_home2.jpg");
+    right: 0;
+    /*background-position-x: -90px;*/
+  }
+  #mid{
     background-image: url("images/HomeSW.jpg");
-  }*/
+    left: 40%;
+  }
+
 </style>
 <div id="holder">
+  <div class="col-sm-5 vertical" id="left">
+    <!-- <img src="images/sw_home1.jpg" alt=""> -->
+  </div>
+  <div class="col-sm-5 vertical" id="mid">
+    
+  </div>
+  <div class="col-sm-2 vertical" id="right">
+    <!-- <img src="images/sw_home2.jpg" alt=""> -->
+  </div>
   
 </div>
