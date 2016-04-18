@@ -14,23 +14,24 @@
         <h3 id="subtype_list_name"><%= @product_type.name %></h3>
         <% if @product_type.name == 'Wallpaper'%>
           <% @product_type.product_sub_types.each do |product_sub_type| %>
-          <% main_product = product_sub_type.main_product%>
-          <% binding.pry %>
-          <% bgimage= main_product.image.url %>
+          <% product_sub_type.main_product.each do |main_product| %>
 
-          <%= link_to product_path(main_product) do %>
-                    <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %>">
-                   <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat"></div>
+            <% bgimage= main_product.image.url(:medium) %>
 
-                    <div class="prod_title">
+            <%= link_to product_path(main_product) do %>
+                      <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %>">
+                     <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
 
-                        <%= product_sub_type.name %>
-                        
+                      <div class="prod_title">
 
-                      </div>
-                    </li>
-                  <% end %>
+                          <%= product_sub_type.name %>
+                          
 
+                        </div>
+                      </li>
+                    <% end %>
+
+            <% end %>
           <% end %>
 
         <% else %>

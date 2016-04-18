@@ -6,7 +6,7 @@
   .grid{
     margin-top: 50px;
   }
-  .prod_tile2{
+  .prod_tile_large{
       background-size: contain;
   background-repeat: no-repeat;
   padding: 7px;
@@ -19,7 +19,7 @@
   border:0;
   margin: 0 !important;
   }
-  .prod_tile3{
+  .prod_tile_small{
       background-size: contain;
   background-repeat: no-repeat;
   padding: 7px;
@@ -144,12 +144,20 @@
     <ul class="style_list prod_list">
       <% envcount= 0 %>
       <% @style.products.each_with_index do |product, i| %>
-          
+            <% tile_size = product.display_size_for_collection %>
+            <% if tile_size == 'large' %>
+            <% bgimage= product.image.url %>
+            <% bgsize = "420px" %>
+            <% else %>
             <% bgimage= product.image.url(:medium) %>
+            <% bgsize = "210px" %>
+            <% end %>
+
+            
             <% bgimage2= product.image.url %>
             
         <% if i%7 == 0 %>
-            <li class ="prod_tile2 prod_tile4 grid-item" 
+            <li class ="prod_tile_large prod_tile4 grid-item" 
             style="background-image: url(<%= bgimage2 %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
           <div class="tall_slide_out slide_out" >
@@ -178,7 +186,7 @@
         </li>
         
         <% elsif i>1 && i%8 == 0 %>
-             <li class ="prod_tile3 prod_tile4 grid-item" 
+             <li class ="prod_tile_small prod_tile4 grid-item" 
               style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
               <div class="slide_out" >
@@ -213,7 +221,7 @@
               
               </li>
               <% if envcount < @envi.length %>
-                <li class ="prod_tile2 prod_tile4 envi_tile grid-item" 
+                <li class ="prod_tile_large prod_tile4 envi_tile grid-item" 
                 style="background-image: url(<%= @envi[envcount] %>); background-size:cover">
     
                 </li>
@@ -223,7 +231,7 @@
               
         <% else %>
           
-         <li class ="prod_tile3 prod_tile4 grid-item" 
+         <li class ="prod_tile_small prod_tile4 grid-item" 
             style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
             <!--   <div class="prod_title">
@@ -314,7 +322,7 @@
      var tileWidth = $(this).width();
      var gridWidth = $('.grid').width();
     var isBig = false;
-    if ($(this).hasClass('prod_tile2')){
+    if ($(this).hasClass('prod_tile_large')){
       isBig = true;
     }
 

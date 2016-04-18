@@ -15,7 +15,7 @@ class ProductSubType < ActiveRecord::Base
   end
 
   def main_product
-    products.all.order(:id).first
+    products.all.order(:id).limit(1)
   end
 
   def filters_ordered
