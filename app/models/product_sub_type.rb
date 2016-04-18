@@ -14,6 +14,10 @@ class ProductSubType < ActiveRecord::Base
     self.products.all.order(:id).limit 5
   end
 
+  def main_product
+    products.all.order(:id).limit 1
+  end
+
   def filters_ordered
     self.filters.order(:id)
   end
