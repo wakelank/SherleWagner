@@ -56,6 +56,7 @@ RailsAdmin.config do |config|
       field :product_type
       field :product_sub_type
       field :image
+      field :display_size_for_collection
       field :product_configurations
       field :genres
       field :styles do
