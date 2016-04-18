@@ -147,84 +147,103 @@
             <% tile_size = product.display_size_for_collection %>
             <% if tile_size == 'large' %>
 
-            <% bgimage= product.image.url %>
-            <% bgsize = "420px" %>
+                <% bgimage= product.image.url %>
+                <% bgsize = "420px" %>
 
-             <li class ="prod_tile_large prod_tile4 grid-item" 
-            style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+                 <li class ="prod_tile_large prod_tile4 grid-item" 
+                style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-          <div class="tall_slide_out slide_out" >
-            <%= link_to(product_path(product), class:"")  do %>
-              <div class="preview_img" style="background-image: url(<%= bgimage %>)">
-              </div>
-            <% end %>   
-            <div class="tall_preview_text preview_text">
-              <%= link_to(product_path(product), class:"")  do %>
-                 <h5>
-                   <%= product.name.capitalize %>
-                 </h5>
-              <% end %>
-              <div class="tall_preview_links preview_links">
-                <ul  class='links_list'>
-                  <li>tearsheet</li>
-                  <li>Add Favorite</li>
-                  <li>Spec Sheet</li>
-                  
-                  <li>3D/2D Renderings</li>
-                  <li>Installation Guide</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
+                  <div class="tall_slide_out slide_out" >
+                    <%= link_to(product_path(product), class:"")  do %>
+                      <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+                      </div>
+                    <% end %>   
+                    <div class="tall_preview_text preview_text">
+                      <%= link_to(product_path(product), class:"")  do %>
+                         <h5>
+                           <%= product.name.capitalize %>
+                         </h5>
+                      <% end %>
+                      <div class="tall_preview_links preview_links">
+                        <ul  class='links_list'>
+                          <li>tearsheet</li>
+                          <li>Add Favorite</li>
+                          <li>Spec Sheet</li>
+                          
+                          <li>3D/2D Renderings</li>
+                          <li>Installation Guide</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
 
 
             <% else %>
-            <% bgimage= product.image.url(:medium) %>
-            <% bgsize = "210px" %>
+              <% bgimage= product.image.url(:medium) %>
+              <% bgsize = "210px" %>
 
-            <li class ="prod_tile_small prod_tile4 grid-item" 
-            style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+              <li class ="prod_tile_small prod_tile4 grid-item" 
+              style="background-image: url(<%= bgimage %>);" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-            <!--   <div class="prod_title">
-                %= product.name %>
-              </div> -->
-            
-          <div class="slide_out" >
-            <%= link_to(product_path(product), class:"")  do %>
-              <div class="preview_img" style="background-image: url(<%= bgimage %>)">
-              </div>
-            <% end %> 
-            
-               
-            <div class="preview_text">
-              <%= link_to(product_path(product), class:"")  do %>
-                 <h5>
-                   <%= product.name.capitalize %>
-                 </h5>
-              <% end %>
-              <div class="preview_links">
-                <ul  class='links_list'>
-                  
-                  <li>tearsheet</li>
-                  <li>Spec Sheet</li>
-                  <li>3D/2D Renderings</li>
-                  <li>Installation Guide</li>
-                </ul>
-              </div>
-
-
-            </div>
-          </div>
+              <!--   <div class="prod_title">
+                  %= product.name %>
+                </div> -->
               
-          
-        </li>
+                <div class="slide_out" >
+                  <%= link_to(product_path(product), class:"")  do %>
+                    <div class="preview_img" style="background-image: url(<%= bgimage %>)">
+                    </div>
+                  <% end %> 
+                  
+                     
+                  <div class="preview_text">
+                    <%= link_to(product_path(product), class:"")  do %>
+                       <h5>
+                         <%= product.name.capitalize %>
+                       </h5>
+                    <% end %>
+                    <div class="preview_links">
+                      <ul  class='links_list'>
+                        
+                        <li>tearsheet</li>
+                        <li>Spec Sheet</li>
+                        <li>3D/2D Renderings</li>
+                        <li>Installation Guide</li>
+                      </ul>
+                    </div>
+
+
+                  </div>
+                </div>
+                    
+                
+              </li>
 
 
 
 
             <% end %>
 
+            <% if i>1 && i%5 == 0 %>
+             
+              <% if envcount < @envi.length %>
+                <li class ="prod_tile_large prod_tile4 envi_tile grid-item" 
+                style="background-image: url(<%= @envi[envcount] %>); background-size:cover">
+    
+                </li>
+                <% envcount += 1 %>
+                
+              <% end %>
+              
+              
+      
+          
+         
+
+         
+
+        <% end %>
             
         
       <% end %>

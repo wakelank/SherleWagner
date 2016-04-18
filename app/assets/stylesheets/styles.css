@@ -636,6 +636,7 @@ h3#prod_name{
     background-color: white;
     opacity: 0.95;
     font-size: 12px;
+    width:42%;
     /*border: thin solid #eeeeee;*/
 }
 .expander{
