@@ -1,3 +1,12 @@
+<style>
+  .plus{
+    height:100%;
+    width:100%;
+    
+    background-color: rgba(0,0,0,0.8);
+    padding-top: 70%;
+  }
+</style>
 <div class="prod_wrapper ">
   <div class="list_wrapper">
 
@@ -8,20 +17,22 @@
           
           
           <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
-          <% bgimage= product_sub_type.image.url %>
-                 <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id=""style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat;">
-                  <h3 > 
-                    <%= product_sub_type.name %>
-                  </h3>
-                </li>              
-                <% end %>
+            <% bgimage= product_sub_type.image.url %>
+             <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id=""style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat;">
+              <h3 > 
+                <%= product_sub_type.name %>
+              </h3>
+            </li>              
+            <% end %>
 
-            
-                <% product_sub_type.four_products.each_with_index do |product, i| %>
+        
+            <% product_sub_type.four_products.each_with_index do |product, i| %>
+             <% bgimage= product.image.url(:medium) %>
+              <% if i<4 %>
 
-                 <%= link_to product_path(product) do %>
+                <%= link_to product_path(product) do %>
 
-                  <% bgimage= product.image.url(:medium) %>
+                 
 
                  
                   <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %> tile<%= i %>">
@@ -34,25 +45,32 @@
 
                     </div>
                   </li>
-                  <% end %>
-
                 <% end %>
-                <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
-                  <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %>">
-                    
-                      <div class="prod_title ">
-                        <h1>+</h1>
-                      </div>
-                    
+              <% else %>
+              <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
+              <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %>" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat">
+                
+                  <div class="prod_title plus">
+                    <h3>
+                      See All
+                    </h3>
+                    <i class="fa fa-plus fa-3x" aria-hidden="true" ></i>
 
-                  </li> 
-                <% end %>
+                  </div>
+                
+
+              </li> 
+            <% end %>
+
+
+              <% end %>
+
+            <% end %>
             
-          
-              </li>
 
-          <% end %>
+        <% end %>
       </ul>
+      <br/><hr/>
   </div>
 </div>
 

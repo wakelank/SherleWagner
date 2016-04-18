@@ -11,7 +11,7 @@ class ProductSubType < ActiveRecord::Base
   HEADER = "SUB FOLDER"
 
   def four_products
-    self.products.all.order(:id).limit 4
+    self.products.all.order(:id).limit 5
   end
 
   def filters_ordered
