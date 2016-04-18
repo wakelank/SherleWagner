@@ -39,6 +39,10 @@ class Product < ActiveRecord::Base
     file_upload_manager.upload
   end
 
+  def display_size_for_collection_enum
+    [['small'],['large']]
+  end
+
   def compilation?
     components.count > 0
   end
