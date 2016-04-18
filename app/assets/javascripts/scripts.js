@@ -1,7 +1,12 @@
 $(document).on("page:change", (function(){
 
   
-             
+        $(window).scroll(function(){
+//box one
+    var $win = $(window);
+  
+    $('.navvy').css('left', 20 -$win.scrollLeft());
+});    
  
     
      switch ($('body').attr('class')){
@@ -47,13 +52,16 @@ $(document).on("page:change", (function(){
 
          //set the current configuration
          conff = $('.alt_choice')[0]
-        swap_product_info_for_configuration(conff);
+         if (conff){
+            swap_product_info_for_configuration(conff);
+          }
+
 
     break
 
 
 
-      case 'products show':
+    case 'products show':
       $('#row_content').removeClass('row_content_min');
       $('#center_main').removeClass('center_min_width');
       $('#center_main').addClass('center_min_show');
@@ -64,8 +72,11 @@ $(document).on("page:change", (function(){
         var product_id = tearSheetForm.elements["product_id"].value;
         var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
-        set_tearsheet_link();
 
+
+        // !!!!!!!!!!!!!!!!!!!!!
+        set_tearsheet_link();
+        // !!!!!!!!!!!!!!!!!!!!!
        
 
 
@@ -86,6 +97,12 @@ $(document).on("page:change", (function(){
 
         nav_back();
 
+         prod_config = {
+          "finish":" ",
+          "material":" ",
+          "color":" "
+
+        }
 
         //select the featured image from the alt's on load
       
@@ -120,15 +137,22 @@ $(document).on("page:change", (function(){
           }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
             var $t = $(t);
             var pr = $(parent_div);
-            swatch_tile_actions($t, pr); 
+            swatch_tile_actions($t, pr);
+              if  (parent_div == '#product_finishes_list'){
+                prod_config.finish = ident;
+              }else if  (parent_div == '#product_materials_list'){
+                prod_config.material = ident;
+              }
           }
         }); 
 
          //set the current configuration
          conff = $('.alt_choice')[0]
-        swap_product_info_for_configuration(conff);
+         if (conff){
+            swap_product_info_for_configuration(conff);
+          }
 
-
+       
 
 
         // *switch out product feat. img.*
@@ -158,23 +182,28 @@ $(document).on("page:change", (function(){
           }); 
 
           
+  
+
+          
         });
-       //     var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       // var tearsheet_number = product_base_number.replace("XX", finish_identifier);
-       // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
-       // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
 
+
+     
         
-         prod_config = {
-          "finish":" ",
-          "material":" ",
-          "color":" "
-
-        }
-// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+      
         tearsheet_targ = $('.tear-sheet-submit').attr('href');
+        
 
-           var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+        var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+       
+        var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material);
+
+         tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish);
+        $('.tear-sheet-submit').attr('href',tearsheet_targ3);
+        console.log('BAAATTHHHTime!!');
+        console.log(tearsheet_targ);
+
+           // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
        
 
 
@@ -182,10 +211,13 @@ $(document).on("page:change", (function(){
 
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
-            var mat = this.dataset.material_identifier;
+             var mat = this.dataset.material_identifier;
             console.log(mat);
-            tearsheet_targ = tearsheet_targ.replace(material_code_regex, mat);
-            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+
+            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+
+             finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+            $('.tear-sheet-submit').attr('href',finish_sheet_targ);
 
             prod_config.material=mat;
 
@@ -203,14 +235,18 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
-            var otherswatch = $('.materials .highlight')[0].dataset.material_identifier;
+            if($('.materials .highlight')>0){
+              var otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+              }
 
             
             var mat = this.dataset.finish_identifier;
             console.log(mat);
 
-            tearsheet_targ = tearsheet_targ.replace("XX", mat);
-            $('.tear-sheet-submit').attr('href',tearsheet_targ);
+            the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
+
+             mat_sheet_targ = the_tear_targ.replace("XX", mat);
+            $('.tear-sheet-submit').attr('href',mat_sheet_targ);
             prod_config.finish = mat;
 
 
@@ -275,6 +311,28 @@ $(document).on("page:change", (function(){
             }
           }
         });  
+$('ul#components_list li').slice(1).hide();
+  
+  $('ul#components_list').append("<a  id='see_all' class='expander'><b>...See all</a></b>");
+  
+  $('ul#components_list').append("<a  id='hide_all' class='expander' style='float:right; padding-top:8px'><b>Collapse</a></b>");
+  
+  $('#hide_all').hide();
+  $('#see_all').click(function(){
+      $('#see_all').hide();
+      $('ul#components_list li').slice(1).show();
+      $('#hide_all').show();
+      $('ul#components_list').addClass('expandComp');
+    }
+  );
+  $('#hide_all').click(function(){
+      $('#hide_all').hide();
+      $('ul#components_list li').slice(1).hide();
+      $('#see_all').show();
+      $('ul#components_list').removeClass('expandComp');
+      
+    }
+  );
 
         break;
 
@@ -287,7 +345,7 @@ $(document).on("page:change", (function(){
         break; 
       case 'static_pages home':
           
-
+        
         break;
       case 'static_pages showrooms': 
        set_map();
@@ -312,6 +370,8 @@ $(document).on("page:change", (function(){
     $('.prod-config-number').html(li.dataset.number);
     $('.prod-config-description #description').html(li.dataset.description);
     show_only_config_components(config);
+    $('#see_all').hide();
+    $('#hide_all').show();
   }
   function show_only_config_components(config){
     var comp = $('#components_list').find('li');
@@ -324,11 +384,13 @@ $(document).on("page:change", (function(){
       }
 
     });
+   
   }
 
    function swap_product_image(url){
     $('.product_image').css('background-image','url('+ url +')');
     $('.alt_img').removeClass('alt_choice');
+    $('ul#components_list').addClass('expandComp');
 
    }
 
@@ -396,7 +458,7 @@ $(document).on("page:change", (function(){
        if (typeof config != "undefined") {
            // $('.prod-config-number').html(config.number);
            // $('.prod-config-description #description').html(config.description);
-           $('.product-image').attr('src', 'images/medium/' + config.image_file_name);
+           // $('.product_image').attr('src', 'images/medium/' + config.image_file_name);
        }
      }
 
@@ -427,12 +489,14 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-           $(choice_id).html(identifier);
+          identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim()
+
+           $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
            
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
-           ct1 = configurationObject;
+           var ct1 = configurationObject;
           
             
         

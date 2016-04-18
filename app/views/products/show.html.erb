@@ -72,6 +72,7 @@
           <div id="finish_choice" class="option_box">
 
           </div>
+          
           <% end %>
 
           <% if @product.materials.length >= 1 %>
@@ -89,11 +90,13 @@
 
       <div class="prod_links">
         <ul id="links1" class='links'>
+
           <% if @product.associated_collection_or_null.id > 0 %>
-          <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
+            <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
           
           <% else %>
-          <li>Collection: none </li>
+
+            <li>Spec Sheet</li>
   
           <% end %>
           <li><%= render 'tearsheet_form' %></li>
@@ -102,8 +105,12 @@
 
           
         </ul>
+
         <ul id="links2" class='links'>
-          <li>Spec Sheet</li>
+          
+           <% if @product.associated_collection_or_null.id >= 1 %>
+            <li>Spec Sheet</li>
+           <% end %>
           <li>3D/2D Renderings</li>
           <li>Installation Guide</li>
           </ul>
@@ -159,25 +166,3 @@
 
 </div>
 
-<script>
-  $('ul#components_list li').slice(1).hide();
-  $('ul#components_list').append("<a  id='see_all' class='expander'><b>...See all</a></b>");
-  $('ul#components_list').append("<a  id='hide_all' class='expander' style='float:right; padding-top:8px'><b>Collapse</a></b>");
-  $('#hide_all').hide();
-  $('#see_all').click(function(){
-      $('#see_all').hide();
-      $('ul#components_list li').slice(1).show();
-      $('#hide_all').show();
-      $('ul#components_list').addClass('expandComp');
-    }
-  );
-  $('#hide_all').click(function(){
-      $('#hide_all').hide();
-      $('ul#components_list li').slice(1).hide();
-      $('#see_all').show();
-      $('ul#components_list').removeClass('expandComp');
-      // $('ul#components_list').append($('#see_all'));
-    }
-  );
-
-</script>

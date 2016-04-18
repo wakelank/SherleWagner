@@ -90,6 +90,14 @@ class ProductsController < ApplicationController
     product_number = params[:product_id]
     @product = Product.find(product_number)
     @tearsheet_number = params[:tearsheet_number]
+    @configs = @product.product_configurations.where(:number => @tearsheet_number)
+    
+    if @configs.length >= 1 and !@configs[0].image.url.include?('missing')
+       @config_img = @configs[0].image.url 
+    else
+      @config_img = @product.image.url  
+    end
+   
     @finishes = []
     @product.finishes.each do |f|
       ob = {}
@@ -104,7 +112,7 @@ class ProductsController < ApplicationController
   end
 
   def from_category
-    @selected = Product.where(product_sub_type: params[:cat_id]).paginate(:page => params[:page])
+    @selected = Product.where(product_sub_type: params[:cat_id])
     @product_sub_type = ProductSubType.find_by(id: params[:cat_id])
 
     respond_to do |format|

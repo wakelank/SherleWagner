@@ -1,0 +1,85 @@
+<style>
+  .navvy{
+    display: none;
+  }
+  #l_nav{
+    display: none;
+  }
+  .r_col{
+    display: none;
+  }
+  #content_wrapper {
+    /*width: 100%;*/
+    /*background-image: url("images/HomeSW.jpg");*/
+    padding: 0;
+    height: 100%;
+    /*display: none;*/
+}
+  #center_main{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+  }
+  #main_contain {
+    background-color: #eeeeee;
+    height: 700px !important;
+    overflow: auto;
+
+}
+
+  #holder{
+    height: 100%;
+    width: 100%;
+    /*background-image: url("images/HomeSW.jpg");*/
+    
+  }
+  .vertical{
+    border-color: solid blue;
+    height: 1000px;
+    height: 100%;
+    /*background-size: contain;*/
+    /*background-color: grey;*/
+    position: absolute;
+  }
+  #left{
+    width:40%;
+    background-image: url("images/sw_home1.jpg");
+  }
+  #right{
+    width: 20%;
+    background-image: url("images/sw_home2.jpg");
+    right: 0;
+        background-position-x: -37px;
+        left: 80%;
+    width: 26%;
+        background-position-y: -10px;
+  }
+  #mid{
+    background-image: url("images/HomeSW.jpg");
+    left: 38.5%;
+    background-size: contain;
+    background-repeat: none;
+    
+    background-color: #E1E1E1;
+    max-width: 42%;
+    background-repeat: no-repeat;
+    background-position-y:-45px; 
+  }
+@media(max-width: 768px){
+  #mid{
+      width: 100%;
+      }
+}
+</style>
+<div id="holder">
+  <div class="col-sm-5 vertical" id="left">
+    <!-- <img src="images/sw_home1.jpg" alt=""> -->
+  </div>
+  <div class="col-sm-5 vertical" id="mid">
+    
+  </div>
+  <div class="col-sm-2 vertical" id="right">
+    <!-- <img src="images/sw_home2.jpg" alt=""> -->
+  </div>
+  
+</div>

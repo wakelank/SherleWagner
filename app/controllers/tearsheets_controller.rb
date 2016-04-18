@@ -1,8 +1,13 @@
 class TearsheetsController < ApplicationController
 
   def show
-    @tearsheet_number = params[:tearsheet]
-    @product = Product.find(params[:id]) || NullObject.new
+    # @tearsheet_number = params[:tearsheet]
+    # @product = Product.find(params[:id]) || NullObject.new
+    
+    # @config = @product.product_configurations.where(:number => @tearsheet_number)[0].image.url
+    
+
+
     @finishes = []
     @product.finishes.each do |f|
       ob = {}
@@ -14,6 +19,8 @@ class TearsheetsController < ApplicationController
       end
       @finishes << ob
     end
+
+
 
   end
 
