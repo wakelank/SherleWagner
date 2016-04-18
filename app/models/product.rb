@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   validates :name, presence: true
   validates :number, presence: true
+  validates :display_size_for_collection, inclusion: { in: %w(small large) }
 
   before_create :add_associated_collection
   after_create :add_finishes, :add_material, :add_china_color
