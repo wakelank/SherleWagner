@@ -15,10 +15,11 @@
         <% if @product_type.name == 'Wallpaper'%>
           <% @product_type.product_sub_types.each do |product_sub_type| %>
           <% main_product = product_sub_type.main_product%>
+          <% binding.pry %>
           <% bgimage= main_product.image.url %>
 
           <%= link_to product_path(main_product) do %>
-                    <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %> tile<%= i %>">
+                    <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %>">
                    <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat"></div>
 
                     <div class="prod_title">
