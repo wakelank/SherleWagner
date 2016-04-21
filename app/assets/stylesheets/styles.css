@@ -336,9 +336,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       #accordion1 a:link, #accordion1 a:visited{
       color: black;
       }
-      #accordion1 .panel-sub-heading .panel-title label{
+      /*#accordion1 .panel-sub-heading .panel-title label{
         margin-left: -15px;
-      }
+      }*/
        #accordion1 .panel-sub-heading .panel-title label a:link, #accordion1 .panel-sub-heading .panel-title label a:visited {
         
         color: #484848;
@@ -1306,6 +1306,11 @@ div#nav_link_contain.collapse.navbar-collapse{
 #l_nav #accordion1 div.panel_title_div{
   margin-top: 5px ;
   margin-bottom: 0 ;
+  
+}
+.panel_title_div label{
+  font-weight: lighter;
+  margin-left: 6px;
 }
 div.filter label{
   font-weight: normal;
