@@ -58,7 +58,7 @@ input#search{
   /*border-radius: 3px;*/
   border: none;
   box-shadow: none;
-  width: 170px;
+  width: 180px;
   color: white;
 }
 .searcher{
@@ -196,7 +196,7 @@ input#search{
   display:block;
   background-color: white;
   display: inline-block;
-  height: 19.5em;
+  height: 18.75em;
   width: 15em;
   border: 2px solid #eeeeee;
   margin: 10px;
@@ -252,7 +252,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
       .nav #searcher_li{
         position: absolute;
-        left: 0;
+        left: -12px;
         /*padding-right: 0 !important;*/
         }
     
@@ -336,9 +336,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       #accordion1 a:link, #accordion1 a:visited{
       color: black;
       }
-      #accordion1 .panel-sub-heading .panel-title label{
+      /*#accordion1 .panel-sub-heading .panel-title label{
         margin-left: -15px;
-      }
+      }*/
        #accordion1 .panel-sub-heading .panel-title label a:link, #accordion1 .panel-sub-heading .panel-title label a:visited {
         
         color: #484848;
@@ -467,9 +467,7 @@ a.sub_type_tile_title {
   background-color: #eeeeee;
   border-color: #eeeeee;
 }
-#collections_nav label{
 
-}
 
 /*======Product Show ========*/
 /*+++++THE PRODUCT SHOW PAGE++++++*/
@@ -636,6 +634,7 @@ h3#prod_name{
     background-color: white;
     opacity: 0.95;
     font-size: 12px;
+    width:42%;
     /*border: thin solid #eeeeee;*/
 }
 .expander{
@@ -944,12 +943,12 @@ width: 100%;
 
 /*footer*/
 .footer {
-  position:fixed;
-   left:0px;
-   bottom:0px;
-   min-height:30px;
-   width:100%;
-   background:#222222;
+      position: fixed;
+    left: 0px;
+    bottom: 0px;
+    min-height: 30px;
+    width: 100%;
+    background: #222222;
    z-index: 3;
 }
 .footer .links{
@@ -959,6 +958,9 @@ width: 100%;
     text-align: center;
     float: none;
   
+}
+.foot_links_list{
+  padding-left: 0;
 }
 li.foot_link, li.foot_link a{
     display: inline-block;
@@ -1233,7 +1235,7 @@ div.panel-body.filter {
     }
 */
 #collections_nav label, #collections_nav li {
-    padding-top: 12.5px;
+    padding-top: 7.5px;
     font-family: 'PT Sans', sans-serif;
 }
 #collections_nav label input{
@@ -1299,9 +1301,14 @@ div#nav_link_contain.collapse.navbar-collapse{
 .panel-group .panel-heading+.panel-collapse>.panel-body {
     border-top: 0px solid #eeeeee;
 }
-#l_nav #accordion1 div.checkbox{
+#l_nav #accordion1 div.panel_title_div{
   margin-top: 5px ;
   margin-bottom: 0 ;
+  
+}
+.panel_title_div label{
+  font-weight: lighter;
+  margin-left: 6px;
 }
 div.filter label{
   font-weight: normal;
@@ -1309,5 +1316,11 @@ div.filter label{
 div.filter h5{
   font-weight: bold;
   margin-left: -7px;
+}
+
+.checkbox2 input[type="checkbox"]{
+  vertical-align: top;
+
+    margin-top: 3px;
 }
 

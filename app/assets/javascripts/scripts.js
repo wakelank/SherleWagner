@@ -339,9 +339,18 @@ $('ul#components_list li').slice(1).hide();
       //end of product show page JS
         
       case 'styles show':
-          filter_types2()
-          $('#row_content').removeClass('row_content_min');
-      $('#center_main').removeClass('center_min_width');
+        filter_types2()
+        $('#row_content').removeClass('row_content_min');
+        $('#center_main').removeClass('center_min_width');
+        var col_name=$('a#col_name');
+
+        col_name.click(function(e){
+          e.preventDefault();
+          ($('li div.checkbox').find('input:checked').removeAttr('checked'));
+          do_checkbox_filters();
+           
+
+        })
         break; 
       case 'static_pages home':
           
@@ -504,68 +513,52 @@ $('ul#components_list li').slice(1).hide();
       
     function filter_types2(){
     //filter on collections browse page
-    $('label input').click(function(){
-       check_cat = []
-      var cat = $('li label').find('input:checked').map(function(i, val){
-        check_cat.push(val.id);      
-      });
+    $('div.checkbox').click(function(){
+      do_checkbox_filters();
+      $(this).find('input').blur();
       
-      if (check_cat.length >= 1){
-        
-        $('.prod_tile4').each(function(key, tile){
-          if ($.inArray(tile.dataset.category, check_cat) == -1){  
-
-            $(tile).hide();
-            $('.grid').masonry({
-              // options
-              itemSelector: '.prod_tile4',
-              columnWidth: 70
-            });
-         
-
-          } else {
-            $(tile).show();
-            $('.grid').masonry({
-  // options
-  itemSelector: '.prod_tile4',
-  columnWidth: 70
-});
-          }
-        });
-      } else{
-        $('.prod_tile4').show();
-        $('.grid').masonry({
-  // options
-  itemSelector: '.prod_tile4',
-  columnWidth: 70
-});
-      }
     });
   }
-  // function filter_types(){
-  //   //filter on collections browse page
-  //   $('.panel-title input').click(function(){
-  //      check_cat = []
-  //     var cat = $('.panel-heading').find('input:checked').map(function(i, val){
-  //       check_cat.push(val.id);      
-  //     });
-      
-  //     if (check_cat.length >= 1){
-        
-  //       $('.prod_tile').each(function(key, tile){
-  //         if ($.inArray(tile.dataset.category, check_cat) == -1){  
-  //           $(tile).hide();
-
-  //         } else {
-  //           $(tile).show();
-  //         }
-  //       });
-  //     } else{
-  //       $('.prod_tile').show();
-  //     }
-  //   });
-  // }
+  
 }));
+
+function do_checkbox_filters(){
+  check_cat = []
+    var cat = $('div.checkbox').find('input:checked').map(function(i, val){
+      check_cat.push(val.id);      
+    });
+    
+    if (check_cat.length >= 1){
+      
+      $('.prod_tile4').each(function(key, tile){
+        if ($.inArray(tile.dataset.category, check_cat) == -1){  
+
+          $(tile).hide();
+          $('.grid').masonry({
+            // options
+            itemSelector: '.prod_tile4',
+            columnWidth: 70
+          });
+       
+
+        } else {
+          $(tile).show();
+          $('.grid').masonry({
+            // options
+            itemSelector: '.prod_tile4',
+            columnWidth: 70
+          });
+        }
+      });
+    } else{
+      $('.prod_tile4').show();
+      $('.grid').masonry({
+        // options
+        itemSelector: '.prod_tile4',
+        columnWidth: 70
+      });
+    }
+}
 
 function set_map(){
       var SW = {lat:40.7621881,lng:-73.9650126};

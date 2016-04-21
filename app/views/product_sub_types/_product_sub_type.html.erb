@@ -2,9 +2,9 @@
   <div class="panel panel-default">
     <div class="panel-sub-heading" >
       <div class="panel-title" id="<%= product_sub_type.name.gsub(' ','_') %>">
-        <div class="checkbox">
+        <div class="panel_title_div">
           
-              <label data-toggle="collapse" data-parent="#acordion<%= product_sub_type.product_type.id%>" href="#collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>">
+          <label data-toggle="collapse" data-parent="#acordion<%= product_sub_type.product_type.id%>" href="#collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>">
 
               <%= link_to product_sub_type.name , fetch_items_path(:cat_id => product_sub_type.id ), :remote => true %> 
            
@@ -15,7 +15,7 @@
     <div id="collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>" class="panel-collapse collapse">
       <div class="panel-body filter">
         
-        <%= render product_sub_type.filters_ordered %>
+        <%= render product_sub_type.filters_ordered, :sub_type => product_sub_type %>
          
       </div>
       <button class="hide-dropdowns">view selection</button>

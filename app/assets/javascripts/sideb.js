@@ -67,6 +67,11 @@ function WidthChange(mq) {
 
     isSmall = true;
     $('.hide-dropdowns').show();
+    //DOn't affix a sidenav (it jumps past the mobile menu) - see application JS for on reload etc
+    $('.navvy').removeClass('affix');
+    $('.navvy').removeClass('affix-top');
+    $('.navvy').attr('data-spy','');
+
 
     // console.log(isSmall);
     // $('body').addClass('mobile');
@@ -157,7 +162,7 @@ function uncheckOnCollapse(prodCat)
 {
   $($(prodCat).find('label').attr('href')).on('hidden.bs.collapse', function (e) {
     var trgt = ("#" + $(e.currentTarget.id).selector);//
-    console.log(trgt);
+    // console.log(trgt);
     $(trgt).find('input[type=checkbox]:checked').removeAttr('checked');
   });
 }
@@ -170,10 +175,14 @@ function filter_products(){
   var filtersArr = [];
   var $filters = $('.filter');
   for(var i = 0, len = $filters.length; i < len; ++i){
+    $($filters[i]).find('input').blur();
     var arr = $($filters[i]).find('input:checked').map(function(i, val){
-      return(val.id.toLowerCase());
+      var raw_id = (val.id.toLowerCase());
+       filter_id = raw_id.split('|')[1]
+      return filter_id;
     });
     filtersArr.push(arr);
+
   };
   $product_tiles = $('.prod_tile');
   $product_tiles.show();
@@ -234,3 +243,4 @@ function keepCatOpenOnClick(){
     }
   });
 }
+

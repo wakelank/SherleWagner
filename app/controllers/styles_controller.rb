@@ -12,8 +12,7 @@ class StylesController < ApplicationController
     @genre = @style.genre
 
     @envi = []
-    @style.environment_shots.each{|e|
-      @envi.push(e.image.url)
+    @style.environment_shots.each{|e| @envi.push(e.image.url)
     }
     
     
