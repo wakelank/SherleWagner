@@ -58,7 +58,7 @@ input#search{
   /*border-radius: 3px;*/
   border: none;
   box-shadow: none;
-  width: 170px;
+  width: 180px;
   color: white;
 }
 .searcher{
@@ -960,6 +960,9 @@ width: 100%;
     text-align: center;
     float: none;
   
+}
+.foot_links_list{
+  padding-left: 0;
 }
 li.foot_link, li.foot_link a{
     display: inline-block;

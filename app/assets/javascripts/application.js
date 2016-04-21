@@ -27,9 +27,28 @@ var loaded = function(){
   $("#collections_nav").affix({
     offset: { top: 105 }
   });
-  $(".navvy").affix({
+  if (matchMedia) {
+    var mq = window.matchMedia("(min-width: 780px)");
+    mq.addListener(WidthChange);
+    WidthChange(mq);
+  }
+
+    // media query change
+    function WidthChange(mq) {
+
+      if (mq.matches) {
+        // window width is at least 780px
+         $(".navvy").affix({
     offset: { top: 105 }
   });
+      
+      } else {
+      
+      
+      }
+
+    }
+ 
   
 };
 

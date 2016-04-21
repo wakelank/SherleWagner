@@ -67,6 +67,11 @@ function WidthChange(mq) {
 
     isSmall = true;
     $('.hide-dropdowns').show();
+    //DOn't affix a sidenav (it jumps past the mobile menu) - see application JS for on reload etc
+    $('.navvy').removeClass('affix');
+    $('.navvy').removeClass('affix-top');
+    $('.navvy').attr('data-spy','');
+
 
     // console.log(isSmall);
     // $('body').addClass('mobile');
