@@ -945,12 +945,12 @@ width: 100%;
 
 /*footer*/
 .footer {
-  position:fixed;
-   left:0px;
-   bottom:0px;
-   min-height:30px;
-   width:100%;
-   background:#222222;
+      position: fixed;
+    left: 0px;
+    bottom: 0px;
+    min-height: 30px;
+    width: 100%;
+    background: #222222;
    z-index: 3;
 }
 .footer .links{
