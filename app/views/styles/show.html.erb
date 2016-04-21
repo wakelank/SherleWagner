@@ -4,7 +4,10 @@
   padding-left: 25px;
 }
   .grid{
-    margin-top: 50px;
+    height: 1260px;
+    width: 95%;
+    margin: 50px auto 0px;
+    padding-left: 2%;
   }
   .prod_tile_large{
       background-size: contain;
@@ -32,11 +35,13 @@
   border: 0;
   margin: 0 !important;
   }
+ 
   .prod_tile4, .envi_tile{
     /*box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;*/
     border:8px solid #eeeeee ;
+    background-size: cover;
   }
   .prod_wrapper{
     background-color: #eeeeee!important;
@@ -76,12 +81,17 @@
  .preview_img{
   position: absolute;
   left: 0;
+  top: 0;
   /*background-color: lightblue;*/
   width: 200px;
   height:192px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
  }
+ .prod_tile_small .preview_img{
+    background-position-y: -3px;
+    background-position-x: -3px;  
+  }
  .preview_text{
   position: absolute;
     left:203px;
@@ -106,7 +116,7 @@
   /*background-color: lightblue;*/
   left: 203px;
   padding-left: 0;
-  background-size: contain;
+  background-size: cover;
   width: 200px;
  }
  .links_list{
@@ -229,7 +239,7 @@
              
               <% if envcount < @envi.length %>
                 <li class ="prod_tile_large prod_tile4 envi_tile grid-item" 
-                style="background-image: url(<%= @envi[envcount] %>); background-size:cover">
+                style="background-image: url(<%= @envi[envcount] %>)">
     
                 </li>
                 <% envcount += 1 %>
@@ -278,7 +288,7 @@
   var config = {    
      over: show_slideout, // function = onMouseOver callback (REQUIRED)    
      timeout: 100, // number = milliseconds delay before onMouseOut    
-     interval: 350, // number = milliseconds delay before trying to call over    
+     interval: 250, // number = milliseconds delay before trying to call over    
      out: hide_slideout // function = onMouseOut callback (REQUIRED)    
   };
 
@@ -321,6 +331,8 @@
     });
 
     $(this).addClass('hovers');
+    $(this).css('z-index','2');
+
   }
   function hide_slideout(){
     // console.log("hovering")
@@ -332,12 +344,14 @@
       opacity: '0'
 
     }, hidebl);
+     $(this).css('z-index','1');
     function hidebl(){
        bl.hide();
     
      bl.removeClass('hovers');
      bl.removeClass('details_left');
      bl.removeClass('details_right');
+     
     };
     // bl.hide();
     

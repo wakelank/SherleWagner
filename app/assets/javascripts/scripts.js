@@ -526,10 +526,10 @@ $('ul#components_list li').slice(1).hide();
           } else {
             $(tile).show();
             $('.grid').masonry({
-  // options
-  itemSelector: '.prod_tile4',
-  columnWidth: 70
-});
+              // options
+              itemSelector: '.prod_tile4',
+              columnWidth: 70
+            });
           }
         });
       } else{
