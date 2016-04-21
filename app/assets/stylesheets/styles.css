@@ -1303,7 +1303,7 @@ div#nav_link_contain.collapse.navbar-collapse{
 .panel-group .panel-heading+.panel-collapse>.panel-body {
     border-top: 0px solid #eeeeee;
 }
-#l_nav #accordion1 div.checkbox{
+#l_nav #accordion1 div.panel_title_div{
   margin-top: 5px ;
   margin-bottom: 0 ;
 }
