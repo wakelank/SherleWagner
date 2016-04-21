@@ -6,7 +6,13 @@
     <%= filter.name %></h5>
      <% filter.filter_values.each do |filter_value| %>
       <li>
-        <label><input type="checkbox" value="" id="<%= filter_value.filter_name_and_value %>" class="check2"> <%= filter_value.name %> </label>
+        <div class="checkbox">
+
+          <input type="checkbox" value="" class="" id="<%= filter_value.filter_name_and_value %>"> 
+
+          <label for="<%= filter_value.filter_name_and_value %>"> <%= filter_value.name %> </label>
+
+        </div>
       </li>
     <% end %>
     </ul>

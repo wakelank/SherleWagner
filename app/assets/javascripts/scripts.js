@@ -523,7 +523,7 @@ $('ul#components_list li').slice(1).hide();
 
 function do_checkbox_filters(){
   check_cat = []
-              var cat = $('li label').find('input:checked').map(function(i, val){
+              var cat = $('div.checkbox').find('input:checked').map(function(i, val){
                 check_cat.push(val.id);      
               });
               
