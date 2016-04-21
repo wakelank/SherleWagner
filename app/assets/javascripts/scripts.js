@@ -346,7 +346,7 @@ $('ul#components_list li').slice(1).hide();
 
         col_name.click(function(e){
           e.preventDefault();
-          ($('li label').find('input:checked').removeAttr('checked'));
+          ($('li div.checkbox').find('input:checked').removeAttr('checked'));
           do_checkbox_filters();
            
 
@@ -513,7 +513,7 @@ $('ul#components_list li').slice(1).hide();
       
     function filter_types2(){
     //filter on collections browse page
-    $('label input').click(function(){
+    $('div.checkbox').click(function(){
       do_checkbox_filters();
       
     });
@@ -523,40 +523,40 @@ $('ul#components_list li').slice(1).hide();
 
 function do_checkbox_filters(){
   check_cat = []
-              var cat = $('div.checkbox').find('input:checked').map(function(i, val){
-                check_cat.push(val.id);      
-              });
-              
-              if (check_cat.length >= 1){
-                
-                $('.prod_tile4').each(function(key, tile){
-                  if ($.inArray(tile.dataset.category, check_cat) == -1){  
+    var cat = $('div.checkbox').find('input:checked').map(function(i, val){
+      check_cat.push(val.id);      
+    });
+    
+    if (check_cat.length >= 1){
+      
+      $('.prod_tile4').each(function(key, tile){
+        if ($.inArray(tile.dataset.category, check_cat) == -1){  
 
-                    $(tile).hide();
-                    $('.grid').masonry({
-                      // options
-                      itemSelector: '.prod_tile4',
-                      columnWidth: 70
-                    });
-                 
+          $(tile).hide();
+          $('.grid').masonry({
+            // options
+            itemSelector: '.prod_tile4',
+            columnWidth: 70
+          });
+       
 
-                  } else {
-                    $(tile).show();
-                    $('.grid').masonry({
-                      // options
-                      itemSelector: '.prod_tile4',
-                      columnWidth: 70
-                    });
-                  }
-                });
-              } else{
-                $('.prod_tile4').show();
-                $('.grid').masonry({
-                  // options
-                  itemSelector: '.prod_tile4',
-                  columnWidth: 70
-                });
-              }
+        } else {
+          $(tile).show();
+          $('.grid').masonry({
+            // options
+            itemSelector: '.prod_tile4',
+            columnWidth: 70
+          });
+        }
+      });
+    } else{
+      $('.prod_tile4').show();
+      $('.grid').masonry({
+        // options
+        itemSelector: '.prod_tile4',
+        columnWidth: 70
+      });
+    }
 }
 
 function set_map(){

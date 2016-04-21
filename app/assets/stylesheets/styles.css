@@ -1235,7 +1235,7 @@ div.panel-body.filter {
     }
 */
 #collections_nav label, #collections_nav li {
-    padding-top: 12.5px;
+    padding-top: 7.5px;
     font-family: 'PT Sans', sans-serif;
 }
 #collections_nav label input{
@@ -1320,7 +1320,7 @@ div.filter h5{
 
 .checkbox2 input[type="checkbox"]{
   vertical-align: top;
-      
+
     margin-top: 3px;
 }
 
