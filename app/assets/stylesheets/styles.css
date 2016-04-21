@@ -252,7 +252,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
       .nav #searcher_li{
         position: absolute;
-        left: 0;
+        left: -12px;
         /*padding-right: 0 !important;*/
         }
     

@@ -157,7 +157,7 @@ function uncheckOnCollapse(prodCat)
 {
   $($(prodCat).find('label').attr('href')).on('hidden.bs.collapse', function (e) {
     var trgt = ("#" + $(e.currentTarget.id).selector);//
-    console.log(trgt);
+    // console.log(trgt);
     $(trgt).find('input[type=checkbox]:checked').removeAttr('checked');
   });
 }
