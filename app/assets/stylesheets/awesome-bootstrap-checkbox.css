@@ -1,6 +1,9 @@
 .checkbox {
   padding-left: 20px;
 }
+.checkbox:hover{
+  cursor: auto !important;
+}
 .checkbox label {
   display: inline-block;
   vertical-align: middle;

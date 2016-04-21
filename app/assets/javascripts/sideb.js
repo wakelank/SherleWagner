@@ -176,7 +176,9 @@ function filter_products(){
   var $filters = $('.filter');
   for(var i = 0, len = $filters.length; i < len; ++i){
     var arr = $($filters[i]).find('input:checked').map(function(i, val){
-      return(val.id.toLowerCase());
+      var raw_id = (val.id.toLowerCase());
+       filter_id = raw_id.split('|')[1]
+      return filter_id;
     });
     filtersArr.push(arr);
   };
@@ -239,3 +241,4 @@ function keepCatOpenOnClick(){
     }
   });
 }
+

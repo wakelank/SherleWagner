@@ -1318,5 +1318,9 @@ div.filter h5{
   margin-left: -7px;
 }
 
-
+.checkbox2 input[type="checkbox"]{
+  vertical-align: top;
+      
+    margin-top: 3px;
+}
 

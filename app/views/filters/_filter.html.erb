@@ -2,18 +2,17 @@
 
  <div class="filter">
    <ul>
-    <h5>
-    <%= filter.name %></h5>
-     <% filter.filter_values.each do |filter_value| %>
-      <li>
-        <div class="checkbox">
+    <h5><%= filter.name %></h5>
+    <% filter.filter_values.each do |filter_value| %>
+        <li>
+          <div class="checkbox">
 
-          <input type="checkbox" value="" class="" id="<%= filter_value.filter_name_and_value %>"> 
+            <input type="checkbox" value="" class="" id="<%= sub_type.name + "|" +  filter_value.filter_name_and_value%>" /> 
 
-          <label for="<%= filter_value.filter_name_and_value %>"> <%= filter_value.name %> </label>
+            <label for="<%= sub_type.name + "|" + filter_value.filter_name_and_value%>" > <%= filter_value.name %> </label>
 
-        </div>
-      </li>
+          </div>
+        </li>
     <% end %>
     </ul>
    
