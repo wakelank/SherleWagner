@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418181638) do
+ActiveRecord::Schema.define(version: 20160421202117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,11 +139,15 @@ ActiveRecord::Schema.define(version: 20160418181638) do
   add_index "genres_products", ["product_id"], name: "index_genres_products_on_product_id", using: :btree
 
   create_table "materials", force: :cascade do |t|
-    t.string  "name"
-    t.boolean "is_insert"
-    t.string  "material_type"
-    t.string  "code"
-    t.string  "identifier"
+    t.string   "name"
+    t.boolean  "is_insert"
+    t.string   "material_type"
+    t.string   "code"
+    t.string   "identifier"
+    t.string   "swatch_file_name"
+    t.string   "swatch_content_type"
+    t.integer  "swatch_file_size"
+    t.datetime "swatch_updated_at"
   end
 
   create_table "materials_products", force: :cascade do |t|
