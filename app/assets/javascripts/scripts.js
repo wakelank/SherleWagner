@@ -515,6 +515,7 @@ $('ul#components_list li').slice(1).hide();
     //filter on collections browse page
     $('div.checkbox').click(function(){
       do_checkbox_filters();
+      $(this).find('input').blur();
       
     });
   }

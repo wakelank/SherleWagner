@@ -175,12 +175,14 @@ function filter_products(){
   var filtersArr = [];
   var $filters = $('.filter');
   for(var i = 0, len = $filters.length; i < len; ++i){
+    $($filters[i]).find('input').blur();
     var arr = $($filters[i]).find('input:checked').map(function(i, val){
       var raw_id = (val.id.toLowerCase());
        filter_id = raw_id.split('|')[1]
       return filter_id;
     });
     filtersArr.push(arr);
+
   };
   $product_tiles = $('.prod_tile');
   $product_tiles.show();
