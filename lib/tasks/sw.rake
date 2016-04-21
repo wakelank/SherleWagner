@@ -36,16 +36,18 @@ namespace :sw do
 
   desc "Assign material swatches images"
   task material_swatches: :environment do
-    bucket = AWS::S3.new().bucket['sw-raw-images']
+    bucket = AWS::S3.new().buckets['sw-raw-images']
     objects = bucket.objects
     Material.all.each do |mat|
-      objects.select do |obj|
-        folder = obj.split('/').first
-        filename = obj.split('/').last
+      selected = objects.select do |obj|
+        folder = obj.key.split('/').first
+        filename = obj.key.split('/').last
         folder == "INTRODUCTION & FINISHES" && filename.include?(mat.identifier)
       end
-      mat.swatch = objects.first.public_url
+      mat.swatch = selected.first.public_url if selected.count > 0
       mat.save
+      puts "#{mat.name}: #{mat.identifier}"
+      puts mat.swatch.url
     end
   end
 end
