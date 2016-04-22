@@ -50,7 +50,7 @@
           
               <% product_sub_type.four_products.each_with_index do |product, i| %>
                <% bgimage= product.image.url(:medium) %>
-                <% if i<4 %>
+                <% if i<4 && i<product_sub_type.four_products.length-1 %>
 
                   <%= link_to product_path(product) do %>
 
@@ -89,8 +89,9 @@
 
               <% end %>
               
-
+          <br/><hr/>
           <% end %>
+
 
         <% end %> <!-- END of wallpapers if -->
       </ul>
