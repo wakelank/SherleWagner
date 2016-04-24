@@ -1,18 +1,36 @@
 
-<div class="search_list prod_wrapper"> 
+<div class="prod_wrapper ">
+  <div class="list_wrapper">
+
+      <ul class="prod_list">
 
 
 
-<ul>
+
     <% @searched.each do |prod| %>
     
-      <li>
-          
-        <%= link_to prod.name, prod %> |Searched|<%= prod.product_sub_type.name %> 
+    
+     <% bgimage= prod.image.url(:medium) %>
+
+              <%= link_to product_path(prod) do %>
+
+                <li class ="prod_tile <%= prod.name.gsub(' ','_') %>">
+                  <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
+
+                  <div class="prod_title">
+
+                      <%= prod.name %>
+                      
+                  </div>
+                </li>
+
+              <% end %>
+            <% end %>
         
       </li>
 
-    <% end %>
+
  
 </ul>  
+ </div>
  </div>

@@ -33,7 +33,7 @@
       
       <% @product.materials.each do |material| %>
       <% bg_img = material.swatch.url(:thumb) %>
-        <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", data-identifier="<%= material.identifier %>", style="background-image:url('<% bg_img %>')">
+        <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", data-identifier="<%= material.identifier %>", style="background-image:url('<%= bg_img %>')">
          <div class="swatch_div"> <%= material.name %> </div>
          
         </li> 

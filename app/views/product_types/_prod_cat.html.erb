@@ -14,23 +14,23 @@
         <h3 id="subtype_list_name"><%= @product_type.name %></h3>
         <% if @product_type.name == 'Wallpaper'%>
           <% @product_type.product_sub_types.each do |product_sub_type| %>
-          <% product_sub_type.main_product.each do |main_product| %>
+            <% product_sub_type.main_product.each do |main_product| %>
 
-            <% bgimage= main_product.image.url(:medium) %>
+              <% bgimage= main_product.image.url(:medium) %>
 
-            <%= link_to product_path(main_product) do %>
-                      <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %>">
-                     <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
+              <%= link_to product_path(main_product) do %>
 
-                      <div class="prod_title">
+                <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %>">
+                  <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
 
-                          <%= product_sub_type.name %>
-                          
+                  <div class="prod_title">
 
-                        </div>
-                      </li>
-                    <% end %>
+                      <%= product_sub_type.name %>
+                      
+                  </div>
+                </li>
 
+              <% end %>
             <% end %>
           <% end %>
 
@@ -50,13 +50,10 @@
           
               <% product_sub_type.four_products.each_with_index do |product, i| %>
                <% bgimage= product.image.url(:medium) %>
-                <% if i<4 %>
+                <% if i<4 && i<product_sub_type.four_products.length-1 %>
 
                   <%= link_to product_path(product) do %>
 
-                   
-
-                   
                     <li class ="prod_tile <%= product_sub_type.name.gsub(' ','_') %> tile<%= i %>">
                    <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat"></div>
 
@@ -64,7 +61,6 @@
 
                         <%= product.name %>
                         
-
                       </div>
                     </li>
                   <% end %>
@@ -80,18 +76,13 @@
 
                       </div>
                     
-
                     </li> 
                   <% end %>
-
-
                 <% end %>
-
-              <% end %>
-              
+              <% end %>              
+          <br/><hr/>
 
           <% end %>
-
         <% end %> <!-- END of wallpapers if -->
       </ul>
       <br/><hr/>
@@ -107,29 +98,19 @@
   var sideac = thisac.replace(" ","_");
   var actrgt = $(sideac).parents('.panel').children('.panel-collapse');
   // $(actrgt).collapse('show');
-
-
   //code for toggling the 'open' prodcat panel based onthe title in prod list
   // $(sideac).parents('.panel').children('.panel-collapse').collapse('toggle')
   //this is an open subtype panel after a sideac has been set
     // opensubt = $(sideac).parents('.panel').children('.panel-collapse').children().children().children().children('.in')
-
  });
 
   // toggle open the side nav panel for the clicked category tile ***
 
    $('.sub_type_tile').click(function(){
-     thiss =$(this);
+     var thiss =$(this);
 
-     history_cat = thiss.get(0).className.split(' ')[1];
-     
-
-     new_state ='/'+history_cat;
-      // window.history.pushState(new_state, null, new_state);
-
-
-     sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
-     sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
+     var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
+     var sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
     //open the subtype collapse panel in the sidebar
     $(sideb_collapse).collapse('toggle');
 

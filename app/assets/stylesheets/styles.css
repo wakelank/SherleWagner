@@ -980,7 +980,7 @@ li.foot_link, li.foot_link a{
     clear: left;
     float: right;
     /*position: relative;*/
-    display: block;
+    display: none;
     width: 100%;
     /*margin-right: 8%;*/
     margin-bottom: 5em;
@@ -1003,7 +1003,7 @@ li.foot_link, li.foot_link a{
       clear: left;
       float: right;
       position: relative;
-      display: block;
+      display: none;
       margin-bottom: 5em;
       margin-top: 51px;
       }
