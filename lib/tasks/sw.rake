@@ -50,4 +50,14 @@ namespace :sw do
       puts mat.swatch.url
     end
   end
+
+  desc "capitalizes the first letter of each word in every product name" 
+  task cap_prod_names: :environment do
+    Product.all.each do |product|
+      old_name = product.name
+      product.name = product.name.split.map(&:capitalize).join(' ')
+      product.save
+      puts "#{old_name} -> #{product.name}"
+    end
+  end
 end
