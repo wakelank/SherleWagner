@@ -353,8 +353,8 @@ $('ul#components_list li').slice(1).hide();
         })
         break; 
       case 'static_pages home':
+          $('#l_nav').remove();
           
-        
         break;
       case 'static_pages showrooms': 
        set_map();
