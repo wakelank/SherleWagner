@@ -130,13 +130,13 @@ input#search{
 /*===LARGEST WIDTH===*/
 @media (min-width: 1450px) {
  .prod_list{
-    padding: 0 10%;
+    padding: 0 10% 0 10%;
 }
  
 }
 @media (min-width: 1800px) {
  .list_wrapper{
-    padding: 0 10%;
+    padding: 0 10% 0 10%;
   }
  
 }
