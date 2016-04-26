@@ -1,23 +1,30 @@
 
+<style>
+  .search_prod_title{
+    max-height: 3em;
+    overflow:auto;
+  }
+</style>
 <div class="prod_wrapper ">
   <div class="list_wrapper">
 
       <ul class="prod_list">
+        <h3 id="subtype_list_name">SEARCH RESULTS:</h3>
 
 
 
 
     <% @searched.each do |prod| %>
-    
+
     
      <% bgimage= prod.image.url(:medium) %>
 
               <%= link_to product_path(prod) do %>
 
-                <li class ="prod_tile <%= prod.name.gsub(' ','_') %>">
+                <li class ="search_prod_tile prod_tile <%= prod.name.gsub(' ','_') %>">
                   <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
 
-                  <div class="prod_title">
+                  <div class="prod_title search_prod_title">
 
                       <%= prod.name %>
                       

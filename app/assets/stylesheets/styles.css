@@ -210,6 +210,10 @@ input#search{
       background-position-y: 50%;
   
 }
+.search_prod_tile{
+  height: 12.25em;
+  width: 10em;
+}
 .type_tile{
   background-size: cover;
   height: 20em;
