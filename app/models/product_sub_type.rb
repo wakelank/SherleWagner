@@ -10,8 +10,11 @@ class ProductSubType < ActiveRecord::Base
 
   HEADER = "SUB FOLDER"
 
-  def four_products
+  def five_products
     self.products.all.order(:id).limit 5
+  end
+  def two_products
+    self.products.all.order(:id).limit 2
   end
 
   def main_product
