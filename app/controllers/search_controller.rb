@@ -15,15 +15,9 @@ class SearchController < ApplicationController
                          image: product.image.url(:medium),
                          url: Rails.application.routes.url_helpers.product_path(product.id)
                         )
-      when "ProductSubType"
-        pst = ProductSubType.find_by_id(result.searchable_id)
-        SearchResult.new(name: pst.name,
-                         image: pst.image.url(:medium),
-                         url: fetch_items_path(cat_id: pst.id)
-                        )
       when "Style"
         style = Style.find_by_id(result.searchable_id)
-        SearchResult.new(name: style.name,
+        SearchResult.new(name: "#{style.name} Collection",
                          image: "/images/medium/missing_product.jpg",
                          url: Rails.application.routes.url_helpers.style_path(style.id)
                         )

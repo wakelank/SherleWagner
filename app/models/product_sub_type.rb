@@ -1,8 +1,5 @@
 class ProductSubType < ActiveRecord::Base
 
-  include PgSearch
-  multisearchable :against => [:name]
-
   belongs_to :product_type
 #  has_many :product_groups
   has_many :products
