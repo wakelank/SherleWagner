@@ -60,4 +60,16 @@ namespace :sw do
       puts "#{old_name} -> #{product.name}"
     end
   end
+
+  desc "assings marble and onyx materials to all products with 'stone' in the number"
+  task stone_materials: :environment do
+    stone_materials = Material.where(code: 'ONYX').concat Material.where(code: "MARBL")
+    Product.all.each do |product|
+      if product.number.include? 'STONE'
+        product.materials << stone_materials
+        product.save
+        puts product.name
+      end
+    end
+  end
 end

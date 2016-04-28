@@ -1,16 +1,29 @@
 class SearchController < ApplicationController
 
-def index
-  #@query = Product.search do
-  #      fulltext params[:search]
-  #  end
-  #  @searched = @query.results
+  def index
+    #@query = Product.search do
+    #      fulltext params[:search]
+    #  end
+    #  @searched = @query.results
 
     results = PgSearch.multisearch params[:search]
-    @searched = results.map { |result| Product.where(id: result.id) }.flatten
-    
-
-end
+    @searched = results.map do |result|
+      case result.searchable_type
+      when "Product"
+        product = Product.find_by_id(result.searchable_id)
+        SearchResult.new(name: product.name,
+                         image: product.image.url(:medium),
+                         url: Rails.application.routes.url_helpers.product_path(product.id)
+                        )
+      when "Style"
+        style = Style.find_by_id(result.searchable_id)
+        SearchResult.new(name: "#{style.name} Collection",
+                         image: "/images/medium/missing_product.jpg",
+                         url: Rails.application.routes.url_helpers.style_path(style.id)
+                        )
+      end
+    end
+  end
 
 # def j_search
 
