@@ -330,7 +330,7 @@ $(document).on("page:change", (function(){
         );
         var linkout = false;
         $('ul#components_list li').on('click',function(e){
-          
+
           $('ul#components_list li').slice(2).hide()
           
           $('#hide_all').hide();
@@ -522,6 +522,7 @@ $(document).on("page:change", (function(){
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
+           $(choice_id).attr("title", identifier);
            var ct1 = configurationObject;
           
             
