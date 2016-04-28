@@ -1,14 +1,14 @@
 @font-face {
   font-family: "DINPro-Medium";
-  src: url(/assets/DINPro-Medium.otf) format("truetype");
+  src: url(/fonts/DINPro-Medium.otf) format("truetype");
 }
 @font-face {
   font-family: "DINPro-Bold";
-  src: url(/assets/DINPro-Bold.otf) format("truetype");
+  src: url(/fonts/DINPro-Bold.otf) format("truetype");
 }
 @font-face {
   font-family: "DINPro-Light";
-  src: url(/assets/DINPro-Light.otf) format("truetype");
+  src: url(/fonts/DINPro-Light.otf) format("truetype");
 }
 body{
   font-family: 'DINPro-Light', sans-serif;
@@ -127,27 +127,6 @@ input#search{
 
 /*====The product browse page===*/
 
-/*===LARGEST WIDTH===*/
-@media (min-width: 1450px) {
- .prod_list{
-    padding: 0 10%;
-}
- 
-}
-@media (min-width: 1800px) {
- .list_wrapper{
-    padding: 0 10%;
-  }
- 
-}
-
-
-@media (min-width: 1150px) {
-  .center_min_show{
-    min-width: 835px;
-}
- 
-}
 
 
 /*=====NO QUERY====*/
@@ -179,7 +158,7 @@ input#search{
 .prod_list{
   list-style: none;
   padding-left: 0;
-  /*padding: 0;*/
+  padding-right: 0;
 }
 .prod_list a:hover{
   text-decoration: none;
@@ -209,6 +188,10 @@ input#search{
       background-position-x: 50%;
       background-position-y: 50%;
   
+}
+.search_prod_tile{
+  height: 12.25em;
+  width: 10em;
 }
 .type_tile{
   background-size: cover;
@@ -253,7 +236,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .nav #searcher_li{
         position: absolute;
         left: -12px;
-        /*padding-right: 0 !important;*/
+        background-color: #222222;
+        
         }
     
       #nav-wrap{
@@ -426,7 +410,7 @@ a.sub_type_tile_title {
   clear:left;
 }
 .sub_type_tile h3 {
-    background-color: rgba(0,0,0,0.7);
+    /*background-color: rgba(0,0,0,0.7);*/
     min-height: 2em;
     vertical-align: top;
     margin-top: 0em;
@@ -573,9 +557,9 @@ li.highlighted{
 #alt_imgs{
   list-style: none;
   padding-left: 0;
-  overflow: auto;
+  /*overflow: auto;*/
   
-  /*height: auto;*/
+  height: auto;
   width:50%;
   float: left;
 
@@ -1029,6 +1013,28 @@ li.foot_link, li.foot_link a{
 
     
   }
+/*===LARGEST WIDTH===*/
+@media (min-width: 1450px) {
+ .prod_list{
+    padding: 0 10% 0 10%;
+    
+}
+ 
+}
+@media (min-width: 1800px) {
+ .list_wrapper{
+    padding: 0 10% 0 10%;
+  }
+ 
+}
+
+
+@media (min-width: 1150px) {
+  .center_min_show{
+    min-width: 835px;
+}
+ 
+}
 
 
 /*=======SMALL SIZE========*/

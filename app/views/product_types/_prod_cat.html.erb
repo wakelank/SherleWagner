@@ -46,11 +46,15 @@
                 </h3>
               </li>              
               <% end %>
+              <% if product_sub_type.five_products.length >= 5  %>
+                <% preview_products = product_sub_type.five_products %>
+              <% else %>
+                <% preview_products = product_sub_type.two_products %>
+              <% end %>
 
-          
-              <% product_sub_type.four_products.each_with_index do |product, i| %>
+              <% preview_products.each_with_index do |product, i| %>
                <% bgimage= product.image.url(:medium) %>
-                <% if i<4 && i<product_sub_type.four_products.length-1 %>
+                <% if i<4 && i<preview_products.length-1 %>
 
                   <%= link_to product_path(product) do %>
 
@@ -80,12 +84,12 @@
                   <% end %>
                 <% end %>
               <% end %>              
-          <br/><hr/>
+          <br/><br/><hr/>
 
           <% end %>
         <% end %> <!-- END of wallpapers if -->
       </ul>
-      <br/><hr/>
+      
   </div>
 </div>
 

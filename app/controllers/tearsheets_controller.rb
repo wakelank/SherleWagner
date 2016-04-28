@@ -9,6 +9,7 @@ class TearsheetsController < ApplicationController
 
 
     @finishes = []
+    
     @product.finishes.each do |f|
       ob = {}
       ob["name"] = f.name
@@ -22,7 +23,10 @@ class TearsheetsController < ApplicationController
 
 
 
+
   end
+
+  
 
   def create
     args = {}

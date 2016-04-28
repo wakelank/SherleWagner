@@ -113,6 +113,7 @@ $(document).on("page:change", (function(){
           if(t.dataset.url.indexOf(matchr) > -1){
             
             $(t).addClass('alt_choice');
+            return false;
           }
         });
         
@@ -147,7 +148,7 @@ $(document).on("page:change", (function(){
         }); 
 
          //set the current configuration
-         conff = $('.alt_choice')[0]
+         var conff = $('.alt_choice')[0]
          if (conff){
             swap_product_info_for_configuration(conff);
           }
@@ -200,8 +201,8 @@ $(document).on("page:change", (function(){
 
          tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish);
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
-        console.log('BAAATTHHHTime!!');
-        console.log(tearsheet_targ);
+        
+        // console.log(tearsheet_targ);
 
            // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
        
@@ -311,28 +312,44 @@ $(document).on("page:change", (function(){
             }
           }
         });  
-$('ul#components_list li').slice(1).hide();
-  
-  $('ul#components_list').append("<a  id='see_all' class='expander'><b>...See all</a></b>");
-  
-  $('ul#components_list').append("<a  id='hide_all' class='expander' style='float:right; padding-top:8px'><b>Collapse</a></b>");
-  
-  $('#hide_all').hide();
-  $('#see_all').click(function(){
-      $('#see_all').hide();
-      $('ul#components_list li').slice(1).show();
-      $('#hide_all').show();
-      $('ul#components_list').addClass('expandComp');
-    }
-  );
-  $('#hide_all').click(function(){
-      $('#hide_all').hide();
-      $('ul#components_list li').slice(1).hide();
-      $('#see_all').show();
-      $('ul#components_list').removeClass('expandComp');
-      
-    }
-  );
+
+        
+        $('ul#components_list li').slice(2).hide();
+        $('#see_all').show();
+        
+        
+        $('#hide_all').hide();
+        // var reset_list = false;
+        $('#see_all').click(function(){
+          
+            $('#see_all').hide();
+            $('ul#components_list li').slice(2).show();
+            $('#hide_all').show();
+            $('ul#components_list').addClass('expandComp');
+          }
+        );
+        var linkout = false;
+        $('ul#components_list li').on('click',function(e){
+
+          $('ul#components_list li').slice(2).hide()
+          
+          $('#hide_all').hide();
+          $('#see_all').show();
+          $('ul#components_list').removeClass('expandComp');
+          return
+
+              
+            })
+        $('#hide_all').click(function(){
+          
+            $('#hide_all').hide();
+            $('ul#components_list li').slice(2).hide();
+            $('#see_all').show();
+            $('ul#components_list').removeClass('expandComp');
+            
+          }
+        );
+        
 
         break;
 
@@ -353,8 +370,8 @@ $('ul#components_list li').slice(1).hide();
         })
         break; 
       case 'static_pages home':
+          $('#l_nav').remove();
           
-        
         break;
       case 'static_pages showrooms': 
        set_map();
@@ -505,6 +522,7 @@ $('ul#components_list li').slice(1).hide();
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'contain');
+           $(choice_id).attr("title", identifier);
            var ct1 = configurationObject;
           
             

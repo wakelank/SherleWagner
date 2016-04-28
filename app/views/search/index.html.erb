@@ -1,35 +1,43 @@
 
+<style>
+  .search_prod_title{
+    max-height: 3em;
+    overflow:auto;
+  }
+</style>
 <div class="prod_wrapper ">
   <div class="list_wrapper">
 
-    <ul class="prod_list">
+      <ul class="prod_list">
+        <h3 id="subtype_list_name">SEARCH RESULTS:</h3>
 
 
 
 
-      <% @searched.each do |result| %>
+        <% @searched.each do |result| %>
+          <% bgimage= result.image %>
 
-        <% bgimage= result.image %>
+          <%= link_to result.url do %>
+            <li class ="search_prod_tile prod_tile <%= result.name.gsub(' ','_') %>">
+              <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
 
-        <%= link_to result.url do %>
+              <div class="prod_title search_prod_title">
 
-          <li class ="prod_tile <%= result.name.gsub(' ','_') %>">
-            <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
+                <div class="prod_title">
 
-            <div class="prod_title">
+                  <%= result.name %>
 
-              <%= result.name %>
+                </div>
+            </li>
 
-            </div>
-          </li>
-
+          <% end %>
         <% end %>
-      <% end %>
-
-      </li>
 
 
 
-    </ul>  
+
+
+
+      </ul>  
+              </div>
   </div>
-</div>
