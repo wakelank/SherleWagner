@@ -1,14 +1,14 @@
 @font-face {
   font-family: "DINPro-Medium";
-  src: url(/assets/DINPro-Medium.otf) format("truetype");
+  src: url(/fonts/DINPro-Medium.otf) format("truetype");
 }
 @font-face {
   font-family: "DINPro-Bold";
-  src: url(/assets/DINPro-Bold.otf) format("truetype");
+  src: url(/fonts/DINPro-Bold.otf) format("truetype");
 }
 @font-face {
   font-family: "DINPro-Light";
-  src: url(/assets/DINPro-Light.otf) format("truetype");
+  src: url(/fonts/DINPro-Light.otf) format("truetype");
 }
 body{
   font-family: 'DINPro-Light', sans-serif;
