@@ -2,35 +2,34 @@
 <div class="prod_wrapper ">
   <div class="list_wrapper">
 
-      <ul class="prod_list">
+    <ul class="prod_list">
 
 
 
 
-    <% @searched.each do |prod| %>
-    
-    
-     <% bgimage= prod.image.url(:medium) %>
+      <% @searched.each do |result| %>
 
-              <%= link_to product_path(prod) do %>
+        <% bgimage= result.image %>
 
-                <li class ="prod_tile <%= prod.name.gsub(' ','_') %>">
-                  <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
+        <%= link_to result.url do %>
 
-                  <div class="prod_title">
+          <li class ="prod_tile <%= result.name.gsub(' ','_') %>">
+            <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
 
-                      <%= prod.name %>
-                      
-                  </div>
-                </li>
+            <div class="prod_title">
 
-              <% end %>
-            <% end %>
-        
+              <%= result.name %>
+
+            </div>
+          </li>
+
+        <% end %>
+      <% end %>
+
       </li>
 
 
- 
-</ul>  
- </div>
- </div>
+
+    </ul>  
+  </div>
+</div>
