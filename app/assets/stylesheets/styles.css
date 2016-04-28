@@ -557,9 +557,9 @@ li.highlighted{
 #alt_imgs{
   list-style: none;
   padding-left: 0;
-  overflow: auto;
+  /*overflow: auto;*/
   
-  /*height: auto;*/
+  height: auto;
   width:50%;
   float: left;
 
