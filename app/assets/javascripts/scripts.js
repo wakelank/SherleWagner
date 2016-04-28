@@ -148,7 +148,7 @@ $(document).on("page:change", (function(){
         }); 
 
          //set the current configuration
-         conff = $('.alt_choice')[0]
+         var conff = $('.alt_choice')[0]
          if (conff){
             swap_product_info_for_configuration(conff);
           }

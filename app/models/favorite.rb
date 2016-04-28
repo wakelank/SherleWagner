@@ -1,6 +1,6 @@
 class Favorite
 
-  attr_accessor :url, :tearsheet_number, :id, :product_id, :product_name
+  attr_accessor :url, :tearsheet_number, :id, :product_id, :product_image, :product_name
 
   def initialize(args)
     @url = args[:url]
@@ -8,6 +8,9 @@ class Favorite
     @id = args[:id]
     @product_id = args[:product_id]
     @product_name = Product.find_by(id: @product_id).name || ""
+
+    @product_image = Product.find_by(id: @product_id).image.url || ""
+
   end
 
   def self.all(cookie)
