@@ -58,7 +58,7 @@
   .details_right{
      position: absolute;
     left: 0px;
-    width: 405px;
+    width: 406px;
     top: 0px;
     border: thin solid darkgray;
     height: 194px;    
@@ -121,14 +121,19 @@
   background-size: cover;
   width: 200px;
  }
- .links_list{
+ ul.links_list{
   list-style: none;
-  font-size: 12px;
+  font-size: 14px;
   padding: 0;
+  /*padding-left: 2em;*/
   margin: 0;
+  text-align: left;
  }
  .list_wrapper ul .links_list li{
   margin:0;
+ }
+ .links_list li a{
+  color: gray;
  }
 
 .tall_slide_out.details_right, .tall_slide_out.details_left {
@@ -172,18 +177,25 @@
                     <% end %>   
                     <div class="tall_preview_text preview_text">
                       <%= link_to(product_path(product), class:"")  do %>
-                         <h5>
+                         <h4 id>
                            <%= product.name.capitalize %>
-                         </h5>
+                         </h4>
                       <% end %>
                       <div class="tall_preview_links preview_links">
                         <ul  class='links_list'>
-                          <li>tearsheet</li>
-                          <li>Add Favorite</li>
-                          <li>Spec Sheet</li>
                           
-                          <li>3D/2D Renderings</li>
-                          <li>Installation Guide</li>
+                          <li>
+                            <%= form_tag favorites_path, method: 'post' do %>
+                              <%= hidden_field_tag :product_id, product.id %>
+                              <%= submit_tag 'Add to Favorites', class:'favorite' %>
+                            <% end %>
+  
+                         </li>
+                          <li><a href="#">
+                            Spec Sheet</a></li>
+                          
+                          <li><a href="#">3D/2D Renderings</a></li>
+                          <li><a href="#">Installation Guide</a></li>
                         </ul>
                       </div>
                     </div>
@@ -211,18 +223,27 @@
                      
                   <div class="preview_text">
                     <%= link_to(product_path(product), class:"")  do %>
-                       <h5>
+                       <h4>
                          <%= product.name.capitalize %>
-                       </h5>
+                       </h4>
                     <% end %>
                     <div class="preview_links">
                       <ul  class='links_list'>
-                        
-                        <li>tearsheet</li>
-                        <li>Spec Sheet</li>
-                        <li>3D/2D Renderings</li>
-                        <li>Installation Guide</li>
-                      </ul>
+                         
+                         <li>
+                            <%= form_tag favorites_path, method: 'post' do %>
+                              <%= hidden_field_tag :product_id, product.id %>
+                              <%= submit_tag 'Add to Favorites', class:'favorite' %>
+                            <% end %>
+  
+                         </li>
+                          
+                          <li><a href="#">
+                            Spec Sheet</a></li>
+                          
+                          <li><a href="#">3D/2D Renderings</a></li>
+                          <li><a href="#">Installation Guide</a></li>
+                        </ul>
                     </div>
 
 
