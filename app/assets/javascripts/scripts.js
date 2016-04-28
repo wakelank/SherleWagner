@@ -313,28 +313,43 @@ $(document).on("page:change", (function(){
           }
         });  
 
-        $('ul#components_list li').slice(1).hide();
         
-        $('ul#components_list').append("<a  id='see_all' class='expander'><b>...See all</a></b>");
+        $('ul#components_list li').slice(2).hide();
+        $('#see_all').show();
         
-        $('ul#components_list').append("<a  id='hide_all' class='expander' style='float:right; padding-top:8px'><b>Collapse</a></b>");
         
         $('#hide_all').hide();
+        // var reset_list = false;
         $('#see_all').click(function(){
+          
             $('#see_all').hide();
-            $('ul#components_list li').slice(1).show();
+            $('ul#components_list li').slice(2).show();
             $('#hide_all').show();
             $('ul#components_list').addClass('expandComp');
           }
         );
+        var linkout = false;
+        $('ul#components_list li').on('click',function(e){
+          
+          $('ul#components_list li').slice(2).hide()
+          
+          $('#hide_all').hide();
+          $('#see_all').show();
+          $('ul#components_list').removeClass('expandComp');
+          return
+
+              
+            })
         $('#hide_all').click(function(){
+          
             $('#hide_all').hide();
-            $('ul#components_list li').slice(1).hide();
+            $('ul#components_list li').slice(2).hide();
             $('#see_all').show();
             $('ul#components_list').removeClass('expandComp');
             
           }
         );
+        
 
         break;
 
