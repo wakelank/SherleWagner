@@ -33,7 +33,10 @@
     max-width: 10% !important;
     min-width: 0 !important;
 }
-
+.size_img{
+  width:100%;
+  height: 100%;
+}
 
   @media print{
     .option_box{
@@ -63,15 +66,16 @@
     </div>
   
   <div class="images">   
-    <div class="product_image" style="background-image:url(<%= @config_img %>)" data-url= '<%= @product.image.url %>' >
+    <div class="product_image" data-url= '<%= @product.image.url %>' >
+      <img id="img_img" class="size_img"src="<%= @config_img %>" alt="">
       <div class="config_info">
         <h5 class="prod-config-number">
-         <%= @product.product_configurations.last.number %>
+         <%= @tearsheet_number %>
       </h5> 
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
         <h5>
-        <!--  <span id="shown">shown:</span> --> <span id="description"><%= @product.product_configurations.first.description %></span>
+        <!--  <span id="shown">shown:</span> --> <span id="description"><%=@configs[0].description %></span>
         </h5>
       </div>
     <% end %>
