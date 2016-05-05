@@ -4,24 +4,24 @@
        
       
    <% @genres.each do |genre| %>
-    
-    <% genre.styles.each do |style| %>
-     <% unless style.name == 'no style' %>
-      
+    <div class="genre" id="<%= genre.name.downcase%>" >
+      <% genre.styles.each do |style| %>
+       <% unless style.name == 'no style' %>
         
-       <div class="collection_div" id="<%= style.name.downcase%>" >
-        <a name="<%= genre.name.downcase %>"></a>
-         <%=link_to style_path(style) do %> 
-        <%= image_tag(style.image.url(:original), :class => "collection_img") %>
-        <%# <%= image_tag("/images/rough_col/#{style.name.downcase}.png", :class => "collection_img") %1> %>
+          
+         <div class="collection_div" id="<%= style.name.downcase%>" >
+          
+           <%=link_to style_path(style) do %> 
+          <%= image_tag(style.image.url(:original), :class => "collection_img") %>
+          <%# <%= image_tag("/images/rough_col/#{style.name.downcase}.png", :class => "collection_img") %1> %>
+           
          
-       
-        
-       </div>  
+          
+         </div>  
+        <% end %>
+       <% end %> 
       <% end %>
-     <% end %> 
-    <% end %>
-      
+    </div>  
    <% end %>
       
 
@@ -48,4 +48,13 @@ $('.content').css('background-color','black');
   $('.r_col').css('display','none');
 
   </script>
-  
+  <script>
+  $('#collections_nav li a').click(function(){
+    li = $(this).parent()[0];
+    $('#collections_nav li').removeClass('active');
+    $(li).addClass('active');
+    
+  });
+
+
+  </script>

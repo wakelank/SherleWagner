@@ -354,7 +354,11 @@ $(document).on("page:change", (function(){
         break;
 
       //end of product show page JS
-        
+      case 'styles index':  
+      
+      
+        break;
+
       case 'styles show':
         filter_types2()
         $('#row_content').removeClass('row_content_min');
@@ -374,10 +378,12 @@ $(document).on("page:change", (function(){
           
         break;
       case 'static_pages showrooms': 
+      
        set_map();
 
         break;
       case 'static_pages contact':
+
           set_map();
 
         break;
