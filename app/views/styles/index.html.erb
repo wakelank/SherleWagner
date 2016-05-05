@@ -1,6 +1,7 @@
 <style>
   .genre{
     clear:both;
+
   }
 </style>
 <%= render "layouts/collections_nav"%>
@@ -55,12 +56,14 @@ $('body').scrollspy({ target: '#style-menu' });
 
   </script>
   <script>
-  // $('#collections_nav li a').click(function(){
-  //   li = $(this).parent()[0];
-  //   $('#collections_nav li').removeClass('active');
-  //   $(li).addClass('active');
+  $('#collections_nav li a').click(function(){
+    li = $(this).parent()[0];
+    setTimeout(function() {
+      $('#collections_nav li').removeClass('active');
+      $(li).addClass('active');
+    }, 100);
     
-  // });
+  });
 
 
   </script>
