@@ -9,7 +9,7 @@ class Style < ActiveRecord::Base
   has_many :environment_shot_styles
   has_many :environment_shots, through: :environment_shot_styles
 
-  has_attached_file :image, styles: { medium: "100x100>" }, default_url: "/images/:style/missing_collection.jpg"
+  has_attached_file :image, default_url: "/images/:style/missing_collection.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   extend CanExtractFromFile
 

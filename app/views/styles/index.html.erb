@@ -12,7 +12,7 @@
        <div class="collection_div" id="<%= style.name.downcase%>" >
         <a name="<%= genre.name.downcase %>"></a>
          <%=link_to style_path(style) do %> 
-        <%= image_tag(style.image.url(:medium), :class => "collection_img") %>
+        <%= image_tag(style.image.url(:original), :class => "collection_img") %>
         <%# <%= image_tag("/images/rough_col/#{style.name.downcase}.png", :class => "collection_img") %1> %>
          
        
