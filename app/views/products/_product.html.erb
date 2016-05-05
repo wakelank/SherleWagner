@@ -1,15 +1,15 @@
-  <% bgimage= product.image.url(:medium) %>
-  <% if bgimage != "/images/medium/missing_product.jpg" || current_user  %>
-    <%= link_to(product_path(product), class:"prod_title_link")  do %>
-      <li class ="prod_tile" 
-        style="" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
+<% bgimage= product.image.url(:medium) %>
+<% if bgimage != "/images/medium/missing_product.jpg" || current_user  %>
+  <%= link_to(product_path(product), class:"prod_title_link")  do %>
+    <li class ="prod_tile" 
+      style="" data-filterValues="<%=product.filter_value_names.join(' ').downcase%>" data-category="<%= product.product_type.id %>">
 
-        <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat"></div>
+      <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat"></div>
 
-        <div class="prod_title">
-          <%= product.name %>
-        </div>
+      <div class="prod_title">
+        <%= product.name %>
+      </div>
     </li>
   <% end %>
-  <% end %>
+<% end %>
 

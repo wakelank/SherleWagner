@@ -15,7 +15,6 @@
         <% if @product_type.name == 'Wallpaper'%>
           <% @product_type.product_sub_types.each do |product_sub_type| %>
             <% product_sub_type.main_product.each do |main_product| %>
-
               <% bgimage= main_product.image.url(:medium) %>
 
               <%= link_to product_path(main_product) do %>
@@ -54,6 +53,8 @@
 
               <% preview_products.each_with_index do |product, i| %>
                <% bgimage= product.image.url(:medium) %>
+
+               <% if bgimage != "/images/medium/missing_product.jpg" || current_user  %>
                 <% if i<4 && i<preview_products.length-1 %>
 
                   <%= link_to product_path(product) do %>
@@ -83,6 +84,7 @@
                     </li> 
                   <% end %>
                 <% end %>
+              <% end %><!-- endif if bg images and current_user -->
               <% end %>              
           <br/><br/><hr/>
 
