@@ -1,3 +1,8 @@
+<style>
+  .genre{
+    clear:both;
+  }
+</style>
 <%= render "layouts/collections_nav"%>
 <div class="pg">
 <div class="styles_wrapper">
@@ -33,6 +38,7 @@
 
   $('#main_content').css('background-color','black');
 $('.content').css('background-color','black');
+$('body').scrollspy({ target: '#style-menu' });
 //   $('.grid').masonry({
 //   // options
 //   itemSelector: '.grid-item',
@@ -49,12 +55,12 @@ $('.content').css('background-color','black');
 
   </script>
   <script>
-  $('#collections_nav li a').click(function(){
-    li = $(this).parent()[0];
-    $('#collections_nav li').removeClass('active');
-    $(li).addClass('active');
+  // $('#collections_nav li a').click(function(){
+  //   li = $(this).parent()[0];
+  //   $('#collections_nav li').removeClass('active');
+  //   $(li).addClass('active');
     
-  });
+  // });
 
 
   </script>
