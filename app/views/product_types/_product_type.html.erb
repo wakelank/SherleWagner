@@ -30,7 +30,8 @@
       <div class="panel-body">
         <div class="panel-group" id="acordion<%=product_type.id%>">
           <% unless controller_name == 'styles' && action_name == 'show' || controller_name == 'products' && action_name == 'show' %>
-            <%= render product_type.product_sub_types.order(:id) %>
+            <%= render partial: 'product_sub_types/product_sub_type', collection: product_type.product_sub_types.order(:id) %>
+            <%# <%= render product_type.product_sub_types.order(:id) %1> %>
           <% end %>
         </div>
       </div> <!-- panel-body -->

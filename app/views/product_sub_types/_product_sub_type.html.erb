@@ -15,7 +15,10 @@
     <div id="collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>" class="panel-collapse collapse">
       <div class="panel-body filter">
         
-        <%= render product_sub_type.filters_ordered, :sub_type => product_sub_type %>
+        <%# <%= render product_sub_type.filters_ordered, :sub_type => product_sub_type %1> %>
+        <%= render partial: 'filters/filter',
+        collection:  product_sub_type.filters_ordered,
+        locals: { sub_type: product_sub_type } %>
          
       </div>
       <button class="hide-dropdowns">view selection</button>
