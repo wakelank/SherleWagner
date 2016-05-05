@@ -1,15 +1,48 @@
 <style type="text/css">
       html { height: 100% }
       body { height: 100%; margin: 0; padding: 0 }
-      #map-canvas { height: 100% }
-
+      #map-canvas { 
+        height: 100%;
+        margin: 0 auto;
+      }
+      .list{
+        width:100%;
+        clear: both;
+      }
       .item{
-        clear: left;
+        float: left;
+        width: 45%; 
+        margin:2em;
+        margin-left: 0;
+        min-height: 24em;
+       
+
+        /*clear: left;*/
+      }
+      .clear{
+        width: 100%;
       }
       .folder{
         margin-bottom: 5em;
+        margin-top: 4em;
         border-top: thin solid #eeeeee;
         width: 92%;
+        clear: both;
+      }
+      .static_wrapper{
+        padding: 0;
+      }
+      ul.regions{
+        
+        list-style: none;
+        /*text-align: center;*/
+        width:98%;
+        margin: 0 auto;
+        padding-left: 0;
+      }
+      ul.regions li{
+        display: inline-block;
+        margin: 0 2em;
       }
 
   </style>
@@ -26,6 +59,8 @@
   <h3 class='static_header'>
     Showrooms
   </h3>
+
+  
   
 <div id="address">
   <p>Regional Offices<br>
@@ -40,9 +75,18 @@
 
  <div id="map-canvas" style="width:93%;height:500px"/>
 </div>
+<br>
+<hr>
+<ul class="regions">
+    <a href="#North America"><li><h3>North America</h3></li></a>
+    <a href="#Asia"><li><h3>Asia</h3></li></a>
+    <a href="#Russia"><li><h3>Russia</h3></li></a>
+    <a href="#Europe"><li><h3>Europe & The Middle East</h3></li></a>
+
+  </ul>
 <div id="us_rooms">
   
-  <div id="folder_1" class="folder" style="display: block;"><!-- NORTH AMERICA -->
+  <div id="folder_1" class="folder" style="display: block;"><!-- NORTH AMERICA <--><a name="North America"></a>
             <h3>Showrooms in North America:</h3>
             
             <div class="list">              
@@ -135,8 +179,8 @@
                 </p>
               </div><!-- /item -->
               
-              <div class="clear"></div>
-              <p>Representative Showrooms</p>
+             <!--  <div class="clear">
+              <p>Representative Showrooms</p></div> -->
               <div class="item">
                 <div class="hr">&nbsp;</div>
                 <span class="area">Phoenix, AZ — Representative Showroom</span>
@@ -382,6 +426,7 @@
           </div>
 
           <div id="folder_2" class="folder"><!-- ASIA -->
+            <a name="Asia"></a>
             <h3>Showrooms in Asia:</h3>
            
             <div class="list">
@@ -406,8 +451,9 @@
               
               
               
-              <div class="clear"></div>
+              <!-- <div class="clear">
               <p>Representative Showrooms</p>
+              </div> -->
               <div class="item">
                 <div class="hr">&nbsp;</div>
                 <span class="area">Beijing, China — International Showroom</span>
@@ -517,6 +563,7 @@
 
 
           <div id="folder_3" class="folder" style="display: block;"><!-- RUSSIA -->
+            <a name="Russia"></a>
             <h3>Showrooms in Russia:</h3>
             
             <div class="list">
@@ -542,6 +589,7 @@
           </div>
 
           <div id="folder_4" class="folder"><!-- MIDDLE-EAST -->
+            <a name="Europe"></a>
             <h3>Showrooms in Europe and the Middle East:</h3>
            
             <div class="list">

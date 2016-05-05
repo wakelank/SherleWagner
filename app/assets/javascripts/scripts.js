@@ -579,7 +579,7 @@ function do_checkbox_filters(){
 }
 
 function set_map(){
-      var SW = {lat:40.7621881,lng:-73.9650126};
+      var SW = {lat:40.762257 ,lng: -73.963006};
       var mapOptions = {
         center: SW,
         zoom: 17,
