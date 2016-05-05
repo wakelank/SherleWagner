@@ -527,7 +527,7 @@ $(document).on("page:change", (function(){
            
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
-           $(choice_id).css("background-size", 'contain');
+           $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);
            var ct1 = configurationObject;
           
