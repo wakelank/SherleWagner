@@ -1,7 +1,10 @@
 class ChinaColor < ActiveRecord::Base
  # has_and_belongs_to_many :china_colored_product_groups, class_name: 'ProductGroups', join_table: 'china_colors_product_groups'
-  has_and_belongs_to_many :china_colored_products, class_name: 'Products', join_table: 'china_colors_products'
+  has_and_belongs_to_many :products
+  # has_and_belongs_to_many :china_colored_products, class_name: 'Product', join_table: 'china_colors_products'
 
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
+  validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 
 
   INDICATOR = "CC"
