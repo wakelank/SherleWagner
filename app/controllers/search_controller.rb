@@ -18,7 +18,7 @@ class SearchController < ApplicationController
       when "Style"
         style = Style.find_by_id(result.searchable_id)
         SearchResult.new(name: "#{style.name} Collection",
-                         image: "/images/medium/missing_product.jpg",
+                         image: style.tile_image.url(:medium),
                          url: Rails.application.routes.url_helpers.style_path(style.id)
                         )
       end

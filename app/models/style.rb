@@ -11,6 +11,8 @@ class Style < ActiveRecord::Base
 
   has_attached_file :image, default_url: "/images/:style/missing_collection.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  has_attached_file :tile_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
+  validates_attachment :tile_image, content_type: { content_type: 'image/jpeg' }
   extend CanExtractFromFile
 
   HEADER = "STYLES"
