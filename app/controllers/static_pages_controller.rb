@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   def index
   end
+
+  def edit_homepage
+    @copy = File.read('public/home_page_copy.html')
+  end
   
   def upload_page
   end
