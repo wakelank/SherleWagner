@@ -52,11 +52,11 @@
     <ul id="product_china_list" class="detail_list">
       <% @product.china_colors.each do |china_color| %>
         <% unless china_color.name == 'no name' %>
-          <li class="prod_tile finish_tile  ", data-material_identifier="<%= china_color.identifier %>">
-            <p class="swatch_name">
-              <%= china_color.name %>
-            </p><div class="swatch_div"><%= china_color.name %> </div>
+        <% bg_img = china_color.image.url %>
+          <li class="prod_tile finish_tile  ", data-material_identifier="<%= china_color.identifier %>" , style="background-image:url('<%= bg_img %>')">
+            <div class="swatch_div"><%= china_color.name %> </div>
           </li>
+          
           <!-- china_color.image -->
         <% end %>
       <% end %>
