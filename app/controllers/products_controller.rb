@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
     @finish_id = params[:finish_id]
     @material_id = params[:material_id]
     @china_color_id = params[:china_color_id]
+    binding.pry
   end
 
 
@@ -109,6 +110,7 @@ class ProductsController < ApplicationController
         end
       @finishes << ob
     end 
+    
   end
 
   def from_category

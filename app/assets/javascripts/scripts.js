@@ -201,11 +201,7 @@ $(document).on("page:change", (function(){
 
          tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish);
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
-        
-        // console.log(tearsheet_targ);
-
-           // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       
+     
 
 
 
@@ -229,6 +225,11 @@ $(document).on("page:change", (function(){
               swap_product_info_for_configuration(t);
               $(t).addClass('alt_choice');
 
+             }else{
+                if (i == $('.alt_img').length-1 ){
+                  console.log('no material matches');
+                  //do the swap B and W image here*
+                }
              }
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
@@ -244,9 +245,9 @@ $(document).on("page:change", (function(){
             var mat = this.dataset.finish_identifier;
             console.log(mat);
 
-            the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
+            var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
-             mat_sheet_targ = the_tear_targ.replace("XX", mat);
+             var mat_sheet_targ = the_tear_targ.replace("XX", mat);
             $('.tear-sheet-submit').attr('href',mat_sheet_targ);
             prod_config.finish = mat;
 
@@ -266,8 +267,6 @@ $(document).on("page:change", (function(){
                   $(t).addClass('alt_choice');
                   foundit = 1;
 
-
-        
                 // }else if(i == $('.alt_img').length-1 ) {
                 //   $('.alt_img').each(function(i,t){
                 //     if (t.dataset.url.includes('-'+mat)){  
@@ -277,6 +276,11 @@ $(document).on("page:change", (function(){
                 //       $(t).addClass('alt_choice');
                 //     }
                 //   });
+                }else{
+                  if (i == $('.alt_img').length-1 ){
+                    console.log('no material+ finish matches');
+                    //do the swap B and W image here*
+                  }
                 }
 
             }
@@ -284,7 +288,7 @@ $(document).on("page:change", (function(){
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           }, doublecheck());
           function doublecheck(){
-            //console.log('doubleing')
+            
             if (foundit ==0){
               if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
 
@@ -296,6 +300,11 @@ $(document).on("page:change", (function(){
                     $(t).addClass('alt_choice');
                     foundit = 1;
 
+                  }else{
+                    if (i == $('.alt_img').length-1 ){
+                      console.log('no finish matches');
+                      //do the swap B and W image here*
+                    }
                   }
                 });
                 if(foundit == 0){
@@ -354,7 +363,11 @@ $(document).on("page:change", (function(){
         break;
 
       //end of product show page JS
-        
+      case 'styles index':  
+      
+      
+        break;
+
       case 'styles show':
         filter_types2()
         $('#row_content').removeClass('row_content_min');
@@ -374,10 +387,12 @@ $(document).on("page:change", (function(){
           
         break;
       case 'static_pages showrooms': 
+      
        set_map();
 
         break;
       case 'static_pages contact':
+
           set_map();
 
         break;
@@ -515,13 +530,13 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-          identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim()
+          var identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim()
 
            $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
            
            var bg = $(targ).css("background-image");
            $(choice_id).css("background-image", bg);
-           $(choice_id).css("background-size", 'contain');
+           $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);
            var ct1 = configurationObject;
           

@@ -476,7 +476,7 @@ li.highlighted{
 }
 .detail_list {
   float:left;
-  padding-right: 20px;
+  /*padding-right: 20px;*/
 }
 
 .images{
@@ -603,7 +603,7 @@ h3#prod_name{
   color: black;
       float: right;
     width: 50%;
-    padding-left: 2em;
+    padding-left: 7%;
 }
 .components{
   height:   3.5em;
@@ -636,7 +636,7 @@ h3#prod_name{
   padding-right: 8px;
 }
 .centered{
-  padding-left: 15%;
+  padding-left: 22%;
 }
 .options{
   width: 100%;
@@ -651,6 +651,7 @@ h3#prod_name{
   margin-right: 2em;
   vertical-align:top;
   color: white; 
+  background-size: cover;
     
 }
 .tearsheet_wrapper{
@@ -681,7 +682,7 @@ div.tearsheet-form-box {
 .prod_links{
   float: left;
   clear: left;
-  margin-top: 1em;
+  margin-top: 2.5em;
   text-align: left;
 
 }
@@ -745,8 +746,9 @@ div.tearsheet-form-box {
 
         }
 
+
   .finishes{
-    max-width: 53%;
+    max-width: 50%;
     clear: left;
     margin-right: 0;
     margin-left: 0;
@@ -758,6 +760,7 @@ div.tearsheet-form-box {
 
    #material_choice{
       margin-top: 0.5em;
+      margin-right: 0;
     }
     #finish_choice{
       margin-top: 0.5em;
@@ -767,6 +770,7 @@ div.tearsheet-form-box {
   width: 4em;
   height: 4em;
   margin: 0.2em;
+  background-size: cover;
 }
 .detail_list{
   padding-left: 0;
