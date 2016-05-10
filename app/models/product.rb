@@ -34,6 +34,13 @@ class Product < ActiveRecord::Base
   before_create :add_associated_collection
   after_create :add_finishes, :add_material, :add_china_color
 
+
+  alias :old_product_configurations :product_configurations
+
+def product_configurations
+ old_product_configurations.where('image_file_name is not null')
+end
+
   def product_sub_type_name
     product_sub_type.name
   end
