@@ -126,7 +126,7 @@
     <div class="image_list">
       <% if @product.product_configurations.count > 1 %>
         <ul id="alt_imgs">
-          <% @product.product_configurations.each do |config| %>
+          <% @product.product_configurations(current_user).each do |config| %>
             <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
             <%= image_tag config.image.url(:thumb) %> <br/>
           </li>
