@@ -1,8 +1,8 @@
 <div class="options">
   <!-- <div class="finishes"> -->
-  <% left = "0%" %>
+  <% left = "no_left" %>
     <% if @product.finishes.length >= 1 %>
-    <div class="finishes swatches" style="padding-left:<%= left %>">
+    <div class="finishes swatches <%= left %>" >
       <h3 class='choice_title'>Finish</h3>
       
       <ul id="product_finishes_list" class="detail_list">
@@ -20,11 +20,11 @@
         <% end %>
       </ul>
     </div>
-    <% left = "6%" %>
+    <% left = "left" %>
   <% end %>
   <!-- <div class="materials"> -->
   <% if @product.materials.length >= 1 %>
-    <div class="materials swatches" style="padding-left:<%= left %>">
+    <div class="materials swatches <%= left %>" >
       <% if @product.finishes.length >= 1 %>
       <h3 class='choice_title'>Detail</h3>
       <% else %>
@@ -43,11 +43,11 @@
         <% end %>
       </ul>
     </div>
-    <% left = "6%" %>
+    <% left = "left" %>
   <% end %>
   <!-- <div class="china_colors"> -->
   <% if @product.china_colors.length() >= 1 %>
-  <div class="china_colors swatches">
+  <div class="china_colors swatches <%= left %> " >
     <h3 class='choice_title'>China Color</h3>
     <ul id="product_china_list" class="detail_list">
       <% @product.china_colors.each do |china_color| %>

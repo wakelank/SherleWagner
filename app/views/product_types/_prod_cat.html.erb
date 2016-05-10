@@ -6,6 +6,18 @@
     background-color: rgba(0,0,0,0.7);
     padding-top: 70%!important;
   }
+  .sub-type-name{
+    
+    /* vertical-align: bottom; */
+    position: relative;
+    bottom: 73%;
+    width: 85%;
+    background-color: black;
+    padding: 8px 0;
+    
+  }.sub-type-name h4{
+    margin: 0;
+  }
 </style>
 <div class="prod_wrapper ">
   <div class="list_wrapper">
@@ -40,9 +52,11 @@
               <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
                 <% bgimage= product_sub_type.image.url %>
                  <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %> sub_type_tile" id=""style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat;">
-                  <h3 > 
+                  <div class="sub-type-name">
+                  <h4> 
                     <%= product_sub_type.name %>
-                  </h3>
+                  </h4>
+                  </div>
                 </li>              
                 <% end %>
                 <% if product_sub_type.five_products(current_user).length >= 5  %>

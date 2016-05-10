@@ -743,7 +743,7 @@ div.tearsheet-form-box {
   }
   .swatches{
           
-          max-width: 47%;
+          width: 47%;
           float: left;
           color: grey;
           padding-left: 1em;
