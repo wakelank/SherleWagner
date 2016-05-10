@@ -621,6 +621,10 @@ h3#prod_name{
     width:42%;
     /*border: thin solid #eeeeee;*/
 }
+#components_list{
+  padding-left: 8px;
+}
+
 .expander{
   cursor:pointer;
 }

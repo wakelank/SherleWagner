@@ -308,6 +308,7 @@ $(document).on("page:change", (function(){
                   }else{
                     if (i == $('.alt_img').length-1 ){
                       console.log('no finish matches');
+
                       //do the swap B and W image here*
                     }
                   }
@@ -539,7 +540,7 @@ $(document).on("page:change", (function(){
 
            $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
            
-           var bg = $(targ).css("background-image");
+            bg = $(targ).css("background-image").replace("thumb","medium");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);
