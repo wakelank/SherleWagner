@@ -219,18 +219,23 @@ $(document).on("page:change", (function(){
             prod_config.material=mat;
 
           $('.alt_img').each(function(i,t){
+            console.log(i);
              if (t.dataset.url.includes('-'+mat)){
-              
+              console.log('found');
               swap_product_image(t.dataset.url);
               swap_product_info_for_configuration(t);
               $(t).addClass('alt_choice');
+              return false;
+
 
              }else{
-                if (i == $('.alt_img').length-1 ){
+              //console.log(i);
+                if (i == $('.alt_img').length - 1 ){
                   console.log('no material matches');
                   //do the swap B and W image here*
                 }
              }
+            
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
         });
@@ -278,7 +283,7 @@ $(document).on("page:change", (function(){
                 //   });
                 }else{
                   if (i == $('.alt_img').length-1 ){
-                    console.log('no material+ finish matches');
+                    // console.log('no material+ finish matches');
                     //do the swap B and W image here*
                   }
                 }
@@ -303,6 +308,7 @@ $(document).on("page:change", (function(){
                   }else{
                     if (i == $('.alt_img').length-1 ){
                       console.log('no finish matches');
+
                       //do the swap B and W image here*
                     }
                   }
@@ -534,7 +540,7 @@ $(document).on("page:change", (function(){
 
            $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
            
-           var bg = $(targ).css("background-image");
+            bg = $(targ).css("background-image").replace("thumb","medium");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);
