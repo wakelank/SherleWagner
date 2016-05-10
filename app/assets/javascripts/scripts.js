@@ -219,18 +219,23 @@ $(document).on("page:change", (function(){
             prod_config.material=mat;
 
           $('.alt_img').each(function(i,t){
+            console.log(i);
              if (t.dataset.url.includes('-'+mat)){
-              
+              console.log('found');
               swap_product_image(t.dataset.url);
               swap_product_info_for_configuration(t);
               $(t).addClass('alt_choice');
+              return false;
+
 
              }else{
-                if (i == $('.alt_img').length-1 ){
-                  //console.log('no material matches');
+              //console.log(i);
+                if (i == $('.alt_img').length - 1 ){
+                  console.log('no material matches');
                   //do the swap B and W image here*
                 }
              }
+            
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
         });
