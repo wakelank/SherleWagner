@@ -227,7 +227,7 @@ $(document).on("page:change", (function(){
 
              }else{
                 if (i == $('.alt_img').length-1 ){
-                  console.log('no material matches');
+                  //console.log('no material matches');
                   //do the swap B and W image here*
                 }
              }
@@ -278,7 +278,7 @@ $(document).on("page:change", (function(){
                 //   });
                 }else{
                   if (i == $('.alt_img').length-1 ){
-                    console.log('no material+ finish matches');
+                    // console.log('no material+ finish matches');
                     //do the swap B and W image here*
                   }
                 }

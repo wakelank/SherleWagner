@@ -492,13 +492,13 @@ li.highlighted{
 
 
 .product_image{
-  width: 100%;
+  width: 104%;
   height: 400px;
   position: relative;
       background-size: contain;
     background-position-x: 50%;
   float: left;
-  margin-right: 3em;
+  /*margin-right: 3em;*/
   margin-bottom: 20px;
   background-color: white;
     background-repeat: no-repeat;
@@ -560,7 +560,7 @@ li.highlighted{
   /*overflow: auto;*/
   
   height: auto;
-  width:50%;
+  width:52%;
   float: left;
 
   
