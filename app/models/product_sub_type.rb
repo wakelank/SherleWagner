@@ -11,9 +11,14 @@ class ProductSubType < ActiveRecord::Base
 
   HEADER = "SUB FOLDER"
 
-  def five_products
-    self.products.all.order(:id).limit 5
+  def five_products(admin = false)
+    if admin
+      self.products.all.order(:id).limit 5
+    else
+      self.products.where('image_file_name is not null').order(:id).limit 5
+    end
   end
+
   def two_products
     self.products.all.order(:id).limit 2
   end
@@ -32,3 +37,11 @@ class ProductSubType < ActiveRecord::Base
   end
 
 end
+  # def product_configurations(admin = false)
+  #   if admin
+  #     old_product_configurations
+  #   else
+  #     old_product_configurations.where('image_file_name is not null')
+  #   end
+  # end
+

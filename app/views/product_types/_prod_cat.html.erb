@@ -45,8 +45,8 @@
                 </h3>
               </li>              
               <% end %>
-              <% if product_sub_type.five_products.length >= 5  %>
-                <% preview_products = product_sub_type.five_products %>
+              <% if product_sub_type.five_products(current_user).length >= 5  %>
+                <% preview_products = product_sub_type.five_products(current_user) %>
               <% else %>
                 <% preview_products = product_sub_type.two_products %>
               <% end %>
