@@ -225,6 +225,11 @@ $(document).on("page:change", (function(){
               swap_product_info_for_configuration(t);
               $(t).addClass('alt_choice');
 
+             }else{
+                if (i == $('.alt_img').length-1 ){
+                  console.log('no material matches');
+                  //do the swap B and W image here*
+                }
              }
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           });
@@ -271,6 +276,11 @@ $(document).on("page:change", (function(){
                 //       $(t).addClass('alt_choice');
                 //     }
                 //   });
+                }else{
+                  if (i == $('.alt_img').length-1 ){
+                    console.log('no material+ finish matches');
+                    //do the swap B and W image here*
+                  }
                 }
 
             }
@@ -278,7 +288,7 @@ $(document).on("page:change", (function(){
             // fin = $('.finishes .highlight')[0].dataset.finish_identifier
           }, doublecheck());
           function doublecheck(){
-            console.log('doubleing')
+            
             if (foundit ==0){
               if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
 
@@ -292,7 +302,7 @@ $(document).on("page:change", (function(){
 
                   }else{
                     if (i == $('.alt_img').length-1 ){
-                      console.log('no finish match');
+                      console.log('no finish matches');
                       //do the swap B and W image here*
                     }
                   }
