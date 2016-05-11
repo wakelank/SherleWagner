@@ -8,7 +8,12 @@ class StaticPagesController < ApplicationController
 
   def update_homepage
     copy = params[:home_page_copy]
+    image = params[:homepage_image]
     File.open(homepage_copy_file, 'w') { |f| f.write copy }
+    if image
+      File.open(homepage_image_file, 'wb') { |f| f.write image.read }
+    end
+
     redirect_to root_path
   end
   
@@ -32,5 +37,9 @@ class StaticPagesController < ApplicationController
   
   def homepage_copy_file
     'public/home_page_copy.html'
+  end
+
+  def homepage_image_file
+    "public/images/sw_home1.jpg"
   end
 end
