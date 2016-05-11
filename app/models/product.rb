@@ -35,19 +35,25 @@ class Product < ActiveRecord::Base
   after_create :add_finishes, :add_material, :add_china_color
 
 
-  alias :old_product_configurations :product_configurations
 
-  def product_configurations(admin = false)
+  def product_configurations_with_image(admin = false)
     if admin
-      old_product_configurations
+      product_configurations
     else
-      old_product_configurations.where('image_file_name is not null')
+      product_configurations.map do |config|
+        if config.image_file_name.nil? 
+          NullProductConfiguration.new 
+        else
+          config
+        end
+      end
+
     end
   end
 
-  def product_sub_type_name
-    product_sub_type.name
-  end
+   def product_sub_type_name
+     product_sub_type.name
+   end
 
   def material_names
     materials.map(&:name)
