@@ -77,8 +77,14 @@
       </h5> 
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
+         <% description ="" %>
+        <% if @product.all_components.length < 1 %>
+          <% description = @product.product_configurations.first.description %>
+        <% end %>
+        <%=  %>
+      
         <h5>
-        <!--  <span id="shown">shown:</span> --> <span id="description">YOOOO</span>
+        <!--  <span id="shown">shown:</span> --> <span id="description"><%= description %></span>
         </h5>
       </div>
     <% end %>
