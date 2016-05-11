@@ -1,0 +1,114 @@
+
+<style>
+  .navvy{
+    position: relative;
+    display: none;
+  }
+  #l_nav{
+    display: none;
+    position: relative;
+  }
+  .r_col{
+    display: none;
+  }
+  #content_wrapper {
+    width: 100%;
+    /* background-image: url("images/HomeSW.jpg"); */
+    background-image: url("images/sw_home1_preview.jpg");
+    padding: 0;
+    /* height: 100%; */
+    /* display: none; */
+    display: table-row-group;
+    background-size: cover;
+    min-height:  68em;
+}
+  #center_main{
+    
+    width: 100%;
+    padding: 0;
+
+  }
+  #main_contain {
+    background-color: #eeeeee;
+    margin-bottom: 70px;
+
+}
+
+
+  #holder{
+    width: 100%;
+  /*  background-image: url("images/sw_home1.jpg"); */
+    background-size: cover;
+  }
+  .vertical{
+    border-color: solid blue;
+    /*height: 1000px;*/
+    /*height: 100%;*/
+    /*background-size: contain;*/
+    /*background-color: grey;*/
+    /*position: absolute;*/
+  }
+  #left{
+    display: block;
+    /*background-image: url("images/sw_home1.jpg");*/
+  }
+  #right{
+    /*display: none;*/
+    /*width: 20%;*/
+    /*background-image: url("images/sw_home2.jpg");*/
+    /*right: 0;
+        background-position-x: -37px;
+        left: 80%;
+    width: 26%;
+        background-position-y: -10px;*/
+  }
+  #mid{
+   
+    /* background-image: url("images/HomeSW.jpg"); */
+    /*left: 38.5%;*/
+    /* background-size: contain; */
+    height: 68em;
+    background-color: #E1E1E1;
+    /* display: none; */
+    display: table;
+    /*max-width: 42%;*/
+    /* background-repeat: no-repeat; */
+  }
+  #copy{
+    /*width: 90%;*/
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+    padding-top: 3%;
+    height: 100%;
+    line-height: 30px;
+
+  }
+  span.em{
+    
+  }
+@media(max-width: 768px){
+  #mid{
+      width: 100%;
+      background-color: rgba(2,2,2,0.5);
+      color:white;
+      }
+}
+</style>
+<div id="holder">
+  <div class="col-xs-0 col-sm-4 col-med-6 vertical" id="left">
+    <!-- <img src="images/sw_home1.jpg" alt=""> -->
+  </div>
+  <div class="col-sm-6 col-med-6 vertical" id="mid">
+
+    <div id="copy">
+      
+      <%= File.read('public/home_page_preview_copy.html').html_safe %>
+    </div>
+    
+  </div>
+  <div class="col-sm-2 col-med-2 vertical" id="right">
+    <!-- <img src="images/sw_home2.jpg" alt=""> -->
+  </div>
+  
+</div>
