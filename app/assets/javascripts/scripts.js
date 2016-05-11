@@ -219,11 +219,16 @@ $(document).on("page:change", (function(){
              finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
 
+            if($('.finishes .highlight').length > 0){
+              otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
+              }
+
+
             prod_config.material=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               console.log(i);
-               if (t.dataset.url.includes('-'+mat)){
+               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
                 console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -253,8 +258,8 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
-            if($('.materials .highlight')>0){
-              var otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+            if($('.materials .highlight').length > 0){
+             var otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
               }
 
             
@@ -306,11 +311,9 @@ $(document).on("page:change", (function(){
           function doublecheck(){
             
             if (foundit ==0 && $('.alt_img').length > 0){
-              if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
-
-              }else{
+              
                 $('.alt_img').each(function(i,t){
-                  if (t.dataset.url.includes('-'+mat)){  
+                  if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){  
                     swap_product_image(t.dataset.url);
                     swap_product_info_for_configuration(t);
                     $(t).addClass('alt_choice');
@@ -328,7 +331,7 @@ $(document).on("page:change", (function(){
                   }
                 });
                 
-              }
+              
 
             }else{
               //there are no alt imgs*
