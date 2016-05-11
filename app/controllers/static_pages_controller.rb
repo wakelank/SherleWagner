@@ -3,12 +3,13 @@ class StaticPagesController < ApplicationController
   end
 
   def edit_homepage
-    @copy = File.read('public/home_page_copy.html')
+    @copy = File.read(homepage_copy_file)
   end
 
   def update_homepage
     copy = params[:home_page_copy]
-    render 'root'
+    File.open(homepage_copy_file, 'w') { |f| f.write copy }
+    redirect_to root_path
   end
   
   def upload_page
@@ -27,4 +28,9 @@ class StaticPagesController < ApplicationController
   end
 
 
+  private
+  
+  def homepage_copy_file
+    'public/home_page_copy.html'
+  end
 end
