@@ -131,7 +131,7 @@
   </div>
   
     <div class="image_list">
-      <% if @product.product_configurations.count > 1 %>
+      <% if @product.product_configurations.count > 0 %>
         <ul id="alt_imgs">
           <% @product.product_configurations.each do |config| %>
             <% if current_user || !config.image.url.include?('missing') %>
