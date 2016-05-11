@@ -235,6 +235,8 @@ $(document).on("page:change", (function(){
                 //console.log(i);
                   if (i == $('.alt_img').length - 1 ){
                     console.log('no material matches');
+                    swap_product_image(bw_image);
+                    swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
                   }
                }
@@ -243,6 +245,9 @@ $(document).on("page:change", (function(){
             });
           }else{
             console.log('no alt imgs');
+            swap_product_image(bw_image);
+            swap_product_info_for_no_configuration();
+
           }
         });
 
@@ -314,7 +319,9 @@ $(document).on("page:change", (function(){
                   }else{
                     if (i == $('.alt_img').length-1 ){
                       console.log('no finish matches');
-                      console.log(t);
+                      swap_product_image(bw_image);
+                      swap_product_info_for_no_configuration();
+                      
 
                       //do the swap B and W image here*
                     }
@@ -326,6 +333,7 @@ $(document).on("page:change", (function(){
             }else{
               //there are no alt imgs*
               console.log('no alt img');
+              swap_product_info_for_no_configuration();
             }
           }
         });  
@@ -422,6 +430,7 @@ $(document).on("page:change", (function(){
     $('#see_all').hide();
     $('#hide_all').show();
   }
+
   function show_only_config_components(config){
     var comp = $('#components_list').find('li');
     comp.hide();
@@ -434,6 +443,14 @@ $(document).on("page:change", (function(){
 
     });
    
+  }
+  function swap_product_info_for_no_configuration(){
+    var the_code_url= $('.tear-sheet-submit').attr('href').split('/');
+    the_code = $(the_code_url).last()[0];
+    $('.prod-config-number').html(the_code);
+    var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
+    $('.prod-config-description #description').html(fake_description);
+    
   }
 
    function swap_product_image(url){
