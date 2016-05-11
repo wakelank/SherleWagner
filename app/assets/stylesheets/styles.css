@@ -187,6 +187,7 @@ input#search{
   margin: 0 auto;
       background-position-x: 50%;
       background-position-y: 50%;
+      background-size: 127%;
   
 }
 .search_prod_tile{
@@ -743,7 +744,7 @@ div.tearsheet-form-box {
   }
   .swatches{
           
-          max-width: 47%;
+          width: 47%;
           float: left;
           color: grey;
           padding-left: 1em;
