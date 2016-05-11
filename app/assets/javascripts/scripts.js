@@ -440,7 +440,7 @@ $(document).on("page:change", (function(){
     comp.hide();
     
     $.each(comp, function(i, c){
-      console.log(c);
+      // console.log(c);
       
       if (c.dataset.configurations.indexOf(config) >= 0){
         $(c).show();
