@@ -506,6 +506,7 @@ $(document).on("page:change", (function(){
        // .replace("XX", finish_identifier);
        // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
        // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
+       console.log("product_id");
        console.log(product_id);
 
 
