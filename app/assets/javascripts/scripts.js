@@ -178,8 +178,9 @@ $(document).on("page:change", (function(){
             var fin = t.dataset.finish_identifier;
             if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
-              
-              $(t).trigger('click');
+              if ($('#components_list li').length < 1){
+                $(t).trigger('click');
+              }
               // console.log(t);
             }
 
@@ -323,8 +324,10 @@ $(document).on("page:change", (function(){
                   }else{
                     if (i == $('.alt_img').length-1 ){
                       console.log('no finish matches');
-                      swap_product_image(bw_image);
-                      swap_product_info_for_no_configuration();
+                      if ($('#components_list li').length < 1){
+                        swap_product_image(bw_image);
+                        swap_product_info_for_no_configuration();
+                      }
                       
 
                       //do the swap B and W image here*
