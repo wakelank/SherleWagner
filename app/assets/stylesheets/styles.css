@@ -187,6 +187,7 @@ input#search{
   margin: 0 auto;
       background-position-x: 50%;
       background-position-y: 50%;
+      background-size: 127%;
   
 }
 .search_prod_tile{
