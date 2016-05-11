@@ -480,6 +480,7 @@ li.highlighted{
   /*padding-right: 20px;*/
 }
 
+
 .images{
   float: left;
   padding-left: 1em;  
@@ -719,6 +720,7 @@ div.tearsheet-form-box {
   body{
     min-width: 1276px;
   }
+
 }
 @media (min-width: 777px) and (max-width: 950px)  {
   body{
@@ -1042,6 +1044,9 @@ li.foot_link, li.foot_link a{
   .center_min_show{
     min-width: 835px;
 }
+.left{
+  padding-left: 10% !important;
+}
  
 }
 
@@ -1140,13 +1145,19 @@ li.foot_link, li.foot_link a{
 
 @media (max-width: 770px) {
   .prod_tile{
-    height: 15em;
-    width: 12em;
+    height: 10em;
+    width: 8em;
   }
   .type_tile{
-    width: 15em;
-    height: 19.5em;
+    width: 8em;
+    height: 10em;
 
+  }
+  .sub-type-name {
+    top:0 !important;
+  }
+  .sub-type-name h4{
+    font-size: 12px;
   }
   #title_link a{
   

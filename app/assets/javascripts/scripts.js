@@ -178,8 +178,9 @@ $(document).on("page:change", (function(){
             var fin = t.dataset.finish_identifier;
             if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
-              
-              $(t).trigger('click');
+              if ($('#components_list li').length < 1){
+                $(t).trigger('click');
+              }
               // console.log(t);
             }
 
@@ -218,12 +219,17 @@ $(document).on("page:change", (function(){
 
              finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
+              var otherswatch = "/"
+            if($('.finishes .highlight').length > 0){
+              otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
+              }
+
 
             prod_config.material=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
-              console.log(i);
-               if (t.dataset.url.includes('-'+mat)){
+              //console.log(i);
+               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
                 console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -253,8 +259,9 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
-            if($('.materials .highlight')>0){
-              var otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+          var otherswatch = "/"
+            if($('.materials .highlight').length > 0){
+             otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
               }
 
             
@@ -306,11 +313,9 @@ $(document).on("page:change", (function(){
           function doublecheck(){
             
             if (foundit ==0 && $('.alt_img').length > 0){
-              if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
-
-              }else{
+              
                 $('.alt_img').each(function(i,t){
-                  if (t.dataset.url.includes('-'+mat)){  
+                  if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){  
                     swap_product_image(t.dataset.url);
                     swap_product_info_for_configuration(t);
                     $(t).addClass('alt_choice');
@@ -319,8 +324,10 @@ $(document).on("page:change", (function(){
                   }else{
                     if (i == $('.alt_img').length-1 ){
                       console.log('no finish matches');
-                      swap_product_image(bw_image);
-                      swap_product_info_for_no_configuration();
+                      if ($('#components_list li').length < 1){
+                        swap_product_image(bw_image);
+                        swap_product_info_for_no_configuration();
+                      }
                       
 
                       //do the swap B and W image here*
@@ -328,7 +335,7 @@ $(document).on("page:change", (function(){
                   }
                 });
                 
-              }
+              
 
             }else{
               //there are no alt imgs*
@@ -436,6 +443,7 @@ $(document).on("page:change", (function(){
     comp.hide();
     
     $.each(comp, function(i, c){
+      // console.log(c);
       
       if (c.dataset.configurations.indexOf(config) >= 0){
         $(c).show();
