@@ -218,7 +218,7 @@ $(document).on("page:change", (function(){
 
              finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-
+              var otherswatch = "/"
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
@@ -227,7 +227,7 @@ $(document).on("page:change", (function(){
             prod_config.material=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
-              console.log(i);
+              //console.log(i);
                if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
                 console.log('found');
                 swap_product_image(t.dataset.url);
@@ -258,8 +258,9 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
+          var otherswatch = "/"
             if($('.materials .highlight').length > 0){
-             var otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+             otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
               }
 
             
@@ -439,6 +440,7 @@ $(document).on("page:change", (function(){
     comp.hide();
     
     $.each(comp, function(i, c){
+      console.log(c);
       
       if (c.dataset.configurations.indexOf(config) >= 0){
         $(c).show();
