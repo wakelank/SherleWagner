@@ -480,6 +480,7 @@ li.highlighted{
   /*padding-right: 20px;*/
 }
 
+
 .images{
   float: left;
   padding-left: 1em;  
@@ -719,6 +720,7 @@ div.tearsheet-form-box {
   body{
     min-width: 1276px;
   }
+
 }
 @media (min-width: 777px) and (max-width: 950px)  {
   body{
@@ -1041,6 +1043,9 @@ li.foot_link, li.foot_link a{
 @media (min-width: 1150px) {
   .center_min_show{
     min-width: 835px;
+}
+.left{
+  padding-left: 10% !important;
 }
  
 }
