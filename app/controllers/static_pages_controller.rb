@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-before_action :authenticate_user!
+before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upload_page]
 
   def index
   end
@@ -9,28 +9,22 @@ before_action :authenticate_user!
   end
 
   def update_homepage
-    if current_user
-      FileUtils.cp homepage_preview_copy_file, homepage_copy_file
-      FileUtils.cp homepage_preview_image_file, homepage_image_file
-    end
+    FileUtils.cp homepage_preview_copy_file, homepage_copy_file
+    FileUtils.cp homepage_preview_image_file, homepage_image_file
 
     redirect_to root_path
   end
 
   def update_homepage_preview
-    if current_user
-      copy = params[:home_page_copy]
-      image = params[:homepage_image]
-      File.open(homepage_preview_copy_file, 'w') { |f| f.write copy }
-      if image
-        File.open(homepage_preview_image_file, 'wb') { |f| f.write image.read }
-      end
-
-      redirect_to homepage_preview_path
-    else
-
-      redirect_to root_path
+    copy = params[:home_page_copy]
+    image = params[:homepage_image]
+    File.open(homepage_preview_copy_file, 'w') { |f| f.write copy }
+    if image
+      File.open(homepage_preview_image_file, 'wb') { |f| f.write image.read }
     end
+
+    redirect_to homepage_preview_path
+
   end
 
   def home_preview
