@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'product_configurations/show'
+  get 'edit_homepage' => 'static_pages#edit_homepage'
+  post 'update_homepage' => 'static_pages#update_homepage'
 
 
   get 'style/show'
