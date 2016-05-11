@@ -66,6 +66,8 @@ $(document).on("page:change", (function(){
       $('#center_main').removeClass('center_min_width');
       $('#center_main').addClass('center_min_show');
 
+
+
       var configurationObject = {};
         var tearSheetForm = document.getElementById('tearsheet-form');
         var product_base_number = tearSheetForm.elements["product_base_number"].value;
@@ -107,6 +109,7 @@ $(document).on("page:change", (function(){
         //select the featured image from the alt's on load
       
         var image = $('.product_image')[0].dataset.url;
+         bw_image = $('.product_image')[0].dataset.bw;
         var matchr = image.match(/\/[^\/]+.jpg/);
 
         $('.alt_img').each(function(i,t){
@@ -217,27 +220,30 @@ $(document).on("page:change", (function(){
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
 
             prod_config.material=mat;
+          if ($('.alt_img').length > 0){
+            $('.alt_img').each(function(i,t){
+              console.log(i);
+               if (t.dataset.url.includes('-'+mat)){
+                console.log('found');
+                swap_product_image(t.dataset.url);
+                swap_product_info_for_configuration(t);
+                $(t).addClass('alt_choice');
+                return false;
 
-          $('.alt_img').each(function(i,t){
-            console.log(i);
-             if (t.dataset.url.includes('-'+mat)){
-              console.log('found');
-              swap_product_image(t.dataset.url);
-              swap_product_info_for_configuration(t);
-              $(t).addClass('alt_choice');
-              return false;
 
-
-             }else{
-              //console.log(i);
-                if (i == $('.alt_img').length - 1 ){
-                  console.log('no material matches');
-                  //do the swap B and W image here*
-                }
-             }
-            
-            // fin = $('.finishes .highlight')[0].dataset.finish_identifier
-          });
+               }else{
+                //console.log(i);
+                  if (i == $('.alt_img').length - 1 ){
+                    console.log('no material matches');
+                    //do the swap B and W image here*
+                  }
+               }
+              
+              // fin = $('.finishes .highlight')[0].dataset.finish_identifier
+            });
+          }else{
+            console.log('no alt imgs');
+          }
         });
 
         $('.finishes .finish_tile').click(function(f){
@@ -294,7 +300,7 @@ $(document).on("page:change", (function(){
           }, doublecheck());
           function doublecheck(){
             
-            if (foundit ==0){
+            if (foundit ==0 && $('.alt_img').length > 0){
               if($('.alt_img.alt_choice')[0].dataset.url.includes('-'+mat)){
 
               }else{
@@ -308,22 +314,18 @@ $(document).on("page:change", (function(){
                   }else{
                     if (i == $('.alt_img').length-1 ){
                       console.log('no finish matches');
+                      console.log(t);
 
                       //do the swap B and W image here*
                     }
                   }
                 });
-                if(foundit == 0){
-                  // console.log("zero match");
-                  // console.log(otherswatch);
-                  //to do
-                  // if the selection does not include otherswatch:
-                  //look for one that does and show that
-                  //if there isn't one, show BW
-
-                }
+                
               }
 
+            }else{
+              //there are no alt imgs*
+              console.log('no alt img');
             }
           }
         });  
@@ -540,7 +542,7 @@ $(document).on("page:change", (function(){
 
            $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
            
-            bg = $(targ).css("background-image").replace("thumb","medium");
+           var bg = $(targ).css("background-image").replace("thumb","medium");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);
