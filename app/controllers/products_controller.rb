@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+before_action :authenticate_user!, only: [:upload_product_file]
+
   def upload_product_file
     Product.new_upload_product_file(params[:filename])
 

@@ -37,6 +37,11 @@ footer#bottom {
 
     </ul>
   </div>
+  <% if current_user && request.original_url.include?('preview')%>
+    <div class="admin-link">
+      <%= link_to "approve homepage", update_homepage_path %>
+    </div>
+  <% end %>
 </footer> 
 
 <footer id="bottom">

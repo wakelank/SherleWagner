@@ -98,6 +98,10 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.navigation_static_links = {
+    "Edit Homepage" => "/edit_homepage"
+  }
+
   def custom_label_method
     "#{self.number}"
   end

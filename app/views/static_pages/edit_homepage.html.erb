@@ -1,0 +1,7 @@
+<h1>edit the homepage</h1>
+
+<%= form_tag('/update_homepage_preview', method: 'post',multipart: true) do %>
+  <%= file_field_tag 'homepage_image' %>
+<%= text_area_tag 'home_page_copy', @copy, rows: 20, cols:100, escape: false  %>
+<%= submit_tag %>
+<% end %>
