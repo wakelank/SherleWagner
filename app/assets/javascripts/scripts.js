@@ -76,10 +76,7 @@ $(document).on("page:change", (function(){
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
 
 
-        // !!!!!!!!!!!!!!!!!!!!!
-        set_tearsheet_link();
-        // !!!!!!!!!!!!!!!!!!!!!
-       
+      
 
 
         $('#product_finishes_list').find('li').click(function(e){
@@ -157,7 +154,10 @@ $(document).on("page:change", (function(){
           }
 
        
-
+  // !!!!!!!!!!!!!!!!!!!!!
+        set_tearsheet_link();
+        // !!!!!!!!!!!!!!!!!!!!!
+       
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
@@ -168,6 +168,10 @@ $(document).on("page:change", (function(){
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
           //SWAP OUT PRODUCT INFO W INFO FROM DATASET//
+          if ($('#components_list li').length > 1){
+
+            set_tearsheet_link();
+          }
 
 
 
@@ -436,6 +440,7 @@ $(document).on("page:change", (function(){
     show_only_config_components(config);
     $('#see_all').hide();
     $('#hide_all').show();
+
   }
 
   function show_only_config_components(config){
@@ -458,6 +463,7 @@ $(document).on("page:change", (function(){
     $('.prod-config-number').html(the_code);
     var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
     $('.prod-config-description #description').html(fake_description);
+
     
   }
 
@@ -502,7 +508,15 @@ $(document).on("page:change", (function(){
          }
       var root_url = window.location.origin
       // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       var tearsheet_number = product_base_number
+        tearsheet_number = product_base_number
+        if ($('li.alt_choice')[0].dataset.number && $('#components_list li').length > 1){
+          console.log("we have the heyo");
+          conf_tear_number= $('li.alt_choice')[0].dataset.number;
+          tearsheet_number1= conf_tear_number.split('-');
+          tearsheet_number1=tearsheet_number1.splice(0, tearsheet_number1.length-1);
+          tearsheet_number = tearsheet_number1.join("-")+"-XX";
+
+        }
        // .replace("XX", finish_identifier);
        // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
        // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
