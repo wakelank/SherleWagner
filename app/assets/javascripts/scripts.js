@@ -49,12 +49,18 @@ $(document).on("page:change", (function(){
             swatch_tile_actions($t, pr); 
           }
         }); 
-
+         console.log('gonnnn');
          //set the current configuration
-         conff = $('.alt_choice')[0]
-         if (conff){
-            swap_product_info_for_configuration(conff);
-          }
+        if ($('#components_list li').length > 1){
+          confi = tearsheet_config.split('-');
+          confi = confi.splice(0, confi.length-1);
+          confi = confi.join('-');
+          //conff = conff.join('-');
+          if (confi){
+             show_only_config_components(confi);
+           }
+        }
+
 
 
     break
