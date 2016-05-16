@@ -90,8 +90,11 @@ before_action :authenticate_user!, only: [:upload_product_file]
     @tearsheet_number_s.pop
     @tearsheet_number_s = @tearsheet_number_s.join('-')
     
-    @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number}%")
-    
+    if @product.components.length >= 1
+      @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number_s}%")
+    else
+      @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number}%")
+    end
     if @configs.length >= 1 and !@configs[0].image.url.include?('missing')
 
        @config_img = @configs[0].image.url 
