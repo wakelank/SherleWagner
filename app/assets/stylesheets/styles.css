@@ -496,8 +496,8 @@ li.highlighted{
 
 .product_image{
   width: 104%;
-  max-width: 420px;
-  height: 400px;
+  width: 400px;
+  
   position: relative;
       background-size: contain;
     background-position-x: 50%;
@@ -508,6 +508,12 @@ li.highlighted{
     background-repeat: no-repeat;
     border: solid #eeeeee;
   
+}
+.product_image_square{
+  height:400px;
+}
+.product_image_tall{
+  height: 500px;
 }
 .product_info{
   /*stuff to R of image*/
