@@ -496,6 +496,7 @@ li.highlighted{
 
 .product_image{
   width: 104%;
+  max-width: 420px;
   height: 400px;
   position: relative;
       background-size: contain;

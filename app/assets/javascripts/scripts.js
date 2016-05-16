@@ -444,6 +444,7 @@ $(document).on("page:change", (function(){
     $('.prod-config-number').html(li.dataset.number);
     $('.prod-config-description #description').html(li.dataset.description);
     show_only_config_components(config);
+    $('h3#prod_name').html(li.dataset.description);
     $('#see_all').hide();
     $('#hide_all').show();
 
@@ -465,7 +466,7 @@ $(document).on("page:change", (function(){
   }
   function swap_product_info_for_no_configuration(){
     var the_code_url= $('.tear-sheet-submit').attr('href').split('/');
-    the_code = $(the_code_url).last()[0];
+    var the_code = $(the_code_url).last()[0];
     $('.prod-config-number').html(the_code);
     var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
     $('.prod-config-description #description').html(fake_description);
