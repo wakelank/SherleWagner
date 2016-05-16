@@ -17,7 +17,7 @@
 
   <div class="images">   
     <% image_div_class = "product_image_square" %>
-    <% if @product.product_image_type = "tall" %>
+    <% if @product.image_type == "tall" %>
       <% image_div_class = "product_image_tall" %>
     <% end %>
 

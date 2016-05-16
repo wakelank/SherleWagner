@@ -613,7 +613,7 @@ h3#prod_name{
   color: black;
       float: right;
     width: 50%;
-    padding-left: 7%;
+    padding-left: 2.5em;
 }
 .components{
   height:   3.5em;
