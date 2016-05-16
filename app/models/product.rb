@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   has_many :compilations, through: :in_compilation_relationships
   has_many :other_images
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing_product.jpg"
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>", tall:"400x300>", square:"400x300>" }, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   validates :name, presence: true
   validates :number, presence: true
