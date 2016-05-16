@@ -49,7 +49,7 @@ $(document).on("page:change", (function(){
             swatch_tile_actions($t, pr); 
           }
         }); 
-         console.log('good job');
+         
          //set the current configuration
         if ($('#components_list li').length > 1){
           confi = tearsheet_config.split('-');
@@ -223,7 +223,7 @@ $(document).on("page:change", (function(){
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
              var mat = this.dataset.material_identifier;
-            console.log(mat);
+            // console.log(mat);
 
             the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
 
@@ -240,7 +240,7 @@ $(document).on("page:change", (function(){
             $('.alt_img').each(function(i,t){
               //console.log(i);
                if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
-                console.log('found');
+                //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
                 $(t).addClass('alt_choice');
@@ -250,7 +250,7 @@ $(document).on("page:change", (function(){
                }else{
                 //console.log(i);
                   if (i == $('.alt_img').length - 1 ){
-                    console.log('no material matches');
+                    //console.log('no material matches');
                     swap_product_image(bw_image);
                     swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
@@ -260,7 +260,7 @@ $(document).on("page:change", (function(){
               // fin = $('.finishes .highlight')[0].dataset.finish_identifier
             });
           }else{
-            console.log('no alt imgs');
+            //console.log('no alt imgs');
             swap_product_image(bw_image);
             swap_product_info_for_no_configuration();
 
@@ -276,7 +276,7 @@ $(document).on("page:change", (function(){
 
             
             var mat = this.dataset.finish_identifier;
-            console.log(mat);
+            //console.log(mat);
 
             var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
@@ -333,7 +333,7 @@ $(document).on("page:change", (function(){
 
                   }else{
                     if (i == $('.alt_img').length-1 ){
-                      console.log('no finish matches');
+                      //console.log('no finish matches');
                       if ($('#components_list li').length < 1){
                         swap_product_image(bw_image);
                         swap_product_info_for_no_configuration();
@@ -349,7 +349,7 @@ $(document).on("page:change", (function(){
 
             }else{
               //there are no alt imgs*
-              console.log('no alt img');
+              //console.log('no alt img');
               swap_product_info_for_no_configuration();
             }
           }
@@ -517,7 +517,7 @@ $(document).on("page:change", (function(){
       // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
         tearsheet_number = product_base_number
         if ($('li.alt_choice')[0].dataset.number && $('#components_list li').length > 1){
-          console.log("we have the heyo");
+          
           conf_tear_number= $('li.alt_choice')[0].dataset.number;
           tearsheet_number1= conf_tear_number.split('-');
           tearsheet_number1=tearsheet_number1.splice(0, tearsheet_number1.length-1);
@@ -527,8 +527,8 @@ $(document).on("page:change", (function(){
        // .replace("XX", finish_identifier);
        // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
        // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
-       console.log("product_id");
-       console.log(product_id);
+       // console.log("product_id");
+       // console.log(product_id);
 
 
 
