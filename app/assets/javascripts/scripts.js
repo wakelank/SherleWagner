@@ -19,7 +19,7 @@ $(document).on("page:change", (function(){
           "color":" "
 
         }
-// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+    // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
         tearsheet_config = $(window.location.pathname.split('/')).last()[0]
 
       
@@ -49,7 +49,7 @@ $(document).on("page:change", (function(){
             swatch_tile_actions($t, pr); 
           }
         }); 
-         console.log('gonnnn');
+         console.log('good job');
          //set the current configuration
         if ($('#components_list li').length > 1){
           confi = tearsheet_config.split('-');
