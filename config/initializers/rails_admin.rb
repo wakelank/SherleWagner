@@ -22,11 +22,11 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard do
       #only ["Product", "ProductSubType", "Style"]# mandatory
-#      except ["CompilationRelationship"]
+      except ["CompilationRelationship", "EnvironmentShotStyle"]
     end
     index do
       #only ["Product", "ProductSubType", "Style"]# mandatory
-#      except ["CompilationRelationship"]
+      except ["CompilationRelationship", "EnvironmentShotStyle"]
     end
     new
     export
@@ -84,6 +84,7 @@ RailsAdmin.config do |config|
     object_label_method do
       :custom_label_method
     end
+    exclude_fields :has_components_relationships
   end
 
   config.model 'OtherImage' do
@@ -96,6 +97,7 @@ RailsAdmin.config do |config|
     object_label_method do
       :image_name
     end
+    exclude_fields :environment_shot_styles
   end
 
   config.navigation_static_links = {
