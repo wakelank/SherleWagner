@@ -56,6 +56,11 @@ RailsAdmin.config do |config|
       field :product_type
       field :product_sub_type
       field :image
+      field :image_type, :enum do
+        enum do
+          ['square','tall']
+        end
+      end
       field :display_size_for_collection
       field :product_configurations
       field :genres
@@ -72,6 +77,7 @@ RailsAdmin.config do |config|
       #field :styles do
       #  label 'Collection'
       #end
+      #
    end
   end
 
