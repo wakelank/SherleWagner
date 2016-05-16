@@ -19,7 +19,7 @@ $(document).on("page:change", (function(){
           "color":" "
 
         }
-// "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+    // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
         tearsheet_config = $(window.location.pathname.split('/')).last()[0]
 
       
@@ -49,12 +49,18 @@ $(document).on("page:change", (function(){
             swatch_tile_actions($t, pr); 
           }
         }); 
-
+         
          //set the current configuration
-         conff = $('.alt_choice')[0]
-         if (conff){
-            swap_product_info_for_configuration(conff);
-          }
+        if ($('#components_list li').length > 1){
+          confi = tearsheet_config.split('-');
+          confi = confi.splice(0, confi.length-1);
+          confi = confi.join('-');
+          //conff = conff.join('-');
+          if (confi){
+             show_only_config_components(confi);
+           }
+        }
+
 
 
     break
@@ -76,10 +82,7 @@ $(document).on("page:change", (function(){
         var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
 
 
-        // !!!!!!!!!!!!!!!!!!!!!
-        set_tearsheet_link();
-        // !!!!!!!!!!!!!!!!!!!!!
-       
+      
 
 
         $('#product_finishes_list').find('li').click(function(e){
@@ -157,7 +160,10 @@ $(document).on("page:change", (function(){
           }
 
        
-
+  // !!!!!!!!!!!!!!!!!!!!!
+        set_tearsheet_link();
+        // !!!!!!!!!!!!!!!!!!!!!
+       
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
@@ -168,6 +174,10 @@ $(document).on("page:change", (function(){
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
           //SWAP OUT PRODUCT INFO W INFO FROM DATASET//
+          if ($('#components_list li').length > 1){
+
+            set_tearsheet_link();
+          }
 
 
 
@@ -213,7 +223,7 @@ $(document).on("page:change", (function(){
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
              var mat = this.dataset.material_identifier;
-            console.log(mat);
+            // console.log(mat);
 
             the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
 
@@ -230,7 +240,7 @@ $(document).on("page:change", (function(){
             $('.alt_img').each(function(i,t){
               //console.log(i);
                if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
-                console.log('found');
+                //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
                 $(t).addClass('alt_choice');
@@ -240,7 +250,7 @@ $(document).on("page:change", (function(){
                }else{
                 //console.log(i);
                   if (i == $('.alt_img').length - 1 ){
-                    console.log('no material matches');
+                    //console.log('no material matches');
                     swap_product_image(bw_image);
                     swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
@@ -250,7 +260,7 @@ $(document).on("page:change", (function(){
               // fin = $('.finishes .highlight')[0].dataset.finish_identifier
             });
           }else{
-            console.log('no alt imgs');
+            //console.log('no alt imgs');
             swap_product_image(bw_image);
             swap_product_info_for_no_configuration();
 
@@ -266,7 +276,7 @@ $(document).on("page:change", (function(){
 
             
             var mat = this.dataset.finish_identifier;
-            console.log(mat);
+            //console.log(mat);
 
             var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
@@ -323,7 +333,7 @@ $(document).on("page:change", (function(){
 
                   }else{
                     if (i == $('.alt_img').length-1 ){
-                      console.log('no finish matches');
+                      //console.log('no finish matches');
                       if ($('#components_list li').length < 1){
                         swap_product_image(bw_image);
                         swap_product_info_for_no_configuration();
@@ -339,7 +349,7 @@ $(document).on("page:change", (function(){
 
             }else{
               //there are no alt imgs*
-              console.log('no alt img');
+              //console.log('no alt img');
               swap_product_info_for_no_configuration();
             }
           }
@@ -434,8 +444,10 @@ $(document).on("page:change", (function(){
     $('.prod-config-number').html(li.dataset.number);
     $('.prod-config-description #description').html(li.dataset.description);
     show_only_config_components(config);
+    $('h3#prod_name').html(li.dataset.description);
     $('#see_all').hide();
     $('#hide_all').show();
+
   }
 
   function show_only_config_components(config){
@@ -454,10 +466,11 @@ $(document).on("page:change", (function(){
   }
   function swap_product_info_for_no_configuration(){
     var the_code_url= $('.tear-sheet-submit').attr('href').split('/');
-    the_code = $(the_code_url).last()[0];
+    var the_code = $(the_code_url).last()[0];
     $('.prod-config-number').html(the_code);
     var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
     $('.prod-config-description #description').html(fake_description);
+
     
   }
 
@@ -502,11 +515,20 @@ $(document).on("page:change", (function(){
          }
       var root_url = window.location.origin
       // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       var tearsheet_number = product_base_number
+        tearsheet_number = product_base_number
+        if ($('li.alt_choice')[0].dataset.number && $('#components_list li').length > 1){
+          
+          conf_tear_number= $('li.alt_choice')[0].dataset.number;
+          tearsheet_number1= conf_tear_number.split('-');
+          tearsheet_number1=tearsheet_number1.splice(0, tearsheet_number1.length-1);
+          tearsheet_number = tearsheet_number1.join("-")+"-XX";
+
+        }
        // .replace("XX", finish_identifier);
        // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
        // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
-       console.log(product_id);
+       // console.log("product_id");
+       // console.log(product_id);
 
 
 

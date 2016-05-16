@@ -38,14 +38,7 @@ before_action :authenticate_user!, only: [:upload_product_file]
                                             
   end
 
-  def show_tearsheet
-    @product_number = params[:product_number] 
-    @product = Product.find(params[:product_id])
-    @finish_id = params[:finish_id]
-    @material_id = params[:material_id]
-    @china_color_id = params[:china_color_id]
-    binding.pry
-  end
+  
 
 
   def build_tearsheet
@@ -93,9 +86,17 @@ before_action :authenticate_user!, only: [:upload_product_file]
     product_number = params[:product_id]
     @product = Product.find(product_number)
     @tearsheet_number = params[:tearsheet_number]
-    @configs = @product.product_configurations.where(:number => @tearsheet_number)
+    @tearsheet_number_s = @tearsheet_number.split('-')
+    @tearsheet_number_s.pop
+    @tearsheet_number_s = @tearsheet_number_s.join('-')
     
+    if @product.components.length >= 1
+      @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number_s}%")
+    else
+      @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number}%")
+    end
     if @configs.length >= 1 and !@configs[0].image.url.include?('missing')
+
        @config_img = @configs[0].image.url 
     else
       @config_img = @product.image.url  

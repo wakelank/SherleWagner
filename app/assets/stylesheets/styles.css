@@ -196,6 +196,7 @@ input#search{
 }
 .type_tile{
   background-size: cover;
+  background-position-y: 50%;
   height: 20em;
   width: 16em;
   border:none;
@@ -495,6 +496,7 @@ li.highlighted{
 
 .product_image{
   width: 104%;
+  max-width: 420px;
   height: 400px;
   position: relative;
       background-size: contain;
