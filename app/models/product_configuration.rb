@@ -12,7 +12,7 @@ class ProductConfiguration < ActiveRecord::Base
   validates :number, presence: true
 
   has_attached_file :image, 
-    styles: { medium: "300x300>", thumb: "100x100>", tall:"400x300>", square:"400x300>" }, 
+    styles: { medium: "300x300>", thumb: "100x100>"}, 
     default_url: "/images/:style/missing_configuration.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
 

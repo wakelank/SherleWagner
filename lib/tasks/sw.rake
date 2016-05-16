@@ -72,4 +72,41 @@ namespace :sw do
       end
     end
   end
+
+  desc "assign tall to image_types for certain product sub_types"
+  task tall_images: :environment do
+    sub_types = ["Shower Systems",
+                 "Exposed Tub and Shower sets",
+                 "Exposed Shower Sets",
+                 "Rain Bars", 
+                 "Supplies",
+                 "Shut offs",
+                 "Pedestals",
+                 "Counters",
+                 "Consoles",
+                 "Legs",
+                 "Water Closets",
+                 "Bidets",
+                 "Toilet Brush Holders",
+                 "Decorative Objects",
+                 "Elongated Back Plate Systems",
+                 "Push Plates",
+                 "Back Plates",
+                 "Cremone Bolts",
+                 "Flush Pulls",
+                 "Chandeliers",
+                 "Pendant Lights",
+                 "Table Lights and Floor Lights"
+    ]
+    sub_types.each do |sub_type_name|
+      sub_type = ProductSubType.where('lower(name) = ?', sub_type_name.downcase).try(:first)
+      if sub_type
+        sub_type.products.each do |product|
+          product.image_type = 'tall'
+          product.save
+          puts "#{sub_type.name}: #{product.name}"
+        end
+      end
+    end
+  end
 end
