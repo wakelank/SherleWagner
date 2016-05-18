@@ -4,7 +4,8 @@
     <ul class="prod_list">
       <h3 id="subtype_list_name"><%= @product_sub_type.name %></h3>
       
-      <% products.sort{|a, b| a.created_at <=> b.created_at}.each do |product| %>
+      <% products.each do |product| %>
+      <%# <% products.sort{|a, b| a.created_at <=> b.created_at}.each do |product| %1> %>
         <%= render product %>
       <% end %>
     </ul>

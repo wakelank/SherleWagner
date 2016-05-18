@@ -117,7 +117,7 @@ before_action :authenticate_user!, only: [:upload_product_file]
   end
 
   def from_category
-    @selected = Product.where(product_sub_type: params[:cat_id])
+    @selected = Product.where(product_sub_type: params[:cat_id]).order(:page_section).order(:section_position).order(:created_at)
     @product_sub_type = ProductSubType.find_by(id: params[:cat_id])
 
     respond_to do |format|
