@@ -109,4 +109,18 @@ namespace :sw do
       end
     end
   end
+
+  desc "sets page_section attribute for each product based on the genre"
+  task set_section: :environment do
+    section_assignments = { Contemporary: "A", Classic: "B", Traditional: "C", Ornate: "D" }
+    section_assignments.each do |genre, section|
+      genre_obj = Genre.find_by_name genre.to_s
+      begin
+      genre_obj.products.update_all(page_section: section)
+      rescue 
+        Rails.logger.error "Cannot find genre: #{genre.to_s}"
+      end
+    end
+
+  end
 end
