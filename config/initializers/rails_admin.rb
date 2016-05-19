@@ -61,6 +61,12 @@ RailsAdmin.config do |config|
           ['square','tall']
         end
       end
+      field :page_section, :enum do
+        enum do
+          ['A', 'B', 'C', 'D', 'Z']
+        end
+      end
+      field :section_position
       field :display_size_for_collection
       field :product_configurations
       field :genres

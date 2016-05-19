@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516183453) do
+ActiveRecord::Schema.define(version: 20160518133615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -265,6 +265,8 @@ ActiveRecord::Schema.define(version: 20160516183453) do
     t.integer  "associated_collection_id"
     t.string   "display_size_for_collection", default: "small"
     t.string   "image_type",                  default: "square"
+    t.string   "page_section"
+    t.integer  "section_position"
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree

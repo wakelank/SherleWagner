@@ -72,4 +72,55 @@ namespace :sw do
       end
     end
   end
+
+  desc "assign tall to image_types for certain product sub_types"
+  task tall_images: :environment do
+    sub_types = ["Shower Systems",
+                 "Exposed Tub and Shower sets",
+                 "Exposed Shower Sets",
+                 "Rain Bars", 
+                 "Supplies",
+                 "Shut offs",
+                 "Pedestals",
+                 "Counters",
+                 "Consoles",
+                 "Legs",
+                 "Water Closets",
+                 "Bidets",
+                 "Toilet Brush Holders",
+                 "Decorative Objects",
+                 "Elongated Back Plate Systems",
+                 "Push Plates",
+                 "Back Plates",
+                 "Cremone Bolts",
+                 "Flush Pulls",
+                 "Chandeliers",
+                 "Pendant Lights",
+                 "Table Lights and Floor Lights"
+    ]
+    sub_types.each do |sub_type_name|
+      sub_type = ProductSubType.where('lower(name) = ?', sub_type_name.downcase).try(:first)
+      if sub_type
+        sub_type.products.each do |product|
+          product.image_type = 'tall'
+          product.save
+          puts "#{sub_type.name}: #{product.name}"
+        end
+      end
+    end
+  end
+
+  desc "sets page_section attribute for each product based on the genre"
+  task set_section: :environment do
+    section_assignments = { Contemporary: "A", Classic: "B", Traditional: "C", Ornate: "D" }
+    section_assignments.each do |genre, section|
+      genre_obj = Genre.find_by_name genre.to_s
+      begin
+      genre_obj.products.update_all(page_section: section)
+      rescue 
+        Rails.logger.error "Cannot find genre: #{genre.to_s}"
+      end
+    end
+
+  end
 end
