@@ -37,6 +37,9 @@ class Product < ActiveRecord::Base
   after_create :add_finishes, :add_material, :add_china_color
 
 
+  def has_configurations_or_associated_products?
+    product_configurations.count + associated_products.count > 0
+  end
 
   def product_configurations_with_image(admin = false)
     if admin
