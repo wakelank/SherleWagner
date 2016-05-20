@@ -24,6 +24,8 @@ class Product < ActiveRecord::Base
     class_name: "CompilationRelationship"
   has_many :compilations, through: :in_compilation_relationships
   has_many :other_images
+  has_many :associated_products_products
+  has_many :associated_products, through: :associated_products_products
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
