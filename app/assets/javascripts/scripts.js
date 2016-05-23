@@ -40,10 +40,10 @@ $(document).on("page:change", (function(){
           }else{
           }
            
-          if (tearsheet_config.includes('-'+ ident ) && parent_div == '#product_china_list' ){
+          if (tearsheet_config.includes( ident ) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
 
-          }else if (tearsheet_config.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+          }else if (tearsheet_config.includes( ident ) && parent_div != '#product_china_list' ){
             var $t = $(t);
             var pr = $(parent_div);
             swatch_tile_actions($t, pr); 
@@ -186,7 +186,7 @@ $(document).on("page:change", (function(){
             // console.log(t.dataset.material_identifier)
             var mat = t.dataset.material_identifier;
             var fin = t.dataset.finish_identifier;
-            if (thiz.dataset.url.includes(mat) || thiz.dataset.url.includes('-'+fin)){
+            if (thiz.dataset.url.includes( mat ) || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
               if ($('#components_list li').length < 1){
                 $(t).trigger('click');
@@ -241,7 +241,7 @@ $(document).on("page:change", (function(){
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
+               if (t.dataset.url.includes('-'+mat+"-") && t.dataset.url.includes(otherswatch)){
                 //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -281,6 +281,9 @@ $(document).on("page:change", (function(){
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
+            else if($('.materials .highlight').length > 0){
+              otherswatch = '-' + $('.materials .highlight')[0].dataset.finish_identifier ;
+              }
 
 
             prod_config.material=mat;
@@ -299,8 +302,8 @@ $(document).on("page:change", (function(){
                 //console.log(i);
                   if (i == $('.alt_img').length - 1 ){
                     //console.log('no material matches');
-                    swap_product_image(bw_image);
-                    swap_product_info_for_no_configuration();
+                    // swap_product_image(bw_image);
+                    // swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
                   }
                }
@@ -320,7 +323,7 @@ $(document).on("page:change", (function(){
           //set the corrosponding material
           var otherswatch = "/"
             if($('.materials .highlight').length > 0){
-             otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+             otherswatch = "-" + $('.materials .highlight')[0].dataset.material_identifier ;
               }
             else if($('.china_colors .highlight').length > 0){
              otherswatch = $('.china_colors .highlight')[0].dataset.material_identifier ;
