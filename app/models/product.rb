@@ -211,10 +211,11 @@ class Product < ActiveRecord::Base
                                   number.include?("STONE"))
     arr << "Materials_China" if (number.include?("HANDPAINTED") ||
                                  number.include?("CHINAMETAL") ||
-                                 number.include?("HANDDECORATED"))
+                                 number.include?("HANDDECORATED")) ||
+                                 name.downcase.include?("china")
     arr << "Materials_Stone" if (number.include?("STONE") || number.include?("SLSL") ||
                                  number.include?("SEMI") ||
-                                 number.include?("ONYX"))
+                                 number.include?("ONYX")) 
     arr << "Burnished_&_Polished_Banded" if (number.include?("CHINABANDED"))
     arr << "Burnished_&_Polished_Solid" if (number.include?("CHINAMETAL"))
     arr << "Burnished_&_Polished_Decorated" if (number.include?("METALDECO"))
