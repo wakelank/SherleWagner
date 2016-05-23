@@ -135,22 +135,31 @@
     
   </div>
   
-    <div class="image_list">
-      <% if @product.product_configurations.count > 0 %>
-        <ul id="alt_imgs">
-          <% @product.product_configurations.each do |config| %>
-            <% if current_user || !config.image.url.include?('missing') %>
+  <div class="image_list">
+    <% if @product.has_configurations_or_associated_products? %>
+      <ul id="alt_imgs">
+        <% @product.product_configurations.each do |config| %>
+          <% if current_user || !config.image.url.include?('missing') %>
             <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
-            <%= image_tag config.image.url(:thumb) %> <br/>
+              <%= image_tag config.image.url(:thumb) %> <br/>
+            </li>
+          <% end %>
+        <% end %>
+        <% @product.associated_products.each do |assoc_prod| %>
+          <li class="alt_img">
+            <%= link_to assoc_prod do %>
+              <%= image_tag assoc_prod.image.url(:thumb) %><br />
+            <% end %>
           </li>
         <% end %>
-          <% end %>
-        </ul>
-      <% end %> 
+      </ul>
+    <% end %> 
 
 
-    </div>
-    
+
+
+  </div>
+
 
 
   

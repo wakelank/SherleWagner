@@ -22,11 +22,11 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard do
       #only ["Product", "ProductSubType", "Style"]# mandatory
-      except ["CompilationRelationship", "EnvironmentShotStyle"]
+      except ["CompilationRelationship", "EnvironmentShotStyle", "AssociatedProductsProduct"]
     end
     index do
       #only ["Product", "ProductSubType", "Style"]# mandatory
-      except ["CompilationRelationship", "EnvironmentShotStyle"]
+      except ["CompilationRelationship", "EnvironmentShotStyle", "AssociatedProductsProduct"]
     end
     new
     export
@@ -78,6 +78,7 @@ RailsAdmin.config do |config|
       field :china_colors
       field :materials
       field :compilations
+      field :associated_products
       field :other_images
       field :filter_values
       #field :styles do
