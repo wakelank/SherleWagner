@@ -16,6 +16,7 @@
 *.swo
 .env
 /public/system/products/images
+/public/images/sw_home*
 
 /solr/pids/*
 solr/*

@@ -138,7 +138,7 @@ $(document).on("page:change", (function(){
           }else{
           }
            
-          if (image.includes('-'+ ident ) && parent_div == '#product_china_list' ){
+          if (image.includes( ident ) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
 
           }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
@@ -160,15 +160,15 @@ $(document).on("page:change", (function(){
           }
 
        
-  // !!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!
         set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
-          var thiz = this;
-           var new_img = thiz.dataset.url;
+           thiz = this;
+          new_img = thiz.dataset.url;
            var new_config = thiz;
           swap_product_image(new_img);
           swap_product_info_for_configuration(new_config);
@@ -186,12 +186,14 @@ $(document).on("page:change", (function(){
             // console.log(t.dataset.material_identifier)
             var mat = t.dataset.material_identifier;
             var fin = t.dataset.finish_identifier;
-            if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
+            if (thiz.dataset.url.includes(mat) || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
               if ($('#components_list li').length < 1){
                 $(t).trigger('click');
+                //console.log(t.dataset.material_identifier);
               }
-              // console.log(t);
+
+              
             }
 
           }); 
@@ -266,6 +268,53 @@ $(document).on("page:change", (function(){
 
           }
         });
+        
+        $('.china_colors .finish_tile').click(function(f){
+          var mat = this.dataset.material_identifier;
+            // console.log(mat);
+
+            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+
+             finish_sheet_targ = the_tear_targ.replace("CC", mat);
+            $('.tear-sheet-submit').attr('href',finish_sheet_targ);
+              var otherswatch = "/"
+            if($('.finishes .highlight').length > 0){
+              otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
+              }
+
+
+            prod_config.material=mat;
+          if ($('.alt_img').length > 0){
+            $('.alt_img').each(function(i,t){
+              //console.log(i);
+               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch)){
+                //console.log('found');
+                swap_product_image(t.dataset.url);
+                swap_product_info_for_configuration(t);
+                $(t).addClass('alt_choice');
+                return false;
+
+
+               }else{
+                //console.log(i);
+                  if (i == $('.alt_img').length - 1 ){
+                    //console.log('no material matches');
+                    swap_product_image(bw_image);
+                    swap_product_info_for_no_configuration();
+                    //do the swap B and W image here*
+                  }
+               }
+              
+              // fin = $('.finishes .highlight')[0].dataset.finish_identifier
+            });
+          }else{
+            //console.log('no alt imgs');
+            swap_product_image(bw_image);
+            swap_product_info_for_no_configuration();
+
+          }
+        }); 
+
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
@@ -273,6 +322,9 @@ $(document).on("page:change", (function(){
             if($('.materials .highlight').length > 0){
              otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
               }
+            else if($('.china_colors .highlight').length > 0){
+             otherswatch = $('.china_colors .highlight')[0].dataset.material_identifier ;
+              } 
 
             
             var mat = this.dataset.finish_identifier;
@@ -288,7 +340,7 @@ $(document).on("page:change", (function(){
             // product_data[finish_identifier] = mat;
             var foundit = 0;
           $('.alt_img').each(function(i,t){
-             if (t.dataset.url.includes('-'+mat)){  
+             if (t.dataset.url.includes(mat)){  
               //To do -- if  there are multiple finishes, need to check for double match before showing the single match.. so use commented code...
               //check if material is right then:
                 if (t.dataset.url.includes(otherswatch)){
@@ -476,6 +528,7 @@ $(document).on("page:change", (function(){
 
    function swap_product_image(url){
     $('.product_image').css('background-image','url('+ url +')');
+
     $('.alt_img').removeClass('alt_choice');
     $('ul#components_list').addClass('expandComp');
 

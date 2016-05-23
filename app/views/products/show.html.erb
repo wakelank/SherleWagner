@@ -16,7 +16,12 @@
 
 
   <div class="images">   
-    <div class="product_image" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' data-bw = '<%= @product.image.url %>' >
+    <% image_div_class = "product_image_square" %>
+    <% if @product.image_type == "tall" %>
+      <% image_div_class = "product_image_tall" %>
+    <% end %>
+
+    <div class="product_image <%= image_div_class %>" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' data-bw = '<%= @product.image.url %>' >
       <div class="config_info">
         <% if @product.components.length() < 1 %>
         <h5 class="prod-config-number">
@@ -29,7 +34,7 @@
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
         <h5>
-        <!--  <span id="shown">shown:</span> --> <span id="description"><%= @product.product_configurations.first.description %></span>
+        <span id="description"><%= @product.product_configurations.first.description %></span>
         </h5>
       </div>
     <% end %>
@@ -140,6 +145,7 @@
             </li>
           <% end %>
         <% end %>
+        
         <% @product.associated_products.each do |assoc_prod| %>
           <li class="alt_img">
             <%= link_to assoc_prod do %>
