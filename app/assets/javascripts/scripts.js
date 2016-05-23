@@ -138,7 +138,7 @@ $(document).on("page:change", (function(){
           }else{
           }
            
-          if (image.includes('-'+ ident ) && parent_div == '#product_china_list' ){
+          if (image.includes( ident ) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
 
           }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
@@ -160,15 +160,15 @@ $(document).on("page:change", (function(){
           }
 
        
-  // !!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!
         set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
 
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
-          var thiz = this;
-           var new_img = thiz.dataset.url;
+           thiz = this;
+          new_img = thiz.dataset.url;
            var new_config = thiz;
           swap_product_image(new_img);
           swap_product_info_for_configuration(new_config);
@@ -186,12 +186,14 @@ $(document).on("page:change", (function(){
             // console.log(t.dataset.material_identifier)
             var mat = t.dataset.material_identifier;
             var fin = t.dataset.finish_identifier;
-            if (thiz.dataset.url.includes('-'+mat+'-') || thiz.dataset.url.includes('-'+fin)){
+            if (thiz.dataset.url.includes(mat) || thiz.dataset.url.includes('-'+fin)){
       //TODO refactor for all possible finishes ******
               if ($('#components_list li').length < 1){
                 $(t).trigger('click');
+                console.log(t.dataset.material_identifier);
               }
-              // console.log(t);
+
+              
             }
 
           }); 
@@ -266,6 +268,11 @@ $(document).on("page:change", (function(){
 
           }
         });
+        
+        // $('.china_colors .finish_tile').click(function(f){
+
+        // }
+
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
@@ -476,6 +483,7 @@ $(document).on("page:change", (function(){
 
    function swap_product_image(url){
     $('.product_image').css('background-image','url('+ url +')');
+
     $('.alt_img').removeClass('alt_choice');
     $('ul#components_list').addClass('expandComp');
 

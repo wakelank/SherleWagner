@@ -145,6 +145,7 @@
             </li>
           <% end %>
         <% end %>
+        
         <% @product.associated_products.each do |assoc_prod| %>
           <li class="alt_img">
             <%= link_to assoc_prod do %>
