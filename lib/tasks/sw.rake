@@ -123,5 +123,11 @@ namespace :sw do
       end
     end
 
+    desc "assign tall images to wallpapers"
+    task tall_images_wallpapaer: :environment do
+      wallpaper = ProductType.find_by_name "Wallpaper"
+      Product.where(product_type: wallpaper).update_all(image_type: 'tall')
+
+    end
   end
 end
