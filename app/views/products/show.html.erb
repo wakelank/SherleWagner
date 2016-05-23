@@ -145,11 +145,11 @@
             </li>
           <% end %>
         <% end %>
-        
+
         <% @product.associated_products.each do |assoc_prod| %>
           <li class="alt_img">
             <%= link_to assoc_prod do %>
-              <%= image_tag assoc_prod.image.url(:thumb) %><br />
+              <%= image_tag assoc_prod.product_configurations.first.image.url(:thumb) %><br />
             <% end %>
           </li>
         <% end %>

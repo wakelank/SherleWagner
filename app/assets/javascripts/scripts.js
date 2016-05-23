@@ -241,7 +241,7 @@ $(document).on("page:change", (function(){
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes('-'+mat+"-") && t.dataset.url.includes(otherswatch)){
+               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
                 //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);

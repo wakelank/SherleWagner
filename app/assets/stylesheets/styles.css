@@ -347,6 +347,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       
       .panel-group { 
           max-width: 245px;
+          margin-bottom: 60px;
       
     }
   }
