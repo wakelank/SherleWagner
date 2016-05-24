@@ -154,7 +154,7 @@ $(document).on("page:change", (function(){
         }); 
 
          //set the current configuration
-         var conff = $('.alt_choice')[0]
+          conff = $('.alt_choice')[0];
          if (conff){
             swap_product_info_for_configuration(conff);
           }
@@ -421,6 +421,10 @@ $(document).on("page:change", (function(){
           
             $('#see_all').hide();
             $('ul#components_list li').slice(2).show();
+            var conff = $('.alt_choice')[0];
+             if (conff){
+                swap_product_info_for_configuration(conff);
+              }
             $('#hide_all').show();
             $('ul#components_list').addClass('expandComp');
           }
