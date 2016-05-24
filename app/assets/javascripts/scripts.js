@@ -133,13 +133,14 @@ $(document).on("page:change", (function(){
               ident = t.dataset.material_identifier;
               parent_div = '#product_materials_list';
           }else if ($($(t).parents()[1]).hasClass('china_colors')){
-              ident = t.dataset.material_identifier;
+              ident = t.dataset.china_identifier;
               parent_div = '#product_china_list';
           }else{
           }
            
           if (image.includes( ident ) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
+             prod_config.color = ident;
 
           }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
             var $t = $(t);
@@ -161,7 +162,7 @@ $(document).on("page:change", (function(){
 
        
         // !!!!!!!!!!!!!!!!!!!!!
-        set_tearsheet_link();
+       set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
 
@@ -184,13 +185,15 @@ $(document).on("page:change", (function(){
 
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
-            var mat = t.dataset.material_identifier;
-            var fin = t.dataset.finish_identifier;
-            if (thiz.dataset.url.includes( mat ) || thiz.dataset.url.includes('-'+fin)){
+             mat = t.dataset.material_identifier;
+             fin = t.dataset.finish_identifier;
+             chin = t.dataset.china_identifier;
+            if (thiz.dataset.url.includes( '-'+mat ) || thiz.dataset.url.includes('-'+fin) || thiz.dataset.url.includes('-'+chin)){
       //TODO refactor for all possible finishes ******
               if ($('#components_list li').length < 1){
                 $(t).trigger('click');
-                //console.log(t.dataset.material_identifier);
+
+                console.log(t);
               }
 
               
@@ -227,9 +230,10 @@ $(document).on("page:change", (function(){
              var mat = this.dataset.material_identifier;
             // console.log(mat);
 
-            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+            var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
 
-             finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+             var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat).replace('METALDECO', mat);
+             // finish_sheet_targ = finish_sheet_targ.replace('METALDECO', mat);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
               var otherswatch = "/"
             if($('.finishes .highlight').length > 0){
@@ -273,9 +277,9 @@ $(document).on("page:change", (function(){
           var mat = this.dataset.material_identifier;
             // console.log(mat);
 
-            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+            var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish)
 
-             finish_sheet_targ = the_tear_targ.replace("CC", mat);
+             var finish_sheet_targ = the_tear_targ.replace("CC", mat);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
               var otherswatch = "/"
             if($('.finishes .highlight').length > 0){
@@ -286,7 +290,7 @@ $(document).on("page:change", (function(){
               }
 
 
-            prod_config.material=mat;
+            prod_config.color=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);

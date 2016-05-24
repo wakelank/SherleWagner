@@ -53,7 +53,7 @@
       <% @product.china_colors.each do |china_color| %>
         <% unless china_color.name == 'no name' %>
         <% bg_img = china_color.image.url %>
-          <li class="prod_tile finish_tile  ", data-material_identifier="<%= china_color.identifier %>" , style="background-image:url('<%= bg_img %>')">
+          <li class="prod_tile finish_tile  ", data-china_identifier="<%= china_color.identifier %>" , style="background-image:url('<%= bg_img %>')">
             <div class="swatch_div"><%= china_color.name %> </div>
           </li>
           
