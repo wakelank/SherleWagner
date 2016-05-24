@@ -244,6 +244,7 @@ $(document).on("page:change", (function(){
               }
 
 
+
             prod_config.material=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
@@ -285,23 +286,24 @@ $(document).on("page:change", (function(){
              var finish_sheet_targ = the_tear_targ.replace("CC", mat);
              finish_sheet_targ = finish_sheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-              var otherswatch = "/"
+               otherswatch = "/"
+               otherswatch2 = "/"
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
-            else if($('.materials .highlight').length > 0){
-              otherswatch = '-' + $('.materials .highlight')[0].dataset.finish_identifier ;
+            if($('.materials .highlight').length > 0){
+              otherswatch2 = '-' + $('.materials .highlight')[0].dataset.material_identifier ;
               }
-
-
+            
             prod_config.color=mat;
+
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch)){
+               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch) && t.dataset.url.includes(otherswatch2)){
                 //console.log('found');
-                //swap_product_image(t.dataset.url);
-                //swap_product_info_for_configuration(t);
+                swap_product_image(t.dataset.url);
+                swap_product_info_for_configuration(t);
                 $(t).addClass('alt_choice');
                 return false;
 
