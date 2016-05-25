@@ -196,7 +196,7 @@ $(document).on("page:change", (function(){
         var china_code_regex = /(WH|SD|BL)/
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material).replace("CHINABANDED", prod_config.material);
-
+        //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
          var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish).replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
 
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
@@ -209,6 +209,7 @@ $(document).on("page:change", (function(){
           swap_product_image(new_img);
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
+          prodnum_raw = thiz.dataset.number;
           var prod_num = thiz.dataset.number.split('-');
           //console.log(prod_num);
            prod_num_base = prod_num[0];
@@ -410,10 +411,19 @@ $(document).on("page:change", (function(){
             // product_data[finish_identifier] = mat;
             var foundit = 0;
           $('.alt_img').each(function(i,t){
-             if (t.dataset.url.includes(mat)){  
+             if (t.dataset.url.includes(mat)){
+             console.log('now here!');
+             console.log(t.dataset.number);  
               //To do -- if  there are multiple finishes, need to check for double match before showing the single match.. so use commented code...
               //check if material is right then:
-                if (t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prod_num_base)){
+                if(t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prodnum_raw)){
+                  swap_product_image(t.dataset.url);
+                  swap_product_info_for_configuration(t);
+                  $(t).addClass('alt_choice');
+                  foundit = 1;
+                  return false;
+
+                }else if (t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prod_num_base)){
 
                   swap_product_image(t.dataset.url);
                   swap_product_info_for_configuration(t);
@@ -429,7 +439,9 @@ $(document).on("page:change", (function(){
                 //       $(t).addClass('alt_choice');
                 //     }
                 //   });
-                }else{
+                }
+
+                else{
                   if (i == $('.alt_img').length-1 ){
                     // console.log('no material+ finish matches');
                     //do the swap B and W image here*

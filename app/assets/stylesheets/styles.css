@@ -822,6 +822,7 @@ div.tearsheet-form-box {
 }
 .compilations ul{
   list-style: none;
+  padding-top: 6px;
 }
 .compilations li{
   padding-left: none;
