@@ -595,6 +595,17 @@ li.highlighted{
  
   
 }
+#assoc_imgs li.assoc_img{
+  
+  font-size: 10px;
+  float: left;
+  margin: 2px;
+  margin-left: 0;
+  padding:0;
+  /*height:80px;*/
+ 
+  
+}
 .image_list img{
 border: thin solid #e5e6df;
 max-width: 80px;
