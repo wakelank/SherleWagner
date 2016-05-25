@@ -112,7 +112,9 @@ $(document).on("page:change", (function(){
       //select the featured image from the alt's on load
     
       var image = $('.product_image')[0].dataset.url;
-       bw_image = $('.product_image')[0].dataset.bw;
+       var bw_image = $('.product_image')[0].dataset.bw;
+       img_number = $('.product_image')[0].dataset.number;
+       img_num_array = img_number.split('-');
       var matchr = image.match(/\/[^\/]+.jpg/);
 
       $('.alt_img').each(function(i,t){
@@ -123,7 +125,9 @@ $(document).on("page:change", (function(){
           return false;
         }
       });
+
       
+
       $('.finish_tile').each(function(i,t){
         var ident = '';
         var parent_div = ''
@@ -138,11 +142,23 @@ $(document).on("page:change", (function(){
             parent_div = '#product_china_list';
         }else{
         }
+        
          
         if (image.includes( ident ) && parent_div == '#product_china_list' ){
            $(t).addClass('highlight');
            prod_config.color = ident;
 
+        }else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
+          var $t = $(t);
+          var pr = $(parent_div);
+          swatch_tile_actions($t, pr);
+          if  (parent_div == '#product_finishes_list'){
+            prod_config.finish = ident;
+          }else if  (parent_div == '#product_materials_list'){
+            prod_config.material = ident;
+          }
+          return false;
+          //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
         }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
           var $t = $(t);
           var pr = $(parent_div);
@@ -176,7 +192,7 @@ $(document).on("page:change", (function(){
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material);
 
-         tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish).replace('CC', prod_config.color);
+         var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish).replace('CC', prod_config.color);
 
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
         
@@ -189,6 +205,7 @@ $(document).on("page:change", (function(){
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
           var prod_num = thiz.dataset.number.split('-');
+          //console.log(prod_num);
            prod_num_base = prod_num[0];
            tearsh = $('.tear-sheet-submit').attr('href').split('/');
           
@@ -221,7 +238,7 @@ $(document).on("page:change", (function(){
                   console.log(t);
                 }
               }
-            });
+            })
 
 
           }); 
