@@ -146,21 +146,25 @@
           <% end %>
         <% end %>
 
-        <% @product.associated_products.each do |assoc_prod| %>
-          <li class="alt_img">
-            <%= link_to assoc_prod do %>
-              <%= image_tag assoc_prod.product_configurations.first.image.url(:thumb) %><br />
-            <% end %>
-          </li>
-        <% end %>
+        
       </ul>
+      <% if @product.associated_products.length >= 1 %>
+        <ul id="assoc_imgs">
+          <li><h5 id="similar_label">Similar Products</h5></li>
+          <% @product.associated_products.each do |assoc_prod| %>
+            <li class="assoc_img">
+              <%= link_to assoc_prod do %>
+                <%= image_tag assoc_prod.product_configurations.first.image.url(:thumb) %><br />
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %> 
+
+
     <% end %> 
-
-
-
-
   </div>
-
+  
 
 
   

@@ -565,7 +565,7 @@ li.highlighted{
 }
 
 
-#alt_imgs{
+#alt_imgs, #assoc_imgs {
   list-style: none;
   padding-left: 0;
   /*overflow: auto;*/
@@ -575,6 +575,9 @@ li.highlighted{
   float: left;
 
   
+}
+#similar_label{
+  color: darkgrey;
 }
 
 #alt_imgs li{
@@ -588,7 +591,7 @@ li.highlighted{
  
   
 }
-#alt_imgs img{
+.image_list img{
 border: thin solid #e5e6df;
 max-width: 80px;
 
