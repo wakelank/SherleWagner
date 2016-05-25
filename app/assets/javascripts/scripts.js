@@ -233,7 +233,7 @@ $(document).on("page:change", (function(){
              var mat = t.dataset.material_identifier;
              var fin = t.dataset.finish_identifier;
              var chin = t.dataset.china_identifier;
-
+             var foundn = 0;
             $(prod_num).each(function(i,n){
               if (n == mat || n == fin){
                 if ($('#components_list li').length < 1){
@@ -252,14 +252,24 @@ $(document).on("page:change", (function(){
                 $('.tear-sheet-submit').attr('href',finish_sheet_targ);
 
                 }
+                foundn = 1;
                 return false;
               }
+
               if (n == chin){
                 $('.china_colors .finish_tile').removeClass('highlight');
                 $(t).addClass('highlight');
               }
-            })
+            })// end checking for exact match inside the prod num array (if you have a material with a dash in it, now we search for it in the image name*)
+            if (foundn == 0){
+              
 
+              if (thiz.dataset.number.includes(t.dataset.material_identifier)){
+                console.log(t);
+                console.log(thiz.dataset.number);
+                swatch_tile_actions(t, '#product_materials_list');
+              }
+            }
 
           }); 
 
