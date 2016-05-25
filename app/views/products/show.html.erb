@@ -137,7 +137,8 @@
   
   <div class="image_list">
     <% if @product.has_configurations_or_associated_products? %>
-      <ul id="alt_imgs">
+      
+      <ul id="alt_imgs" class="<%= @list_width %>">
         <% @product.product_configurations.each do |config| %>
           <% if current_user || !config.image.url.include?('missing') %>
             <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
