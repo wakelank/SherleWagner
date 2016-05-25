@@ -182,22 +182,32 @@ $(document).on("page:change", (function(){
 
 
 
-
+          prod_num = thiz.dataset.number.split('-');
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
              mat = t.dataset.material_identifier;
              fin = t.dataset.finish_identifier;
              chin = t.dataset.china_identifier;
-            if (thiz.dataset.url.includes( '-'+mat ) || thiz.dataset.url.includes('-'+fin) || thiz.dataset.url.includes('-'+chin)){
-      //TODO refactor for all possible finishes ******
-              if ($('#components_list li').length < 1){
+             $(prod_num).each(function(i,n){
+              if (n == mat || n == fin || n == chin){
+                if ($('#components_list li').length < 1){
                 $(t).trigger('click');
 
                 console.log(t);
               }
+              }
+             })
+
+      //       if (thiz.dataset.url.includes( '-'+mat ) || thiz.dataset.url.includes('-'+fin) || thiz.dataset.url.includes('-'+chin)){
+      // //TODO refactor for all possible finishes ******
+      //         if ($('#components_list li').length < 1){
+      //           //$(t).trigger('click');
+
+      //           console.log(t);
+      //         }
 
               
-            }
+      //       }
 
           }); 
 
