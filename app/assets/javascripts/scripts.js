@@ -403,7 +403,7 @@ $(document).on("page:change", (function(){
 
             var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
-             var mat_sheet_targ = the_tear_targ.replace("XX", mat);
+             var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, mat);
             $('.tear-sheet-submit').attr('href',mat_sheet_targ);
             prod_config.finish = mat;
 
