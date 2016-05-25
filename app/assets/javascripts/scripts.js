@@ -155,12 +155,7 @@ $(document).on("page:change", (function(){
           swatch_tile_actions($t, pr);
           if  (parent_div == '#product_finishes_list'){
             prod_config.finish = ident;
-          }else if  (parent_div == '#product_materials_list'){
-            prod_config.material = ident;
           }
-          return false;
-          //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
-        }
         else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
           var $t = $(t);
           var pr = $(parent_div);
@@ -170,6 +165,12 @@ $(document).on("page:change", (function(){
             }else if  (parent_div == '#product_materials_list'){
               prod_config.material = ident;
             }
+        }
+        else if  (parent_div == '#product_materials_list'){
+            prod_config.material = ident;
+          }
+          // return false;
+          //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
         }
       }); 
 

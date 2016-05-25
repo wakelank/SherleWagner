@@ -690,7 +690,7 @@ div.tearsheet-form-box {
 }
 .m_name {
     margin-top: 11em;
-    color: lightgray;
+    color: darkgray;
     font-size: 10px;
 
 }
@@ -828,7 +828,7 @@ div.tearsheet-form-box {
 }
 
 .highlight{
-  outline: 2px darkgrey solid;
+  outline: 2px grey solid;
 }
 .prod_tile{
   cursor: pointer;
