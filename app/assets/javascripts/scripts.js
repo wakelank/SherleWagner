@@ -119,6 +119,7 @@ $(document).on("page:change", (function(){
           if(t.dataset.url.indexOf(matchr) > -1){
             
             $(t).addClass('alt_choice');
+
             return false;
           }
         });
@@ -155,7 +156,9 @@ $(document).on("page:change", (function(){
         }); 
 
          //set the current configuration
-          conff = $('.alt_choice')[0];
+          var conff = $('.alt_choice')[0];
+          prod_num_base = conff.dataset.number.split('-')[0];
+          
          if (conff){
             swap_product_info_for_configuration(conff);
           }
@@ -165,7 +168,7 @@ $(document).on("page:change", (function(){
        set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
-
+        
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
            thiz = this;
@@ -174,6 +177,9 @@ $(document).on("page:change", (function(){
           swap_product_image(new_img);
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
+          prod_num = thiz.dataset.number.split('-');
+          prod_num_base = prod_num[0];
+
           //SWAP OUT PRODUCT INFO W INFO FROM DATASET//
           if ($('#components_list li').length > 1){
 
@@ -182,7 +188,7 @@ $(document).on("page:change", (function(){
 
 
 
-          prod_num = thiz.dataset.number.split('-');
+          
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
              mat = t.dataset.material_identifier;
@@ -259,7 +265,7 @@ $(document).on("page:change", (function(){
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
+               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prod_num_base)){
                 //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -310,7 +316,7 @@ $(document).on("page:change", (function(){
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch) && t.dataset.url.includes(otherswatch2)){
+               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch) && t.dataset.url.includes(otherswatch2)  && t.dataset.number.includes(prod_num_base)){
                 //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -366,10 +372,8 @@ $(document).on("page:change", (function(){
              if (t.dataset.url.includes(mat)){  
               //To do -- if  there are multiple finishes, need to check for double match before showing the single match.. so use commented code...
               //check if material is right then:
-                if (t.dataset.url.includes(otherswatch)){
+                if (t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prod_num_base)){
 
-
-              
                   swap_product_image(t.dataset.url);
                   swap_product_info_for_configuration(t);
                   $(t).addClass('alt_choice');
