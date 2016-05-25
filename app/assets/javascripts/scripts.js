@@ -158,7 +158,7 @@ $(document).on("page:change", (function(){
           }else if  (parent_div == '#product_materials_list'){
             prod_config.material = ident;
           }
-          // return false;
+          return false;
           //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
         }
         else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
