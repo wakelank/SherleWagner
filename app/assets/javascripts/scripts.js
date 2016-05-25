@@ -148,7 +148,8 @@ $(document).on("page:change", (function(){
            $(t).addClass('highlight');
            prod_config.color = ident;
 
-        }else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
+        }
+        else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
           var $t = $(t);
           var pr = $(parent_div);
           swatch_tile_actions($t, pr);
@@ -157,9 +158,10 @@ $(document).on("page:change", (function(){
           }else if  (parent_div == '#product_materials_list'){
             prod_config.material = ident;
           }
-          return false;
+          // return false;
           //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
-        }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+        }
+        else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
           var $t = $(t);
           var pr = $(parent_div);
           swatch_tile_actions($t, pr);
@@ -227,16 +229,21 @@ $(document).on("page:change", (function(){
           
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
-             mat = t.dataset.material_identifier;
-             fin = t.dataset.finish_identifier;
-             chin = t.dataset.china_identifier;
+             var mat = t.dataset.material_identifier;
+             var fin = t.dataset.finish_identifier;
+             var chin = t.dataset.china_identifier;
             $(prod_num).each(function(i,n){
-              if (n == mat || n == fin || n == chin){
+              if (n == mat || n == fin){
                 if ($('#components_list li').length < 1){
+                  console.log(n);
                   $(t).trigger('click');
 
                   console.log(t);
                 }
+              }
+              if (n == chin){
+                $('.china_colors .finish_tile').removeClass('highlight');
+                $(t).addClass('highlight');
               }
             })
 
