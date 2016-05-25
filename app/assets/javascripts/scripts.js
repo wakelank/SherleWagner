@@ -191,6 +191,7 @@ $(document).on("page:change", (function(){
         
 
         var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+        var finish_code_regex = /(PN|CP|ES|AP|PE|BN|BC|BS|HP|GP|BG|SB|OB|EP|AL|AG|PB|FP|RG)/
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material);
 
@@ -226,12 +227,13 @@ $(document).on("page:change", (function(){
 
 
 
-          
+          console.log(prod_num);
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
              var mat = t.dataset.material_identifier;
              var fin = t.dataset.finish_identifier;
              var chin = t.dataset.china_identifier;
+
             $(prod_num).each(function(i,n){
               if (n == mat || n == fin){
                 if ($('#components_list li').length < 1){
@@ -239,7 +241,18 @@ $(document).on("page:change", (function(){
                   $(t).trigger('click');
 
                   console.log(t);
+                }else{
+                  console.log('else*');
+                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, prod_config.finish).replace('CC', prod_config.color);
+                   
+
+                 var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+                 finish_sheet_targ = finish_sheet_targ.replace('CHINADECO', mat).replace('METALDECO', mat);
+
+                $('.tear-sheet-submit').attr('href',finish_sheet_targ);
+
                 }
+                return false;
               }
               if (n == chin){
                 $('.china_colors .finish_tile').removeClass('highlight');
