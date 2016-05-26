@@ -72,7 +72,7 @@ $(document).on("page:change", (function(){
       $('#center_main').removeClass('center_min_width');
       $('#center_main').addClass('center_min_show');
 
-
+      var product_name = $('h3#prod_name').html();
 
       var configurationObject = {};
       var tearSheetForm = document.getElementById('tearsheet-form');
@@ -619,7 +619,7 @@ $(document).on("page:change", (function(){
     $('.prod-config-number').html(the_code);
     var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
     $('.prod-config-description #description').html(fake_description);
-
+    $('h3#prod_name').html(product_name);
     
   }
 
