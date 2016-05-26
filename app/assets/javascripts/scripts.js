@@ -617,7 +617,16 @@ $(document).on("page:change", (function(){
     var the_code_url= $('.tear-sheet-submit').attr('href').split('/');
     var the_code = $(the_code_url).last()[0];
     $('.prod-config-number').html(the_code);
-    var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
+    var fake_description = "";
+    if (prod_config.finish.length>1){
+      fake_description += "Finish: " + prod_config.finish;
+      if (prod_config.material.length>1){
+        fake_description +=", ";
+      }
+    }
+    if (prod_config.material.length>1){
+      fake_description += "Option: " + prod_config.material;
+    }
     $('.prod-config-description #description').html(fake_description);
     $('h3#prod_name').html(product_name);
     
