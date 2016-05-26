@@ -197,7 +197,10 @@ $(document).on("page:change", (function(){
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material).replace("CHINABANDED", prod_config.material);
         //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
-         var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish).replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
+         var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish).replace('CC', prod_config.color);
+         if (prod_config.color.length > 1){
+          tearsheet_targ3 = tearsheet_targ3.replace("-"+china_code_regex, prod_config.color);
+          }
 
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
         
