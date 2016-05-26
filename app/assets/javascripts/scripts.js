@@ -200,7 +200,7 @@ $(document).on("page:change", (function(){
         //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
          var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish)
          if (prod_config.color.length > 1){
-          console.
+          
           tearsheet_targ3 = tearsheet_targ3.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
           }
 
