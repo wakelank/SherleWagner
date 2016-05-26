@@ -35,7 +35,7 @@ $(document).on("page:change", (function(){
               ident = t.dataset.material_identifier;
               parent_div = '#product_materials_list';
           }else if ($($(t).parents()[1]).hasClass('china_colors')){
-              ident = t.dataset.material_identifier;
+              ident = t.dataset.china_identifier;
               parent_div = '#product_china_list';
           }else{
           }

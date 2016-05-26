@@ -500,7 +500,7 @@ li.highlighted{
   width: 400px;
   
   position: relative;
-      background-size: contain;
+      background-size: cover;
     background-position-x: 50%;
   float: left;
   /*margin-right: 3em;*/
@@ -1200,6 +1200,11 @@ li.foot_link, li.foot_link a{
     margin-bottom: 4em;
   }
  
+  .product_image_square, .product_image_tall {
+    
+    width: 100%;
+  }
+
 
   #content_wrapper{
     /*min-width: 515px;*/
