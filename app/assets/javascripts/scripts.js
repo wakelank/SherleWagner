@@ -144,7 +144,8 @@ $(document).on("page:change", (function(){
         }
         
          
-        if (image.includes( ident ) && parent_div == '#product_china_list' ){
+        if (image.includes( "-"+ident ) && parent_div == '#product_china_list' ){
+          $('.china_colors .finish_tile').removeClass('highlight');
            $(t).addClass('highlight');
            prod_config.color = ident;
 
@@ -249,7 +250,7 @@ $(document).on("page:change", (function(){
                   console.log(t);
                 }else{
                   console.log('else*');
-                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, prod_config.finish).replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
+                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, prod_config.finish).replace('CC', prod_config.color).replace("-"+china_code_regex, prod_config.color);
                    
 
                  var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
@@ -292,7 +293,7 @@ $(document).on("page:change", (function(){
              var mat = this.dataset.material_identifier;
             // console.log(mat);
 
-            var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
+            var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace('CC', prod_config.color).replace("-"+china_code_regex, prod_config.color);
 
              var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
              finish_sheet_targ = finish_sheet_targ.replace('CHINADECO', mat).replace('METALDECO', mat);
@@ -344,7 +345,7 @@ $(document).on("page:change", (function(){
 
             var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish)
 
-             var finish_sheet_targ = the_tear_targ.replace("CC", mat).replace(china_code_regex, mat);
+             var finish_sheet_targ = the_tear_targ.replace("CC", mat).replace("-"+china_code_regex, mat);
              finish_sheet_targ = finish_sheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
                otherswatch = "/"
@@ -395,6 +396,7 @@ $(document).on("page:change", (function(){
           var otherswatch = "/"
             if($('.materials .highlight').length > 0){
              otherswatch = "-" + $('.materials .highlight')[0].dataset.material_identifier ;
+
               }
             else if($('.china_colors .highlight').length > 0){
              otherswatch = $('.china_colors .highlight')[0].dataset.material_identifier ;
@@ -402,11 +404,14 @@ $(document).on("page:change", (function(){
 
             
             var mat = this.dataset.finish_identifier;
-            //console.log(mat);
+            console.log(mat);
 
             var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
              var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, mat);
+             if (prod_config.color.length > 1){
+              mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
+             }
             $('.tear-sheet-submit').attr('href',mat_sheet_targ);
             prod_config.finish = mat;
 
