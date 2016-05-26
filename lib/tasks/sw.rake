@@ -116,17 +116,18 @@ namespace :sw do
     section_assignments.each do |genre, section|
       genre_obj = Genre.find_by_name genre.to_s
       begin
-        genre_obj.products.update_all(page_section: section)
+      genre_obj.products.update_all(page_section: section)
       rescue 
         Rails.logger.error "Cannot find genre: #{genre.to_s}"
       end
     end
-  end
-
-  desc "assign tall images to wallpapers"
-  task tall_images_wallpaper: :environment do
-    wallpaper = ProductType.find_by_name "Wallpaper"
-    Product.where(product_type: wallpaper).update_all(image_type: 'tall')
 
   end
+
+  desc "Assigns china colors to all products with 'CC' in the name"
+  task set_china_colors: :environment do
+    Product.all.each { |product| product.china_colors.delete_all }
+    Product.where('number like ?', '%CC%').each {|product| product.update(china_colors: ChinaColor.all)}
+  end
+
 end
