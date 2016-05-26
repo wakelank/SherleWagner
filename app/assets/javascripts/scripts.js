@@ -40,10 +40,10 @@ $(document).on("page:change", (function(){
           }else{
           }
            
-          if (tearsheet_config.includes('-'+ ident ) && parent_div == '#product_china_list' ){
+          if (tearsheet_config.includes( ident ) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
 
-          }else if (tearsheet_config.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+          }else if (tearsheet_config.includes( ident ) && parent_div != '#product_china_list' ){
             var $t = $(t);
             var pr = $(parent_div);
             swatch_tile_actions($t, pr); 
@@ -75,105 +75,159 @@ $(document).on("page:change", (function(){
 
 
       var configurationObject = {};
-        var tearSheetForm = document.getElementById('tearsheet-form');
-        var product_base_number = tearSheetForm.elements["product_base_number"].value;
-        var product_id = tearSheetForm.elements["product_id"].value;
-        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
-        var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
+      var tearSheetForm = document.getElementById('tearsheet-form');
+      var product_base_number = tearSheetForm.elements["product_base_number"].value;
+      var product_id = tearSheetForm.elements["product_id"].value;
+      var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
+      var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
 
+
+    
+
+
+      $('#product_finishes_list').find('li').click(function(e){
+        var trg = $(e.target);
+        swatch_tile_actions(trg,'#product_finishes_list');
+      });
+      $('#product_materials_list').find('li').click(function(e){
+        var trg = $(e.target);
+      swatch_tile_actions(trg,'#product_materials_list');
+      });
+      $('#product_china_list').find('li').click(function(e){
+        $('#product_china_list').find('li').removeClass('highlight');
+        var trg = $(e.target);
+       $(trg).addClass('highlight');
+      });
+      
+
+      nav_back();
+
+       prod_config = {
+        "finish":" ",
+        "material":" ",
+        "color":" "
+
+      }
+
+      //select the featured image from the alt's on load
+    
+      var image = $('.product_image')[0].dataset.url;
+       var bw_image = $('.product_image')[0].dataset.bw;
+       img_number = $('.product_image')[0].dataset.number;
+       img_num_array = img_number.split('-');
+      var matchr = image.match(/\/[^\/]+.jpg/);
+
+      $('.alt_img').each(function(i,t){
+        if(t.dataset.url.indexOf(matchr) > -1){
+          
+          $(t).addClass('alt_choice');
+
+          return false;
+        }
+      });
 
       
 
-
-        $('#product_finishes_list').find('li').click(function(e){
-          var trg = $(e.target);
-          swatch_tile_actions(trg,'#product_finishes_list');
-        });
-        $('#product_materials_list').find('li').click(function(e){
-          var trg = $(e.target);
-        swatch_tile_actions(trg,'#product_materials_list');
-        });
-        $('#product_china_list').find('li').click(function(e){
-          $('#product_china_list').find('li').removeClass('highlight');
-          var trg = $(e.target);
-         $(trg).addClass('highlight');
-        });
+      $('.finish_tile').each(function(i,t){
+        var ident = '';
+        var parent_div = ''
+        if ($($(t).parents()[1]).hasClass('finishes')){
+           ident = t.dataset.finish_identifier;
+           parent_div = '#product_finishes_list';
+        }else if ($($(t).parents()[1]).hasClass('materials')){
+            ident = t.dataset.material_identifier;
+            parent_div = '#product_materials_list';
+        }else if ($($(t).parents()[1]).hasClass('china_colors')){
+            ident = t.dataset.china_identifier;
+            parent_div = '#product_china_list';
+        }else{
+        }
         
-
-        nav_back();
-
-         prod_config = {
-          "finish":" ",
-          "material":" ",
-          "color":" "
+         
+        if (image.includes(ident ) && parent_div == '#product_china_list' ){
+          $('.china_colors .finish_tile').removeClass('highlight');
+           $(t).addClass('highlight');
+           prod_config.color = ident;
 
         }
-
-        //select the featured image from the alt's on load
-      
-        var image = $('.product_image')[0].dataset.url;
-         bw_image = $('.product_image')[0].dataset.bw;
-        var matchr = image.match(/\/[^\/]+.jpg/);
-
-        $('.alt_img').each(function(i,t){
-          if(t.dataset.url.indexOf(matchr) > -1){
-            
-            $(t).addClass('alt_choice');
-            return false;
+        else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
+          var $t = $(t);
+          var pr = $(parent_div);
+          swatch_tile_actions($t, pr);
+          if  (parent_div == '#product_finishes_list'){
+            prod_config.finish = ident;
           }
-        });
+        else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
+          var $t = $(t);
+          var pr = $(parent_div);
+          swatch_tile_actions($t, pr);
+            if  (parent_div == '#product_finishes_list'){
+              prod_config.finish = ident;
+            }else if  (parent_div == '#product_materials_list'){
+              prod_config.material = ident;
+            }
+        }
+        else if  (parent_div == '#product_materials_list'){
+            prod_config.material = ident;
+          }
+          // return false;
+          //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
+        }
+      }); 
+
+       //set the current configuration
+        var conff = $('.alt_choice')[0];
+        prod_num_base = conff.dataset.number.split('-')[0];
         
-        $('.finish_tile').each(function(i,t){
-          var ident = '';
-          var parent_div = ''
-          if ($($(t).parents()[1]).hasClass('finishes')){
-             ident = t.dataset.finish_identifier;
-             parent_div = '#product_finishes_list';
-          }else if ($($(t).parents()[1]).hasClass('materials')){
-              ident = t.dataset.material_identifier;
-              parent_div = '#product_materials_list';
-          }else if ($($(t).parents()[1]).hasClass('china_colors')){
-              ident = t.dataset.material_identifier;
-              parent_div = '#product_china_list';
-          }else{
-          }
-           
-          if (image.includes( ident ) && parent_div == '#product_china_list' ){
-             $(t).addClass('highlight');
-
-          }else if (image.includes('-'+ ident ) && parent_div != '#product_china_list' ){
-            var $t = $(t);
-            var pr = $(parent_div);
-            swatch_tile_actions($t, pr);
-              if  (parent_div == '#product_finishes_list'){
-                prod_config.finish = ident;
-              }else if  (parent_div == '#product_materials_list'){
-                prod_config.material = ident;
-              }
-          }
-        }); 
-
-         //set the current configuration
-         var conff = $('.alt_choice')[0]
-         if (conff){
-            swap_product_info_for_configuration(conff);
-          }
+       if (conff){
+          swap_product_info_for_configuration(conff);
+        }
 
        
         // !!!!!!!!!!!!!!!!!!!!!
-        set_tearsheet_link();
+       set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
+       var tearsheet_targ = $('.tear-sheet-submit').attr('href');
 
+        
+
+        var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+        var finish_code_regex = /(PN|CP|ES|AP|PE|BN|BC|BS|HP|GP|BG|SB|OB|EP|AL|AG|PB|FP|RG)/
+        var china_code_regex = /(WH|SD|BLK)/
+       
+        var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material).replace("CHINABANDED", prod_config.material);
+        //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
+         var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish)
+         if (prod_config.color.length > 1){
+          console.
+          tearsheet_targ3 = tearsheet_targ3.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
+          }
+
+        $('.tear-sheet-submit').attr('href',tearsheet_targ3);
+        
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
-           thiz = this;
-          new_img = thiz.dataset.url;
+           var thiz = this;
+          var new_img = thiz.dataset.url;
            var new_config = thiz;
           swap_product_image(new_img);
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
-          //SWAP OUT PRODUCT INFO W INFO FROM DATASET//
+          prodnum_raw = thiz.dataset.number;
+          var prod_num = thiz.dataset.number.split('-');
+          //console.log(prod_num);
+           prod_num_base = prod_num[0];
+           tearsh = $('.tear-sheet-submit').attr('href').split('/');
+          
+          tearsh[tearsh.length-1] = prod_num.join('-');
+          $('.tear-sheet-submit').attr('href', tearsh.join('/'));
+          tearsheet_targ = $('.tear-sheet-submit').attr('href');
+          // tearsh_prod_num = $(tearsh).last()[0].split('-')[0];
+          // tearsh_prod_num = tearsh_prod_num.replace(tearsh_prod_num, prod_num_base);
+
+
+          
           if ($('#components_list li').length > 1){
 
             set_tearsheet_link();
@@ -181,19 +235,50 @@ $(document).on("page:change", (function(){
 
 
 
-
+          //console.log(prod_num);
           $('.finish_tile').each(function(i,t){
             // console.log(t.dataset.material_identifier)
-            var mat = t.dataset.material_identifier;
-            var fin = t.dataset.finish_identifier;
-            if (thiz.dataset.url.includes(mat) || thiz.dataset.url.includes('-'+fin)){
-      //TODO refactor for all possible finishes ******
-              if ($('#components_list li').length < 1){
-                $(t).trigger('click');
-                //console.log(t.dataset.material_identifier);
+             var mat = t.dataset.material_identifier;
+             var fin = t.dataset.finish_identifier;
+             var chin = t.dataset.china_identifier;
+             var foundn = 0;
+            $(prod_num).each(function(i,n){
+              if (n == mat || n == fin){
+                if ($('#components_list li').length < 1){
+                  console.log(n);
+                  $(t).trigger('click');
+
+                  console.log(t);
+                }else{
+                  console.log('else*');
+                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, prod_config.finish);
+                   if (prod_config.color.length > 1){
+                    the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
+                   }
+
+                 var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+                 finish_sheet_targ = finish_sheet_targ.replace('CHINADECO', mat).replace('METALDECO', mat);
+
+                $('.tear-sheet-submit').attr('href',finish_sheet_targ);
+
+                }
+                foundn = 1;
+                return false;
               }
 
+              if (n == chin){
+                $('.china_colors .finish_tile').removeClass('highlight');
+                $(t).addClass('highlight');
+              }
+            })// end checking for exact match inside the prod num array (if you have a material with a dash in it, now we search for it in the image name*)
+            if (foundn == 0){
               
+
+              if (thiz.dataset.number.includes(t.dataset.material_identifier)){
+                console.log(t);
+                console.log(thiz.dataset.number);
+                swatch_tile_actions(t, '#product_materials_list');
+              }
             }
 
           }); 
@@ -202,23 +287,7 @@ $(document).on("page:change", (function(){
   
 
           
-        });
-
-
-     
-        
-      
-        tearsheet_targ = $('.tear-sheet-submit').attr('href');
-        
-
-        var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-       
-        var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material);
-
-         tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish);
-        $('.tear-sheet-submit').attr('href',tearsheet_targ3);
-     
-
+        });// end alt img.click
 
 
 
@@ -227,21 +296,27 @@ $(document).on("page:change", (function(){
              var mat = this.dataset.material_identifier;
             // console.log(mat);
 
-            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+            var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+            if (prod_config.color.length > 1){
+              the_tear_targ = the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
+            }
+             var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+             finish_sheet_targ = finish_sheet_targ.replace('CHINADECO', mat).replace('METALDECO', mat);
 
-             finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
+
               var otherswatch = "/"
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
 
 
+
             prod_config.material=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch)){
+               if (t.dataset.url.includes('-'+mat) && t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prod_num_base)){
                 //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -270,24 +345,29 @@ $(document).on("page:change", (function(){
         });
         
         $('.china_colors .finish_tile').click(function(f){
-          var mat = this.dataset.material_identifier;
+          var mat = this.dataset.china_identifier;
             // console.log(mat);
 
-            the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
+            var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish)
 
-             finish_sheet_targ = the_tear_targ.replace("CC", mat);
+             var finish_sheet_targ = the_tear_targ.replace("CC", mat).replace(china_code_regex, mat);
+             finish_sheet_targ = finish_sheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-              var otherswatch = "/"
+               otherswatch = "/"
+               otherswatch2 = "/"
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
+            if($('.materials .highlight').length > 0){
+              otherswatch2 = '-' + $('.materials .highlight')[0].dataset.material_identifier ;
+              }
+            
+            prod_config.color=mat;
 
-
-            prod_config.material=mat;
           if ($('.alt_img').length > 0){
             $('.alt_img').each(function(i,t){
               //console.log(i);
-               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch)){
+               if (t.dataset.url.includes(mat) && t.dataset.url.includes(otherswatch) && t.dataset.url.includes(otherswatch2)  && t.dataset.number.includes(prod_num_base)){
                 //console.log('found');
                 swap_product_image(t.dataset.url);
                 swap_product_info_for_configuration(t);
@@ -299,8 +379,8 @@ $(document).on("page:change", (function(){
                 //console.log(i);
                   if (i == $('.alt_img').length - 1 ){
                     //console.log('no material matches');
-                    swap_product_image(bw_image);
-                    swap_product_info_for_no_configuration();
+                    // swap_product_image(bw_image);
+                    // swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
                   }
                }
@@ -320,7 +400,8 @@ $(document).on("page:change", (function(){
           //set the corrosponding material
           var otherswatch = "/"
             if($('.materials .highlight').length > 0){
-             otherswatch = $('.materials .highlight')[0].dataset.material_identifier ;
+             otherswatch = "-" + $('.materials .highlight')[0].dataset.material_identifier ;
+
               }
             else if($('.china_colors .highlight').length > 0){
              otherswatch = $('.china_colors .highlight')[0].dataset.material_identifier ;
@@ -328,11 +409,14 @@ $(document).on("page:change", (function(){
 
             
             var mat = this.dataset.finish_identifier;
-            //console.log(mat);
+            console.log(mat);
 
-            var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
+            var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
-             var mat_sheet_targ = the_tear_targ.replace("XX", mat);
+             var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, mat);
+             if (prod_config.color.length > 1){
+              mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
+             }
             $('.tear-sheet-submit').attr('href',mat_sheet_targ);
             prod_config.finish = mat;
 
@@ -340,13 +424,20 @@ $(document).on("page:change", (function(){
             // product_data[finish_identifier] = mat;
             var foundit = 0;
           $('.alt_img').each(function(i,t){
-             if (t.dataset.url.includes(mat)){  
+             if (t.dataset.url.includes(mat)){
+             console.log('now here!');
+             console.log(t.dataset.number);  
               //To do -- if  there are multiple finishes, need to check for double match before showing the single match.. so use commented code...
               //check if material is right then:
-                if (t.dataset.url.includes(otherswatch)){
+                if(t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prodnum_raw)){
+                  swap_product_image(t.dataset.url);
+                  swap_product_info_for_configuration(t);
+                  $(t).addClass('alt_choice');
+                  foundit = 1;
+                  return false;
 
+                }else if (t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prod_num_base)){
 
-              
                   swap_product_image(t.dataset.url);
                   swap_product_info_for_configuration(t);
                   $(t).addClass('alt_choice');
@@ -361,7 +452,9 @@ $(document).on("page:change", (function(){
                 //       $(t).addClass('alt_choice');
                 //     }
                 //   });
-                }else{
+                }
+
+                else{
                   if (i == $('.alt_img').length-1 ){
                     // console.log('no material+ finish matches');
                     //do the swap B and W image here*
@@ -418,6 +511,10 @@ $(document).on("page:change", (function(){
           
             $('#see_all').hide();
             $('ul#components_list li').slice(2).show();
+            var conff = $('.alt_choice')[0];
+             if (conff){
+                swap_product_info_for_configuration(conff);
+              }
             $('#hide_all').show();
             $('ul#components_list').addClass('expandComp');
           }

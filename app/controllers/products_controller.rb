@@ -22,7 +22,11 @@ before_action :authenticate_user!, only: [:upload_product_file]
     @finishes << ob
     end
     
-    
+    if @product.product_configurations.length >= 10
+      @list_width = "image_list_wide"
+    else
+      @list_width = ""
+    end
 
  
 

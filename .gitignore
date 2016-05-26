@@ -16,12 +16,13 @@
 *.swo
 .env
 /public/system/products/images
-/public/images/sw_home*
+
 
 /solr/pids/*
 solr/*
 public/system/product_configurations/images/*
 public/system/compilations/images/*
+public/*/sw_home*.jpg
 
 app/models/concerns/image_file_path.rb   
 

@@ -96,11 +96,12 @@ namespace :sw do
                  "Flush Pulls",
                  "Chandeliers",
                  "Pendant Lights",
-                 "Table Lights and Floor Lights"
+                 "Table Lights and Floor Lights",
+
     ]
     sub_types.each do |sub_type_name|
       sub_type = ProductSubType.where('lower(name) = ?', sub_type_name.downcase).try(:first)
-      if sub_type
+      if sub_type 
         sub_type.products.each do |product|
           product.image_type = 'tall'
           product.save

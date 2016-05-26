@@ -347,6 +347,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       
       .panel-group { 
           max-width: 245px;
+          margin-bottom: 60px;
       
     }
   }
@@ -564,7 +565,8 @@ li.highlighted{
 }
 
 
-#alt_imgs{
+
+#alt_imgs, #assoc_imgs {
   list-style: none;
   padding-left: 0;
   /*overflow: auto;*/
@@ -574,6 +576,12 @@ li.highlighted{
   float: left;
 
   
+}
+.image_list #alt_imgs.image_list_wide{
+  width: 100%;
+}
+#similar_label{
+  color: darkgrey;
 }
 
 #alt_imgs li{
@@ -587,7 +595,18 @@ li.highlighted{
  
   
 }
-#alt_imgs img{
+#assoc_imgs li.assoc_img{
+  
+  font-size: 10px;
+  float: left;
+  margin: 2px;
+  margin-left: 0;
+  padding:0;
+  /*height:80px;*/
+ 
+  
+}
+.image_list img{
 border: thin solid #e5e6df;
 max-width: 80px;
 
@@ -682,7 +701,7 @@ div.tearsheet-form-box {
 }
 .m_name {
     margin-top: 11em;
-    color: lightgray;
+    color: darkgray;
     font-size: 10px;
 
 }
@@ -814,13 +833,14 @@ div.tearsheet-form-box {
 }
 .compilations ul{
   list-style: none;
+  padding-top: 6px;
 }
 .compilations li{
   padding-left: none;
 }
 
 .highlight{
-  outline: 2px darkgrey solid;
+  outline: 2px grey solid;
 }
 .prod_tile{
   cursor: pointer;

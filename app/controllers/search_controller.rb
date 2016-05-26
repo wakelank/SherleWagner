@@ -23,6 +23,7 @@ class SearchController < ApplicationController
                         )
       end
     end
+    @query = params['search']
   end
 
 # def j_search
