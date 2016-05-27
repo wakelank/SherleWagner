@@ -1314,6 +1314,7 @@ div.panel-body.filter {
 div#nav_link_contain.collapse.navbar-collapse{
   clear: left;  
 }
+#style-menu .navbar-nav > li > a {padding-top:10px !important; padding-bottom:5px !important;}
 
 
 
