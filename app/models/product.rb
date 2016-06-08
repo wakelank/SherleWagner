@@ -4,7 +4,7 @@ require 'find'
 class Product < ActiveRecord::Base
 
   include PgSearch
-  multisearchable :against => [:name, :number, :product_sub_type_name, :material_names]
+  multisearchable :against => [:name, :number, :product_sub_type_name, :material_names, :product_configuration_number]
 
 
   #  belongs_to :product_group
@@ -62,6 +62,10 @@ class Product < ActiveRecord::Base
 
   def material_names
     materials.map(&:name)
+  end
+
+  def product_configuration_number
+    product_configurations.map(&:number)
   end
 
   def self.new_upload_product_file(file)
