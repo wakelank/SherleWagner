@@ -11,4 +11,12 @@ class Showroom < ActiveRecord::Base
       field :region
     end
   end
+
+  def self.regions
+    Showroom.pluck(:region).uniq
+  end
+
+  def self.from region:
+    Showroom.where(region: region)
+  end
 end

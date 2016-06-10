@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   
   
+  get 'new_showrooms' => 'showrooms#index'
+
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'product_configurations/show'

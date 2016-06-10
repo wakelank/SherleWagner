@@ -113,19 +113,6 @@ RailsAdmin.config do |config|
     exclude_fields :environment_shot_styles
   end
 
-   # config.model Showroom do
-   #   edit do
-   #     # field :header
-   #     # # field :name
-   #     # # field :address
-   #     # # field :phone
-   #     # # field :fax
-   #     # # field :website
-   #     # field :emails
-   #     # field :region
-   #   end
-   # end
-
   config.navigation_static_links = {
     "Edit Homepage" => "/edit_homepage"
   }

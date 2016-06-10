@@ -1,0 +1,27 @@
+</ul>
+<% @regions.each do |region| %>
+  <li>
+    <h3>
+      <%= region %>
+    </h3>
+  </li>
+<% end %>
+</ul>
+
+<% @regions.each do |region| %>
+  <h3>Showrooms in <%= region %>
+  <% region.showrooms.each do |showroom| %>
+    <p><%= showroom.header %></p>
+    <h2><%= showroom.name %></h2>
+    <p><%= showroom.address %></p>
+    <p><%= showroom.phone %></p>
+    <p><%= showroom.fax %></p>
+    <p><%= showroom.website %></p> 
+    <ul>
+    <% showroom.emails.each do |email| %>
+      <li>email</li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
