@@ -46,7 +46,26 @@
 .product_info{
   padding-left: 8%;
 }
-
+#components_list {
+    margin-bottom: 1.5em;
+    float: left;
+    padding-top: 0;
+    position: relativ;
+    padding-left: 0;
+    opacity: 0.95;
+    font-size: 12px;
+    width: 100%;
+    /* border: thin solid #eeeeee; */
+}
+.components {
+    height: 3.5em;
+    margin-bottom: 1em;
+    clear: left;
+     padding-left:0; 
+}
+.centered{
+  padding-left: 0;
+}
   @media print{
     .option_box{
         width: 120px;
@@ -67,7 +86,8 @@
 
 <div class="prod-text">
       <h3 id="prod_name">
-        <%= @product.name%>
+
+        <%= @name %>
       </h3>
       
     
@@ -79,7 +99,10 @@
       <img id="img_img" class="size_img"src="<%= @config_img %>" alt="">
       <div class="config_info">
         <h5 class="prod-config-number">
-         <%= @tearsheet_number %>
+          <% if @product.all_components.length < 1 %>
+          <%= @tearsheet_number %>
+        <% end %>
+         
       </h5> 
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
@@ -107,9 +130,11 @@
   
   
   <div class="product_info">
-    <h4 id="tearsheet_number">
-        <%= @tearsheet_number%>
+    <% if @product.all_components.length < 1 %>  
+      <h4 id="tearsheet_number">
+          <%= @tearsheet_number%>
       </h4>
+    <% end %>
 
    
     
@@ -152,6 +177,24 @@
 
           
         </ul>
+
+        <% if @product.all_components.size > 1 %>
+      <div class="components">
+    
+        <ul id="components_list" class="comp_list links">
+          <span id="components"><h4>Components:</h4></span>
+          <% @product.all_components.each do |component| %>
+            <% if component.class.name == "Product" %>
+              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name  %>
+            <% else %>
+              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div> 
+
+  <% end %>
         
       </div>
       
@@ -171,26 +214,11 @@
 
 
     <%= render 'product_info' %>
-  <% if @product.all_components.size > 1 %>
-      <div class="components">
+  
+
     
-        <ul id="components_list" class="comp_list links">
-          <span id="components"><h4>Components:</h4></span>
-          <% @product.all_components.each do |component| %>
-            <% if component.class.name == "Product" %>
-              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name  %>
-            <% else %>
-              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-      </div> 
-
-    <% end %>
-
+  <% if @product.compilations.size > 0 %>
     <div class="compilations">
-      <% if @product.compilations.size > 0 %>
       <p>
         Compilations:
       </p>
@@ -200,9 +228,9 @@
         </li>
         <% end %>
       </ul>
-
-      <% end %>
     </div>
+  <% end %>
+    
     
   </div>
   <br/>

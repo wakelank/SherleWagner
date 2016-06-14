@@ -96,13 +96,19 @@ before_action :authenticate_user!, only: [:upload_product_file]
     
     if @product.components.length >= 1
       @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number_s}%")
+      
     else
       @configs = @product.product_configurations.where("number like ?", "%#{@tearsheet_number}%")
+      
     end
-    if @configs.length >= 1 and !@configs[0].image.url.include?('missing')
+    if @configs.length >= 1 
+      @name = @configs[0].description
+      if !@configs[0].image.url.include?('missing')
 
-       @config_img = @configs[0].image.url 
+        @config_img = @configs[0].image.url 
+      end
     else
+      @name = @product.name
       @config_img = @product.image.url  
     end
    

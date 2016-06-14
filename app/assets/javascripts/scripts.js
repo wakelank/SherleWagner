@@ -35,7 +35,7 @@ $(document).on("page:change", (function(){
               ident = t.dataset.material_identifier;
               parent_div = '#product_materials_list';
           }else if ($($(t).parents()[1]).hasClass('china_colors')){
-              ident = t.dataset.material_identifier;
+              ident = t.dataset.china_identifier;
               parent_div = '#product_china_list';
           }else{
           }
@@ -72,7 +72,7 @@ $(document).on("page:change", (function(){
       $('#center_main').removeClass('center_min_width');
       $('#center_main').addClass('center_min_show');
 
-
+      var product_name = $('h3#prod_name').html();
 
       var configurationObject = {};
       var tearSheetForm = document.getElementById('tearsheet-form');
@@ -200,7 +200,7 @@ $(document).on("page:change", (function(){
         //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
          var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish)
          if (prod_config.color.length > 1){
-          console.
+          
           tearsheet_targ3 = tearsheet_targ3.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
           }
 
@@ -413,7 +413,7 @@ $(document).on("page:change", (function(){
 
             var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
-             var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, mat);
+             var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace("-"+finish_code_regex, mat);
              if (prod_config.color.length > 1){
               mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
              }
@@ -617,9 +617,18 @@ $(document).on("page:change", (function(){
     var the_code_url= $('.tear-sheet-submit').attr('href').split('/');
     var the_code = $(the_code_url).last()[0];
     $('.prod-config-number').html(the_code);
-    var fake_description = "Finish: " + prod_config.finish + ", Material: " + prod_config.material
+    var fake_description = "";
+    if (prod_config.finish.length>1){
+      fake_description += "Finish: " + prod_config.finish;
+      if (prod_config.material.length>1){
+        fake_description +=", ";
+      }
+    }
+    if (prod_config.material.length>1){
+      fake_description += "Option: " + prod_config.material;
+    }
     $('.prod-config-description #description').html(fake_description);
-
+    $('h3#prod_name').html(product_name);
     
   }
 

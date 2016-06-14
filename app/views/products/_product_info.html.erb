@@ -28,7 +28,7 @@
       <% if @product.finishes.length >= 1 %>
       <h3 class='choice_title'>Detail</h3>
       <% else %>
-      <h3 class='choice_title'>Materials</h3>
+      <h3 class='choice_title'>Option</h3>
       <% end %>
     
       <ul id="product_materials_list" class="detail_list">
@@ -44,9 +44,13 @@
       </ul>
     </div>
     <% left = "left" %>
+
   <% end %>
   <!-- <div class="china_colors"> -->
   <% if @product.china_colors.length() >= 1 %>
+  <% if @product.finishes.length >= 1 && @product.materials.length >= 1 %>
+    <% left = "no_left" %>
+    <% end %>
   <div class="china_colors swatches <%= left %> " >
     <h3 class='choice_title'>China Color</h3>
     <ul id="product_china_list" class="detail_list">
