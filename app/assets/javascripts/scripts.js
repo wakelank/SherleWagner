@@ -193,7 +193,7 @@ $(document).on("page:change", (function(){
         
 
         var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-        var finish_code_regex = /(PN|CP|ES|AP|PE|BN|BC|BS|HP|GP|BG|SB|OB|EP|AL|AG|PB|FP|RG)/
+        var finish_code_regex = /(-PN|-CP|-ES|-AP|-PE|-BN|-BC|-BS|-HP|-GP|-BG|-SB|-OB|-EP|-AL|-AG|-PB|-FP|-RG)/
         var china_code_regex = /(WH|SD|BLK)/
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material).replace("CHINABANDED", prod_config.material);
@@ -251,7 +251,7 @@ $(document).on("page:change", (function(){
                   console.log(t);
                 }else{
                   console.log('else*');
-                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, prod_config.finish);
+                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
                    if (prod_config.color.length > 1){
                     the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
                    }
@@ -408,12 +408,12 @@ $(document).on("page:change", (function(){
               } 
 
             
-            var mat = this.dataset.finish_identifier;
+             mat = this.dataset.finish_identifier;
             console.log(mat);
 
-            var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
+             the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
-             var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace("-"+finish_code_regex, mat);
+              mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, "-"+mat);
              if (prod_config.color.length > 1){
               mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
              }
