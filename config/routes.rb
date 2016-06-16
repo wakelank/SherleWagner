@@ -57,6 +57,11 @@ Rails.application.routes.draw do
   get "/fetch_cat" => 'product_types#an_category', as: 'fetch_cat'
   post "/product_types" => 'product_types#index'
 
+
+  # =====keep this at bottom of routes for error routing ======
+  get "*any", via: :all, to: "errors#not_found"
+  # =====keep this at bottom ======
+
   #post 'static_pages/upload_file' => 'static_pages#upload_products'
   
   # The priority is based upon order of creation: first created -> highest priority.
