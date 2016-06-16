@@ -99,11 +99,11 @@
       <img id="img_img" class="size_img"src="<%= @config_img %>" alt="">
       <div class="config_info">
         <h5 class="prod-config-number">
-          <% if @product.all_components.length < 1 %>
+          <% if @product.all_components.length < 2 %>
           <%= @tearsheet_number %>
         <% end %>
          
-      </h5> 
+        </h5> 
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
          <% description ="" %>
