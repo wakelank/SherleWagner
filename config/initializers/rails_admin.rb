@@ -88,6 +88,17 @@ RailsAdmin.config do |config|
    end
   end
 
+  config.model Showroom do
+    edit do
+      # field :website do
+      #   label "thing"
+      # end
+      configure :address do
+        partial 'showroom_address'
+      end
+    end
+  end
+
   config.model 'Style' do
     label "Collection"
   end
