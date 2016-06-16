@@ -12,12 +12,13 @@
   <% @favorites.each do |favorite| %>
   <% bgimage= favorite.product_image %>
     
-    <%= link_to favorite.url,
-      id:favorite.css_id,
-      class: 'favorite' do %>
+   
 
         <li class ="search_prod_tile prod_tile <%= favorite.product_name.gsub(' ','_') %>">
           <%= link_to " [X] ", favorites_path + "/#{favorite.id}", method: 'delete',  id: "ex" %>
+           <%= link_to favorite.url,
+      id:favorite.css_id,
+      class: 'favorite' do %>
           <div class="prod_tile_img" style="background-image: url(<%= bgimage %>); background-size: cover; background-repeat: no-repeat"></div>
 
           <div class="prod_title search_prod_title">
