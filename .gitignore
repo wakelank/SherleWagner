@@ -28,4 +28,5 @@ app/models/concerns/image_file_path.rb
 
 spec/fixtures/files/.~lock.test_product_data.csv#
 sunspot-solr.pid
-
+logDELETEME
+public/system/product_configurations/imagesDELETEME/
