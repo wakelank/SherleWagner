@@ -222,7 +222,7 @@ $(document).on("page:change", (function(){
           
           tearsh[tearsh.length-1] = prod_num.join('-');
           $('.tear-sheet-submit').attr('href', tearsh.join('/'));
-          tearsheet_targ = $('.tear-sheet-submit').attr('href');
+          tearsheet_targ1 = $('.tear-sheet-submit').attr('href');
           // tearsh_prod_num = $(tearsh).last()[0].split('-')[0];
           // tearsh_prod_num = tearsh_prod_num.replace(tearsh_prod_num, prod_num_base);
 
@@ -251,7 +251,7 @@ $(document).on("page:change", (function(){
                   console.log(t);
                 }else{
                   console.log('else*');
-                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
+                   var the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
                    if (prod_config.color.length > 1){
                     the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
                    }
