@@ -2,14 +2,14 @@
 <% @regions.each do |region| %>
   <li>
     <h3>
-      <%= region %>
+      <%= region.name %>
     </h3>
   </li>
 <% end %>
 </ul>
 
 <% @regions.each do |region| %>
-  <h3>Showrooms in <%= region %>
+  <h3>Showrooms in <%= region.name %>
   <% region.showrooms.each do |showroom| %>
     <p><%= showroom.header %></p>
     <h2><%= showroom.name %></h2>

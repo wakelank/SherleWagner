@@ -1,8 +1,8 @@
 class Region
 
-  attr_reader :showrooms
+  attr_accessor :name, :showrooms
 
-  def initialize name:, showrooms:
+  def initialize(name: nil, showrooms: nil)
     @name = name
     @showrooms = showrooms
   end
