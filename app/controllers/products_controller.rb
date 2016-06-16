@@ -108,7 +108,7 @@ before_action :authenticate_user!, only: [:upload_product_file]
         @config_img = @configs[0].image.url 
       end
     else
-      @name = @product.name
+      @name = @product.product_sub_type.name+": "+@product.name
       @config_img = @product.image.url  
     end
    
