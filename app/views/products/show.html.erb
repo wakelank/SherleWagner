@@ -6,7 +6,8 @@
 
 <div class="prod-text">
 <h3 id="prod_name">
-<%= @product.name%>
+<%= @product.product_sub_type.name %>: <%= @product.name %>
+
 </h3>
 <% if admin? %>
       <%= link_to 'edit product', edit_product_path %>

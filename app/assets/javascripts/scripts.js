@@ -73,6 +73,7 @@ $(document).on("page:change", (function(){
       $('#center_main').addClass('center_min_show');
 
       var product_name = $('h3#prod_name').html();
+      console.log(product_name);
 
       var configurationObject = {};
       var tearSheetForm = document.getElementById('tearsheet-form');
