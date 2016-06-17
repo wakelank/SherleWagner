@@ -1,0 +1,13 @@
+<div class="col-md-4 showroom">
+  <p><%= showroom.header %></p>
+  <h2><%= showroom.name %></h2>
+  <%= simple_format(showroom.address) %>
+  <p><%= showroom.phone %><br />
+  <%= showroom.fax %></p>
+  <p><%= link_to showroom.website %></p> 
+  <ul class="email-list">
+    <% showroom.emails.each do |email| %>
+      <li><%= mail_to email%></li>
+    <% end %>
+  </ul>
+</div>
