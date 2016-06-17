@@ -30,3 +30,5 @@ spec/fixtures/files/.~lock.test_product_data.csv#
 sunspot-solr.pid
 logDELETEME
 public/system/product_configurations/imagesDELETEME/
+public/images/sw_home1.jpg
+public/images/sw_home1_preview.jpg
