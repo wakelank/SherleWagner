@@ -315,6 +315,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .panel-body {
         padding: 0px 15px;
       }
+      #accordion1{
+        margin-bottom: 60px;
+      }
       #accordion1 *{
         /*background-color: #e5e6df;*/
         background-color: rgba(0,0,0,0);
@@ -347,7 +350,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       
       .panel-group { 
           max-width: 245px;
-          margin-bottom: 60px;
+          /*margin-bottom: 60px;*/
       
     }
   }
