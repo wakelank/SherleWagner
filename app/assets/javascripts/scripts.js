@@ -745,11 +745,13 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-          var identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim()
+          var identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim();
 
-           $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
+          var bg = $(targ).css("background-image").replace("thumb","medium");
+          nbg = bg.slice(5,-2);
+
+           $(choice_id).html('<img src="'+nbg+'" class="option-img"></img><div class="m_name">'+identifier_name+'</div>');
            
-           var bg = $(targ).css("background-image").replace("thumb","medium");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);
