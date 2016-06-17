@@ -1,6 +1,7 @@
 class Showroom < ActiveRecord::Base
   rails_admin do
     edit do
+      field :order
       field :header
       field :name
       configure :address do
