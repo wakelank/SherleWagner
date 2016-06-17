@@ -1384,12 +1384,20 @@ div.filter h5{
   margin: 0 auto;
 }
 
+.showrooms ul {
+  list-style: none;
+}
 .showrooms .regional-offices ul{
   padding-left: 0;
-  list-style: none;
 }
 .showrooms .regional-offices li{
   margin-left: 0;
+}
+
+
+#map-canvas { 
+  height: 100%;
+  margin: 0 auto;
 }
 .showrooms .showroom-list li{
   display: inline;
