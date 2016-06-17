@@ -2,12 +2,12 @@
   <p><%= showroom.header %></p>
   <h2><%= showroom.name %></h2>
   <%= simple_format(showroom.address) %>
-  <p><%= showroom.phone %></p>
-  <p><%= showroom.fax %></p>
+  <p><%= showroom.phone %><br />
+  <%= showroom.fax %></p>
   <p><%= showroom.website %></p> 
-  <ul>
+  <ul class="email-list">
     <% showroom.emails.each do |email| %>
-      <li>email</li>
+      <li><%= email %></li>
     <% end %>
   </ul>
 </div>

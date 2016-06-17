@@ -1404,11 +1404,15 @@ div.filter h5{
   width :90%;
   margin: 0 auto;
   margin-top: 5em;
-  border-bottom: thin #eee solid;
 }
 .showrooms .showrooms-list.row h3{
   margin-bottom:3em;
   border-top: thin #eee solid;
   padding-top: 1em;
-
+}
+.showrooms .showrooms-list .email-list{
+  padding-left: 0;
+}
+.showrooms .showrooms-list .email-list li{
+  margin-left: 0;
 }
