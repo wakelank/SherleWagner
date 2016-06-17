@@ -14,11 +14,13 @@
 <% @regions.each do |region| %>
   <div class="showrooms-list row">
     <%= content_tag(:h3, "Showrooms in #{region.name}", name: region.name) %>
-    <div class="row ">
-      <% region.showrooms.each do |showroom| %>
-        <%= render showroom %>
-      <% end %>
-    </div>
+      <% region.showrooms.in_groups_of(3, false) do |showrooms| %>
+        <div class="row">
+          <% showrooms.each do |showroom| %>
+            <%= render showroom %>
+          <% end %>
+        </div>
+    <% end %>
   </div>
 <% end %>
 

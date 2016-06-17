@@ -1416,3 +1416,9 @@ div.filter h5{
 .showrooms .showrooms-list .email-list li{
   margin-left: 0;
 }
+
+.showrooms .showroom{
+  min-height:24em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
