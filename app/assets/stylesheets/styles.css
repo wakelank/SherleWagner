@@ -828,6 +828,10 @@ div.tearsheet-form-box {
 .detail_list{
   padding-left: 0;
 }
+.swatch-img{
+  height: 100%;
+  width: 100%;
+}
 .swatch_name{
   font-size: 9px;
   color: lightgrey;
