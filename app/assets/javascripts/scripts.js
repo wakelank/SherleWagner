@@ -729,11 +729,11 @@ $(document).on("page:change", (function(){
            var product_object = { product_id: product_id };
 
            if ($(targ).data().material_identifier === undefined){
-            var identifier = $(targ).data().finish_identifier;
+             identifier = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
             var config = {finish: identifier};
            }else{
-            var identifier = $(targ).data().material_identifier;
+             identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
             var config = {material: identifier};
            }
@@ -746,7 +746,7 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-          var identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim();
+           identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[1].innerHTML.trim();
 
           var bg = $(targ).css("background-image").replace("thumb","medium");
           var nbg = bg.slice(5,-2);
