@@ -1378,3 +1378,37 @@ div.filter h5{
     margin-top: 3px;
 }
 
+/* Showrooms */
+.showrooms li{
+  display: inline;
+  margin: 0 2em;
+}
+
+.showrooms .regions h3{
+  display: inline;
+}
+
+.showrooms .regions.row{
+  border-top: thin #eee solid;
+  border-bottom: thin #eee solid;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.showrooms .row{
+  margin: 0;
+}
+
+.showrooms .showrooms-list.row{
+  width :90%;
+  margin: 0 auto;
+  margin-top: 5em;
+  border-bottom: thin #eee solid;
+}
+.showrooms .showrooms-list.row h3{
+  margin-bottom:3em;
+  border-top: thin #eee solid;
+  padding-top: 1em;
+
+}

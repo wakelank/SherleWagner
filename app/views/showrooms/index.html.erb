@@ -1,4 +1,6 @@
-</ul>
+<div class="row regions">
+<ul>
+
 <% @regions.each do |region| %>
   <li>
     <h3>
@@ -7,11 +9,16 @@
   </li>
 <% end %>
 </ul>
+</div>
 
 <% @regions.each do |region| %>
-  <h3>Showrooms in <%= region.name %>
-  <% region.showrooms.each do |showroom| %>
-    <%= render showroom %>
-  <% end %>
+  <div class="showrooms-list row">
+    <h3>Showrooms in <%= region.name %></h3>
+    <div class="row ">
+      <% region.showrooms.each do |showroom| %>
+        <%= render showroom %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
