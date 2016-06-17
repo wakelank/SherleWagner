@@ -1,26 +1,43 @@
-<div class="row regions">
-<ul>
+<div class="showrooms-wrapper">
+  <h3>Showrooms</h3>
+  <p>Regional Offices</p>
+  <div class="regional-offices">
+    <ul>
+      <% @regional_offices.each do |regional_office| %>
+        <li>
+          <%= regional_office.regional_office_label %>: <%= regional_office.phone %> 
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<% @regions.each do |region| %>
-  <li>
-    <h3>
-      <%= link_to region.name, showrooms_path(anchor: region.name) %>
-    </h3>
-  </li>
-<% end %>
-</ul>
-</div>
+  <div class="map">
+  </div>
 
-<% @regions.each do |region| %>
-  <div class="showrooms-list row">
-    <%= content_tag(:h3, "Showrooms in #{region.name}", name: region.name) %>
+
+  <div class="row regions">
+    <ul>
+
+      <% @regions.each do |region| %>
+        <li>
+          <h3>
+            <%= link_to region.name, showrooms_path(anchor: region.name) %>
+          </h3>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <% @regions.each do |region| %>
+    <div class="showrooms-list row">
+      <%= content_tag(:h3, "Showrooms in #{region.name}", name: region.name) %>
       <% region.showrooms.in_groups_of(3, false) do |showrooms| %>
         <div class="row">
           <% showrooms.each do |showroom| %>
             <%= render showroom %>
           <% end %>
         </div>
-    <% end %>
-  </div>
-<% end %>
-
+      <% end %>
+    </div>
+  <% end %>
+</div>

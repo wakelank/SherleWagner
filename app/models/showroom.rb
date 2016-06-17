@@ -2,6 +2,8 @@ class Showroom < ActiveRecord::Base
   rails_admin do
     edit do
       field :order
+      field :regional_office
+      field :regional_office_label
       field :header
       field :name
       configure :address do
@@ -20,7 +22,11 @@ class Showroom < ActiveRecord::Base
     Showroom.pluck(:region).uniq
   end
 
-  def self.from region:
-    Showroom.where(region: region)
-  end
+  # def self.regional_offices
+  #   Showroom.where(regional_office: true).ord
+  # end
+
+#   def self.from region:
+#     Showroom.where(region: region)
+#   end
 end

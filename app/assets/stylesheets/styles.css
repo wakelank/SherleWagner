@@ -1379,7 +1379,19 @@ div.filter h5{
 }
 
 /* Showrooms */
-.showrooms li{
+.showrooms .showrooms-wrapper{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.showrooms .regional-offices ul{
+  padding-left: 0;
+  list-style: none;
+}
+.showrooms .regional-offices li{
+  margin-left: 0;
+}
+.showrooms .showroom-list li{
   display: inline;
   margin: 0 2em;
 }
@@ -1391,8 +1403,6 @@ div.filter h5{
 .showrooms .regions.row{
   border-top: thin #eee solid;
   border-bottom: thin #eee solid;
-  width: 90%;
-  margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -1401,8 +1411,6 @@ div.filter h5{
 }
 
 .showrooms .showrooms-list.row{
-  width :90%;
-  margin: 0 auto;
   margin-top: 5em;
 }
 .showrooms .showrooms-list.row h3{
@@ -1422,3 +1430,4 @@ div.filter h5{
   margin-top: 2em;
   margin-bottom: 2em;
 }
+

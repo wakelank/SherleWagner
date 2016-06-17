@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617204241) do
+ActiveRecord::Schema.define(version: 20160617205420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -299,11 +299,13 @@ ActiveRecord::Schema.define(version: 20160617204241) do
     t.string   "phone"
     t.string   "fax"
     t.string   "website"
-    t.string   "emails",                  array: true
+    t.string   "emails",                             array: true
     t.string   "region"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "order"
+    t.boolean  "regional_office"
+    t.string   "regional_office_label"
   end
 
   create_table "styles", force: :cascade do |t|
