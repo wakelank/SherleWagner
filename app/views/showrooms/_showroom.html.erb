@@ -1,0 +1,12 @@
+<p><%= showroom.header %></p>
+<h2><%= showroom.name %></h2>
+<p><%= simple_format(showroom.address) %></p>
+<p><%= showroom.phone %></p>
+<p><%= showroom.fax %></p>
+<p><%= showroom.website %></p> 
+<ul>
+  <% showroom.emails.each do |email| %>
+    <li>email</li>
+  <% end %>
+</ul>
+
