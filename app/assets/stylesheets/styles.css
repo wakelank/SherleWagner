@@ -674,6 +674,9 @@ h4#prod_subtitle {
 .expandComp li{
   padding-left: 8px;
   padding-right: 8px;
+    list-style-position: inside;
+    text-indent: -1em;
+    padding-left: 1em;
 }
 .centered{
   padding-left: 8%;

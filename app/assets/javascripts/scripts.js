@@ -119,6 +119,7 @@ $(document).on("page:change", (function(){
       var matchr = image.match(/\/[^\/]+.jpg/);
 
       $('.alt_img').each(function(i,t){
+        $(t).removeClass('alt_choice');
         if(t.dataset.url.indexOf(matchr) > -1){
           
           $(t).addClass('alt_choice');
