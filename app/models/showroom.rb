@@ -3,6 +3,9 @@ class Showroom < ActiveRecord::Base
     edit do
       field :header
       field :name
+      configure :address do
+        partial 'showroom_address'
+      end
       field :address
       field :phone
       field :fax
