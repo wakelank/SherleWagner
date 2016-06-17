@@ -13,7 +13,9 @@
             <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", data-identifier="<%= finish["identifier"] %>", style="background-image: url(<%= finish["swatch"] %>);">
               <!-- <p class="swatch_name">
                 %= finish.name %> 
-              </p> --><div class="swatch_div"><%= finish["name"] %> </div>
+              </p> -->
+              <img class='swatch-img' src="<%= finish["swatch"] %>" alt="">
+              <div class="swatch_div"><%= finish["name"] %> </div>
 
             </li>
           <% end %>  <!-- finish.image -->
@@ -36,6 +38,7 @@
         <% @product.materials.each do |material| %>
         <% bg_img = material.swatch.url(:thumb) %>
           <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", data-identifier="<%= material.identifier %>", style="background-image:url('<%= bg_img %>')">
+            <img class='swatch-img' src="<%= bg_img %>" alt="">
            <div class="swatch_div"> <%= material.name %> </div>
            
           </li> 

@@ -73,6 +73,7 @@ $(document).on("page:change", (function(){
       $('#center_main').addClass('center_min_show');
 
       var product_name = $('h3#prod_name').html();
+      console.log(product_name);
 
       var configurationObject = {};
       var tearSheetForm = document.getElementById('tearsheet-form');
@@ -118,6 +119,7 @@ $(document).on("page:change", (function(){
       var matchr = image.match(/\/[^\/]+.jpg/);
 
       $('.alt_img').each(function(i,t){
+        $(t).removeClass('alt_choice');
         if(t.dataset.url.indexOf(matchr) > -1){
           
           $(t).addClass('alt_choice');
@@ -193,7 +195,7 @@ $(document).on("page:change", (function(){
         
 
         var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-        var finish_code_regex = /(PN|CP|ES|AP|PE|BN|BC|BS|HP|GP|BG|SB|OB|EP|AL|AG|PB|FP|RG)/
+        var finish_code_regex = /(-PN|-CP|-ES|-AP|-PE|-BN|-BC|-BS|-HP|-GP|-BG|-SB|-OB|-EP|-AL|-AG|-PB|-FP|-RG)/
         var china_code_regex = /(WH|SD|BLK)/
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material).replace("METALDECO", prod_config.material).replace("CHINABANDED", prod_config.material);
@@ -222,7 +224,7 @@ $(document).on("page:change", (function(){
           
           tearsh[tearsh.length-1] = prod_num.join('-');
           $('.tear-sheet-submit').attr('href', tearsh.join('/'));
-          tearsheet_targ = $('.tear-sheet-submit').attr('href');
+          tearsheet_targ1 = $('.tear-sheet-submit').attr('href');
           // tearsh_prod_num = $(tearsh).last()[0].split('-')[0];
           // tearsh_prod_num = tearsh_prod_num.replace(tearsh_prod_num, prod_num_base);
 
@@ -251,7 +253,7 @@ $(document).on("page:change", (function(){
                   console.log(t);
                 }else{
                   console.log('else*');
-                   var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish).replace(finish_code_regex, prod_config.finish);
+                   var the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
                    if (prod_config.color.length > 1){
                     the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
                    }
@@ -408,12 +410,12 @@ $(document).on("page:change", (function(){
               } 
 
             
-            var mat = this.dataset.finish_identifier;
+             mat = this.dataset.finish_identifier;
             console.log(mat);
 
-            var the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
+             the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
-             var mat_sheet_targ = the_tear_targ.replace("XX", mat).replace("-"+finish_code_regex, mat);
+              mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, "-"+mat);
              if (prod_config.color.length > 1){
               mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
              }
@@ -727,11 +729,11 @@ $(document).on("page:change", (function(){
            var product_object = { product_id: product_id };
 
            if ($(targ).data().material_identifier === undefined){
-            var identifier = $(targ).data().finish_identifier;
+             identifier = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
             var config = {finish: identifier};
            }else{
-            var identifier = $(targ).data().material_identifier;
+             identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
             var config = {material: identifier};
            }
@@ -744,11 +746,13 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-          var identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim()
+           identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[1].innerHTML.trim();
 
-           $(choice_id).html('<div class="m_name">'+identifier_name+'</div>');
+          var bg = $(targ).css("background-image").replace("thumb","medium");
+          var nbg = bg.slice(5,-2);
+
+           $(choice_id).html('<img src="'+nbg+'" class="option-img"></img><div class="m_name">'+identifier_name+'</div>');
            
-           var bg = $(targ).css("background-image").replace("thumb","medium");
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'cover');
            $(choice_id).attr("title", identifier);

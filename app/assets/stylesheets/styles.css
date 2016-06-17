@@ -315,6 +315,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .panel-body {
         padding: 0px 15px;
       }
+      #accordion1{
+        margin-bottom: 60px;
+      }
       #accordion1 *{
         /*background-color: #e5e6df;*/
         background-color: rgba(0,0,0,0);
@@ -347,7 +350,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       
       .panel-group { 
           max-width: 245px;
-          margin-bottom: 60px;
+          /*margin-bottom: 60px;*/
       
     }
   }
@@ -485,7 +488,7 @@ li.highlighted{
 
 .images{
   float: left;
-  padding-left: 1em;  
+  padding-left: 1em; 
   width:50%;
 }
 #image_div{
@@ -627,12 +630,16 @@ max-width: 80px;
 .product_info a{
   color:gray;
 }
-h3#prod_name{
+h3#prod_name, h4#prod_subtitle {
   min-height: 2em;
   color: black;
       float: right;
     width: 50%;
-    padding-left: 2.5em;
+    padding-left: 60px;
+}
+h4#prod_subtitle {
+  clear: right;
+  margin-top: 0;
 }
 .components{
   height:   3.5em;
@@ -667,6 +674,9 @@ h3#prod_name{
 .expandComp li{
   padding-left: 8px;
   padding-right: 8px;
+    list-style-position: inside;
+    text-indent: -1em;
+    padding-left: 1em;
 }
 .centered{
   padding-left: 8%;
@@ -675,6 +685,7 @@ h3#prod_name{
   width: 100%;
   float: left;
   clear: left;
+  padding-bottom: 2.5em;
 }
 .option_box{
   width: 8em;
@@ -688,7 +699,7 @@ h3#prod_name{
     
 }
 .tearsheet_wrapper{
-  padding-top: 2em;
+  padding-top: 1em;
 
 }
 div.tearsheet-form-box {
@@ -699,10 +710,15 @@ div.tearsheet-form-box {
   float:left;
   
 }
+.option-img{
+  width: 100%;
+  height: 100%;
+}
 .m_name {
-    margin-top: 11em;
+    /*margin-top: 11em;*/
     color: darkgray;
     font-size: 10px;
+    margin-bottom: 5px;
 
 }
 .favorite{
@@ -715,7 +731,7 @@ div.tearsheet-form-box {
 .prod_links{
   float: left;
   clear: left;
-  margin-top: 2.5em;
+  /*margin-top: 2.5em;*/
   text-align: left;
 
 }
@@ -747,13 +763,16 @@ div.tearsheet-form-box {
   body{
     min-width: 1276px;
   }
+  .images{
+  padding-top: 15px; 
+}
 
 }
 @media (min-width: 777px) and (max-width: 950px)  {
   body{
     min-width: 950px;
   }
-
+  
   .product_image {
     width: 130%;
     height: 410px;
@@ -809,6 +828,12 @@ div.tearsheet-form-box {
 .detail_list{
   padding-left: 0;
 }
+.swatch-img{
+  height: 0;
+  overflow: visible;
+  width: 100%;
+  z-index: -100;
+}
 .swatch_name{
   font-size: 9px;
   color: lightgrey;
@@ -818,7 +843,7 @@ div.tearsheet-form-box {
   display: none;
   pointer-events: none;
   margin-top: 45px;
-  margin-left: -25px;
+  margin-left: -15px;
   position: absolute;
   background-color: white;
   width:6em;

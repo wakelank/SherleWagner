@@ -7,9 +7,7 @@
   .navvy{
     display: none;
   }
-  footer{
-    display: none;
-  }
+ 
   nav div#nav_link_contain{
     display: none !important;
   }
@@ -28,8 +26,9 @@
     padding-left: 2em;
 
   }
+
   .m_name{
-    margin-top: 15em;
+    /*margin-top: 15em;*/
   }
 
 #tear_l_nav {
@@ -79,6 +78,18 @@
       padding-left: 0;
       margin-left: 0;
     }
+    .product_info {
+    padding-left: 0;
+    }
+    .swatch-img{
+      height: 100%;
+    }
+    #center_main{
+      margin-left: 0!important;
+    }
+    footer{
+      display: none;
+    }
   }
 </style>
 <div class="prod_page_content">
@@ -99,11 +110,11 @@
       <img id="img_img" class="size_img"src="<%= @config_img %>" alt="">
       <div class="config_info">
         <h5 class="prod-config-number">
-          <% if @product.all_components.length < 1 %>
+          <% if @product.all_components.length < 2 %>
           <%= @tearsheet_number %>
         <% end %>
          
-      </h5> 
+        </h5> 
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
          <% description ="" %>
@@ -185,7 +196,7 @@
           <span id="components"><h4>Components:</h4></span>
           <% @product.all_components.each do |component| %>
             <% if component.class.name == "Product" %>
-              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name  %>
+              <li data-configurations="<%= component.compilations_number_string %>"><%= component.name  %> : <%= component.number  %>
             <% else %>
               <li data-configurations="<%= component.compilations_number_string %>"><%= component.name %>
             <% end %>
