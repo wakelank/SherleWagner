@@ -749,7 +749,7 @@ $(document).on("page:change", (function(){
           var identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[0].innerHTML.trim();
 
           var bg = $(targ).css("background-image").replace("thumb","medium");
-          nbg = bg.slice(5,-2);
+          var nbg = bg.slice(5,-2);
 
            $(choice_id).html('<img src="'+nbg+'" class="option-img"></img><div class="m_name">'+identifier_name+'</div>');
            

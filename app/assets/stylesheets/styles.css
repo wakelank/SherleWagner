@@ -829,8 +829,10 @@ div.tearsheet-form-box {
   padding-left: 0;
 }
 .swatch-img{
-  height: 100%;
+  height: 0;
+  overflow: visible;
   width: 100%;
+  z-index: -100;
 }
 .swatch_name{
   font-size: 9px;
