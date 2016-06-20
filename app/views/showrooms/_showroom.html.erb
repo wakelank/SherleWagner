@@ -2,7 +2,10 @@
   <p class="showroom-header"><%= showroom.header %></p>
   <h2 class="showroom-name"><%= showroom.name %></h2>
   <%= simple_format(showroom.address) %>
-  <p>phone: <%= showroom.phone %><br />
+  <p>
+  <% showroom.phone_numbers.each do |phone_number| %>
+    pphone: <%= phone_number %><br />
+<% end %>
   <% if !showroom.fax.blank? %>
     fax: <%= showroom.fax %>
 <% end %>
@@ -11,7 +14,7 @@
 <% end %>
   </p>
   <p><%= link_to showroom.website %></p> 
-  <% if showroom.emails.length == 1 %>
+  <% if showroom.emails.length > 0 %>
     <p><%= mail_to showroom.emails.first, 'email showroom', subject: 'Showroom' %></p>
   <% else %>
     <ul class="email-list">
