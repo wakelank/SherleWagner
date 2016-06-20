@@ -1420,23 +1420,25 @@ div.filter h5{
 }
 .showrooms .regional-offices ul{
   padding-left: 0;
+  width: 90%
+  margin: 0 auto;
 }
 .showrooms .regional-offices li{
   margin-left: 0;
 }
 
-
 #map-canvas { 
   height: 100%;
   margin: 0 auto;
 }
-.showrooms .showroom-list li{
+.showrooms .regions li{
   display: inline;
-  margin: 0 2em;
+  margin: 0 1.75em;
 }
 
 .showrooms .regions h3{
   display: inline;
+  margin: 0 0;
 }
 
 .showrooms .regions.row{
@@ -1447,6 +1449,13 @@ div.filter h5{
 }
 .showrooms .row{
   margin: 0;
+}
+
+.showrooms .showroom-list .showroom-name{
+  min-height: 3em;
+}
+.showrooms .showroom-list .showroom-header{
+  min-height: 2em;
 }
 
 .showrooms .showrooms-list.row{

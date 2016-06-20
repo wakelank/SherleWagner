@@ -10,10 +10,15 @@ class Showroom < ActiveRecord::Base
         partial 'showroom_address'
       end
       field :address
-      field :phone
+      field :phone_numbers, :pg_string_array do
+        label 'phone numbers (comma separated)'
+      end
       field :fax
+      field :mobile
       field :website
-      field :emails, :pg_string_array
+      field :emails, :pg_string_array do
+        label 'Emails (comma separated)'
+      end
       field :region
     end
   end
@@ -22,11 +27,4 @@ class Showroom < ActiveRecord::Base
     Showroom.pluck(:region).uniq
   end
 
-  # def self.regional_offices
-  #   Showroom.where(regional_office: true).ord
-  # end
-
-#   def self.from region:
-#     Showroom.where(region: region)
-#   end
 end

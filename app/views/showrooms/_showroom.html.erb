@@ -1,13 +1,26 @@
 <div class="col-md-4 showroom">
-  <p><%= showroom.header %></p>
-  <h2><%= showroom.name %></h2>
+  <p class="showroom-header"><%= showroom.header %></p>
+  <h2 class="showroom-name"><%= showroom.name %></h2>
   <%= simple_format(showroom.address) %>
-  <p><%= showroom.phone %><br />
-  <%= showroom.fax %></p>
+  <p>
+  <% showroom.phone_numbers.each do |phone_number| %>
+    phone: <%= phone_number %><br />
+<% end %>
+  <% if !showroom.fax.blank? %>
+    fax: <%= showroom.fax %>
+<% end %>
+  <% if !showroom.mobile.blank? %>
+    mobile: <%= showroom.mobile %>
+<% end %>
+  </p>
   <p><%= link_to showroom.website %></p> 
-  <ul class="email-list">
-    <% showroom.emails.each do |email| %>
-      <li><%= mail_to email%></li>
-    <% end %>
-  </ul>
+  <% if showroom.emails.length == 1 %>
+    <p><%= mail_to showroom.emails.first, 'email showroom', subject: 'Showroom' %></p>
+  <% else %>
+    <ul class="email-list">
+      <% showroom.emails.each do |email| %>
+        <li><%= mail_to email%></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
