@@ -694,9 +694,9 @@ $(document).on("page:change", (function(){
 
         }else {
           if($('li.alt_choice').length < 1 && $('#components_list li').length > 1){
-          console.log('no tearsh href yet');
+          // console.log('no tearsh href yet ' + prod_num_base) ;
             }else{
-              console.log('no tearsh href yet and compilation');
+              // console.log('no tearsh href yet and compilation '+ prod_num_base);
             }
         }
        // .replace("XX", finish_identifier);
