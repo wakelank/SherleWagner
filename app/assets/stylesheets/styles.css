@@ -473,7 +473,7 @@ li.highlighted{
 
 .prod_page_content{
   width:90%;
-  /*padding-left: 1em;*/
+  
   margin: 0 auto;
   padding-top: 1em;
 }
@@ -958,7 +958,7 @@ ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
   height: 400px;
 }
 .styles_wrapper{
-  margin:0 auto;
+  margin: 0 auto;
   margin-top: 2em;
   
 width: 100%;
