@@ -4,7 +4,7 @@
   <%= simple_format(showroom.address) %>
   <p>
   <% showroom.phone_numbers.each do |phone_number| %>
-    pphone: <%= phone_number %><br />
+    phone: <%= phone_number %><br />
 <% end %>
   <% if !showroom.fax.blank? %>
     fax: <%= showroom.fax %>

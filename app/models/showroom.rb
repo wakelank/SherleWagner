@@ -10,7 +10,7 @@ class Showroom < ActiveRecord::Base
         partial 'showroom_address'
       end
       field :address
-      field :phone
+      field :phone_numbers, :pg_string_array
       field :fax
       field :mobile
       field :website
@@ -23,11 +23,4 @@ class Showroom < ActiveRecord::Base
     Showroom.pluck(:region).uniq
   end
 
-  # def self.regional_offices
-  #   Showroom.where(regional_office: true).ord
-  # end
-
-#   def self.from region:
-#     Showroom.where(region: region)
-#   end
 end
