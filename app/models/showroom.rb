@@ -12,6 +12,7 @@ class Showroom < ActiveRecord::Base
       field :address
       field :phone
       field :fax
+      field :mobile
       field :website
       field :emails, :pg_string_array
       field :region

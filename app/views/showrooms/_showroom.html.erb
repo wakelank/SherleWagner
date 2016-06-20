@@ -6,6 +6,9 @@
   <% if !showroom.fax.blank? %>
     fax: <%= showroom.fax %>
 <% end %>
+  <% if !showroom.mobile.blank? %>
+    mobile: <%= showroom.mobile %>
+<% end %>
   </p>
   <p><%= link_to showroom.website %></p> 
   <% if showroom.emails.length == 1 %>
