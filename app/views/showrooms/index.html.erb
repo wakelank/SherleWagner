@@ -5,7 +5,7 @@
     <ul>
       <% @regional_offices.each do |regional_office| %>
         <li>
-          <%= regional_office.regional_office_label %>: <%= regional_office.phone %> 
+          <%= regional_office.regional_office_label %>: <%= regional_office.phone_numbers.first %> 
         </li>
       <% end %>
     </ul>
