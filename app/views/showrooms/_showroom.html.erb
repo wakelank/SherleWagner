@@ -14,7 +14,7 @@
 <% end %>
   </p>
   <p><%= link_to showroom.website %></p> 
-  <% if showroom.emails.length > 0 %>
+  <% if showroom.emails.length == 1 %>
     <p><%= mail_to showroom.emails.first, 'email showroom', subject: 'Showroom' %></p>
   <% else %>
     <ul class="email-list">
