@@ -24,7 +24,7 @@ class Showroom < ActiveRecord::Base
   end
 
   def self.regions
-    Showroom.pluck(:region).uniq
+    Showroom.order(:id).pluck(:region).uniq
   end
 
 end
