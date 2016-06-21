@@ -638,6 +638,7 @@ $(document).on("page:change", (function(){
     }
     $('.prod-config-description #description').html(fake_description);
     $('h3#prod_name').html(product_name);
+    $('h4#prod_subtitle').html('');
     
   }
 
