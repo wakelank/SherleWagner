@@ -73,7 +73,7 @@ $(document).on("page:change", (function(){
       $('#center_main').addClass('center_min_show');
 
       var product_name = $('h3#prod_name').html();
-      console.log(product_name);
+      //console.log(product_name);
 
       var configurationObject = {};
       var tearSheetForm = document.getElementById('tearsheet-form');
@@ -253,12 +253,12 @@ $(document).on("page:change", (function(){
             $(prod_num).each(function(i,n){
               if (n == mat || n == fin){
                 if ($('#components_list li').length < 1){
-                  console.log(n);
+                  //console.log(n);
                   $(t).trigger('click');
 
-                  console.log(t);
+                  //console.log(t);
                 }else{
-                  console.log('else*');
+                  //console.log('else*');
                    var the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
                    if (prod_config.color.length > 1){
                     the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
@@ -283,8 +283,8 @@ $(document).on("page:change", (function(){
               
 
               if (thiz.dataset.number.includes(t.dataset.material_identifier)){
-                console.log(t);
-                console.log(thiz.dataset.number);
+                //console.log(t);
+                //console.log(thiz.dataset.number);
                 swatch_tile_actions(t, '#product_materials_list');
               }
             }
@@ -417,7 +417,7 @@ $(document).on("page:change", (function(){
 
             
              mat = this.dataset.finish_identifier;
-            console.log(mat);
+            //console.log(mat);
 
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
@@ -433,8 +433,8 @@ $(document).on("page:change", (function(){
             var foundit = 0;
           $('.alt_img').each(function(i,t){
              if (t.dataset.url.includes(mat)){
-             console.log('now here!');
-             console.log(t.dataset.number);  
+             //console.log('now here!');
+             //console.log(t.dataset.number);  
               //To do -- if  there are multiple finishes, need to check for double match before showing the single match.. so use commented code...
               //check if material is right then:
                 if(t.dataset.url.includes(otherswatch) && t.dataset.number.includes(prodnum_raw)){

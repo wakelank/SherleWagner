@@ -639,7 +639,8 @@ h3#prod_name, h4#prod_subtitle {
 }
 h4#prod_subtitle {
   clear: right;
-  margin-top: 0;
+  /*margin-top: 0;*/
+  margin-bottom: 0;
 }
 .components{
   height:   3.5em;
@@ -699,7 +700,7 @@ h4#prod_subtitle {
     
 }
 .tearsheet_wrapper{
-  padding-top: 1em;
+  padding-top: 1.5em;
 
 }
 div.tearsheet-form-box {
