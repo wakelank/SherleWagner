@@ -602,6 +602,7 @@ $(document).on("page:change", (function(){
     $('.prod-config-description #description').html(li.dataset.description);
     show_only_config_components(config);
     $('h3#prod_name').html(li.dataset.description);
+    $('h4#prod_subtitle').html(li.dataset.subtitle);
     $('#see_all').hide();
     $('#hide_all').show();
 

@@ -48,10 +48,11 @@
   </div>
     
 
-    <!-- if config has sub-title
+    <% if @product.has_configuration_subtitles %>
     <h4 id="prod_subtitle">
-      < product / config .sub-title >
-    </h4> -->
+      <%= @product.product_configurations.first.subtitle %>
+    </h4>
+    <% end %>
   
   
   
@@ -145,7 +146,7 @@
       <ul id="alt_imgs" class="<%= @list_width %>">
         <% @product.product_configurations.each do |config| %>
           <% if current_user || !config.image.url.include?('missing') %>
-            <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-number= '<%= config.number %>'>
+            <li class="alt_img" data-url= '<%= config.image.url %>' data-description= '<%= config.description %>' data-subtitle= '<%= config.subtitle %>' data-number= '<%= config.number %>'>
               <%= image_tag config.image.url(:thumb) %> <br/>
             </li>
           <% end %>
