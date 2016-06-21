@@ -21,7 +21,7 @@
       <% @regions.each do |region| %>
         <li>
           <h3>
-            <%= link_to region.name, showrooms_path(anchor: region.name) %>
+            <%= link_to region.name, anchor: region.name %>
           </h3>
         </li>
       <% end %>
@@ -30,7 +30,7 @@
 
   <% @regions.each do |region| %>
     <div class="showrooms-list row">
-      <%= content_tag(:h3, "Showrooms in #{region.name}", name: region.name) %>
+      <%= content_tag(:h3, "Showrooms in #{region.name}", id: region.name) %>
       <% region.showrooms.in_groups_of(3, false) do |showrooms| %>
         <div class="row">
           <% showrooms.each do |showroom| %>
