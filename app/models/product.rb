@@ -41,6 +41,16 @@ class Product < ActiveRecord::Base
     product_configurations.count + associated_products.count > 0
   end
 
+  def has_configuration_subtitles
+    subtitle_length = 0
+    product_configurations.each do |config|
+      if config.subtitle
+        subtitle_length += config.subtitle.length
+      end
+    end
+    subtitle_length > 2
+  end
+
   def product_configurations_with_image(admin = false)
     if admin
       product_configurations
