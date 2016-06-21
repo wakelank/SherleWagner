@@ -9,8 +9,10 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   end
 
   def update_homepage
-    FileUtils.cp homepage_preview_copy_file, homepage_copy_file
-    FileUtils.cp homepage_preview_image_file, homepage_image_file
+    # FileUtils.cp homepage_preview_copy_file, homepage_copy_file
+    # FileUtils.cp homepage_preview_image_file, homepage_image_file
+      AwsHelper.new('sw_homepage').set_homepage_image
+      AwsHelper.new('sw_homepage').set_homepage_copy
 
     redirect_to root_path
   end
@@ -18,9 +20,15 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   def update_homepage_preview
     copy = params[:home_page_copy]
     image = params[:homepage_image]
-    File.open(homepage_preview_copy_file, 'w') { |f| f.write copy }
+    aws = AwsHelper.new('sw_homepage')
+    copy_file = File.new(homepage_preview_copy_file, 'w+')
+    File.open(homepage_preview_copy_file, 'w') do |f|
+      f.write copy
+    end
+    aws.save_homepage_copy_preview(file: copy_file)
     if image
-      File.open(homepage_preview_image_file, 'wb') { |f| f.write image.read }
+      # File.open(homepage_preview_image_file, 'wb') { |f| f.write image.read }
+      aws.save_homepage_image_preview(file: image)
     end
 
     redirect_to homepage_preview_path
