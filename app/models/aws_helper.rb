@@ -1,4 +1,6 @@
 class AwsHelper
+    PREVIEW_KEY = 'homepage_image_preview'
+    IMAGE_KEY = 'homepage_image'
 
 
 
@@ -69,6 +71,16 @@ class AwsHelper
       end
     end
     @bucket_objects
+  end
+
+  
+
+  def save_homepage_preview(file:) 
+    bucket.objects[PREVIEW_KEY].write(:file => file)
+  end
+
+  def set_homepage_image
+    bucket.objects[IMAGE_KEY].copy_from PREVIEW_KEY
   end
 
 end
