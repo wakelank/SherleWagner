@@ -155,12 +155,14 @@ $(document).on("page:change", (function(){
 
         }
         else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
-          
+          console.log('numARR');
           var $t = $(t);
           var pr = $(parent_div);
           swatch_tile_actions($t, pr);
             if  (parent_div == '#product_finishes_list'){
               prod_config.finish = ident;
+              console.log('set');
+              return false;
             }
           }
         else if (image.includes( ident ) && parent_div != '#product_china_list' ){
