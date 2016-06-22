@@ -4,13 +4,19 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   def index
   end
 
+  def home
+
+    aws = AwsHelper.new('sw_homepage')
+    @image = "https://s3.amazonaws.com/sw_homepage/homepage_image"
+    @copy = aws.homepage_copy
+  end
+
   def edit_homepage
-    @copy = File.read(homepage_copy_file)
+    aws = AwsHelper.new('sw_homepage')
+    @copy = aws.homepage_copy
   end
 
   def update_homepage
-    # FileUtils.cp homepage_preview_copy_file, homepage_copy_file
-    # FileUtils.cp homepage_preview_image_file, homepage_image_file
       AwsHelper.new('sw_homepage').set_homepage_image
       AwsHelper.new('sw_homepage').set_homepage_copy
 
@@ -21,22 +27,24 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
     copy = params[:home_page_copy]
     image = params[:homepage_image]
     aws = AwsHelper.new('sw_homepage')
-    copy_file = File.new(homepage_preview_copy_file, 'w+')
-    File.open(homepage_preview_copy_file, 'w') do |f|
+    temp_copy_file = 'public/homepage_preview_copy_file'
+    File.open(temp_copy_file, 'w') do |f|
       f.write copy
     end
-    aws.save_homepage_copy_preview(file: copy_file)
+    File.open(temp_copy_file, 'r') do |f|
+      aws.save_homepage_copy_preview(file: f)
+    end
     if image
-      # File.open(homepage_preview_image_file, 'wb') { |f| f.write image.read }
       aws.save_homepage_image_preview(file: image)
     end
 
     redirect_to homepage_preview_path
-
   end
 
   def home_preview
-
+    aws = AwsHelper.new('sw_homepage')
+    @preview_image = "https://s3.amazonaws.com/sw_homepage/homepage_image_preview"
+    @preview_copy = aws.homepage_preview_copy
   end
 
   
@@ -55,22 +63,4 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   def history
   end
 
-
-  private
-  
-  def homepage_preview_copy_file
-    'public/home_page_preview_copy.html'
-  end
-
-  def homepage_copy_file
-    'public/home_page_copy.html'
-  end
-
-  def homepage_preview_image_file
-    "public/images/sw_home1_preview.jpg"
-  end
-
-  def homepage_image_file
-    "public/images/sw_home1.jpg"
-  end
 end
