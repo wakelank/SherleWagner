@@ -41,10 +41,10 @@ $(document).on("page:change", (function(){
           }else{
           }
            
-          if (tearsheet_config.includes( ident ) && parent_div == '#product_china_list' ){
+          if (tearsheet_config.includes( '-'+ident ) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
 
-          }else if (tearsheet_config.includes( ident ) && parent_div != '#product_china_list' ){
+          }else if (tearsheet_config.includes( '-'+ident ) && parent_div != '#product_china_list' ){
             var $t = $(t);
             var pr = $(parent_div);
             swatch_tile_actions($t, pr); 
@@ -56,7 +56,7 @@ $(document).on("page:change", (function(){
           confi = tearsheet_config.split('-');
           confi = confi.splice(0, confi.length-1);
           confi = confi.join('-');
-          //conff = conff.join('-');
+          
           if (confi){
              show_only_config_components(confi);
            }
@@ -166,7 +166,7 @@ $(document).on("page:change", (function(){
               
             }
           }
-        else if (image.includes( '-'+ident ) && parent_div != '#product_china_list' ){
+        else if (image.includes( '-'+ident ) && ident != "PN" && parent_div != '#product_china_list' ){
           console.log('*hit***');
           var $t = $(t);
           var pr = $(parent_div);
@@ -229,7 +229,7 @@ $(document).on("page:change", (function(){
           swap_product_info_for_configuration(new_config);
           $(thiz).addClass('alt_choice');
           prodnum_raw = thiz.dataset.number;
-          var prod_num = thiz.dataset.number.split('-');
+           prod_num = thiz.dataset.number.split('-');
           //console.log(prod_num);
            prod_num_base = prod_num[0];
            tearsh = $('.tear-sheet-submit').attr('href').split('/');
@@ -262,7 +262,7 @@ $(document).on("page:change", (function(){
                   //console.log(n);
                   $(t).trigger('click');
 
-                  //console.log(t);
+                  // console.log(t);
                 }else{
                   //console.log('else*');
                    var the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
@@ -288,9 +288,9 @@ $(document).on("page:change", (function(){
             if (foundn == 0){
               
 
-              if (thiz.dataset.number.includes(t.dataset.material_identifier)){
-                //console.log(t);
-                //console.log(thiz.dataset.number);
+              if (thiz.dataset.number.includes('-'+t.dataset.material_identifier)){
+                console.log("turmpppp");
+                console.log(thiz.dataset.number);
                 swatch_tile_actions(t, '#product_materials_list');
               }
             }
