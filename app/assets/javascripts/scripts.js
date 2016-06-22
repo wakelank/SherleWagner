@@ -436,6 +436,19 @@ $(document).on("page:change", (function(){
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
               mat_sheet_targ = the_tear_targ.replace("XX", mat);
+              mat_sheet_split = mat_sheet_targ.split('-');
+
+              $(mat_sheet_split).each(function(i,t){
+                var targ = "-" + t;
+                if(targ==finish_code_regex){
+                  mat_sheet_split[i] = mat;
+                }
+              });
+              mat_sheet_targ = mat_sheet_split.join('-');
+           
+            
+
+
              if (prod_config.color.length > 1){
               mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
              }
