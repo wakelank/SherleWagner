@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621155649) do
+ActiveRecord::Schema.define(version: 20160622174231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,10 @@ ActiveRecord::Schema.define(version: 20160621155649) do
     t.string   "image_type",                  default: "square"
     t.string   "page_section"
     t.integer  "section_position"
+    t.string   "spec_sheet_pdf_file_name"
+    t.string   "spec_sheet_pdf_content_type"
+    t.integer  "spec_sheet_pdf_file_size"
+    t.datetime "spec_sheet_pdf_updated_at"
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree

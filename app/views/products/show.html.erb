@@ -115,7 +115,7 @@
           
           <% else %>
 
-            <li>Spec Sheet</li>
+            <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url %></li>
   
           <% end %>
           <li><%= render 'tearsheet_form' %></li>

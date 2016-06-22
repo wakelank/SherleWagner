@@ -81,6 +81,7 @@ RailsAdmin.config do |config|
       field :associated_products
       field :other_images
       field :filter_values
+      field :spec_sheet_pdf
       #field :styles do
       #  label 'Collection'
       #end
