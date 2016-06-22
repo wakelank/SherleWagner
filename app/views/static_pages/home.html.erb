@@ -14,7 +14,7 @@
   #content_wrapper {
     width: 100%;
     /* background-image: url("images/HomeSW.jpg"); */
-    background-image: url("images/sw_home1.jpg");
+    background-image: url(<%= @image %>);
     padding: 0;
     /* height: 100%; */
     /* display: none; */
@@ -102,7 +102,7 @@
 
     <div id="copy">
       
-      <%= File.read('public/home_page_copy.html').html_safe %>
+      <%= @copy %>
     </div>
     
   </div>

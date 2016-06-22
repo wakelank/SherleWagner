@@ -1,6 +1,6 @@
 class AwsHelper
-    COPY_PREVIEW_KEY = 'copy_preview'
-    COPY_KEY = 'copy_file'
+    COPY_PREVIEW_KEY = 'homepage_copy_preview'
+    COPY_KEY = 'homepage_copy_file'
     PREVIEW_KEY = 'homepage_image_preview'
     IMAGE_KEY = 'homepage_image'
 
@@ -62,11 +62,9 @@ class AwsHelper
       @bucket_objects = {}
       begin
         bucket.objects.each do |obj|
-
           image_name = obj.key.split('/').last
           image_url = obj.public_url.to_s
           @bucket_objects[image_name] = image_url
-
         end
       rescue
 
@@ -75,7 +73,13 @@ class AwsHelper
     @bucket_objects
   end
 
-  
+  def homepage_preview_copy
+    bucket.objects[COPY_PREVIEW_KEY].read.html_safe
+  end
+
+  def homepage_copy
+    bucket.objects[COPY_KEY].read.html_safe
+  end
 
   def save_homepage_image_preview(file:) 
     bucket.objects[PREVIEW_KEY].write(:file => file)
