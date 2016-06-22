@@ -20,7 +20,8 @@ $(document).on("page:change", (function(){
 
         }
     // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
-        tearsheet_config = $(window.location.pathname.split('/')).last()[0]
+        tearsheet_config = $(window.location.pathname.split('/')).last()[0];
+
 
       
         
@@ -162,10 +163,10 @@ $(document).on("page:change", (function(){
             if  (parent_div == '#product_finishes_list'){
               prod_config.finish = ident;
               console.log('set');
-              return false;
+              
             }
           }
-        else if (image.includes( ident ) && parent_div != '#product_china_list' ){
+        else if (image.includes( '-'+ident ) && parent_div != '#product_china_list' ){
           console.log('*hit***');
           var $t = $(t);
           var pr = $(parent_div);
