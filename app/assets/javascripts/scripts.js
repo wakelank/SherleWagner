@@ -413,6 +413,13 @@ $(document).on("page:change", (function(){
 
         $('.finishes .finish_tile').click(function(f){
           //set the corrosponding material
+          if(!prodnum_raw){
+            if($('.alt_choice')[0]){
+              var prodnum_raw = $('.alt_choice')[0].dataset.number;
+            }else{
+              var prodnum_raw = $('.product_image')[0].dataset.number;
+            }
+          }
           var otherswatch = "/"
             if($('.materials .highlight').length > 0){
              otherswatch = "-" + $('.materials .highlight')[0].dataset.material_identifier ;
@@ -428,7 +435,7 @@ $(document).on("page:change", (function(){
 
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material).replace("CHINADECO", prod_config.material);
 
-              mat_sheet_targ = the_tear_targ.replace("XX", mat).replace(finish_code_regex, "-"+mat);
+              mat_sheet_targ = the_tear_targ.replace("XX", mat);
              if (prod_config.color.length > 1){
               mat_sheet_targ = mat_sheet_targ.replace('CC',prod_config.color).replace(china_code_regex,prod_config.color);
              }
