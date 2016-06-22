@@ -8,7 +8,8 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
 
     aws = AwsHelper.new('sw_homepage')
     @image = "https://s3.amazonaws.com/sw_homepage/homepage_image"
-    @copy = aws.homepage_copy
+    # @copy = aws.homepage_copy
+    @copy = temp_homepage_copy
   end
 
   def edit_homepage
@@ -63,4 +64,37 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   def history
   end
 
+  private
+
+  def temp_homepage_copy
+
+  "<span class='em'><h2>WE ARE</h2></span>
+THE EMBODIMENT OF LUXURY— <br>
+UNAPOLOGETIC, UNABASHED, UNCOMPROMISING LUXURY. <br>
+WE ARE THE ROMANCERS OF THE LAVISH. <br>
+THE LOVERS OF THE EXQUISITE. <br>
+THE COURTERS OF THE CONTEMPORARY. <br>
+METICULOUS WITH DETAILS, RELENTLESS WITH QUALITY, <br>
+WE ARE THE NEMESIS OF THE ORDINARY. <br>
+ENABLERS OF THE ELEGANT. <br>
+MOLDERS OF THE MODERN. <br>
+DISCIPLES OF THE PRECISE. <br>
+WE ARE THE GUARDIANS OF OLD-WORLD MASTERY. <br>
+KEEPERS OF VALUES THAT ARE SET IN STONE— <br>
+IN ONYX, IN JASPER, IN AMETHYST. <br>
+A TIGHT-KNIT FAMILY OF PATHOLOGICAL PERFECTIONISTS <br>
+ALL SHARING THE SAME OBSESSION FOR EXCELLENCE, <br>
+PASSING IT DOWN FROM GENERATION TO GENERATION— <br>
+CRAFTSMAN TO CRAFTSMAN, <br>
+ARTISAN TO ARTISAN, DREAMER TO DREAMER. <br>
+ANCHORED BY OUR HISTORY, <br>
+PROPELLED INTO THE FUTURE BY OUR HERITAGE, <br>
+WE ARE HERE TO SHOWER BRILLIANCE UPON THE WORLD, <br>
+TURN ON THE FAUCETS OF IMAGINATION, <br>
+WASH AWAY CONFORMISM. <br>
+WE ARE HERE TO HELP VISIONS TAKE SHAPE, TAKE FLIGHT, <br>
+SAIL THE SEAS OF THE SUBLIME. <br>
+WE ARE PURE AMERICAN SPLENDOR. WE ARE <br>
+<span class='em'><h2>SHERLE WAGNER</h2></span>".html_safe
+  end
 end
