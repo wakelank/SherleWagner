@@ -29,6 +29,8 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
+  has_attached_file :spec_sheet_pdf
+  validates_attachment :spec_sheet_pdf, content_type: { content_type: 'application/pdf' }
   validates :name, presence: true
   validates :number, presence: true
   validates :display_size_for_collection, inclusion: { in: %w(small large) }
