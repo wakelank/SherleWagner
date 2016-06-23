@@ -66,6 +66,18 @@
 .centered{
   padding-left: 0;
 }
+#tear-config-number{
+  clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: gray;
+
+    min-height: 1.5em;
+  
+      float: right;
+    width: 50%;
+    padding-left: 60px;
+}
   @media print{
     .option_box{
         width: 120px;
@@ -110,19 +122,14 @@
     <div class="product_image" data-url= '<%= @product.image.url %>' >
       <img id="img_img" class="size_img"src="<%= @config_img %>" alt="">
       <div class="config_info">
-        <h5 class="prod-config-number">
-          <% if @product.all_components.length < 2 %>
-          <%= @tearsheet_number %>
-        <% end %>
-         
-        </h5> 
+        
         <% if @product.product_configurations.length > 1 %>
       <div class="prod-config-description">
          <% description ="" %>
         <% if @product.all_components.length < 1 %>
           <% description = @product.product_configurations.first.description %>
         <% end %>
-        <%=  %>
+        
       
         <h5>
         <!--  <span id="shown">shown:</span> --> <span id="description"><%= description %></span>
@@ -133,8 +140,22 @@
     </div>
 
     </div>  
+      
     
   </div>
+   <% if @product.has_configuration_subtitles %>
+    <h4 id="prod_subtitle">
+      <%= @product.product_configurations.first.subtitle %>
+    </h4>
+    <% end %>
+  
+  <h5 id="tear-config-number">
+          <% if @product.all_components.length < 2 %>
+          <%= @tearsheet_number %>
+
+        <% end %>
+         
+        </h5> 
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
 
     
