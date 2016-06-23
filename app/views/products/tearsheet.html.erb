@@ -78,6 +78,11 @@
     width: 50%;
     padding-left: 60px;
 }
+#sub_type_name{
+  float: right;
+    width: 50%;
+    padding-left: 60px;
+}
   @media print{
     .product_image{
       width: 400px;
@@ -118,6 +123,9 @@
 
 
 <div class="prod-text">
+  <h5 id='sub_type_name'>
+<%= @product.product_type.name+ " > " +@product.product_sub_type.name %>
+</h5><br>
       <h3 id="prod_name">
 
         <%= @name %>
@@ -152,6 +160,7 @@
       
     
   </div>
+
    <% if @product.has_configuration_subtitles %>
     <h4 id="prod_subtitle">
       <%= @product.product_configurations.first.subtitle %>
