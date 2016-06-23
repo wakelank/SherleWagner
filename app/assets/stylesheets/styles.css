@@ -528,11 +528,16 @@ li.highlighted{
   color: grey;
 }
 
-.config_info{
-  display: block;
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
+.config_info {
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    position: absolute;
+    bottom: 0px;
+    /* left: 15px; */
+    width: 100%;
+    background: rgba(255,255,255,0.8);
 }
 .config_info h5{
   margin:0;
@@ -872,7 +877,7 @@ div.tearsheet-form-box {
 }
 
 .highlight{
-  outline: 2px grey solid;
+  outline: 3px grey solid;
 }
 .prod_tile{
   cursor: pointer;
