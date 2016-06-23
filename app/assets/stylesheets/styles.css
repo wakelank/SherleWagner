@@ -648,6 +648,7 @@ h4#prod_subtitle {
   clear: right;
   margin-top: 0;
   margin-bottom: 0;
+  color: gray;
 }
 .components{
   height:   3.5em;
@@ -694,6 +695,7 @@ h4#prod_subtitle {
   float: left;
   clear: left;
   padding-bottom: 2.5em;
+  margin-top: 8px;
 }
 .option_box{
   width: 8em;
@@ -1129,12 +1131,11 @@ li.foot_link, li.foot_link a{
 
       }
       div h3#prod_name {
-    min-height: 2em;
-    
+    min-height: 1.5em;
     width:100%;
     padding-left: 0.5em;
     float: left;
-      
+    
     }
     .m_name {
     margin-top: 0;
