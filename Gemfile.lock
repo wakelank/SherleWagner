@@ -73,7 +73,7 @@ GEM
       xpath (~> 2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.7)
+    cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -146,7 +146,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
-    paperclip (4.3.0)
+    paperclip (4.3.6)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
@@ -307,7 +307,8 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   meta_request
-  paperclip (~> 4.3)
+  mime-types
+  paperclip (~> 4.3.6)
   pg
   pg_search
   pry-nav
