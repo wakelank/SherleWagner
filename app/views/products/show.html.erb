@@ -3,10 +3,13 @@
 <% if current_user %>
   <%= link_to "Edit", "/admin/product/#{@product.id}/edit" %>
 <% end %>
+<h5 id='sub_type_name'>
+<%= @product.product_sub_type.name %>
+</h5>
 
 <div class="prod-text">
 <h3 id="prod_name">
-<%= @product.product_sub_type.name %>: <%= @product.name %>
+<%= @product.name %>
 
 </h3>
 

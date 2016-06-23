@@ -67,7 +67,7 @@
   padding-left: 0;
 }
 #tear-config-number{
-  clear: right;
+    clear: right;
     margin-top: 0;
     margin-bottom: 0;
     color: gray;
@@ -79,6 +79,10 @@
     padding-left: 60px;
 }
   @media print{
+    .product_image{
+      width: 400px;
+      height: auto;
+    }
     .option_box{
         width: 120px;
     height: 120px;
@@ -90,6 +94,11 @@
     #tearsheet_number{
       padding-left: 0;
       margin-left: 0;
+    }
+    #tear-config-number{
+      float: left;
+      width: 100%;
+      padding-left: 0;
     }
     .product_info {
     padding-left: 0;
@@ -250,19 +259,19 @@
   
 
     
-  <% if @product.compilations.size > 0 %>
+  <!-- % if @product.compilations.size > 0 %>
     <div class="compilations">
       <p>
         Compilations:
       </p>
       <ul id="compilations_list" class="comp_list links">
-        <% @product.all_compilations.each do |compilation| %>
-        <li><%= link_to(compilation.name, product_path(compilation))  %>
+        % @product.all_compilations.each do |compilation| %>
+        <li>%= link_to(compilation.name, product_path(compilation))  %>
         </li>
-        <% end %>
+        % end %>
       </ul>
     </div>
-  <% end %>
+  % end %> -->
     
     
   </div>

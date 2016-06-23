@@ -645,8 +645,14 @@ max-width: 80px;
 .product_info a{
   color:gray;
 }
+#sub_type_name{
+  color: gray;
+  margin: 0;
+  padding-left: 1em;
+}
 h3#prod_name, h4#prod_subtitle {
   min-height: 1.5em;
+  margin-top: 0.25em;
   color: black;
       float: right;
     width: 50%;
@@ -785,7 +791,7 @@ div.tearsheet-form-box {
     min-width: 1276px;
   }
   .images{
-  padding-top: 15px; 
+  padding-top: 10px; 
 }
 
 }
@@ -839,7 +845,9 @@ div.tearsheet-form-box {
     #finish_choice{
       margin-top: 0.5em;
     }
-
+.compilations{
+  margin-left: .5em;
+}
 .finish_tile{
   width: 4em;
   height: 4em;
@@ -1144,6 +1152,11 @@ li.foot_link, li.foot_link a{
     padding-left: 0.5em;
     float: left;
     
+    }
+    h4#prod_subtitle{
+      float: left;
+      width: 100%;
+      padding-left: 0;
     }
     .m_name {
     margin-top: 0;
