@@ -31,6 +31,31 @@ class Product < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   has_attached_file :spec_sheet_pdf
   validates_attachment :spec_sheet_pdf, content_type: { content_type: 'application/pdf' }
+  has_attached_file :spec_sheet_2d
+  validates_attachment_file_name :spec_sheet_2d, matches: /igs/
+  has_attached_file :spec_sheet_3d
+  validates_attachment_file_name :spec_sheet_3d, matches: /dxf/
+  validates :name, presence: true
+  validates :number, presence: true
+  validates :display_size_for_collection, inclusion: { in: %w(small large) }
+
+  before_create :add_associated_collection
+  after_create :add_finishes, :add_material, :add_china_color
+
+
+  def has_configurations_or_associated_products?
+    product_configurations.count + associated_products.count > 0
+  end
+
+  def has_configuration_subtitles
+    subtitle_length = 0
+    product_configurations.each do |config|
+      if config.subtitle
+        subtitle_length += config.subtitle.length
+      end
+    end
+    subtitle_length > 2
+  end
   validates :name, presence: true
   validates :number, presence: true
   validates :display_size_for_collection, inclusion: { in: %w(small large) }
