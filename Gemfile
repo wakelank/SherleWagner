@@ -19,7 +19,8 @@ gem 'devise'
 #these may require more configuration
 #gem 'postmark-rails'
 gem 'aws-sdk-v1'
-gem 'paperclip', '~> 4.3'
+gem 'paperclip', '~> 4.3.6'
+gem 'mime-types'
 # gem 'sunspot_rails'
 # gem "rails-bootstrap-helpers"
 

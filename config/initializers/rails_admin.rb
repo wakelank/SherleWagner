@@ -81,6 +81,13 @@ RailsAdmin.config do |config|
       field :associated_products
       field :other_images
       field :filter_values
+      field :spec_sheet_pdf
+      field :spec_sheet_2d do
+        label "spec sheet 2d (igs only)"
+      end
+      field :spec_sheet_3d do
+        label "spec sheet 3d (dxf only)"
+      end
       #field :styles do
       #  label 'Collection'
       #end
