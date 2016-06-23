@@ -4,9 +4,10 @@
       <div class="panel-title" id="<%= product_sub_type.name.gsub(' ','_') %>">
         <div class="panel_title_div">
         <% if product_sub_type.product_type.name == 'Wallpaper'%>
-            
+            <label >
             <%= link_to product_sub_type.name, product_path(product_sub_type.main_product.first) %>
-
+            </label>
+  
           <% else %>
           <label data-toggle="collapse" data-parent="#acordion<%= product_sub_type.product_type.id%>" href="#collapse<%= product_sub_type.product_type.id%>_<%= product_sub_type.id%>">
             

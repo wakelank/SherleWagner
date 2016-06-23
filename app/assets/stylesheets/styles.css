@@ -185,11 +185,19 @@ input#search{
   width: 100%;
   height: 100%;
   margin: 0 auto;
-      background-position-x: 50%;
-      background-position-y: 50%;
-      background-size: 127%;
+  overflow: hidden;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-size: 127%;
   
 }
+.prod_tile_img img{
+    opacity: 1;
+    width: 100%;
+    padding-top: 5.15%;
+    margin-left: 2px;
+}
+
 .search_prod_tile{
   height: 12.25em;
   width: 10em;
@@ -528,11 +536,16 @@ li.highlighted{
   color: grey;
 }
 
-.config_info{
-  display: block;
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
+.config_info {
+    display: block;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    position: absolute;
+    bottom: 0px;
+    /* left: 15px; */
+    width: 100%;
+    background: rgba(255,255,255,0.8);
 }
 .config_info h5{
   margin:0;
@@ -632,8 +645,14 @@ max-width: 80px;
 .product_info a{
   color:gray;
 }
+#sub_type_name{
+  color: gray;
+  margin: 0;
+  padding-left: 1em;
+}
 h3#prod_name, h4#prod_subtitle {
-  min-height: 2em;
+  min-height: 1.5em;
+  margin-top: 0.25em;
   color: black;
       float: right;
     width: 50%;
@@ -643,6 +662,7 @@ h4#prod_subtitle {
   clear: right;
   margin-top: 0;
   margin-bottom: 0;
+  color: gray;
 }
 .components{
   height:   3.5em;
@@ -689,6 +709,7 @@ h4#prod_subtitle {
   float: left;
   clear: left;
   padding-bottom: 2.5em;
+  margin-top: 8px;
 }
 .option_box{
   width: 8em;
@@ -699,8 +720,10 @@ h4#prod_subtitle {
   vertical-align:top;
   color: white; 
   background-size: cover;
+  overflow: hidden;
     
 }
+.option-img
 .tearsheet_wrapper{
   padding-top: 1.5em;
 
@@ -714,7 +737,7 @@ div.tearsheet-form-box {
   
 }
 .option-img{
-  width: 100%;
+  
   height: 100%;
 }
 .m_name {
@@ -768,7 +791,7 @@ div.tearsheet-form-box {
     min-width: 1276px;
   }
   .images{
-  padding-top: 15px; 
+  padding-top: 10px; 
 }
 
 }
@@ -822,7 +845,9 @@ div.tearsheet-form-box {
     #finish_choice{
       margin-top: 0.5em;
     }
-
+.compilations{
+  margin-left: .5em;
+}
 .finish_tile{
   width: 4em;
   height: 4em;
@@ -870,7 +895,7 @@ div.tearsheet-form-box {
 }
 
 .highlight{
-  outline: 2px grey solid;
+  outline: 3px grey solid;
 }
 .prod_tile{
   cursor: pointer;
@@ -1122,12 +1147,16 @@ li.foot_link, li.foot_link a{
 
       }
       div h3#prod_name {
-    min-height: 2em;
-    
+    min-height: 1.5em;
     width:100%;
     padding-left: 0.5em;
     float: left;
-      
+    
+    }
+    h4#prod_subtitle{
+      float: left;
+      width: 100%;
+      padding-left: 0;
     }
     .m_name {
     margin-top: 0;

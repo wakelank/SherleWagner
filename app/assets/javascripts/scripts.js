@@ -131,8 +131,7 @@ $(document).on("page:change", (function(){
         });
       };
 
-      
-        console.log("---"+ image + "---" + img_num_array);
+
       $('.finish_tile').each(function(i,t){
         var ident = '';
         var parent_div = ''
@@ -147,7 +146,7 @@ $(document).on("page:change", (function(){
             parent_div = '#product_china_list';
         }else{
         }
-        console.log(ident);
+        
          
         if (image.includes(ident ) && parent_div == '#product_china_list' ){
           $('.china_colors .finish_tile').removeClass('highlight');
@@ -156,20 +155,20 @@ $(document).on("page:change", (function(){
 
         }
         else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
-          console.log('numARR');
+          
           var $t = $(t);
           var pr = $(parent_div);
           swatch_tile_actions($t, pr);
             if  (parent_div == '#product_finishes_list'){
               prod_config.finish = ident;
-              console.log('set');
+              
               
             }else if  (parent_div == '#product_materials_list'){
             prod_config.material = ident;
           }
           }
         else if (image.includes( '-'+ident ) && ident != "PN" && parent_div != '#product_china_list' ){
-          console.log('*hit***');
+          
           var $t = $(t);
           var pr = $(parent_div);
           swatch_tile_actions($t, pr);
@@ -290,8 +289,7 @@ $(document).on("page:change", (function(){
               
 
               if (thiz.dataset.number.includes('-'+t.dataset.material_identifier)){
-                console.log("turmpppp");
-                console.log(thiz.dataset.number);
+               
                 swatch_tile_actions(t, '#product_materials_list');
               }
             }
