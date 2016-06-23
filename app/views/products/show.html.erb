@@ -115,7 +115,7 @@
           
           <% else %>
 
-            <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url %></li>
+            <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
   
           <% end %>
           <li><%= render 'tearsheet_form' %></li>
@@ -128,9 +128,9 @@
         <ul id="links2" class='links'>
           
            <% if @product.associated_collection_or_null.id >= 1 %>
-            <li>Spec Sheet</li>
+            <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
            <% end %>
-          <li>3D/2D Renderings</li>
+           <li><%= link_to "3D/2D Renderings", @product.spec_sheet_2d.url %></li>
           <li>Installation Guide</li>
           </ul>
       </div>
