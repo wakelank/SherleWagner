@@ -193,9 +193,10 @@ input#search{
 }
 .prod_tile_img img{
     opacity: 1;
-    width: 100%;
-    padding-top: 5.15%;
-    margin-left: 2px;
+    height: 100%;
+    width: auto;
+    /*padding-top: 5.15%;*/
+    /*margin-left: 2px;*/
 }
 
 .search_prod_tile{
