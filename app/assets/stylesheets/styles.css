@@ -822,7 +822,7 @@ div.tearsheet-form-box {
   #nav_link_contain{
     padding-left: 10%;
   }
-  .swatches{
+  .swatches, .compilations{
           
           width: 47%;
           float: left;
@@ -1092,7 +1092,7 @@ li.foot_link, li.foot_link a{
       }
        
     
-      .swatches{
+      .swatches, .compilations{
 
         width: 100%;
       }

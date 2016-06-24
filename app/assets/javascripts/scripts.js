@@ -131,59 +131,64 @@ $(document).on("page:change", (function(){
         });
       };
 
-
-      $('.finish_tile').each(function(i,t){
-        var ident = '';
-        var parent_div = ''
-        if ($($(t).parents()[1]).hasClass('finishes')){
-           ident = t.dataset.finish_identifier;
-           parent_div = '#product_finishes_list';
-        }else if ($($(t).parents()[1]).hasClass('materials')){
-            ident = t.dataset.material_identifier;
-            parent_div = '#product_materials_list';
-        }else if ($($(t).parents()[1]).hasClass('china_colors')){
-            ident = t.dataset.china_identifier;
-            parent_div = '#product_china_list';
-        }else{
-        }
-        
-         
-        if (image.includes(ident ) && parent_div == '#product_china_list' ){
-          $('.china_colors .finish_tile').removeClass('highlight');
-           $(t).addClass('highlight');
-           prod_config.color = ident;
-
-        }
-        else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
-          
-          var $t = $(t);
-          var pr = $(parent_div);
-          swatch_tile_actions($t, pr);
-            if  (parent_div == '#product_finishes_list'){
-              prod_config.finish = ident;
-              
-              
-            }else if  (parent_div == '#product_materials_list'){
-            prod_config.material = ident;
+      SETS: for (var i = 0; i < $('.swatches').length; i++) {
+        $tiles = $('.swatches')[i];
+      // $('.swatches').each(function(i,t){
+        TILES: for (var i = 0; i < $('.finish_tile').length; i++) {
+          var ident = '';
+          var parent_div = ''
+          if ($($(t).parents()[1]).hasClass('finishes')){
+             ident = t.dataset.finish_identifier;
+             parent_div = '#product_finishes_list';
+          }else if ($($(t).parents()[1]).hasClass('materials')){
+              ident = t.dataset.material_identifier;
+              parent_div = '#product_materials_list';
+          }else if ($($(t).parents()[1]).hasClass('china_colors')){
+              ident = t.dataset.china_identifier;
+              parent_div = '#product_china_list';
+          }else{
           }
+          console.log(ident);
+          var ff = 0;
+          if (image.includes(ident ) && parent_div == '#product_china_list' ){
+            $('.china_colors .finish_tile').removeClass('highlight');
+             $(t).addClass('highlight');
+             prod_config.color = ident;
+
           }
-        else if (image.includes( '-'+ident ) && ident != "PN" && parent_div != '#product_china_list' ){
-          
-          var $t = $(t);
-          var pr = $(parent_div);
-          swatch_tile_actions($t, pr);
-            if  (parent_div == '#product_finishes_list'){
-              prod_config.finish = ident;
-            }
-            if  (parent_div == '#product_materials_list'){
+          else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
+            console.log('match');
+            ff ++;
+            var $t = $(t);
+            var pr = $(parent_div);
+            swatch_tile_actions($t, pr);
+              if  (parent_div == '#product_finishes_list'){
+                prod_config.finish = ident;
+                
+                
+              }else if  (parent_div == '#product_materials_list'){
               prod_config.material = ident;
+              }
+              break TILES;
             }
-        }
-        
-          // return false;
-          //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
-        
-      }); 
+          else if (image.includes( '-'+ident ) && parent_div != '#product_china_list' ){
+            
+            var $t = $(t);
+            var pr = $(parent_div);
+            swatch_tile_actions($t, pr);
+              if  (parent_div == '#product_finishes_list'){
+                prod_config.finish = ident;
+              }
+              if  (parent_div == '#product_materials_list'){
+                prod_config.material = ident;
+              }
+          }
+          
+            // return false;
+            //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
+          
+        });
+      } 
 
        //set the current configuration
        if ($('.alt_choice').length > 0){
