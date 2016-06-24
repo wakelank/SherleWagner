@@ -596,9 +596,13 @@ li.highlighted{
 
   
 }
+#assoc_imgs img{
+  max-height:80px;
+}
 .image_list #alt_imgs.image_list_wide{
   width: 100%;
 }
+
 #similar_label{
   color: darkgrey;
 }
@@ -710,7 +714,7 @@ h4#prod_subtitle {
   float: left;
   clear: left;
   padding-bottom: 2.5em;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 .option_box{
   width: 8em;
