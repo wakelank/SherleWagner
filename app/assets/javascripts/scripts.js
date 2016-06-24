@@ -131,10 +131,14 @@ $(document).on("page:change", (function(){
         });
       };
 
-      SETS: for (var i = 0; i < $('.swatches').length; i++) {
-        $tiles = $('.swatches')[i];
-      // $('.swatches').each(function(i,t){
-        TILES: for (var i = 0; i < $('.finish_tile').length; i++) {
+      SETS: for (var i = 0; i < $('.detail_list').length; i++) {
+        var $tiles = $($('.detail_list')[i]).find('.finish_tile');
+        console.log($tiles);
+          // $('.swatches').each(function(i,t){
+
+        TILES: for (var p = 0; p < $tiles.length; p++) {
+          var t = $tiles[p];
+          
           var ident = '';
           var parent_div = ''
           if ($($(t).parents()[1]).hasClass('finishes')){
@@ -164,12 +168,13 @@ $(document).on("page:change", (function(){
             swatch_tile_actions($t, pr);
               if  (parent_div == '#product_finishes_list'){
                 prod_config.finish = ident;
-                
+              break TILES;  
                 
               }else if  (parent_div == '#product_materials_list'){
               prod_config.material = ident;
-              }
               break TILES;
+              }
+              
             }
           else if (image.includes( '-'+ident ) && parent_div != '#product_china_list' ){
             
@@ -184,10 +189,10 @@ $(document).on("page:change", (function(){
               }
           }
           
-            // return false;
-            //break out if you found an exact match, otherwise look for contains - this avoids matching a finish inside a product number like PN in pendant light
+            
+      
           
-        });
+        }
       } 
 
        //set the current configuration
