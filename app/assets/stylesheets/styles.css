@@ -815,7 +815,9 @@ div.tearsheet-form-box {
 
 }
 
-
+.clear_l{
+  clear:left;
+}
 @media (min-width: 950px) {
  
   
@@ -1131,10 +1133,10 @@ li.foot_link, li.foot_link a{
 @media (min-width: 1150px) {
   .center_min_show{
     min-width: 835px;
-}
-.left{
-  padding-left: 10% !important;
-}
+  }
+  .left{
+    padding-left: 10% !important;
+  }
  
 }
 

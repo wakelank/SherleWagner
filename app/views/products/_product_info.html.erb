@@ -47,14 +47,17 @@
       </ul>
     </div>
     <% left = "left" %>
+    <% clear_l = "" %>
+
 
   <% end %>
   <!-- <div class="china_colors"> -->
   <% if @product.china_colors.length() >= 1 %>
-  <% if @product.finishes.length >= 1 && @product.materials.length >= 1 %>
-    <% left = "no_left" %>
+    <% if @product.finishes.length >= 1 && @product.materials.length >= 1 %>
+      <% left = "no_left" %>
+      <% clear_l = "clear_l" %>
     <% end %>
-  <div class="china_colors swatches <%= left %> " >
+  <div class="china_colors swatches <%= left %> <%= clear_l %> " >
     <h3 class='choice_title'>China Color</h3>
     <ul id="product_china_list" class="detail_list">
       <% @product.china_colors.each do |china_color| %>
@@ -70,9 +73,11 @@
   
 
 
-  </ul>
-  </div>
+      </ul>
+    </div>
   <% end %>
+  
+
     
 </div>
 
