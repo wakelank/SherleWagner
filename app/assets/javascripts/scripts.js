@@ -216,7 +216,7 @@ $(document).on("page:change", (function(){
 
         
 
-        var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
+        var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE|STONE)/
         var finish_code_regex = /(-PN|-CP|-ES|-AP|-PE|-BN|-BC|-BS|-HP|-GP|-BG|-SB|-OB|-EP|-AL|-AG|-PB|-FP|-RG)/
         var china_code_regex = /(WH|SD|BLK)/
        
