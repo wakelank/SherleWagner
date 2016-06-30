@@ -49,6 +49,7 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   end
 
   def mail_tester
+    @favorites = Favorites.new(favorites_args).all || [NullObject.new]
 
   end
 
@@ -69,6 +70,17 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   end
 
   private
+
+  def favorites_args
+    if cookies[:favorites] && cookies[:favorites].length > 2
+      args = {}
+      args[:favorites] = JSON.parse(cookies[:favorites])
+      args
+    else
+      NullObject.new
+    end
+  end
+
 
   def temp_homepage_copy
 

@@ -1,1 +1,5 @@
 "This email is sent from Sherle Wagner."
+favorites:
+<% @favorites.each do |fav| %>
+  <p><%= fav.product_name %></p>
+<% end %>
