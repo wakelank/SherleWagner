@@ -13,13 +13,13 @@
     mobile: <%= showroom.mobile %>
 <% end %>
   </p>
-  <p><%= link_to showroom.website %></p> 
+  <p class = 'sr-link'><%= link_to showroom.website %></p> 
   <% if showroom.emails.length == 1 %>
     <p><%= mail_to showroom.emails.first, 'email showroom', subject: 'Showroom' %></p>
   <% else %>
     <ul class="email-list">
       <% showroom.emails.each do |email| %>
-        <li><%= mail_to email%></li>
+        <li class = 'sr-link'><%= mail_to email%></li>
       <% end %>
     </ul>
   <% end %>

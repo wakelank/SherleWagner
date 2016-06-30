@@ -596,9 +596,13 @@ li.highlighted{
 
   
 }
+#assoc_imgs img{
+  max-height:80px;
+}
 .image_list #alt_imgs.image_list_wide{
   width: 100%;
 }
+
 #similar_label{
   color: darkgrey;
 }
@@ -710,7 +714,7 @@ h4#prod_subtitle {
   float: left;
   clear: left;
   padding-bottom: 2.5em;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 .option_box{
   width: 8em;
@@ -811,14 +815,16 @@ div.tearsheet-form-box {
 
 }
 
-
+.clear_l{
+  clear:left;
+}
 @media (min-width: 950px) {
  
   
   #nav_link_contain{
     padding-left: 10%;
   }
-  .swatches{
+  .swatches, .compilations{
           
           width: 47%;
           float: left;
@@ -1088,7 +1094,7 @@ li.foot_link, li.foot_link a{
       }
        
     
-      .swatches{
+      .swatches, .compilations{
 
         width: 100%;
       }
@@ -1127,10 +1133,10 @@ li.foot_link, li.foot_link a{
 @media (min-width: 1150px) {
   .center_min_show{
     min-width: 835px;
-}
-.left{
-  padding-left: 10% !important;
-}
+  }
+  .left{
+    padding-left: 10% !important;
+  }
  
 }
 
@@ -1488,9 +1494,20 @@ div.filter h5{
 
 .showrooms .showroom-list .showroom-name{
   min-height: 3em;
+  margin-top: 6px;
+}
+h2.showroom-name{
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0;
 }
 .showrooms .showroom-list .showroom-header{
   min-height: 2em;
+}
+p.showroom-header{
+  font-weight: bold;
+  margin-bottom: 2px;
+  min-height: 3em;
 }
 
 .showrooms .showrooms-list.row{
@@ -1513,4 +1530,7 @@ div.filter h5{
   margin-top: 2em;
   margin-bottom: 2em;
 }
+.showrooms .showroom .sr-link{
+  margin-bottom: 0;
+}  
 
