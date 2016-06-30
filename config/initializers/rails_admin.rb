@@ -123,7 +123,8 @@ RailsAdmin.config do |config|
   end
 
   config.navigation_static_links = {
-    "Edit Homepage" => "/edit_homepage"
+    "Edit Homepage" => "/edit_homepage",
+    "Test Email" => "/mail_tester"
   }
 
   def custom_label_method

@@ -48,6 +48,10 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
     @preview_copy = aws.homepage_preview_copy
   end
 
+  def mail_tester
+
+  end
+
   
   def upload_page
   end
