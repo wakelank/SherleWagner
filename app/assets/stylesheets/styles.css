@@ -1496,14 +1496,14 @@ div.filter h5{
   min-height: 3em;
   margin-top: 6px;
 }
-.showrooms .showroom-list .showroom-name h2{
+.showrooms .showroom-list h2.showroom-name{
   font-size: 20px;
   font-weight: bold;
 }
 .showrooms .showroom-list .showroom-header{
   min-height: 2em;
 }
-.showrooms .showroom-list .showroom-header p{
+.showrooms .showroom-list p.showroom-header{
   font-weight: bold;
 }
 
