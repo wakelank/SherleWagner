@@ -191,10 +191,10 @@
                             <% end %>
   
                          </li>
-                          <li><a href="#">
-                            Spec Sheet</a></li>
+                          <li><%=link_to "Spec Sheet", product.spec_sheet_pdf.url, target: '_blank' %></li>
                           
-                          <li><a href="#">3D/2D Renderings</a></li>
+                          <li><%= link_to "3D Renderings", product.spec_sheet_2d.url %></li>
+          <li><%= link_to "2D Renderings", product.spec_sheet_2d.url %></li>
                           <li><a href="#">Installation Guide</a></li>
                         </ul>
                       </div>
@@ -238,23 +238,18 @@
   
                          </li>
                           
-                          <li><a href="#">
-                            Spec Sheet</a></li>
+                          <li><%=link_to "Spec Sheet", product.spec_sheet_pdf.url, target: '_blank' %></li>
                           
-                          <li><a href="#">3D/2D Renderings</a></li>
+                          <li><%= link_to "3D Renderings", product.spec_sheet_2d.url %></li>
+          <li><%= link_to "2D Renderings", product.spec_sheet_2d.url %></li>
                           <li><a href="#">Installation Guide</a></li>
                         </ul>
                     </div>
 
 
                   </div>
-                </div>
-                    
-                
+                </div>  
               </li>
-
-
-
 
             <% end %>
 
