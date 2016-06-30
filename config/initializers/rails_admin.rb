@@ -53,6 +53,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :number
+      field :display_code
       field :product_type
       field :product_sub_type
       field :image

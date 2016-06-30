@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622181507) do
+ActiveRecord::Schema.define(version: 20160630170424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
 
   create_table "associated_compilations", id: false, force: :cascade do |t|
     t.integer "compilation_a_id", null: false
@@ -291,6 +290,7 @@ ActiveRecord::Schema.define(version: 20160622181507) do
     t.string   "spec_sheet_2d_content_type"
     t.integer  "spec_sheet_2d_file_size"
     t.datetime "spec_sheet_2d_updated_at"
+    t.string   "display_code"
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree
