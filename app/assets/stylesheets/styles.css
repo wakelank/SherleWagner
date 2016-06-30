@@ -748,7 +748,7 @@ h5#prod_subtitle {
   vertical-align:top;
   color: white; 
   background-size: cover;
-  overflow: hidden;
+  /*overflow: hidden;*/
     
 }
 .option-img
