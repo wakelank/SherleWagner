@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   
   get 'showrooms' => 'showrooms#index'
+  
 
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
 
   resources :tearsheets, only: [:show, :create]
   resources :favorites, only: [:index, :create, :destroy]
+  post 'send_contact_with_favorites' => 'favorites#send_contact_with_favorites'
   #resources :compilations, only: [:show]
   resources :styles, only: [:index, :show]
   resources :genres, only: [:index, :show]
