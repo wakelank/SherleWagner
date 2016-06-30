@@ -26,6 +26,12 @@ class FavoritesController < ApplicationController
     redirect_to favorites_path
   end
 
+  def send_contact_with_favorites
+    ContactWithFavorites.email_favorites.deliver
+
+    redirect_to favorites_path
+  end
+
   private
 
   def favorites_args
