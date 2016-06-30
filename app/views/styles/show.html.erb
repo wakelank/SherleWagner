@@ -178,7 +178,7 @@
                     <div class="tall_preview_text preview_text">
                       <%= link_to(product_path(product), class:"")  do %>
                          <h4 id>
-                           <%= product.name.capitalize %>
+                           <%= product.name %>
                          </h4>
                       <% end %>
                       <div class="tall_preview_links preview_links">
@@ -193,8 +193,7 @@
                          </li>
                           <li><%=link_to "Spec Sheet", product.spec_sheet_pdf.url, target: '_blank' %></li>
                           
-                          <li><%= link_to "3D Renderings", product.spec_sheet_2d.url %></li>
-          <li><%= link_to "2D Renderings", product.spec_sheet_2d.url %></li>
+                          
                           <li><a href="#">Installation Guide</a></li>
                         </ul>
                       </div>
@@ -224,7 +223,7 @@
                   <div class="preview_text">
                     <%= link_to(product_path(product), class:"")  do %>
                        <h4>
-                         <%= product.name.capitalize %>
+                         <%= product.name %>
                        </h4>
                     <% end %>
                     <div class="preview_links">
@@ -240,8 +239,7 @@
                           
                           <li><%=link_to "Spec Sheet", product.spec_sheet_pdf.url, target: '_blank' %></li>
                           
-                          <li><%= link_to "3D Renderings", product.spec_sheet_2d.url %></li>
-          <li><%= link_to "2D Renderings", product.spec_sheet_2d.url %></li>
+                          
                           <li><%= link_to "Installation Guide", product.installation_instructions.url %></li>
                         </ul>
                     </div>
