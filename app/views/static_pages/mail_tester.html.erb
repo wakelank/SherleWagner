@@ -1,2 +1,6 @@
+<% @favorites.each do |fav| %>
+  <p><%= fav.product_name %></p>
+<% end %>
 
-  <%= link_to "TEST EMAIL", send_contact_with_favorites_path, method: 'post' %>
+<p><%= link_to "TEST EMAIL", send_contact_with_favorites_path, method: 'post' %></p>
+<p><%= link_to "TEST EMAIL with favorites", send_contact_with_favorites_path(favorites: @favorites), method: 'post' %></p>
