@@ -53,6 +53,7 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :number
+      field :display_code
       field :product_type
       field :product_sub_type
       field :image
@@ -88,6 +89,7 @@ RailsAdmin.config do |config|
       field :spec_sheet_3d do
         label "spec sheet 3d (dxf only)"
       end
+      field :installation_instructions
       #field :styles do
       #  label 'Collection'
       #end

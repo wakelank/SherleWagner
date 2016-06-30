@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622181507) do
+ActiveRecord::Schema.define(version: 20160630173231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
 
   create_table "associated_compilations", id: false, force: :cascade do |t|
     t.integer "compilation_a_id", null: false
@@ -264,8 +263,8 @@ ActiveRecord::Schema.define(version: 20160622181507) do
     t.string   "name"
     t.string   "number"
     t.text     "long_description"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.integer  "product_type_id"
     t.integer  "product_sub_type_id"
     t.integer  "genre_id"
@@ -275,8 +274,8 @@ ActiveRecord::Schema.define(version: 20160622181507) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "associated_collection_id"
-    t.string   "display_size_for_collection", default: "small"
-    t.string   "image_type",                  default: "square"
+    t.string   "display_size_for_collection",            default: "small"
+    t.string   "image_type",                             default: "square"
     t.string   "page_section"
     t.integer  "section_position"
     t.string   "spec_sheet_pdf_file_name"
@@ -291,6 +290,11 @@ ActiveRecord::Schema.define(version: 20160622181507) do
     t.string   "spec_sheet_2d_content_type"
     t.integer  "spec_sheet_2d_file_size"
     t.datetime "spec_sheet_2d_updated_at"
+    t.string   "display_code"
+    t.string   "installation_instructions_file_name"
+    t.string   "installation_instructions_content_type"
+    t.integer  "installation_instructions_file_size"
+    t.datetime "installation_instructions_updated_at"
   end
 
   add_index "products", ["genre_id"], name: "index_products_on_genre_id", using: :btree

@@ -31,6 +31,8 @@ class Product < ActiveRecord::Base
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   has_attached_file :spec_sheet_pdf, default_url: "/contact"
   validates_attachment :spec_sheet_pdf, content_type: { content_type: 'application/pdf' }
+  has_attached_file :installation_instructions, default_url: "/contact"
+  validates_attachment :installation_instructions, content_type: { content_type: 'application/pdf' }
   has_attached_file :spec_sheet_2d, default_url: "/contact"
   validates_attachment_file_name :spec_sheet_2d, matches: /igs/
   has_attached_file :spec_sheet_3d, default_url: "/contact"
