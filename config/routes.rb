@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'update_homepage' => 'static_pages#update_homepage'
   post 'update_homepage_preview' => 'static_pages#update_homepage_preview'
   get 'homepage_preview' => 'static_pages#home_preview'
+  get 'mail_tester' => 'static_pages#mail_tester'
 
 
   get 'style/show'
