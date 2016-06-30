@@ -133,7 +133,7 @@ $(document).on("page:change", (function(){
 
       SETS: for (var i = 0; i < $('.detail_list').length; i++) {
         var $tiles = $($('.detail_list')[i]).find('.finish_tile');
-        console.log($tiles);
+        // console.log($tiles);
           // $('.swatches').each(function(i,t){
 
         TILES: for (var p = 0; p < $tiles.length; p++) {
@@ -152,7 +152,7 @@ $(document).on("page:change", (function(){
               parent_div = '#product_china_list';
           }else{
           }
-          console.log(ident);
+          // console.log(ident);
           var ff = 0;
           if (image.includes(ident ) && parent_div == '#product_china_list' ){
             $('.china_colors .finish_tile').removeClass('highlight');
@@ -161,7 +161,7 @@ $(document).on("page:change", (function(){
 
           }
           else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
-            console.log('match');
+            //console.log('match');
             ff ++;
             var $t = $(t);
             var pr = $(parent_div);
