@@ -3,9 +3,9 @@
 <% if current_user %>
   <%= link_to "Edit", "/admin/product/#{@product.id}/edit" %>
 <% end %>
-<h5 id='sub_type_name'>
+<h4 id='sub_type_name'>
 <%= @product.product_sub_type.name %>
-</h5>
+</h4>
 
 <div class="prod-text">
 <h3 id="prod_name">
@@ -52,9 +52,9 @@
     
 
     <% if @product.has_configuration_subtitles %>
-    <h4 id="prod_subtitle">
+    <h5 id="prod_subtitle">
       <%= @product.product_configurations.first.subtitle %>
-    </h4>
+    </h5>
     <% end %>
   
   

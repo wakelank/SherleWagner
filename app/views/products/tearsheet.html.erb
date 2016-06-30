@@ -160,20 +160,20 @@
       
     
   </div>
+   <h4 id="tear-config-number">
+          <% if @product.all_components.length < 2 %>
+          <%= @tearsheet_number %>
 
+        <% end %>
+         
+        </h4> 
    <% if @product.has_configuration_subtitles %>
     <h4 id="prod_subtitle">
       <%= @product.product_configurations.first.subtitle %>
     </h4>
     <% end %>
   
-  <h5 id="tear-config-number">
-          <% if @product.all_components.length < 2 %>
-          <%= @tearsheet_number %>
-
-        <% end %>
-         
-        </h5> 
+  
     <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
 
     
