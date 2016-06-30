@@ -113,28 +113,23 @@
       <div class="prod_links">
         <ul id="links1" class='links'>
 
-          <% if @product.associated_collection_or_null.id > 0 %>
+          <li><%= render 'tearsheet_form' %></li>
+          <li>Installation Guide</li>
+          <li><%= render 'favorites/favorite_button' %></li>
+           <% if @product.associated_collection_or_null.id > 0 %>
+           <br/>
             <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
           
-          <% else %>
-
-            <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
-  
           <% end %>
-          <li><%= render 'tearsheet_form' %></li>
-          <li><%= render 'favorites/favorite_button' %></li>
-          
-
           
         </ul>
 
         <ul id="links2" class='links'>
           
-           <% if @product.associated_collection_or_null.id >= 1 %>
-            <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
-           <% end %>
-           <li><%= link_to "3D/2D Renderings", @product.spec_sheet_2d.url %></li>
-          <li>Installation Guide</li>
+          <li><%= link_to "3D Renderings", @product.spec_sheet_2d.url %></li>
+          <li><%= link_to "2D Renderings", @product.spec_sheet_2d.url %></li>
+          <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
+           
           </ul>
       </div>
     </div>
