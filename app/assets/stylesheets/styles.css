@@ -655,7 +655,7 @@ max-width: 80px;
   margin: 0;
   padding-left: 1em;
 }
-h3#prod_name, h4#prod_subtitle {
+h3#prod_name, h5#prod_subtitle {
   min-height: 1.5em;
   margin-top: 0.25em;
   color: black;
@@ -663,7 +663,7 @@ h3#prod_name, h4#prod_subtitle {
     width: 50%;
     padding-left: 60px;
 }
-h4#prod_subtitle {
+h5#prod_subtitle {
   clear: right;
   margin-top: 0;
   margin-bottom: 0;
