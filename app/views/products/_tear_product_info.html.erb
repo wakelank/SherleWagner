@@ -1,0 +1,94 @@
+<div class="options">
+  <!-- <div class="finishes"> -->
+  <% left = "no_left" %>
+    <% if @product.finishes.length >= 1 %>
+    <div class="finishes swatches <%= left %>" >
+      <h3 class='choice_title'>Finish</h3>
+      
+      <ul id="product_finishes_list" class="detail_list">
+         
+        <% @finishes.each do |finish| %>
+          <% unless finish["name"] == 'non finish' %>
+          
+            <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", data-identifier="<%= finish["identifier"] %>", style="background-image: url(<%= finish["swatch"] %>);">
+              
+              <img class='swatch-img' src="<%= finish["swatch"] %>" alt="">
+              <p class="swatch_name">
+                <%= finish["identifier"] %> 
+              </p>
+              <div class="swatch_div"><%= finish["name"] %> </div>
+
+            </li>
+          <% end %>  <!-- finish.image -->
+        <% end %>
+      </ul>
+    </div>
+    <% left = "left" %>
+  <% end %>
+  <!-- <div class="materials"> -->
+  <% if @product.materials.length >= 1 %>
+    <div class="materials swatches <%= left %>" >
+      <% if @product.finishes.length >= 1 %>
+      <h3 class='choice_title'>Detail</h3>
+      <% else %>
+      <h3 class='choice_title'>Design</h3>
+      <% end %>
+    
+      <ul id="product_materials_list" class="detail_list">
+        
+        <% @product.materials.each do |material| %>
+        <% bg_img = material.swatch.url(:thumb) %>
+          <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", data-identifier="<%= material.identifier %>", style="background-image:url('<%= bg_img %>')">
+            
+            <img class='swatch-img' src="<%= bg_img %>" alt="">
+            <p class="swatch_name">
+                <%= material.identifier %> 
+              </p>
+           <div class="swatch_div"> <%= material.name %> </div>
+           
+          </li> 
+          <!-- material.image -->
+        <% end %>
+      </ul>
+    </div>
+    <% left = "left" %>
+    <% clear_l = "" %>
+
+
+  <% end %>
+  <!-- <div class="china_colors"> -->
+  <% if @product.china_colors.length() >= 1 %>
+    <% if @product.finishes.length >= 1 && @product.materials.length >= 1 %>
+      <% left = "no_left" %>
+      <% clear_l = "clear_l" %>
+    <% end %>
+
+  <div class="china_colors swatches <%= left %> <%= clear_l %> " >
+    <h3 class='choice_title'>China Color</h3>
+    <ul id="product_china_list" class="detail_list">
+      <% @product.china_colors.each do |china_color| %>
+        <% unless china_color.name == 'no name' %>
+        <% bg_img = china_color.image.url %>
+          <li class="prod_tile finish_tile  ", data-china_identifier="<%= china_color.identifier %>" , style="background-image:url('<%= bg_img %>')">
+            
+               <img class='swatch-img' src="<%= bg_img %>" alt="">
+               <p class="swatch_name">
+                <%= china_color.identifier %> 
+              </p>
+            <div class="swatch_div"><%= china_color.name %> </div>
+          </li>
+          
+          <!-- china_color.image -->
+        <% end %>
+      <% end %>
+  
+
+
+      </ul>
+    </div>
+  <% end %>
+  
+
+    
+</div>
+
