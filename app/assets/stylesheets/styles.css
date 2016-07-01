@@ -286,7 +286,9 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
        .navvy{
         height: 95vh;
       }
-
+      #phn_nmbr{
+        padding-top: 2px;
+      }
       
     /*===REGULAR (768+) Side Nav ===*/
 
