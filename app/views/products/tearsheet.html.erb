@@ -29,7 +29,7 @@
   }
 
   .m_name{
-    /*margin-top: 15em;*/
+    margin-top: 0;
   }
 
 #tear_l_nav {
@@ -38,6 +38,10 @@
 }
 .size_img{
   width:100%;
+  height: 100%;
+}
+.option-img{
+  position: relative;
   height: 100%;
 }
 .config_info{
@@ -86,7 +90,24 @@
     width: 50%;
     padding-left: 60px;
 }
+#number{
+  clear: both;
+    padding-left: 1.5em;
+}
+#sub_type_name {
+  float: left;
+  padding-left: 18px;
+  }
+i.fa.fa-print {
+float: right;
+  }
   @media print{
+    #sub_type_name {
+    padding-left: 0;
+    }
+    i.fa.fa-print {
+      display: none;
+    }
     .product_image{
       width: 400px;
       height: auto;
@@ -95,6 +116,10 @@
         width: 120px;
     height: 120px;
     }
+    .m_name{
+    margin-top: 0em;
+  }
+
     .previews{
       clear: none;
       margin-top: none;
@@ -128,11 +153,17 @@
 <div class="prod-text">
   <h5 id='sub_type_name'>
 <%= @product.product_type.name+ " > " +@product.product_sub_type.name %>
-</h5><br>
+</h5>
+<a href="javascript:window.print()">
+  <i class="fa fa-print" aria-hidden="true"></i>
+</a>
+<br>
+
       <h3 id="prod_name">
 
         <%= @name %>
       </h3>
+
       
     
    
@@ -176,12 +207,7 @@
     </h5>
     <% end %>
   
-  
-    <!-- image_tag @product.image.url(:medium), class: 'product-image' %> -->
-
-    
-  
-  
+ 
   
   <div class="product_info">
     <% if @product.all_components.length < 1 %>  
@@ -190,15 +216,7 @@
       </h4>
     <% end %>
 
-   
-    
-   
 
-    
- 
-
-
-    
     <div class="centered">
       <div class="tearsheet_wrapper">
         <div class="options previews">
@@ -226,10 +244,7 @@
           <% if @product.associated_collection_or_null.id > 0 %>
           <li>Collection: <%= @product.associated_collection_or_null.name %></li>
           <% end %>
-         
-          
 
-          
         </ul>
 
         <% if @product.all_components.size > 1 %>
@@ -257,37 +272,17 @@
  
   </div>
 
-
-    
-
-
-  
-
-
   <div class="product_info2">
 
 
     <%= render 'product_info' %>
-  
-
-    
-  <!-- % if @product.compilations.size > 0 %>
-    <div class="compilations">
-      <p>
-        Compilations:
-      </p>
-      <ul id="compilations_list" class="comp_list links">
-        % @product.all_compilations.each do |compilation| %>
-        <li>%= link_to(compilation.name, product_path(compilation))  %>
-        </li>
-        % end %>
-      </ul>
-    </div>
-  % end %> -->
-    
+ 
+    <p id="number">1 - (212) 758-3300
+</p>
     
   </div>
   <br/>
+
 
 </div>
 
@@ -298,24 +293,5 @@
 $('.sidenav').css('display','none');
 $('#center_main').css('margin-left','12%');
 
-  // $('ul#components_list li').slice(1).hide();
-  // $('ul#components_list').append("<a  id='see_all' class='expander'><b>...See all</a></b>");
-  // $('ul#components_list').append("<a  id='hide_all' class='expander' style='float:right; padding-top:8px'><b>Collapse</a></b>");
-  // $('#hide_all').hide();
-  // $('#see_all').click(function(){
-  //     $('#see_all').hide();
-  //     $('ul#components_list li').slice(1).show();
-  //     $('#hide_all').show();
-  //     $('ul#components_list').addClass('expandComp');
-  //   }
-  // );
-  // $('#hide_all').click(function(){
-  //     $('#hide_all').hide();
-  //     $('ul#components_list li').slice(1).hide();
-  //     $('#see_all').show();
-  //     $('ul#components_list').removeClass('expandComp');
-  //     // $('ul#components_list').append($('#see_all'));
-  //   }
-  // );
 
 </script>

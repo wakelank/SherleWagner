@@ -210,14 +210,13 @@ input#search{
     padding-top: 70%!important;
   }
   .sub-type-name{
-    
     /* vertical-align: bottom; */
     position: relative;
-    top: 80%;
+    top: 77%;
     width: 85%;
     text-align: left;
     background-color: black;
-    padding: 8px 0;
+    padding: 0;
     padding-left: 8px;
      margin: 0;
     
@@ -286,7 +285,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
        .navvy{
         height: 95vh;
       }
-
+     
       
     /*===REGULAR (768+) Side Nav ===*/
 
@@ -767,15 +766,18 @@ div.tearsheet-form-box {
 .option-img{
   
   height: 100%;
+    clip: rect(0px,0px,0px,0px);
+    position: absolute;
 }
 .m_name {
-    /*margin-top: 11em;*/
+    margin-top: 11em;
     padding-top: 2px;
     color: darkgray;
     font-size: 10px;
     margin-bottom: 5px;
 
 }
+
 .favorite{
   border: 0;
     color: gray;
@@ -1291,7 +1293,7 @@ li.foot_link, li.foot_link a{
  
   .product_image_square, .product_image_tall {
     
-    width: 100%;
+    width: 80%;
   }
 
 

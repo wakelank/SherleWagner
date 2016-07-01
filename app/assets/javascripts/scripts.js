@@ -802,7 +802,9 @@ $(document).on("page:change", (function(){
           var bg = $(targ).css("background-image").replace("thumb","medium");
           var nbg = bg.slice(5,-2);
 
-           $(choice_id).html('<img src="'+nbg+'" class="option-img"></img><div class="m_name">'+identifier_name+'</div>');
+           $(choice_id).html('<img src="'+nbg+'" class="option-img"></img><div class="m_wrap"><div class="m_name">'+identifier_name+'</div></div>');
+
+
            
            $(choice_id).css("background-image", bg);
            $(choice_id).css("background-size", 'cover');
