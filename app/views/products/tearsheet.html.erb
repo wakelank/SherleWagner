@@ -95,14 +95,19 @@
     padding-left: 1.5em;
 }
 #sub_type_name {
-    float: left;
-    padding-left: 18px;
-    }
+  float: left;
+  padding-left: 18px;
+  }
+i.fa.fa-print {
+float: right;
+  }
   @media print{
     #sub_type_name {
     padding-left: 0;
     }
-    
+    i.fa.fa-print {
+      display: none;
+    }
     .product_image{
       width: 400px;
       height: auto;
@@ -148,11 +153,17 @@
 <div class="prod-text">
   <h5 id='sub_type_name'>
 <%= @product.product_type.name+ " > " +@product.product_sub_type.name %>
-</h5><br>
+</h5>
+<a href="javascript:window.print()">
+  <i class="fa fa-print" aria-hidden="true"></i>
+</a>
+<br>
+
       <h3 id="prod_name">
 
         <%= @name %>
       </h3>
+
       
     
    
