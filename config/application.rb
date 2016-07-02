@@ -34,6 +34,8 @@ module Sherlewagner
     config.active_record.raise_in_transactional_callbacks = true
     config.exceptions_app = self.routes
     config.encoding = 'utf-8'
+
+  config.action_mailer.default_url_options = { :host => 'sherlewagner.com' }
   
   end
 end
