@@ -26,8 +26,10 @@ class FavoritesController < ApplicationController
     redirect_to favorites_path
   end
 
-  def send_contact_with_favorites(favorites: [])
-    ContactWithFavorites.email_favorites(favorites: favorites).deliver
+  def send_contact_with_favorites
+    ContactWithFavorites.email_favorites(favorites: params[:favorites],
+                                        requesters_email: params[:requesters_email],
+                                        requesters_location: params[:requesters_location]).deliver
 
     redirect_to favorites_path
   end

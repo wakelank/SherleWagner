@@ -3,4 +3,19 @@
 <% end %>
 
 <p><%= link_to "TEST EMAIL", send_contact_with_favorites_path, method: 'post' %></p>
-<p><%= link_to "TEST EMAIL with favorites", send_contact_with_favorites_path(favorites: @favorites), method: 'post' %></p>
+
+<%= form_tag(send_contact_with_favorites_path, method: 'post') do %>
+  <% @favorites.each do |fav| %>
+    <%= hidden_field_tag 'favorites[]', fav.product_name, multiple: true %>
+  <% end %>
+  <p> 
+  <%= label_tag 'Email address' %>
+  <%= text_field_tag 'requesters_email' %>
+  </p>
+  <p>
+  <%= label_tag 'location' %>
+  <%= text_field_tag 'requesters_location' %>
+</p>
+
+  <%= submit_tag 'Submit with favorites' %>
+<% end %>
