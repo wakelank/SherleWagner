@@ -8,6 +8,14 @@
   <% @favorites.each do |fav| %>
     <%= hidden_field_tag 'favorites[]', fav.product_name, multiple: true %>
   <% end %>
+  <p> 
+  <%= label_tag 'Email address' %>
+  <%= text_field_tag 'requesters_email' %>
+  </p>
+  <p>
+  <%= label_tag 'location' %>
+  <%= text_field_tag 'requesters_location' %>
+</p>
 
   <%= submit_tag 'Submit with favorites' %>
 <% end %>
