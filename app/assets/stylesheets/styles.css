@@ -284,6 +284,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
        .navvy{
         height: 95vh;
+
       }
      
       
@@ -321,6 +322,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         padding-top: 35px;
         padding-left: 0;
         width: 100%;
+        margin-left: -20px;
+        padding-left: 20px;
       }
       .navvy .panel-sub-heading {
         padding-left: 0;
@@ -457,6 +460,10 @@ a.sub_type_tile_title {
   list-style: none;
   height: 100%;
   margin-top: -2em;
+}
+.sub_type_tile .sub-type-name h4 {
+    
+    padding: 4px;
 }
 
 .plus_end{
@@ -1451,6 +1458,9 @@ div#nav_link_contain.collapse.navbar-collapse{
 
 .panel-group .panel-heading+.panel-collapse>.panel-body {
     border-top: 0px solid #eeeeee;
+}
+.panel-group{
+  margin-bottom: 5px !important;
 }
 #l_nav #accordion1 div.panel_title_div{
   margin-top: 5px ;

@@ -10,7 +10,7 @@
         <% @finishes.each do |finish| %>
           <% unless finish["name"] == 'non finish' %>
           
-            <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", data-identifier="<%= finish["identifier"] %>", style="background-image: url(<%= finish["swatch"] %>);">
+            <li class="prod_tile finish_tile", data-finish_identifier="<%= finish["identifier"] %>", data-identifier="<%= finish["identifier"] %>", data-name="<%= finish["name"] %>", style="background-image: url(<%= finish["swatch"] %>);">
               <!-- <p class="swatch_name">
                 %= finish.name %> 
               </p> -->
@@ -37,7 +37,7 @@
         
         <% @product.materials.each do |material| %>
         <% bg_img = material.swatch.url(:thumb) %>
-          <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", data-identifier="<%= material.identifier %>", style="background-image:url('<%= bg_img %>')">
+          <li class="prod_tile finish_tile", data-material_identifier="<%= material.identifier %>", data-identifier="<%= material.identifier %>", data-name="<%= material.name %>", style="background-image:url('<%= bg_img %>')">
             <img class='swatch-img' src="<%= bg_img %>" alt="">
            <div class="swatch_div"> <%= material.name %> </div>
            
@@ -63,7 +63,7 @@
       <% @product.china_colors.each do |china_color| %>
         <% unless china_color.name == 'no name' %>
         <% bg_img = china_color.image.url %>
-          <li class="prod_tile finish_tile  ", data-china_identifier="<%= china_color.identifier %>" , style="background-image:url('<%= bg_img %>')">
+          <li class="prod_tile finish_tile  ", data-china_identifier="<%= china_color.identifier %>", data-name="<%= china_color.name %>" , style="background-image:url('<%= bg_img %>')">
             <div class="swatch_div"><%= china_color.name %> </div>
           </li>
           
