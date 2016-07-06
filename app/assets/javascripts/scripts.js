@@ -781,6 +781,7 @@ $(document).on("page:change", (function(){
 
            if ($(targ).data().material_identifier === undefined){
              identifier = $(targ).data().finish_identifier;
+             f_name = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
             var config = {finish: identifier};
            }else{
@@ -797,7 +798,7 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-           identifier_name= $('[data-identifier="'+identifier+'"]')[0].children[1].innerHTML.trim();
+           identifier_name= $('[data-identifier="'+identifier+'"]')[0].dataset.name;
 
           var bg = $(targ).css("background-image").replace("thumb","medium");
           var nbg = bg.slice(5,-2);
