@@ -137,11 +137,18 @@ class Product < ActiveRecord::Base
 
   def all_components
     self_component = NameOnlyProduct.new(name: name)
-    if product_sub_type.name == "Shower Systems"
-      components + name_only_products
+    if product_sub_type.name == "Shower Systems" 
+    comps= components.sort_by! do |item|
+        item[:updated_at]
+      end
+      comps+ name_only_products
     else
-      [self_component] + components + name_only_products
+      comps = ([self_component] + components).sort_by! do |item|
+        item[:updated_at]
+      end
+      comps+ name_only_products
     end
+    
   end
 
   def all_compilations
