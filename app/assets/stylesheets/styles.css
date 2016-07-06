@@ -284,6 +284,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       }
        .navvy{
         height: 95vh;
+
       }
      
       
@@ -321,6 +322,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         padding-top: 35px;
         padding-left: 0;
         width: 100%;
+        margin-left: -20px;
+        padding-left: 20px;
       }
       .navvy .panel-sub-heading {
         padding-left: 0;
