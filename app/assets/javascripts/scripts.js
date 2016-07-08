@@ -22,9 +22,6 @@ $(document).on("page:change", (function(){
     // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
         tearsheet_config = $(window.location.pathname.split('/')).last()[0];
 
-
-      
-        
         
         $('.finish_tile').each(function(i,t){
           var ident = '';
@@ -62,10 +59,7 @@ $(document).on("page:change", (function(){
            }
         }
 
-
-
     break
-
 
 
     case 'products show':
@@ -83,8 +77,6 @@ $(document).on("page:change", (function(){
       var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
 
-
-    
 
 
       $('#product_finishes_list').find('li').click(function(e){
@@ -212,7 +204,7 @@ $(document).on("page:change", (function(){
        set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
-       var tearsheet_targ = $('.tear-sheet-submit').attr('href');
+        tearsheet_targ = $('.tear-sheet-submit').attr('href');
 
         
 
@@ -275,7 +267,7 @@ $(document).on("page:change", (function(){
                   // console.log(t);
                 }else{
                   //console.log('else*');
-                   var the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
+                    the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
                    if (prod_config.color.length > 1){
                     the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
                    }
@@ -284,7 +276,9 @@ $(document).on("page:change", (function(){
                  
 
                 $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-
+                  if($('ul#components_list').length >= 1){
+                    tearsheet_targ = tearsheet_targ1.replace(finish_code_regex, "-XX");
+                  }
                 }
                 foundn = 1;
                 return false;
@@ -376,8 +370,8 @@ $(document).on("page:change", (function(){
              var finish_sheet_targ = the_tear_targ.replace("CC", mat).replace(china_code_regex, mat);
              finish_sheet_targ = finish_sheet_targ.replace(material_code_regex, prod_config.material);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-               otherswatch = "/"
-               otherswatch2 = "/"
+               var otherswatch = "/"
+               var otherswatch2 = "/"
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
@@ -434,7 +428,7 @@ $(document).on("page:change", (function(){
 
               }
             else if($('.china_colors .highlight').length > 0){
-             otherswatch = $('.china_colors .highlight')[0].dataset.material_identifier ;
+             otherswatch = $('.china_colors .highlight')[0].dataset.china_identifier ;
               } 
 
             
@@ -611,7 +605,7 @@ $(document).on("page:change", (function(){
           $('#l_nav').remove();
           
         break;
-      case 'static_pages showrooms': 
+      case 'showrooms index': 
       
        set_map();
 
@@ -780,12 +774,12 @@ $(document).on("page:change", (function(){
            var product_object = { product_id: product_id };
 
            if ($(targ).data().material_identifier === undefined){
-             identifier = $(targ).data().finish_identifier;
-             f_name = $(targ).data().finish_identifier;
+             var identifier = $(targ).data().finish_identifier;
+             var f_name = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
             var config = {finish: identifier};
            }else{
-             identifier = $(targ).data().material_identifier;
+            var identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
             var config = {material: identifier};
            }
@@ -798,7 +792,7 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-           identifier_name= $('[data-identifier="'+identifier+'"]')[0].dataset.name;
+           var identifier_name= $('[data-identifier="'+identifier+'"]')[0].dataset.name;
 
           var bg = $(targ).css("background-image").replace("thumb","medium");
           var nbg = bg.slice(5,-2);
