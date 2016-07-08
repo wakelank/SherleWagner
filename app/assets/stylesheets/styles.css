@@ -543,6 +543,7 @@ li.highlighted{
   position: relative;
       background-size: cover;
     background-position-x: 50%;
+    background-position-y: 50%;
   float: left;
   /*margin-right: 3em;*/
   margin-bottom: 20px;
@@ -775,6 +776,7 @@ div.tearsheet-form-box {
   height: 100%;
     clip: rect(0px,0px,0px,0px);
     position: absolute;
+    max-width: 200px;
 }
 .m_name {
     margin-top: 11em;
@@ -1298,9 +1300,18 @@ li.foot_link, li.foot_link a{
     margin-bottom: 4em;
   }
  
-  .product_image_square, .product_image_tall {
+  .product_image_square{
     
     width: 80%;
+  }
+  .product_image_tall {
+    width: 300px;
+    height: 400px;
+  } 
+
+  h5#prod_subtitle {
+    float: left;
+    padding-left: 20px;
   }
 
 
@@ -1327,8 +1338,8 @@ li.foot_link, li.foot_link a{
   }
 
   ul#links2{
-      clear: left;
-      padding-left: 0;
+      /*clear: left;*/
+      padding-left: 25px;
 
   }
   .images, #alt_imgs{
@@ -1342,7 +1353,7 @@ li.foot_link, li.foot_link a{
   }
 
   #components_list {
-    right:30%;
+    right: 5%;
   }
 
   

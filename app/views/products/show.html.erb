@@ -28,7 +28,9 @@
 
     <div class="product_image <%= image_div_class %>" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' data-bw = '<%= @product.image.url %>' data-number = '<%= @product.product_configurations.first.number %>' >
       <div class="config_info">
+
         <% if @product.components.length() < 1 %>
+      
         <h5 class="prod-config-number">
           
             <%= @product.product_configurations.last.number %>
