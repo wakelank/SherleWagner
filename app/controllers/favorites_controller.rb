@@ -14,8 +14,22 @@ class FavoritesController < ApplicationController
     favorites.save(favorite) if !favorite.nil?
 
     cookies[:favorites] = favorites.all.to_json
-     
+    
     redirect_to :back 
+  end
+
+  def create_inquiry
+    favorites = Favorites.new(favorites_args) || [NullObject.new]
+    args = { product_id: params[:product_id],
+                    url: request.referrer,
+                    id: favorites.next_id,
+                    tearsheet: params[:tearsheet] }
+    favorite = Favorite.new(args) || NullObject.new
+    favorites.save(favorite) if !favorite.nil?
+
+    cookies[:favorites] = favorites.all.to_json
+    
+    redirect_to favorites_path
   end
  
   def destroy

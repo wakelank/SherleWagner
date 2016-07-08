@@ -817,6 +817,13 @@ div.tearsheet-form-box {
   padding-left: 2em;
   max-width: 170px;
 }
+#inquiry_button{
+  font-size: 12px;
+  padding:4px;
+  background-color: #eeeeee;
+  color: black;
+  margin-top: -3px;
+}
 
 .choice_title{
   padding-left: 5px;

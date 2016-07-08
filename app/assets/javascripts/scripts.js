@@ -437,6 +437,7 @@ $(document).on("page:change", (function(){
             if (tearsheet_targ1){
               the_tear_targ = tearsheet_targ1.replace(finish_code_regex, "-XX");
               the_tear_targ = the_tear_targ.replace(material_code_regex, prod_config.material);
+              //this is a fix for the DKT tub set configs.
             }else{
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
             }

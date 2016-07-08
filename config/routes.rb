@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
 
   resources :tearsheets, only: [:show, :create]
+  post "inquiry" => 'favorites#create_inquiry'
   resources :favorites, only: [:index, :create, :destroy]
   post 'send_contact_with_favorites' => 'favorites#send_contact_with_favorites'
   #resources :compilations, only: [:show]
