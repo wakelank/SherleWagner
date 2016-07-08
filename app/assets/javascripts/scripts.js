@@ -434,13 +434,8 @@ $(document).on("page:change", (function(){
             
              mat = this.dataset.finish_identifier;
             //console.log(mat);
-            if (tearsheet_targ1){
-              the_tear_targ = tearsheet_targ1.replace(finish_code_regex, "-XX");
-              the_tear_targ = the_tear_targ.replace(material_code_regex, prod_config.material);
-              //this is a fix for the DKT tub set configs.
-            }else{
+            
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
-            }
 
               mat_sheet_targ = the_tear_targ.replace("XX", mat);
               mat_sheet_split = mat_sheet_targ.split('-');
