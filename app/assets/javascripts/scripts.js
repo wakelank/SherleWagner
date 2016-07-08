@@ -49,7 +49,7 @@ $(document).on("page:change", (function(){
         }); 
          
          //set the current configuration
-        if ($('#components_list li').length > 1){
+        if ($('#components_list li').length > 1 || $('h4#sub_type_name').html().trim()== "Deck Mount Tub Sets"){
           confi = tearsheet_config.split('-');
           confi = confi.splice(0, confi.length-1);
           confi = confi.join('-');
@@ -434,6 +434,9 @@ $(document).on("page:change", (function(){
             
              mat = this.dataset.finish_identifier;
             //console.log(mat);
+            if (typeof _someUndefinedVarName == "undefined") {
+                tearsheet_targ1 = false;
+            }
             if (tearsheet_targ1){
               the_tear_targ = tearsheet_targ1.replace(finish_code_regex, "-XX");
               the_tear_targ = the_tear_targ.replace(material_code_regex, prod_config.material);
