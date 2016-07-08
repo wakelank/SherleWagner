@@ -10,12 +10,15 @@
   <% end %>
   <p> 
   <%= label_tag 'Email address' %>
-  <%= text_field_tag 'requesters_email' %>
+  <%= email_field_tag 'requesters_email' %>
   </p>
   <p>
-  <%= label_tag 'location' %>
+  <%= label_tag 'Location' %>
   <%= text_field_tag 'requesters_location' %>
 </p>
 
-  <%= submit_tag 'Submit with favorites' %>
+<%= label_tag 'Optional Comments' %>
+<%= text_area_tag 'requesters_memo' %>
+
+  <%= submit_tag 'Send email' %>
 <% end %>
