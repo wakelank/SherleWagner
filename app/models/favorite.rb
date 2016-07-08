@@ -8,6 +8,7 @@ class Favorite
     @id = args[:id]
     @product_id = args[:product_id]
     @product_name = Product.find_by(id: @product_id).name || ""
+    @product_number = Product.find_by(id: @product_id).number || ""
 
     @product_image = Product.find_by(id: @product_id).image.url || ""
 
@@ -46,6 +47,9 @@ class Favorite
   def last
   end
 
+  def info_for_email
+    "#{@product_name}: #{@product_number}"
+  end
 
 end
 
