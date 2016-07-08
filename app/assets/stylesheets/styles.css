@@ -543,6 +543,7 @@ li.highlighted{
   position: relative;
       background-size: cover;
     background-position-x: 50%;
+    background-position-y: 50%;
   float: left;
   /*margin-right: 3em;*/
   margin-bottom: 20px;

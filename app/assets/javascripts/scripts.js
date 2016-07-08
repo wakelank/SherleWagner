@@ -22,9 +22,6 @@ $(document).on("page:change", (function(){
     // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
         tearsheet_config = $(window.location.pathname.split('/')).last()[0];
 
-
-      
-        
         
         $('.finish_tile').each(function(i,t){
           var ident = '';
@@ -62,10 +59,7 @@ $(document).on("page:change", (function(){
            }
         }
 
-
-
     break
-
 
 
     case 'products show':
@@ -83,8 +77,6 @@ $(document).on("page:change", (function(){
       var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
 
-
-    
 
 
       $('#product_finishes_list').find('li').click(function(e){
@@ -212,7 +204,7 @@ $(document).on("page:change", (function(){
        set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
-       var tearsheet_targ = $('.tear-sheet-submit').attr('href');
+        tearsheet_targ = $('.tear-sheet-submit').attr('href');
 
         
 
@@ -275,7 +267,7 @@ $(document).on("page:change", (function(){
                   // console.log(t);
                 }else{
                   //console.log('else*');
-                   var the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
+                    the_tear_targ = tearsheet_targ1.replace('XX', prod_config.finish).replace(finish_code_regex, "-"+prod_config.finish);
                    if (prod_config.color.length > 1){
                     the_tear_targ=the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
                    }
@@ -284,7 +276,9 @@ $(document).on("page:change", (function(){
                  
 
                 $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-
+                  if($('ul#components_list').length >= 1){
+                    tearsheet_targ = tearsheet_targ1.replace(finish_code_regex, "-XX");
+                  }
                 }
                 foundn = 1;
                 return false;
