@@ -775,6 +775,7 @@ div.tearsheet-form-box {
   height: 100%;
     clip: rect(0px,0px,0px,0px);
     position: absolute;
+    max-width: 200px;
 }
 .m_name {
     margin-top: 11em;
