@@ -81,16 +81,29 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
 
   
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'sherlewagner.com' }
+  config.action_mailerconfig.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "sherlewagner.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["SW_GMAIL_USERNAME"],
+    password: ENV["SW_GMAIL_PASSWORD"]
+  }
+
 
 
   config.paperclip_defaults = {
-  :storage => :s3,
-  :s3_credentials => {
-    :bucket => 'sw-images-production'
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'sw-images-production'
+    }
   }
-}
 end
