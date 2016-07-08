@@ -424,7 +424,7 @@ $(document).on("page:change", (function(){
           }
           var otherswatch = "/"
             if($('.materials .highlight').length > 0){
-             otherswatch = "-" + $('.materials .highlight')[0].dataset.material_identifier ;
+             otherswatch = "-" + $('.materials .highlight')[0].dataset.material_identifier;
 
               }
             else if($('.china_colors .highlight').length > 0){
@@ -434,7 +434,9 @@ $(document).on("page:change", (function(){
             
              mat = this.dataset.finish_identifier;
             //console.log(mat);
-
+            if (tearsheet_targ1){
+              the_tear_targ = tearsheet_targ1.replace(finish_code_regex, "-XX");
+            }
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
               mat_sheet_targ = the_tear_targ.replace("XX", mat);
