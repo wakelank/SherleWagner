@@ -49,7 +49,7 @@ $(document).on("page:change", (function(){
         }); 
          
          //set the current configuration
-        if ($('#components_list li').length > 1 || $('h4#sub_type_name').html().trim()== "Deck Mount Tub Sets"){
+        if ($('#components_list li').length > 1){
           confi = tearsheet_config.split('-');
           confi = confi.splice(0, confi.length-1);
           confi = confi.join('-');
