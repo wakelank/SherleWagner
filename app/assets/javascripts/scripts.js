@@ -376,8 +376,8 @@ $(document).on("page:change", (function(){
              var finish_sheet_targ = the_tear_targ.replace("CC", mat).replace(china_code_regex, mat);
              finish_sheet_targ = finish_sheet_targ.replace(material_code_regex, prod_config.material);
             $('.tear-sheet-submit').attr('href',finish_sheet_targ);
-               otherswatch = "/"
-               otherswatch2 = "/"
+               var otherswatch = "/"
+               var otherswatch2 = "/"
             if($('.finishes .highlight').length > 0){
               otherswatch = $('.finishes .highlight')[0].dataset.finish_identifier ;
               }
@@ -434,7 +434,7 @@ $(document).on("page:change", (function(){
 
               }
             else if($('.china_colors .highlight').length > 0){
-             otherswatch = $('.china_colors .highlight')[0].dataset.material_identifier ;
+             otherswatch = $('.china_colors .highlight')[0].dataset.china_identifier ;
               } 
 
             
@@ -780,12 +780,12 @@ $(document).on("page:change", (function(){
            var product_object = { product_id: product_id };
 
            if ($(targ).data().material_identifier === undefined){
-             identifier = $(targ).data().finish_identifier;
-             f_name = $(targ).data().finish_identifier;
+             var identifier = $(targ).data().finish_identifier;
+             var f_name = $(targ).data().finish_identifier;
             var choice_id = "#finish_choice";
             var config = {finish: identifier};
            }else{
-             identifier = $(targ).data().material_identifier;
+            var identifier = $(targ).data().material_identifier;
             var choice_id = "#material_choice";
             var config = {material: identifier};
            }
@@ -798,7 +798,7 @@ $(document).on("page:change", (function(){
            $(targ).addClass('highlight');
            //console.log("configObj: " + JSON.stringify(configurationObject));
           //* set the choice box values ****
-           identifier_name= $('[data-identifier="'+identifier+'"]')[0].dataset.name;
+           var identifier_name= $('[data-identifier="'+identifier+'"]')[0].dataset.name;
 
           var bg = $(targ).css("background-image").replace("thumb","medium");
           var nbg = bg.slice(5,-2);
