@@ -1301,8 +1301,8 @@ li.foot_link, li.foot_link a{
   }
  
   .product_image_square{
-    
-    width: 80%;
+    width: 300px;
+    height: 300px;
   }
   .product_image_tall {
     width: 300px;
