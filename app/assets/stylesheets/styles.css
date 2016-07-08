@@ -1308,6 +1308,11 @@ li.foot_link, li.foot_link a{
     height: 400px;
   } 
 
+  h5#prod_subtitle {
+    float: left;
+    padding-left: 20px;
+  }
+
 
   #content_wrapper{
     /*min-width: 515px;*/
@@ -1347,7 +1352,7 @@ li.foot_link, li.foot_link a{
   }
 
   #components_list {
-    right:10%;
+    right: 5%;
   }
 
   

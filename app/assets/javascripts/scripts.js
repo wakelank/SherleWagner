@@ -611,7 +611,7 @@ $(document).on("page:change", (function(){
           $('#l_nav').remove();
           
         break;
-      case 'static_pages showrooms': 
+      case 'showrooms index': 
       
        set_map();
 
