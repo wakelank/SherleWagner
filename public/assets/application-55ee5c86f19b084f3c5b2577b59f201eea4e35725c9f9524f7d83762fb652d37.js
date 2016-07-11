@@ -13970,8 +13970,8 @@ $(document).on("page:change", (function(){
 
          tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish);
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
-        console.log('BAAATTHHHTime!!');
-        console.log(tearsheet_targ);
+        
+        
 
            // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
        
@@ -13982,7 +13982,7 @@ $(document).on("page:change", (function(){
         $('.materials .finish_tile').click(function(f){
           //set the corrosponding finish
              var mat = this.dataset.material_identifier;
-            console.log(mat);
+            //console.log(mat);
 
             the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
 
@@ -14011,7 +14011,7 @@ $(document).on("page:change", (function(){
 
             
             var mat = this.dataset.finish_identifier;
-            console.log(mat);
+            //console.log(mat);
 
             the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
@@ -14211,7 +14211,7 @@ $('ul#components_list li').slice(1).hide();
        // .replace("XX", finish_identifier);
        // tearsheet_number = tearsheet_number.replace("CC", china_color_identifier);
        // tearsheet_number = tearsheet_number.replace(material_code_regex, material_identifier);
-       console.log(product_id);
+       //console.log(product_id);
 
 
 

@@ -125,7 +125,7 @@
            <% if @product.associated_collection_or_null.id > 0 %>
            <br/>
             <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>
-          
+
           <% end %>
           
         </ul>
@@ -135,6 +135,16 @@
           <li><%= link_to "3D Renderings", @product.spec_sheet_2d.url %></li>
           <li><%= link_to "2D Renderings", @product.spec_sheet_2d.url %></li>
           <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
+          <br/>
+            <li>
+              <%= form_tag inquiry_path, method: 'post' do %>
+                <%= hidden_field_tag :product_id, @product.id %>
+                  <%= button_tag(type: "submit", id:"inquiry_button", class: "btn btn-secondary") do %>
+                  Send Inquiry
+                  <% end %>
+                <% end %>
+    
+              </li>
            
           </ul>
       </div>
