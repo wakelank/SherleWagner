@@ -41,6 +41,14 @@ class NullObject
     0
   end
 
+  def count
+    length 
+  end
+
+  def length
+    0
+  end
+
 
 end
 
