@@ -67,7 +67,7 @@ input#submit_email{
     <% end %>
     <p> 
     <%= label_tag 'Email address' %>
-    <%= email_field_tag 'requesters_email' %>
+    <%= email_field_tag 'requesters_email', nil, required: true %>
     </p>
     <p>
     <%= label_tag 'Location' %>
