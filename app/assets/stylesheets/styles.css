@@ -233,6 +233,9 @@ input#search{
   border:none;
   margin-bottom: 2em !important;
 }
+#Fittings{
+  background-position: 0px -40px;
+}
 a .prod_tile.type_tile h4{
  color: black;
  font-family: "DINPro-Medium";

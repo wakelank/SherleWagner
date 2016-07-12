@@ -4,6 +4,6 @@ class ErrorsController < ApplicationController
       format.html { render status: 404 }
     end
   rescue ActionController::UnknownFormat
-    render status: 404, text: "nope"
+    render status: 404, text: "Sorry, that page is not available."
   end
 end
