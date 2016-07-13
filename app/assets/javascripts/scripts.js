@@ -42,6 +42,7 @@ $(document).on("page:change", (function(){
              $(t).addClass('highlight');
 
           }else if (tearsheet_config.includes( '-'+ident ) && parent_div != '#product_china_list' ){
+
             var $t = $(t);
             var pr = $(parent_div);
             swatch_tile_actions($t, pr); 
@@ -213,8 +214,16 @@ $(document).on("page:change", (function(){
         var china_code_regex = /(WH|SD|BLK)/
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material);
+        tear_nmbr_ar = tearsheet_targ2.split('/')
+        tear_nmbr = tear_nmbr_ar[tear_nmbr_ar.length-1];
+        tear_nmbr = tear_nmbr.split('-');
+        tear_nmbr[0] = prod_num_base;
+        tear_nmbr = tear_nmbr.join('-');
+        tear_nmbr_ar[tear_nmbr_ar.length-1] = tear_nmbr;
+        tearsheet_targ4 = tear_nmbr_ar.join('/');
+
         //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
-         var tearsheet_targ3 = tearsheet_targ2.replace("XX", prod_config.finish)
+         var tearsheet_targ3 = tearsheet_targ4.replace("XX", prod_config.finish)
          if (prod_config.color.length > 1){
           
           tearsheet_targ3 = tearsheet_targ3.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
@@ -297,7 +306,7 @@ $(document).on("page:change", (function(){
                 swatch_tile_actions(t, '#product_materials_list');
               }
             }
-            
+
           }); 
 
           
@@ -434,7 +443,7 @@ $(document).on("page:change", (function(){
             
              mat = this.dataset.finish_identifier;
             
-             
+
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
               mat_sheet_targ = the_tear_targ.replace("XX", mat);
