@@ -297,7 +297,7 @@ $(document).on("page:change", (function(){
                 swatch_tile_actions(t, '#product_materials_list');
               }
             }
-
+            
           }); 
 
           
@@ -434,7 +434,7 @@ $(document).on("page:change", (function(){
             
              mat = this.dataset.finish_identifier;
             
-
+             
              the_tear_targ = tearsheet_targ.replace(material_code_regex, prod_config.material);
 
               mat_sheet_targ = the_tear_targ.replace("XX", mat);
