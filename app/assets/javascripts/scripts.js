@@ -282,6 +282,7 @@ $(document).on("page:change", (function(){
                    }
 
                  var finish_sheet_targ = the_tear_targ.replace(material_code_regex, mat);
+
                  
 
                 $('.tear-sheet-submit').attr('href',finish_sheet_targ);
@@ -321,7 +322,7 @@ $(document).on("page:change", (function(){
           //set the corrosponding finish
              var mat = this.dataset.material_identifier;
             
-
+             
             var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
             if (prod_config.color.length > 1){
               the_tear_targ = the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
