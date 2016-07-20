@@ -13,7 +13,7 @@ $(document).on("page:change", (function(){
     //PRODUCT SHOW page JS  
     case 'products tearsheet':
 
-    prod_config = {
+    var prod_config = {
           "finish":" ",
           "material":" ",
           "color":" "
@@ -112,8 +112,8 @@ $(document).on("page:change", (function(){
     
       var image = $('.product_image')[0].dataset.url;
        var bw_image = $('.product_image')[0].dataset.bw;
-       img_number = $('.product_image')[0].dataset.number;
-       img_num_array = img_number.split('-');
+       var img_number = $('.product_image')[0].dataset.number;
+       var img_num_array = img_number.split('-');
       var matchr = image.match(/\/[^\/]+.jpg/);
 
       if ($('.alt_img').length > 0){
@@ -194,10 +194,10 @@ $(document).on("page:change", (function(){
 
        //set the current configuration
        if ($('.alt_choice').length > 0){
-           conff = $('.alt_choice')[0];
-          prod_num_base = conff.dataset.number.split('-')[0];
+           var conff = $('.alt_choice')[0];
+          var prod_num_base = conff.dataset.number.split('-')[0];
         }else{
-          prod_num_base = product_base_number;
+          var prod_num_base = product_base_number;
         }
         
        if (conff){
