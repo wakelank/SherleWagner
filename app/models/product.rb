@@ -80,6 +80,19 @@ class Product < ActiveRecord::Base
     subtitle_length > 2
   end
 
+  def configs_or_none
+    configs = product_configurations
+    if configs.size >= 1
+      product_configurations
+    else
+     [NullObject.new]
+      
+    end
+   
+
+
+  end
+
   def product_configurations_with_image(admin = false)
     if admin
       product_configurations
@@ -216,7 +229,7 @@ class Product < ActiveRecord::Base
       self.materials.concat Material.where(code: material_code)
       self.save
     rescue
-      binding.pry
+      
     end
   end
 
