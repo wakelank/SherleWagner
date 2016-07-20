@@ -8,16 +8,15 @@
 </h4>
 
 <div class="prod-text">
-<h3 id="prod_name">
-<%= @product.name %>
+  <h3 id="prod_name">
+    <%= @product.name %>
+  </h3>
 
-</h3>
+  <% if admin? %>
+    <%= link_to 'edit product', edit_product_path %>
+  <% end %>
 
-<% if admin? %>
-      <%= link_to 'edit product', edit_product_path %>
-    
-     <% end %>
-    </div>
+</div>
 
 
   <div class="images">   
@@ -26,14 +25,16 @@
       <% image_div_class = "product_image_tall" %>
     <% end %>
 
-    <div class="product_image <%= image_div_class %>" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' data-bw = '<%= @product.image.url %>' data-number = '<%= @product.product_configurations.first.number %>' >
+    
+
+    <div class="product_image <%= image_div_class %>" style="background-image:url(<%= @product.first_image.url%>)" data-url= '<%= @product.first_image.url %>' data-bw = '<%= @product.image.url %>' data-number = '<%= @product.configs_or_none.first.number %>' >
       <div class="config_info">
 
         <% if @product.components.length() < 1 %>
       
         <h5 class="prod-config-number">
           
-            <%= @product.product_configurations.last.number %>
+            <%= @product.configs_or_none.last.number %>
           
           
       </h5> 
