@@ -19,29 +19,33 @@ $(document).on("page:change", (function(){
           "color":" "
 
         }
-    // "http://localhost:3000/products/tearsheet/1030BSN819-CHINADECO-CC-XX"
+    
         tearsheet_config = $(window.location.pathname.split('/')).last()[0];
 
         
         $('.finish_tile').each(function(i,t){
           var ident = '';
-          var parent_div = ''
-          if ($($(t).parents()[1]).hasClass('finishes')){
+          var parent_div = '';
+          var parent_targ = $($(t).parents()[1]);
+
+          if (parent_targ.hasClass('finishes')){
              ident = t.dataset.finish_identifier;
-             parent_div = '#product_finishes_list';
-          }else if ($($(t).parents()[1]).hasClass('materials')){
+             parent_div = '#product_finishes_list';             
+          }else if (parent_targ.hasClass('materials')){
               ident = t.dataset.material_identifier;
               parent_div = '#product_materials_list';
-          }else if ($($(t).parents()[1]).hasClass('china_colors')){
+          }else if (parent_targ.hasClass('china_colors')){
               ident = t.dataset.china_identifier;
               parent_div = '#product_china_list';
           }else{
           }
-           
-          if (tearsheet_config.includes( '-'+ident ) && parent_div == '#product_china_list' ){
+
+          var rgxp = new RegExp('-'+ident+'(\\b|-)');
+
+          if (tearsheet_config.match(rgxp) && parent_div == '#product_china_list' ){
              $(t).addClass('highlight');
 
-          }else if (tearsheet_config.includes( '-'+ident ) && parent_div != '#product_china_list' ){
+          }else if (tearsheet_config.match(rgxp) && parent_div != '#product_china_list' ){
 
             var $t = $(t);
             var pr = $(parent_div);
@@ -322,7 +326,7 @@ $(document).on("page:change", (function(){
           //set the corrosponding finish
              var mat = this.dataset.material_identifier;
             
-             
+
             var the_tear_targ = tearsheet_targ.replace('XX', prod_config.finish);
             if (prod_config.color.length > 1){
               the_tear_targ = the_tear_targ.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
