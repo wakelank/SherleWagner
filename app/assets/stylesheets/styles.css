@@ -13,7 +13,7 @@
 body{
   font-family: 'DINPro-Light', sans-serif;
   /*font-family: 'PT Sans', sans-serif;*/
-  /*background-color: #e5e6df;*/
+  background-color: #eeeeee;
 }
 
 #main_contain{
@@ -354,7 +354,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         padding: 0px 15px;
       }
       #accordion1{
-        margin-bottom: 60px;
+        margin-bottom: 80px;
       }
       #accordion1 *{
         /*background-color: #e5e6df;*/
@@ -388,7 +388,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       
       .panel-group { 
           max-width: 245px;
-          /*margin-bottom: 60px;*/
+          margin-bottom: 0;
       
     }
   }
@@ -1483,9 +1483,9 @@ div#nav_link_contain.collapse.navbar-collapse{
 .panel-group .panel-heading+.panel-collapse>.panel-body {
     border-top: 0px solid #eeeeee;
 }
-.panel-group{
+/*.panel-group{
   margin-bottom: 5px !important;
-}
+}*/
 #l_nav #accordion1 div.panel_title_div{
   margin-top: 5px ;
   margin-bottom: 0 ;
