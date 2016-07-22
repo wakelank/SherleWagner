@@ -29,13 +29,13 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>"}, default_url: "/images/:style/missing_product.jpg"
   validates_attachment :image, content_type: { content_type: 'image/jpeg' }
-  has_attached_file :spec_sheet_pdf, default_url: "/contact"
+  has_attached_file :spec_sheet_pdf, default_url: "/contact/spec_sheet"
   validates_attachment :spec_sheet_pdf, content_type: { content_type: 'application/pdf' }
-  has_attached_file :installation_instructions, default_url: "/contact"
+  has_attached_file :installation_instructions, default_url: "/contact/installation_guide"
   validates_attachment :installation_instructions, content_type: { content_type: 'application/pdf' }
-  has_attached_file :spec_sheet_2d, default_url: "/contact"
+  has_attached_file :spec_sheet_2d, default_url: "/contact/2D_renderings"
   validates_attachment_file_name :spec_sheet_2d, matches: /igs/
-  has_attached_file :spec_sheet_3d, default_url: "/contact"
+  has_attached_file :spec_sheet_3d, default_url: "/contact/3D_renderings"
   validates_attachment_file_name :spec_sheet_3d, matches: /dxf/
   validates :name, presence: true
   validates :number, presence: true
