@@ -51,5 +51,10 @@ class Favorite
     "#{@product_name}: #{@product_number}"
   end
 
+  def exists?
+    binding.pry
+    self.class.include? self
+  end
+
 end
 

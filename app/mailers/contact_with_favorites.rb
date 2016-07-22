@@ -23,6 +23,16 @@ class ContactWithFavorites < ApplicationMailer
   end
 
   def additional_recipients_arr additional_recipients_str
-    additional_recipients_str.split(',')
+    max_num_of_emails = 10
+    additional_recipients_str.gsub!(' ','')
+    additional_recipients_arr = additional_recipients_str.split(',')
+    additional_recipients_arr = additional_recipients_arr[0..max_num_of_emails]
+    additional_recipients_arr.select do |address|
+      valid_email? address
+    end
+  end
+
+  def valid_email? address
+    address == address[Devise::email_regexp]
   end
 end

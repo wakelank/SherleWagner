@@ -72,10 +72,6 @@ input#submit_email{
     <%= text_field_tag 'requesters_last_name' %>
     </p>
     <p> 
-    <%= label_tag 'Additional recipients' %>
-    <%= text_field_tag 'additional_recipients' %>
-    </p>
-    <p> 
     <%= label_tag 'Email address' %>
     <%= email_field_tag 'requesters_email', nil, required: true %>
     </p>
@@ -83,6 +79,10 @@ input#submit_email{
     <%= label_tag 'Location' %>
     <%= text_field_tag 'requesters_location' %>
   </p>
+    <p> 
+    <%= label_tag 'Additional recipients' %>
+    <%= text_field_tag 'additional_recipients' %>
+    </p>
 
   <%= label_tag 'Optional Comments' %>
   <%= text_area_tag 'requesters_comment' %>
