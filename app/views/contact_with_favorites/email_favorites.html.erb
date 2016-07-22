@@ -1,24 +1,33 @@
-<% if @full_name %>
-  Dear <%= @full_name %>
-  <% end %>
-<p>
-Customer's email: <%= @requesters_email %>
-</p>
-<p>
-Location: <%= @requesters_location %>
-</p>
-<p>
+<%= "Dear #{@full_name}," if @full_name %>
+  <p>
+  Here is a list of items you inquired about. A Sales Associated will be contacting you shortly. <br>
+If you have any further question, please contact our main office at 1-212-758-3300.
+  </p>
+  <p>
+Thank You,
+  </p>
+  <p>
+Sherle Wagner International
+  </p>
+  <p>
+  <%= "Customer name: #{@full_name}." if @full_name %><br>
+Customer email: <%= @requesters_email %>.<br>
+Customer location: <%= @requesters_location %>.<br>
 Customer Comments:
-</p>
-<p>
 <%= @requesters_comment %>
-</p>
-
+  </p>
 Favorites:
 <% @favorites.each do |fav| %>
-  <p><%= fav %></p>
+  <%= fav %><br>
 <% end %>
-
+<p>
 <% if @favorites.count == 0 %> 
   <%= "Customer has not selected any favorites." %>
 <% end %>
+</p>
+<p>
+Also sent to:<br>
+<% @additional_recipients.each do |address| %>
+  <%= address %><br>
+<% end %>
+</p>
