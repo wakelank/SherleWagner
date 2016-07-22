@@ -61,6 +61,7 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   end
 
   def contact
+    binding.pry
   end
 
   def showrooms
