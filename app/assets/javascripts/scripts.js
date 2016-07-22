@@ -715,7 +715,7 @@ $(document).on("page:change", (function(){
        
        var tearSheetForm = document.getElementById('tearsheet-form');
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
-        product_id = tearSheetForm.elements["product_id"].value;
+        var product_id = tearSheetForm.elements["product_id"].value;
 
        var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       var finish_identifier = "checkthis";
@@ -727,13 +727,13 @@ $(document).on("page:change", (function(){
          }
       var root_url = window.location.origin
       // var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE)/
-        tearsheet_number = product_base_number
+        var tearsheet_number = product_base_number
         if($('li.alt_choice').length >= 1){
           if ($('li.alt_choice')[0].dataset.number && $('#components_list li').length > 1){
             
-            conf_tear_number= $('li.alt_choice')[0].dataset.number;
-            tearsheet_number1= conf_tear_number.split('-');
-            tearsheet_number1=tearsheet_number1.splice(0, tearsheet_number1.length-1);
+            var conf_tear_number= $('li.alt_choice')[0].dataset.number;
+            var tearsheet_number1= conf_tear_number.split('-');
+            var tearsheet_number1=tearsheet_number1.splice(0, tearsheet_number1.length-1);
             tearsheet_number = tearsheet_number1.join("-")+"-XX";
           }
 
