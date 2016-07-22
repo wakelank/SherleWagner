@@ -65,6 +65,16 @@ input#submit_email{
     <% @favorites.each do |fav| %>
       <%= hidden_field_tag 'favorites[]', fav.info_for_email, multiple: true %>
     <% end %>
+    <p>
+    <%= label_tag 'First name' %>
+    <%= text_field_tag 'requesters_first_name' %>
+    <%= label_tag 'Last name' %>
+    <%= text_field_tag 'requesters_last_name' %>
+    </p>
+    <p> 
+    <%= label_tag 'Additional recipients' %>
+    <%= text_field_tag 'additional_recipients' %>
+    </p>
     <p> 
     <%= label_tag 'Email address' %>
     <%= email_field_tag 'requesters_email', nil, required: true %>

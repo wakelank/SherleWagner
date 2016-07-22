@@ -44,6 +44,9 @@ class FavoritesController < ApplicationController
     begin
     ContactWithFavorites.email_favorites(favorites: params[:favorites],
                                          requesters_email: params[:requesters_email],
+                                         requesters_first_name: params[:requesters_first_name],
+                                         requesters_last_name: params[:requesters_last_name],
+                                         additional_recipients: params[:additional_recipients],
                                          requesters_location: params[:requesters_location],
                                          requesters_comment: params[:requesters_comment]).deliver_now
 
