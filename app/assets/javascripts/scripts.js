@@ -22,12 +22,12 @@ $(document).on("page:change", (function(){
     
         tearsheet_config = $(window.location.pathname.split('/')).last()[0];
 
-        
+        //run through every swatch and choose the selected ones via regex
         $('.finish_tile').each(function(i,t){
           var ident = '';
           var parent_div = '';
           var parent_targ = $($(t).parents()[1]);
-
+          // determine the parent of t (mat fin or chin)
           if (parent_targ.hasClass('finishes')){
              ident = t.dataset.finish_identifier;
              parent_div = '#product_finishes_list';             
@@ -39,7 +39,7 @@ $(document).on("page:change", (function(){
               parent_div = '#product_china_list';
           }else{
           }
-
+          // the regex part matching ident to config and dealing with china color or real swatch
           var rgxp = new RegExp('-'+ident+'(\\b|-)');
 
           if (tearsheet_config.match(rgxp) && parent_div == '#product_china_list' ){
@@ -53,7 +53,7 @@ $(document).on("page:change", (function(){
           }
         }); 
          
-         //set the current configuration
+         //set the current configuration if components are there
         if ($('#components_list li').length > 1){
           confi = tearsheet_config.split('-');
           confi = confi.splice(0, confi.length-1);
@@ -68,22 +68,28 @@ $(document).on("page:change", (function(){
 
 
     case 'products show':
+    //deal with the layout,sections etc
       $('#row_content').removeClass('row_content_min');
       $('#center_main').removeClass('center_min_width');
       $('#center_main').addClass('center_min_show');
 
+    //set the product name
       var product_name = $('h3#prod_name').html();
       
-
+      // make a configuration obj to pass to tearsheet
       var configurationObject = {};
+
+      //set up the tearsheet form object
       var tearSheetForm = document.getElementById('tearsheet-form');
+      // console.log(tearSheetForm);
+
        var product_base_number = tearSheetForm.elements["product_base_number"].value;
       var product_id = tearSheetForm.elements["product_id"].value;
       var material_identifier = tearSheetForm.elements["tearsheet[material_identifier]"].value;
       var finish_identifier = tearSheetForm.elements["tearsheet[finish_identifier]"].value;
 
 
-
+      //do swatch tile actions funciton on the tiles when they'r clicked (does that set up the config/tearsheet form?)
       $('#product_finishes_list').find('li').click(function(e){
         var trg = $(e.target);
         swatch_tile_actions(trg,'#product_finishes_list');
@@ -98,9 +104,10 @@ $(document).on("page:change", (function(){
        $(trg).addClass('highlight');
       });
       
-
+      //do a function to .. set up the back button? history state?
       nav_back();
 
+      //create a configuration object that is unrelated to the first
        prod_config = {
         "finish":" ",
         "material":" ",
@@ -108,12 +115,17 @@ $(document).on("page:change", (function(){
 
       }
 
-      //select the featured image from the alt's on load
-    
+      //select the featured image from the alt's (on load)..->
+      
+      // grab the url from the actual image
       var image = $('.product_image')[0].dataset.url;
+      // get a b_w url in dataset and a 'number'
        var bw_image = $('.product_image')[0].dataset.bw;
        var img_number = $('.product_image')[0].dataset.number;
+
+       //make an array by splitting the prod nmbr of the image at each '-' 
        var img_num_array = img_number.split('-');
+       //make a regex to use to look through the array (later..)
       var matchr = image.match(/\/[^\/]+.jpg/);
 
       if ($('.alt_img').length > 0){
