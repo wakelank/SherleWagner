@@ -125,10 +125,13 @@ $(document).on("page:change", (function(){
 
        //make an array by splitting the prod nmbr of the image at each '-' 
        var img_num_array = img_number.split('-');
-       //make a regex to use to look through the array (later..)
+       //use a regex to define the prod nmbr from the current image's url (with a leading '/' included..)
       var matchr = image.match(/\/[^\/]+.jpg/);
+      
 
+      // if there's alt imgs 
       if ($('.alt_img').length > 0){
+        //look at them all and find the one the includes the curr imgs url (matchr), add the altchoice class to it
         $('.alt_img').each(function(i,t){
           $(t).removeClass('alt_choice');
           if(t.dataset.url.indexOf(matchr) > -1){
@@ -139,6 +142,8 @@ $(document).on("page:change", (function(){
           }
         });
       };
+
+      //THEN define a series of loops.
 
       SETS: for (var i = 0; i < $('.detail_list').length; i++) {
         var $tiles = $($('.detail_list')[i]).find('.finish_tile');
