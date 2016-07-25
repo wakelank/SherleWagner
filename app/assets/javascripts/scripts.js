@@ -107,7 +107,7 @@ $(document).on("page:change", (function(){
       //do a function to .. set up the back button? history state?
       nav_back();
 
-      //create a configuration object that is unrelated to the first
+      //create a GLOBAL scope* configuration object that is unrelated to the first
        prod_config = {
         "finish":" ",
         "material":" ",
@@ -144,17 +144,20 @@ $(document).on("page:change", (function(){
       };
 
       //THEN define a series of loops.
-
+      //top one looks through all the SETS OF swatch tiles (up to 3 possible -china, material, finish)
       SETS: for (var i = 0; i < $('.detail_list').length; i++) {
         var $tiles = $($('.detail_list')[i]).find('.finish_tile');
         
           // $('.swatches').each(function(i,t){
 
+        // for each SET , look at the tiles
         TILES: for (var p = 0; p < $tiles.length; p++) {
           var t = $tiles[p];
           
           var ident = '';
           var parent_div = ''
+
+          // determine which Set var t is in (parent div), set IDENT - DRY?
           if ($($(t).parents()[1]).hasClass('finishes')){
              ident = t.dataset.finish_identifier;
              parent_div = '#product_finishes_list';
@@ -167,16 +170,23 @@ $(document).on("page:change", (function(){
           }else{
           }
           
-          var ff = 0;
+          var ff = 0; //this is a counter...
+
+          // keep using the var image as the matcher - see if it includes ident
+
           if (image.includes(ident ) && parent_div == '#product_china_list' ){
             $('.china_colors .finish_tile').removeClass('highlight');
              $(t).addClass('highlight');
              prod_config.color = ident;
 
           }
+          // if it's not in the china list, and is in the array of prod nmbr bits ('-')..
           else if(img_num_array.indexOf(ident) > -1 && parent_div != '#product_china_list' ){
-            
+            // increment the counter..
             ff ++;
+            
+            // ###
+
             var $t = $(t);
             var pr = $(parent_div);
             swatch_tile_actions($t, pr);
