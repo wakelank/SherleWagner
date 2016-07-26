@@ -187,9 +187,11 @@ $(document).on("page:change", (function(){
             
             // ###
 
-            var $t = $(t);
-            var pr = $(parent_div);
-            swatch_tile_actions($t, pr);
+            var $t = $(t); //JQ obj for curr tile
+            var pr = $(parent_div); //JQ for curr parent
+            
+            swatch_tile_actions($t, pr); //swatch actions on each tile and it's parent <ul>
+            //break loop if it's not china colors and assign the config to the prod_conf global obj
               if  (parent_div == '#product_finishes_list'){
                 prod_config.finish = ident;
               break TILES;  
@@ -200,8 +202,9 @@ $(document).on("page:change", (function(){
               }
               
             }
+            //if it hasn't found a match in the array, check with includes *
           else if (image.includes( '-'+ident ) && parent_div != '#product_china_list' ){
-            
+            //do the same stuff
             var $t = $(t);
             var pr = $(parent_div);
             swatch_tile_actions($t, pr);
@@ -219,19 +222,25 @@ $(document).on("page:change", (function(){
         }
       } 
 
-       //set the current configuration
+       //set the current configuration .. 
+       //make sure it's found an image via swatch actions function and has set the alt choice
        if ($('.alt_choice').length > 0){
+        // find a prod num base that is just the first bit of the curr alt choice's product nmbr (part before first '-')
            var conff = $('.alt_choice')[0];
           var prod_num_base = conff.dataset.number.split('-')[0];
+
         }else{
-          var prod_num_base = product_base_number;
+          //if there's no image chosen yet, set it to product_base_number
+          //IT WAS JUST THE WHOLE NMBR: now let's try splitting it to match*
+          var prod_num_base = product_base_number.split('-')[0];
         }
         
+       //if it's found the alt choice img, set the info - - is that function just for products with components? if so, we should check for that ...
        if (conff){
           swap_product_info_for_configuration(conff);
         }
 
-       
+       //what does this function really do?
         // !!!!!!!!!!!!!!!!!!!!!
        set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
