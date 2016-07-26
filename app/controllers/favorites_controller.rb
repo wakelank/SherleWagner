@@ -7,28 +7,33 @@ class FavoritesController < ApplicationController
   def create
     favorites = Favorites.new(favorites_args) || [NullObject.new]
     args = { product_id: params[:product_id],
-                    url: request.referrer,
-                    id: favorites.next_id,
-                    tearsheet: params[:tearsheet] }
+             url: request.referrer,
+             id: favorites.next_id,
+             tearsheet: params[:tearsheet] }
     favorite = Favorite.new(args) || NullObject.new
-    favorites.save(favorite) if !favorite.nil?
+    product_name = Product.find(params[:product_id]).name
+    if favorites.include? params[:product_id]
+      flash[:info] = "#{product_name} is aleady in your favorites list."
+    else
+      favorites.save(favorite) if !favorite.nil?
 
-    cookies[:favorites] = favorites.all.to_json
-    
+      cookies[:favorites] = favorites.all.to_json
+      flash[:success] = "#{product_name} has been added to your favorites list. Click the basket at the bottom of the page to view your favorites list."
+    end
+
     redirect_to :back 
   end
 
   def create_inquiry
     favorites = Favorites.new(favorites_args) || [NullObject.new]
     args = { product_id: params[:product_id],
-                    url: request.referrer,
-                    id: favorites.next_id,
-                    tearsheet: params[:tearsheet] }
+             url: request.referrer,
+             id: favorites.next_id,
+             tearsheet: params[:tearsheet] }
     favorite = Favorite.new(args) || NullObject.new
     favorites.save(favorite) if !favorite.nil?
 
     cookies[:favorites] = favorites.all.to_json
-    
     redirect_to favorites_path
   end
  

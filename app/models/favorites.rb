@@ -36,5 +36,12 @@ class Favorites
     end
   end
 
+  def include? product_id
+    @all.each do |favorite|
+      return true if favorite.product_id == product_id
+    end
+    return false
+  end
+
 
 end 
