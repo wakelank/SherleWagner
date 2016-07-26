@@ -245,12 +245,17 @@ $(document).on("page:change", (function(){
        set_tearsheet_link();
         // !!!!!!!!!!!!!!!!!!!!!
        
+       //this gets the url of the tearsheet with GENERIC Prod nmbr (why global?)
         tearsheet_targ = $('.tear-sheet-submit').attr('href');
-
         
+        //these are regex's to replace the tearsheet url for the config's when tiles are clicked
+        //the material one will only work with generics
 
         var material_code_regex = /(SEMI|SLSL|ONYX|HANDPAINTED|CHINADECO|GLAZE|STONE|CHINABANDED|METALDECO|CHINAMETAL)/
+        
+        //the finish one will work with metal finishes, so the generic tearsheet_targ doesn't have to be accessed on every tile click. A version with current finish can ... be used (or replace it) .. 
         var finish_code_regex = /(-PN|-CP|-ES|-AP|-PE|-BN|-BC|-BS|-HP|-GP|-BG|-SB|-OB|-EP|-AL|-AG|-PB|-FP|-RG)/
+
         var china_code_regex = /(WH|SD|BLK)/
        
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material);
@@ -271,6 +276,8 @@ $(document).on("page:change", (function(){
 
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
         
+
+
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
            var thiz = this;
