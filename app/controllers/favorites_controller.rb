@@ -31,9 +31,11 @@ class FavoritesController < ApplicationController
              id: favorites.next_id,
              tearsheet: params[:tearsheet] }
     favorite = Favorite.new(args) || NullObject.new
-    favorites.save(favorite) if !favorite.nil?
 
-    cookies[:favorites] = favorites.all.to_json
+    if !favorites.include? params[:product_id]
+      favorites.save(favorite) if !favorite.nil?
+      cookies[:favorites] = favorites.all.to_json
+    end
     redirect_to favorites_path
   end
  
