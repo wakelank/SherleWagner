@@ -122,6 +122,15 @@ RailsAdmin.config do |config|
     exclude_fields :environment_shot_styles
   end
 
+  config.model "ProductType" do
+    edit do
+      field :name
+      field :image
+      field :product_sub_types
+      field :products
+    end
+  end
+
   config.navigation_static_links = {
     "Edit Homepage" => "/edit_homepage",
     "Test Email" => "/mail_tester"

@@ -2,6 +2,8 @@ class ProductType < ActiveRecord::Base
   has_many :product_sub_types
   # has_many :product_groups
   has_many :products
+  has_attached_file :image, default_url: "/images/:style/missing_product.jpg"
+  validates_attachment :image, content_type: { content_type: 'image/jpeg' }
   
 
   #extend CanExtractFromFile
