@@ -1,29 +1,26 @@
 source 'https://rubygems.org'
+
 ruby '2.1.2'
 gem 'bootstrap-sass'
-
 
 gem 'pg_search'
 
 gem 'awesome_print'
 # gem 'faker'
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 
- gem "rails_admin"
+gem 'rails_admin'
 # gem "kaminari"
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'devise'
 
-
-
-#these may require more configuration
-#gem 'postmark-rails'
+# these may require more configuration
+# gem 'postmark-rails'
 gem 'aws-sdk-v1'
 gem 'paperclip', '~> 4.3.6'
 gem 'mime-types'
 # gem 'sunspot_rails'
 # gem "rails-bootstrap-helpers"
-
 
 gem 'rails', '4.2.1'
 gem 'pg'
@@ -37,7 +34,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'filterrific'
 
-gem "capistrano", "~> 3.4", group: :development
+gem 'capistrano', '~> 3.4', group: :development
 gem 'capistrano-passenger'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
@@ -57,4 +54,3 @@ group :development, :test do
   # meta_request allows RailsPanel Chrome extension to work
   gem 'meta_request'
 end
-
