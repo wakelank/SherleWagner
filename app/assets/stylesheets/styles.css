@@ -233,8 +233,11 @@ input#search{
   border:none;
   margin-bottom: 2em !important;
 }
-#Fittings{
+li.type_tile#Fittings{
   background-position: 0px -40px;
+}
+li.type_tile#Fixtures{
+    background-position: 0px -10px;
 }
 a .prod_tile.type_tile h4{
  color: black;
