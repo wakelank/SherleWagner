@@ -8,8 +8,11 @@
   padding-left: 1em;
 
 }
-#fav_list{
+.fav_tiles{
   clear: left;
+}
+#fav_list{
+  padding-left: 0.5em;
 }
 .email_form{
   clear: both;
@@ -19,7 +22,7 @@
   padding-left: 0;
 }
 .email_form>form{
-  padding-left: 2.5em;
+  padding-left: 0.5em;
 }
 .email_form form input, .email_form form textarea{
   width: 100%;
@@ -30,6 +33,9 @@
   float: left;
   margin-left: 2.5em;
 
+}
+#submit_email{
+  margin: 0.5em 0.5em 0 0;
 }
 textarea {
   
@@ -44,7 +50,7 @@ input#submit_email{
 <h2 id="favorites">Favorites</h2>
 <a href="#send">
   <%= button_tag( id:"inquiry_button", class: "btn btn-secondary") do %>
-    Send Inquiry for Products
+    Send Inquiry
   <% end %>
 </a>
 
@@ -106,7 +112,7 @@ input#submit_email{
   <%= label_tag 'Optional Comments' %>
   <%= text_area_tag 'requesters_comment' %>
 
-    <%= submit_tag 'Send Inquiry', :id=>"submit_email", :class=>"btn btn-secondary" %>
+    <%= submit_tag 'Submit Inquiry', :id=>"submit_email", :class=>"btn btn-secondary" %>
   <% end %>
 </div>
 
