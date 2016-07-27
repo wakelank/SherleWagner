@@ -6,6 +6,10 @@
 }
 #favorites{
   padding-left: 1em;
+
+}
+#fav_list{
+  clear: left;
 }
 .email_form{
   clear: both;
@@ -22,6 +26,10 @@
 }
 .fav_tile {
     margin-bottom: 5.5em;
+}#inquiry_button{
+  float: left;
+  margin-left: 2.5em;
+
 }
 textarea {
   
@@ -31,9 +39,17 @@ input#submit_email{
   width: auto;
 }
 </style>
+
+
 <h2 id="favorites">Favorites</h2>
+<a href="#send">
+  <%= button_tag( id:"inquiry_button", class: "btn btn-secondary") do %>
+    Send Inquiry for Products
+  <% end %>
+</a>
+
 <div class="fav_tiles col-sm-10">
-  <ul>
+  <ul id= 'fav_list'>
     <% @favorites.each do |favorite| %>
       <% bgimage= favorite.product_image %>
 
@@ -59,8 +75,11 @@ input#submit_email{
   </ul>
 </div>
 
+
 <div class="email_form col-sm-10">
+  
   <h2 style="padding-left:0">Send Inquiry</h2>
+  <a name="send"></a>
   <%= form_tag(send_contact_with_favorites_path, method: 'post') do %>
     <% @favorites.each do |fav| %>
       <%= hidden_field_tag 'favorites[]', fav.info_for_email, multiple: true %>

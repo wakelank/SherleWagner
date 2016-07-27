@@ -61,6 +61,12 @@ before_action :authenticate_user!, only: [:edit_homepage, :update_homepage, :upl
   end
 
   def contact
+    if params["file"]
+      @file = params["file"].gsub('_',' ').titleize
+      
+      flash[:success] = "We're sorry your requested #{@file} file is not available for download. Please contact our main office: 1 - (212) 758-3300"
+      
+    end
   end
 
   def showrooms
