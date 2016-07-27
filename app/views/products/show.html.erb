@@ -123,6 +123,7 @@
           <li><%= render 'tearsheet_form' %></li>
           <li><%= link_to "Installation Guide", @product.installation_instructions.url %></li>
           <li><%= render 'favorites/favorite_button' %></li>
+          
            <% if @product.associated_collection_or_null.id > 0 %>
            <br/>
             <li>Collection: <%= link_to @product.associated_collection_or_null.name, style_path(@product.associated_collection_or_null.id) %></li>

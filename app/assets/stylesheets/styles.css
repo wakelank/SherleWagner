@@ -791,12 +791,17 @@ div.tearsheet-form-box {
 
 }
 
-.favorite{
+input.favorite{
   border: 0;
     color: gray;
     background-color: inherit;
     padding: 0;
+
 }
+input.favorite:hover{
+  text-decoration: underline;
+}
+
 
 .prod_links{
   float: left;
@@ -821,6 +826,8 @@ div.tearsheet-form-box {
   padding-left: 2em;
   max-width: 170px;
 }
+
+
 #inquiry_button{
   font-size: 12px;
   padding: 4px 8px;
