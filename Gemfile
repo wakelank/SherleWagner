@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 gem 'bootstrap-sass'
+gem 'newrelic_rpm'
 
 gem 'pg_search'
 
