@@ -20,7 +20,7 @@
   
 <% end %>
 
-     <% @product_types.each do |product_type| %>
+     <% @product_types.order(:id).each do |product_type| %>
      <% unless product_type.name == "no type" %>
         <!-- , :anchor => "type="+product_type.id.to_s -->
           <%= link_to  fetch_cat_path(:cat_id => product_type.id), :remote => true do %> 
