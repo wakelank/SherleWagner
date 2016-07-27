@@ -788,7 +788,6 @@ div.tearsheet-form-box {
     color: darkgray;
     font-size: 10px;
     margin-bottom: 5px;
-
 }
 
 input.favorite{
@@ -796,19 +795,16 @@ input.favorite{
     color: gray;
     background-color: inherit;
     padding: 0;
-
 }
+
 input.favorite:hover{
   text-decoration: underline;
 }
 
-
 .prod_links{
   float: left;
   clear: left;
-  /*margin-top: 2.5em;*/
   text-align: left;
-
 }
 
 .links{
@@ -828,7 +824,7 @@ input.favorite:hover{
 }
 
 
-#inquiry_button{
+#inquiry_button, #submit_email{
   font-size: 12px;
   padding: 4px 8px;
   background-color: #eeeeee;
@@ -837,6 +833,8 @@ input.favorite:hover{
   margin-left: -3px;
   border-radius: 2px;
 }
+
+
 
 .choice_title{
   padding-left: 5px;
@@ -878,14 +876,13 @@ input.favorite:hover{
   #nav_link_contain{
     padding-left: 10%;
   }
-  .swatches, .compilations{
-          
-          width: 47%;
-          float: left;
-          color: grey;
-          padding-left: 1em;
+  .swatches, .compilations{   
+    width: 47%;
+    float: left;
+    color: grey;
+    padding-left: 1em;
 
-        }
+  }
 
 
   .finishes{
@@ -893,19 +890,17 @@ input.favorite:hover{
     clear: left;
     margin-right: 0;
     margin-left: 0;
-    /*padding-left: 1em;*/
- 
-
   }
+
 }
 
-   #material_choice{
-      margin-top: 0.5em;
-      margin-right: 0;
-    }
-    #finish_choice{
-      margin-top: 0.5em;
-    }
+ #material_choice{
+    margin-top: 0.5em;
+    margin-right: 0;
+  }
+  #finish_choice{
+    margin-top: 0.5em;
+  }
 .compilations{
   margin-left: .5em;
 }
@@ -1007,7 +1002,6 @@ input.favorite:hover{
 ul li.recent_tile .prod_title, ul li.recent_tile .prod_title a{
     
     color: grey;
-
 }
 .icon_img{
       background-size: contain;
