@@ -258,14 +258,23 @@ $(document).on("page:change", (function(){
 
         var china_code_regex = /(WH|SD|BLK)/
        
+       //this is the tearsh URL with the prod_config's material swapped for the genric material (if there is one in prod_conf * which there should be now)
         var tearsheet_targ2 = tearsheet_targ.replace(material_code_regex, prod_config.material);
-        tear_nmbr_ar = tearsheet_targ2.split('/')
-        tear_nmbr = tear_nmbr_ar[tear_nmbr_ar.length-1];
+        //split the targ2 into arr at eacj '/'
+        var tear_nmbr_ar = tearsheet_targ2.split('/');
+        //grab the last segment of the tear2 url (the prod code still with generics for fin and china)
+        
+        var tear_nmbr = tear_nmbr_ar[tear_nmbr_ar.length-1];
+        //make it into an array split at each '-' / code parts
         tear_nmbr = tear_nmbr.split('-');
+        //change the first part to prod-num-base *** this is a tricky part ** doesn't catch all bases as some have a '-' in the base code part that changes
         tear_nmbr[0] = prod_num_base;
+        //put the code back together
         tear_nmbr = tear_nmbr.join('-');
+        //put that code on the end of the url
         tear_nmbr_ar[tear_nmbr_ar.length-1] = tear_nmbr;
-        tearsheet_targ4 = tear_nmbr_ar.join('/');
+        //make a new var that is that URL with the material and base number
+        var tearsheet_targ4 = tear_nmbr_ar.join('/');
 
         //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
          var tearsheet_targ3 = tearsheet_targ4.replace("XX", prod_config.finish)
