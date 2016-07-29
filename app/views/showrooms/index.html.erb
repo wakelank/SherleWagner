@@ -11,7 +11,8 @@
     </ul>
   </div>
 
- <div id="new-canvas" style="width:93%;height:400px"/>
+ <div id="new-canvas" >
+    <canvas id="canvas" width="800" height="400"></canvas>
   </div>
 
 
@@ -41,3 +42,16 @@
     </div>
   <% end %>
 </div>
+
+<script>
+draw();
+  function draw() {
+  var ctx = document.getElementById('canvas').getContext('2d');
+  var img = new Image();
+  img.onload = function(){
+    ctx.drawImage(img,0,0);
+   
+  };
+  img.src = '/images/map/map_bg.jpg';
+}
+</script>
