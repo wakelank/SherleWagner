@@ -12,7 +12,7 @@
   </div>
 
  <div id="new-canvas" >
-    <canvas id="canvas" width="900" height="408"></canvas>
+    <canvas id="canvas" width="800" height="400"></canvas>
   </div>
 
 
@@ -47,21 +47,29 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-  draw();
+  draw_bg();
   mousePosition();
 
-  
-  function draw() {
+  var us_img = new Image();
+  us_img.src = '/images/map/map_north_america.png';
+
+  var bg_img = new Image();
+  bg_img.src = '/images/map/map_bg.jpg';
+
+  function draw_bg() {
     
     var bg_img = new Image();
+    bg_img.src = '/images/map/map_bg.jpg';
     
     bg_img.onload = function(){
       var width = canvas.scrollWidth;
       var height = canvas.scrollHeight;
-      ctx.drawImage(bg_img,0,0, width, height);
+      //for responsive
+      ctx.drawImage(bg_img,0,0);
      
     };
-    bg_img.src = '/images/map/map_bg.jpg';
+    
+    
   }
 
   function mousePosition(){
@@ -75,8 +83,22 @@ var ctx = canvas.getContext('2d');
 
       canvas.addEventListener('mousemove', function(evt) {
         var mousePos = getMousePos(canvas, evt);
+
         var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-        console.log(canvas, message);
+        
+        if(mousePos.x > canvas.width/3.8 && mousePos.x < canvas.width/1.5)
+        {
+         draw_region(us_img);
+
+        }else{
+          draw_region(bg_img);
+        }
       }, false);
+  }
+  function draw_region(image){
+    var width = canvas.scrollWidth;
+      var height = canvas.scrollHeight;
+      ctx.drawImage(image,0,0);
+     
   }
 </script>
