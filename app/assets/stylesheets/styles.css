@@ -1514,6 +1514,9 @@ div.filter h5{
 }
 
 /* Showrooms */
+#new-canvas{
+  text-align: center;
+}
 .showrooms .showrooms-wrapper{
   width: 90%;
   margin: 0 auto;
