@@ -11,7 +11,8 @@
     </ul>
   </div>
 
- <div id="map-canvas" style="width:93%;height:400px"/>
+ <div id="new-canvas" >
+    <canvas id="canvas" width="800" height="400"></canvas>
   </div>
 
 
@@ -21,7 +22,7 @@
       <% @regions.each do |region| %>
         <li>
           <h3>
-            <%= link_to region.name, anchor: region.name %>
+            <%= link_to region.name, anchor: region.name.gsub(/\s+/, "") %>
           </h3>
         </li>
       <% end %>
@@ -30,7 +31,7 @@
 
   <% @regions.each do |region| %>
     <div class="showrooms-list row">
-      <%= content_tag(:h3, "Showrooms in #{region.name}", id: region.name) %>
+      <%= content_tag(:h3, "Showrooms in #{region.name}", id: region.name.gsub(/\s+/, "")) %>
       <% region.showrooms.in_groups_of(3, false) do |showrooms| %>
         <div class="row">
           <% showrooms.each do |showroom| %>
@@ -41,3 +42,121 @@
     </div>
   <% end %>
 </div>
+
+<script>
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+  draw_bg();
+  mousePosition();
+
+  var us_img = new Image();
+  us_img.src = '/images/map/map_north_america.png';
+
+  var russia_img = new Image();
+  russia_img.src = '/images/map/map_russia.png';
+
+  var asia_img = new Image();
+  asia_img.src = '/images/map/map_asia.png';
+
+  var middle_east_img = new Image();
+  middle_east_img.src = '/images/map/map_middle_east.png';
+
+  var bg_img = new Image();
+  bg_img.src = '/images/map/map_bg.jpg';
+
+  function draw_bg() {
+    
+    var bg_img = new Image();
+    bg_img.src = '/images/map/map_bg.jpg';
+    
+    bg_img.onload = function(){
+      var width = canvas.scrollWidth;
+      var height = canvas.scrollHeight;
+      //for responsive
+      ctx.drawImage(bg_img,0,0);
+     
+    };
+    
+    
+  }
+
+  function mousePosition(){
+    function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+
+      canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+
+        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+        
+        if(mousePos.x > canvas.width/3.8 && mousePos.x < canvas.width/1.5)
+        {
+          draw_region(bg_img);
+         draw_region(us_img);
+         $(canvas).off('click');
+         $(canvas).on('click',function(){console.log('USA');
+            $(document).scrollTop( $("#NorthAmerica").offset().top );
+
+          });  
+        
+        }else if(mousePos.x > 0 && mousePos.x < canvas.width/3.8 && mousePos.y < canvas.height/2){
+          draw_region(bg_img);
+          draw_region(russia_img);
+          $(canvas).off('click');
+          $(canvas).on('click',function(){console.log('RUSSIA')
+            $(document).scrollTop( $("#Russia").offset().top );  
+          });
+        }else if(mousePos.x > canvas.width*0.9 && mousePos.y < canvas.height/2){
+          draw_region(bg_img);
+          draw_region(russia_img);
+          $(canvas).off('click');
+          $(canvas).on('click',function(){console.log('RUSSIA')
+            $(document).scrollTop( $("#Russia").offset().top );  
+          });
+
+
+        }else if(mousePos.x > 0 && mousePos.x < canvas.width/3.8 && mousePos.y > canvas.height/2){
+          draw_region(bg_img);
+          draw_region(asia_img);
+          $(canvas).off('click');
+          $(canvas).on('click',function(){console.log('Asia')
+            $(document).scrollTop( $("#Asia").offset().top );  
+          });
+
+        }else if(mousePos.x > canvas.width*0.95 && mousePos.y > canvas.height/2 && mousePos.y < canvas.height/1.8){
+          draw_region(bg_img);
+          draw_region(asia_img);
+          $(canvas).off('click');
+          $(canvas).on('click',function(){console.log('Asia')
+            $(document).scrollTop( $("#Asia").offset().top );  
+          });
+
+        
+        }else if(mousePos.x > canvas.width*0.9 && mousePos.y > canvas.height/1.8){
+          draw_region(bg_img);
+          draw_region(middle_east_img);
+          $(canvas).off('click');
+          $(canvas).on('click',function(){console.log('MID-EAST')
+             $(document).scrollTop( $("#EuropeandtheMiddleEast").offset().top ); 
+          });
+        }
+
+        else{
+          draw_region(bg_img);
+          $(canvas).off('click'); 
+        }
+      }, false);
+  }
+  function draw_region(image){
+    var width = canvas.scrollWidth;
+      var height = canvas.scrollHeight;
+      ctx.drawImage(image,0,0);
+     
+  }
+</script>

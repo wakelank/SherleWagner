@@ -621,7 +621,7 @@ $(document).on("page:change", (function(){
         break;
       case 'showrooms index': 
       
-       set_map();
+       //set_map();
 
         break;
       case 'static_pages contact':
