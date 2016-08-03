@@ -12,7 +12,7 @@
   </div>
 
  <div id="new-canvas" >
-    <canvas id="canvas" width="800" height="400"></canvas>
+    <canvas id="canvas" width="900" height="408"></canvas>
   </div>
 
 
@@ -44,14 +44,39 @@
 </div>
 
 <script>
-draw();
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+  draw();
+  mousePosition();
+
+  
   function draw() {
-  var ctx = document.getElementById('canvas').getContext('2d');
-  var img = new Image();
-  img.onload = function(){
-    ctx.drawImage(img,0,0);
-   
-  };
-  img.src = '/images/map/map_bg.jpg';
-}
+    
+    var bg_img = new Image();
+    
+    bg_img.onload = function(){
+      var width = canvas.scrollWidth;
+      var height = canvas.scrollHeight;
+      ctx.drawImage(bg_img,0,0, width, height);
+     
+    };
+    bg_img.src = '/images/map/map_bg.jpg';
+  }
+
+  function mousePosition(){
+    function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+
+      canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+        console.log(canvas, message);
+      }, false);
+  }
 </script>
