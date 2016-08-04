@@ -1,6 +1,6 @@
 <div class="showrooms-wrapper">
-  <h3 style='text-align:center'>Showrooms</h3>
- <!--  <p>Regional Offices</p> -->
+  <h3>Showrooms</h3>
+  <p>Regional Offices</p>
   <div class="regional-offices">
     <ul>
       <% @regional_offices.each do |regional_office| %>
@@ -138,7 +138,7 @@ var ctx = canvas.getContext('2d');
           });
 
         
-        }else if(mousePos.x > canvas.width*0.9 && mousePos.y > canvas.height/1.8){
+        }else if(mousePos.x > canvas.width*0.92 && mousePos.y > canvas.height/1.8){
           draw_region(bg_img);
           draw_region(middle_east_img);
           $(canvas).off('click');
