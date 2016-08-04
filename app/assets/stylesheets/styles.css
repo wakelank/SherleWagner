@@ -1529,9 +1529,11 @@ div.filter h5{
   padding-left: 0;
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 2em;
 }
 .showrooms .regional-offices li{
   margin-left: 0;
+
 }
 
 #map-canvas { 
