@@ -145,6 +145,13 @@ var ctx = canvas.getContext('2d');
           $(canvas).on('click',function(){console.log('MID-EAST')
              $(document).scrollTop( $("#EuropeandtheMiddleEast").offset().top ); 
           });
+        }else if(mousePos.x < canvas.width*0.9 && mousePos.x > canvas.width*0.75 && mousePos.y < canvas.height/1.3 && mousePos.y > canvas.height * 0.2){
+          draw_region(bg_img);
+          draw_region(middle_east_img);
+          $(canvas).off('click');
+          $(canvas).on('click',function(){console.log('MID-EAST')
+             $(document).scrollTop( $("#EuropeandtheMiddleEast").offset().top ); 
+          });
         }
 
         else{
