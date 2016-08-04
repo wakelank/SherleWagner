@@ -44,126 +44,147 @@
 </div>
 
 <script>
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+function checkWidth() {
+        var windowsize = $(window).width();
+        if (windowsize < 900) {
+            
+            $('#new-canvas').hide();
+        }
+        else if (windowsize > 900) {
+          runCanvas();
+        }
+    }
+    // Execute on load
+    checkWidth();
+    // Bind event listener
+    $(window).resize(checkWidth);
 
-  draw_bg();
-  mousePosition();
+// if ($(window).width() < 900){
+//   $('#new-canvas').hide();
+// }
+function runCanvas(){
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
 
-  var us_img = new Image();
-  us_img.src = '/images/map/map_north_america.png';
+    draw_bg();
+    mousePosition();
 
-  var russia_img = new Image();
-  russia_img.src = '/images/map/map_russia.png';
+    var us_img = new Image();
+    us_img.src = '/images/map/map_north_america.png';
 
-  var asia_img = new Image();
-  asia_img.src = '/images/map/map_asia.png';
+    var russia_img = new Image();
+    russia_img.src = '/images/map/map_russia.png';
 
-  var middle_east_img = new Image();
-  middle_east_img.src = '/images/map/map_middle_east.png';
+    var asia_img = new Image();
+    asia_img.src = '/images/map/map_asia.png';
 
-  var bg_img = new Image();
-  bg_img.src = '/images/map/map_bg.jpg';
+    var middle_east_img = new Image();
+    middle_east_img.src = '/images/map/map_middle_east.png';
 
-  function draw_bg() {
-    
     var bg_img = new Image();
     bg_img.src = '/images/map/map_bg.jpg';
-    
-    bg_img.onload = function(){
+
+    function draw_bg() {
+      
+      var bg_img = new Image();
+      bg_img.src = '/images/map/map_bg.jpg';
+      
+      bg_img.onload = function(){
+        var width = canvas.scrollWidth;
+        var height = canvas.scrollHeight;
+        //for responsive
+        ctx.drawImage(bg_img,0,0);
+       
+      };
+      
+      
+    }
+
+    function mousePosition(){
+      function getMousePos(canvas, evt) {
+          var rect = canvas.getBoundingClientRect();
+          return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+          };
+        }
+
+        canvas.addEventListener('mousemove', function(evt) {
+          var mousePos = getMousePos(canvas, evt);
+
+          var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+          
+          if(mousePos.x > canvas.width/3.8 && mousePos.x < canvas.width/1.5)
+          {
+            draw_region(bg_img);
+           draw_region(us_img);
+           $(canvas).off('click');
+           $(canvas).on('click',function(){console.log('USA');
+            window.location.href = "http://www.sherlewagner.com/showrooms#NorthAmerica";
+              // $(document).scrollTop( $("#NorthAmerica").offset().top );
+
+            });  
+          
+          }else if(mousePos.x > 0 && mousePos.x < canvas.width/3.8 && mousePos.y < canvas.height/2){
+            draw_region(bg_img);
+            draw_region(russia_img);
+            $(canvas).off('click');
+            $(canvas).on('click',function(){console.log('RUSSIA')
+              window.location.href = "http://www.sherlewagner.com/showrooms#Russia";
+            });
+          }else if(mousePos.x > canvas.width*0.9 && mousePos.y < canvas.height/2){
+            draw_region(bg_img);
+            draw_region(russia_img);
+            $(canvas).off('click');
+            $(canvas).on('click',function(){console.log('RUSSIA')
+              window.location.href = "http://www.sherlewagner.com/showrooms#Russia";
+            });
+
+
+          }else if(mousePos.x > 0 && mousePos.x < canvas.width/3.8 && mousePos.y > canvas.height/2){
+            draw_region(bg_img);
+            draw_region(asia_img);
+            $(canvas).off('click');
+            $(canvas).on('click',function(){console.log('Asia')
+              window.location.href = "http://www.sherlewagner.com/showrooms#Asia";
+            });
+
+          }else if(mousePos.x > canvas.width*0.95 && mousePos.y > canvas.height/2 && mousePos.y < canvas.height/1.8){
+            draw_region(bg_img);
+            draw_region(asia_img);
+            $(canvas).off('click');
+            $(canvas).on('click',function(){console.log('Asia')
+              window.location.href = "http://www.sherlewagner.com/showrooms#Asia";
+            });
+
+          
+          }else if(mousePos.x > canvas.width*0.92 && mousePos.y > canvas.height/1.8){
+            draw_region(bg_img);
+            draw_region(middle_east_img);
+            $(canvas).off('click');
+            $(canvas).on('click',function(){console.log('MID-EAST')
+               window.location.href = "http://www.sherlewagner.com/showrooms#EuropeandtheMiddleEast"; 
+            });
+          }else if(mousePos.x < canvas.width*0.9 && mousePos.x > canvas.width*0.75 && mousePos.y < canvas.height/1.3 && mousePos.y > canvas.height * 0.2){
+            draw_region(bg_img);
+            draw_region(middle_east_img);
+            $(canvas).off('click');
+            $(canvas).on('click',function(){console.log('MID-EAST')
+               window.location.href = "http://www.sherlewagner.com/showrooms#EuropeandtheMiddleEast";  
+            });
+          }
+
+          else{
+            draw_region(bg_img);
+            $(canvas).off('click'); 
+          }
+        }, false);
+    }
+    function draw_region(image){
       var width = canvas.scrollWidth;
-      var height = canvas.scrollHeight;
-      //for responsive
-      ctx.drawImage(bg_img,0,0);
-     
-    };
-    
-    
-  }
-
-  function mousePosition(){
-    function getMousePos(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-        };
-      }
-
-      canvas.addEventListener('mousemove', function(evt) {
-        var mousePos = getMousePos(canvas, evt);
-
-        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-        
-        if(mousePos.x > canvas.width/3.8 && mousePos.x < canvas.width/1.5)
-        {
-          draw_region(bg_img);
-         draw_region(us_img);
-         $(canvas).off('click');
-         $(canvas).on('click',function(){console.log('USA');
-            $(document).scrollTop( $("#NorthAmerica").offset().top );
-
-          });  
-        
-        }else if(mousePos.x > 0 && mousePos.x < canvas.width/3.8 && mousePos.y < canvas.height/2){
-          draw_region(bg_img);
-          draw_region(russia_img);
-          $(canvas).off('click');
-          $(canvas).on('click',function(){console.log('RUSSIA')
-            $(document).scrollTop( $("#Russia").offset().top );  
-          });
-        }else if(mousePos.x > canvas.width*0.9 && mousePos.y < canvas.height/2){
-          draw_region(bg_img);
-          draw_region(russia_img);
-          $(canvas).off('click');
-          $(canvas).on('click',function(){console.log('RUSSIA')
-            $(document).scrollTop( $("#Russia").offset().top );  
-          });
-
-
-        }else if(mousePos.x > 0 && mousePos.x < canvas.width/3.8 && mousePos.y > canvas.height/2){
-          draw_region(bg_img);
-          draw_region(asia_img);
-          $(canvas).off('click');
-          $(canvas).on('click',function(){console.log('Asia')
-            $(document).scrollTop( $("#Asia").offset().top );  
-          });
-
-        }else if(mousePos.x > canvas.width*0.95 && mousePos.y > canvas.height/2 && mousePos.y < canvas.height/1.8){
-          draw_region(bg_img);
-          draw_region(asia_img);
-          $(canvas).off('click');
-          $(canvas).on('click',function(){console.log('Asia')
-            $(document).scrollTop( $("#Asia").offset().top );  
-          });
-
-        
-        }else if(mousePos.x > canvas.width*0.92 && mousePos.y > canvas.height/1.8){
-          draw_region(bg_img);
-          draw_region(middle_east_img);
-          $(canvas).off('click');
-          $(canvas).on('click',function(){console.log('MID-EAST')
-             $(document).scrollTop( $("#EuropeandtheMiddleEast").offset().top ); 
-          });
-        }else if(mousePos.x < canvas.width*0.9 && mousePos.x > canvas.width*0.75 && mousePos.y < canvas.height/1.3 && mousePos.y > canvas.height * 0.2){
-          draw_region(bg_img);
-          draw_region(middle_east_img);
-          $(canvas).off('click');
-          $(canvas).on('click',function(){console.log('MID-EAST')
-             $(document).scrollTop( $("#EuropeandtheMiddleEast").offset().top ); 
-          });
-        }
-
-        else{
-          draw_region(bg_img);
-          $(canvas).off('click'); 
-        }
-      }, false);
-  }
-  function draw_region(image){
-    var width = canvas.scrollWidth;
-      var height = canvas.scrollHeight;
-      ctx.drawImage(image,0,0);
-     
-  }
+        var height = canvas.scrollHeight;
+        ctx.drawImage(image,0,0);
+       
+    }
+}
 </script>
