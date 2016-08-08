@@ -233,8 +233,11 @@ input#search{
   border:none;
   margin-bottom: 2em !important;
 }
-#Fittings{
+li.type_tile#Fittings{
   background-position: 0px -40px;
+}
+li.type_tile#Fixtures{
+    background-position: 0px -10px;
 }
 a .prod_tile.type_tile h4{
  color: black;
@@ -1511,6 +1514,9 @@ div.filter h5{
 }
 
 /* Showrooms */
+#new-canvas{
+  text-align: center;
+}
 .showrooms .showrooms-wrapper{
   width: 90%;
   margin: 0 auto;
@@ -1523,9 +1529,11 @@ div.filter h5{
   padding-left: 0;
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 2em;
 }
 .showrooms .regional-offices li{
   margin-left: 0;
+
 }
 
 #map-canvas { 

@@ -20,11 +20,11 @@
   
 <% end %>
 
-     <% @product_types.each do |product_type| %>
+     <% @product_types.order(:id).each do |product_type| %>
      <% unless product_type.name == "no type" %>
         <!-- , :anchor => "type="+product_type.id.to_s -->
           <%= link_to  fetch_cat_path(:cat_id => product_type.id), :remote => true do %> 
-          <li class ="prod_tile type_tile" id = "<%= product_type.name.gsub(' ','_') %>" style='background-image:url("<%= "images/product_types/#{product_type.name}.jpg"%>");'>
+          <li class ="prod_tile type_tile" id = "<%= product_type.name.gsub(' ','_') %>" style='background-image:url("<%= product_type.image.url(:medium) %>");'>
             <h4>
               <%= product_type.name %>
             </h4>
