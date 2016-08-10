@@ -207,7 +207,8 @@ $(document).on("page:change", (function(){
             //do the same stuff
             var $t = $(t);
             var pr = $(parent_div);
-            swatch_tile_actions($t, pr);
+            swatch_tile_actions($t, pr); //call swatch actions
+            //set prod_config
               if  (parent_div == '#product_finishes_list'){
                 prod_config.finish = ident;
               }
@@ -276,34 +277,48 @@ $(document).on("page:change", (function(){
         //make a new var that is that URL with the material and base number
         var tearsheet_targ4 = tear_nmbr_ar.join('/');
 
-        //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
+        //create targ3; which gets the real finish from config
          var tearsheet_targ3 = tearsheet_targ4.replace("XX", prod_config.finish)
+         //CHECK IF PROD CONFIGS HAVE VALUES BEFORE DOING REPLACE
          if (prod_config.color.length > 1){
           
           tearsheet_targ3 = tearsheet_targ3.replace('CC', prod_config.color).replace(china_code_regex, prod_config.color);
           }
+         //set the target 
 
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
         
 
-
-        // *switch out product feat. img.*
+        // when a alternate photo is clicked
+        
         $('.alt_img').click(function(){
-           var thiz = this;
-          var new_img = thiz.dataset.url;
-           var new_config = thiz;
-          swap_product_image(new_img);
-          swap_product_info_for_configuration(new_config);
-          $(thiz).addClass('alt_choice');
-          prodnum_raw = thiz.dataset.number;
-           prod_num = thiz.dataset.number.split('-');
-          
-           prod_num_base = prod_num[0];
-           tearsh = $('.tear-sheet-submit').attr('href').split('/');
-          
+           var thiz = this; //the alt img li
+          var new_img = thiz.dataset.url; //the url of that image on S3
+           var new_config = thiz; //the alt img li
+
+          swap_product_image(new_img);//change the prod image url
+
+          swap_product_info_for_configuration(new_config);//change the name, subtitle etc by passing it the li of the alt img(new choice)
+          $(thiz).addClass('alt_choice'); //give the selected li class
+
+
+          prodnum_raw = thiz.dataset.number; // the config prod nmbr *Global var
+           prod_num = thiz.dataset.number.split('-'); // array *Global var
+
+//#$#$#$#$# -- the base of the prod nmbr set as the first bit before the '-'          
+           prod_num_base = prod_num[0]; //global
+
+           //grab the current tearsheet target url and split it at the '/'
+           tearsh = $('.tear-sheet-submit').attr('href').split('/'); //global
+
+          //replace the last bit (the prod number) with the joined prod_num from the alt-img li's dataset number
           tearsh[tearsh.length-1] = prod_num.join('-');
+          //set the tearsheet href to tears (rejoined)
           $('.tear-sheet-submit').attr('href', tearsh.join('/'));
-          tearsheet_targ1 = $('.tear-sheet-submit').attr('href');
+
+          //this var is the current href now - finish tile etc uses it next*
+          tearsheet_targ1 = $('.tear-sheet-submit').attr('href');//global
+          
           // tearsh_prod_num = $(tearsh).last()[0].split('-')[0];
           // tearsh_prod_num = tearsh_prod_num.replace(tearsh_prod_num, prod_num_base);
 
