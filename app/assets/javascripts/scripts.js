@@ -367,7 +367,7 @@ $(document).on("page:change", (function(){
                 
                   if (i == $('.alt_img').length - 1 ){
                     
-                    swap_product_image(bw_image,true);
+                    swap_product_image(bw_image);
                     swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
                   }
@@ -377,7 +377,7 @@ $(document).on("page:change", (function(){
             });
           }else{
             
-            swap_product_image(bw_image, true);
+            swap_product_image(bw_image);
             swap_product_info_for_no_configuration();
 
           }
@@ -428,7 +428,7 @@ $(document).on("page:change", (function(){
             });
           }else{
             
-            swap_product_image(bw_image,true);
+            swap_product_image(bw_image);
             swap_product_info_for_no_configuration();
 
           }
@@ -539,7 +539,7 @@ $(document).on("page:change", (function(){
                     if (i == $('.alt_img').length-1 ){
                       
                       if ($('#components_list li').length < 1){
-                        swap_product_image(bw_image,true);
+                        swap_product_image(bw_image);
                         swap_product_info_for_no_configuration();
                       }
                       
@@ -694,7 +694,7 @@ $(document).on("page:change", (function(){
   }
 
 
-  function swap_product_image(url, bw=false){
+  function swap_product_image(url){
     var image = $('#image_img');
    
 
