@@ -29,6 +29,7 @@
 <!-- style="background-image:url(%= @product.first_image.url%)" -->
 
     <div class="product_image <%= image_div_class %>"  data-url= '<%= @product.first_image.url %>' data-bw = '<%= @product.image.url %>' data-number = '<%= @product.configs_or_none.first.number %>' >
+    <img id="image_img" style="height:100%; width;100%;" src="<%= @product.first_image.url%>" alt="">
       <div class="config_info">
 
         <% if @product.components.length() < 1 %>

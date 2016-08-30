@@ -686,7 +686,7 @@ $(document).on("page:change", (function(){
   }
 
    function swap_product_image(url){
-    $('.product_image').css('background-image','url('+ url +')');
+    $('#image_img').attr('src',url);
 
     $('.alt_img').removeClass('alt_choice');
     $('ul#components_list').addClass('expandComp');
