@@ -32,7 +32,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'elevatezoom-rails'
+
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 
