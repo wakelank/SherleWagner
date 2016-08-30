@@ -235,6 +235,14 @@ $(document).on("page:change", (function(){
 
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
         
+        // if ($(window).width() > 900) {
+   
+          $('#image_img').elevateZoom({
+              zoomType        : "inner",
+              cursor: "crosshair"
+          });
+        // }
+
         // *switch out product feat. img.*
         $('.alt_img').click(function(){
            var thiz = this;
@@ -359,7 +367,7 @@ $(document).on("page:change", (function(){
                 
                   if (i == $('.alt_img').length - 1 ){
                     
-                    swap_product_image(bw_image);
+                    swap_product_image(bw_image,true);
                     swap_product_info_for_no_configuration();
                     //do the swap B and W image here*
                   }
@@ -369,7 +377,7 @@ $(document).on("page:change", (function(){
             });
           }else{
             
-            swap_product_image(bw_image);
+            swap_product_image(bw_image, true);
             swap_product_info_for_no_configuration();
 
           }
@@ -420,7 +428,7 @@ $(document).on("page:change", (function(){
             });
           }else{
             
-            swap_product_image(bw_image);
+            swap_product_image(bw_image,true);
             swap_product_info_for_no_configuration();
 
           }
@@ -531,7 +539,7 @@ $(document).on("page:change", (function(){
                     if (i == $('.alt_img').length-1 ){
                       
                       if ($('#components_list li').length < 1){
-                        swap_product_image(bw_image);
+                        swap_product_image(bw_image,true);
                         swap_product_info_for_no_configuration();
                       }
                       
@@ -685,13 +693,25 @@ $(document).on("page:change", (function(){
     
   }
 
-   function swap_product_image(url){
-    $('.product_image').css('background-image','url('+ url +')');
 
+  function swap_product_image(url, bw=false){
+    var image = $('#image_img');
+   
+
+
+
+    $('#image_img').attr('src',url).data('zoom-image', url);
+    
+    // console.log(url);
+      
+      $('.zoomWindowContainer div').stop().css("background-image","url("+ url +")");
+    
+    
     $('.alt_img').removeClass('alt_choice');
     $('ul#components_list').addClass('expandComp');
+    
 
-   }
+  }
 
    function nav_back(){
           $('.prod-cat a').click(function(){
