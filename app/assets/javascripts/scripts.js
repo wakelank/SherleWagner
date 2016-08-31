@@ -239,7 +239,8 @@ $(document).on("page:change", (function(){
    
           $('#image_img').elevateZoom({
               zoomType        : "inner",
-              cursor: "crosshair"
+              cursor: "crosshair",
+              easing : true
           });
         // }
 

@@ -581,9 +581,9 @@ li.highlighted{
     padding-top: 5px;
     position: absolute;
     bottom: 0px;
-    /* left: 15px; */
     width: 100%;
     background: rgba(255,255,255,0.8);
+    z-index: 11;
 }
 .config_info h5{
   margin:0;
@@ -1085,7 +1085,7 @@ width: 100%;
     min-height: 30px;
     width: 100%;
     background: #222222;
-   z-index: 3;
+   z-index: 13;
 }
 .footer .links{
   /*padding-top: 2px;*/
