@@ -84,10 +84,10 @@ RailsAdmin.config do |config|
       field :filter_values
       field :spec_sheet_pdf
       field :spec_sheet_2d do
-        label "spec sheet 2d (igs only)"
+        label "spec sheet 2d (dxf only)"
       end
       field :spec_sheet_3d do
-        label "spec sheet 3d (dxf only)"
+        label "spec sheet 3d (igs only)"
       end
       field :installation_instructions
       #field :styles do

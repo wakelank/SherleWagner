@@ -34,9 +34,9 @@ class Product < ActiveRecord::Base
   has_attached_file :installation_instructions, default_url: "/contact/installation_guide"
   validates_attachment :installation_instructions, content_type: { content_type: 'application/pdf' }
   has_attached_file :spec_sheet_2d, default_url: "/contact/2D_renderings"
-  validates_attachment_file_name :spec_sheet_2d, matches: /igs/
+  validates_attachment_file_name :spec_sheet_2d, matches: /dxf/
   has_attached_file :spec_sheet_3d, default_url: "/contact/3D_renderings"
-  validates_attachment_file_name :spec_sheet_3d, matches: /dxf/
+  validates_attachment_file_name :spec_sheet_3d, matches: /igs/
   validates :name, presence: true
   validates :number, presence: true
   validates :display_size_for_collection, inclusion: { in: %w(small large) }
