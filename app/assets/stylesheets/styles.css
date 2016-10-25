@@ -557,7 +557,9 @@ li.highlighted{
   background-color: white;
     background-repeat: no-repeat;
     border: solid #eeeeee;
-  
+  cursor:-webkit-zoom-in; 
+  cursor: -moz-zoom-in;
+
 }
 .product_image_square{
   height:400px;

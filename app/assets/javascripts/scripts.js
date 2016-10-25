@@ -236,12 +236,35 @@ $(document).on("page:change", (function(){
         $('.tear-sheet-submit').attr('href',tearsheet_targ3);
         
         // if ($(window).width() > 900) {
-   
-          $('#image_img').elevateZoom({
-              zoomType        : "inner",
-              cursor: "crosshair",
-              easing : true
-          });
+
+          $('#image_img').click(function(){
+            console.log('sanity');
+            if( $('.enabled').length === 0){
+            $('#image_img').elevateZoom({
+                zoomType        : "inner",
+                cursor: "crosshair",
+                easing : true
+            });
+          }
+            if( $('.enabled').length === 0){
+                $('.zoomContainer').show();
+                $("#zoom_01").elevateZoom({
+                    zoomType: "inner",
+                    cursor: "crosshair"
+                });         
+                $(this).toggleClass('enabled');
+            }
+            else{
+                $(this).toggleClass('enabled');
+                $('.zoomContainer').hide();
+            }
+
+          })
+            // $('#image_img').elevateZoom({
+            //     zoomType        : "inner",
+            //     cursor: "crosshair",
+            //     easing : true
+            // });
         // }
 
         // *switch out product feat. img.*
