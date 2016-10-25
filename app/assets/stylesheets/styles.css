@@ -1095,8 +1095,16 @@ width: 100%;
     float: none;
   
 }
+.foot_link.social{
+  margin: 0;
+  width: 30px;
+}
+.social_link{
+  height: 2em;
+}
 .foot_links_list{
   padding-left: 0;
+  
 }
 li.foot_link, li.foot_link a{
     display: inline-block;
