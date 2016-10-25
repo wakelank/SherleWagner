@@ -239,18 +239,13 @@ $(document).on("page:change", (function(){
 
           $('#image_img').click(function(){
             console.log('sanity');
-            if( $('.enabled').length === 0){
-            $('#image_img').elevateZoom({
-                zoomType        : "inner",
-                cursor: "crosshair",
-                easing : true
-            });
-          }
+          
             if( $('.enabled').length === 0){
                 $('.zoomContainer').show();
-                $("#zoom_01").elevateZoom({
+                $("#image_img").elevateZoom({
                     zoomType: "inner",
-                    cursor: "crosshair"
+                    cursor: "crosshair",
+                    easing : true
                 });         
                 $(this).toggleClass('enabled');
             }
