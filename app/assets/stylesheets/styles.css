@@ -863,10 +863,13 @@ input.favorite:hover{
   }
   
   .product_image {
-    width: 130%;
-    height: 410px;
+    width: 125%;
+    /*height: 410px;*/
   }
-  .product_info {
+  .product_image img#image_img{
+    height:80% !important;
+  }
+  .product_info, h5#prod_subtitle {
     padding-left: 7em;
   }
 
