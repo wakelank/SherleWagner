@@ -7,7 +7,11 @@ class ContactWithFavorites < ApplicationMailer
                       additional_recipients:,
                       requesters_location:,
                       requesters_comment:)
-    @favorites = favorites || NullObject.new
+    favorites = favorites || []
+
+    @favorites = favorites.map do |prod_id|
+      Product.find(prod_id)
+    end
     @requesters_email = requesters_email.blank? ? "no email provided" : requesters_email
     # @requesters_first_name = requesters_first_name
     # @requesters_last_name = requesters_last_name
