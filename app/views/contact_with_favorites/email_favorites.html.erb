@@ -18,7 +18,7 @@ Customer Comments:
   </p>
 Favorites:
 <% @favorites.each do |fav| %>
-  <%= fav %><br>
+  <%= link_to fav.email_information, fav %><br>
 <% end %>
 <p>
 <% if @favorites.count == 0 %> 

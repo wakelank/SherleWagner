@@ -375,6 +375,10 @@ class Product < ActiveRecord::Base
   def sub_type_buddies
     product_sub_type.products.select{ |product| self != product }
   end
+
+  def email_information
+    "#{name}: #{number}"
+  end
   private
 
 
