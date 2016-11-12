@@ -88,7 +88,7 @@ input#submit_email{
   <a name="send"></a>
   <%= form_tag(send_contact_with_favorites_path, method: 'post') do %>
     <% @favorites.each do |fav| %>
-      <%= hidden_field_tag 'favorites[]', fav.id, multiple: true %>
+      <%= hidden_field_tag 'favorites[]', fav.product_id, multiple: true %>
       <%# <%= hidden_field_tag 'favorites[]', fav.info_for_email, multiple: true %1> %>
     <% end %>
     <p>
