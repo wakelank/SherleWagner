@@ -1,0 +1,23 @@
+JS should do
+prod page
+
+-Load with correct config info:
+prod base number*
+config name, sub t shown, alt img selected, finish mat chin highlighted, tearsheet link set to current config
+
+-ON alt img click
+-Update the product base number*
+-highlight swatches
+-set tear targ, config
+
+
+-ON tile Click
+*if it doesn't have componenents
+-keep same base number, show BW image, or correct alt image (decide behavior? keep base nmbr?)
+-update prod/tear config
+
+
+
+testing should do...
+pass a url to ... JS
+pass data values to JS
