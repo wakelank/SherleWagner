@@ -39,17 +39,17 @@
                   </h4>
                   </div>
                 </li>              
-                <% end %>
-                <% if product_sub_type.five_products(current_user).length >= 5  %>
-                  <% preview_products = product_sub_type.five_products(current_user) %>
-                <% else %>
-                  <% preview_products = product_sub_type.two_products %>
-                <% end %>
+              <% end %>
+              <% if product_sub_type.five_products(current_user).length >= 5  %>
+                <% preview_products = product_sub_type.five_products(current_user) %>
+              <% else %>
+                <% preview_products = product_sub_type.two_products %>
+              <% end %>
 
-                <% preview_products.each_with_index do |product, i| %>
+              <% preview_products.each_with_index do |product, i| %>
                  <% bgimage= product.image.url(:medium) %>
 
-                 <% if bgimage != "/images/medium/missing_product.jpg" || current_user  %>
+                <% if bgimage != "/images/medium/missing_product.jpg" || current_user  %>
                   <% if i<4 && i<preview_products.length-1 %>
 
                     <%= link_to product_path(product) do %>
@@ -67,7 +67,7 @@
                     <% end %>
                   <% else %>
                     <%= link_to fetch_items_path(:cat_id => product_sub_type.id ), :remote => true do %>
-                    <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %>" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat" >
+                      <li class="prod_tile <%= product_sub_type.name.gsub(' ','_') %>" style="background-image: url(<%= bgimage %>); background-size: contain; background-repeat: no-repeat" >
                       
                         <div class="prod_title <%= product_sub_type.name.gsub(' ','_') %> plus">
                           <h3>
@@ -81,7 +81,7 @@
                     <% end %>
                   <% end %>
                 <% end %><!-- endif if bg images and current_user -->
-                <% end %>              
+              <% end %>              
               <br/><br/><hr/>
 
              <!-- end %> -->
@@ -111,6 +111,7 @@
 
    $('.sub_type_tile, .plus').click(function(){
      var thiss =$(this);
+     
 
      var sideb_sub_cat = "#"+ thiss.get(0).className.split(' ')[1];
      var sideb_collapse = $(sideb_sub_cat).find('label').attr('href');
