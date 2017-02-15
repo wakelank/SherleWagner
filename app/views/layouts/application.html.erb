@@ -12,14 +12,14 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-
+  <%= render partial: "partials/google_analytics" %>
 
   <script>
   //active nav link
     $(document).ready(function() {
         $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
     });
-</script>
+  </script>
 </head>
 <body class="<%=controller_name%> <%=action_name%>">
 
@@ -66,7 +66,7 @@
 
 
   <%= render 'layouts/footer' %>
-
+  <%= render partial: "partials/google_analytics_pageview" %>
 
 </body>
 </html>
