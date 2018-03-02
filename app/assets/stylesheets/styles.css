@@ -1476,6 +1476,10 @@ div#nav_link_contain.collapse.navbar-collapse{
   }
   .choice_title{
     margin: 0;
+    display: none;
+  }
+  .swatches{
+    display: none;
   }
 
   .prod_tile{
@@ -1487,9 +1491,10 @@ div#nav_link_contain.collapse.navbar-collapse{
     width: 100%;
   }
   .option_box{
-        width: 120px;
+    width: 120px;
     height: 120px;
   }
+  
 }
 
 /*side nav tweaks*/
