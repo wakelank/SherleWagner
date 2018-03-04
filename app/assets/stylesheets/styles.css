@@ -25,6 +25,9 @@ body{
 
 /*=====header nav====*/
 
+.navbar, .navbar-inverse{
+  background-color: black;
+}
 .navbar-inner .nav-container{
   padding-top:2em;
   height:100%;
@@ -90,8 +93,8 @@ input#search{
   padding: 0 15px;
 }
 .nav li a:hover{
-  /*text-decoration: underline;
-   -moz-text-decoration-color: white; /* Code for Firefox */
+  text-decoration: underline;
+   -moz-text-decoration-color: white; /* Code for Firefox 
 }
 .nav li a:visited{
   background-color:whitesmoke;
@@ -275,7 +278,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
       .nav #searcher_li{
         position: absolute;
         left: -12px;
-        background-color: #222222;
+        background-color: black;
         
         }
     
@@ -1089,7 +1092,7 @@ width: 100%;
     bottom: 0px;
     min-height: 30px;
     width: 100%;
-    background: #222222;
+    background: black;
    z-index: 13;
 }
 .footer .links{
