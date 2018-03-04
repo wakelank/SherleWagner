@@ -13,11 +13,11 @@
 body{
   font-family: 'DINPro-Light', sans-serif;
   /*font-family: 'PT Sans', sans-serif;*/
-  background-color: #eeeeee;
+  background-color: white;
 }
 
 #main_contain{
-  background-color: #eeeeee;
+  background-color: white;
 }
 #center_main{
       margin-bottom: -75px;
@@ -261,7 +261,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
      .navvy{
         /*padding-top: 150px;*/
-        background-color: #eeeeee;
+        background-color: white;
         font-family: "PT Sans";
         
         overflow-y: scroll;
@@ -341,8 +341,8 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
 
       .navvy .panel-default>.panel-heading{
         border: none;
-        padding:10px;;
-        padding-bottom: 0
+        padding:0;
+        padding-bottom: 0;
       }
       .navvy .panel{
         margin-bottom: 0;/*20px;*/
@@ -353,8 +353,13 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         box-shadow: none; /*0 1px 1px rgba(0,0,0,0.05) */
       }
       .navvy label.prod-cat{
-        font-weight: normal;
+        font-family: DINPro-light;
         font-size: 18px;
+        font-weight: normal;
+      }
+      input.back {
+        padding-bottom: 5px;
+        /*keep 'g' bottom from being covered */
       }
       .panel-body {
         padding: 0px 15px;
@@ -373,7 +378,7 @@ ul li.prod_tile .prod_title, ul li.prod_tile .prod_title a{
         margin-left: -15px;
       }*/
        #accordion1 .panel-sub-heading .panel-title label a:link, #accordion1 .panel-sub-heading .panel-title label a:visited {
-        
+        font-family: DINPro-light;
         color: #484848;
       }
       #accordion1 a:hover, #accordion1 a:focus{
@@ -1524,7 +1529,7 @@ div.filter label{
   font-weight: normal;
 }
 div.filter h5{
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin-left: -7px;
 }
 
