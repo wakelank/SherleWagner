@@ -123,8 +123,11 @@
         <ul id="links1" class='links'>
 
           <li><%= render 'tearsheet_form' %></li>
-          <li><%= link_to "Installation Guide", @product.installation_instructions.url %></li>
-          <li><%= render 'favorites/favorite_button' %></li>
+
+         
+          <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
+          
+         
           
            <% if @product.associated_collection_or_null.id > 0 %>
            <br/>
@@ -138,7 +141,7 @@
           
          <!--  <li><%= link_to "3D Renderings", "/contact/3D_renderings" %></li>
           <li><%= link_to "2D Renderings", "/contact/2D_renderings" %></li> -->
-          <li><%=link_to "Spec Sheet", @product.spec_sheet_pdf.url, target: '_blank' %></li>
+          <li><%= render 'favorites/favorite_button' %></li>
           <br/>
             <li>
               <%= form_tag inquiry_path, method: 'post' do %>
