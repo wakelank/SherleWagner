@@ -15,7 +15,21 @@
       ul.dropdown-menu{
         position: absolute;
         z-index: 10;
+        height: fit-content;
+        padding-bottom: 40px;
+        color: white;
+        background-color: black;
       }
+      ul.dropdown-menu a{
+        color: white;
+        font-family: DINPro-Light;
+        padding-left: 5px; 
+      }
+      ul.dropdown-menu>.active>a, ul.dropdown-menu>.active>a:hover, ul.dropdown-menu>.active>a:focus{
+        background-color: black;
+        text-decoration: underline;
+      }
+
 </style>
 
 <div id="nav-wrapper">
@@ -44,9 +58,9 @@
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h4>ABOUT <span class="caret"></span></h4></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/showrooms">Showroom Locations</a></li>
+            <li><a href="/history">History & Manufacturing</a></li>
             </ul>
         </li>
 
