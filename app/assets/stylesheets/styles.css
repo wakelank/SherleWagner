@@ -1101,11 +1101,10 @@ width: 100%;
    z-index: 13;
 }
 .footer .links{
-  /*padding-top: 2px;*/
   padding-bottom: 5px;
-  
-    text-align: center;
-    float: none;
+  text-align: center;
+  float: right;
+  padding-right: 10px;
   
 }
 .foot_link.social{
